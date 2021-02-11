@@ -1,0 +1,29 @@
+*.iml
+*.ipr
+*.iws
+
+.gradle
+/local.properties
+.idea/*
+!.idea/copyright
+/build
+/captures
+.externalNativeBuild
+**/build/*
+.kotlintest
+
+# linux specific files
+.directory
+*.*~
+
+# windows specific files
+Thumbs.db
+thumbs.db
+
+# mac specific files
+.DS_Store
+
+**/src/debug/res/**/ic_launcher.png
+**/src/debug/res/**/ic_launcher_round.png
+**/src/uat/res/**/ic_launcher.png
+**/src/uat/res/**/ic_launcher_round.png
