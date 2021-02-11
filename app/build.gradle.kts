@@ -1,8 +1,8 @@
 plugins {
     id("com.android.application")
     kotlin("android")
-    id("kotlin-kapt")
-    id("androidx.navigation.safeargs.kotlin")
+//    id("kotlin-kapt")
+//    id("androidx.navigation.safeargs.kotlin")
 }
 
 val appName = "MateeCoreApp"
@@ -16,23 +16,10 @@ android {
         minSdkVersion(Application.Sdk.min)
         targetSdkVersion(Application.Sdk.target)
 
-        multiDexEnabled = true
+        versionCode = Application.Version.code
+        versionName = Application.Version.name
 
-        versionCode = Android.versionCode
-        versionName = Android.versionName
-
-        testInstrumentationRunner = Android.testInstrumentRunner
-        //versionCode gitCommitsCount
-
-        packagingOptions {
-            exclude("META-INF/connect-sdk-api-incar-domain.kotlin_module")
-            exclude("META-INF/domain.kotlin_module")
-            exclude("META-INF/data.kotlin_module")
-            exclude("META-INF/infrastructure.kotlin_module")
-            exclude("META-INF/presentation.kotlin_module")
-            exclude("META-INF/LICENSE.md")
-            exclude("META-INF/LICENSE-notice.md")
-        }
+        testInstrumentationRunner("androidx.test.runner.AndroidJUnitRunner")
     }
 
     signingConfigs {
@@ -72,7 +59,6 @@ android {
 
     testBuildType = "debug"
 
-
     sourceSets {
         getByName("main").java.srcDirs("src/main/kotlin")
         getByName("test").java.srcDirs("src/test/kotlin")
@@ -81,15 +67,22 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = Android.sourceCompatibilityJava
-        targetCompatibility = Android.targetCompatibilityJava
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 
     buildFeatures {
         dataBinding = true
+        compose = true
+
         lintOptions {
             lintConfig = File("lint.xml")
         }
+    }
+
+    composeOptions {
+        kotlinCompilerVersion = kotlinVersion
+        kotlinCompilerExtensionVersion = Dependency.Compose.version
     }
 
     applicationVariants.all {
@@ -105,21 +98,16 @@ android {
 dependencies {
     implementation(project(":shared"))
 
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version")
-    implementation("androidx.core:core-ktx:1.3.2")
-    implementation("androidx.appcompat:appcompat:1.2.0")
-    implementation("com.google.android.material:material:1.3.0")
+    implementation(Dependency.Kotlin.stdlib)
+    implementation(Dependency.AndroidX.core)
+    implementation(Dependency.AndroidX.appCompat)
 
-}
+    implementation(Dependency.Compose.ui)
+    implementation(Dependency.Compose.uiTooling)
+    implementation(Dependency.Compose.foundation)
+    implementation(Dependency.Compose.activity)
+    implementation(Dependency.Compose.material)
+    implementation(Dependency.Compose.materialIconsCore)
 
-
-tasks {
-    val androidSourcesJar by creating(Jar::class) {
-        archiveClassifier.set("sources")
-        from(android.sourceSets["main"].java.srcDirs)
-    }
-
-    artifacts {
-        add("archives", androidSourcesJar)
-    }
+    androidTestImplementation(Dependency.Compose.uiTest)
 }

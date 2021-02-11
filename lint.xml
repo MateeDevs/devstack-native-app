@@ -1,110 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <lint>
 
-    <issue id="UsesMinSdkAttributes" severity="ignore" />
-    <issue id="CheckResult" severity="ignore" />
-    <issue id="Typos" severity="ignore" />
-    <issue id="SetJavaScriptEnabled" severity="ignore" />
-    <issue id="IconColors" severity="ignore" />
-    <issue id="IconLauncherShape" severity="ignore" />
-    <issue id="MissingRegistered" severity="ignore" />
-    <issue id="ObsoleteLintCustomCheck" severity="ignore" />
+    <!--    <issue id="UsesMinSdkAttributes" severity="ignore" />-->
+    <!--    <issue id="CheckResult" severity="ignore" />-->
+    <!--    <issue id="Typos" severity="ignore" />-->
+    <!--    <issue id="SetJavaScriptEnabled" severity="ignore" />-->
+    <!--    <issue id="IconColors" severity="ignore" />-->
+    <!--    <issue id="IconLauncherShape" severity="ignore" />-->
+    <!--    <issue id="MissingRegistered" severity="ignore" />-->
+    <!--    <issue id="ObsoleteLintCustomCheck" severity="ignore" />-->
 
-    <issue id="MissingTranslation" severity="error" />
-    <issue id="Untranslatable" severity="error" />
-    <issue id="BatteryLife" severity="error" />
+    <!--    <issue id="MissingTranslation" severity="error" />-->
+    <!--    <issue id="Untranslatable" severity="error" />-->
+    <!--    <issue id="BatteryLife" severity="error" />-->
 
-    <issue id="PrivateApi" severity="fatal" />
-    <issue id="ProtectedPermissions" severity="fatal" />
-    <issue id="AllowAllHostnameVerifier" severity="fatal" />
-    <issue id="BadHostnameVerifier" severity="fatal" />
-    <issue id="SSLCertificateSocketFactoryGetInsecure" severity="fatal" />
-    <issue id="TrustAllX509TrustManager" severity="fatal" />
-    <issue id="StaticFieldLeak" severity="error" />
+    <!--    <issue id="PrivateApi" severity="fatal" />-->
+    <!--    <issue id="ProtectedPermissions" severity="fatal" />-->
+    <!--    <issue id="AllowAllHostnameVerifier" severity="fatal" />-->
+    <!--    <issue id="BadHostnameVerifier" severity="fatal" />-->
+    <!--    <issue id="SSLCertificateSocketFactoryGetInsecure" severity="fatal" />-->
+    <!--    <issue id="TrustAllX509TrustManager" severity="fatal" />-->
+    <!--    <issue id="StaticFieldLeak" severity="error" />-->
 
-    <issue id="AdapterViewChildren" severity="error" />
-    <issue id="MissingPermission" severity="error" />
-    <issue id="IllegalResourceRef" severity="error" />
-    <issue id="ScrollViewCount" severity="error" />
-    <issue id="TranslucentOrientation" severity="error" />
-    <issue id="DeviceAdmin" severity="error" />
-    <issue id="TextViewEdits" severity="error" />
-    <issue id="AppCompatMethod" severity="error" />
-    <issue id="Assert" severity="error" />
-    <issue id="DuplicateIncludedIds" severity="error" />
-    <issue id="ExifInterface" severity="error" />
-    <issue id="IncompatibleMediaBrowserServiceCompatVersion" severity="error" />
-    <issue id="MissingFirebaseInstanceTokenRefresh" severity="error" />
-    <issue id="RequiresFeature" severity="error" />
-    <issue id="SdCardPath" severity="error" />
-    <issue id="ShortAlarm" severity="error" />
-    <issue id="ShowToast" severity="error" />
-    <issue id="SimpleDateFormat" severity="error" />
-    <issue id="DuplicateUsesFeature" severity="error" />
-    <issue id="InstantApps" severity="error" />
-    <issue id="JobSchedulerService" severity="error" />
-    <issue id="ManifestOrder" severity="error" />
-    <issue id="LocaleFolder" severity="error" />
-    <issue id="CustomViewStyleable" severity="error" />
-    <issue id="StateListReachable" severity="error" />
-    <issue id="GradleDynamicVersion" severity="error" />
-    <issue id="GradlePath" severity="error" />
-    <issue id="InOrMmUsage" severity="error" />
-    <issue id="ExtraText" severity="error" />
-    <issue id="InnerclassSeparator" severity="error" />
-    <issue id="InvalidNavigation" severity="error" />
-    <issue id="ProguardSplit" severity="error" />
-    <issue id="SpUsage" severity="error" />
-    <issue id="Deprecated" severity="error" />
-    <issue id="MissingVersion" severity="error" />
-    <issue id="PxUsage" severity="error" />
-    <issue id="AddJavascriptInterface" severity="error" />
-    <issue id="DeprecatedProvider" severity="error" />
-    <issue id="GetInstance" severity="error" />
-    <issue id="SecureRandom" severity="error" />
-    <issue id="ExportedPreferenceActivity" severity="error" />
-    <issue id="PackageManagerGetSignatures" severity="error" />
-    <issue id="GrantAllUris" severity="error" />
-    <issue id="SSLCertificateSocketFactoryCreateSocket" severity="error" />
-    <issue id="SetWorldReadable" severity="error" />
-    <issue id="SetWorldWritable" severity="error" />
-    <issue id="UnsafeProtectedBroadcastReceiver" severity="error" />
-    <issue id="UseCheckPermission" severity="error" />
-    <issue id="SignatureOrSystemPermissions" severity="error" />
-    <issue id="ProxyPassword" severity="error" />
-    <issue id="Wakelock" severity="error" />
-    <issue id="WakelockTimeout" severity="error" />
-    <issue id="Recycle" severity="error" />
-    <issue id="ObsoleteLayoutParam" severity="error" />
-    <issue id="ObsoleteSdkInt" severity="error" />
-    <issue id="ViewHolder" severity="error" />
-    <issue id="HandlerLeak" severity="error" />
-    <issue id="UnusedResources" severity="error" />
-    <issue id="IconXmlAndPng" severity="error" />
-    <issue id="MissingApplicationIcon" severity="error" />
-    <issue id="IconExtension" severity="error" />
-    <issue id="ViewConstructor" severity="error" />
-    <issue id="HardcodedText" severity="error" />
+    <!--    <issue id="AdapterViewChildren" severity="error" />-->
+    <!--    <issue id="MissingPermission" severity="error" />-->
+    <!--    <issue id="IllegalResourceRef" severity="error" />-->
+    <!--    <issue id="ScrollViewCount" severity="error" />-->
+    <!--    <issue id="TranslucentOrientation" severity="error" />-->
+    <!--    <issue id="DeviceAdmin" severity="error" />-->
+    <!--    <issue id="TextViewEdits" severity="error" />-->
+    <!--    <issue id="AppCompatMethod" severity="error" />-->
+    <!--    <issue id="Assert" severity="error" />-->
+    <!--    <issue id="DuplicateIncludedIds" severity="error" />-->
+    <!--    <issue id="ExifInterface" severity="error" />-->
+    <!--    <issue id="IncompatibleMediaBrowserServiceCompatVersion" severity="error" />-->
+    <!--    <issue id="MissingFirebaseInstanceTokenRefresh" severity="error" />-->
+    <!--    <issue id="RequiresFeature" severity="error" />-->
+    <!--    <issue id="SdCardPath" severity="error" />-->
+    <!--    <issue id="ShortAlarm" severity="error" />-->
+    <!--    <issue id="ShowToast" severity="error" />-->
+    <!--    <issue id="SimpleDateFormat" severity="error" />-->
+    <!--    <issue id="DuplicateUsesFeature" severity="error" />-->
+    <!--    <issue id="InstantApps" severity="error" />-->
+    <!--    <issue id="JobSchedulerService" severity="error" />-->
+    <!--    <issue id="ManifestOrder" severity="error" />-->
+    <!--    <issue id="LocaleFolder" severity="error" />-->
+    <!--    <issue id="CustomViewStyleable" severity="error" />-->
+    <!--    <issue id="StateListReachable" severity="error" />-->
+    <!--    <issue id="GradleDynamicVersion" severity="error" />-->
+    <!--    <issue id="GradlePath" severity="error" />-->
+    <!--    <issue id="InOrMmUsage" severity="error" />-->
+    <!--    <issue id="ExtraText" severity="error" />-->
+    <!--    <issue id="InnerclassSeparator" severity="error" />-->
+    <!--    <issue id="InvalidNavigation" severity="error" />-->
+    <!--    <issue id="ProguardSplit" severity="error" />-->
+    <!--    <issue id="SpUsage" severity="error" />-->
+    <!--    <issue id="Deprecated" severity="error" />-->
+    <!--    <issue id="MissingVersion" severity="error" />-->
+    <!--    <issue id="PxUsage" severity="error" />-->
+    <!--    <issue id="AddJavascriptInterface" severity="error" />-->
+    <!--    <issue id="DeprecatedProvider" severity="error" />-->
+    <!--    <issue id="GetInstance" severity="error" />-->
+    <!--    <issue id="SecureRandom" severity="error" />-->
+    <!--    <issue id="ExportedPreferenceActivity" severity="error" />-->
+    <!--    <issue id="PackageManagerGetSignatures" severity="error" />-->
+    <!--    <issue id="GrantAllUris" severity="error" />-->
+    <!--    <issue id="SSLCertificateSocketFactoryCreateSocket" severity="error" />-->
+    <!--    <issue id="SetWorldReadable" severity="error" />-->
+    <!--    <issue id="SetWorldWritable" severity="error" />-->
+    <!--    <issue id="UnsafeProtectedBroadcastReceiver" severity="error" />-->
+    <!--    <issue id="UseCheckPermission" severity="error" />-->
+    <!--    <issue id="SignatureOrSystemPermissions" severity="error" />-->
+    <!--    <issue id="ProxyPassword" severity="error" />-->
+    <!--    <issue id="Wakelock" severity="error" />-->
+    <!--    <issue id="WakelockTimeout" severity="error" />-->
+    <!--    <issue id="Recycle" severity="error" />-->
+    <!--    <issue id="ObsoleteLayoutParam" severity="error" />-->
+    <!--    <issue id="ObsoleteSdkInt" severity="error" />-->
+    <!--    <issue id="ViewHolder" severity="error" />-->
+    <!--    <issue id="HandlerLeak" severity="error" />-->
+    <!--    <issue id="UnusedResources" severity="error" />-->
+    <!--    <issue id="IconXmlAndPng" severity="error" />-->
+    <!--    <issue id="MissingApplicationIcon" severity="error" />-->
+    <!--    <issue id="IconExtension" severity="error" />-->
+    <!--    <issue id="ViewConstructor" severity="error" />-->
+    <!--    <issue id="HardcodedText" severity="error" />-->
 
-    <issue id="TooDeepLayout" severity="warning" />
-    <issue id="TooManyViews" severity="warning" />
+    <!--    <issue id="TooDeepLayout" severity="warning" />-->
+    <!--    <issue id="TooManyViews" severity="warning" />-->
 
-    <issue id="Registered" severity="error" />
+    <!--    <issue id="Registered" severity="error" />-->
 
-    <issue id="AppLinksAutoVerifyError" severity="error" />
-    <issue id="AppLinksAutoVerifyWarning" severity="error" />
+    <!--    <issue id="AppLinksAutoVerifyError" severity="error" />-->
+    <!--    <issue id="AppLinksAutoVerifyWarning" severity="error" />-->
 
-    <issue id="NewerVersionAvailable" severity="informational" />
-    <issue id="EasterEgg" severity="informational" />
-    <issue id="NegativeMargin" severity="error" />
+    <!--    <issue id="NewerVersionAvailable" severity="informational" />-->
+    <!--    <issue id="EasterEgg" severity="informational" />-->
+    <!--    <issue id="NegativeMargin" severity="error" />-->
 
-    <issue id="ConvertToWebp" severity="warning" />
-    <issue id="UnknownNullness" severity="error" />
-    <issue id="InvalidPackage" severity="error">
-        <ignore path="**/sentry*.jar"/>
-    </issue>
-    <issue id="ResourceType" severity="error">
-        <ignore path="**/*GarageSettingsServicesFragment.kt" />
-    </issue>
+    <!--    <issue id="ConvertToWebp" severity="warning" />-->
+    <!--    <issue id="UnknownNullness" severity="error" />-->
+    <!--    <issue id="InvalidPackage" severity="error">-->
+    <!--        <ignore path="**/sentry*.jar"/>-->
+    <!--    </issue>-->
+    <!--    <issue id="ResourceType" severity="error">-->
+    <!--        <ignore path="**/*GarageSettingsServicesFragment.kt" />-->
+    <!--    </issue>-->
 
 </lint>

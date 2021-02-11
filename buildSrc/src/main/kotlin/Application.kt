@@ -7,5 +7,8 @@ object Application {
         const val compile = 30
     }
 
-
+    object Version {
+        val name: String get() = "1.0.0"
+        val code: Int get() = 1
+    }
 }
