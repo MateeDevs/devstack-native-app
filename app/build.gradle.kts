@@ -96,11 +96,12 @@ android {
 
 
 dependencies {
-    implementation(project(":shared"))
+    implementation(project(Project.shared))
 
     implementation(Dependency.Kotlin.stdlib)
     implementation(Dependency.AndroidX.core)
     implementation(Dependency.AndroidX.appCompat)
+    implementation(Dependency.AndroidX.material)
 
     implementation(Dependency.Compose.ui)
     implementation(Dependency.Compose.uiTooling)
@@ -108,6 +109,8 @@ dependencies {
     implementation(Dependency.Compose.activity)
     implementation(Dependency.Compose.material)
     implementation(Dependency.Compose.materialIconsCore)
+
+    implementation(Dependency.Compose.Accompanist.insets)
 
     androidTestImplementation(Dependency.Compose.uiTest)
 }

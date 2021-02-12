@@ -5,27 +5,51 @@ plugins {
     id("com.android.library")
 }
 
+// https://youtrack.jetbrains.com/issue/KT-43944
+android {
+    configurations {
+        create("testApi")
+        create("testDebugApi")
+        create("testReleaseApi")
+    }
+}
+
 kotlin {
     android()
     ios {
         binaries {
             framework {
-                baseName = "shared"
+                baseName = Project.shared
             }
         }
     }
+
     sourceSets {
-        val commonMain by getting
-        val androidMain by getting
-        val iosMain by getting
+        val commonMain by getting {
+            dependencies {
+                implementation(Dependency.Koin.core)
+
+                with(Dependency.Ktor) { commonImplementation() }
+            }
+        }
+        val androidMain by getting {
+            dependencies {
+                implementation(Dependency.Ktor.android)
+            }
+        }
+        val iosMain by getting {
+            dependencies {
+                implementation(Dependency.Ktor.ios)
+            }
+        }
     }
 }
 
 android {
-    compileSdkVersion(30)
+    compileSdkVersion(Application.Sdk.compile)
     defaultConfig {
-        minSdkVersion(21)
-        targetSdkVersion(30)
+        minSdkVersion(Application.Sdk.min)
+        targetSdkVersion(Application.Sdk.target)
     }
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
 }

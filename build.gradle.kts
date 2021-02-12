@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import java.net.URI
 
 buildscript {
     repositories {
@@ -18,6 +19,10 @@ allprojects {
         google()
         mavenCentral()
         jcenter()
+
+        maven {
+            url = URI.create("https://dl.bintray.com/ekito/koin")
+        }
     }
 
     tasks.withType<KotlinCompile> {

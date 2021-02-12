@@ -1,8 +1,12 @@
 const val kotlinVersion = "1.4.30"
 
+object Project {
+    const val shared = ":shared"
+}
+
 object GradlePlugins {
 
-    private const val gradleBuildTools = "4.1.2"
+    private const val gradleBuildTools = "7.0.0-alpha06"
     private const val safeArgsVersion = "2.2.0-rc01"
     private const val sqlDelightVersion = "1.4.3"
 
