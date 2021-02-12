@@ -1,7 +1,15 @@
 const val kotlinVersion = "1.4.30"
 
+const val TWINE_HOME_FOLDER_ARG = "twineLocalizationFolder"
+const val WINDOWS_PROJECT_HOME_FOLDER_ARG = "projectHomeFolder"
+
 object Project {
     const val shared = ":shared"
+
+    object Android {
+        private const val root = ":android"
+        const val shared = "$root:shared"
+    }
 }
 
 object GradlePlugins {

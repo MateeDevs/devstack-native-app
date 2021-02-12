@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import tools.Twine
 import java.net.URI
 
 buildscript {
@@ -9,7 +10,7 @@ buildscript {
     }
 
     dependencies {
-        classpath(kotlin("gradle-plugin", kotlinVersion))
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.30")
         classpath(GradlePlugins.androidGradle)
     }
 }
@@ -33,6 +34,18 @@ allprojects {
         }
     }
 }
+
+tasks.register("generateLocalizations") {
+    Twine(
+        project = project,
+        twineFolderArg = TWINE_HOME_FOLDER_ARG,
+        twineFileName = "devstack/strings.txt",
+        moduleName = "android/shared",
+        bundlerScriptPath = "${rootDir.absolutePath}/other/tools/run_bundler.sh",
+        windowsProjectFolderArg = WINDOWS_PROJECT_HOME_FOLDER_ARG
+    ).generate()
+}
+
 
 tasks.create<Delete>("clean") {
     delete(rootProject.buildDir)

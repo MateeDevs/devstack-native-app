@@ -1,3 +1,3 @@
 rootProject.buildFileName = "build.gradle.kts"
 rootProject.name = "devstack-kmp-app"
-include(":app", ":shared")
+include(":android:app", ":android:shared", ":shared")
