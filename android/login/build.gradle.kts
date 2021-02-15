@@ -40,11 +40,16 @@ android {
 
 dependencies {
     implementation(project(Project.shared))
+    implementation(project(Project.Android.shared))
 
     implementation(Dependency.Kotlin.stdlib)
     implementation(Dependency.AndroidX.core)
     implementation(Dependency.AndroidX.appCompat)
     implementation(Dependency.AndroidX.material)
+
+    implementation(Dependency.Matee.Core.core) {
+        isTransitive = true
+    }
 
     implementation(Dependency.Compose.ui)
     implementation(Dependency.Compose.uiTooling)
@@ -54,6 +59,9 @@ dependencies {
     implementation(Dependency.Compose.materialIconsCore)
 
     implementation(Dependency.Compose.Accompanist.insets)
+
+    implementation(Dependency.Koin.android)
+    implementation(Dependency.Koin.compose)
 
     androidTestImplementation(Dependency.Compose.uiTest)
 }

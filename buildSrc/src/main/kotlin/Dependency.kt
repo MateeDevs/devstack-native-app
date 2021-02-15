@@ -18,6 +18,8 @@ object Dependency {
         private const val version = "3.0.1-alpha-3"
 
         const val core = "org.koin:koin-core:$version"
+        const val android = "org.koin:koin-android:$version"
+        const val compose = "org.koin:koin-androidx-compose:$version"
     }
 
     object AndroidX {
@@ -68,16 +70,31 @@ object Dependency {
         }
     }
 
+    object Matee {
+        object Core {
+            private const val version = "1.0.0-rc2"
+            const val core = "cz.matee.and:core:$version"
+        }
+    }
+
+    object Settings {
+        private const val version = "0.7.2"
+
+        const val core = "com.russhwolf:multiplatform-settings:$version"
+        const val noArg = "com.russhwolf:multiplatform-settings-no-arg:$version"
+        const val coroutines = "com.russhwolf:multiplatform-settings-coroutines:$version"
+    }
+
+    object SqlDelight {
+        private const val sqlDelightVersion = "1.4.4"
+
+        val runtime = "com.squareup.sqldelight:runtime:$sqlDelightVersion"
+        val coroutinesExtension = "com.squareup.sqldelight:coroutines-extensions:$sqlDelightVersion"
+
+        val androidDriver = "com.squareup.sqldelight:android-driver:$sqlDelightVersion"
+        val iosDriver = "com.squareup.sqldelight:native-driver:$sqlDelightVersion"
+    }
 }
-//    object SqlDelight {
-//        private const val sqlDelightVersion = "1.4.3"
-//
-//        val runtime = "com.squareup.sqldelight:runtime:$sqlDelightVersion"
-//        val coroutinesExtension = "com.squareup.sqldelight:coroutines-extensions:$sqlDelightVersion"
-//
-//        val androidDriver = "com.squareup.sqldelight:android-driver:$sqlDelightVersion"
-//        val iosDriver = "com.squareup.sqldelight:native-driver:$sqlDelightVersion"
-//    }
 //
 //    val coroutinesExcludeNative: ExternalModuleDependency.() -> Unit = {
 //        exclude(group = "org.jetbrains.kotlinx", module = "kotlinx-coroutines-core-native")

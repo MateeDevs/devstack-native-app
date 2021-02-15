@@ -1,4 +1,4 @@
-package cz.matee.devstack.kmp.android.ui.style
+package cz.matee.devstack.kmp.android.shared.style
 
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp

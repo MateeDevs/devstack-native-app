@@ -1,3 +1,4 @@
+import extensions.getStringProperty
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import tools.Twine
 import java.net.URI
@@ -20,9 +21,16 @@ allprojects {
         google()
         mavenCentral()
         jcenter()
-
         maven {
             url = URI.create("https://dl.bintray.com/ekito/koin")
+        }
+        maven {
+            name = "Core"
+            url = uri("https://maven.pkg.github.com/MateeDevs/core-and-lib")
+            credentials {
+                username = getStringProperty(project, GITHUB_USER, "unknown")
+                password = getStringProperty(project, GITHUB_PAT, "unknown")
+            }
         }
     }
 
@@ -30,7 +38,7 @@ allprojects {
         kotlinOptions {
             jvmTarget = "1.8"
             useIR = true
-            freeCompilerArgs += "-Xallow-jvm-ir-dependencies"
+            freeCompilerArgs += listOf("-Xallow-jvm-ir-dependencies")//, "-Xskip-prerelease-check")
         }
     }
 }

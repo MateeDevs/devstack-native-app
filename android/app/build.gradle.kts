@@ -96,6 +96,7 @@ android {
 dependencies {
     implementation(project(Project.shared))
     implementation(project(Project.Android.shared))
+    implementation(project(Project.Android.login))
 
     implementation(Dependency.Kotlin.stdlib)
     implementation(Dependency.AndroidX.core)
@@ -111,6 +112,9 @@ dependencies {
     implementation(Dependency.Compose.materialIconsCore)
 
     implementation(Dependency.Compose.Accompanist.insets)
+
+    implementation(Dependency.Koin.android)
+    implementation(Dependency.Koin.compose)
 
     androidTestImplementation(Dependency.Compose.uiTest)
 }

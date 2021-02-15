@@ -2,6 +2,8 @@ const val kotlinVersion = "1.4.30"
 
 const val TWINE_HOME_FOLDER_ARG = "twineLocalizationFolder"
 const val WINDOWS_PROJECT_HOME_FOLDER_ARG = "projectHomeFolder"
+const val GITHUB_USER = "githubUser"
+const val GITHUB_PAT = "githubPAT"
 
 object Project {
     const val shared = ":shared"
@@ -9,6 +11,7 @@ object Project {
     object Android {
         private const val root = ":android"
         const val shared = "$root:shared"
+        const val login = "$root:login"
     }
 }
 

@@ -1,11 +1,11 @@
 package cz.matee.devstack.kmp.shared.di
 
-import io.ktor.client.*
-import io.ktor.client.features.*
-import io.ktor.client.features.json.*
-import io.ktor.client.features.json.serializer.*
+import com.russhwolf.settings.Settings
+import cz.matee.devstack.kmp.shared.infrastructure.local.AuthDao
+import cz.matee.devstack.kmp.shared.infrastructure.local.AuthDaoImpl
+import cz.matee.devstack.kmp.shared.infrastructure.remote.AuthService
+import cz.matee.devstack.kmp.shared.infrastructure.remote.HttpClient
 import org.koin.core.context.startKoin
-import org.koin.core.module.Module
 import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.module
 
@@ -15,17 +15,12 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}) = startKoin {
 }
 
 private val commonModule = module {
-    httpClient()
-}
+    single { HttpClient.init(get()) }
+    single { Settings() }
 
-private fun Module.httpClient() {
-    HttpClient {
-        install(JsonFeature) {
-            serializer = KotlinxSerializer()
-        }
+    // DAOs
+    single<AuthDao> { AuthDaoImpl(get()) }
 
-        defaultRequest {
-
-        }
-    }
+    // Http Services
+    single { AuthService(get()) }
 }

@@ -29,17 +29,28 @@ kotlin {
             dependencies {
                 implementation(Dependency.Koin.core)
 
+                implementation(Dependency.Settings.core)
+                implementation(Dependency.Settings.coroutines)
+                implementation(Dependency.Settings.noArg)
+
+                implementation(Dependency.SqlDelight.runtime)
+                implementation(Dependency.SqlDelight.coroutinesExtension)
+
                 with(Dependency.Ktor) { commonImplementation() }
             }
         }
+
         val androidMain by getting {
             dependencies {
                 implementation(Dependency.Ktor.android)
+                implementation(Dependency.SqlDelight.androidDriver)
             }
         }
+
         val iosMain by getting {
             dependencies {
                 implementation(Dependency.Ktor.ios)
+                implementation(Dependency.SqlDelight.iosDriver)
             }
         }
     }
