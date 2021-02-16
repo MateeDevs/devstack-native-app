@@ -55,5 +55,8 @@ dependencies {
 
     implementation(Dependency.Compose.Accompanist.insets)
 
+    implementation(Dependency.Koin.android)
+    implementation(Dependency.Koin.compose)
+
     androidTestImplementation(Dependency.Compose.uiTest)
 }

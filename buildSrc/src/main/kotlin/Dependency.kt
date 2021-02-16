@@ -72,7 +72,7 @@ object Dependency {
 
     object Matee {
         object Core {
-            private const val version = "1.0.0-rc2"
+            private const val version = "1.0.0-rc4"
             const val core = "cz.matee.and:core:$version"
         }
     }

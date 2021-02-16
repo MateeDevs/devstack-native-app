@@ -1,6 +1,5 @@
 package cz.matee.devstack.kmp.android.ui
 
-import androidx.compose.animation.core.animateIntAsState
 import androidx.compose.foundation.layout.offset
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -61,9 +60,8 @@ fun Root() {
 @Composable
 private fun BottomBar(navController: NavHostController) {
     var bottomBarHeight by remember { mutableStateOf(0) }
-    val visible = navController.currentDestination?.label == Feature.Login.route
-
-    val offsetY by animateIntAsState(if (visible) 0 else bottomBarHeight)
+    val isInAuthRoute = navController.currentDestination?.label == Feature.Login.route
+    val offsetY = if (isInAuthRoute) 0 else bottomBarHeight
 
     BottomNavigation(
         Modifier

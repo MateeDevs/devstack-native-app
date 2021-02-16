@@ -1,8 +1,9 @@
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
-    kotlin("multiplatform")
     id("com.android.library")
+    kotlin("multiplatform")
+    kotlin("plugin.serialization") version kotlinVersion
 }
 
 // https://youtrack.jetbrains.com/issue/KT-43944

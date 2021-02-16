@@ -38,7 +38,7 @@ allprojects {
         kotlinOptions {
             jvmTarget = "1.8"
             useIR = true
-            freeCompilerArgs += listOf("-Xallow-jvm-ir-dependencies")//, "-Xskip-prerelease-check")
+            freeCompilerArgs += "-Xallow-jvm-ir-dependencies"
         }
     }
 }

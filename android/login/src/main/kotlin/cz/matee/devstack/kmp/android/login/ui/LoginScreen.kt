@@ -5,60 +5,68 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.positionInWindow
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.navigate
+import cz.matee.and.core.util.extension.get
 import cz.matee.devstack.kmp.android.login.R
+import cz.matee.devstack.kmp.android.login.navigation.LoginDestination
 import cz.matee.devstack.kmp.android.login.vm.LoginViewModel
+import cz.matee.devstack.kmp.android.shared.navigation.Feature
 import cz.matee.devstack.kmp.android.shared.style.Values
-import cz.matee.devstack.kmp.android.shared.ui.LocalSnackBarBehavior
-import cz.matee.devstack.kmp.shared.infrastructure.remote.AuthService
+import cz.matee.devstack.kmp.android.shared.util.extension.defaultAnim
+import cz.matee.devstack.kmp.android.shared.util.extension.getViewModel
 import dev.chrisbanes.accompanist.insets.LocalWindowInsets
 import dev.chrisbanes.accompanist.insets.navigationBarsPadding
 import dev.chrisbanes.accompanist.insets.statusBarsPadding
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import org.koin.androidx.viewmodel.ViewModelOwner
-import org.koin.androidx.viewmodel.koin.getViewModel
-import org.koin.core.context.GlobalContext
-import org.koin.core.parameter.ParametersDefinition
-import org.koin.core.qualifier.Qualifier
 import kotlin.math.roundToInt
-
-@Composable
-inline fun <reified T : ViewModel> getViewModel(
-    qualifier: Qualifier? = null,
-    noinline parameters: ParametersDefinition? = null,
-): T {
-    val owner = LocalViewModelStoreOwner.current.viewModelStore
-    return remember {
-        GlobalContext.get().getViewModel(
-            qualifier,
-            owner = { ViewModelOwner.from(owner) },
-            parameters = parameters
-        )
-    }
-}
-
+import cz.matee.devstack.kmp.android.login.vm.LoginViewModel.ViewState as LoginState
 
 @Composable
 fun LoginScreen(navHostController: NavHostController) {
     val loginVm = getViewModel<LoginViewModel>()
     val scope = rememberCoroutineScope()
-    val snackBar = LocalSnackBarBehavior.current
+    val snackBarState = remember { SnackbarHostState() }
+    val isLoading by loginVm[LoginState::loading].collectAsState(initial = false)
 
     var emailValue by remember { mutableStateOf(TextFieldValue()) }
     var passwordValue by remember { mutableStateOf(TextFieldValue()) }
+
+    LaunchedEffect(loginVm) {
+        loginVm.errorFlow.collect { error ->
+            snackBarState.showSnackbar(error.message ?: "Unknown error")
+        }
+    }
+
+    fun login() {
+        scope.launch {
+            if (loginVm.login(emailValue.text, passwordValue.text))
+                navHostController.navigate(Feature.Users.route) { defaultAnim() }
+        }
+    }
+
+    fun navigateToRegister() {
+        navHostController.navigate(LoginDestination.Registration.route) { defaultAnim() }
+    }
 
     Column(
         modifier = Modifier
@@ -66,6 +74,7 @@ fun LoginScreen(navHostController: NavHostController) {
             .statusBarsPadding()
             .padding(horizontal = Values.Space.xlarge)
     ) {
+        val passwordFocusRequester = FocusRequester()
         Text(
             text = stringResource(R.string.login_view_headline_title),
             style = MaterialTheme.typography.h4,
@@ -73,17 +82,32 @@ fun LoginScreen(navHostController: NavHostController) {
             modifier = Modifier.padding(top = Values.Space.large, bottom = Values.Space.xxlarge)
         )
 
-        LoginTextField(
+        OutlinedTextField(
             value = emailValue,
             onValueChange = { emailValue = it },
             label = { Text(stringResource(R.string.login_view_email_field_hint)) },
-            modifier = Modifier.fillMaxWidth().padding(bottom = Values.Space.large),
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Email,
+                imeAction = ImeAction.Next
+            ),
+            keyboardActions = KeyboardActions(onNext = { passwordFocusRequester.requestFocus() }),
+            modifier = Modifier.padding(bottom = Values.Space.large).fillMaxWidth(),
         )
 
-        LoginTextField(
+        OutlinedTextField(
             value = passwordValue,
             onValueChange = { passwordValue = it },
+            visualTransformation = PasswordVisualTransformation(),
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Password,
+                imeAction = ImeAction.Done
+            ),
+            keyboardActions = KeyboardActions(onDone = { login() }),
             label = { Text(stringResource(R.string.login_view_password_field_hint)) },
+            modifier = Modifier
+                .focusRequester(passwordFocusRequester)
+                .padding(bottom = Values.Space.large)
+                .fillMaxWidth(),
         )
 
         Column(
@@ -94,25 +118,33 @@ fun LoginScreen(navHostController: NavHostController) {
                 .padding(bottom = Values.Space.medium)
         ) {
 
-            Button(
-                onClick = {
-                    scope.launch {
-                        loginVm.login(AuthService.LoginRequest("aaa", "bbb"))
-                    }
-                },
+            SnackbarHost(snackBarState, modifier = Modifier.pushedByIme(Values.Space.medium))
+
+            Box(
+                contentAlignment = Alignment.Center,
                 modifier = Modifier
                     .pushedByIme(Values.Space.medium)
                     .padding(bottom = Values.Space.small)
             ) {
-                Text(
-                    stringResource(R.string.login_view_login_button_title),
-                    style = MaterialTheme.typography.h5,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.fillMaxWidth()
+                Button(
+                    enabled = !isLoading,
+                    onClick = { login() },
+                    modifier = Modifier.fillMaxWidth().alpha(if (isLoading) 0.3f else 1f)
+                ) {
+                    Text(
+                        stringResource(R.string.login_view_login_button_title),
+                        style = MaterialTheme.typography.h5,
+                        textAlign = TextAlign.Center,
+                    )
+                }
+
+                if (isLoading) CircularProgressIndicator(
+                    strokeWidth = Values.Border.mediumLarge,
+                    modifier = Modifier.size(30.dp)
                 )
             }
 
-            TextButton(onClick = {}) {
+            TextButton(onClick = { navigateToRegister() }) {
                 Text(
                     stringResource(R.string.login_view_register_button_title),
                     textAlign = TextAlign.Center,
@@ -124,39 +156,17 @@ fun LoginScreen(navHostController: NavHostController) {
 
 }
 
-@Composable
-private fun LoginTextField(
-    value: TextFieldValue,
-    onValueChange: (TextFieldValue) -> Unit,
-    modifier: Modifier = Modifier,
-    enabled: Boolean = true,
-    label: @Composable (() -> Unit)? = null,
-    isErrorValue: Boolean = false,
-    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
-    keyboardActions: KeyboardActions = KeyboardActions(),
-) {
-    OutlinedTextField(
-        value = value,
-        onValueChange = onValueChange,
-        modifier = modifier.fillMaxWidth(),
-        enabled = enabled,
-        label = label,
-        isErrorValue = isErrorValue,
-        keyboardOptions = keyboardOptions,
-        keyboardActions = keyboardActions
-    )
-}
-
 private fun Modifier.pushedByIme(additionalSpace: Dp = 0.dp) = composed {
-    val density = LocalDensity.current.density
     var bottomPosition by remember { mutableStateOf(0) }
+    val density = LocalDensity.current.density
     val spaceFromBottom = LocalView.current.height - bottomPosition
     val insets = LocalWindowInsets.current.ime
-    val bottomPadding = (insets.bottom - spaceFromBottom + (additionalSpace.value * density))
+
+    val bottomOffset = (insets.bottom - spaceFromBottom + (additionalSpace.value * density))
         .coerceAtLeast(0f) / density
 
     onGloballyPositioned {
         if (bottomPosition == 0) // Get only first position
             bottomPosition = (it.positionInWindow().y + it.size.height).roundToInt()
-    }.padding(bottom = bottomPadding.dp)
+    }.absoluteOffset(y = -bottomOffset.dp)
 }

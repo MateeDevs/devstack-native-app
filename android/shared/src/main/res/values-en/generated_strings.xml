@@ -194,6 +194,7 @@
     <string name="login_view_login_button_title">Sign in</string>
     <string name="login_view_register_button_title">Register</string>
     <string name="login_view_error_email_not_verified">User email hasn\'t been verified yet.</string>
+    <string name="login_view_error_invalid_credentials">Invalid login credentials</string>
 
     <!-- SECTION: Registration View -->
     <string name="registration_view_headline_title">Registration</string>

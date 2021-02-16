@@ -11,8 +11,10 @@ sealed class BackendError(
     responseMessage: String? = null,
 ) : ErrorResult(throwable = throwable, message = responseMessage) {
 
+
     class NotAuthorized(
-        responseMessage: String?
-    ) : BackendError(null, responseMessage)
+        responseMessage: String?,
+        throwable: Throwable? = null,
+    ) : BackendError(throwable, responseMessage)
 
 }

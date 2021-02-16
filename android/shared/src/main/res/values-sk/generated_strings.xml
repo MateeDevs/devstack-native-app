@@ -194,6 +194,7 @@
     <string name="login_view_login_button_title">Prihlásiť sa</string>
     <string name="login_view_register_button_title">Registrovať sa</string>
     <string name="login_view_error_email_not_verified">Užívateľský účet nemá overený email.</string>
+    <string name="login_view_error_invalid_credentials">Neplatné prihlasovacie údaje</string>
 
     <!-- SECTION: Registration View -->
     <string name="registration_view_headline_title">Registrácia</string>

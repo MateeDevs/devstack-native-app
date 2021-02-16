@@ -5,10 +5,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import cz.matee.devstack.kmp.android.login.di.loginModule
+import cz.matee.devstack.kmp.android.di.initDependencyInjection
 import cz.matee.devstack.kmp.android.shared.style.AppTheme
 import cz.matee.devstack.kmp.android.ui.Root
-import cz.matee.devstack.kmp.shared.di.initKoin
 import dev.chrisbanes.accompanist.insets.ExperimentalAnimatedInsets
 import dev.chrisbanes.accompanist.insets.ProvideWindowInsets
 
@@ -17,7 +16,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        startKoin()
+        initDependencyInjection()
         goFullscreen()
 
         setContent {
@@ -26,13 +25,6 @@ class MainActivity : AppCompatActivity() {
                     Root()
                 }
             }
-        }
-    }
-
-    private fun startKoin() {
-        initKoin {
-            // Add platform specific modules
-            modules(loginModule)
         }
     }
 

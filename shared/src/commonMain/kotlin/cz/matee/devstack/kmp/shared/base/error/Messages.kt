@@ -2,7 +2,7 @@ package cz.matee.devstack.kmp.shared.base.error
 
 import cz.matee.devstack.kmp.shared.base.ErrorResult
 
-internal interface ErrorMessageProvider {
+interface ErrorMessageProvider {
     val defaultMessage: String
 
     /**

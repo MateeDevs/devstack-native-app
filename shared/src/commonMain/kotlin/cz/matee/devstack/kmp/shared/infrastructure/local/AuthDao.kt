@@ -10,6 +10,9 @@ interface AuthDao {
     fun retrieveToken(): String?
 }
 
+val AuthDao.isLoggedIn get() = retrieveToken() != null
+
+
 internal class AuthDaoImpl(private val settings: Settings) : AuthDao {
     companion object {
         private const val TOKEN_KEY = "auth_token"
