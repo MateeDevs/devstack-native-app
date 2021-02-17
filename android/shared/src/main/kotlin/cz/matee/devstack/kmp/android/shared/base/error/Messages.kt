@@ -23,6 +23,7 @@ class ErrorMessageProviderImpl(private val context: Context) : ErrorMessageProvi
         get() = context.getString(
             when (this) {
                 is AuthError.InvalidLoginCredentials -> R.string.login_view_error_invalid_credentials
+                is AuthError.EmailAlreadyExist -> R.string.register_view_email_already_exists
             }
         )
 
@@ -32,9 +33,9 @@ class ErrorMessageProviderImpl(private val context: Context) : ErrorMessageProvi
         }
 
     private val CommonError.errorMessage: String
-        get() = context.getString(
+        get() =
             when (this) {
-                is CommonError.NoNetworkConnection -> R.string.error_no_internet_connection
+                is CommonError.NoNetworkConnection -> context.getString(R.string.error_no_internet_connection)
+                CommonError.NoUserLoggedIn -> "No user logged in - TODO" // TODO no user logged in error handling/message
             }
-        )
 }

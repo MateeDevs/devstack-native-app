@@ -13,3 +13,8 @@ interface ErrorMessageProvider {
      */
     fun ErrorResult.getMessage(defMessage: String = defaultMessage): String
 }
+
+fun ErrorMessageProvider.getMessage(error: ErrorResult, defMessage: String? = null) =
+    if (defMessage != null)
+        error.getMessage(defMessage)
+    else error.getMessage()

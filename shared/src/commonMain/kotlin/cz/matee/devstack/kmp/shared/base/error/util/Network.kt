@@ -9,16 +9,32 @@ import io.ktor.client.features.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
 
-inline fun <R : Any> runCatchingNetworkExceptions(block: () -> Result<R>): Result<R> =
+inline fun <R : Any> runCatchingAuthNetworkExceptions(block: () -> Result<R>): Result<R> =
+    runCatchingCommonNetworkExceptions {
+        try {
+            block()
+        } catch (e: ClientRequestException) {
+            when (e.response.status) {
+                HttpStatusCode.Unauthorized ->
+                    if (e.response.request.url.encodedPath == AuthPaths.login)
+                        Result.Error(AuthError.InvalidLoginCredentials(e))
+                    else throw e
+                HttpStatusCode.Conflict ->
+                    if (e.response.request.url.encodedPath == AuthPaths.registration)
+                        Result.Error(AuthError.EmailAlreadyExist(e))
+                    else throw e
+                else -> throw e
+            }
+        }
+    }
+
+inline fun <R : Any> runCatchingCommonNetworkExceptions(block: () -> Result<R>): Result<R> =
     try {
         block()
     } catch (e: ClientRequestException) {
         when (e.response.status) {
             HttpStatusCode.Unauthorized -> Result.Error(
-                if (e.response.request.url.encodedPath == AuthPaths.login)
-                    AuthError.InvalidLoginCredentials(e)
-                else
-                    BackendError.NotAuthorized(e.response.toString(), e)
+                BackendError.NotAuthorized(e.response.toString(), e)
             )
             else -> throw e
         }

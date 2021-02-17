@@ -24,3 +24,11 @@ inline fun <reified T : ViewModel> getViewModel(
         )
     }
 }
+
+@Composable
+inline fun <reified T> get(
+    qualifier: Qualifier? = null,
+    noinline parameters: ParametersDefinition? = null,
+): T = remember {
+    GlobalContext.get().get(qualifier, parameters)
+}

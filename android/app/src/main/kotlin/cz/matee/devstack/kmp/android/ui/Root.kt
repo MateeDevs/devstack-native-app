@@ -1,88 +1,87 @@
 package cz.matee.devstack.kmp.android.ui
 
-import androidx.compose.foundation.layout.offset
+import androidx.compose.animation.Crossfade
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Build
+import androidx.compose.material.icons.filled.List
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.*
 import cz.matee.devstack.kmp.android.login.LoginRoot
+import cz.matee.devstack.kmp.android.profile.ProfileRoot
+import cz.matee.devstack.kmp.android.recipes.RecipesRoot
 import cz.matee.devstack.kmp.android.shared.navigation.Feature
-import cz.matee.devstack.kmp.android.shared.ui.LocalSnackBarBehavior
-import cz.matee.devstack.kmp.android.shared.ui.SnackBarBehaviorProvider
+import cz.matee.devstack.kmp.android.shared.util.extension.get
+import cz.matee.devstack.kmp.android.users.UsersRoot
+import cz.matee.devstack.kmp.shared.domain.usecase.IsUserLoggedInUseCase
 import dev.chrisbanes.accompanist.insets.navigationBarsPadding
 
 val navBarFeatures = listOf(
-    Feature.Profile, Feature.Users, Feature.Counter
+    Feature.Users, Feature.Profile, Feature.Recipes
 )
 
 @Composable
 fun Root() {
     val navController = rememberNavController()
-    var snackBarHost by remember { mutableStateOf<SnackbarHostState?>(null) }
+    val isUserLoggedInUseCase = get<IsUserLoggedInUseCase>()
+    var isUserLoggedIn by remember { mutableStateOf<Boolean?>(null) }
 
-    val snackBarProvider = remember(snackBarHost) {
-        object : SnackBarBehaviorProvider {
-            override suspend fun showSnackbar(
-                message: String,
-                actionLabel: String?,
-                duration: SnackbarDuration
-            ): SnackbarResult? = snackBarHost?.showSnackbar(message, actionLabel, duration)
-        }
+    LaunchedEffect(isUserLoggedInUseCase) {
+        isUserLoggedIn = isUserLoggedInUseCase()
     }
+
+    val showLogin = isUserLoggedIn?.not()
 
     Scaffold(
         bottomBar = { BottomBar(navController) },
-        snackbarHost = {
-            snackBarHost = it
-            SnackbarHost(it)
-        }
     ) {
-        Providers(LocalSnackBarBehavior provides snackBarProvider) {
-
-            NavHost(navController, startDestination = Feature.Login.route) {
+        if (showLogin != null)
+            NavHost(
+                navController,
+                startDestination = if (showLogin) Feature.Login.route else Feature.Users.route
+            ) {
                 LoginRoot(navController)
-
-                composable(Feature.Profile.route) { Text("PROFILE") }
-                composable(Feature.Users.route) { Text(text = "USERS") }
-                composable(Feature.Counter.route) { Text(text = "COUNTER") }
+                UsersRoot(navController)
+                ProfileRoot(navController)
+                RecipesRoot(navController)
             }
-
-        }
     }
 }
 
 @Composable
 private fun BottomBar(navController: NavHostController) {
-    var bottomBarHeight by remember { mutableStateOf(0) }
-    val isInAuthRoute = navController.currentDestination?.label == Feature.Login.route
-    val offsetY = if (isInAuthRoute) 0 else bottomBarHeight
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.arguments?.getString(KEY_ROUTE)
 
-    BottomNavigation(
-        Modifier
-            .navigationBarsPadding()
-            .onGloballyPositioned { bottomBarHeight = it.size.height }
-            .offset(y = offsetY.dp)
-    ) {
-        val navBackStackEntry by navController.currentBackStackEntryAsState()
-        val currentRoute = navBackStackEntry?.arguments?.getString(KEY_ROUTE)
-        navBarFeatures.forEach { screen ->
-            BottomNavigationItem(
-                icon = { Icon(Icons.Filled.Favorite, "") },
-                label = { Text(stringResource(screen.titleRes)) },
-                selected = currentRoute == screen.route,
-                onClick = {
-                    navController.navigate(screen.route) {
-                        popUpTo = navController.graph.startDestination
-                        launchSingleTop = true
+    // Don't show NavBar on start
+    val isInAuthRoute = currentRoute?.startsWith(Feature.Login.route) ?: true
+
+    Crossfade(isInAuthRoute) {
+        if (!it) BottomNavigation(Modifier.navigationBarsPadding()) {
+            navBarFeatures.forEach { screen ->
+                BottomNavigationItem(
+                    icon = {
+                        when (screen) {
+                            Feature.Users -> Icon(Icons.Filled.List, "")
+                            Feature.Profile -> Icon(Icons.Filled.Person, "")
+                            Feature.Recipes -> Icon(Icons.Filled.Build, "")
+                            else -> throw IllegalStateException("Icon not handled for ${screen.route}")
+                        }
+                    },
+                    label = { Text(stringResource(screen.titleRes)) },
+                    selected = currentRoute == screen.route,
+                    onClick = {
+                        navController.navigate(screen.route) {
+                            popUpTo = navController.graph.startDestination
+                            launchSingleTop = true
+                        }
                     }
-                }
-            )
+                )
+            }
         }
     }
 }

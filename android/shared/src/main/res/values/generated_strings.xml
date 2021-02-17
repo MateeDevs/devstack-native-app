@@ -86,7 +86,7 @@
     <!-- SECTION: Bottom bar view -->
     <string name="bottom_bar_item_1">Uživatelé</string>
     <string name="bottom_bar_item_2">Profil</string>
-    <string name="bottom_bar_item_3">Počítadlo</string>
+    <string name="bottom_bar_item_3">Recepty</string>
     <string name="bottom_bar_item_4">Tab4</string>
     <string name="bottom_bar_item_5">Tab5</string>
 

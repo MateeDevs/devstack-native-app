@@ -1,7 +1,7 @@
 package cz.matee.devstack.kmp.shared.infrastructure.remote
 
 import cz.matee.devstack.kmp.shared.base.Result
-import cz.matee.devstack.kmp.shared.base.error.util.runCatchingNetworkExceptions
+import cz.matee.devstack.kmp.shared.base.error.util.runCatchingAuthNetworkExceptions
 import cz.matee.devstack.kmp.shared.base.util.helpers.Success
 import cz.matee.devstack.kmp.shared.base.util.helpers.resultsTo
 import cz.matee.devstack.kmp.shared.data.source.LoginRequest
@@ -21,7 +21,7 @@ class AuthService(private val client: HttpClient) {
 
 
     suspend fun login(body: LoginRequest): Result<LoginDto> =
-        runCatchingNetworkExceptions {
+        runCatchingAuthNetworkExceptions {
             client.post<LoginDto>(
                 path = AuthPaths.login,
                 body = body
@@ -30,7 +30,7 @@ class AuthService(private val client: HttpClient) {
 
 
     suspend fun register(body: RegistrationRequest): Result<RegistrationDto> =
-        runCatchingNetworkExceptions {
+        runCatchingAuthNetworkExceptions {
             client.post<RegistrationDto>(
                 path = AuthPaths.registration,
                 body = body

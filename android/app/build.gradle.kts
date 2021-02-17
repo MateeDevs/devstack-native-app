@@ -97,6 +97,9 @@ dependencies {
     implementation(project(Project.shared))
     implementation(project(Project.Android.shared))
     implementation(project(Project.Android.login))
+    implementation(project(Project.Android.users))
+    implementation(project(Project.Android.profile))
+    implementation(project(Project.Android.recipes))
 
     implementation(Dependency.Kotlin.stdlib)
     implementation(Dependency.AndroidX.core)

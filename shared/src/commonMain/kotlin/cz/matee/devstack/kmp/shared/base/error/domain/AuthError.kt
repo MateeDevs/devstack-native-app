@@ -8,4 +8,5 @@ sealed class AuthError(
 ) : ErrorResult(message, throwable) {
 
     class InvalidLoginCredentials(throwable: Throwable?) : AuthError(null, throwable)
+    class EmailAlreadyExist(throwable: Throwable?) : AuthError(null, throwable)
 }

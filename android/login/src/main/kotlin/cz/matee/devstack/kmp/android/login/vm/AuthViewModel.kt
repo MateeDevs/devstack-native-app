@@ -11,10 +11,10 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import cz.matee.devstack.kmp.shared.domain.usecase.LoginUseCase.Params as LoginParams
 import cz.matee.devstack.kmp.shared.domain.usecase.RegisterUseCase.Params as RegisterParams
 
-class LoginViewModel(
+class AuthViewModel(
     private val loginUseCase: LoginUseCase,
     private val registerUseCase: RegisterUseCase,
-) : BaseStateViewModel<LoginViewModel.ViewState>(ViewState()) {
+) : BaseStateViewModel<AuthViewModel.ViewState>(ViewState()) {
 
     private val _errorFlow = MutableSharedFlow<ErrorResult>(extraBufferCapacity = 1)
     val errorFlow: Flow<ErrorResult> get() = _errorFlow

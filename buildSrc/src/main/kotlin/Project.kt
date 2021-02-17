@@ -12,6 +12,9 @@ object Project {
         private const val root = ":android"
         const val shared = "$root:shared"
         const val login = "$root:login"
+        const val profile = "$root:profile"
+        const val users = "$root:users"
+        const val recipes = "$root:recipes"
     }
 }
 
@@ -22,7 +25,7 @@ object GradlePlugins {
     private const val sqlDelightVersion = "1.4.3"
 
     const val androidGradle = "com.android.tools.build:gradle:${gradleBuildTools}"
-    const val kotlinSerialiation = "org.jetbrains.kotlin:kotlin-serialization:${kotlinVersion}"
+    const val kotlinSerialization = "org.jetbrains.kotlin:kotlin-serialization:${kotlinVersion}"
     const val safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:${safeArgsVersion}"
     const val sqlDelight = "com.squareup.sqldelight:gradle-plugin:$sqlDelightVersion"
 }

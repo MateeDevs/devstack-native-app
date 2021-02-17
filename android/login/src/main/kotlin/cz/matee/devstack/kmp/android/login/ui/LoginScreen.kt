@@ -7,65 +7,69 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.composed
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.layout.onGloballyPositioned
-import androidx.compose.ui.layout.positionInWindow
-import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.navigate
 import cz.matee.and.core.util.extension.get
 import cz.matee.devstack.kmp.android.login.R
 import cz.matee.devstack.kmp.android.login.navigation.LoginDestination
-import cz.matee.devstack.kmp.android.login.vm.LoginViewModel
+import cz.matee.devstack.kmp.android.login.vm.AuthViewModel
 import cz.matee.devstack.kmp.android.shared.navigation.Feature
 import cz.matee.devstack.kmp.android.shared.style.Values
-import cz.matee.devstack.kmp.android.shared.util.extension.defaultAnim
+import cz.matee.devstack.kmp.android.shared.util.extension.get
 import cz.matee.devstack.kmp.android.shared.util.extension.getViewModel
-import dev.chrisbanes.accompanist.insets.LocalWindowInsets
+import cz.matee.devstack.kmp.android.shared.util.extension.pushedByIme
+import cz.matee.devstack.kmp.shared.base.error.ErrorMessageProvider
+import cz.matee.devstack.kmp.shared.base.error.getMessage
 import dev.chrisbanes.accompanist.insets.navigationBarsPadding
 import dev.chrisbanes.accompanist.insets.statusBarsPadding
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import kotlin.math.roundToInt
-import cz.matee.devstack.kmp.android.login.vm.LoginViewModel.ViewState as LoginState
+import cz.matee.devstack.kmp.android.login.vm.AuthViewModel.ViewState as LoginState
 
 @Composable
 fun LoginScreen(navHostController: NavHostController) {
-    val loginVm = getViewModel<LoginViewModel>()
+    val authVm = getViewModel<AuthViewModel>()
+    val errorMessageProvider = get<ErrorMessageProvider>()
     val scope = rememberCoroutineScope()
     val snackBarState = remember { SnackbarHostState() }
-    val isLoading by loginVm[LoginState::loading].collectAsState(initial = false)
+    val isLoading by authVm[LoginState::loading].collectAsState(initial = false)
 
     var emailValue by remember { mutableStateOf(TextFieldValue()) }
     var passwordValue by remember { mutableStateOf(TextFieldValue()) }
+    var emailError by remember { mutableStateOf(false) }
+    var passwordError by remember { mutableStateOf(false) }
 
-    LaunchedEffect(loginVm) {
-        loginVm.errorFlow.collect { error ->
-            snackBarState.showSnackbar(error.message ?: "Unknown error")
+    LaunchedEffect(authVm) {
+        authVm.errorFlow.collect { error ->
+            snackBarState.showSnackbar(errorMessageProvider.getMessage(error))
         }
     }
 
     fun login() {
+        emailError = false; passwordError = false
+
+        if (emailValue.text.isEmpty()) emailError = true
+        if (passwordValue.text.isEmpty()) passwordError = true
+
+        if (emailError || passwordError) return
         scope.launch {
-            if (loginVm.login(emailValue.text, passwordValue.text))
-                navHostController.navigate(Feature.Users.route) { defaultAnim() }
+            if (authVm.login(emailValue.text, passwordValue.text))
+                navHostController.navigate(Feature.Users.route)
         }
     }
 
     fun navigateToRegister() {
-        navHostController.navigate(LoginDestination.Registration.route) { defaultAnim() }
+        navHostController.navigate(LoginDestination.Registration.route)
     }
 
     Column(
@@ -86,6 +90,7 @@ fun LoginScreen(navHostController: NavHostController) {
             value = emailValue,
             onValueChange = { emailValue = it },
             label = { Text(stringResource(R.string.login_view_email_field_hint)) },
+            isErrorValue = emailError,
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Email,
                 imeAction = ImeAction.Next
@@ -97,6 +102,7 @@ fun LoginScreen(navHostController: NavHostController) {
         OutlinedTextField(
             value = passwordValue,
             onValueChange = { passwordValue = it },
+            isErrorValue = passwordError,
             visualTransformation = PasswordVisualTransformation(),
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Password,
@@ -118,30 +124,31 @@ fun LoginScreen(navHostController: NavHostController) {
                 .padding(bottom = Values.Space.medium)
         ) {
 
-            SnackbarHost(snackBarState, modifier = Modifier.pushedByIme(Values.Space.medium))
-
-            Box(
-                contentAlignment = Alignment.Center,
+            Column(
                 modifier = Modifier
                     .pushedByIme(Values.Space.medium)
                     .padding(bottom = Values.Space.small)
             ) {
-                Button(
-                    enabled = !isLoading,
-                    onClick = { login() },
-                    modifier = Modifier.fillMaxWidth().alpha(if (isLoading) 0.3f else 1f)
-                ) {
-                    Text(
-                        stringResource(R.string.login_view_login_button_title),
-                        style = MaterialTheme.typography.h5,
-                        textAlign = TextAlign.Center,
+                SnackbarHost(snackBarState)
+
+                Box(contentAlignment = Alignment.Center) {
+                    Button(
+                        enabled = !isLoading,
+                        onClick = { login() },
+                        modifier = Modifier.fillMaxWidth().alpha(if (isLoading) 0.3f else 1f)
+                    ) {
+                        Text(
+                            stringResource(R.string.login_view_login_button_title),
+                            style = MaterialTheme.typography.h5,
+                            textAlign = TextAlign.Center,
+                        )
+                    }
+
+                    if (isLoading) CircularProgressIndicator(
+                        strokeWidth = Values.Border.mediumLarge,
+                        modifier = Modifier.size(30.dp)
                     )
                 }
-
-                if (isLoading) CircularProgressIndicator(
-                    strokeWidth = Values.Border.mediumLarge,
-                    modifier = Modifier.size(30.dp)
-                )
             }
 
             TextButton(onClick = { navigateToRegister() }) {
@@ -154,19 +161,4 @@ fun LoginScreen(navHostController: NavHostController) {
         }
     }
 
-}
-
-private fun Modifier.pushedByIme(additionalSpace: Dp = 0.dp) = composed {
-    var bottomPosition by remember { mutableStateOf(0) }
-    val density = LocalDensity.current.density
-    val spaceFromBottom = LocalView.current.height - bottomPosition
-    val insets = LocalWindowInsets.current.ime
-
-    val bottomOffset = (insets.bottom - spaceFromBottom + (additionalSpace.value * density))
-        .coerceAtLeast(0f) / density
-
-    onGloballyPositioned {
-        if (bottomPosition == 0) // Get only first position
-            bottomPosition = (it.positionInWindow().y + it.size.height).roundToInt()
-    }.absoluteOffset(y = -bottomOffset.dp)
 }

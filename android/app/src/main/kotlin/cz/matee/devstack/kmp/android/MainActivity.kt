@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import cz.matee.devstack.kmp.android.di.initDependencyInjection
 import cz.matee.devstack.kmp.android.shared.style.AppTheme
 import cz.matee.devstack.kmp.android.ui.Root
+import cz.matee.devstack.kmp.shared.infrastructure.remote.HttpClient
 import dev.chrisbanes.accompanist.insets.ExperimentalAnimatedInsets
 import dev.chrisbanes.accompanist.insets.ProvideWindowInsets
 
@@ -18,7 +19,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         initDependencyInjection()
         goFullscreen()
+    }
 
+    override fun onStart() {
+        super.onStart()
         setContent {
             AppTheme {
                 ProvideWindowInsets(windowInsetsAnimationsEnabled = true) {
@@ -26,6 +30,11 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun onDestroy() {
+        HttpClient.close()
+        super.onDestroy()
     }
 
     private fun goFullscreen() {

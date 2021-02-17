@@ -86,7 +86,7 @@
     <!-- SECTION: Bottom bar view -->
     <string name="bottom_bar_item_1">Users</string>
     <string name="bottom_bar_item_2">Profile</string>
-    <string name="bottom_bar_item_3">Counter</string>
+    <string name="bottom_bar_item_3">Recipes</string>
     <string name="bottom_bar_item_4">Tab4</string>
     <string name="bottom_bar_item_5">Tab5</string>
 

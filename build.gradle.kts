@@ -38,7 +38,10 @@ allprojects {
         kotlinOptions {
             jvmTarget = "1.8"
             useIR = true
-            freeCompilerArgs += "-Xallow-jvm-ir-dependencies"
+            freeCompilerArgs += listOf(
+                "-Xallow-jvm-ir-dependencies",
+                "-Xopt-in=kotlin.RequiresOptIn"
+            )
         }
     }
 }
