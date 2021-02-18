@@ -7,14 +7,14 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class UserPagingDto(
     val `data`: List<UserDataDto>,
+    val totalCount: Int,
     val lastPage: Int,
     val limit: Int,
     val page: Int
 ) {
     val asDomain
         get() = UserPaging(
-            `data`.map(UserDataDto::asDomain),
-            lastPage, limit, page
+            `data`.map(UserDataDto::asDomain), totalCount, lastPage, limit, page
         )
 }
 

@@ -3,7 +3,7 @@ package cz.matee.devstack.kmp.shared.infrastructure.remote
 import cz.matee.devstack.kmp.shared.infrastructure.local.AuthDao
 import cz.matee.devstack.kmp.shared.infrastructure.model.LoginDto
 import cz.matee.devstack.kmp.shared.system.Config
-import io.ktor.client.HttpClient
+import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.features.*
 import io.ktor.client.features.json.*
@@ -12,10 +12,10 @@ import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
 import io.ktor.util.pipeline.*
+import kotlinx.serialization.json.Json as JsonConfig
 
 object HttpClient {
     private val unauthorizedEndpoints = listOf("/auth/login", "/auth/registration")
-    private val clients = mutableListOf<HttpClient>()
 
     fun init(authDao: AuthDao, config: Config) = HttpClient {
 
@@ -23,8 +23,13 @@ object HttpClient {
         followRedirects = false
 
         install(JsonFeature) {
-            serializer = KotlinxSerializer()
+            serializer = KotlinxSerializer(
+                JsonConfig {
+                    ignoreUnknownKeys = true
+                }
+            )
         }
+
 
         defaultRequest {
             url {
@@ -32,12 +37,6 @@ object HttpClient {
                 host = "matee-devstack.herokuapp.com/api"
             }
             contentType(ContentType.Application.Json)
-        }
-
-        HttpResponseValidator {
-            handleResponseException {
-
-            }
         }
 
         install("auth_interceptor") {
@@ -48,12 +47,7 @@ object HttpClient {
                 interceptTokenResponse(authDao)
             }
         }
-    }.also(clients::add)
-
-    fun close() {
-        clients.forEach(HttpClient::close)
     }
-
 
     private suspend fun PipelineContext<Any, HttpRequestBuilder>.interceptTokenAuth(authDao: AuthDao) {
         val token = authDao.retrieveToken()

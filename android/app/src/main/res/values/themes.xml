@@ -1,7 +1,7 @@
 <resources>
 
     <style name="Theme.Devstackkmpapp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@color/system_ui_color</item>
+        <item name="android:navigationBarColor">@color/system_ui_color</item>
     </style>
 </resources>

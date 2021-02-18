@@ -27,6 +27,14 @@ object Dependency {
         const val appCompat = "androidx.appcompat:appcompat:1.2.0"
 
         const val material = "com.google.android.material:material:1.3.0"
+
+        object Paging {
+            private const val version = "3.0.0-beta01"
+            private const val composeVersion = "1.0.0-alpha07"
+
+            const val runtime = "androidx.paging:paging-runtime:$version"
+            const val compose = "androidx.paging:paging-compose:$composeVersion"
+        }
     }
 
     object Compose {
@@ -38,13 +46,13 @@ object Dependency {
         const val uiTooling = "androidx.compose.ui:ui-tooling:$version"
         const val foundation = "androidx.compose.foundation:foundation:$version"
 
-        const val activity = "androidx.activity:activity-compose:$activityVersion"
-        const val navigation = "androidx.navigation:navigation-compose:$navigationVersion"
-
         const val material = "androidx.compose.material:material:$version"
         const val materialIconsCore = "androidx.compose.material:material-icons-core:$version"
 
         const val uiTest = "androidx.compose.ui:ui-test-junit4:$version"
+
+        const val activity = "androidx.activity:activity-compose:$activityVersion"
+        const val navigation = "androidx.navigation:navigation-compose:$navigationVersion"
 
         object Accompanist {
             private const val version = "0.5.1"

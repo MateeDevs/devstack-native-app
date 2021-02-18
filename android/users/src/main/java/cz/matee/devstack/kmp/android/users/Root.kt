@@ -12,7 +12,13 @@ import cz.matee.devstack.kmp.android.users.ui.UserList
 @Suppress("FunctionName")
 fun NavGraphBuilder.UsersRoot(navHostController: NavHostController) {
     navigation(startDestination = UsersDestination.List.route, Feature.Users.route) {
+
         composable(UsersDestination.List.route) { UserList(navHostController) }
-        composable(UsersDestination.Detail.route) { UserDetail(navHostController) }
+
+        composable(UsersDestination.Detail.route) {
+            val userId = it.arguments?.getString(UsersDestination.Detail.userIdArgument)
+                ?: error("User ID needs to be passed to User Detail")
+            UserDetail(userId, navHostController)
+        }
     }
 }

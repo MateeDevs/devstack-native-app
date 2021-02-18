@@ -9,12 +9,15 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.*
 import cz.matee.devstack.kmp.android.login.LoginRoot
 import cz.matee.devstack.kmp.android.profile.ProfileRoot
 import cz.matee.devstack.kmp.android.recipes.RecipesRoot
 import cz.matee.devstack.kmp.android.shared.navigation.Feature
+import cz.matee.devstack.kmp.android.shared.style.Values
+import cz.matee.devstack.kmp.android.shared.util.composition.LocalScaffoldPadding
 import cz.matee.devstack.kmp.android.shared.util.extension.get
 import cz.matee.devstack.kmp.android.users.UsersRoot
 import cz.matee.devstack.kmp.shared.domain.usecase.IsUserLoggedInUseCase
@@ -40,14 +43,16 @@ fun Root() {
         bottomBar = { BottomBar(navController) },
     ) {
         if (showLogin != null)
-            NavHost(
-                navController,
-                startDestination = if (showLogin) Feature.Login.route else Feature.Users.route
-            ) {
-                LoginRoot(navController)
-                UsersRoot(navController)
-                ProfileRoot(navController)
-                RecipesRoot(navController)
+            Providers(LocalScaffoldPadding provides it) {
+                NavHost(
+                    navController,
+                    startDestination = if (showLogin) Feature.Login.route else Feature.Users.route
+                ) {
+                    LoginRoot(navController)
+                    UsersRoot(navController)
+                    ProfileRoot(navController)
+                    RecipesRoot(navController)
+                }
             }
     }
 }
@@ -61,26 +66,34 @@ private fun BottomBar(navController: NavHostController) {
     val isInAuthRoute = currentRoute?.startsWith(Feature.Login.route) ?: true
 
     Crossfade(isInAuthRoute) {
-        if (!it) BottomNavigation(Modifier.navigationBarsPadding()) {
-            navBarFeatures.forEach { screen ->
-                BottomNavigationItem(
-                    icon = {
-                        when (screen) {
-                            Feature.Users -> Icon(Icons.Filled.List, "")
-                            Feature.Profile -> Icon(Icons.Filled.Person, "")
-                            Feature.Recipes -> Icon(Icons.Filled.Build, "")
-                            else -> throw IllegalStateException("Icon not handled for ${screen.route}")
+        if (!it) Surface(
+            elevation = Values.Elevation.huge,
+            color = MaterialTheme.colors.primarySurface
+        ) {
+            BottomNavigation(
+                Modifier.navigationBarsPadding(),
+                elevation = 0.dp
+            ) {
+                navBarFeatures.forEach { screen ->
+                    BottomNavigationItem(
+                        icon = {
+                            when (screen) {
+                                Feature.Users -> Icon(Icons.Filled.List, "")
+                                Feature.Profile -> Icon(Icons.Filled.Person, "")
+                                Feature.Recipes -> Icon(Icons.Filled.Build, "")
+                                else -> throw IllegalStateException("Icon not handled for ${screen.route}")
+                            }
+                        },
+                        label = { Text(stringResource(screen.titleRes)) },
+                        selected = currentRoute == screen.route,
+                        onClick = {
+                            navController.navigate(screen.route) {
+                                popUpTo = navController.graph.startDestination
+                                launchSingleTop = true
+                            }
                         }
-                    },
-                    label = { Text(stringResource(screen.titleRes)) },
-                    selected = currentRoute == screen.route,
-                    onClick = {
-                        navController.navigate(screen.route) {
-                            popUpTo = navController.graph.startDestination
-                            launchSingleTop = true
-                        }
-                    }
-                )
+                    )
+                }
             }
         }
     }

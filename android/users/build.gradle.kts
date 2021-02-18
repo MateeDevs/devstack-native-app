@@ -60,6 +60,10 @@ dependencies {
 
     implementation(Dependency.Compose.Accompanist.insets)
 
+    implementation(Dependency.AndroidX.Paging.runtime)
+    implementation(Dependency.AndroidX.Paging.compose)
+
+
     implementation(Dependency.Koin.android)
     implementation(Dependency.Koin.compose)
 

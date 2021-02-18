@@ -8,16 +8,17 @@ import androidx.appcompat.app.AppCompatActivity
 import cz.matee.devstack.kmp.android.di.initDependencyInjection
 import cz.matee.devstack.kmp.android.shared.style.AppTheme
 import cz.matee.devstack.kmp.android.ui.Root
-import cz.matee.devstack.kmp.shared.infrastructure.remote.HttpClient
 import dev.chrisbanes.accompanist.insets.ExperimentalAnimatedInsets
 import dev.chrisbanes.accompanist.insets.ProvideWindowInsets
+import org.koin.core.context.GlobalContext
 
 @OptIn(ExperimentalAnimatedInsets::class)
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initDependencyInjection()
+        GlobalContext.getOrNull()
+            ?: initDependencyInjection() // Init only if there is no context already
         goFullscreen()
     }
 
@@ -30,11 +31,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-    }
-
-    override fun onDestroy() {
-        HttpClient.close()
-        super.onDestroy()
     }
 
     private fun goFullscreen() {

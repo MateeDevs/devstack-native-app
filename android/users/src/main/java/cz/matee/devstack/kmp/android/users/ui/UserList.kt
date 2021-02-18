@@ -1,50 +1,73 @@
 package cz.matee.devstack.kmp.android.users.ui
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.navigate
+import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.paging.compose.items
 import cz.matee.devstack.kmp.android.shared.style.Values
+import cz.matee.devstack.kmp.android.shared.ui.ScreenTitle
+import cz.matee.devstack.kmp.android.shared.util.composition.LocalScaffoldPadding
 import cz.matee.devstack.kmp.android.shared.util.extension.getViewModel
 import cz.matee.devstack.kmp.android.users.navigation.UsersDestination
 import cz.matee.devstack.kmp.android.users.vm.UsersViewModel
-import cz.matee.devstack.kmp.shared.base.Result
 import cz.matee.devstack.kmp.shared.domain.model.UserData
-import dev.chrisbanes.accompanist.insets.statusBarsPadding
 
 @Composable
 fun UserList(navHostController: NavHostController) {
     val userVm = getViewModel<UsersViewModel>()
-    val users = remember { mutableStateListOf<UserData>() }
-
-    LaunchedEffect(userVm) {
-        when (val res = userVm.getUsers()) {
-            is Result.Success -> users.addAll(res.data.users)
-            is Result.Error -> {
-            }
-        }
-    }
-
-    Text(
-        stringResource(UsersDestination.List.titleRes),
-        style = MaterialTheme.typography.h3,
-        modifier = Modifier.statusBarsPadding().padding(start = Values.Space.medium)
-    )
+    val users = userVm.users.collectAsLazyPagingItems()
+    val rootPadding = LocalScaffoldPadding.current
 
     Column {
-        users.forEach {
-            Surface(modifier = Modifier.padding(Values.Space.medium)) {
-                Text(it.email)
+        ScreenTitle(UsersDestination.List.titleRes) {
+            Row(Modifier.fillMaxWidth(), Arrangement.End) {
+                IconButton(
+                    onClick = { users.refresh() },
+                    modifier = Modifier.padding(end = Values.Space.medium)
+                ) {
+                    Icon(Icons.Filled.Refresh, "refresh")
+                }
+            }
+        }
+
+        LazyColumn {
+            items(users) {
+                if (it != null)
+                    UserItem(it) {
+                        navHostController.navigate(UsersDestination.Detail.withUser(it.id))
+                    }
+                else LinearProgressIndicator(
+                    color = MaterialTheme.colors.surface,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(Values.Space.xxlarge)
+                )
+            }
+
+            item {
+                Spacer(
+                    Modifier.height(
+                        Values.Space.medium + rootPadding.calculateBottomPadding()
+                    )
+                )
             }
         }
     }
 
+}
+
+@Composable
+fun UserItem(data: UserData, onClick: () -> Unit) {
+    Box(modifier = Modifier.fillMaxWidth().clickable(onClick = onClick)) {
+        Divider()
+        Text(data.email, Modifier.padding(Values.Space.medium))
+    }
 }
