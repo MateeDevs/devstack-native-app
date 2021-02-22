@@ -1,9 +1,9 @@
-const val kotlinVersion = "1.4.30"
-
 const val TWINE_HOME_FOLDER_ARG = "twineLocalizationFolder"
 const val WINDOWS_PROJECT_HOME_FOLDER_ARG = "projectHomeFolder"
 const val GITHUB_USER = "githubUser"
 const val GITHUB_PAT = "githubPAT"
+
+const val kotlinVersion = "1.4.30"
 
 object Project {
     const val shared = ":shared"
@@ -20,7 +20,7 @@ object Project {
 
 object GradlePlugins {
 
-    private const val gradleBuildTools = "7.0.0-alpha06"
+    private const val gradleBuildTools = "7.0.0-alpha07"
     private const val safeArgsVersion = "2.2.0-rc01"
     private const val sqlDelightVersion = "1.4.3"
 
