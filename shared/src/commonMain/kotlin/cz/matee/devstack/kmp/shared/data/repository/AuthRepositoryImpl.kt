@@ -20,4 +20,7 @@ internal class AuthRepositoryImpl(private val source: AuthSource) : AuthReposito
     ): Result<Unit> = source
         .register(RegistrationRequest(email, firstName, lastName, pass))
         .toEmptyResult()
+
+    override suspend fun deleteUserData(): Result<Unit> =
+        source.deleteUserData()
 }

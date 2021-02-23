@@ -8,6 +8,7 @@ import kotlinx.serialization.Serializable
 internal interface AuthSource {
     suspend fun login(request: LoginRequest): Result<LoginDto>
     suspend fun register(request: RegistrationRequest): Result<RegistrationDto>
+    suspend fun deleteUserData(): Result<Unit>
 }
 
 @Serializable

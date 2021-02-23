@@ -11,6 +11,8 @@ interface AuthDao {
 
     fun saveUserId(userId: String)
     fun retrieveUserId(): String?
+
+    fun wipeData()
 }
 
 val AuthDao.isLoggedIn get() = retrieveToken() != null && retrieveUserId() != null
@@ -33,5 +35,10 @@ internal class AuthDaoImpl(private val settings: Settings) : AuthDao {
     }
 
     override fun retrieveUserId(): String? = settings[USER_KEY]
+
+    override fun wipeData() {
+        settings.remove(USER_KEY)
+        settings.remove(TOKEN_KEY)
+    }
 
 }

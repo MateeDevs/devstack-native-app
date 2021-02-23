@@ -10,4 +10,6 @@ interface AuthRepository {
         lastName: String,
         pass: String
     ): Result<Unit>
+
+    suspend fun deleteUserData(): Result<Unit>
 }

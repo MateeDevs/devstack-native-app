@@ -5,12 +5,12 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class UserDto(
-    val bio: String,
+    val bio: String = "",
     val email: String,
     val firstName: String,
     val id: String,
     val lastName: String,
-    val phone: String
+    val phone: String? = null
 ) {
     val asDomain get() = User(id, email, bio, firstName, lastName, phone)
 }

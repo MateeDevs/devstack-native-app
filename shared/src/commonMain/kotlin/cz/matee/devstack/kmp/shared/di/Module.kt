@@ -33,6 +33,7 @@ private val commonModule = module {
 
     // UseCases
     factory { LoginUseCase(get()) }
+    factory { DeleteAuthDataUseCase(get()) }
     factory { RegisterUseCase(get()) }
     factory { GetLoggedInUserUseCase(get()) }
     factory { GetPagedUsersUseCase(get()) }
@@ -45,7 +46,7 @@ private val commonModule = module {
     single<UserRepository> { UserRepositoryImpl(get(), get()) }
 
     // Sources
-    single<AuthSource> { AuthSourceImpl(get()) }
+    single<AuthSource> { AuthSourceImpl(get(), get()) }
     single<UserRemoteSource> { UserRemoteSourceImpl(get()) }
 
     // DAOs
