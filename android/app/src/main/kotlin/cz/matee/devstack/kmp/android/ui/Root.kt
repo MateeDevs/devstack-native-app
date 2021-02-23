@@ -81,11 +81,11 @@ private fun BottomBar(navController: NavHostController) {
                                 Feature.Users -> Icon(Icons.Filled.List, "")
                                 Feature.Profile -> Icon(Icons.Filled.Person, "")
                                 Feature.Recipes -> Icon(Icons.Filled.Build, "")
-                                else -> throw IllegalStateException("Icon not handled for ${screen.route}")
+                                else -> error("Icon not handled for ${screen.route}")
                             }
                         },
                         label = { Text(stringResource(screen.titleRes)) },
-                        selected = currentRoute == screen.route,
+                        selected = currentRoute?.startsWith(screen.route) ?: false,
                         onClick = {
                             navController.navigate(screen.route) {
                                 popUpTo = navController.graph.startDestination

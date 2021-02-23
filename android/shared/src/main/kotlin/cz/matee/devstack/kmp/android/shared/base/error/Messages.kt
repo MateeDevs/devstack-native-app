@@ -15,6 +15,8 @@ class ErrorMessageProviderImpl(private val context: Context) : ErrorMessageProvi
     override fun ErrorResult.getMessage(defMessage: String): String =
         when (this) {
             is AuthError -> errorMessage
+            is BackendError -> errorMessage
+            is CommonError -> errorMessage
             else -> defMessage
         }
 

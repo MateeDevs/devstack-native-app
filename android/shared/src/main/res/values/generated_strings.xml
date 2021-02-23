@@ -209,12 +209,19 @@
 
     <!-- SECTION: User Detail View -->
     <string name="user_detail_view_toolbar_title">Detail uživatele</string>
+    <string name="user_detail_view_label_email">E-mail</string>
+    <string name="user_detail_view_label_phone">Telefon</string>
 
     <!-- SECTION: Profile View -->
     <string name="profile_view_toolbar_title">Profil</string>
     <string name="profile_view_tab_bar_profile_title">Profil</string>
     <string name="profile_view_tab_bar_settings_title">Nastavení</string>
     <string name="profile_view_logout_button">Odhlásit se</string>
+    <string name="profile_view_label_email">E-mail</string>
+    <string name="profile_view_label_phone">Telefon</string>
+
+    <!-- SECTION: Profile edit view -->
+    <string name="profile_edit_view_title">Úprava profilu</string>
 
     <!-- SECTION: Counter view -->
     <string name="counter_view_toolbar_title">Počítadlo</string>
@@ -223,4 +230,7 @@
     <string name="counter_view_counter_decrease_button">Snížit</string>
     <string name="counter_view_counter_hide_button">Skrýt</string>
     <string name="counter_view_counter_show_button">Zobrazit</string>
+
+    <!-- SECTION: Recipes view -->
+    <string name="recipes_view_toolbar_title">Recepty</string>
 </resources>

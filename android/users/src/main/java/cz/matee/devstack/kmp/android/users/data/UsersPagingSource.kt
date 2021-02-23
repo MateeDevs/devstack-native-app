@@ -17,11 +17,11 @@ class UsersPagingSource(
         return when (val res = getPagedUsersUseCase(loadParams)) {
             is Result.Success -> with(res.data) {
                 LoadResult.Page(
-                    users,
-                    (page - 1).takeIf { it >= 0 },
-                    (page + 1).takeIf { page != lastPage },
-                    page * limit,
-                    (totalCount - (page + 1) * limit).coerceAtLeast(0)
+                    data = users,
+                    prevKey = (page - 1).takeIf { it >= 0 },
+                    nextKey = (page + 1).takeIf { page != lastPage },
+                    itemsBefore = page * limit,
+                    itemsAfter = (totalCount - (page + 1) * limit).coerceAtLeast(0)
                 )
             }
 
@@ -32,5 +32,5 @@ class UsersPagingSource(
         }
     }
 
-    override fun getRefreshKey(state: PagingState<Int, UserData>): Int? = 0
+    override fun getRefreshKey(state: PagingState<Int, UserData>): Int = 0
 }

@@ -30,4 +30,10 @@ object Values {
         val mediumLarge = 3.dp
         val thick = 4.dp
     }
+
+    object Radius {
+        val small = 3.dp
+        val medium = 6.dp
+        val large = 9.dp
+    }
 }

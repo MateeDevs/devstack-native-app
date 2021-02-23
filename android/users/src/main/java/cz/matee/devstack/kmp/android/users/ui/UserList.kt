@@ -21,10 +21,14 @@ import cz.matee.devstack.kmp.android.users.vm.UsersViewModel
 import cz.matee.devstack.kmp.shared.domain.model.UserData
 
 @Composable
-fun UserList(navHostController: NavHostController) {
+fun UserListScreen(navHostController: NavHostController) {
     val userVm = getViewModel<UsersViewModel>()
     val users = userVm.users.collectAsLazyPagingItems()
     val rootPadding = LocalScaffoldPadding.current
+
+    fun onUserItemClick(user: UserData) {
+        navHostController.navigate(UsersDestination.Detail.withUser(user.id))
+    }
 
     Column {
         ScreenTitle(UsersDestination.List.titleRes) {
@@ -39,11 +43,9 @@ fun UserList(navHostController: NavHostController) {
         }
 
         LazyColumn {
-            items(users) {
-                if (it != null)
-                    UserItem(it) {
-                        navHostController.navigate(UsersDestination.Detail.withUser(it.id))
-                    }
+            items(users) { userData ->
+                if (userData != null)
+                    UserItem(userData) { onUserItemClick(userData) }
                 else LinearProgressIndicator(
                     color = MaterialTheme.colors.surface,
                     modifier = Modifier
@@ -52,7 +54,7 @@ fun UserList(navHostController: NavHostController) {
                 )
             }
 
-            item {
+            item { // Space at bottom of the list
                 Spacer(
                     Modifier.height(
                         Values.Space.medium + rootPadding.calculateBottomPadding()

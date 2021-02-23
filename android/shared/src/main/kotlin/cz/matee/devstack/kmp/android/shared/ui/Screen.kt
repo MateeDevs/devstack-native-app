@@ -22,6 +22,7 @@ import dev.chrisbanes.accompanist.insets.statusBarsPadding
 fun ScreenTitle(
     @StringRes title: Int,
     modifier: Modifier = Modifier,
+    background: Color = MaterialTheme.colors.background,
     showFade: Boolean = true,
     content: @Composable RowScope.() -> Unit = {}
 ) {
@@ -38,7 +39,7 @@ fun ScreenTitle(
                 .offset { IntOffset(x = 0, y = shadeHeightPx.toInt()) }
                 .background(
                     Brush.verticalGradient(
-                        listOf(MaterialTheme.colors.background, Color.Transparent),
+                        listOf(background, Color.Transparent),
                         endY = shadeHeightPx
                     )
                 )
@@ -46,14 +47,16 @@ fun ScreenTitle(
         Row(
             Modifier
                 .fillMaxWidth()
-                .background(MaterialTheme.colors.background)
+                .background(background)
                 .statusBarsPadding(),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
                 stringResource(title),
                 style = MaterialTheme.typography.h4,
-                modifier = Modifier.padding(start = Values.Space.medium)
+                modifier = Modifier
+                    .padding(start = Values.Space.medium)
+                    .align(Alignment.Top)
             )
 
             content()

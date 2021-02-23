@@ -209,12 +209,19 @@
 
     <!-- SECTION: User Detail View -->
     <string name="user_detail_view_toolbar_title">User detail</string>
+    <string name="user_detail_view_label_email">Email</string>
+    <string name="user_detail_view_label_phone">Phone</string>
 
     <!-- SECTION: Profile View -->
     <string name="profile_view_toolbar_title">Profile</string>
     <string name="profile_view_tab_bar_profile_title">Profile</string>
     <string name="profile_view_tab_bar_settings_title">Settings</string>
     <string name="profile_view_logout_button">Logout</string>
+    <string name="profile_view_label_email">Email</string>
+    <string name="profile_view_label_phone">Phone</string>
+
+    <!-- SECTION: Profile edit view -->
+    <string name="profile_edit_view_title">Edit profile</string>
 
     <!-- SECTION: Counter view -->
     <string name="counter_view_toolbar_title">Counter</string>
@@ -223,4 +230,7 @@
     <string name="counter_view_counter_decrease_button">Decrease</string>
     <string name="counter_view_counter_hide_button">Hide</string>
     <string name="counter_view_counter_show_button">Show</string>
+
+    <!-- SECTION: Recipes view -->
+    <string name="recipes_view_toolbar_title">Recipes</string>
 </resources>

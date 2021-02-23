@@ -46,6 +46,11 @@ dependencies {
     implementation(Dependency.AndroidX.appCompat)
     implementation(Dependency.AndroidX.material)
 
+    implementation(Dependency.AndroidX.Lifecycle.core)
+    implementation(Dependency.AndroidX.Lifecycle.runtime)
+
+    implementation(Dependency.Play.location)
+
     implementation(Dependency.Compose.ui)
     implementation(Dependency.Compose.uiTooling)
     implementation(Dependency.Compose.foundation)

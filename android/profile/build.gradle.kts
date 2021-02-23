@@ -57,6 +57,7 @@ dependencies {
     implementation(Dependency.Compose.navigation)
     implementation(Dependency.Compose.material)
     implementation(Dependency.Compose.materialIconsCore)
+    implementation(Dependency.Compose.constraintLayout)
 
     implementation(Dependency.Compose.Accompanist.insets)
 

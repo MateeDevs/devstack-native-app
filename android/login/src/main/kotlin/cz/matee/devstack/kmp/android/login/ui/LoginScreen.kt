@@ -129,7 +129,7 @@ fun LoginScreen(navHostController: NavHostController) {
                     .pushedByIme(Values.Space.medium)
                     .padding(bottom = Values.Space.small)
             ) {
-                SnackbarHost(snackBarState)
+                SnackbarHost(snackBarState, Modifier)
 
                 Box(contentAlignment = Alignment.Center) {
                     Button(

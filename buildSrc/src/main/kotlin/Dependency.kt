@@ -28,6 +28,12 @@ object Dependency {
 
         const val material = "com.google.android.material:material:1.3.0"
 
+        object Lifecycle {
+            private const val version = "2.3.0"
+            const val runtime = "androidx.lifecycle:lifecycle-runtime-ktx:$version"
+            const val core = "androidx.lifecycle:lifecycle-common-java8:$version"
+        }
+
         object Paging {
             private const val version = "3.0.0-beta01"
             private const val composeVersion = "1.0.0-alpha07"
@@ -41,6 +47,7 @@ object Dependency {
         const val version = "1.0.0-alpha12"
         private const val activityVersion = "1.3.0-alpha02"
         private const val navigationVersion = "1.0.0-alpha07"
+        private const val constraintLayoutVersion = "1.0.0-alpha02"
 
         const val ui = "androidx.compose.ui:ui:$version"
         const val uiTooling = "androidx.compose.ui:ui-tooling:$version"
@@ -49,10 +56,12 @@ object Dependency {
         const val material = "androidx.compose.material:material:$version"
         const val materialIconsCore = "androidx.compose.material:material-icons-core:$version"
 
-        const val uiTest = "androidx.compose.ui:ui-test-junit4:$version"
-
         const val activity = "androidx.activity:activity-compose:$activityVersion"
         const val navigation = "androidx.navigation:navigation-compose:$navigationVersion"
+        const val constraintLayout =
+            "androidx.constraintlayout:constraintlayout-compose:$constraintLayoutVersion"
+
+        const val uiTest = "androidx.compose.ui:ui-test-junit4:$version"
 
         object Accompanist {
             private const val version = "0.5.1"
@@ -101,6 +110,12 @@ object Dependency {
 
         val androidDriver = "com.squareup.sqldelight:android-driver:$sqlDelightVersion"
         val iosDriver = "com.squareup.sqldelight:native-driver:$sqlDelightVersion"
+    }
+
+    object Play {
+        private const val version = "18.0.0"
+
+        val location = "com.google.android.gms:play-services-location:$version"
     }
 }
 //
