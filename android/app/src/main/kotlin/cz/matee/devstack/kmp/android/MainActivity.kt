@@ -1,10 +1,11 @@
 package cz.matee.devstack.kmp.android
 
 import android.Manifest
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.runtime.Providers
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.core.view.WindowCompat
 import cz.matee.devstack.kmp.android.di.initDependencyInjection
 import cz.matee.devstack.kmp.android.shared.permission.registerPermissionRequest
@@ -33,11 +34,11 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
         setContent {
             // Domain util providers
-            Providers(LocalLocationPermissionRequest provides locationPermissionRequest) {
+            CompositionLocalProvider(LocalLocationPermissionRequest provides locationPermissionRequest) {
 
                 AppTheme {
                     ProvideWindowInsets(
-                        windowInsetsAnimationsEnabled = false // Turn on when adjustResize bug is fixed (https://issuetracker.google.com/issues/154101484)
+                        windowInsetsAnimationsEnabled = Build.VERSION.SDK_INT >= 30 // Turn on when adjustResize bug is fixed (https://issuetracker.google.com/issues/154101484)
                     ) {
                         Root()
                     }

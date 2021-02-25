@@ -1,7 +1,6 @@
 package cz.matee.devstack.kmp.android.profile.ui
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
@@ -9,6 +8,8 @@ import androidx.compose.material.icons.filled.Edit
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Dialog
 import androidx.navigation.NavHostController
 import com.example.profile.R
 import cz.matee.and.core.util.extension.get
@@ -27,40 +28,38 @@ fun ProfileScreen(
     navHostController: NavHostController,
     profileVm: ProfileViewModel = getViewModel()
 ) {
+    val uiScope = rememberCoroutineScope()
     val parentPadding = LocalScaffoldPadding.current
     val snackHost = remember { SnackbarHostState() }
-    val sheetState = rememberModalBottomSheetState(ModalBottomSheetValue.Hidden)
+    var editDialogVisible by remember { mutableStateOf(false) }
     val user by profileVm[State::user].collectAsState(null)
 
     profileVm.errorFlow showIn snackHost
 
-    ModalBottomSheetLayout(
-        sheetContent = {
-            BottomSheetContent(user, profileVm = profileVm)
-        },
-        sheetState = sheetState,
-        sheetShape = RoundedCornerShape(
-            topStart = Values.Radius.large,
-            topEnd = Values.Radius.large
-        ),
-        modifier = Modifier.padding(bottom = parentPadding.calculateBottomPadding())
+    Box(
+        Modifier
+            .fillMaxSize()
+            .padding(bottom = parentPadding.calculateBottomPadding())
     ) {
-        Box(Modifier.fillMaxSize()) {
-            val loading by profileVm[State::loading].collectAsState(false)
+        val loading by profileVm[State::loading].collectAsState(false)
 
-            Content(
-                user,
-                onEdit = { sheetState.show() },
-                onLogOut = { profileVm.logOut(navHostController) },
-                profileVm = profileVm
-            )
+        Content(
+            user,
+            onEdit = { editDialogVisible = true },
+            onLogOut = { profileVm.logOut(navHostController) },
+            profileVm = profileVm
+        )
 
-            if (loading)
-                CircularProgressIndicator(Modifier.align(Alignment.Center))
+        if (loading)
+            CircularProgressIndicator(Modifier.align(Alignment.Center))
 
-            SnackbarHost(snackHost, Modifier.align(Alignment.BottomCenter))
-        }
+        SnackbarHost(snackHost, Modifier.align(Alignment.BottomCenter))
     }
+
+    if (editDialogVisible)
+        Dialog(onDismissRequest = { editDialogVisible = false }) {
+            EditUserScreen(user, profileVm = profileVm)
+        }
 }
 
 @Composable
@@ -96,7 +95,7 @@ private fun Content(
 }
 
 @Composable
-private fun BottomSheetContent(
+private fun EditUserScreen(
     user: User?,
     modifier: Modifier = Modifier,
     profileVm: ProfileViewModel = getViewModel()
@@ -111,25 +110,39 @@ private fun BottomSheetContent(
         editedUser?.let(profileVm::updateUser)
     }
 
-    ScreenTitle(R.string.profile_view_toolbar_title, background = MaterialTheme.colors.surface) {
-        Row(
-            horizontalArrangement = Arrangement.End,
-            modifier = Modifier.fillMaxWidth().padding(end = Values.Space.medium)
-        ) {
-            if (saving)
-                CircularProgressIndicator()
-            else
-                IconButton(
-                    onClick = ::saveChanges,
-                    enabled = pendingChanges,
+    Surface(modifier.padding(Values.Space.medium), shape = MaterialTheme.shapes.medium) {
+        Column {
+            ScreenTitle(
+                R.string.profile_edit_view_title,
+                background = MaterialTheme.colors.surface,
+                statusBarPadding = false,
+                showFade = false,
+                modifier = Modifier.padding(top = Values.Space.medium)
+            ) {
+                Box(
+                    Modifier
+                        .fillMaxWidth()
+                        .height(24.dp)
+                        .padding(end = Values.Space.medium)
                 ) {
-                    Icon(Icons.Filled.Check, "")
+                    if (saving)
+                        CircularProgressIndicator(modifier = Modifier.align(Alignment.CenterEnd))
+                    else if (pendingChanges)
+                        IconButton(
+                            onClick = ::saveChanges,
+                            enabled = pendingChanges,
+                            modifier = Modifier.align(Alignment.CenterEnd)
+                        ) {
+                            Icon(Icons.Filled.Check, "")
+                        }
                 }
+            }
+
+            Spacer(Modifier.requiredHeight(Values.Space.small))
+
+            UserEdit(editedUser) {
+                editedUser = it
+            }
         }
-    }
-
-
-    EditUserBottomSheetContent(editedUser) {
-        editedUser = it
     }
 }

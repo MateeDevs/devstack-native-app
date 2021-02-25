@@ -90,19 +90,21 @@ fun LoginScreen(navHostController: NavHostController) {
             value = emailValue,
             onValueChange = { emailValue = it },
             label = { Text(stringResource(R.string.login_view_email_field_hint)) },
-            isErrorValue = emailError,
+            isError = emailError,
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Email,
                 imeAction = ImeAction.Next
             ),
             keyboardActions = KeyboardActions(onNext = { passwordFocusRequester.requestFocus() }),
-            modifier = Modifier.padding(bottom = Values.Space.large).fillMaxWidth(),
+            modifier = Modifier
+                .padding(bottom = Values.Space.large)
+                .fillMaxWidth(),
         )
 
         OutlinedTextField(
             value = passwordValue,
             onValueChange = { passwordValue = it },
-            isErrorValue = passwordError,
+            isError = passwordError,
             visualTransformation = PasswordVisualTransformation(),
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Password,
@@ -135,7 +137,9 @@ fun LoginScreen(navHostController: NavHostController) {
                     Button(
                         enabled = !isLoading,
                         onClick = { login() },
-                        modifier = Modifier.fillMaxWidth().alpha(if (isLoading) 0.3f else 1f)
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .alpha(if (isLoading) 0.3f else 1f)
                     ) {
                         Text(
                             stringResource(R.string.login_view_login_button_title),

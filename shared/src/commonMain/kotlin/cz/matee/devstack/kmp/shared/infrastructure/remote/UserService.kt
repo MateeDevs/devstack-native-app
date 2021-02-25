@@ -32,11 +32,18 @@ class UserService(private val client: HttpClient) {
         client.get<UserDto>(path = UserPaths.user(userId)) resultsTo Success
     }
 
+    @OptIn(ExperimentalStdlibApi::class)
     suspend fun updateUser(userId: String, body: UserUpdateRequest) =
         runCatchingCommonNetworkExceptions {
             client.put<UserDto>(
                 path = UserPaths.user(userId),
-                body = body
+                body = buildMap<String, String> {
+                    body.pass?.also { put(UserUpdateRequest::pass.name, it) }
+                    body.firstName?.also { put(UserUpdateRequest::firstName.name, it) }
+                    body.lastName?.also { put(UserUpdateRequest::lastName.name, it) }
+                    body.bio?.also { put(UserUpdateRequest::bio.name, it) }
+                    body.phone?.also { put(UserUpdateRequest::phone.name, it) }
+                }
             ) resultsTo Success
         }
 

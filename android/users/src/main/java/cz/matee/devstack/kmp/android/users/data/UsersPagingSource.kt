@@ -6,6 +6,8 @@ import cz.matee.devstack.kmp.shared.base.Result
 import cz.matee.devstack.kmp.shared.domain.model.UserData
 import cz.matee.devstack.kmp.shared.domain.repository.UserPagingParameters
 import cz.matee.devstack.kmp.shared.domain.usecase.GetPagedUsersUseCase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import java.io.IOException
 
 class UsersPagingSource(
@@ -14,7 +16,7 @@ class UsersPagingSource(
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, UserData> {
         val loadParams = UserPagingParameters(params.key ?: 0, params.loadSize)
-        return when (val res = getPagedUsersUseCase(loadParams)) {
+        return when (val res = withContext(Dispatchers.IO) { getPagedUsersUseCase(loadParams) }) {
             is Result.Success -> with(res.data) {
                 LoadResult.Page(
                     data = users,

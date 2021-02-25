@@ -36,7 +36,7 @@ object Dependency {
 
         object Paging {
             private const val version = "3.0.0-beta01"
-            private const val composeVersion = "1.0.0-alpha07"
+            private const val composeVersion = "1.0.0-alpha08"
 
             const val runtime = "androidx.paging:paging-runtime:$version"
             const val compose = "androidx.paging:paging-compose:$composeVersion"
@@ -44,10 +44,10 @@ object Dependency {
     }
 
     object Compose {
-        const val version = "1.0.0-alpha12"
-        private const val activityVersion = "1.3.0-alpha02"
-        private const val navigationVersion = "1.0.0-alpha07"
-        private const val constraintLayoutVersion = "1.0.0-alpha02"
+        const val version = "1.0.0-beta01"
+        private const val activityVersion = "1.3.0-alpha03"
+        private const val navigationVersion = "1.0.0-alpha08"
+        private const val constraintLayoutVersion = "1.0.0-alpha03"
 
         const val ui = "androidx.compose.ui:ui:$version"
         const val uiTooling = "androidx.compose.ui:ui-tooling:$version"
@@ -64,7 +64,7 @@ object Dependency {
         const val uiTest = "androidx.compose.ui:ui-test-junit4:$version"
 
         object Accompanist {
-            private const val version = "0.5.1"
+            private const val version = "0.6.0"
             const val insets = "dev.chrisbanes.accompanist:accompanist-insets:$version"
         }
     }

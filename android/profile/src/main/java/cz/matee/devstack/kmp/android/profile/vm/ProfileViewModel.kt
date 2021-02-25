@@ -61,7 +61,7 @@ class ProfileViewModel(
                 is Result.Success -> update { copy(user = res.data) }
                 is Result.Error -> _errorFlow.emit(res.error)
             }
-            loading = true
+            loading = false
         }
     }
 

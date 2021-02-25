@@ -3,6 +3,7 @@ package cz.matee.devstack.kmp.shared.data.source
 import cz.matee.devstack.kmp.shared.base.Result
 import cz.matee.devstack.kmp.shared.infrastructure.model.UserDto
 import cz.matee.devstack.kmp.shared.infrastructure.model.UserPagingDto
+import kotlinx.serialization.Serializable
 
 interface UserRemoteSource {
     suspend fun getUsers(paging: UserPagingRequest): Result<UserPagingDto>
@@ -15,6 +16,7 @@ data class UserPagingRequest(
     val limit: Int
 )
 
+@Serializable
 data class UserUpdateRequest(
     val bio: String?,
     val firstName: String?,

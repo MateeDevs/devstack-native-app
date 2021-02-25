@@ -26,6 +26,7 @@ object HttpClient {
             serializer = KotlinxSerializer(
                 JsonConfig {
                     ignoreUnknownKeys = true
+                    coerceInputValues = true
                 }
             )
         }

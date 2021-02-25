@@ -28,7 +28,7 @@ private class PermissionCall(
     }
 }
 
-open class PermissionRequest(
+class PermissionRequest(
     val granted: StateFlow<Boolean>,
     private val permission: String,
     private val launcher: ActivityResultLauncher<String>

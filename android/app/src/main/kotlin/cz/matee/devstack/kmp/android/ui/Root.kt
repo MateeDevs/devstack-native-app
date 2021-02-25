@@ -43,7 +43,7 @@ fun Root() {
         bottomBar = { BottomBar(navController) },
     ) {
         if (showLogin != null)
-            Providers(LocalScaffoldPadding provides it) {
+            CompositionLocalProvider(LocalScaffoldPadding provides it) {
                 NavHost(
                     navController,
                     startDestination = if (showLogin) Feature.Login.route else Feature.Users.route

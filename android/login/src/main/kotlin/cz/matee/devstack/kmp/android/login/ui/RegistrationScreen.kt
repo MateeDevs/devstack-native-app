@@ -86,19 +86,21 @@ fun RegistrationScreen(navHostController: NavHostController) {
             value = emailValue,
             onValueChange = { emailValue = it },
             label = { Text(stringResource(R.string.registration_view_email_field_hint)) },
-            isErrorValue = emailError,
+            isError = emailError,
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Email,
                 imeAction = ImeAction.Next
             ),
             keyboardActions = KeyboardActions(onNext = { passwordFocusRequester.requestFocus() }),
-            modifier = Modifier.padding(bottom = Values.Space.large).fillMaxWidth(),
+            modifier = Modifier
+                .padding(bottom = Values.Space.large)
+                .fillMaxWidth(),
         )
 
         OutlinedTextField(
             value = passwordValue,
             onValueChange = { passwordValue = it },
-            isErrorValue = passwordError,
+            isError = passwordError,
             visualTransformation = PasswordVisualTransformation(),
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Password,
@@ -131,7 +133,9 @@ fun RegistrationScreen(navHostController: NavHostController) {
                     Button(
                         enabled = !isLoading,
                         onClick = { register() },
-                        modifier = Modifier.fillMaxWidth().alpha(if (isLoading) 0.3f else 1f)
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .alpha(if (isLoading) 0.3f else 1f)
                     ) {
                         Text(
                             stringResource(R.string.registration_view_register_button_title),

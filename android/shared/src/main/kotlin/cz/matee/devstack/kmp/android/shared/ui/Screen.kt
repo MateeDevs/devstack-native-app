@@ -24,6 +24,7 @@ fun ScreenTitle(
     modifier: Modifier = Modifier,
     background: Color = MaterialTheme.colors.background,
     showFade: Boolean = true,
+    statusBarPadding: Boolean = true,
     content: @Composable RowScope.() -> Unit = {}
 ) {
     val density = LocalDensity.current.density
@@ -48,7 +49,7 @@ fun ScreenTitle(
             Modifier
                 .fillMaxWidth()
                 .background(background)
-                .statusBarsPadding(),
+                .let { if (statusBarPadding) it.statusBarsPadding() else it },
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(

@@ -10,7 +10,7 @@ import cz.matee.devstack.kmp.android.shared.style.Values
 import cz.matee.devstack.kmp.shared.domain.model.User
 
 @Composable
-fun EditUserBottomSheetContent(user: User?, onUserChange: (User) -> Unit) {
+fun UserEdit(user: User?, onUserChange: (User) -> Unit) {
     Box(Modifier.fillMaxWidth()) {
         if (user == null)
             Text(
@@ -50,6 +50,6 @@ private fun UserEditWithLabel(data: String, label: String, onChange: (String) ->
         value = data,
         onValueChange = onChange,
         label = { Text(label) },
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth(),
     )
 }
