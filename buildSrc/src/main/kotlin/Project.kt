@@ -3,7 +3,7 @@ const val WINDOWS_PROJECT_HOME_FOLDER_ARG = "projectHomeFolder"
 const val GITHUB_USER = "githubUser"
 const val GITHUB_PAT = "githubPAT"
 
-const val kotlinVersion = "1.4.30"
+const val kotlinVersion = "1.4.31"
 
 object Project {
     const val shared = ":shared"
@@ -22,7 +22,7 @@ object GradlePlugins {
 
     private const val gradleBuildTools = "7.0.0-alpha08"
     private const val safeArgsVersion = "2.2.0-rc01"
-    private const val sqlDelightVersion = "1.4.3"
+    private const val sqlDelightVersion = Dependency.SqlDelight.version
 
     const val androidGradle = "com.android.tools.build:gradle:${gradleBuildTools}"
     const val kotlinSerialization = "org.jetbrains.kotlin:kotlin-serialization:${kotlinVersion}"

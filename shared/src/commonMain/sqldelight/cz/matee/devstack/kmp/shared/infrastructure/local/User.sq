@@ -1,0 +1,34 @@
+CREATE TABLE UserEntity (
+    id TEXT PRIMARY KEY,
+    email TEXT NOT NULL UNIQUE,
+    firstName TEXT,
+    lastName TEXT,
+    phone TEXT,
+    bio TEXT
+);
+
+getUser:
+SELECT * FROM UserEntity WHERE id = ?;
+
+getAllUsers:
+SELECT * FROM UserEntity;
+
+getUsersPaginated:
+SELECT * FROM UserEntity
+ORDER BY id
+LIMIT :limit OFFSET :offset;
+
+getUserCount:
+SELECT COUNT(*) FROM UserEntity;
+
+insertUser:
+INSERT INTO UserEntity VALUES ?;
+
+updateUser:
+UPDATE UserEntity
+SET firstName = :firstName, lastName = :lastName, phone = :phone, bio = :bio
+WHERE id = ?;
+
+deleteUser:
+DELETE FROM UserEntity WHERE id = ?;
+

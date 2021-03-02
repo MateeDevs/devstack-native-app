@@ -5,13 +5,17 @@ import cz.matee.devstack.kmp.shared.data.source.UserPagingRequest
 import cz.matee.devstack.kmp.shared.data.source.UserUpdateRequest
 import cz.matee.devstack.kmp.shared.domain.model.User
 import cz.matee.devstack.kmp.shared.domain.model.UserPaging
+import kotlinx.coroutines.flow.Flow
 
 interface UserRepository {
     val isUserLoggedIn: Boolean
-    suspend fun getUser(): Result<User>
-    suspend fun getUser(id: String): Result<User>
-    suspend fun getUsers(parameters: UserPagingParameters): Result<UserPaging>
+    suspend fun getUser(): Flow<Result<User>>
+    suspend fun getUser(id: String): Flow<Result<User>>
     suspend fun updateUser(parameters: UserUpdateParameters): Result<User>
+
+    suspend fun getUsersRemote(parameters: UserPagingParameters): Result<UserPaging>
+    suspend fun getUsersLocal(parameters: UserPagingParameters): Flow<UserPaging>
+    suspend fun updateUsersLocal(users: List<User>)
 }
 
 data class UserPagingParameters(

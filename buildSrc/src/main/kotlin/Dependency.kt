@@ -103,23 +103,18 @@ object Dependency {
     }
 
     object SqlDelight {
-        private const val sqlDelightVersion = "1.4.4"
+        const val version = "1.4.4"
 
-        val runtime = "com.squareup.sqldelight:runtime:$sqlDelightVersion"
-        val coroutinesExtension = "com.squareup.sqldelight:coroutines-extensions:$sqlDelightVersion"
+        const val runtime = "com.squareup.sqldelight:runtime:$version"
+        const val coroutinesExtension = "com.squareup.sqldelight:coroutines-extensions:$version"
 
-        val androidDriver = "com.squareup.sqldelight:android-driver:$sqlDelightVersion"
-        val iosDriver = "com.squareup.sqldelight:native-driver:$sqlDelightVersion"
+        const val androidDriver = "com.squareup.sqldelight:android-driver:$version"
+        const val iosDriver = "com.squareup.sqldelight:native-driver:$version"
     }
 
     object Play {
         private const val version = "18.0.0"
 
-        val location = "com.google.android.gms:play-services-location:$version"
+        const val location = "com.google.android.gms:play-services-location:$version"
     }
 }
-//
-//    val coroutinesExcludeNative: ExternalModuleDependency.() -> Unit = {
-//        exclude(group = "org.jetbrains.kotlinx", module = "kotlinx-coroutines-core-native")
-//    }
-//}

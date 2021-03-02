@@ -68,7 +68,11 @@ fun UserListScreen(navHostController: NavHostController) {
 
 @Composable
 fun UserItem(data: UserData, onClick: () -> Unit) {
-    Box(modifier = Modifier.fillMaxWidth().clickable(onClick = onClick)) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = onClick)
+    ) {
         Divider()
         Text(data.email, Modifier.padding(Values.Space.medium))
     }

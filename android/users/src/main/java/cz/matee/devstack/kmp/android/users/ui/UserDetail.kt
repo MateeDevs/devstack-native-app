@@ -18,6 +18,7 @@ import cz.matee.devstack.kmp.android.users.R
 import cz.matee.devstack.kmp.android.users.navigation.UsersDestination
 import cz.matee.devstack.kmp.android.users.vm.UsersViewModel
 import cz.matee.devstack.kmp.shared.domain.model.User
+import kotlinx.coroutines.flow.collect
 
 @Composable
 fun UserDetailScreen(userId: String, navHostController: NavHostController) {
@@ -28,7 +29,9 @@ fun UserDetailScreen(userId: String, navHostController: NavHostController) {
 
     userVm.errorFlow showIn snackHost
 
-    LaunchedEffect(userVm) { user = userVm.getUser(userId) }
+    LaunchedEffect(userId) {
+        userVm.getUser(userId).collect { user = it }
+    }
 
     val userData = user
 
@@ -78,7 +81,10 @@ private fun UserInformation(user: User) {
 
         Divider(Modifier.padding(vertical = Values.Space.medium))
 
-        Column(Modifier.fillMaxWidth().padding(horizontal = Values.Space.medium)) {
+        Column(
+            Modifier
+                .fillMaxWidth()
+                .padding(horizontal = Values.Space.medium)) {
             Information(stringResource(R.string.user_detail_view_label_email), user.email)
             user.phone?.also { phoneNum ->
                 Information(stringResource(R.string.user_detail_view_label_phone), phoneNum)

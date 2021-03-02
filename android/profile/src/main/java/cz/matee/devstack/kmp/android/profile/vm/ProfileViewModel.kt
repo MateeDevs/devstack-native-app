@@ -16,6 +16,8 @@ import cz.matee.devstack.kmp.shared.domain.usecase.GetLoggedInUserUseCase
 import cz.matee.devstack.kmp.shared.domain.usecase.UpdateUserUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.map
 
 class ProfileViewModel(
     private val getLoggedInUser: GetLoggedInUserUseCase,
@@ -34,10 +36,12 @@ class ProfileViewModel(
     fun loadUser() {
         launch {
             loading = true
-            when (val res = getLoggedInUser()) {
-                is Result.Success -> update { copy(user = res.data) }
-                is Result.Error -> _errorFlow.emit(res.error)
-            }
+            getLoggedInUser().map { res ->
+                when (res) {
+                    is Result.Success -> update { copy(user = res.data) }
+                    is Result.Error -> _errorFlow.emit(res.error)
+                }
+            }.collect()
             loading = false
         }
     }
