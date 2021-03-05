@@ -11,7 +11,7 @@ import cz.matee.devstack.kmp.shared.infrastructure.remote.UserService
 class UserRemoteSourceImpl(private val service: UserService) : UserRemoteSource {
 
     override suspend fun getUsers(paging: UserPagingRequest): Result<UserPagingDto> =
-        service.getUsers(paging)
+        service.getUsers(paging.offset / paging.limit, paging.limit)
 
     override suspend fun getUser(id: String): Result<UserDto> =
         service.getUserById(id)

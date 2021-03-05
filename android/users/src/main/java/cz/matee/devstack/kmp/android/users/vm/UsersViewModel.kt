@@ -1,9 +1,7 @@
 package cz.matee.devstack.kmp.android.users.vm
 
-import androidx.paging.ExperimentalPagingApi
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
+import androidx.lifecycle.viewModelScope
+import androidx.paging.*
 import cz.matee.and.core.system.BaseStateViewModel
 import cz.matee.and.core.system.State
 import cz.matee.devstack.kmp.android.users.data.UserPagingMediator
@@ -11,13 +9,13 @@ import cz.matee.devstack.kmp.android.users.data.UsersPagingSource
 import cz.matee.devstack.kmp.shared.base.ErrorResult
 import cz.matee.devstack.kmp.shared.base.Result
 import cz.matee.devstack.kmp.shared.domain.model.User
-import cz.matee.devstack.kmp.shared.domain.model.UserData
-import cz.matee.devstack.kmp.shared.domain.usecase.GetUserUseCase
+import cz.matee.devstack.kmp.shared.domain.model.UserPagingData
+import cz.matee.devstack.kmp.shared.domain.usecase.user.GetUserUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.map
 
-private val pagingConfig = PagingConfig(10)
+private val pagingConfig = PagingConfig(15)
 
 class UsersViewModel(
     getUsersSource: () -> UsersPagingSource,
@@ -26,8 +24,13 @@ class UsersViewModel(
 ) : BaseStateViewModel<UsersViewModel.ViewState>(ViewState()) {
 
     @OptIn(ExperimentalPagingApi::class)
-    private val pager = Pager(pagingConfig, 0, remoteMediator = mediator, getUsersSource)
-    val users: Flow<PagingData<UserData>> get() = pager.flow
+    private val pager = Pager(
+        pagingConfig,
+        null,
+        remoteMediator = mediator,
+        getUsersSource
+    )
+    val users: Flow<PagingData<UserPagingData>> get() = pager.flow.cachedIn(viewModelScope)
 
     private val _errorFlow = MutableSharedFlow<ErrorResult>(extraBufferCapacity = 1)
     val errorFlow: Flow<ErrorResult> get() = _errorFlow

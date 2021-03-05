@@ -20,7 +20,7 @@ import cz.matee.devstack.kmp.android.shared.style.Values
 import cz.matee.devstack.kmp.android.shared.util.composition.LocalScaffoldPadding
 import cz.matee.devstack.kmp.android.shared.util.extension.get
 import cz.matee.devstack.kmp.android.users.UsersRoot
-import cz.matee.devstack.kmp.shared.domain.usecase.IsUserLoggedInUseCase
+import cz.matee.devstack.kmp.shared.domain.usecase.user.IsUserLoggedInUseCase
 import dev.chrisbanes.accompanist.insets.navigationBarsPadding
 
 val navBarFeatures = listOf(

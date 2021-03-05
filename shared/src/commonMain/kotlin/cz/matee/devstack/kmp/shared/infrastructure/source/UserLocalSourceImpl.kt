@@ -4,50 +4,56 @@ import com.squareup.sqldelight.runtime.coroutines.asFlow
 import com.squareup.sqldelight.runtime.coroutines.mapToList
 import cz.matee.devstack.kmp.shared.data.source.UserLocalSource
 import cz.matee.devstack.kmp.shared.data.source.UserPagingRequest
+import cz.matee.devstack.kmp.shared.infrastructure.local.UserCache
+import cz.matee.devstack.kmp.shared.infrastructure.local.UserCacheQueries
 import cz.matee.devstack.kmp.shared.infrastructure.local.UserEntity
 import cz.matee.devstack.kmp.shared.infrastructure.local.UserQueries
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.drop
+import kotlinx.coroutines.flow.map
 
-class UserLocalSourceImpl(private val userQueries: UserQueries) : UserLocalSource {
-
-    override suspend fun getUsers(paging: UserPagingRequest): Flow<List<UserEntity>> {
-        val offset = (paging.page * paging.limit).toLong()
-        return userQueries
-            .getUsersPaginated(paging.limit.toLong(), offset)
-            .asFlow()
-            .mapToList()
-    }
+class UserLocalSourceImpl(
+    private val userQueries: UserQueries,
+    private val userCacheQueries: UserCacheQueries
+) : UserLocalSource {
 
     override suspend fun getUser(id: String): UserEntity? =
         userQueries
             .getUser(id)
             .executeAsOneOrNull()
 
-    override suspend fun updateOrCreate(user: UserEntity) {
-        userQueries.transaction {
-            insertOrUpdate(user)
+    override suspend fun updateOrCreate(userEntity: UserEntity) =
+        userQueries.insertOrReplace(userEntity)
+
+
+    override suspend fun replaceCacheWith(users: List<UserCache>) = userCacheQueries.transaction {
+        userCacheQueries.deleteCache()
+        users.forEach(userCacheQueries::insertOrReplace)
+    }
+
+    override suspend fun gePagingCache(paging: UserPagingRequest): Flow<List<UserCache>> =
+        userCacheQueries
+            .getUsersPaginated(paging.limit.toLong(), paging.offset.toLong())
+            .asFlow()
+            .mapToList()
+
+    override suspend fun getPagingCacheCount(): Long =
+        userCacheQueries.getUserCount().executeAsOne()
+
+    override suspend fun updatePagingCache(users: List<UserCache>) {
+        userCacheQueries.transaction {
+            users.forEach(userCacheQueries::insertOrReplace)
         }
     }
 
-    override suspend fun updateOrCreate(users: List<UserEntity>) {
-        userQueries.transaction {
-            for (user in users) insertOrUpdate(user)
-        }
-    }
-
-    override suspend fun getUserCount(): Long = userQueries.getUserCount().executeAsOne()
-
-    private fun insertOrUpdate(user: UserEntity) {
-        val local = userQueries.getUser(user.id).executeAsOneOrNull()
-
-        if (local != null)
-            userQueries.updateUser(
-                user.firstName,
-                user.lastName,
-                user.phone,
-                user.bio,
-                user.id
-            )
-        else userQueries.insertUser(user)
-    }
+    @OptIn(ExperimentalCoroutinesApi::class)
+    override suspend fun onPagingCacheChanged(): Flow<Unit> = userCacheQueries
+        .getCache()
+        .asFlow()
+        .mapToList()
+        .distinctUntilChanged()
+        .map { }
+        .drop(1)
 }

@@ -8,8 +8,8 @@ import cz.matee.devstack.kmp.shared.base.util.helpers.resultsTo
 import cz.matee.devstack.kmp.shared.data.source.UserLocalSource
 import cz.matee.devstack.kmp.shared.data.source.UserRemoteSource
 import cz.matee.devstack.kmp.shared.domain.model.User
-import cz.matee.devstack.kmp.shared.domain.model.UserData
-import cz.matee.devstack.kmp.shared.domain.model.UserPaging
+import cz.matee.devstack.kmp.shared.domain.model.UserPagingData
+import cz.matee.devstack.kmp.shared.domain.model.UserPagingResult
 import cz.matee.devstack.kmp.shared.domain.repository.UserPagingParameters
 import cz.matee.devstack.kmp.shared.domain.repository.UserRepository
 import cz.matee.devstack.kmp.shared.domain.repository.UserUpdateParameters
@@ -23,7 +23,6 @@ import cz.matee.devstack.kmp.shared.util.extension.asEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
-import kotlin.math.ceil
 
 class UserRepositoryImpl(
     private val authDao: AuthDao,
@@ -41,45 +40,51 @@ class UserRepositoryImpl(
     }
 
     override suspend fun getUser(id: String): Flow<Result<User>> = flow {
-        localSource.getUser(id)
+        val localResult = localSource.getUser(id)
             ?.let(UserEntity::asDomain)
             ?.resultsTo(Success)
-            ?.let { emit(it) }
+
+        if (localResult != null)
+            emit(localResult)
 
         val remoteResult = remoteSource.getUser(id).map(UserDto::asDomain)
+
         emit(remoteResult)
 
         if (remoteResult is Result.Success)
             localSource.updateOrCreate(remoteResult.data.asEntity)
     }
 
-    override suspend fun getUsersRemote(parameters: UserPagingParameters): Result<UserPaging> =
+    override suspend fun getUserPagingRemote(parameters: UserPagingParameters): Result<UserPagingResult> =
         remoteSource
             .getUsers(parameters.asRequest)
             .map(UserPagingDto::asDomain)
-            .also { result ->
-                if (result is Result.Success)
-                    localSource.updateOrCreate(result.data.users.map(UserData::asEntityWithPlaceholders))
-            }
 
-    override suspend fun getUsersLocal(parameters: UserPagingParameters): Flow<UserPaging> =
-        localSource.getUsers(parameters.asRequest)
+    override suspend fun getUserPagingLocal(parameters: UserPagingParameters): Flow<UserPagingResult> =
+        localSource.gePagingCache(parameters.asRequest)
             .map { users ->
                 users.map {
-                    UserData(it.id, it.email, it.firstName ?: "", it.lastName ?: "")
+                    UserPagingData(it.id, it.email, it.firstName ?: "", it.lastName ?: "")
                 }
             }.map { userData ->
-                val userCount = localSource.getUserCount().toInt()
-                UserPaging(
+                val userCount = localSource.getPagingCacheCount().toInt()
+                UserPagingResult(
                     userData,
                     userCount,
-                    // Round to upper bound and decrement to get last page (indexed from zero)
-                    // Example: total = 10, limit = 3 -> lastPage = 3 ; total = 9, limit = 3 -> lasPage = 2
-                    ceil((userCount.toFloat() / parameters.limit)).toInt() - 1,
                     parameters.limit,
-                    parameters.page
+                    parameters.offset
                 )
             }
+
+    override suspend fun updateUserPagingCache(users: List<UserPagingData>) {
+        localSource.updatePagingCache(users.map(UserPagingData::asUserCache))
+    }
+
+    override suspend fun replaceLocalCacheWith(users: List<UserPagingData>) {
+        localSource.replaceCacheWith(users.map(UserPagingData::asUserCache))
+    }
+
+    override suspend fun localCacheChanges(): Flow<Unit> = localSource.onPagingCacheChanged()
 
     override suspend fun updateUser(parameters: UserUpdateParameters): Result<User> = remoteSource
         .updateUser(parameters.userId, parameters.asRequest)
@@ -88,9 +93,4 @@ class UserRepositoryImpl(
             if (result is Result.Success)
                 localSource.updateOrCreate(result.data.asEntity)
         }
-
-    override suspend fun updateUsersLocal(users: List<User>) {
-        localSource.updateOrCreate(users.map(User::asEntity))
-    }
-
 }

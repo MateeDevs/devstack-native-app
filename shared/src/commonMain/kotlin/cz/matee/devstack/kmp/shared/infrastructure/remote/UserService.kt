@@ -3,7 +3,6 @@ package cz.matee.devstack.kmp.shared.infrastructure.remote
 import cz.matee.devstack.kmp.shared.base.error.util.runCatchingCommonNetworkExceptions
 import cz.matee.devstack.kmp.shared.base.util.helpers.Success
 import cz.matee.devstack.kmp.shared.base.util.helpers.resultsTo
-import cz.matee.devstack.kmp.shared.data.source.UserPagingRequest
 import cz.matee.devstack.kmp.shared.data.source.UserUpdateRequest
 import cz.matee.devstack.kmp.shared.infrastructure.model.UserDto
 import cz.matee.devstack.kmp.shared.infrastructure.model.UserPagingDto
@@ -19,11 +18,11 @@ object UserPaths {
 
 class UserService(private val client: HttpClient) {
 
-    suspend fun getUsers(params: UserPagingRequest) = runCatchingCommonNetworkExceptions {
+    suspend fun getUsers(page: Int, limit: Int) = runCatchingCommonNetworkExceptions {
         client.get<UserPagingDto>(path = UserPaths.users) {
             url {
-                parameters["page"] = params.page.toString()
-                parameters["limit"] = params.limit.toString()
+                parameters["page"] = page.toString()
+                parameters["limit"] = limit.toString()
             }
         } resultsTo Success
     }

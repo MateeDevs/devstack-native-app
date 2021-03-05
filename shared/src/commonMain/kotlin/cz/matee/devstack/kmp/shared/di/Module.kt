@@ -9,7 +9,10 @@ import cz.matee.devstack.kmp.shared.data.source.UserLocalSource
 import cz.matee.devstack.kmp.shared.data.source.UserRemoteSource
 import cz.matee.devstack.kmp.shared.domain.repository.AuthRepository
 import cz.matee.devstack.kmp.shared.domain.repository.UserRepository
-import cz.matee.devstack.kmp.shared.domain.usecase.*
+import cz.matee.devstack.kmp.shared.domain.usecase.DeleteAuthDataUseCase
+import cz.matee.devstack.kmp.shared.domain.usecase.LoginUseCase
+import cz.matee.devstack.kmp.shared.domain.usecase.RegisterUseCase
+import cz.matee.devstack.kmp.shared.domain.usecase.user.*
 import cz.matee.devstack.kmp.shared.infrastructure.local.AuthDao
 import cz.matee.devstack.kmp.shared.infrastructure.local.AuthDaoImpl
 import cz.matee.devstack.kmp.shared.infrastructure.local.createDatabase
@@ -45,7 +48,9 @@ private val commonModule = module {
     factory { GetUserUseCase(get()) }
     factory { IsUserLoggedInUseCase(get()) }
     factory { UpdateUserUseCase(get()) }
-    factory { UpdateUserLocalUseCase(get()) }
+    factory { UpdateLocalUserCacheUseCase(get()) }
+    factory { UserCacheChangeFlowUseCase(get()) }
+    factory { ReplaceUserCacheWithUseCase(get()) }
 
     // Repositories
     single<AuthRepository> { AuthRepositoryImpl(get()) }
@@ -54,7 +59,7 @@ private val commonModule = module {
     // Sources
     single<AuthSource> { AuthSourceImpl(get(), get()) }
     single<UserRemoteSource> { UserRemoteSourceImpl(get()) }
-    single<UserLocalSource> { UserLocalSourceImpl(get()) }
+    single<UserLocalSource> { UserLocalSourceImpl(get(), get()) }
 
     // DAOs
     single<AuthDao> { AuthDaoImpl(get()) }
@@ -64,10 +69,9 @@ private val commonModule = module {
     single { UserService(get()) }
 
     // Database
-    single {
-        createDatabase(get()).also { it.userQueries }
-    }
+    single { createDatabase(get()) }
     single { get<Database>().userQueries }
+    single { get<Database>().userCacheQueries }
 }
 
 expect val platformModule: Module

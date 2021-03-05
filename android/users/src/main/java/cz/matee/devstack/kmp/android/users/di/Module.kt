@@ -7,7 +7,7 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val usersModule = module {
-    single { UserPagingMediator(get(), get()) }
-    factory { UsersPagingSource(get()) }
+    single { UserPagingMediator(get(), get(), get()) }
+    factory { UsersPagingSource(get(), get()) }
     viewModel { UsersViewModel({ get() }, get(), get()) }
 }

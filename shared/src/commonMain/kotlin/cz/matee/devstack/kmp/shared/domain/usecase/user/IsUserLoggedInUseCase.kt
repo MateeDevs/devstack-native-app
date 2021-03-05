@@ -1,4 +1,4 @@
-package cz.matee.devstack.kmp.shared.domain.usecase
+package cz.matee.devstack.kmp.shared.domain.usecase.user
 
 import cz.matee.devstack.kmp.shared.base.usecase.UseCaseNoParams
 import cz.matee.devstack.kmp.shared.domain.repository.UserRepository

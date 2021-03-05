@@ -3,7 +3,10 @@ package cz.matee.devstack.kmp.android.users.ui
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.*
+import androidx.compose.material.Divider
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.runtime.Composable
@@ -18,7 +21,7 @@ import cz.matee.devstack.kmp.android.shared.util.composition.LocalScaffoldPaddin
 import cz.matee.devstack.kmp.android.shared.util.extension.getViewModel
 import cz.matee.devstack.kmp.android.users.navigation.UsersDestination
 import cz.matee.devstack.kmp.android.users.vm.UsersViewModel
-import cz.matee.devstack.kmp.shared.domain.model.UserData
+import cz.matee.devstack.kmp.shared.domain.model.UserPagingData
 
 @Composable
 fun UserListScreen(navHostController: NavHostController) {
@@ -26,7 +29,7 @@ fun UserListScreen(navHostController: NavHostController) {
     val users = userVm.users.collectAsLazyPagingItems()
     val rootPadding = LocalScaffoldPadding.current
 
-    fun onUserItemClick(user: UserData) {
+    fun onUserItemClick(user: UserPagingData) {
         navHostController.navigate(UsersDestination.Detail.withUser(user.id))
     }
 
@@ -46,12 +49,6 @@ fun UserListScreen(navHostController: NavHostController) {
             items(users) { userData ->
                 if (userData != null)
                     UserItem(userData) { onUserItemClick(userData) }
-                else LinearProgressIndicator(
-                    color = MaterialTheme.colors.surface,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(Values.Space.xxlarge)
-                )
             }
 
             item { // Space at bottom of the list
@@ -63,11 +60,10 @@ fun UserListScreen(navHostController: NavHostController) {
             }
         }
     }
-
 }
 
 @Composable
-fun UserItem(data: UserData, onClick: () -> Unit) {
+fun UserItem(data: UserPagingData, onClick: () -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxWidth()

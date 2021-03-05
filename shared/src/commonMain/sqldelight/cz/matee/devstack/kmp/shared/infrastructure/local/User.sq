@@ -13,22 +13,12 @@ SELECT * FROM UserEntity WHERE id = ?;
 getAllUsers:
 SELECT * FROM UserEntity;
 
-getUsersPaginated:
-SELECT * FROM UserEntity
-ORDER BY id
-LIMIT :limit OFFSET :offset;
-
-getUserCount:
-SELECT COUNT(*) FROM UserEntity;
-
-insertUser:
-INSERT INTO UserEntity VALUES ?;
-
-updateUser:
-UPDATE UserEntity
-SET firstName = :firstName, lastName = :lastName, phone = :phone, bio = :bio
-WHERE id = ?;
+insertOrReplace:
+REPLACE INTO UserEntity VALUES ?;
 
 deleteUser:
 DELETE FROM UserEntity WHERE id = ?;
+
+deleteAllUsers:
+DELETE FROM UserEntity;
 

@@ -1,0 +1,28 @@
+CREATE TABLE UserCache (
+    id TEXT PRIMARY KEY,
+    email TEXT NOT NULL UNIQUE,
+    firstName TEXT,
+    lastName TEXT
+);
+
+getUsersPaginated:
+SELECT * FROM UserCache
+ORDER BY id
+LIMIT :limit OFFSET :offset;
+
+getCache:
+SELECT * FROM UserCache
+ORDER BY id;
+
+getUserCount:
+SELECT COUNT(*) FROM UserCache;
+
+insertOrReplace:
+REPLACE INTO UserCache VALUES ?;
+
+delete:
+DELETE FROM UserCache WHERE id = ?;
+
+deleteCache:
+DELETE FROM UserCache;
+

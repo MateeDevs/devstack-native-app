@@ -12,8 +12,8 @@ import cz.matee.devstack.kmp.shared.base.Result
 import cz.matee.devstack.kmp.shared.domain.model.User
 import cz.matee.devstack.kmp.shared.domain.repository.UserUpdateParameters
 import cz.matee.devstack.kmp.shared.domain.usecase.DeleteAuthDataUseCase
-import cz.matee.devstack.kmp.shared.domain.usecase.GetLoggedInUserUseCase
-import cz.matee.devstack.kmp.shared.domain.usecase.UpdateUserUseCase
+import cz.matee.devstack.kmp.shared.domain.usecase.user.GetLoggedInUserUseCase
+import cz.matee.devstack.kmp.shared.domain.usecase.user.UpdateUserUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.collect
