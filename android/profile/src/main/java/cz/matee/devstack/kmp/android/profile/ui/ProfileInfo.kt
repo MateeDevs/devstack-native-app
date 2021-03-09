@@ -27,6 +27,7 @@ import cz.matee.devstack.kmp.android.shared.ui.UserProfileImage
 import cz.matee.devstack.kmp.android.shared.util.composition.LocalLocationPermissionRequest
 import cz.matee.devstack.kmp.android.shared.util.extension.getViewModel
 import cz.matee.devstack.kmp.shared.domain.model.User
+import cz.matee.devstack.kmp.shared.util.extension.fullName
 import kotlinx.coroutines.flow.collect
 
 @Composable
@@ -104,11 +105,13 @@ fun ProfileContent(
         )
 
         Surface(
-            Modifier.constrainAs(location) {
-                linkTo(parent.start, phone.bottom, parent.end, logOutBtn.top)
-                height = Dimension.fillToConstraints
-                width = Dimension.fillToConstraints
-            }.padding(Values.Space.large),
+            Modifier
+                .constrainAs(location) {
+                    linkTo(parent.start, phone.bottom, parent.end, logOutBtn.top)
+                    height = Dimension.fillToConstraints
+                    width = Dimension.fillToConstraints
+                }
+                .padding(Values.Space.large),
             shape = RoundedCornerShape(Values.Radius.large)
         ) {
             Box {

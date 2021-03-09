@@ -20,6 +20,7 @@ import cz.matee.devstack.kmp.shared.infrastructure.model.UserDto
 import cz.matee.devstack.kmp.shared.infrastructure.model.UserPagingDto
 import cz.matee.devstack.kmp.shared.util.extension.asDomain
 import cz.matee.devstack.kmp.shared.util.extension.asEntity
+import cz.matee.devstack.kmp.shared.util.extension.asUserCache
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map

@@ -1,7 +1,5 @@
 package cz.matee.devstack.kmp.shared.domain.model
 
-import cz.matee.devstack.kmp.shared.infrastructure.local.UserCache
-
 data class UserPagingResult(
     val users: List<UserPagingData>,
     val totalCount: Int,
@@ -14,6 +12,4 @@ data class UserPagingData(
     val email: String,
     val firstName: String?,
     val lastName: String?
-) {
-    val asUserCache get() = UserCache(id, email, firstName, lastName)
-}
+)
