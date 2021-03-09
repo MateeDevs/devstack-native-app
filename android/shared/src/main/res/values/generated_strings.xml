@@ -223,14 +223,21 @@
 	<!-- SECTION: Profile edit view -->
 	<string name="profile_edit_view_title">Úprava profilu</string>
 
-	<!-- SECTION: Counter view -->
-	<string name="counter_view_toolbar_title">Počítadlo</string>
-	<string name="counter_view_counter_label">Counter: %1$d</string>
-	<string name="counter_view_counter_increase_button">Zvýšit</string>
-	<string name="counter_view_counter_decrease_button">Snížit</string>
-	<string name="counter_view_counter_hide_button">Skrýt</string>
-	<string name="counter_view_counter_show_button">Zobrazit</string>
+    <!-- SECTION: Counter view -->
+    <string name="counter_view_toolbar_title">Počítadlo</string>
+    <string name="counter_view_counter_label">Counter: %1$d</string>
+    <string name="counter_view_counter_increase_button">Zvýšit</string>
+    <string name="counter_view_counter_decrease_button">Snížit</string>
+    <string name="counter_view_counter_hide_button">Skrýt</string>
+    <string name="counter_view_counter_show_button">Zobrazit</string>
 
-	<!-- SECTION: Recipes view -->
-	<string name="recipes_view_toolbar_title">Recepty</string>
+    <!-- SECTION: Recipes view -->
+    <string name="recipes_view_toolbar_title">Recepty</string>
+    <string name="recipes_view_rope_name">Základy animace a Canvasu</string>
+    <string name="recipes_view_rope_description">Learn how to use animate*AsState, how to draw line on a Canvas and how to detect gestures</string>
+    <string name="recipes_view_clock_name">Pokročilé využití canvasu a concurrent work</string>
+    <string name="recipes_view_clock_description">More in-depth usage of the Canvas (arcs, line styles) and concurrent work using LaunchedEffect</string>
+
+    <!-- SECTION: Recipe - Clock -->
+    <string name="recipes_clock_view_tutorial">Tažením svisle upravte čas</string>
 </resources>

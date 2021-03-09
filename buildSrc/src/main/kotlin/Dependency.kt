@@ -55,6 +55,8 @@ object Dependency {
 
         const val material = "androidx.compose.material:material:$version"
         const val materialIconsCore = "androidx.compose.material:material-icons-core:$version"
+        const val materialIconsExtended =
+            "androidx.compose.material:material-icons-extended:$version"
 
         const val activity = "androidx.activity:activity-compose:$activityVersion"
         const val navigation = "androidx.navigation:navigation-compose:$navigationVersion"
@@ -64,7 +66,7 @@ object Dependency {
         const val uiTest = "androidx.compose.ui:ui-test-junit4:$version"
 
         object Accompanist {
-            private const val version = "0.6.0"
+            private const val version = "0.6.1"
             const val insets = "dev.chrisbanes.accompanist:accompanist-insets:$version"
         }
     }
@@ -95,7 +97,7 @@ object Dependency {
     }
 
     object Settings {
-        private const val version = "0.7.2"
+        private const val version = "0.7.3"
 
         const val core = "com.russhwolf:multiplatform-settings:$version"
         const val noArg = "com.russhwolf:multiplatform-settings-no-arg:$version"

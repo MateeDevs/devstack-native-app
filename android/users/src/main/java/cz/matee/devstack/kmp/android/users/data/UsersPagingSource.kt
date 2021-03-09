@@ -1,6 +1,5 @@
 package cz.matee.devstack.kmp.android.users.data
 
-import android.util.Log
 import androidx.paging.*
 import cz.matee.devstack.kmp.shared.base.Result
 import cz.matee.devstack.kmp.shared.domain.model.UserPagingData
@@ -18,7 +17,6 @@ class UsersPagingSource(
     override val coroutineContext: CoroutineContext = Job() + Dispatchers.IO
 
     private val invalidatedCallback: () -> Unit = {
-        Log.d("LOAD_LOCAL", "INVALIDATED")
         coroutineContext.cancel()
     }
 
@@ -44,28 +42,26 @@ class UsersPagingSource(
         val userFlow = getLocalUsers(loadParams)
         val res = userFlow.first()
 
-        Log.d("LOAD_LOCAL", "O: ${loadParams.offset}; L: ${loadParams.limit}")
-
         // NEXT
-//            val nextKey = loadParams.copy(offset = offset + params.loadSize).takeIf { it.offset <= totalCount }
         val nextKey = UserPagingParameters(res.offset + res.limit, params.loadSize)
             .takeIf { it.offset <= res.totalCount }
 
         // PREV
         val prevOffset = (res.offset - params.loadSize).coerceAtLeast(0)
         val prevLimit = if (res.offset < params.loadSize) res.offset else params.loadSize
-        val prevKey = UserPagingParameters(prevOffset, prevLimit).takeIf { it.limit > 0 }
+        val prevKey = UserPagingParameters(prevOffset, prevLimit)
+            .takeIf { it.limit > 0 }
 
-        return LoadResult.Page(res.users, prevKey, nextKey).also {
-            Log.d("LOAD_KEYS", it.copy(data = emptyList()).toString())
-        }
+        return LoadResult.Page(res.users, prevKey, nextKey)
     }
 
     override fun getRefreshKey(
         state: PagingState<UserPagingParameters, UserPagingData>
     ): UserPagingParameters {
         var limit = state.anchorPosition ?: state.config.pageSize
-        while (limit % state.config.pageSize != 0) limit += 1
+        while (limit % state.config.pageSize != 0) limit += 1 // Expand limit to be a full page
+        // pages are calculated (limit/pageSize) and converted to Int so any uncompleted pages get cut off
+
         return UserPagingParameters(0, limit = limit)
     }
 }
@@ -111,21 +107,19 @@ class UserPagingMediator(
             }
         }
 
-        Log.d("LOAD_REMOTE", "$loadType - OFF: ${loadParams.offset}; LIM: ${loadParams.limit}")
         return when (val res = getRemoteUsers(loadParams)) {
             is Result.Success -> {
-                val state = loaded
+                val loadedRange = loaded
                 val min = res.data.offset
                 val max = res.data.offset + res.data.limit - 1
-                if (state == null) loaded = min..max
+                if (loadedRange == null)
+                    loaded = min..max // set range from result on refresh
                 else {
-                    if (min < state.first)
-                        loaded = min..state.last
-                    if (max > state.last)
-                        loaded = state.first..max
+                    if (min < loadedRange.first)
+                        loaded = min..loadedRange.last
+                    if (max > loadedRange.last)
+                        loaded = loadedRange.first..max
                 }
-
-//                Log.d("LOAD_REMOTE_STATE", loaded.toString())
 
                 if (loadType == LoadType.REFRESH)
                     replaceUserCacheWith(res.data.users)

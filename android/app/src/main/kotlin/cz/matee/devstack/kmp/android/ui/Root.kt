@@ -1,6 +1,6 @@
 package cz.matee.devstack.kmp.android.ui
 
-import androidx.compose.animation.Crossfade
+import androidx.compose.animation.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Build
@@ -57,6 +57,7 @@ fun Root() {
     }
 }
 
+@OptIn(ExperimentalAnimationApi::class)
 @Composable
 private fun BottomBar(navController: NavHostController) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -65,8 +66,12 @@ private fun BottomBar(navController: NavHostController) {
     // Don't show NavBar on start
     val isInAuthRoute = currentRoute?.startsWith(Feature.Login.route) ?: true
 
-    Crossfade(isInAuthRoute) {
-        if (!it) Surface(
+    AnimatedVisibility(
+        visible = !isInAuthRoute,
+        enter = fadeIn() + expandVertically(),
+        exit = fadeOut() + shrinkVertically()
+    ) {
+        Surface(
             elevation = Values.Elevation.huge,
             color = MaterialTheme.colors.primarySurface
         ) {
