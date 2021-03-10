@@ -26,4 +26,10 @@ sealed class RecipesDestination(
         R.string.recipes_view_clock_name,
         R.string.recipes_view_clock_description
     )
+
+    object ListTransition : RecipesDestination(
+        "$root/transition-list",
+        R.string.recipes_view_list_name,
+        R.string.recipes_view_list_description
+    )
 }

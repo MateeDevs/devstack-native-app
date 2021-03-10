@@ -35,7 +35,7 @@ object Dependency {
         }
 
         object Paging {
-            private const val version = "3.0.0-beta01"
+            private const val version = "3.0.0-beta02"
             private const val composeVersion = "1.0.0-alpha08"
 
             const val runtime = "androidx.paging:paging-runtime:$version"
@@ -44,9 +44,9 @@ object Dependency {
     }
 
     object Compose {
-        const val version = "1.0.0-beta01"
-        private const val activityVersion = "1.3.0-alpha03"
-        private const val navigationVersion = "1.0.0-alpha08"
+        const val version = "1.0.0-beta02"
+        private const val activityVersion = "1.3.0-alpha04"
+        private const val navigationVersion = "1.0.0-alpha09"
         private const val constraintLayoutVersion = "1.0.0-alpha03"
 
         const val ui = "androidx.compose.ui:ui:$version"

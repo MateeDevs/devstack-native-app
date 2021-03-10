@@ -31,10 +31,13 @@ fun RecipesScreen(navHostController: NavHostController) {
     Column {
         ScreenTitle(R.string.recipes_view_toolbar_title)
 
-        val items = listOf(
-            RecipesDestination.Rope,
-            RecipesDestination.CanvasClock
-        )
+        val items = remember {
+            listOf(
+                RecipesDestination.Rope,
+                RecipesDestination.CanvasClock,
+                RecipesDestination.ListTransition
+            )
+        }
 
         var expandedItem by remember { mutableStateOf<Int?>(null) }
 
