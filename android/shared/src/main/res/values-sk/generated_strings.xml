@@ -204,18 +204,20 @@
 	<string name="registration_view_login_button_title">Prihlásiť sa</string>
 	<string name="register_view_email_already_exists">Užívateľ s daným emailom už existuje.</string>
 
-	<!-- SECTION: Users View -->
-	<string name="users_view_toolbar_title">Užívatelia</string>
+    <!-- SECTION: Users View -->
+    <string name="users_view_toolbar_title">Užívatelia</string>
 
-	<!-- SECTION: User Detail View -->
-	<string name="user_detail_view_toolbar_title">Detail užívateľa</string>
-	<string name="user_detail_view_label_email">E-mail</string>
-	<string name="user_detail_view_label_phone">Telefón</string>
+    <!-- SECTION: User Detail View -->
+    <string name="user_detail_view_toolbar_title">Detail užívateľa</string>
+    <string name="user_detail_view_label_email">E-mail</string>
+    <string name="user_detail_view_label_phone">Telefón</string>
 
-	<!-- SECTION: Profile View -->
+    <!-- SECTION: Profile View -->
     <string name="profile_view_toolbar_title">Profil</string>
     <string name="profile_view_tab_bar_profile_title">Profil</string>
     <string name="profile_view_tab_bar_settings_title">Nastavenie</string>
+    <string name="profile_view_remote_config_label">RemoteConfigLabel</string>
+    <string name="profile_view_push_notifications_register_button">Registrovať príjem Push Notifikácií</string>
     <string name="profile_view_logout_button">Odhlásiť sa</string>
     <string name="profile_view_label_email">E-mail</string>
     <string name="profile_view_label_phone">Telefón</string>
@@ -237,8 +239,8 @@
     <string name="recipes_view_rope_description">Learn how to use animate*AsState, how to draw line on a Canvas and how to detect gestures</string>
     <string name="recipes_view_clock_name">Pokročilé využitie canvasu a concurrent work</string>
     <string name="recipes_view_clock_description">More in-depth usage of the Canvas (arcs, line styles) and concurrent work using LaunchedEffect</string>
-    <string name="recipes_view_list_name">Advanced transition and scrolling</string>
-    <string name="recipes_view_list_description">Transform transition and reacting to scrolling list to drive this animation.</string>
+    <string name="recipes_view_list_name">Pokročilý prechod a nested scrolling</string>
+    <string name="recipes_view_list_description">Transform transition and reacting to nested scrolling list to drive this animation.</string>
 
     <!-- SECTION: Recipe - Clock -->
     <string name="recipes_clock_view_tutorial">Čas upravíte presunutím zvisle</string>

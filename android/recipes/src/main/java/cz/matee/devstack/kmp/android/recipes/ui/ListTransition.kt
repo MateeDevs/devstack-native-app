@@ -2,11 +2,12 @@ package cz.matee.devstack.kmp.android.recipes.ui
 
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.animateIntOffset
-import androidx.compose.animation.core.tween
+import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.Divider
@@ -32,6 +33,26 @@ private val headerMinHeight by lazy { 64.dp }
 
 @Composable
 fun ListTransitionRecipe() {
+    LazyColumnWithCollapsingToolbar("Title") {
+        repeat(51) {
+            item {
+                Text(
+                    "Item $it",
+                    Modifier.fillMaxWidth(),
+                    style = MaterialTheme.typography.h5
+                )
+                Divider()
+            }
+        }
+    }
+}
+
+
+@Composable
+private fun LazyColumnWithCollapsingToolbar(
+    title: String,
+    content: LazyListScope.() -> Unit
+) {
     val density = LocalDensity.current.density
     val rootPadding = LocalScaffoldPadding.current
     val listState = rememberLazyListState()
@@ -51,7 +72,7 @@ fun ListTransitionRecipe() {
     }
 
     val titleOffset by scrollTransition.animateIntOffset(
-        transitionSpec = { tween() }
+        transitionSpec = { spring() }
     ) {
         if (it > 0f) Offset.Zero.round()
         else IntOffset(-(titleParentSize.width / 2) + titleSize.width / 2, 0)
@@ -90,7 +111,7 @@ fun ListTransitionRecipe() {
                 .onSizeChanged { titleParentSize = it }
         ) {
             Text(
-                "Title",
+                title,
                 fontSize = titleFontSize.sp,
                 textAlign = TextAlign.Center,
                 modifier = Modifier
@@ -102,17 +123,7 @@ fun ListTransitionRecipe() {
         }
 
         LazyColumn(Modifier.fillMaxSize(), listState) {
-
-            repeat(51) {
-                item {
-                    Text(
-                        "Item $it",
-                        Modifier.fillMaxWidth(),
-                        style = MaterialTheme.typography.h5
-                    )
-                    Divider()
-                }
-            }
+            content()
         }
     }
 }

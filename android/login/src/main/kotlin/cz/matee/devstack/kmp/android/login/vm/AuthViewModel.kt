@@ -38,14 +38,12 @@ class AuthViewModel(
 
     suspend fun register(
         email: String,
-        firstName: String,
-        lastName: String,
         password: String
     ): Boolean {
         loading = true
 
         val registerResult = when (
-            val res = registerUseCase(RegisterParams(email, firstName, lastName, password))
+            val res = registerUseCase(RegisterParams(email, "", "", password))
         ) {
             is Result.Success -> true
             is Result.Error -> {

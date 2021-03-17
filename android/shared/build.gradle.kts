@@ -26,7 +26,6 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerVersion = kotlinVersion
         kotlinCompilerExtensionVersion = Dependency.Compose.version
     }
 
@@ -43,7 +42,6 @@ dependencies {
 
     implementation(Dependency.Kotlin.stdlib)
     implementation(Dependency.AndroidX.core)
-    implementation(Dependency.AndroidX.appCompat)
     implementation(Dependency.AndroidX.material)
 
     implementation(Dependency.AndroidX.Lifecycle.core)

@@ -13,7 +13,7 @@ import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -21,34 +21,17 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import com.example.profile.R
-import cz.matee.devstack.kmp.android.profile.vm.ProfileViewModel
 import cz.matee.devstack.kmp.android.shared.style.Values
 import cz.matee.devstack.kmp.android.shared.ui.UserProfileImage
-import cz.matee.devstack.kmp.android.shared.util.composition.LocalLocationPermissionRequest
-import cz.matee.devstack.kmp.android.shared.util.extension.getViewModel
 import cz.matee.devstack.kmp.shared.domain.model.User
 import cz.matee.devstack.kmp.shared.util.extension.fullName
-import kotlinx.coroutines.flow.collect
 
 @Composable
 fun ProfileContent(
     user: User,
-    onLogOut: () -> Unit,
-    profileViewModel: ProfileViewModel = getViewModel()
+    locationValue: Location?,
+    onLogOut: () -> Unit
 ) {
-    val permissionHandler = LocalLocationPermissionRequest.current
-    var locationValue by remember { mutableStateOf<Location?>(null) }
-    val locationPermissionGranted by permissionHandler.granted.collectAsState()
-
-    LaunchedEffect(locationPermissionGranted) {
-        if (locationPermissionGranted)
-            profileViewModel.getLocationFlow().collect {
-                locationValue = it
-            }
-        else
-            permissionHandler.requestPermission()
-    }
-
 
     /**
      *  In the View system, ConstraintLayout was the recommended way to create large and complex
@@ -116,8 +99,8 @@ fun ProfileContent(
         ) {
             Box {
                 Text(
-                    if (locationPermissionGranted)
-                        "${locationValue?.latitude}, ${locationValue?.longitude}"
+                    if (locationValue != null)
+                        "${locationValue.latitude}, ${locationValue.longitude}"
                     else
                         "Location permission not granted",
                     Modifier

@@ -1,5 +1,6 @@
 package cz.matee.devstack.kmp.android.profile.ui
 
+import android.location.Location
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -14,12 +15,14 @@ import androidx.navigation.NavHostController
 import com.example.profile.R
 import cz.matee.and.core.util.extension.get
 import cz.matee.devstack.kmp.android.profile.vm.ProfileViewModel
+import cz.matee.devstack.kmp.android.shared.permission.LocalLocationPermissionHandler
 import cz.matee.devstack.kmp.android.shared.style.Values
 import cz.matee.devstack.kmp.android.shared.ui.ScreenTitle
 import cz.matee.devstack.kmp.android.shared.util.composition.LocalScaffoldPadding
 import cz.matee.devstack.kmp.android.shared.util.extension.getViewModel
 import cz.matee.devstack.kmp.android.shared.util.extension.showIn
 import cz.matee.devstack.kmp.shared.domain.model.User
+import kotlinx.coroutines.flow.collect
 import cz.matee.devstack.kmp.android.profile.vm.ProfileViewModel.ViewState as State
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -28,7 +31,6 @@ fun ProfileScreen(
     navHostController: NavHostController,
     profileVm: ProfileViewModel = getViewModel()
 ) {
-    val uiScope = rememberCoroutineScope()
     val parentPadding = LocalScaffoldPadding.current
     val snackHost = remember { SnackbarHostState() }
     var editDialogVisible by remember { mutableStateOf(false) }
@@ -43,12 +45,32 @@ fun ProfileScreen(
     ) {
         val loading by profileVm[State::loading].collectAsState(false)
 
-        Content(
-            user,
-            onEdit = { editDialogVisible = true },
-            onLogOut = { profileVm.logOut(navHostController) },
-            profileVm = profileVm
-        )
+        ProfileLayout(
+            onEditClick = { editDialogVisible = true },
+        ) {
+            val permissionHandler = LocalLocationPermissionHandler.current
+            var locationValue by remember { mutableStateOf<Location?>(null) }
+            val locationPermissionGranted by permissionHandler.granted
+
+            LaunchedEffect(locationPermissionGranted) {
+                if (locationPermissionGranted)
+                    profileVm.getLocationFlow().collect {
+                        locationValue = it
+                    }
+                else
+                    permissionHandler.requestLocationPermission()
+            }
+
+
+            @Suppress("UnnecessaryVariable")
+            val userData = user
+            if (userData != null)
+                ProfileContent(
+                    userData,
+                    locationValue,
+                    onLogOut = { profileVm.logOut(navHostController) },
+                )
+        }
 
         if (loading)
             CircularProgressIndicator(Modifier.align(Alignment.Center))
@@ -63,19 +85,17 @@ fun ProfileScreen(
 }
 
 @Composable
-private fun Content(
-    user: User?,
-    onEdit: () -> Unit,
-    onLogOut: () -> Unit,
+private fun ProfileLayout(
+    onEditClick: () -> Unit,
     modifier: Modifier = Modifier,
-    profileVm: ProfileViewModel = getViewModel()
+    content: @Composable () -> Unit
 ) {
     Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = modifier) {
 
         ScreenTitle(R.string.profile_view_toolbar_title) {
             Row(Modifier.fillMaxWidth(), Arrangement.End) {
                 IconButton(
-                    onClick = onEdit,
+                    onClick = onEditClick,
                     Modifier.padding(end = Values.Space.medium)
                 ) {
                     Icon(Icons.Filled.Edit, "")
@@ -85,12 +105,7 @@ private fun Content(
 
         Spacer(Modifier.height(Values.Space.small))
 
-        if (user != null)
-            ProfileContent(
-                user,
-                onLogOut = onLogOut,
-                profileVm
-            )
+        content()
     }
 }
 

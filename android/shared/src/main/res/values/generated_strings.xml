@@ -213,33 +213,35 @@
 	<string name="user_detail_view_label_phone">Telefon</string>
 
 	<!-- SECTION: Profile View -->
-    <string name="profile_view_toolbar_title">Profil</string>
-    <string name="profile_view_tab_bar_profile_title">Profil</string>
-    <string name="profile_view_tab_bar_settings_title">Nastavení</string>
-    <string name="profile_view_logout_button">Odhlásit se</string>
-    <string name="profile_view_label_email">E-mail</string>
-    <string name="profile_view_label_phone">Telefon</string>
+	<string name="profile_view_toolbar_title">Profil</string>
+	<string name="profile_view_tab_bar_profile_title">Profil</string>
+	<string name="profile_view_tab_bar_settings_title">Nastavení</string>
+	<string name="profile_view_remote_config_label">RemoteConfigLabel</string>
+	<string name="profile_view_push_notifications_register_button">Registrovat příjem Push Notifikací</string>
+	<string name="profile_view_logout_button">Odhlásit se</string>
+	<string name="profile_view_label_email">E-mail</string>
+	<string name="profile_view_label_phone">Telefon</string>
 
-    <!-- SECTION: Profile edit view -->
-    <string name="profile_edit_view_title">Úprava profilu</string>
+	<!-- SECTION: Profile edit view -->
+	<string name="profile_edit_view_title">Úprava profilu</string>
 
-    <!-- SECTION: Counter view -->
-    <string name="counter_view_toolbar_title">Počítadlo</string>
-    <string name="counter_view_counter_label">Counter: %1$d</string>
-    <string name="counter_view_counter_increase_button">Zvýšit</string>
-    <string name="counter_view_counter_decrease_button">Snížit</string>
-    <string name="counter_view_counter_hide_button">Skrýt</string>
-    <string name="counter_view_counter_show_button">Zobrazit</string>
+	<!-- SECTION: Counter view -->
+	<string name="counter_view_toolbar_title">Počítadlo</string>
+	<string name="counter_view_counter_label">Counter: %1$d</string>
+	<string name="counter_view_counter_increase_button">Zvýšit</string>
+	<string name="counter_view_counter_decrease_button">Snížit</string>
+	<string name="counter_view_counter_hide_button">Skrýt</string>
+	<string name="counter_view_counter_show_button">Zobrazit</string>
 
-    <!-- SECTION: Recipes view -->
-    <string name="recipes_view_toolbar_title">Recepty</string>
-    <string name="recipes_view_rope_name">Základy animace a Canvasu</string>
-    <string name="recipes_view_rope_description">Learn how to use animate*AsState, how to draw line on a Canvas and how to detect gestures</string>
-    <string name="recipes_view_clock_name">Pokročilé využití canvasu a concurrent work</string>
-    <string name="recipes_view_clock_description">More in-depth usage of the Canvas (arcs, line styles) and concurrent work using LaunchedEffect</string>
-    <string name="recipes_view_list_name">Advanced transition and scrolling</string>
-    <string name="recipes_view_list_description">Transform transition and reacting to scrolling list to drive this animation.</string>
+	<!-- SECTION: Recipes view -->
+	<string name="recipes_view_toolbar_title">Recepty</string>
+	<string name="recipes_view_rope_name">Základy animace a Canvasu</string>
+	<string name="recipes_view_rope_description">Learn how to use animate*AsState, how to draw line on a Canvas and how to detect gestures</string>
+	<string name="recipes_view_clock_name">Pokročilé využití canvasu a concurrent work</string>
+	<string name="recipes_view_clock_description">More in-depth usage of the Canvas (arcs, line styles) and concurrent work using LaunchedEffect</string>
+	<string name="recipes_view_list_name">Pokročilý přechod a nested scrolling</string>
+	<string name="recipes_view_list_description">Transform transition and reacting to nested scrolling list to drive this animation.</string>
 
-    <!-- SECTION: Recipe - Clock -->
-    <string name="recipes_clock_view_tutorial">Tažením svisle upravte čas</string>
+	<!-- SECTION: Recipe - Clock -->
+	<string name="recipes_clock_view_tutorial">Tažením svisle upravte čas</string>
 </resources>

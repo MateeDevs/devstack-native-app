@@ -15,16 +15,16 @@ object Dependency {
     }
 
     object Koin {
-        private const val version = "3.0.1-alpha-3"
+        private const val version = "3.0.1-beta-1"
 
-        const val core = "org.koin:koin-core:$version"
-        const val android = "org.koin:koin-android:$version"
-        const val compose = "org.koin:koin-androidx-compose:$version"
+        const val core = "io.insert-koin:koin-core:$version"
+        const val android = "io.insert-koin:koin-android:$version"
+        const val compose = "io.insert-koin:koin-androidx-compose:$version"
     }
 
     object AndroidX {
-        const val core = "androidx.core:core-ktx:1.3.2"
-        const val appCompat = "androidx.appcompat:appcompat:1.2.0"
+        const val core = "androidx.core:core-ktx:1.5.0-beta03"
+//        const val appCompat = "androidx.appcompat:appcompat:1.3.0-beta01"
 
         const val material = "com.google.android.material:material:1.3.0"
 
@@ -47,7 +47,7 @@ object Dependency {
         const val version = "1.0.0-beta02"
         private const val activityVersion = "1.3.0-alpha04"
         private const val navigationVersion = "1.0.0-alpha09"
-        private const val constraintLayoutVersion = "1.0.0-alpha03"
+        private const val constraintLayoutVersion = "1.0.0-alpha05"
 
         const val ui = "androidx.compose.ui:ui:$version"
         const val uiTooling = "androidx.compose.ui:ui-tooling:$version"
@@ -66,7 +66,7 @@ object Dependency {
         const val uiTest = "androidx.compose.ui:ui-test-junit4:$version"
 
         object Accompanist {
-            private const val version = "0.6.1"
+            private const val version = "0.6.2"
             const val insets = "dev.chrisbanes.accompanist:accompanist-insets:$version"
         }
     }

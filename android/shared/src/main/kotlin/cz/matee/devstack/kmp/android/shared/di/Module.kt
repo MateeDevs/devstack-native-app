@@ -1,15 +1,11 @@
 package cz.matee.devstack.kmp.android.shared.di
 
-import android.Manifest
 import android.content.Context
-import androidx.activity.ComponentActivity
 import com.google.android.gms.location.LocationServices
 import cz.matee.devstack.kmp.android.shared.base.error.ErrorMessageProviderImpl
 import cz.matee.devstack.kmp.android.shared.device.LocationControllerImpl
 import cz.matee.devstack.kmp.android.shared.domain.controller.LocationController
 import cz.matee.devstack.kmp.android.shared.domain.usecase.GetLocationFlowUseCase
-import cz.matee.devstack.kmp.android.shared.permission.PermissionRequest
-import cz.matee.devstack.kmp.android.shared.permission.registerPermissionRequest
 import cz.matee.devstack.kmp.shared.base.error.ErrorMessageProvider
 import org.koin.dsl.module
 
@@ -20,9 +16,6 @@ val androidSharedModule = module {
             context = get(),
             locationProvider = LocationServices.getFusedLocationProviderClient(get<Context>())
         )
-    }
-    single<PermissionRequest>(createdAtStart = true) {
-        get<ComponentActivity>().registerPermissionRequest(Manifest.permission.ACCESS_FINE_LOCATION)
     }
 
     factory { GetLocationFlowUseCase(get()) }

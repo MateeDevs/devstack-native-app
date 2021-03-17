@@ -22,21 +22,21 @@ import dev.chrisbanes.accompanist.insets.navigationBarsPadding
 import dev.chrisbanes.accompanist.insets.statusBarsPadding
 import kotlin.math.roundToInt
 
-private const val ballSize = 96f
+private val ballSizeDp = 96.dp
 
 @Composable
 fun RopeRecipe() {
     val density = LocalDensity.current.density
-    val ballSizeScaled = remember(density) { ballSize * density }
+    val ballSizePx = remember(density) { ballSizeDp.value * density }
 
-    val ballSpacing = remember { Offset(0f, (48f + ballSize) * density) }
+    val ballSpacingPx = remember { Offset(0f, (48.dp + ballSizeDp).value * density) }
     var ball1 by remember { mutableStateOf(Offset.Zero) }
-    val ball2 by animateOffsetAsState(ball1 + ballSpacing)
-    val ball3 by animateOffsetAsState(ball2 + ballSpacing)
+    val ball2 by animateOffsetAsState(ball1 + ballSpacingPx)
+    val ball3 by animateOffsetAsState(ball2 + ballSpacingPx)
 
 
     val lineColor = MaterialTheme.colors.onBackground
-    val ballCenterOffset = remember { Offset(ballSizeScaled / 2, ballSizeScaled) }
+    val ballCenterOffset = remember { Offset(ballSizePx / 2, ballSizePx) }
     Canvas(Modifier.fillMaxSize()) {
         drawLine(
             lineColor,
@@ -77,7 +77,7 @@ private fun Ball(offset: Offset) {
     Box(
         Modifier
             .offset { offset.round() }
-            .requiredSize(ballSize.dp)
+            .requiredSize(ballSizeDp)
             .background(MaterialTheme.colors.primary, CircleShape)
     ) {
         Column(Modifier.align(Alignment.Center)) {

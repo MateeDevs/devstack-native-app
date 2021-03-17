@@ -21,7 +21,7 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        jcenter()
+        jcenter() // TODO remove as soon as ve get rid of all of the dependencies
         maven {
             url = URI.create("https://dl.bintray.com/ekito/koin")
         }
