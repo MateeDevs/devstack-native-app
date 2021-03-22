@@ -4,7 +4,7 @@ import cz.matee.devstack.kmp.shared.base.Result
 import cz.matee.devstack.kmp.shared.base.usecase.UseCaseResult
 import cz.matee.devstack.kmp.shared.domain.repository.AuthRepository
 
-class LoginUseCase(
+class LoginUseCase internal constructor(
     private val authRepository: AuthRepository
 ) : UseCaseResult<LoginUseCase.Params, Unit>() {
     data class Params(val email: String, val password: String)

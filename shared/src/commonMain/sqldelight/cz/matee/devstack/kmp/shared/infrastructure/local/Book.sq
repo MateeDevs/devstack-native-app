@@ -1,0 +1,22 @@
+CREATE TABLE BookEntity (
+    id TEXT PRIMARY KEY,
+    name TEXT NOT NULL UNIQUE,
+    author TEXT,
+    pageCount INTEGER
+);
+
+getBook:
+SELECT * FROM BookEntity WHERE id = ?;
+
+getAllBooks:
+SELECT * FROM BookEntity;
+
+insertOrReplace:
+REPLACE INTO BookEntity VALUES ?;
+
+delete:
+DELETE FROM BookEntity WHERE id = ?;
+
+deleteAllBooks:
+DELETE FROM BookEntity;
+

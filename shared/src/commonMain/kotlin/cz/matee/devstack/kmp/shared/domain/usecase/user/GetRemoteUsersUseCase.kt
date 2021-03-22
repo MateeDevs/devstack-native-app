@@ -6,7 +6,7 @@ import cz.matee.devstack.kmp.shared.domain.model.UserPagingResult
 import cz.matee.devstack.kmp.shared.domain.repository.UserPagingParameters
 import cz.matee.devstack.kmp.shared.domain.repository.UserRepository
 
-class GetRemoteUsersUseCase(
+class GetRemoteUsersUseCase internal constructor(
     private val userRepository: UserRepository
 ) : UseCaseResult<UserPagingParameters, UserPagingResult>() {
 

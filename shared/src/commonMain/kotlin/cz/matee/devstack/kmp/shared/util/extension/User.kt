@@ -6,16 +6,16 @@ import cz.matee.devstack.kmp.shared.infrastructure.model.UserDto
 
 // Infrastructure -> Domain
 
-val UserEntity.asDomain
+internal val UserEntity.asDomain
     get() = User(id, email, bio ?: "", firstName ?: "", lastName ?: "", phone)
 
-val UserDto.asDomain
+internal val UserDto.asDomain
     get() = User(id, email, bio, firstName, lastName, phone)
 
 
 // Domain -> Infrastructure
 
-val User.asEntity
+internal val User.asEntity
     get() = UserEntity(id, email, firstName, lastName, phone, bio)
 
 

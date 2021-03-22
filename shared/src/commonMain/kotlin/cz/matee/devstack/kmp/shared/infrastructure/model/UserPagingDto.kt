@@ -3,7 +3,7 @@ package cz.matee.devstack.kmp.shared.infrastructure.model
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class UserPagingDto(
+internal data class UserPagingDto(
     val `data`: List<UserPagingDataDto>,
     val totalCount: Int,
     val lastPage: Int,
@@ -12,7 +12,7 @@ data class UserPagingDto(
 )
 
 @Serializable
-data class UserPagingDataDto(
+internal data class UserPagingDataDto(
     val email: String,
     val firstName: String,
     val id: String,

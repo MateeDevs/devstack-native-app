@@ -1,7 +1,9 @@
 package cz.matee.devstack.kmp.shared.base.usecase
 
+import cz.matee.devstack.kmp.shared.base.Result
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 
 /**
@@ -35,4 +37,13 @@ abstract class UseCaseNoParams<out T>(dispatcher: CoroutineDispatcher = Dispatch
     UseCase<Unit, T>(dispatcher) {
 
     suspend operator fun invoke(): T = super.invoke(Unit)
+}
+
+
+abstract class UseCaseFlow<in Params, out T : Any>(dispatcher: CoroutineDispatcher = Dispatchers.Default) :
+    UseCase<Params, Flow<T>>(dispatcher)
+
+abstract class UseCaseFlowNoParams<out T : Any>(dispatcher: CoroutineDispatcher = Dispatchers.Default) :
+    UseCase<Unit, Flow<T>>(dispatcher) {
+    suspend operator fun invoke(): Flow<T> = super.invoke(Unit)
 }

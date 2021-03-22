@@ -4,7 +4,7 @@ import com.russhwolf.settings.Settings
 import com.russhwolf.settings.get
 import com.russhwolf.settings.set
 
-interface AuthDao {
+internal interface AuthDao {
 
     fun saveToken(token: String)
     fun retrieveToken(): String?
@@ -15,7 +15,7 @@ interface AuthDao {
     fun wipeData()
 }
 
-val AuthDao.isLoggedIn get() = retrieveToken() != null && retrieveUserId() != null
+internal val AuthDao.isLoggedIn get() = retrieveToken() != null && retrieveUserId() != null
 
 
 internal class AuthDaoImpl(private val settings: Settings) : AuthDao {

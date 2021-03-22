@@ -8,7 +8,7 @@ import cz.matee.devstack.kmp.shared.infrastructure.model.UserPagingDto
 
 // Infrastructure -> Domain
 
-val UserPagingDto.asDomain
+internal val UserPagingDto.asDomain
     get() = UserPagingResult(
         `data`.map(UserPagingDataDto::asDomain),
         totalCount = totalCount,
@@ -16,11 +16,11 @@ val UserPagingDto.asDomain
         offset = page * limit
     )
 
-val UserPagingDataDto.asDomain
+internal val UserPagingDataDto.asDomain
     get() = UserPagingData(id, email, firstName, lastName)
 
 
 // Domain -> Infrastructure
 
-val UserPagingData.asUserCache
+internal val UserPagingData.asUserCache
     get() = UserCache(id, email, firstName, lastName)

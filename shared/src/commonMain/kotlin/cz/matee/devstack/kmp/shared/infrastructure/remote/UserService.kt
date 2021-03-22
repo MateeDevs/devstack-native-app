@@ -9,14 +9,14 @@ import cz.matee.devstack.kmp.shared.infrastructure.model.UserPagingDto
 import io.ktor.client.HttpClient
 import io.ktor.client.request.*
 
-object UserPaths {
+internal object UserPaths {
     private const val root = "/user"
     const val users = root
     fun user(id: String) = "$root/$id"
 }
 
 
-class UserService(private val client: HttpClient) {
+internal class UserService(private val client: HttpClient) {
 
     suspend fun getUsers(page: Int, limit: Int) = runCatchingCommonNetworkExceptions {
         client.get<UserPagingDto>(path = UserPaths.users) {

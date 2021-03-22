@@ -11,13 +11,13 @@ import cz.matee.devstack.kmp.shared.infrastructure.model.RegistrationDto
 import io.ktor.client.HttpClient
 import io.ktor.client.request.*
 
-object AuthPaths {
+internal object AuthPaths {
     private const val root = "/auth"
     const val login = "$root/login"
     const val registration = "$root/registration"
 }
 
-class AuthService(private val client: HttpClient) {
+internal class AuthService(private val client: HttpClient) {
 
 
     suspend fun login(body: LoginRequest): Result<LoginDto> =

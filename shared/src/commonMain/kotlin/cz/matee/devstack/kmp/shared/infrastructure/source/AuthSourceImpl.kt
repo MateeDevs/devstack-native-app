@@ -11,7 +11,7 @@ import cz.matee.devstack.kmp.shared.infrastructure.model.LoginDto
 import cz.matee.devstack.kmp.shared.infrastructure.model.RegistrationDto
 import cz.matee.devstack.kmp.shared.infrastructure.remote.AuthService
 
-class AuthSourceImpl(
+internal class AuthSourceImpl(
     private val service: AuthService,
     private val authDao: AuthDao
 ) : AuthSource {

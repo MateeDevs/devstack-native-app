@@ -12,10 +12,10 @@ internal interface AuthSource {
 }
 
 @Serializable
-data class LoginRequest(val email: String, val pass: String)
+internal data class LoginRequest(val email: String, val pass: String)
 
 @Serializable
-data class RegistrationRequest(
+internal data class RegistrationRequest(
     val email: String,
     val firstName: String,
     val lastName: String,

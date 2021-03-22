@@ -5,6 +5,7 @@ plugins {
     kotlin("multiplatform")
     kotlin("plugin.serialization") version kotlinVersion
     id("com.squareup.sqldelight")
+    id("com.chromaticnoise.multiplatform-swiftpackage") version "2.0.3"
 }
 
 // https://youtrack.jetbrains.com/issue/KT-43944
@@ -19,16 +20,10 @@ android {
 kotlin {
     android()
 
-    val iOSTarget: (String, KotlinNativeTarget.() -> Unit) -> KotlinNativeTarget =
-        if (System.getenv("SDK_NAME")?.startsWith("iphoneos") == true)
-            ::iosArm64
-        else
-            ::iosX64
-
-    iOSTarget("ios") {
+    ios {
         binaries {
             framework {
-                baseName = Project.shared
+                baseName = Project.iosShared
             }
         }
     }
@@ -36,11 +31,17 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(Dependency.Kotlin.Coroutines.common) {
+                    version {
+                        strictly(Dependency.Kotlin.Coroutines.version)
+                    }
+                }
                 implementation(Dependency.Koin.core)
 
                 implementation(Dependency.Settings.core)
                 implementation(Dependency.Settings.coroutines)
                 implementation(Dependency.Settings.noArg)
+
 
                 implementation(Dependency.SqlDelight.runtime)
                 implementation(Dependency.SqlDelight.coroutinesExtension)
@@ -56,12 +57,14 @@ kotlin {
             }
         }
 
+
         val iosMain by getting {
             dependencies {
                 implementation(Dependency.Ktor.ios)
                 implementation(Dependency.SqlDelight.iosDriver)
             }
         }
+
     }
 }
 
@@ -74,20 +77,19 @@ android {
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
 }
 
-val packForXcode by tasks.creating(Sync::class) {
-    group = "build"
-    val mode = System.getenv("CONFIGURATION") ?: "DEBUG"
-    val framework = kotlin.targets.getByName<KotlinNativeTarget>("ios").binaries.getFramework(mode)
-    inputs.property("mode", mode)
-    dependsOn(framework.linkTask)
-    val targetDir = File(buildDir, "xcode-frameworks")
-    from({ framework.outputDirectory })
-    into(targetDir)
-}
-tasks.getByName("build").dependsOn(packForXcode)
-
 sqldelight {
     database("Database") {
         packageName = "cz.matee.devstack.kmp"
     }
+}
+
+multiplatformSwiftPackage {
+    swiftToolsVersion("5.3")
+    targetPlatforms {
+        iOS { v("11") } // device + simulator
+//        targets("iosX64") { v("11") } // simulator
+//        targets("iosArm64") { v("11") }
+    }
+    packageName(Project.iosShared)
+
 }
