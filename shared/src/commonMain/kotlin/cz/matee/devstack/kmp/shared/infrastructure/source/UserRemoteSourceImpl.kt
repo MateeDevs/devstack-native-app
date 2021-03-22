@@ -8,7 +8,7 @@ import cz.matee.devstack.kmp.shared.infrastructure.model.UserDto
 import cz.matee.devstack.kmp.shared.infrastructure.model.UserPagingDto
 import cz.matee.devstack.kmp.shared.infrastructure.remote.UserService
 
-class UserRemoteSourceImpl(private val service: UserService) : UserRemoteSource {
+internal class UserRemoteSourceImpl(private val service: UserService) : UserRemoteSource {
 
     override suspend fun getUsers(paging: UserPagingRequest): Result<UserPagingDto> =
         service.getUsers(paging.offset / paging.limit, paging.limit)

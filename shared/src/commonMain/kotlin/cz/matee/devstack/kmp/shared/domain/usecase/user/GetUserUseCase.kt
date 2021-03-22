@@ -6,7 +6,7 @@ import cz.matee.devstack.kmp.shared.domain.model.User
 import cz.matee.devstack.kmp.shared.domain.repository.UserRepository
 import kotlinx.coroutines.flow.Flow
 
-class GetUserUseCase(
+class GetUserUseCase internal constructor(
     private val userRepository: UserRepository
 ) : UseCaseFlowResult<GetUserUseCase.Params, User>() {
     class Params(val userId: String)

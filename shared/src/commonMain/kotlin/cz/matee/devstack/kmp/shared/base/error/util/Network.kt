@@ -9,7 +9,7 @@ import io.ktor.client.features.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
 
-inline fun <R : Any> runCatchingAuthNetworkExceptions(block: () -> Result<R>): Result<R> =
+internal inline fun <R : Any> runCatchingAuthNetworkExceptions(block: () -> Result<R>): Result<R> =
     runCatchingCommonNetworkExceptions {
         try {
             block()
@@ -28,7 +28,7 @@ inline fun <R : Any> runCatchingAuthNetworkExceptions(block: () -> Result<R>): R
         }
     }
 
-inline fun <R : Any> runCatchingCommonNetworkExceptions(block: () -> Result<R>): Result<R> =
+internal inline fun <R : Any> runCatchingCommonNetworkExceptions(block: () -> Result<R>): Result<R> =
     try {
         block()
     } catch (e: ClientRequestException) {

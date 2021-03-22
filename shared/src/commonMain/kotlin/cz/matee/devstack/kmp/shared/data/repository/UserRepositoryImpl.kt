@@ -1,11 +1,13 @@
 package cz.matee.devstack.kmp.shared.data.repository
 
 import cz.matee.devstack.kmp.shared.base.Result
+import cz.matee.devstack.kmp.shared.base.error.domain.BackendError
 import cz.matee.devstack.kmp.shared.base.error.domain.CommonError
 import cz.matee.devstack.kmp.shared.base.util.extension.map
 import cz.matee.devstack.kmp.shared.base.util.helpers.Success
 import cz.matee.devstack.kmp.shared.base.util.helpers.resultsTo
 import cz.matee.devstack.kmp.shared.data.source.UserLocalSource
+import cz.matee.devstack.kmp.shared.data.source.UserPagingRequest
 import cz.matee.devstack.kmp.shared.data.source.UserRemoteSource
 import cz.matee.devstack.kmp.shared.domain.model.User
 import cz.matee.devstack.kmp.shared.domain.model.UserPagingData
@@ -25,7 +27,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 
-class UserRepositoryImpl(
+internal class UserRepositoryImpl(
     private val authDao: AuthDao,
     private val remoteSource: UserRemoteSource,
     private val localSource: UserLocalSource
@@ -38,6 +40,28 @@ class UserRepositoryImpl(
         val userId = authDao.retrieveUserId()
             ?: return flow { emit(Result.Error(CommonError.NoUserLoggedIn)) }
         return getUser(userId)
+    }
+
+    override fun getUsers(): Flow<List<User>> {
+        return localSource.getUsers().map { users -> users.map(UserEntity::asDomain) }
+    }
+
+    override suspend fun refreshUsers(pagingRequest: UserPagingRequest): Result<Unit> {
+        return when (val result = remoteSource.getUsers(pagingRequest)) {
+            is Result.Success -> {
+                val users = result.data.data.map { userDto ->
+                    UserEntity(
+                        id = userDto.id,
+                        email = userDto.email,
+                        firstName = userDto.firstName,
+                        lastName = userDto.lastName, bio = null, phone = null,
+                    )
+                }
+                localSource.updateOrCreate(users)
+                Result.Success(Unit)
+            }
+            is Result.Error -> Result.Error(result.error)
+        }
     }
 
     override suspend fun getUser(id: String): Flow<Result<User>> = flow {

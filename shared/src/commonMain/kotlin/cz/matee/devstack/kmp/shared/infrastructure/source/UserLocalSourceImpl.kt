@@ -14,10 +14,14 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.map
 
-class UserLocalSourceImpl(
+internal class UserLocalSourceImpl(
     private val userQueries: UserQueries,
     private val userCacheQueries: UserCacheQueries
 ) : UserLocalSource {
+
+    override fun getUsers(): Flow<List<UserEntity>> {
+        return userQueries.getAllUsers().asFlow().mapToList()
+    }
 
     override suspend fun getUser(id: String): UserEntity? =
         userQueries
@@ -26,6 +30,11 @@ class UserLocalSourceImpl(
 
     override suspend fun updateOrCreate(userEntity: UserEntity) =
         userQueries.insertOrReplace(userEntity)
+
+    override suspend fun updateOrCreate(entities: List<UserEntity>) {
+        userQueries.deleteAllUsers()
+        entities.forEach(userQueries::insertOrReplace)
+    }
 
 
     override suspend fun replaceCacheWith(users: List<UserCache>) = userCacheQueries.transaction {

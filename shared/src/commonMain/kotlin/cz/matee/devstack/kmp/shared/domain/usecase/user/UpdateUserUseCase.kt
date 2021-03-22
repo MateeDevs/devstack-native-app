@@ -6,7 +6,7 @@ import cz.matee.devstack.kmp.shared.domain.model.User
 import cz.matee.devstack.kmp.shared.domain.repository.UserRepository
 import cz.matee.devstack.kmp.shared.domain.repository.UserUpdateParameters
 
-class UpdateUserUseCase(
+class UpdateUserUseCase internal constructor(
     private val userRepository: UserRepository
 ) : UseCaseResult<UserUpdateParameters, User>() {
 

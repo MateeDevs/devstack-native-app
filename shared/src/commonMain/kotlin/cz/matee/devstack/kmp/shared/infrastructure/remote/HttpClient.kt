@@ -14,7 +14,7 @@ import io.ktor.http.*
 import io.ktor.util.pipeline.*
 import kotlinx.serialization.json.Json as JsonConfig
 
-object HttpClient {
+internal object HttpClient {
     private val unauthorizedEndpoints = listOf("/auth/login", "/auth/registration")
 
     fun init(authDao: AuthDao, config: Config) = HttpClient {

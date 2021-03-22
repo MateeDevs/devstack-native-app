@@ -2,7 +2,7 @@ package cz.matee.devstack.kmp.shared.domain.repository
 
 import cz.matee.devstack.kmp.shared.base.Result
 
-interface AuthRepository {
+internal interface AuthRepository {
     suspend fun login(email: String, pass: String): Result<Unit>
     suspend fun register(
         email: String,
