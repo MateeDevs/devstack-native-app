@@ -9,21 +9,25 @@ import cz.matee.devstack.kmp.android.shared.domain.usecase.GetLocationFlowUseCas
 import cz.matee.devstack.kmp.android.shared.navigation.Feature
 import cz.matee.devstack.kmp.shared.base.ErrorResult
 import cz.matee.devstack.kmp.shared.base.Result
+import cz.matee.devstack.kmp.shared.domain.model.Book
 import cz.matee.devstack.kmp.shared.domain.model.User
 import cz.matee.devstack.kmp.shared.domain.repository.UserUpdateParameters
 import cz.matee.devstack.kmp.shared.domain.usecase.DeleteAuthDataUseCase
+import cz.matee.devstack.kmp.shared.domain.usecase.book.GetBooksUseCase
+import cz.matee.devstack.kmp.shared.domain.usecase.book.RefreshBooksUseCase
 import cz.matee.devstack.kmp.shared.domain.usecase.user.GetLoggedInUserUseCase
 import cz.matee.devstack.kmp.shared.domain.usecase.user.UpdateUserUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.map
 
 class ProfileViewModel(
     private val getLoggedInUser: GetLoggedInUserUseCase,
     private val deleteAuthData: DeleteAuthDataUseCase,
     private val locationFlow: GetLocationFlowUseCase,
-    private val updateUserUc: UpdateUserUseCase
+    private val updateUserUc: UpdateUserUseCase,
+    private val getBooks: GetBooksUseCase,
+    private val refreshBooks: RefreshBooksUseCase
 ) : BaseStateViewModel<ProfileViewModel.ViewState>(ViewState()) {
 
     private val _errorFlow = MutableSharedFlow<ErrorResult>(replay = 1)
@@ -31,18 +35,33 @@ class ProfileViewModel(
 
     init {
         loadUser()
+        loadBooks()
     }
 
-    fun loadUser() {
+    private fun loadUser() {
         launch {
             loading = true
-            getLoggedInUser().map { res ->
+            getLoggedInUser().collect { res ->
                 when (res) {
                     is Result.Success -> update { copy(user = res.data) }
                     is Result.Error -> _errorFlow.emit(res.error)
                 }
-            }.collect()
+            }
             loading = false
+        }
+    }
+
+    private fun loadBooks() {
+        launch {
+            getBooks().collect { res ->
+                update { copy(books = res) }
+            }
+        }
+    }
+
+    suspend fun reloadBooks() {
+        when (val res = refreshBooks()) {
+            is Result.Error -> _errorFlow.emit(res.error)
         }
     }
 
@@ -84,6 +103,7 @@ class ProfileViewModel(
 
     data class ViewState(
         val user: User? = null,
+        val books: List<Book> = listOf(),
         val loading: Boolean = false
     ) : State
 }

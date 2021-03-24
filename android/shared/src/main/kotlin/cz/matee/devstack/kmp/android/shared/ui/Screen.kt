@@ -28,7 +28,7 @@ fun ScreenTitle(
     content: @Composable RowScope.() -> Unit = {}
 ) {
     val density = LocalDensity.current.density
-    val shadeHeight = remember(density) { Values.Space.medium }
+    val shadeHeight = remember(density) { Values.Space.mediumSmall }
     val shadeHeightPx = remember(shadeHeight) { shadeHeight.value * density }
 
     Box(modifier.zIndex(1f)) {
