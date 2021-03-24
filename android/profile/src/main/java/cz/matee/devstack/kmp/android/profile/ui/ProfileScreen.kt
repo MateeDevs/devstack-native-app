@@ -35,6 +35,7 @@ fun ProfileScreen(
     val snackHost = remember { SnackbarHostState() }
     var editDialogVisible by remember { mutableStateOf(false) }
     val user by profileVm[State::user].collectAsState(null)
+    val books by profileVm[State::books].collectAsState(listOf())
 
     profileVm.errorFlow showIn snackHost
 
@@ -67,7 +68,9 @@ fun ProfileScreen(
             if (userData != null)
                 ProfileContent(
                     userData,
+                    books,
                     locationValue,
+                    refreshBooks = { profileVm.reloadBooks() },
                     onLogOut = { profileVm.logOut(navHostController) },
                 )
         }
@@ -102,9 +105,6 @@ private fun ProfileLayout(
                 }
             }
         }
-
-        Spacer(Modifier.height(Values.Space.small))
-
         content()
     }
 }

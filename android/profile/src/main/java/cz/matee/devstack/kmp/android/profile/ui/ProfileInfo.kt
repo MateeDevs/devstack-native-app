@@ -7,8 +7,10 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -23,16 +25,18 @@ import androidx.constraintlayout.compose.Dimension
 import com.example.profile.R
 import cz.matee.devstack.kmp.android.shared.style.Values
 import cz.matee.devstack.kmp.android.shared.ui.UserProfileImage
+import cz.matee.devstack.kmp.shared.domain.model.Book
 import cz.matee.devstack.kmp.shared.domain.model.User
 import cz.matee.devstack.kmp.shared.util.extension.fullName
 
 @Composable
 fun ProfileContent(
     user: User,
+    books: List<Book>,
     locationValue: Location?,
+    refreshBooks: suspend () -> Unit,
     onLogOut: () -> Unit
 ) {
-
     /**
      *  In the View system, ConstraintLayout was the recommended way to create large and complex
      *  layouts as the flat view hierarchy was better for performance. However, this is not a concern
@@ -42,8 +46,12 @@ fun ProfileContent(
      *  It was used here for purpose of demonstration
      */
 
-    ConstraintLayout(Modifier.fillMaxSize()) {
-        val (picture, name, email, phone, bio, location, logOutBtn) = createRefs()
+    ConstraintLayout(
+        Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+    ) {
+        val (picture, name, email, phone, bio, location, booksList, logOutBtn) = createRefs()
 
         UserProfileImage(user, Modifier.constrainAs(picture) {
             top.linkTo(parent.top, Values.Space.medium)
@@ -90,8 +98,8 @@ fun ProfileContent(
         Surface(
             Modifier
                 .constrainAs(location) {
-                    linkTo(parent.start, phone.bottom, parent.end, logOutBtn.top)
-                    height = Dimension.fillToConstraints
+                    linkTo(parent.start, parent.end)
+                    top.linkTo(phone.bottom)
                     width = Dimension.fillToConstraints
                 }
                 .padding(Values.Space.large),
@@ -110,13 +118,23 @@ fun ProfileContent(
             }
         }
 
+        BookList(
+            books = books,
+            refreshBooks = refreshBooks,
+            Modifier.constrainAs(booksList) {
+                linkTo(parent.start, location.bottom, parent.end, logOutBtn.top)
+                width = Dimension.fillToConstraints
+                height = Dimension.fillToConstraints
+            }
+        )
+
         Button(
             onLogOut,
             shape = MaterialTheme.shapes.medium,
             modifier = Modifier
                 .padding(Values.Space.medium)
                 .constrainAs(logOutBtn) {
-                    linkTo(parent.start, parent.end)
+                    linkTo(start = parent.start, end = parent.end)
                     bottom.linkTo(parent.bottom)
                     width = Dimension.fillToConstraints
                 }

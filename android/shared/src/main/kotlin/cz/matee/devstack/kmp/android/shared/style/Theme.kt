@@ -1,6 +1,7 @@
 package cz.matee.devstack.kmp.android.shared.style
 
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Colors
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Shapes
@@ -57,7 +58,9 @@ val typography = Typography(
 )
 
 val shapes = Shapes(
-    // Define shapes
+    small = RoundedCornerShape(Values.Radius.large),
+    medium = RoundedCornerShape(Values.Radius.medium),
+    large = RoundedCornerShape(Values.Radius.small)
 )
 
 @Composable

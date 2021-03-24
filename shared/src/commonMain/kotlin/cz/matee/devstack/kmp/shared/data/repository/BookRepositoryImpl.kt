@@ -9,6 +9,8 @@ import cz.matee.devstack.kmp.shared.util.extension.asDomain
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlin.random.Random
+import kotlin.random.nextInt
+import kotlin.random.nextLong
 
 internal class BookRepositoryImpl(
     private val source: BookLocalSource
@@ -18,18 +20,15 @@ internal class BookRepositoryImpl(
     }
 
     override suspend fun reloadAllBooks(): Result<Unit> {
-        val items = mutableListOf<BookEntity>().apply {
-            for (i in 1..100) {
-                add(
-                    BookEntity(
-                        Random.nextInt().toString(),
-                        "name_${Random.nextInt()}",
-                        "author_${Random.nextInt()}",
-                        Random.nextInt().toLong()
-                    )
-                )
-            }
+        val items = List(100) {
+            BookEntity(
+                Random.nextInt().toString(),
+                "Book ${Random.nextInt(1000..9000)}",
+                "Author ${Random.nextInt(1000..9000)}",
+                Random.nextLong(0..200L)
+            )
         }
+
         source.updateOrInsert(items)
         return Result.Success(Unit);
     }
