@@ -25,9 +25,9 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import com.google.accompanist.insets.statusBarsPadding
 import cz.matee.devstack.kmp.android.recipes.R
 import cz.matee.devstack.kmp.android.shared.style.Values
-import dev.chrisbanes.accompanist.insets.statusBarsPadding
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 

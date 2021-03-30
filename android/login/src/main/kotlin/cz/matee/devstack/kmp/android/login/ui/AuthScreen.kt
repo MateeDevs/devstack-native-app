@@ -20,6 +20,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.navigate
+import com.google.accompanist.insets.navigationBarsPadding
+import com.google.accompanist.insets.statusBarsPadding
 import cz.matee.and.core.util.extension.get
 import cz.matee.devstack.kmp.android.login.R
 import cz.matee.devstack.kmp.android.login.vm.AuthViewModel
@@ -29,8 +31,6 @@ import cz.matee.devstack.kmp.android.shared.util.composition.OverrideNavigationB
 import cz.matee.devstack.kmp.android.shared.util.extension.getViewModel
 import cz.matee.devstack.kmp.android.shared.util.extension.pushedByIme
 import cz.matee.devstack.kmp.android.shared.util.extension.showIn
-import dev.chrisbanes.accompanist.insets.navigationBarsPadding
-import dev.chrisbanes.accompanist.insets.statusBarsPadding
 import kotlinx.coroutines.launch
 import cz.matee.devstack.kmp.android.login.vm.AuthViewModel.ViewState as LoginViewModelState
 

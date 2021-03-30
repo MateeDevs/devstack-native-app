@@ -1,4 +1,3 @@
-import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
 
 @Suppress("SpellCheckingInspection")
 object Dependency {
@@ -7,7 +6,7 @@ object Dependency {
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
 
         object Coroutines {
-            public const val version = "1.4.2-native-mt"
+            const val version = "1.4.2-native-mt"
 
             const val common = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
             const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
@@ -24,9 +23,11 @@ object Dependency {
 
     object AndroidX {
         const val core = "androidx.core:core-ktx:1.5.0-beta03"
-//        const val appCompat = "androidx.appcompat:appcompat:1.3.0-beta01"
 
-        const val material = "com.google.android.material:material:1.3.0"
+        object Material {
+            private const val version = "1.3.0"
+            const val core = "com.google.android.material:material:$version"
+        }
 
         object Lifecycle {
             private const val version = "2.3.0"
@@ -35,7 +36,7 @@ object Dependency {
         }
 
         object Paging {
-            private const val version = "3.0.0-beta02"
+            private const val version = "3.0.0-beta03"
             private const val composeVersion = "1.0.0-alpha08"
 
             const val runtime = "androidx.paging:paging-runtime:$version"
@@ -44,10 +45,7 @@ object Dependency {
     }
 
     object Compose {
-        const val version = "1.0.0-beta02"
-        private const val activityVersion = "1.3.0-alpha04"
-        private const val navigationVersion = "1.0.0-alpha09"
-        private const val constraintLayoutVersion = "1.0.0-alpha05"
+        const val version = "1.0.0-beta03"
 
         const val ui = "androidx.compose.ui:ui:$version"
         const val uiTooling = "androidx.compose.ui:ui-tooling:$version"
@@ -58,22 +56,38 @@ object Dependency {
         const val materialIconsExtended =
             "androidx.compose.material:material-icons-extended:$version"
 
-        const val activity = "androidx.activity:activity-compose:$activityVersion"
-        const val navigation = "androidx.navigation:navigation-compose:$navigationVersion"
-        const val constraintLayout =
-            "androidx.constraintlayout:constraintlayout-compose:$constraintLayoutVersion"
-
         const val uiTest = "androidx.compose.ui:ui-test-junit4:$version"
 
+        object Activity {
+            private const val version = "1.3.0-alpha05"
+            const val core = "androidx.activity:activity-compose:$version"
+        }
+
+        object Navigation {
+            private const val version = "1.0.0-alpha09"
+            const val core = "androidx.navigation:navigation-compose:$version"
+        }
+
+        object ConstraintLayout {
+            private const val version = "1.0.0-alpha05"
+            const val core = "androidx.constraintlayout:constraintlayout-compose:$version"
+        }
+
+        // https://google.github.io/accompanist/
         object Accompanist {
-            private const val version = "0.6.2"
-            const val insets = "dev.chrisbanes.accompanist:accompanist-insets:$version"
+            private const val version = "0.7.0"
+
+            const val insets = "com.google.accompanist:accompanist-insets:$version"
+            const val pager = "com.google.accompanist:accompanist-pager:$version"
+            const val pagerIndiactors =
+                "com.google.accompanist:accompanist-pager-indicators:$version"
+            const val coil = "com.google.accompanist:accompanist-coil:$version"
         }
     }
 
 
     object Ktor {
-        private const val version = "1.5.1"
+        private const val version = "1.5.2"
 
         const val core = "io.ktor:ktor-client-core:$version"
         const val android = "io.ktor:ktor-client-android:$version"
@@ -81,12 +95,6 @@ object Dependency {
 
         // Features https://ktor.io/docs/http-client-features.html
         const val serialization = "io.ktor:ktor-client-serialization:$version"
-
-
-        fun KotlinDependencyHandler.commonImplementation() {
-            implementation(core)
-            implementation(serialization)
-        }
     }
 
     object Matee {
@@ -96,14 +104,16 @@ object Dependency {
         }
     }
 
+    // https://github.com/russhwolf/multiplatform-settings
     object Settings {
-        private const val version = "0.7.3"
+        private const val version = "0.7.4"
 
         const val core = "com.russhwolf:multiplatform-settings:$version"
         const val noArg = "com.russhwolf:multiplatform-settings-no-arg:$version"
         const val coroutines = "com.russhwolf:multiplatform-settings-coroutines:$version"
     }
 
+    // https://github.com/cashapp/sqldelight
     object SqlDelight {
         const val version = "1.4.4"
 
