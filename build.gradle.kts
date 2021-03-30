@@ -1,7 +1,6 @@
 import extensions.getStringProperty
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import tools.Twine
-import java.net.URI
 
 buildscript {
     repositories {
@@ -22,9 +21,6 @@ allprojects {
         google()
         mavenCentral()
         jcenter() // TODO remove as soon as ve get rid of all of the dependencies
-        maven {
-            url = URI.create("https://dl.bintray.com/ekito/koin")
-        }
         maven {
             name = "Core"
             url = uri("https://maven.pkg.github.com/MateeDevs/core-and-lib")

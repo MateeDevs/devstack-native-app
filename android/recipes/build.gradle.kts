@@ -17,10 +17,9 @@ android {
     }
 
     buildFeatures {
-        dataBinding = true
         compose = true
 
-        lintOptions {
+        lint {
             lintConfig = File("lint.xml")
         }
     }
@@ -43,7 +42,6 @@ dependencies {
 
     implementation(Dependency.Kotlin.stdlib)
     implementation(Dependency.AndroidX.core)
-    implementation(Dependency.AndroidX.material)
 
     implementation(Dependency.Matee.Core.core) {
         isTransitive = true
@@ -52,11 +50,11 @@ dependencies {
     implementation(Dependency.Compose.ui)
     implementation(Dependency.Compose.uiTooling)
     implementation(Dependency.Compose.foundation)
-    implementation(Dependency.Compose.navigation)
     implementation(Dependency.Compose.material)
     implementation(Dependency.Compose.materialIconsCore)
     implementation(Dependency.Compose.materialIconsExtended)
 
+    implementation(Dependency.Compose.Navigation.core)
     implementation(Dependency.Compose.Accompanist.insets)
 
     implementation(Dependency.Koin.android)

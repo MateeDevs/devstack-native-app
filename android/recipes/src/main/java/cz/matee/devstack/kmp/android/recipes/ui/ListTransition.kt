@@ -24,9 +24,9 @@ import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.*
+import com.google.accompanist.insets.statusBarsPadding
 import cz.matee.devstack.kmp.android.shared.style.Values
 import cz.matee.devstack.kmp.android.shared.util.composition.LocalScaffoldPadding
-import dev.chrisbanes.accompanist.insets.statusBarsPadding
 
 private val headerMaxHeight by lazy { 128.dp }
 private val headerMinHeight by lazy { 64.dp }
@@ -61,18 +61,18 @@ private fun LazyColumnWithCollapsingToolbar(
 
     val headerTransitionProgress =
         (headerHeight - headerMinHeight) / (headerMaxHeight - headerMinHeight)
-    val scrollTransition = updateTransition(headerTransitionProgress)
+    val scrollTransition = updateTransition(headerTransitionProgress, label = "scrollTransition")
 
     var titleParentSize by remember { mutableStateOf(IntSize.Zero) }
     var titleSize by remember { mutableStateOf(IntSize.Zero) }
     val titleBaseSize = MaterialTheme.typography.h5.fontSize.value
 
-    val titleFontSize by scrollTransition.animateFloat { progress ->
+    val titleFontSize by scrollTransition.animateFloat(label = "titleFontSize") { progress ->
         titleBaseSize + (progress * 24f)
     }
 
     val titleOffset by scrollTransition.animateIntOffset(
-        transitionSpec = { spring() }
+        transitionSpec = { spring() }, label = "titleOffset"
     ) {
         if (it > 0f) Offset.Zero.round()
         else IntOffset(-(titleParentSize.width / 2) + titleSize.width / 2, 0)

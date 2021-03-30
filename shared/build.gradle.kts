@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
-
 plugins {
     id("com.android.library")
     kotlin("multiplatform")
@@ -46,7 +44,8 @@ kotlin {
                 implementation(Dependency.SqlDelight.runtime)
                 implementation(Dependency.SqlDelight.coroutinesExtension)
 
-                with(Dependency.Ktor) { commonImplementation() }
+                implementation(Dependency.Ktor.core)
+                implementation(Dependency.Ktor.serialization)
             }
         }
 

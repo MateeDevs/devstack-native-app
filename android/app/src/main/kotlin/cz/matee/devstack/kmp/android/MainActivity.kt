@@ -5,12 +5,12 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.core.view.WindowCompat
+import com.google.accompanist.insets.ExperimentalAnimatedInsets
+import com.google.accompanist.insets.ProvideWindowInsets
 import cz.matee.devstack.kmp.android.di.initDependencyInjection
 import cz.matee.devstack.kmp.android.shared.permission.ProvidePermissionRequest
 import cz.matee.devstack.kmp.android.shared.style.AppTheme
 import cz.matee.devstack.kmp.android.ui.Root
-import dev.chrisbanes.accompanist.insets.ExperimentalAnimatedInsets
-import dev.chrisbanes.accompanist.insets.ProvideWindowInsets
 import org.koin.core.context.GlobalContext
 
 @OptIn(ExperimentalAnimatedInsets::class)

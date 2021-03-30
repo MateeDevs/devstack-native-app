@@ -12,6 +12,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.*
+import com.google.accompanist.insets.navigationBarsPadding
 import cz.matee.devstack.kmp.android.login.LoginRoot
 import cz.matee.devstack.kmp.android.profile.ProfileRoot
 import cz.matee.devstack.kmp.android.recipes.RecipesRoot
@@ -21,7 +22,6 @@ import cz.matee.devstack.kmp.android.shared.util.composition.LocalScaffoldPaddin
 import cz.matee.devstack.kmp.android.shared.util.extension.get
 import cz.matee.devstack.kmp.android.users.UsersRoot
 import cz.matee.devstack.kmp.shared.domain.usecase.user.IsUserLoggedInUseCase
-import dev.chrisbanes.accompanist.insets.navigationBarsPadding
 
 val navBarFeatures = listOf(
     Feature.Users, Feature.Profile, Feature.Recipes

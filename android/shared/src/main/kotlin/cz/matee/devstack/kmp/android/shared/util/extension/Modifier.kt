@@ -14,7 +14,7 @@ import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
-import dev.chrisbanes.accompanist.insets.LocalWindowInsets
+import com.google.accompanist.insets.LocalWindowInsets
 import kotlin.math.roundToInt
 
 fun Modifier.pushedByIme(additionalSpace: Int = 0) = composed {
