@@ -2,7 +2,7 @@
 
 ### About
 This repo contains our template for multiplatform mobile project. Both Android and iOS implementations
-are present with shared module containing all common business logic organized in clean architecture.  
+are present with shared module containing all common business logic organized in Clean architecture.  
 The project is simple app built just for demonstration.  
   
 User flows: 
@@ -14,6 +14,11 @@ User flows:
 
 
 ### Architecture
+Clean (common modules) + MVVM (platform-specific modules) architecture is used for its testability and ease of *modularization*.
+Code is divided into several layers:
+ - infrastructure (`Source`)
+ - data (`Repository`)
+ - domain (`UseCase`)
 
 #### Shared
 Shared module handles networking, persistence and contains UseCases which bridge platform specific code
@@ -39,7 +44,7 @@ gateway to shared *model* layer.
 ### Technologies
 
 ##### DI - Koin
-Koin was the only choice as it supports Kotlin Multiplatform and it's pure Kotlin project. Each module
+Koin supports Kotlin Multiplatform and it's pure Kotlin project. Each module
 (including all andorid feature modules) has it's own Koin module. All modules (including common module)
 are put together inside platform specific code where Koin is initialized. 
 
