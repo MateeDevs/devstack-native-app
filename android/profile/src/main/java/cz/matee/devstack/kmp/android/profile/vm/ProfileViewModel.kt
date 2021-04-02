@@ -4,7 +4,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.navigate
 import cz.matee.and.core.system.BaseStateViewModel
 import cz.matee.and.core.system.State
-import cz.matee.and.core.util.extension.launchOnMain
+import cz.matee.and.core.util.launchOnMain
 import cz.matee.devstack.kmp.android.shared.domain.usecase.GetLocationFlowUseCase
 import cz.matee.devstack.kmp.android.shared.navigation.Feature
 import cz.matee.devstack.kmp.shared.base.ErrorResult

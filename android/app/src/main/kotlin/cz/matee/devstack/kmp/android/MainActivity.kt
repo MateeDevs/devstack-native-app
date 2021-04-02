@@ -2,19 +2,21 @@ package cz.matee.devstack.kmp.android
 
 import android.os.Build
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.core.view.WindowCompat
 import com.google.accompanist.insets.ExperimentalAnimatedInsets
 import com.google.accompanist.insets.ProvideWindowInsets
+import cz.matee.and.core.system.BaseActivity
+import cz.matee.and.core.ui.util.LocalLocationPermissionHandler
+import cz.matee.and.core.ui.util.rememberLocationPermissionRequest
 import cz.matee.devstack.kmp.android.di.initDependencyInjection
-import cz.matee.devstack.kmp.android.shared.permission.ProvidePermissionRequest
 import cz.matee.devstack.kmp.android.shared.style.AppTheme
 import cz.matee.devstack.kmp.android.ui.Root
 import org.koin.core.context.GlobalContext
 
 @OptIn(ExperimentalAnimatedInsets::class)
-class MainActivity : ComponentActivity() {
+class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         GlobalContext.getOrNull()
@@ -26,12 +28,16 @@ class MainActivity : ComponentActivity() {
     override fun onStart() {
         super.onStart()
         setContent {
+            val locationPermissionRequest = rememberLocationPermissionRequest()
+
             // Providers
             AppTheme {
                 ProvideWindowInsets(
                     windowInsetsAnimationsEnabled = Build.VERSION.SDK_INT >= 30 // Turn on when adjustResize bug is fixed (https://issuetracker.google.com/issues/154101484)
                 ) {
-                    ProvidePermissionRequest {
+                    CompositionLocalProvider(
+                        LocalLocationPermissionHandler provides locationPermissionRequest
+                    ) {
 
                         // The App
                         Root()
