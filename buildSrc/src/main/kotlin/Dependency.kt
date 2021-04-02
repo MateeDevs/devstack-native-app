@@ -99,8 +99,10 @@ object Dependency {
 
     object Matee {
         object Core {
-            private const val version = "1.0.0-rc4"
-            const val core = "cz.matee.and:core:$version"
+            private const val version = "1.0.0-rc6"
+
+            //            const val core = "cz.matee.and:core-compose:$version"
+            const val compose = "cz.matee.and:core-compose:$version"
         }
     }
 

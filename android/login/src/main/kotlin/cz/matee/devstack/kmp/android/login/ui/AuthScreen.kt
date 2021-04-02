@@ -22,12 +22,12 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.navigate
 import com.google.accompanist.insets.navigationBarsPadding
 import com.google.accompanist.insets.statusBarsPadding
-import cz.matee.and.core.util.extension.get
+import cz.matee.and.core.ui.util.BackPressOverride
+import cz.matee.and.core.util.get
 import cz.matee.devstack.kmp.android.login.R
 import cz.matee.devstack.kmp.android.login.vm.AuthViewModel
 import cz.matee.devstack.kmp.android.shared.navigation.Feature
 import cz.matee.devstack.kmp.android.shared.style.Values
-import cz.matee.devstack.kmp.android.shared.util.composition.OverrideNavigationBackPressDispatcher
 import cz.matee.devstack.kmp.android.shared.util.extension.getViewModel
 import cz.matee.devstack.kmp.android.shared.util.extension.pushedByIme
 import cz.matee.devstack.kmp.android.shared.util.extension.showIn
@@ -47,7 +47,7 @@ fun AuthScreen(navHostController: NavHostController) {
     authVm.errorFlow showIn snackBarState
 
     if (authScreen == AuthScreen.Registration)
-        OverrideNavigationBackPressDispatcher(navHostController) {
+        BackPressOverride(navHostController) {
             authScreen = AuthScreen.Login
         }
 

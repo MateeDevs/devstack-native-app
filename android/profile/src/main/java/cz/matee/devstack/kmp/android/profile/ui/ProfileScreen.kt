@@ -13,9 +13,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.navigation.NavHostController
 import com.example.profile.R
-import cz.matee.and.core.util.extension.get
+import cz.matee.and.core.ui.util.LocalLocationPermissionHandler
+import cz.matee.and.core.util.get
 import cz.matee.devstack.kmp.android.profile.vm.ProfileViewModel
-import cz.matee.devstack.kmp.android.shared.permission.LocalLocationPermissionHandler
 import cz.matee.devstack.kmp.android.shared.style.Values
 import cz.matee.devstack.kmp.android.shared.ui.ScreenTitle
 import cz.matee.devstack.kmp.android.shared.util.composition.LocalScaffoldPadding
@@ -59,7 +59,7 @@ fun ProfileScreen(
                         locationValue = it
                     }
                 else
-                    permissionHandler.requestLocationPermission()
+                    permissionHandler.requestPermission()
             }
 
 
