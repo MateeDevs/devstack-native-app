@@ -1,12 +1,15 @@
 package cz.matee.devstack.kmp.shared.domain.usecase.user
 
 import cz.matee.devstack.kmp.shared.base.usecase.UseCaseNoParams
+import cz.matee.devstack.kmp.shared.base.usecase.UseCaseNoParamsImpl
 import cz.matee.devstack.kmp.shared.domain.repository.UserRepository
 import kotlinx.coroutines.flow.Flow
 
-class UserCacheChangeFlowUseCase internal constructor(
+interface UserCacheChangeFlowUseCase : UseCaseNoParams<Flow<Unit>>
+
+class UserCacheChangeFlowUseCaseImpl internal constructor(
     private val userRepository: UserRepository
-) : UseCaseNoParams<Flow<Unit>>() {
+) : UseCaseNoParamsImpl<Flow<Unit>>(), UserCacheChangeFlowUseCase {
     override suspend fun doWork(params: Unit): Flow<Unit> =
         userRepository.localCacheChanges()
 }

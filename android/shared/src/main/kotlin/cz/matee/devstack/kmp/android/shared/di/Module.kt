@@ -6,6 +6,7 @@ import cz.matee.devstack.kmp.android.shared.base.error.ErrorMessageProviderImpl
 import cz.matee.devstack.kmp.android.shared.device.LocationControllerImpl
 import cz.matee.devstack.kmp.android.shared.domain.controller.LocationController
 import cz.matee.devstack.kmp.android.shared.domain.usecase.GetLocationFlowUseCase
+import cz.matee.devstack.kmp.android.shared.domain.usecase.GetLocationFlowUseCaseImpl
 import cz.matee.devstack.kmp.shared.base.error.ErrorMessageProvider
 import org.koin.dsl.module
 
@@ -18,5 +19,5 @@ val androidSharedModule = module {
         )
     }
 
-    factory { GetLocationFlowUseCase(get()) }
+    factory<GetLocationFlowUseCase> { GetLocationFlowUseCaseImpl(get()) }
 }
