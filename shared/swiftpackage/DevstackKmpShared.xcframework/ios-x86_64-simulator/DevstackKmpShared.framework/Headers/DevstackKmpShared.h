@@ -6,9 +6,9 @@
 #import <Foundation/NSString.h>
 #import <Foundation/NSValue.h>
 
-@class DKSKotlinThrowable, DKSFlowWrapperParent<Params, T>, DKSSuspendWrapperParent<Params, Out>, DKSBook, DKSUser, DKSUserPagingData, DKSUserPagingResult, DKSUserPagingParameters, DKSUserUpdateParameters, DKSKotlinx_coroutines_coreCoroutineDispatcher, DKSUseCase<__contravariant Params, __covariant T>, DKSResult<__covariant T>, DKSKotlinUnit, DKSUseCaseResultNoParams<__covariant T>, DKSUseCaseResult<__contravariant Params, __covariant T>, DKSLoginUseCaseParams, DKSRegisterUseCaseParams, DKSUseCaseFlowNoParams<__covariant T>, DKSUseCaseFlowResultNoParams<__covariant T>, DKSUseCaseFlowResult<__contravariant Params, __covariant T>, DKSGetUserUseCaseParams, DKSUseCaseNoParams<__covariant T>, DKSRefreshUsersUseCaseParams, DKSKotlinArray<T>, DKSKotlinException, DKSKtor_httpUrl, DKSBookEntity, DKSRuntimeQuery<__covariant RowType>, DKSUserCache, DKSUserEntity, DKSErrorResult, DKSResultError<__covariant T>, DKSResultSuccess<__covariant T>, DKSAuthError, DKSBackendError, DKSCommonError, DKSResultType, DKSUseCaseFlow<__contravariant Params, __covariant T>, DKSKoin_coreDefinitionParameters, DKSKoin_coreScope, DKSKotlinLazyThreadSafetyMode, DKSKoin_coreModule, DKSKoin_coreLogger, DKSKoin_corePropertyRegistry, DKSKoin_coreScopeRegistry, DKSKoin_coreKoin, DKSKoin_coreKoinApplication, DKSRuntimeTransacterTransaction, DKSKotlinx_coroutines_coreCancellationException, DKSKotlinAbstractCoroutineContextElement, DKSKotlinRuntimeException, DKSKotlinIllegalStateException, DKSKtor_httpURLProtocol, DKSKoin_coreScopeDefinition, DKSKoin_coreBeanDefinition<T>, DKSKotlinEnum<E>, DKSKoin_coreOptions, DKSKoin_coreScopeDSL, DKSKoin_coreLevel, DKSKotlinByteArray, DKSKoin_coreKind, DKSKoin_coreProperties, DKSKoin_coreCallbacks<T>, DKSKotlinByteIterator, DKSKotlinx_coroutines_coreAtomicDesc, DKSKotlinx_coroutines_coreLockFreeLinkedListNodePrepareOp, DKSKotlinx_coroutines_coreAtomicOp<__contravariant T>, DKSKotlinx_coroutines_coreOpDescriptor, DKSKotlinx_coroutines_coreLockFreeLinkedListNode, DKSKotlinx_coroutines_coreLockFreeLinkedListNodeAbstractAtomicDesc, DKSKotlinx_coroutines_coreLockFreeLinkedListNodeAddLastDesc<T>, DKSKotlinx_coroutines_coreLockFreeLinkedListNodeRemoveFirstDesc<T>;
+@class DKSKotlinThrowable, DKSFlowWrapperParent<Params, T>, DKSSuspendWrapperParent<Params, Out>, DKSBook, DKSUser, DKSUserPagingData, DKSUserPagingResult, DKSUserPagingParameters, DKSUserUpdateParameters, DKSResult<__covariant T>, DKSKotlinx_coroutines_coreCoroutineDispatcher, DKSUseCaseImpl<__contravariant Params, __covariant T>, DKSKotlinUnit, DKSUseCaseResultNoParamsImpl<__covariant T>, DKSLoginUseCaseParams, DKSUseCaseResultImpl<__contravariant Params, __covariant T>, DKSRegisterUseCaseParams, DKSUseCaseFlowImpl<__contravariant Params, __covariant T>, DKSUseCaseFlowResultNoParamsImpl<__covariant T>, DKSUseCaseFlowResultImpl<__contravariant Params, __covariant T>, DKSGetUserUseCaseParams, DKSUseCaseFlowNoParamsImpl<__covariant T>, DKSUseCaseNoParamsImpl<__covariant T>, DKSRefreshUsersUseCaseParams, DKSKotlinArray<T>, DKSKotlinException, DKSKtor_httpUrl, DKSBookEntity, DKSRuntimeQuery<__covariant RowType>, DKSUserCache, DKSUserEntity, DKSErrorResult, DKSResultError<__covariant T>, DKSResultSuccess<__covariant T>, DKSAuthError, DKSBackendError, DKSCommonError, DKSResultType, DKSKoin_coreDefinitionParameters, DKSKoin_coreScope, DKSKotlinLazyThreadSafetyMode, DKSKoin_coreModule, DKSKoin_coreLogger, DKSKoin_corePropertyRegistry, DKSKoin_coreScopeRegistry, DKSKoin_coreKoin, DKSKoin_coreKoinApplication, DKSRuntimeTransacterTransaction, DKSKotlinx_coroutines_coreCancellationException, DKSKotlinRuntimeException, DKSKotlinIllegalStateException, DKSKotlinAbstractCoroutineContextElement, DKSKtor_httpURLProtocol, DKSKoin_coreScopeDefinition, DKSKoin_coreBeanDefinition<T>, DKSKotlinEnum<E>, DKSKoin_coreOptions, DKSKoin_coreScopeDSL, DKSKoin_coreLevel, DKSKotlinByteArray, DKSKoin_coreKind, DKSKoin_coreProperties, DKSKoin_coreCallbacks<T>, DKSKotlinByteIterator, DKSKotlinx_coroutines_coreAtomicDesc, DKSKotlinx_coroutines_coreLockFreeLinkedListNodePrepareOp, DKSKotlinx_coroutines_coreAtomicOp<__contravariant T>, DKSKotlinx_coroutines_coreOpDescriptor, DKSKotlinx_coroutines_coreLockFreeLinkedListNode, DKSKotlinx_coroutines_coreLockFreeLinkedListNodeAbstractAtomicDesc, DKSKotlinx_coroutines_coreLockFreeLinkedListNodeAddLastDesc<T>, DKSKotlinx_coroutines_coreLockFreeLinkedListNodeRemoveFirstDesc<T>;
 
-@protocol DKSBookQueries, DKSUserCacheQueries, DKSUserQueries, DKSRuntimeTransactionWithoutReturn, DKSRuntimeTransactionWithReturn, DKSRuntimeTransacter, DKSDatabase, DKSRuntimeSqlDriver, DKSRuntimeSqlDriverSchema, DKSKotlinx_coroutines_coreJob, DKSKotlinSuspendFunction1, DKSKotlinx_coroutines_coreFlow, DKSConfig, DKSLogger, DKSKotlinKClass, DKSKoin_coreKoinScopeComponent, DKSKoin_coreQualifier, DKSKotlinLazy, DKSKotlinx_coroutines_coreCoroutineScope, DKSErrorMessageProvider, DKSRuntimeTransactionCallbacks, DKSRuntimeSqlPreparedStatement, DKSRuntimeSqlCursor, DKSRuntimeCloseable, DKSKotlinx_coroutines_coreChildHandle, DKSKotlinx_coroutines_coreChildJob, DKSKotlinx_coroutines_coreDisposableHandle, DKSKotlinSequence, DKSKotlinx_coroutines_coreSelectClause0, DKSKotlinCoroutineContextKey, DKSKotlinCoroutineContextElement, DKSKotlinCoroutineContext, DKSKotlinFunction, DKSKotlinContinuation, DKSKotlinContinuationInterceptor, DKSKotlinx_coroutines_coreRunnable, DKSKotlinx_coroutines_coreFlowCollector, DKSKotlinIterator, DKSKtor_httpParameters, DKSRuntimeQueryListener, DKSKotlinKDeclarationContainer, DKSKotlinKAnnotatedElement, DKSKotlinKClassifier, DKSKoin_coreScopeCallback, DKSKoin_coreKoinComponent, DKSKotlinComparable, DKSKotlinx_coroutines_coreParentJob, DKSKotlinx_coroutines_coreSelectInstance, DKSKotlinSuspendFunction0, DKSKotlinMapEntry, DKSKtor_utilsStringValues;
+@protocol DKSBookQueries, DKSUserCacheQueries, DKSUserQueries, DKSRuntimeTransactionWithoutReturn, DKSRuntimeTransactionWithReturn, DKSRuntimeTransacter, DKSDatabase, DKSRuntimeSqlDriver, DKSRuntimeSqlDriverSchema, DKSKotlinx_coroutines_coreJob, DKSKotlinSuspendFunction1, DKSUseCaseResultNoParams, DKSDeleteAuthDataUseCase, DKSUseCase, DKSUseCaseResult, DKSLoginUseCase, DKSRegisterUseCase, DKSKotlinx_coroutines_coreFlow, DKSUseCaseFlowNoParams, DKSUseCaseFlow, DKSGetLocalUsersUseCase, DKSUseCaseFlowResultNoParams, DKSGetLoggedInUserUseCase, DKSGetRemoteUsersUseCase, DKSUseCaseFlowResult, DKSGetUserUseCase, DKSGetUsersUseCase, DKSUseCaseNoParams, DKSIsUserLoggedInUseCase, DKSRefreshUsersUseCase, DKSReplaceUserCacheWithUseCase, DKSUpdateLocalUserCacheUseCase, DKSUpdateUserUseCase, DKSUserCacheChangeFlowUseCase, DKSConfig, DKSLogger, DKSKotlinKClass, DKSKoin_coreKoinScopeComponent, DKSKoin_coreQualifier, DKSKotlinLazy, DKSKotlinx_coroutines_coreCoroutineScope, DKSErrorMessageProvider, DKSRuntimeTransactionCallbacks, DKSRuntimeSqlPreparedStatement, DKSRuntimeSqlCursor, DKSRuntimeCloseable, DKSKotlinx_coroutines_coreChildHandle, DKSKotlinx_coroutines_coreChildJob, DKSKotlinx_coroutines_coreDisposableHandle, DKSKotlinSequence, DKSKotlinx_coroutines_coreSelectClause0, DKSKotlinCoroutineContextKey, DKSKotlinCoroutineContextElement, DKSKotlinCoroutineContext, DKSKotlinFunction, DKSKotlinContinuation, DKSKotlinContinuationInterceptor, DKSKotlinx_coroutines_coreRunnable, DKSKotlinx_coroutines_coreFlowCollector, DKSKotlinIterator, DKSKtor_httpParameters, DKSRuntimeQueryListener, DKSKotlinKDeclarationContainer, DKSKotlinKAnnotatedElement, DKSKotlinKClassifier, DKSKoin_coreScopeCallback, DKSKoin_coreKoinComponent, DKSKotlinComparable, DKSKotlinx_coroutines_coreParentJob, DKSKotlinx_coroutines_coreSelectInstance, DKSKotlinSuspendFunction0, DKSKotlinMapEntry, DKSKtor_utilsStringValues;
 
 NS_ASSUME_NONNULL_BEGIN
 #pragma clang diagnostic push
@@ -297,8 +297,24 @@ __attribute__((swift_name("UserUpdateParameters")))
 @property (readonly) NSString *userId __attribute__((swift_name("userId")));
 @end;
 
-__attribute__((swift_name("UseCase")))
-@interface DKSUseCase<__contravariant Params, __covariant T> : DKSBase
+__attribute__((swift_name("UseCaseResultNoParams")))
+@protocol DKSUseCaseResultNoParams
+@required
+
+/**
+ @note This method converts instances of CancellationException to errors.
+ Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)invokeWithCompletionHandler:(void (^)(DKSResult<id> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("invoke(completionHandler:)")));
+@end;
+
+__attribute__((swift_name("DeleteAuthDataUseCase")))
+@protocol DKSDeleteAuthDataUseCase <DKSUseCaseResultNoParams>
+@required
+@end;
+
+__attribute__((swift_name("UseCaseImpl")))
+@interface DKSUseCaseImpl<__contravariant Params, __covariant T> : DKSBase
 - (instancetype)initWithDispatcher:(DKSKotlinx_coroutines_coreCoroutineDispatcher *)dispatcher __attribute__((swift_name("init(dispatcher:)"))) __attribute__((objc_designated_initializer));
 
 /**
@@ -315,8 +331,8 @@ __attribute__((swift_name("UseCase")))
 @property (readonly) DKSKotlinx_coroutines_coreCoroutineDispatcher *dispatcher __attribute__((swift_name("dispatcher")));
 @end;
 
-__attribute__((swift_name("UseCaseResultNoParams")))
-@interface DKSUseCaseResultNoParams<__covariant T> : DKSUseCase<DKSKotlinUnit *, DKSResult<T> *>
+__attribute__((swift_name("UseCaseResultNoParamsImpl")))
+@interface DKSUseCaseResultNoParamsImpl<__covariant T> : DKSUseCaseImpl<DKSKotlinUnit *, DKSResult<T> *>
 - (instancetype)initWithDispatcher:(DKSKotlinx_coroutines_coreCoroutineDispatcher *)dispatcher __attribute__((swift_name("init(dispatcher:)"))) __attribute__((objc_designated_initializer));
 
 /**
@@ -327,8 +343,8 @@ __attribute__((swift_name("UseCaseResultNoParams")))
 @end;
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("DeleteAuthDataUseCase")))
-@interface DKSDeleteAuthDataUseCase : DKSUseCaseResultNoParams<DKSKotlinUnit *>
+__attribute__((swift_name("DeleteAuthDataUseCaseImpl")))
+@interface DKSDeleteAuthDataUseCaseImpl : DKSUseCaseResultNoParamsImpl<DKSKotlinUnit *> <DKSDeleteAuthDataUseCase>
 - (instancetype)initWithDispatcher:(DKSKotlinx_coroutines_coreCoroutineDispatcher *)dispatcher __attribute__((swift_name("init(dispatcher:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 
 /**
@@ -338,25 +354,29 @@ __attribute__((swift_name("DeleteAuthDataUseCase")))
 - (void)doWorkParams:(DKSKotlinUnit *)params completionHandler:(void (^)(DKSResult<DKSKotlinUnit *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("doWork(params:completionHandler:)")));
 @end;
 
-__attribute__((swift_name("UseCaseResult")))
-@interface DKSUseCaseResult<__contravariant Params, __covariant T> : DKSUseCase<Params, DKSResult<T> *>
-- (instancetype)initWithDispatcher:(DKSKotlinx_coroutines_coreCoroutineDispatcher *)dispatcher __attribute__((swift_name("init(dispatcher:)"))) __attribute__((objc_designated_initializer));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("LoginUseCase")))
-@interface DKSLoginUseCase : DKSUseCaseResult<DKSLoginUseCaseParams *, DKSKotlinUnit *>
-- (instancetype)initWithDispatcher:(DKSKotlinx_coroutines_coreCoroutineDispatcher *)dispatcher __attribute__((swift_name("init(dispatcher:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+__attribute__((swift_name("UseCase")))
+@protocol DKSUseCase
+@required
 
 /**
  @note This method converts instances of CancellationException to errors.
  Other uncaught Kotlin exceptions are fatal.
 */
-- (void)doWorkParams:(DKSLoginUseCaseParams *)params completionHandler:(void (^)(DKSResult<DKSKotlinUnit *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("doWork(params:completionHandler:)")));
+- (void)invokeParams:(id _Nullable)params completionHandler_:(void (^)(id _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("invoke(params:completionHandler_:)")));
+@end;
+
+__attribute__((swift_name("UseCaseResult")))
+@protocol DKSUseCaseResult <DKSUseCase>
+@required
+@end;
+
+__attribute__((swift_name("LoginUseCase")))
+@protocol DKSLoginUseCase <DKSUseCaseResult>
+@required
 @end;
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("LoginUseCase.Params")))
+__attribute__((swift_name("LoginUseCaseParams")))
 @interface DKSLoginUseCaseParams : DKSBase
 - (instancetype)initWithEmail:(NSString *)email password:(NSString *)password __attribute__((swift_name("init(email:password:)"))) __attribute__((objc_designated_initializer));
 - (NSString *)component1 __attribute__((swift_name("component1()")));
@@ -369,20 +389,30 @@ __attribute__((swift_name("LoginUseCase.Params")))
 @property (readonly) NSString *password __attribute__((swift_name("password")));
 @end;
 
+__attribute__((swift_name("UseCaseResultImpl")))
+@interface DKSUseCaseResultImpl<__contravariant Params, __covariant T> : DKSUseCaseImpl<Params, DKSResult<T> *>
+- (instancetype)initWithDispatcher:(DKSKotlinx_coroutines_coreCoroutineDispatcher *)dispatcher __attribute__((swift_name("init(dispatcher:)"))) __attribute__((objc_designated_initializer));
+@end;
+
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("RegisterUseCase")))
-@interface DKSRegisterUseCase : DKSUseCaseResult<DKSRegisterUseCaseParams *, DKSKotlinUnit *>
+__attribute__((swift_name("LoginUseCaseImpl")))
+@interface DKSLoginUseCaseImpl : DKSUseCaseResultImpl<DKSLoginUseCaseParams *, DKSKotlinUnit *> <DKSLoginUseCase>
 - (instancetype)initWithDispatcher:(DKSKotlinx_coroutines_coreCoroutineDispatcher *)dispatcher __attribute__((swift_name("init(dispatcher:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 
 /**
  @note This method converts instances of CancellationException to errors.
  Other uncaught Kotlin exceptions are fatal.
 */
-- (void)doWorkParams:(DKSRegisterUseCaseParams *)params completionHandler:(void (^)(DKSResult<DKSKotlinUnit *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("doWork(params:completionHandler:)")));
+- (void)doWorkParams:(DKSLoginUseCaseParams *)params completionHandler:(void (^)(DKSResult<DKSKotlinUnit *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("doWork(params:completionHandler:)")));
+@end;
+
+__attribute__((swift_name("RegisterUseCase")))
+@protocol DKSRegisterUseCase <DKSUseCaseResult>
+@required
 @end;
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("RegisterUseCase.Params")))
+__attribute__((swift_name("RegisterUseCaseParams")))
 @interface DKSRegisterUseCaseParams : DKSBase
 - (instancetype)initWithEmail:(NSString *)email firstName:(NSString *)firstName lastName:(NSString *)lastName password:(NSString *)password __attribute__((swift_name("init(email:firstName:lastName:password:)"))) __attribute__((objc_designated_initializer));
 - (NSString *)component1 __attribute__((swift_name("component1()")));
@@ -399,9 +429,21 @@ __attribute__((swift_name("RegisterUseCase.Params")))
 @property (readonly) NSString *password __attribute__((swift_name("password")));
 @end;
 
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("RegisterUseCaseImpl")))
+@interface DKSRegisterUseCaseImpl : DKSUseCaseResultImpl<DKSRegisterUseCaseParams *, DKSKotlinUnit *> <DKSRegisterUseCase>
+- (instancetype)initWithDispatcher:(DKSKotlinx_coroutines_coreCoroutineDispatcher *)dispatcher __attribute__((swift_name("init(dispatcher:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+
+/**
+ @note This method converts instances of CancellationException to errors.
+ Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)doWorkParams:(DKSRegisterUseCaseParams *)params completionHandler:(void (^)(DKSResult<DKSKotlinUnit *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("doWork(params:completionHandler:)")));
+@end;
+
 __attribute__((swift_name("UseCaseFlowNoParams")))
-@interface DKSUseCaseFlowNoParams<__covariant T> : DKSUseCase<DKSKotlinUnit *, id<DKSKotlinx_coroutines_coreFlow>>
-- (instancetype)initWithDispatcher:(DKSKotlinx_coroutines_coreCoroutineDispatcher *)dispatcher __attribute__((swift_name("init(dispatcher:)"))) __attribute__((objc_designated_initializer));
+@protocol DKSUseCaseFlowNoParams <DKSUseCase>
+@required
 
 /**
  @note This method converts instances of CancellationException to errors.
@@ -410,33 +452,34 @@ __attribute__((swift_name("UseCaseFlowNoParams")))
 - (void)invokeWithCompletionHandler:(void (^)(id<DKSKotlinx_coroutines_coreFlow> _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("invoke(completionHandler:)")));
 @end;
 
-__attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("GetBooksUseCase")))
-@interface DKSGetBooksUseCase : DKSUseCaseFlowNoParams<NSArray<DKSBook *> *>
-- (instancetype)initWithDispatcher:(DKSKotlinx_coroutines_coreCoroutineDispatcher *)dispatcher __attribute__((swift_name("init(dispatcher:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
-
-/**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
-*/
-- (void)doWorkParams:(DKSKotlinUnit *)params completionHandler:(void (^)(id<DKSKotlinx_coroutines_coreFlow> _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("doWork(params:completionHandler:)")));
+@protocol DKSGetBooksUseCase <DKSUseCaseFlowNoParams>
+@required
 @end;
 
-__attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("RefreshBooksUseCase")))
-@interface DKSRefreshBooksUseCase : DKSUseCaseResultNoParams<DKSKotlinUnit *>
-- (instancetype)initWithDispatcher:(DKSKotlinx_coroutines_coreCoroutineDispatcher *)dispatcher __attribute__((swift_name("init(dispatcher:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+@protocol DKSRefreshBooksUseCase <DKSUseCaseResultNoParams>
+@required
+@end;
 
-/**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
-*/
-- (void)doWorkParams:(DKSKotlinUnit *)params completionHandler:(void (^)(DKSResult<DKSKotlinUnit *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("doWork(params:completionHandler:)")));
+__attribute__((swift_name("UseCaseFlow")))
+@protocol DKSUseCaseFlow <DKSUseCase>
+@required
+@end;
+
+__attribute__((swift_name("GetLocalUsersUseCase")))
+@protocol DKSGetLocalUsersUseCase <DKSUseCaseFlow>
+@required
+@end;
+
+__attribute__((swift_name("UseCaseFlowImpl")))
+@interface DKSUseCaseFlowImpl<__contravariant Params, __covariant T> : DKSUseCaseImpl<Params, id<DKSKotlinx_coroutines_coreFlow>>
+- (instancetype)initWithDispatcher:(DKSKotlinx_coroutines_coreCoroutineDispatcher *)dispatcher __attribute__((swift_name("init(dispatcher:)"))) __attribute__((objc_designated_initializer));
 @end;
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("GetLocalUsersUseCase")))
-@interface DKSGetLocalUsersUseCase : DKSUseCase<DKSUserPagingParameters *, id<DKSKotlinx_coroutines_coreFlow>>
+__attribute__((swift_name("GetLocalUsersUseCaseImpl")))
+@interface DKSGetLocalUsersUseCaseImpl : DKSUseCaseFlowImpl<DKSUserPagingParameters *, DKSUserPagingResult *> <DKSGetLocalUsersUseCase>
 - (instancetype)initWithDispatcher:(DKSKotlinx_coroutines_coreCoroutineDispatcher *)dispatcher __attribute__((swift_name("init(dispatcher:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 
 /**
@@ -447,7 +490,23 @@ __attribute__((swift_name("GetLocalUsersUseCase")))
 @end;
 
 __attribute__((swift_name("UseCaseFlowResultNoParams")))
-@interface DKSUseCaseFlowResultNoParams<__covariant T> : DKSUseCase<DKSKotlinUnit *, id<DKSKotlinx_coroutines_coreFlow>>
+@protocol DKSUseCaseFlowResultNoParams <DKSUseCase>
+@required
+
+/**
+ @note This method converts instances of CancellationException to errors.
+ Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)invokeWithCompletionHandler:(void (^)(id<DKSKotlinx_coroutines_coreFlow> _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("invoke(completionHandler:)")));
+@end;
+
+__attribute__((swift_name("GetLoggedInUserUseCase")))
+@protocol DKSGetLoggedInUserUseCase <DKSUseCaseFlowResultNoParams>
+@required
+@end;
+
+__attribute__((swift_name("UseCaseFlowResultNoParamsImpl")))
+@interface DKSUseCaseFlowResultNoParamsImpl<__covariant T> : DKSUseCaseImpl<DKSKotlinUnit *, id<DKSKotlinx_coroutines_coreFlow>>
 - (instancetype)initWithDispatcher:(DKSKotlinx_coroutines_coreCoroutineDispatcher *)dispatcher __attribute__((swift_name("init(dispatcher:)"))) __attribute__((objc_designated_initializer));
 
 /**
@@ -458,8 +517,8 @@ __attribute__((swift_name("UseCaseFlowResultNoParams")))
 @end;
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("GetLoggedInUserUseCase")))
-@interface DKSGetLoggedInUserUseCase : DKSUseCaseFlowResultNoParams<DKSUser *>
+__attribute__((swift_name("GetLoggedInUserUseCaseImpl")))
+@interface DKSGetLoggedInUserUseCaseImpl : DKSUseCaseFlowResultNoParamsImpl<DKSUser *> <DKSGetLoggedInUserUseCase>
 - (instancetype)initWithDispatcher:(DKSKotlinx_coroutines_coreCoroutineDispatcher *)dispatcher __attribute__((swift_name("init(dispatcher:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 
 /**
@@ -469,9 +528,14 @@ __attribute__((swift_name("GetLoggedInUserUseCase")))
 - (void)doWorkParams:(DKSKotlinUnit *)params completionHandler:(void (^)(id<DKSKotlinx_coroutines_coreFlow> _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("doWork(params:completionHandler:)")));
 @end;
 
-__attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("GetRemoteUsersUseCase")))
-@interface DKSGetRemoteUsersUseCase : DKSUseCaseResult<DKSUserPagingParameters *, DKSUserPagingResult *>
+@protocol DKSGetRemoteUsersUseCase <DKSUseCaseResult>
+@required
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("GetRemoteUsersUseCaseImpl")))
+@interface DKSGetRemoteUsersUseCaseImpl : DKSUseCaseResultImpl<DKSUserPagingParameters *, DKSUserPagingResult *> <DKSGetRemoteUsersUseCase>
 - (instancetype)initWithDispatcher:(DKSKotlinx_coroutines_coreCoroutineDispatcher *)dispatcher __attribute__((swift_name("init(dispatcher:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 
 /**
@@ -482,13 +546,30 @@ __attribute__((swift_name("GetRemoteUsersUseCase")))
 @end;
 
 __attribute__((swift_name("UseCaseFlowResult")))
-@interface DKSUseCaseFlowResult<__contravariant Params, __covariant T> : DKSUseCase<Params, id<DKSKotlinx_coroutines_coreFlow>>
+@protocol DKSUseCaseFlowResult <DKSUseCase>
+@required
+@end;
+
+__attribute__((swift_name("GetUserUseCase")))
+@protocol DKSGetUserUseCase <DKSUseCaseFlowResult>
+@required
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("GetUserUseCaseParams")))
+@interface DKSGetUserUseCaseParams : DKSBase
+- (instancetype)initWithUserId:(NSString *)userId __attribute__((swift_name("init(userId:)"))) __attribute__((objc_designated_initializer));
+@property (readonly) NSString *userId __attribute__((swift_name("userId")));
+@end;
+
+__attribute__((swift_name("UseCaseFlowResultImpl")))
+@interface DKSUseCaseFlowResultImpl<__contravariant Params, __covariant T> : DKSUseCaseImpl<Params, id<DKSKotlinx_coroutines_coreFlow>>
 - (instancetype)initWithDispatcher:(DKSKotlinx_coroutines_coreCoroutineDispatcher *)dispatcher __attribute__((swift_name("init(dispatcher:)"))) __attribute__((objc_designated_initializer));
 @end;
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("GetUserUseCase")))
-@interface DKSGetUserUseCase : DKSUseCaseFlowResult<DKSGetUserUseCaseParams *, DKSUser *>
+__attribute__((swift_name("GetUserUseCaseImpl")))
+@interface DKSGetUserUseCaseImpl : DKSUseCaseFlowResultImpl<DKSGetUserUseCaseParams *, DKSUser *> <DKSGetUserUseCase>
 - (instancetype)initWithDispatcher:(DKSKotlinx_coroutines_coreCoroutineDispatcher *)dispatcher __attribute__((swift_name("init(dispatcher:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 
 /**
@@ -498,16 +579,25 @@ __attribute__((swift_name("GetUserUseCase")))
 - (void)doWorkParams:(DKSGetUserUseCaseParams *)params completionHandler:(void (^)(id<DKSKotlinx_coroutines_coreFlow> _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("doWork(params:completionHandler:)")));
 @end;
 
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("GetUserUseCase.Params")))
-@interface DKSGetUserUseCaseParams : DKSBase
-- (instancetype)initWithUserId:(NSString *)userId __attribute__((swift_name("init(userId:)"))) __attribute__((objc_designated_initializer));
-@property (readonly) NSString *userId __attribute__((swift_name("userId")));
+__attribute__((swift_name("GetUsersUseCase")))
+@protocol DKSGetUsersUseCase <DKSUseCaseFlowNoParams>
+@required
+@end;
+
+__attribute__((swift_name("UseCaseFlowNoParamsImpl")))
+@interface DKSUseCaseFlowNoParamsImpl<__covariant T> : DKSUseCaseImpl<DKSKotlinUnit *, id<DKSKotlinx_coroutines_coreFlow>>
+- (instancetype)initWithDispatcher:(DKSKotlinx_coroutines_coreCoroutineDispatcher *)dispatcher __attribute__((swift_name("init(dispatcher:)"))) __attribute__((objc_designated_initializer));
+
+/**
+ @note This method converts instances of CancellationException to errors.
+ Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)invokeWithCompletionHandler:(void (^)(id<DKSKotlinx_coroutines_coreFlow> _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("invoke(completionHandler:)")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("GetUsersUseCase")))
-@interface DKSGetUsersUseCase : DKSUseCaseFlowNoParams<NSArray<DKSUser *> *>
+__attribute__((swift_name("GetUsersUseCaseImpl")))
+@interface DKSGetUsersUseCaseImpl : DKSUseCaseFlowNoParamsImpl<NSArray<DKSUser *> *> <DKSGetUsersUseCase>
 - (instancetype)initWithDispatcher:(DKSKotlinx_coroutines_coreCoroutineDispatcher *)dispatcher __attribute__((swift_name("init(dispatcher:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 
 /**
@@ -518,7 +608,23 @@ __attribute__((swift_name("GetUsersUseCase")))
 @end;
 
 __attribute__((swift_name("UseCaseNoParams")))
-@interface DKSUseCaseNoParams<__covariant T> : DKSUseCase<DKSKotlinUnit *, T>
+@protocol DKSUseCaseNoParams <DKSUseCase>
+@required
+
+/**
+ @note This method converts instances of CancellationException to errors.
+ Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)invokeWithCompletionHandler:(void (^)(id _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("invoke(completionHandler:)")));
+@end;
+
+__attribute__((swift_name("IsUserLoggedInUseCase")))
+@protocol DKSIsUserLoggedInUseCase <DKSUseCaseNoParams>
+@required
+@end;
+
+__attribute__((swift_name("UseCaseNoParamsImpl")))
+@interface DKSUseCaseNoParamsImpl<__covariant T> : DKSUseCaseImpl<DKSKotlinUnit *, T>
 - (instancetype)initWithDispatcher:(DKSKotlinx_coroutines_coreCoroutineDispatcher *)dispatcher __attribute__((swift_name("init(dispatcher:)"))) __attribute__((objc_designated_initializer));
 
 /**
@@ -529,8 +635,8 @@ __attribute__((swift_name("UseCaseNoParams")))
 @end;
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("IsUserLoggedInUseCase")))
-@interface DKSIsUserLoggedInUseCase : DKSUseCaseNoParams<DKSBoolean *>
+__attribute__((swift_name("IsUserLoggedInUseCaseImpl")))
+@interface DKSIsUserLoggedInUseCaseImpl : DKSUseCaseNoParamsImpl<DKSBoolean *> <DKSIsUserLoggedInUseCase>
 - (instancetype)initWithDispatcher:(DKSKotlinx_coroutines_coreCoroutineDispatcher *)dispatcher __attribute__((swift_name("init(dispatcher:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 
 /**
@@ -540,20 +646,13 @@ __attribute__((swift_name("IsUserLoggedInUseCase")))
 - (void)doWorkParams:(DKSKotlinUnit *)params completionHandler:(void (^)(DKSBoolean * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("doWork(params:completionHandler:)")));
 @end;
 
-__attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("RefreshUsersUseCase")))
-@interface DKSRefreshUsersUseCase : DKSUseCaseResult<DKSRefreshUsersUseCaseParams *, DKSKotlinUnit *>
-- (instancetype)initWithDispatcher:(DKSKotlinx_coroutines_coreCoroutineDispatcher *)dispatcher __attribute__((swift_name("init(dispatcher:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
-
-/**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
-*/
-- (void)doWorkParams:(DKSRefreshUsersUseCaseParams *)params completionHandler:(void (^)(DKSResult<DKSKotlinUnit *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("doWork(params:completionHandler:)")));
+@protocol DKSRefreshUsersUseCase <DKSUseCaseResult>
+@required
 @end;
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("RefreshUsersUseCase.Params")))
+__attribute__((swift_name("RefreshUsersUseCaseParams")))
 @interface DKSRefreshUsersUseCaseParams : DKSBase
 - (instancetype)initWithOffset:(int32_t)offset limit:(int32_t)limit __attribute__((swift_name("init(offset:limit:)"))) __attribute__((objc_designated_initializer));
 - (int32_t)component1 __attribute__((swift_name("component1()")));
@@ -567,8 +666,25 @@ __attribute__((swift_name("RefreshUsersUseCase.Params")))
 @end;
 
 __attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("RefreshUsersUseCaseImpl")))
+@interface DKSRefreshUsersUseCaseImpl : DKSUseCaseResultImpl<DKSRefreshUsersUseCaseParams *, DKSKotlinUnit *> <DKSRefreshUsersUseCase>
+- (instancetype)initWithDispatcher:(DKSKotlinx_coroutines_coreCoroutineDispatcher *)dispatcher __attribute__((swift_name("init(dispatcher:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+
+/**
+ @note This method converts instances of CancellationException to errors.
+ Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)doWorkParams:(DKSRefreshUsersUseCaseParams *)params completionHandler:(void (^)(DKSResult<DKSKotlinUnit *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("doWork(params:completionHandler:)")));
+@end;
+
 __attribute__((swift_name("ReplaceUserCacheWithUseCase")))
-@interface DKSReplaceUserCacheWithUseCase : DKSUseCase<NSArray<DKSUserPagingData *> *, DKSKotlinUnit *>
+@protocol DKSReplaceUserCacheWithUseCase <DKSUseCase>
+@required
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ReplaceUserCacheWithUseCaseImpl")))
+@interface DKSReplaceUserCacheWithUseCaseImpl : DKSUseCaseImpl<NSArray<DKSUserPagingData *> *, DKSKotlinUnit *> <DKSReplaceUserCacheWithUseCase>
 - (instancetype)initWithDispatcher:(DKSKotlinx_coroutines_coreCoroutineDispatcher *)dispatcher __attribute__((swift_name("init(dispatcher:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 
 /**
@@ -578,9 +694,14 @@ __attribute__((swift_name("ReplaceUserCacheWithUseCase")))
 - (void)doWorkParams:(NSArray<DKSUserPagingData *> *)params completionHandler:(void (^)(DKSKotlinUnit * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("doWork(params:completionHandler:)")));
 @end;
 
-__attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("UpdateLocalUserCacheUseCase")))
-@interface DKSUpdateLocalUserCacheUseCase : DKSUseCase<NSArray<DKSUserPagingData *> *, DKSKotlinUnit *>
+@protocol DKSUpdateLocalUserCacheUseCase <DKSUseCase>
+@required
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("UpdateLocalUserCacheUseCaseImpl")))
+@interface DKSUpdateLocalUserCacheUseCaseImpl : DKSUseCaseImpl<NSArray<DKSUserPagingData *> *, DKSKotlinUnit *> <DKSUpdateLocalUserCacheUseCase>
 - (instancetype)initWithDispatcher:(DKSKotlinx_coroutines_coreCoroutineDispatcher *)dispatcher __attribute__((swift_name("init(dispatcher:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 
 /**
@@ -590,9 +711,14 @@ __attribute__((swift_name("UpdateLocalUserCacheUseCase")))
 - (void)doWorkParams:(NSArray<DKSUserPagingData *> *)params completionHandler:(void (^)(DKSKotlinUnit * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("doWork(params:completionHandler:)")));
 @end;
 
-__attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("UpdateUserUseCase")))
-@interface DKSUpdateUserUseCase : DKSUseCaseResult<DKSUserUpdateParameters *, DKSUser *>
+@protocol DKSUpdateUserUseCase <DKSUseCaseResult>
+@required
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("UpdateUserUseCaseImpl")))
+@interface DKSUpdateUserUseCaseImpl : DKSUseCaseResultImpl<DKSUserUpdateParameters *, DKSUser *> <DKSUpdateUserUseCase>
 - (instancetype)initWithDispatcher:(DKSKotlinx_coroutines_coreCoroutineDispatcher *)dispatcher __attribute__((swift_name("init(dispatcher:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 
 /**
@@ -602,9 +728,14 @@ __attribute__((swift_name("UpdateUserUseCase")))
 - (void)doWorkParams:(DKSUserUpdateParameters *)params completionHandler:(void (^)(DKSResult<DKSUser *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("doWork(params:completionHandler:)")));
 @end;
 
-__attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("UserCacheChangeFlowUseCase")))
-@interface DKSUserCacheChangeFlowUseCase : DKSUseCaseNoParams<id<DKSKotlinx_coroutines_coreFlow>>
+@protocol DKSUserCacheChangeFlowUseCase <DKSUseCaseNoParams>
+@required
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("UserCacheChangeFlowUseCaseImpl")))
+@interface DKSUserCacheChangeFlowUseCaseImpl : DKSUseCaseNoParamsImpl<id<DKSKotlinx_coroutines_coreFlow>> <DKSUserCacheChangeFlowUseCase>
 - (instancetype)initWithDispatcher:(DKSKotlinx_coroutines_coreCoroutineDispatcher *)dispatcher __attribute__((swift_name("init(dispatcher:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 
 /**
@@ -853,11 +984,6 @@ __attribute__((swift_name("Success")))
 + (instancetype)success __attribute__((swift_name("init()")));
 @end;
 
-__attribute__((swift_name("UseCaseFlow")))
-@interface DKSUseCaseFlow<__contravariant Params, __covariant T> : DKSUseCase<Params, id<DKSKotlinx_coroutines_coreFlow>>
-- (instancetype)initWithDispatcher:(DKSKotlinx_coroutines_coreCoroutineDispatcher *)dispatcher __attribute__((swift_name("init(dispatcher:)"))) __attribute__((objc_designated_initializer));
-@end;
-
 __attribute__((swift_name("Config")))
 @protocol DKSConfig
 @required
@@ -889,38 +1015,6 @@ __attribute__((swift_name("Log")))
 - (void)dTag:(NSString *)tag message:(NSString *)message __attribute__((swift_name("d(tag:message:)")));
 - (void)eTag:(NSString *)tag message:(NSString *)message throwable:(DKSKotlinThrowable *)throwable __attribute__((swift_name("e(tag:message:throwable:)")));
 - (void)wTag:(NSString *)tag message:(NSString *)message throwable:(DKSKotlinThrowable * _Nullable)throwable __attribute__((swift_name("w(tag:message:throwable:)")));
-@end;
-
-@interface DKSUseCase (Extensions)
-- (id<DKSKotlinx_coroutines_coreJob>)subscribeParams:(id)params onSuccess:(void (^)(id))onSuccess onThrow:(void (^)(DKSKotlinThrowable *))onThrow __attribute__((swift_name("subscribe(params:onSuccess:onThrow:)")));
-@end;
-
-@interface DKSUseCaseFlow (Extensions)
-- (id<DKSKotlinx_coroutines_coreJob>)subscribeParams:(id)params onEach:(void (^)(id))onEach onComplete:(void (^)(void))onComplete onThrow:(void (^)(DKSKotlinThrowable *))onThrow __attribute__((swift_name("subscribe(params:onEach:onComplete:onThrow:)")));
-@end;
-
-@interface DKSUseCaseFlowNoParams (Extensions)
-- (id<DKSKotlinx_coroutines_coreJob>)subscribeOnEach:(void (^)(id))onEach onComplete:(void (^)(void))onComplete onThrow:(void (^)(DKSKotlinThrowable *))onThrow __attribute__((swift_name("subscribe(onEach:onComplete:onThrow:)")));
-@end;
-
-@interface DKSUseCaseFlowResult (Extensions)
-- (id<DKSKotlinx_coroutines_coreJob>)subscribeParams:(id)params onEach:(void (^)(DKSResult<id> *))onEach onComplete:(void (^)(void))onComplete onThrow:(void (^)(DKSKotlinThrowable *))onThrow __attribute__((swift_name("subscribe(params:onEach:onComplete:onThrow:)")));
-@end;
-
-@interface DKSUseCaseFlowResultNoParams (Extensions)
-- (id<DKSKotlinx_coroutines_coreJob>)subscribeOnEach:(void (^)(DKSResult<id> *))onEach onComplete:(void (^)(void))onComplete onThrow:(void (^)(DKSKotlinThrowable *))onThrow __attribute__((swift_name("subscribe(onEach:onComplete:onThrow:)")));
-@end;
-
-@interface DKSUseCaseNoParams (Extensions)
-- (id<DKSKotlinx_coroutines_coreJob>)subscribeOnSuccess:(void (^)(id))onSuccess onThrow:(void (^)(DKSKotlinThrowable *))onThrow __attribute__((swift_name("subscribe(onSuccess:onThrow:)")));
-@end;
-
-@interface DKSUseCaseResult (Extensions)
-- (id<DKSKotlinx_coroutines_coreJob>)subscribeParams:(id)params onSuccess:(void (^)(DKSResult<id> *))onSuccess onThrow_:(void (^)(DKSKotlinThrowable *))onThrow __attribute__((swift_name("subscribe(params:onSuccess:onThrow_:)")));
-@end;
-
-@interface DKSUseCaseResultNoParams (Extensions)
-- (id<DKSKotlinx_coroutines_coreJob>)subscribeOnSuccess:(void (^)(DKSResult<id> *))onSuccess onThrow:(void (^)(DKSKotlinThrowable *))onThrow __attribute__((swift_name("subscribe(onSuccess:onThrow:)")));
 @end;
 
 @interface DKSUser (Extensions)
@@ -980,6 +1074,14 @@ __attribute__((swift_name("Koin_coreKoin")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SwiftCoroutinesKt")))
 @interface DKSSwiftCoroutinesKt : DKSBase
++ (id<DKSKotlinx_coroutines_coreJob>)subscribe:(id<DKSUseCase>)receiver params:(id)params onSuccess:(void (^)(id))onSuccess onThrow:(void (^)(DKSKotlinThrowable *))onThrow __attribute__((swift_name("subscribe(_:params:onSuccess:onThrow:)")));
++ (id<DKSKotlinx_coroutines_coreJob>)subscribe:(id<DKSUseCaseFlow>)receiver params:(id)params onEach:(void (^)(id))onEach onComplete:(void (^)(void))onComplete onThrow:(void (^)(DKSKotlinThrowable *))onThrow __attribute__((swift_name("subscribe(_:params:onEach:onComplete:onThrow:)")));
++ (id<DKSKotlinx_coroutines_coreJob>)subscribe:(id<DKSUseCaseFlowNoParams>)receiver onEach:(void (^)(id))onEach onComplete:(void (^)(void))onComplete onThrow:(void (^)(DKSKotlinThrowable *))onThrow __attribute__((swift_name("subscribe(_:onEach:onComplete:onThrow:)")));
++ (id<DKSKotlinx_coroutines_coreJob>)subscribe:(id<DKSUseCaseFlowResult>)receiver params:(id)params onEach:(void (^)(DKSResult<id> *))onEach onComplete:(void (^)(void))onComplete onThrow_:(void (^)(DKSKotlinThrowable *))onThrow __attribute__((swift_name("subscribe(_:params:onEach:onComplete:onThrow_:)")));
++ (id<DKSKotlinx_coroutines_coreJob>)subscribe:(id<DKSUseCaseFlowResultNoParams>)receiver onEach:(void (^)(DKSResult<id> *))onEach onComplete:(void (^)(void))onComplete onThrow_:(void (^)(DKSKotlinThrowable *))onThrow __attribute__((swift_name("subscribe(_:onEach:onComplete:onThrow_:)")));
++ (id<DKSKotlinx_coroutines_coreJob>)subscribe:(id<DKSUseCaseNoParams>)receiver onSuccess:(void (^)(id))onSuccess onThrow:(void (^)(DKSKotlinThrowable *))onThrow __attribute__((swift_name("subscribe(_:onSuccess:onThrow:)")));
++ (id<DKSKotlinx_coroutines_coreJob>)subscribe:(id<DKSUseCaseResult>)receiver params:(id)params onSuccess:(void (^)(DKSResult<id> *))onSuccess onThrow_:(void (^)(DKSKotlinThrowable *))onThrow __attribute__((swift_name("subscribe(_:params:onSuccess:onThrow_:)")));
++ (id<DKSKotlinx_coroutines_coreJob>)subscribe:(id<DKSUseCaseResultNoParams>)receiver onSuccess:(void (^)(DKSResult<id> *))onSuccess onThrow_:(void (^)(DKSKotlinThrowable *))onThrow __attribute__((swift_name("subscribe(_:onSuccess:onThrow_:)")));
 @property (class, readonly) id<DKSKotlinx_coroutines_coreCoroutineScope> iosDefaultScope __attribute__((swift_name("iosDefaultScope")));
 @end;
 
@@ -1107,33 +1209,6 @@ __attribute__((swift_name("KotlinSuspendFunction1")))
 - (void)invokeP1:(id _Nullable)p1 completionHandler:(void (^)(id _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("invoke(p1:completionHandler:)")));
 @end;
 
-__attribute__((swift_name("KotlinAbstractCoroutineContextElement")))
-@interface DKSKotlinAbstractCoroutineContextElement : DKSBase <DKSKotlinCoroutineContextElement>
-- (instancetype)initWithKey:(id<DKSKotlinCoroutineContextKey>)key __attribute__((swift_name("init(key:)"))) __attribute__((objc_designated_initializer));
-@property (readonly) id<DKSKotlinCoroutineContextKey> key __attribute__((swift_name("key")));
-@end;
-
-__attribute__((swift_name("KotlinContinuationInterceptor")))
-@protocol DKSKotlinContinuationInterceptor <DKSKotlinCoroutineContextElement>
-@required
-- (id<DKSKotlinContinuation>)interceptContinuationContinuation:(id<DKSKotlinContinuation>)continuation __attribute__((swift_name("interceptContinuation(continuation:)")));
-- (void)releaseInterceptedContinuationContinuation:(id<DKSKotlinContinuation>)continuation __attribute__((swift_name("releaseInterceptedContinuation(continuation:)")));
-@end;
-
-__attribute__((swift_name("Kotlinx_coroutines_coreCoroutineDispatcher")))
-@interface DKSKotlinx_coroutines_coreCoroutineDispatcher : DKSKotlinAbstractCoroutineContextElement <DKSKotlinContinuationInterceptor>
-- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
-+ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
-- (instancetype)initWithKey:(id<DKSKotlinCoroutineContextKey>)key __attribute__((swift_name("init(key:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
-- (void)dispatchContext:(id<DKSKotlinCoroutineContext>)context block:(id<DKSKotlinx_coroutines_coreRunnable>)block __attribute__((swift_name("dispatch(context:block:)")));
-- (void)dispatchYieldContext:(id<DKSKotlinCoroutineContext>)context block:(id<DKSKotlinx_coroutines_coreRunnable>)block __attribute__((swift_name("dispatchYield(context:block:)")));
-- (id<DKSKotlinContinuation>)interceptContinuationContinuation:(id<DKSKotlinContinuation>)continuation __attribute__((swift_name("interceptContinuation(continuation:)")));
-- (BOOL)isDispatchNeededContext:(id<DKSKotlinCoroutineContext>)context __attribute__((swift_name("isDispatchNeeded(context:)")));
-- (DKSKotlinx_coroutines_coreCoroutineDispatcher *)plusOther_:(DKSKotlinx_coroutines_coreCoroutineDispatcher *)other __attribute__((swift_name("plus(other_:)"))) __attribute__((unavailable("Operator '+' on two CoroutineDispatcher objects is meaningless. CoroutineDispatcher is a coroutine context element and `+` is a set-sum operator for coroutine contexts. The dispatcher to the right of `+` just replaces the dispatcher to the left.")));
-- (void)releaseInterceptedContinuationContinuation:(id<DKSKotlinContinuation>)continuation __attribute__((swift_name("releaseInterceptedContinuation(continuation:)")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@end;
-
 __attribute__((swift_name("KotlinRuntimeException")))
 @interface DKSKotlinRuntimeException : DKSKotlinException
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
@@ -1159,6 +1234,33 @@ __attribute__((swift_name("KotlinCancellationException")))
 - (instancetype)initWithMessage:(NSString * _Nullable)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)initWithMessage:(NSString * _Nullable)message cause:(DKSKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)initWithCause:(DKSKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(cause:)"))) __attribute__((objc_designated_initializer));
+@end;
+
+__attribute__((swift_name("KotlinAbstractCoroutineContextElement")))
+@interface DKSKotlinAbstractCoroutineContextElement : DKSBase <DKSKotlinCoroutineContextElement>
+- (instancetype)initWithKey:(id<DKSKotlinCoroutineContextKey>)key __attribute__((swift_name("init(key:)"))) __attribute__((objc_designated_initializer));
+@property (readonly) id<DKSKotlinCoroutineContextKey> key __attribute__((swift_name("key")));
+@end;
+
+__attribute__((swift_name("KotlinContinuationInterceptor")))
+@protocol DKSKotlinContinuationInterceptor <DKSKotlinCoroutineContextElement>
+@required
+- (id<DKSKotlinContinuation>)interceptContinuationContinuation:(id<DKSKotlinContinuation>)continuation __attribute__((swift_name("interceptContinuation(continuation:)")));
+- (void)releaseInterceptedContinuationContinuation:(id<DKSKotlinContinuation>)continuation __attribute__((swift_name("releaseInterceptedContinuation(continuation:)")));
+@end;
+
+__attribute__((swift_name("Kotlinx_coroutines_coreCoroutineDispatcher")))
+@interface DKSKotlinx_coroutines_coreCoroutineDispatcher : DKSKotlinAbstractCoroutineContextElement <DKSKotlinContinuationInterceptor>
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
+- (instancetype)initWithKey:(id<DKSKotlinCoroutineContextKey>)key __attribute__((swift_name("init(key:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (void)dispatchContext:(id<DKSKotlinCoroutineContext>)context block:(id<DKSKotlinx_coroutines_coreRunnable>)block __attribute__((swift_name("dispatch(context:block:)")));
+- (void)dispatchYieldContext:(id<DKSKotlinCoroutineContext>)context block:(id<DKSKotlinx_coroutines_coreRunnable>)block __attribute__((swift_name("dispatchYield(context:block:)")));
+- (id<DKSKotlinContinuation>)interceptContinuationContinuation:(id<DKSKotlinContinuation>)continuation __attribute__((swift_name("interceptContinuation(continuation:)")));
+- (BOOL)isDispatchNeededContext:(id<DKSKotlinCoroutineContext>)context __attribute__((swift_name("isDispatchNeeded(context:)")));
+- (DKSKotlinx_coroutines_coreCoroutineDispatcher *)plusOther_:(DKSKotlinx_coroutines_coreCoroutineDispatcher *)other __attribute__((swift_name("plus(other_:)"))) __attribute__((unavailable("Operator '+' on two CoroutineDispatcher objects is meaningless. CoroutineDispatcher is a coroutine context element and `+` is a set-sum operator for coroutine contexts. The dispatcher to the right of `+` just replaces the dispatcher to the left.")));
+- (void)releaseInterceptedContinuationContinuation:(id<DKSKotlinContinuation>)continuation __attribute__((swift_name("releaseInterceptedContinuation(continuation:)")));
+- (NSString *)description __attribute__((swift_name("description()")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
@@ -1882,7 +1984,7 @@ __attribute__((swift_name("Kotlinx_coroutines_coreLockFreeLinkedListNodeAddLastD
 - (id)updatedNextAffected:(DKSKotlinx_coroutines_coreLockFreeLinkedListNode *)affected next:(DKSKotlinx_coroutines_coreLockFreeLinkedListNode *)next __attribute__((swift_name("updatedNext(affected:next:)")));
 @property (readonly) DKSKotlinx_coroutines_coreLockFreeLinkedListNode * _Nullable affectedNode __attribute__((swift_name("affectedNode")));
 @property (readonly) T node __attribute__((swift_name("node")));
-@property (readonly) DKSKotlinx_coroutines_coreLockFreeLinkedListNode * _Nullable originalNext __attribute__((swift_name("originalNext")));
+@property (readonly) DKSKotlinx_coroutines_coreLockFreeLinkedListNode *originalNext __attribute__((swift_name("originalNext")));
 @property (readonly) DKSKotlinx_coroutines_coreLockFreeLinkedListNode *queue __attribute__((swift_name("queue")));
 @end;
 
