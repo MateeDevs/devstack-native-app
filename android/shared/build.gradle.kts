@@ -10,10 +10,7 @@ android {
         minSdkVersion(Application.Sdk.min)
         targetSdkVersion(Application.Sdk.target)
 
-        versionCode = Application.Version.code
-        versionName = Application.Version.name
-
-        testInstrumentationRunner("androidx.test.runner.AndroidJUnitRunner")
+        testInstrumentationRunner = Dependency.AndroidX.testRunner
     }
 
     buildFeatures {

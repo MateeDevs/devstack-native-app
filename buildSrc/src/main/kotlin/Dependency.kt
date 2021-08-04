@@ -23,6 +23,7 @@ object Dependency {
 
     object AndroidX {
         const val core = "androidx.core:core-ktx:1.5.0-beta03"
+        const val testRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         object Material {
             private const val version = "1.3.0"
