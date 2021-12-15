@@ -6,15 +6,21 @@
 #import <Foundation/NSString.h>
 #import <Foundation/NSValue.h>
 
-@class DKSKotlinThrowable, DKSFlowWrapperParent<Params, T>, DKSSuspendWrapperParent<Params, Out>, DKSBook, DKSUser, DKSUserPagingData, DKSUserPagingResult, DKSUserPagingParameters, DKSUserUpdateParameters, DKSResult<__covariant T>, DKSKotlinx_coroutines_coreCoroutineDispatcher, DKSUseCaseImpl<__contravariant Params, __covariant T>, DKSKotlinUnit, DKSUseCaseResultNoParamsImpl<__covariant T>, DKSLoginUseCaseParams, DKSUseCaseResultImpl<__contravariant Params, __covariant T>, DKSRegisterUseCaseParams, DKSUseCaseFlowImpl<__contravariant Params, __covariant T>, DKSUseCaseFlowResultNoParamsImpl<__covariant T>, DKSUseCaseFlowResultImpl<__contravariant Params, __covariant T>, DKSGetUserUseCaseParams, DKSUseCaseFlowNoParamsImpl<__covariant T>, DKSUseCaseNoParamsImpl<__covariant T>, DKSRefreshUsersUseCaseParams, DKSKotlinArray<T>, DKSKotlinException, DKSKtor_httpUrl, DKSBookEntity, DKSRuntimeQuery<__covariant RowType>, DKSUserCache, DKSUserEntity, DKSErrorResult, DKSResultError<__covariant T>, DKSResultSuccess<__covariant T>, DKSAuthError, DKSBackendError, DKSCommonError, DKSResultType, DKSKoin_coreDefinitionParameters, DKSKoin_coreScope, DKSKotlinLazyThreadSafetyMode, DKSKoin_coreModule, DKSKoin_coreLogger, DKSKoin_corePropertyRegistry, DKSKoin_coreScopeRegistry, DKSKoin_coreKoin, DKSKoin_coreKoinApplication, DKSRuntimeTransacterTransaction, DKSKotlinx_coroutines_coreCancellationException, DKSKotlinRuntimeException, DKSKotlinIllegalStateException, DKSKotlinAbstractCoroutineContextElement, DKSKtor_httpURLProtocol, DKSKoin_coreScopeDefinition, DKSKoin_coreBeanDefinition<T>, DKSKotlinEnum<E>, DKSKoin_coreOptions, DKSKoin_coreScopeDSL, DKSKoin_coreLevel, DKSKotlinByteArray, DKSKoin_coreKind, DKSKoin_coreProperties, DKSKoin_coreCallbacks<T>, DKSKotlinByteIterator, DKSKotlinx_coroutines_coreAtomicDesc, DKSKotlinx_coroutines_coreLockFreeLinkedListNodePrepareOp, DKSKotlinx_coroutines_coreAtomicOp<__contravariant T>, DKSKotlinx_coroutines_coreOpDescriptor, DKSKotlinx_coroutines_coreLockFreeLinkedListNode, DKSKotlinx_coroutines_coreLockFreeLinkedListNodeAbstractAtomicDesc, DKSKotlinx_coroutines_coreLockFreeLinkedListNodeAddLastDesc<T>, DKSKotlinx_coroutines_coreLockFreeLinkedListNodeRemoveFirstDesc<T>;
+@class DKSDatabaseCompanion, DKSKotlinThrowable, DKSFlowWrapperParent<Params, T>, DKSSuspendWrapperParent<Params, Out>, DKSBook, DKSUser, DKSUserPagingData, DKSUserPagingResult, DKSUserPagingParameters, DKSUserUpdateParameters, DKSResult<__covariant T>, DKSKotlinx_coroutines_coreCoroutineDispatcher, DKSUseCaseImpl<__contravariant Params, __covariant T>, DKSKotlinUnit, DKSUseCaseResultNoParamsImpl<__covariant T>, DKSLoginUseCaseParams, DKSUseCaseResultImpl<__contravariant Params, __covariant T>, DKSRegisterUseCaseParams, DKSUseCaseFlowImpl<__contravariant Params, __covariant T>, DKSUseCaseFlowResultNoParamsImpl<__covariant T>, DKSUseCaseFlowResultImpl<__contravariant Params, __covariant T>, DKSGetUserUseCaseParams, DKSUseCaseFlowNoParamsImpl<__covariant T>, DKSUseCaseNoParamsImpl<__covariant T>, DKSRefreshUsersUseCaseParams, DKSKotlinArray<T>, DKSKotlinException, DKSKtor_httpUrl, DKSBookEntity, DKSRuntimeQuery<__covariant RowType>, DKSUserCache, DKSUserEntity, DKSErrorResult, DKSResultError<__covariant T>, DKSResultSuccess<__covariant T>, DKSAuthError, DKSBackendError, DKSCommonError, DKSCommonErrorNoUserLoggedIn, DKSResultType, DKSSuccess, DKSLog, DKSKoin_coreScope, DKSKoin_coreParametersHolder, DKSKotlinLazyThreadSafetyMode, DKSKoin_coreModule, DKSKoin_coreLogger, DKSKoin_coreInstanceRegistry, DKSKoin_corePropertyRegistry, DKSKoin_coreScopeRegistry, DKSKoin_coreKoin, DKSKoin_coreKoinApplication, DKSRuntimeTransacterTransaction, DKSKotlinCancellationException, DKSKotlinRuntimeException, DKSKotlinIllegalStateException, DKSKotlinAbstractCoroutineContextElement, DKSKotlinx_coroutines_coreCoroutineDispatcherKey, DKSKtor_httpURLProtocol, DKSKtor_httpUrlCompanion, DKSKoin_coreParametersHolderCompanion, DKSKotlinEnumCompanion, DKSKotlinEnum<E>, DKSKoin_coreInstanceFactory<T>, DKSKotlinPair<__covariant A, __covariant B>, DKSKoin_coreScopeDSL, DKSKoin_coreSingleInstanceFactory<T>, DKSKoin_coreLevel, DKSKoin_coreScopeRegistryCompanion, DKSKoin_coreKoinApplicationCompanion, DKSKotlinByteArray, DKSKotlinAbstractCoroutineContextKey<B, E>, DKSKtor_httpURLProtocolCompanion, DKSKtor_httpUrlEncodingOption, DKSKoin_coreBeanDefinition<T>, DKSKoin_coreInstanceFactoryCompanion, DKSKoin_coreInstanceContext, DKSKotlinByteIterator, DKSKotlinx_coroutines_coreAtomicDesc, DKSKotlinx_coroutines_corePrepareOp, DKSKoin_coreKind, DKSKoin_coreCallbacks<T>, DKSKotlinx_coroutines_coreAtomicOp<__contravariant T>, DKSKotlinx_coroutines_coreOpDescriptor, DKSKotlinx_coroutines_coreLinkedListNode, DKSKotlinx_coroutines_coreAbstractAtomicDesc;
 
-@protocol DKSBookQueries, DKSUserCacheQueries, DKSUserQueries, DKSRuntimeTransactionWithoutReturn, DKSRuntimeTransactionWithReturn, DKSRuntimeTransacter, DKSDatabase, DKSRuntimeSqlDriver, DKSRuntimeSqlDriverSchema, DKSKotlinx_coroutines_coreJob, DKSKotlinSuspendFunction1, DKSUseCaseResultNoParams, DKSDeleteAuthDataUseCase, DKSUseCase, DKSUseCaseResult, DKSLoginUseCase, DKSRegisterUseCase, DKSKotlinx_coroutines_coreFlow, DKSUseCaseFlowNoParams, DKSUseCaseFlow, DKSGetLocalUsersUseCase, DKSUseCaseFlowResultNoParams, DKSGetLoggedInUserUseCase, DKSGetRemoteUsersUseCase, DKSUseCaseFlowResult, DKSGetUserUseCase, DKSGetUsersUseCase, DKSUseCaseNoParams, DKSIsUserLoggedInUseCase, DKSRefreshUsersUseCase, DKSReplaceUserCacheWithUseCase, DKSUpdateLocalUserCacheUseCase, DKSUpdateUserUseCase, DKSUserCacheChangeFlowUseCase, DKSConfig, DKSLogger, DKSKotlinKClass, DKSKoin_coreKoinScopeComponent, DKSKoin_coreQualifier, DKSKotlinLazy, DKSKotlinx_coroutines_coreCoroutineScope, DKSErrorMessageProvider, DKSRuntimeTransactionCallbacks, DKSRuntimeSqlPreparedStatement, DKSRuntimeSqlCursor, DKSRuntimeCloseable, DKSKotlinx_coroutines_coreChildHandle, DKSKotlinx_coroutines_coreChildJob, DKSKotlinx_coroutines_coreDisposableHandle, DKSKotlinSequence, DKSKotlinx_coroutines_coreSelectClause0, DKSKotlinCoroutineContextKey, DKSKotlinCoroutineContextElement, DKSKotlinCoroutineContext, DKSKotlinFunction, DKSKotlinContinuation, DKSKotlinContinuationInterceptor, DKSKotlinx_coroutines_coreRunnable, DKSKotlinx_coroutines_coreFlowCollector, DKSKotlinIterator, DKSKtor_httpParameters, DKSRuntimeQueryListener, DKSKotlinKDeclarationContainer, DKSKotlinKAnnotatedElement, DKSKotlinKClassifier, DKSKoin_coreScopeCallback, DKSKoin_coreKoinComponent, DKSKotlinComparable, DKSKotlinx_coroutines_coreParentJob, DKSKotlinx_coroutines_coreSelectInstance, DKSKotlinSuspendFunction0, DKSKotlinMapEntry, DKSKtor_utilsStringValues;
+@protocol DKSBookQueries, DKSUserCacheQueries, DKSUserQueries, DKSRuntimeTransactionWithoutReturn, DKSRuntimeTransactionWithReturn, DKSRuntimeTransacter, DKSDatabase, DKSRuntimeSqlDriver, DKSRuntimeSqlDriverSchema, DKSKotlinSuspendFunction1, DKSKotlinx_coroutines_coreJob, DKSUseCaseResultNoParams, DKSDeleteAuthDataUseCase, DKSUseCase, DKSUseCaseResult, DKSLoginUseCase, DKSRegisterUseCase, DKSKotlinx_coroutines_coreFlow, DKSUseCaseFlowNoParams, DKSUseCaseFlow, DKSGetLocalUsersUseCase, DKSUseCaseFlowResultNoParams, DKSGetLoggedInUserUseCase, DKSGetRemoteUsersUseCase, DKSUseCaseFlowResult, DKSGetUserUseCase, DKSGetUsersUseCase, DKSUseCaseNoParams, DKSIsUserLoggedInUseCase, DKSRefreshUsersUseCase, DKSReplaceUserCacheWithUseCase, DKSUpdateLocalUserCacheUseCase, DKSUpdateUserUseCase, DKSUserCacheChangeFlowUseCase, DKSConfig, DKSLogger, DKSKoin_coreKoinScopeComponent, DKSKoin_coreQualifier, DKSKotlinKClass, DKSKotlinLazy, DKSKotlinx_coroutines_coreCoroutineScope, DKSErrorMessageProvider, DKSRuntimeTransactionCallbacks, DKSRuntimeSqlPreparedStatement, DKSRuntimeSqlCursor, DKSRuntimeCloseable, DKSKotlinFunction, DKSKotlinx_coroutines_coreChildHandle, DKSKotlinx_coroutines_coreChildJob, DKSKotlinx_coroutines_coreDisposableHandle, DKSKotlinSequence, DKSKotlinx_coroutines_coreSelectClause0, DKSKotlinCoroutineContextKey, DKSKotlinCoroutineContextElement, DKSKotlinCoroutineContext, DKSKotlinContinuation, DKSKotlinContinuationInterceptor, DKSKotlinx_coroutines_coreRunnable, DKSKotlinx_coroutines_coreFlowCollector, DKSKotlinIterator, DKSKtor_httpParameters, DKSRuntimeQueryListener, DKSKoin_coreScopeCallback, DKSKoin_coreKoinComponent, DKSKotlinKDeclarationContainer, DKSKotlinKAnnotatedElement, DKSKotlinKClassifier, DKSKotlinComparable, DKSKotlinx_coroutines_coreParentJob, DKSKotlinx_coroutines_coreSelectInstance, DKSKotlinSuspendFunction0, DKSKotlinMapEntry, DKSKtor_utilsStringValues;
 
 NS_ASSUME_NONNULL_BEGIN
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunknown-warning-option"
 #pragma clang diagnostic ignored "-Wincompatible-property-type"
 #pragma clang diagnostic ignored "-Wnullability"
+
+#pragma push_macro("_Nullable_result")
+#if !__has_feature(nullability_nullable_result)
+#undef _Nullable_result
+#define _Nullable_result _Nullable
+#endif
 
 __attribute__((swift_name("KotlinBase")))
 @interface DKSBase : NSObject
@@ -159,12 +165,14 @@ __attribute__((swift_name("DatabaseCompanion")))
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 + (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) DKSDatabaseCompanion *shared __attribute__((swift_name("shared")));
 - (id<DKSDatabase>)invokeDriver:(id<DKSRuntimeSqlDriver>)driver __attribute__((swift_name("invoke(driver:)")));
 @property (readonly) id<DKSRuntimeSqlDriverSchema> Schema __attribute__((swift_name("Schema")));
 @end;
 
 __attribute__((swift_name("FlowWrapperParent")))
 @interface DKSFlowWrapperParent<Params, T> : DKSBase
+- (instancetype)initWithSuspender:(id<DKSKotlinSuspendFunction1>)suspender __attribute__((swift_name("init(suspender:)"))) __attribute__((objc_designated_initializer));
 - (id<DKSKotlinx_coroutines_coreJob>)subscribeParams:(Params _Nullable)params onEach:(void (^)(T _Nullable))onEach onComplete:(void (^)(void))onComplete onThrow:(void (^)(DKSKotlinThrowable *))onThrow __attribute__((swift_name("subscribe(params:onEach:onComplete:onThrow:)")));
 @end;
 
@@ -172,10 +180,12 @@ __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("FlowWrapper")))
 @interface DKSFlowWrapper<Params, Out> : DKSFlowWrapperParent<Params, Out>
 - (instancetype)initWithFlow:(id<DKSKotlinSuspendFunction1>)flow __attribute__((swift_name("init(flow:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithSuspender:(id<DKSKotlinSuspendFunction1>)suspender __attribute__((swift_name("init(suspender:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 @end;
 
 __attribute__((swift_name("SuspendWrapperParent")))
 @interface DKSSuspendWrapperParent<Params, Out> : DKSBase
+- (instancetype)initWithSuspender:(id<DKSKotlinSuspendFunction1>)suspender __attribute__((swift_name("init(suspender:)"))) __attribute__((objc_designated_initializer));
 - (id<DKSKotlinx_coroutines_coreJob>)subscribeParams:(Params _Nullable)params onSuccess:(void (^)(Out _Nullable))onSuccess onThrow:(void (^)(DKSKotlinThrowable *))onThrow __attribute__((swift_name("subscribe(params:onSuccess:onThrow:)")));
 @end;
 
@@ -321,13 +331,13 @@ __attribute__((swift_name("UseCaseImpl")))
  @note This method converts instances of CancellationException to errors.
  Other uncaught Kotlin exceptions are fatal.
 */
-- (void)doWorkParams:(Params _Nullable)params completionHandler:(void (^)(T _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("doWork(params:completionHandler:)")));
+- (void)doWorkParams:(Params _Nullable)params completionHandler:(void (^)(T _Nullable_result, NSError * _Nullable))completionHandler __attribute__((swift_name("doWork(params:completionHandler:)")));
 
 /**
  @note This method converts instances of CancellationException to errors.
  Other uncaught Kotlin exceptions are fatal.
 */
-- (void)invokeParams:(Params _Nullable)params completionHandler:(void (^)(T _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("invoke(params:completionHandler:)")));
+- (void)invokeParams:(Params _Nullable)params completionHandler:(void (^)(T _Nullable_result, NSError * _Nullable))completionHandler __attribute__((swift_name("invoke(params:completionHandler:)")));
 @property (readonly) DKSKotlinx_coroutines_coreCoroutineDispatcher *dispatcher __attribute__((swift_name("dispatcher")));
 @end;
 
@@ -362,7 +372,7 @@ __attribute__((swift_name("UseCase")))
  @note This method converts instances of CancellationException to errors.
  Other uncaught Kotlin exceptions are fatal.
 */
-- (void)invokeParams:(id _Nullable)params completionHandler_:(void (^)(id _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("invoke(params:completionHandler_:)")));
+- (void)invokeParams:(id _Nullable)params completionHandler_:(void (^)(id _Nullable_result, NSError * _Nullable))completionHandler __attribute__((swift_name("invoke(params:completionHandler_:)")));
 @end;
 
 __attribute__((swift_name("UseCaseResult")))
@@ -615,7 +625,7 @@ __attribute__((swift_name("UseCaseNoParams")))
  @note This method converts instances of CancellationException to errors.
  Other uncaught Kotlin exceptions are fatal.
 */
-- (void)invokeWithCompletionHandler:(void (^)(id _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("invoke(completionHandler:)")));
+- (void)invokeWithCompletionHandler:(void (^)(id _Nullable_result, NSError * _Nullable))completionHandler __attribute__((swift_name("invoke(completionHandler:)")));
 @end;
 
 __attribute__((swift_name("IsUserLoggedInUseCase")))
@@ -631,7 +641,7 @@ __attribute__((swift_name("UseCaseNoParamsImpl")))
  @note This method converts instances of CancellationException to errors.
  Other uncaught Kotlin exceptions are fatal.
 */
-- (void)invokeWithCompletionHandler:(void (^)(T _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("invoke(completionHandler:)")));
+- (void)invokeWithCompletionHandler:(void (^)(T _Nullable_result, NSError * _Nullable))completionHandler __attribute__((swift_name("invoke(completionHandler:)")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
@@ -757,6 +767,7 @@ __attribute__((swift_name("KotlinThrowable")))
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) DKSKotlinThrowable * _Nullable cause __attribute__((swift_name("cause")));
 @property (readonly) NSString * _Nullable message __attribute__((swift_name("message")));
+- (NSError *)asError __attribute__((swift_name("asError()")));
 @end;
 
 __attribute__((swift_name("KotlinException")))
@@ -883,12 +894,16 @@ __attribute__((swift_name("ErrorResult")))
 
 __attribute__((swift_name("Result")))
 @interface DKSResult<__covariant T> : DKSBase
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("ResultError")))
 @interface DKSResultError<__covariant T> : DKSResult<T>
 - (instancetype)initWithError:(DKSErrorResult *)error data:(T _Nullable)data __attribute__((swift_name("init(error:data:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
++ (instancetype)new __attribute__((unavailable));
 - (DKSErrorResult *)component1 __attribute__((swift_name("component1()")));
 - (T _Nullable)component2 __attribute__((swift_name("component2()")));
 - (DKSResultError<T> *)doCopyError:(DKSErrorResult *)error data:(T _Nullable)data __attribute__((swift_name("doCopy(error:data:)")));
@@ -903,6 +918,8 @@ __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("ResultSuccess")))
 @interface DKSResultSuccess<__covariant T> : DKSResult<T>
 - (instancetype)initWithData:(T)data __attribute__((swift_name("init(data:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
++ (instancetype)new __attribute__((unavailable));
 - (T)component1 __attribute__((swift_name("component1()")));
 - (DKSResultSuccess<T> *)doCopyData:(T)data __attribute__((swift_name("doCopy(data:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
@@ -920,23 +937,26 @@ __attribute__((swift_name("ErrorMessageProvider")))
 
 __attribute__((swift_name("AuthError")))
 @interface DKSAuthError : DKSErrorResult
-- (instancetype)initWithMessage:(NSString * _Nullable)message throwable:(DKSKotlinThrowable * _Nullable)throwable __attribute__((swift_name("init(message:throwable:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithMessage:(NSString * _Nullable)message throwable:(DKSKotlinThrowable * _Nullable)throwable __attribute__((swift_name("init(message:throwable:)"))) __attribute__((objc_designated_initializer));
 @end;
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("AuthError.EmailAlreadyExist")))
 @interface DKSAuthErrorEmailAlreadyExist : DKSAuthError
 - (instancetype)initWithThrowable:(DKSKotlinThrowable * _Nullable)throwable __attribute__((swift_name("init(throwable:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithMessage:(NSString * _Nullable)message throwable:(DKSKotlinThrowable * _Nullable)throwable __attribute__((swift_name("init(message:throwable:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 @end;
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("AuthError.InvalidLoginCredentials")))
 @interface DKSAuthErrorInvalidLoginCredentials : DKSAuthError
 - (instancetype)initWithThrowable:(DKSKotlinThrowable * _Nullable)throwable __attribute__((swift_name("init(throwable:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithMessage:(NSString * _Nullable)message throwable:(DKSKotlinThrowable * _Nullable)throwable __attribute__((swift_name("init(message:throwable:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 @end;
 
 __attribute__((swift_name("BackendError")))
 @interface DKSBackendError : DKSErrorResult
+- (instancetype)initWithThrowable:(DKSKotlinThrowable * _Nullable)throwable responseMessage:(NSString * _Nullable)responseMessage __attribute__((swift_name("init(throwable:responseMessage:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)initWithMessage:(NSString * _Nullable)message throwable:(DKSKotlinThrowable * _Nullable)throwable __attribute__((swift_name("init(message:throwable:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 @end;
 
@@ -944,10 +964,12 @@ __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("BackendError.NotAuthorized")))
 @interface DKSBackendErrorNotAuthorized : DKSBackendError
 - (instancetype)initWithResponseMessage:(NSString * _Nullable)responseMessage throwable:(DKSKotlinThrowable * _Nullable)throwable __attribute__((swift_name("init(responseMessage:throwable:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithThrowable:(DKSKotlinThrowable * _Nullable)throwable responseMessage:(NSString * _Nullable)responseMessage __attribute__((swift_name("init(throwable:responseMessage:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 @end;
 
 __attribute__((swift_name("CommonError")))
 @interface DKSCommonError : DKSErrorResult
+- (instancetype)initWithThrowable:(DKSKotlinThrowable * _Nullable)throwable __attribute__((swift_name("init(throwable:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)initWithMessage:(NSString * _Nullable)message throwable:(DKSKotlinThrowable * _Nullable)throwable __attribute__((swift_name("init(message:throwable:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 @end;
 
@@ -955,6 +977,7 @@ __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("CommonError.NoNetworkConnection")))
 @interface DKSCommonErrorNoNetworkConnection : DKSCommonError
 - (instancetype)initWithT:(DKSKotlinThrowable * _Nullable)t __attribute__((swift_name("init(t:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithThrowable:(DKSKotlinThrowable * _Nullable)throwable __attribute__((swift_name("init(throwable:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 @end;
 
 __attribute__((objc_subclassing_restricted))
@@ -962,17 +985,23 @@ __attribute__((swift_name("CommonError.NoUserLoggedIn")))
 @interface DKSCommonErrorNoUserLoggedIn : DKSCommonError
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
+- (instancetype)initWithThrowable:(DKSKotlinThrowable * _Nullable)throwable __attribute__((swift_name("init(throwable:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)noUserLoggedIn __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) DKSCommonErrorNoUserLoggedIn *shared __attribute__((swift_name("shared")));
 @end;
 
 __attribute__((swift_name("ResultType")))
 @interface DKSResultType : DKSBase
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Error")))
 @interface DKSError : DKSResultType
 - (instancetype)initWithError:(DKSErrorResult *)error __attribute__((swift_name("init(error:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
++ (instancetype)new __attribute__((unavailable));
 @property (readonly) DKSErrorResult *error __attribute__((swift_name("error")));
 @end;
 
@@ -981,7 +1010,10 @@ __attribute__((swift_name("Success")))
 @interface DKSSuccess : DKSResultType
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
++ (instancetype)new __attribute__((unavailable));
 + (instancetype)success __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) DKSSuccess *shared __attribute__((swift_name("shared")));
 @end;
 
 __attribute__((swift_name("Config")))
@@ -1012,6 +1044,7 @@ __attribute__((swift_name("Log")))
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 + (instancetype)log __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) DKSLog *shared __attribute__((swift_name("shared")));
 - (void)dTag:(NSString *)tag message:(NSString *)message __attribute__((swift_name("d(tag:message:)")));
 - (void)eTag:(NSString *)tag message:(NSString *)message throwable:(DKSKotlinThrowable *)throwable __attribute__((swift_name("e(tag:message:throwable:)")));
 - (void)wTag:(NSString *)tag message:(NSString *)message throwable:(DKSKotlinThrowable * _Nullable)throwable __attribute__((swift_name("w(tag:message:throwable:)")));
@@ -1026,34 +1059,33 @@ __attribute__((swift_name("Koin_coreKoin")))
 @interface DKSKoin_coreKoin : DKSBase
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
 + (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
-- (id _Nullable)bindPrimaryType:(id<DKSKotlinKClass>)primaryType secondaryType:(id<DKSKotlinKClass>)secondaryType parameters:(DKSKoin_coreDefinitionParameters *(^ _Nullable)(void))parameters __attribute__((swift_name("bind(primaryType:secondaryType:parameters:)")));
-- (id _Nullable)bindParameters:(DKSKoin_coreDefinitionParameters *(^ _Nullable)(void))parameters __attribute__((swift_name("bind(parameters:)")));
 - (void)close __attribute__((swift_name("close()")));
+- (void)createEagerInstances __attribute__((swift_name("createEagerInstances()")));
 - (DKSKoin_coreScope *)createScopeT:(id<DKSKoin_coreKoinScopeComponent>)t __attribute__((swift_name("createScope(t:)")));
 - (DKSKoin_coreScope *)createScopeScopeId:(NSString *)scopeId __attribute__((swift_name("createScope(scopeId:)")));
 - (DKSKoin_coreScope *)createScopeScopeId:(NSString *)scopeId source:(id _Nullable)source __attribute__((swift_name("createScope(scopeId:source:)")));
 - (DKSKoin_coreScope *)createScopeScopeId:(NSString *)scopeId qualifier:(id<DKSKoin_coreQualifier>)qualifier source:(id _Nullable)source __attribute__((swift_name("createScope(scopeId:qualifier:source:)")));
-- (void)declareInstance:(id _Nullable)instance qualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier secondaryTypes:(NSArray<id<DKSKotlinKClass>> *)secondaryTypes override:(BOOL)override __attribute__((swift_name("declare(instance:qualifier:secondaryTypes:override:)")));
+- (void)declareInstance:(id _Nullable)instance qualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier secondaryTypes:(NSArray<id<DKSKotlinKClass>> *)secondaryTypes allowOverride:(BOOL)allowOverride __attribute__((swift_name("declare(instance:qualifier:secondaryTypes:allowOverride:)")));
 - (void)deletePropertyKey:(NSString *)key __attribute__((swift_name("deleteProperty(key:)")));
 - (void)deleteScopeScopeId:(NSString *)scopeId __attribute__((swift_name("deleteScope(scopeId:)")));
-- (id _Nullable)getClazz:(id<DKSKotlinKClass>)clazz qualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier parameters:(DKSKoin_coreDefinitionParameters *(^ _Nullable)(void))parameters __attribute__((swift_name("get(clazz:qualifier:parameters:)")));
-- (id)getQualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier parameters:(DKSKoin_coreDefinitionParameters *(^ _Nullable)(void))parameters __attribute__((swift_name("get(qualifier:parameters:)")));
+- (id _Nullable)getClazz:(id<DKSKotlinKClass>)clazz qualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier parameters:(DKSKoin_coreParametersHolder *(^ _Nullable)(void))parameters __attribute__((swift_name("get(clazz:qualifier:parameters:)")));
+- (id)getQualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier parameters:(DKSKoin_coreParametersHolder *(^ _Nullable)(void))parameters __attribute__((swift_name("get(qualifier:parameters:)")));
 - (NSArray<id> *)getAll __attribute__((swift_name("getAll()")));
 - (DKSKoin_coreScope *)getOrCreateScopeScopeId:(NSString *)scopeId __attribute__((swift_name("getOrCreateScope(scopeId:)")));
 - (DKSKoin_coreScope *)getOrCreateScopeScopeId:(NSString *)scopeId qualifier:(id<DKSKoin_coreQualifier>)qualifier source:(id _Nullable)source __attribute__((swift_name("getOrCreateScope(scopeId:qualifier:source:)")));
-- (id _Nullable)getOrNullClazz:(id<DKSKotlinKClass>)clazz qualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier parameters:(DKSKoin_coreDefinitionParameters *(^ _Nullable)(void))parameters __attribute__((swift_name("getOrNull(clazz:qualifier:parameters:)")));
-- (id _Nullable)getOrNullQualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier parameters:(DKSKoin_coreDefinitionParameters *(^ _Nullable)(void))parameters __attribute__((swift_name("getOrNull(qualifier:parameters:)")));
+- (id _Nullable)getOrNullClazz:(id<DKSKotlinKClass>)clazz qualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier parameters:(DKSKoin_coreParametersHolder *(^ _Nullable)(void))parameters __attribute__((swift_name("getOrNull(clazz:qualifier:parameters:)")));
+- (id _Nullable)getOrNullQualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier parameters:(DKSKoin_coreParametersHolder *(^ _Nullable)(void))parameters __attribute__((swift_name("getOrNull(qualifier:parameters:)")));
 - (id _Nullable)getPropertyKey:(NSString *)key __attribute__((swift_name("getProperty(key:)")));
 - (id)getPropertyKey:(NSString *)key defaultValue:(id)defaultValue __attribute__((swift_name("getProperty(key:defaultValue:)")));
-- (DKSKoin_coreScope *)getRootScope __attribute__((swift_name("getRootScope()")));
 - (DKSKoin_coreScope *)getScopeScopeId:(NSString *)scopeId __attribute__((swift_name("getScope(scopeId:)")));
 - (DKSKoin_coreScope * _Nullable)getScopeOrNullScopeId:(NSString *)scopeId __attribute__((swift_name("getScopeOrNull(scopeId:)")));
-- (id<DKSKotlinLazy>)injectQualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier mode:(DKSKotlinLazyThreadSafetyMode *)mode parameters:(DKSKoin_coreDefinitionParameters *(^ _Nullable)(void))parameters __attribute__((swift_name("inject(qualifier:mode:parameters:)")));
-- (id<DKSKotlinLazy>)injectOrNullQualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier mode:(DKSKotlinLazyThreadSafetyMode *)mode parameters:(DKSKoin_coreDefinitionParameters *(^ _Nullable)(void))parameters __attribute__((swift_name("injectOrNull(qualifier:mode:parameters:)")));
-- (void)loadModulesModules:(NSArray<DKSKoin_coreModule *> *)modules createEagerInstances:(BOOL)createEagerInstances __attribute__((swift_name("loadModules(modules:createEagerInstances:)")));
+- (id<DKSKotlinLazy>)injectQualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier mode:(DKSKotlinLazyThreadSafetyMode *)mode parameters:(DKSKoin_coreParametersHolder *(^ _Nullable)(void))parameters __attribute__((swift_name("inject(qualifier:mode:parameters:)")));
+- (id<DKSKotlinLazy>)injectOrNullQualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier mode:(DKSKotlinLazyThreadSafetyMode *)mode parameters:(DKSKoin_coreParametersHolder *(^ _Nullable)(void))parameters __attribute__((swift_name("injectOrNull(qualifier:mode:parameters:)")));
+- (void)loadModulesModules:(NSArray<DKSKoin_coreModule *> *)modules allowOverride:(BOOL)allowOverride __attribute__((swift_name("loadModules(modules:allowOverride:)")));
 - (void)setPropertyKey:(NSString *)key value:(id)value __attribute__((swift_name("setProperty(key:value:)")));
 - (void)setupLoggerLogger:(DKSKoin_coreLogger *)logger __attribute__((swift_name("setupLogger(logger:)")));
-- (void)unloadModulesModules:(NSArray<DKSKoin_coreModule *> *)modules createEagerInstances:(BOOL)createEagerInstances __attribute__((swift_name("unloadModules(modules:createEagerInstances:)")));
+- (void)unloadModulesModules:(NSArray<DKSKoin_coreModule *> *)modules __attribute__((swift_name("unloadModules(modules:)")));
+@property (readonly) DKSKoin_coreInstanceRegistry *instanceRegistry __attribute__((swift_name("instanceRegistry")));
 @property (readonly) DKSKoin_coreLogger *logger __attribute__((swift_name("logger")));
 @property (readonly) DKSKoin_corePropertyRegistry *propertyRegistry __attribute__((swift_name("propertyRegistry")));
 @property (readonly) DKSKoin_coreScopeRegistry *scopeRegistry __attribute__((swift_name("scopeRegistry")));
@@ -1155,6 +1187,22 @@ __attribute__((swift_name("RuntimeSqlDriverSchema")))
 @property (readonly) int32_t version __attribute__((swift_name("version")));
 @end;
 
+__attribute__((swift_name("KotlinFunction")))
+@protocol DKSKotlinFunction
+@required
+@end;
+
+__attribute__((swift_name("KotlinSuspendFunction1")))
+@protocol DKSKotlinSuspendFunction1 <DKSKotlinFunction>
+@required
+
+/**
+ @note This method converts instances of CancellationException to errors.
+ Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)invokeP1:(id _Nullable)p1 completionHandler:(void (^)(id _Nullable_result, NSError * _Nullable))completionHandler __attribute__((swift_name("invoke(p1:completionHandler:)")));
+@end;
+
 __attribute__((swift_name("KotlinCoroutineContext")))
 @protocol DKSKotlinCoroutineContext
 @required
@@ -1174,8 +1222,8 @@ __attribute__((swift_name("Kotlinx_coroutines_coreJob")))
 @protocol DKSKotlinx_coroutines_coreJob <DKSKotlinCoroutineContextElement>
 @required
 - (id<DKSKotlinx_coroutines_coreChildHandle>)attachChildChild:(id<DKSKotlinx_coroutines_coreChildJob>)child __attribute__((swift_name("attachChild(child:)")));
-- (void)cancelCause:(DKSKotlinx_coroutines_coreCancellationException * _Nullable)cause __attribute__((swift_name("cancel(cause:)")));
-- (DKSKotlinx_coroutines_coreCancellationException *)getCancellationException __attribute__((swift_name("getCancellationException()")));
+- (void)cancelCause:(DKSKotlinCancellationException * _Nullable)cause __attribute__((swift_name("cancel(cause:)")));
+- (DKSKotlinCancellationException *)getCancellationException __attribute__((swift_name("getCancellationException()")));
 - (id<DKSKotlinx_coroutines_coreDisposableHandle>)invokeOnCompletionOnCancelling:(BOOL)onCancelling invokeImmediately:(BOOL)invokeImmediately handler:(void (^)(DKSKotlinThrowable * _Nullable))handler __attribute__((swift_name("invokeOnCompletion(onCancelling:invokeImmediately:handler:)")));
 - (id<DKSKotlinx_coroutines_coreDisposableHandle>)invokeOnCompletionHandler:(void (^)(DKSKotlinThrowable * _Nullable))handler __attribute__((swift_name("invokeOnCompletion(handler:)")));
 
@@ -1191,22 +1239,6 @@ __attribute__((swift_name("Kotlinx_coroutines_coreJob")))
 @property (readonly) BOOL isCancelled __attribute__((swift_name("isCancelled")));
 @property (readonly) BOOL isCompleted __attribute__((swift_name("isCompleted")));
 @property (readonly) id<DKSKotlinx_coroutines_coreSelectClause0> onJoin __attribute__((swift_name("onJoin")));
-@end;
-
-__attribute__((swift_name("KotlinFunction")))
-@protocol DKSKotlinFunction
-@required
-@end;
-
-__attribute__((swift_name("KotlinSuspendFunction1")))
-@protocol DKSKotlinSuspendFunction1 <DKSKotlinFunction>
-@required
-
-/**
- @note This method converts instances of CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
-*/
-- (void)invokeP1:(id _Nullable)p1 completionHandler:(void (^)(id _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("invoke(p1:completionHandler:)")));
 @end;
 
 __attribute__((swift_name("KotlinRuntimeException")))
@@ -1254,6 +1286,7 @@ __attribute__((swift_name("Kotlinx_coroutines_coreCoroutineDispatcher")))
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
 + (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
 - (instancetype)initWithKey:(id<DKSKotlinCoroutineContextKey>)key __attribute__((swift_name("init(key:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+@property (class, readonly, getter=companion) DKSKotlinx_coroutines_coreCoroutineDispatcherKey *companion __attribute__((swift_name("companion")));
 - (void)dispatchContext:(id<DKSKotlinCoroutineContext>)context block:(id<DKSKotlinx_coroutines_coreRunnable>)block __attribute__((swift_name("dispatch(context:block:)")));
 - (void)dispatchYieldContext:(id<DKSKotlinCoroutineContext>)context block:(id<DKSKotlinx_coroutines_coreRunnable>)block __attribute__((swift_name("dispatchYield(context:block:)")));
 - (id<DKSKotlinContinuation>)interceptContinuationContinuation:(id<DKSKotlinContinuation>)continuation __attribute__((swift_name("interceptContinuation(continuation:)")));
@@ -1269,6 +1302,7 @@ __attribute__((swift_name("KotlinUnit")))
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 + (instancetype)unit __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) DKSKotlinUnit *shared __attribute__((swift_name("shared")));
 - (NSString *)description __attribute__((swift_name("description()")));
 @end;
 
@@ -1299,6 +1333,7 @@ __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Ktor_httpUrl")))
 @interface DKSKtor_httpUrl : DKSBase
 - (instancetype)initWithProtocol:(DKSKtor_httpURLProtocol *)protocol host:(NSString *)host specifiedPort:(int32_t)specifiedPort encodedPath:(NSString *)encodedPath parameters:(id<DKSKtor_httpParameters>)parameters fragment:(NSString *)fragment user:(NSString * _Nullable)user password:(NSString * _Nullable)password trailingQuery:(BOOL)trailingQuery __attribute__((swift_name("init(protocol:host:specifiedPort:encodedPath:parameters:fragment:user:password:trailingQuery:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) DKSKtor_httpUrlCompanion *companion __attribute__((swift_name("companion")));
 - (DKSKtor_httpURLProtocol *)component1 __attribute__((swift_name("component1()")));
 - (NSString *)component2 __attribute__((swift_name("component2()")));
 - (int32_t)component3 __attribute__((swift_name("component3()")));
@@ -1337,6 +1372,66 @@ __attribute__((swift_name("RuntimeQuery")))
 @property (readonly) RowType (^mapper)(id<DKSRuntimeSqlCursor>) __attribute__((swift_name("mapper")));
 @end;
 
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Koin_coreScope")))
+@interface DKSKoin_coreScope : DKSBase
+- (instancetype)initWithScopeQualifier:(id<DKSKoin_coreQualifier>)scopeQualifier id:(NSString *)id isRoot:(BOOL)isRoot _koin:(DKSKoin_coreKoin *)_koin __attribute__((swift_name("init(scopeQualifier:id:isRoot:_koin:)"))) __attribute__((objc_designated_initializer));
+- (void)close __attribute__((swift_name("close()")));
+- (id<DKSKoin_coreQualifier>)component1 __attribute__((swift_name("component1()")));
+- (NSString *)component2 __attribute__((swift_name("component2()")));
+- (BOOL)component3 __attribute__((swift_name("component3()")));
+- (DKSKoin_coreScope *)doCopyScopeQualifier:(id<DKSKoin_coreQualifier>)scopeQualifier id:(NSString *)id isRoot:(BOOL)isRoot _koin:(DKSKoin_coreKoin *)_koin __attribute__((swift_name("doCopy(scopeQualifier:id:isRoot:_koin:)")));
+- (void)declareInstance:(id _Nullable)instance qualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier secondaryTypes:(NSArray<id<DKSKotlinKClass>> *)secondaryTypes allowOverride:(BOOL)allowOverride __attribute__((swift_name("declare(instance:qualifier:secondaryTypes:allowOverride:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (id _Nullable)getClazz:(id<DKSKotlinKClass>)clazz qualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier parameters:(DKSKoin_coreParametersHolder *(^ _Nullable)(void))parameters __attribute__((swift_name("get(clazz:qualifier:parameters:)")));
+- (id)getQualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier parameters:(DKSKoin_coreParametersHolder *(^ _Nullable)(void))parameters __attribute__((swift_name("get(qualifier:parameters:)")));
+- (NSArray<id> *)getAll __attribute__((swift_name("getAll()")));
+- (NSArray<id> *)getAllClazz:(id<DKSKotlinKClass>)clazz __attribute__((swift_name("getAll(clazz:)")));
+- (DKSKoin_coreKoin *)getKoin __attribute__((swift_name("getKoin()")));
+- (id _Nullable)getOrNullClazz:(id<DKSKotlinKClass>)clazz qualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier parameters:(DKSKoin_coreParametersHolder *(^ _Nullable)(void))parameters __attribute__((swift_name("getOrNull(clazz:qualifier:parameters:)")));
+- (id _Nullable)getOrNullQualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier parameters:(DKSKoin_coreParametersHolder *(^ _Nullable)(void))parameters __attribute__((swift_name("getOrNull(qualifier:parameters:)")));
+- (id)getPropertyKey:(NSString *)key __attribute__((swift_name("getProperty(key:)")));
+- (id)getPropertyKey:(NSString *)key defaultValue:(id)defaultValue __attribute__((swift_name("getProperty(key:defaultValue:)")));
+- (id _Nullable)getPropertyOrNullKey:(NSString *)key __attribute__((swift_name("getPropertyOrNull(key:)")));
+- (DKSKoin_coreScope *)getScopeScopeID:(NSString *)scopeID __attribute__((swift_name("getScope(scopeID:)")));
+- (id _Nullable)getSource __attribute__((swift_name("getSource()"))) __attribute__((deprecated("No need to use getSource(). You can an use get() directly.")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (id<DKSKotlinLazy>)injectQualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier mode:(DKSKotlinLazyThreadSafetyMode *)mode parameters:(DKSKoin_coreParametersHolder *(^ _Nullable)(void))parameters __attribute__((swift_name("inject(qualifier:mode:parameters:)")));
+- (id<DKSKotlinLazy>)injectOrNullQualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier mode:(DKSKotlinLazyThreadSafetyMode *)mode parameters:(DKSKoin_coreParametersHolder *(^ _Nullable)(void))parameters __attribute__((swift_name("injectOrNull(qualifier:mode:parameters:)")));
+- (BOOL)isNotClosed __attribute__((swift_name("isNotClosed()")));
+- (void)linkToScopes:(DKSKotlinArray<DKSKoin_coreScope *> *)scopes __attribute__((swift_name("linkTo(scopes:)")));
+- (void)refreshScopeInstanceClazz:(id<DKSKotlinKClass>)clazz qualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier instance:(id)instance __attribute__((swift_name("refreshScopeInstance(clazz:qualifier:instance:)")));
+- (void)registerCallbackCallback:(id<DKSKoin_coreScopeCallback>)callback __attribute__((swift_name("registerCallback(callback:)")));
+- (NSString *)description __attribute__((swift_name("description()")));
+- (void)unlinkScopes:(DKSKotlinArray<DKSKoin_coreScope *> *)scopes __attribute__((swift_name("unlink(scopes:)")));
+@property (readonly) NSMutableArray<DKSKoin_coreParametersHolder *> *_parameterStack __attribute__((swift_name("_parameterStack")));
+@property id _Nullable _source __attribute__((swift_name("_source")));
+@property (readonly) BOOL closed __attribute__((swift_name("closed")));
+@property (readonly) NSString *id __attribute__((swift_name("id")));
+@property (readonly) BOOL isRoot __attribute__((swift_name("isRoot")));
+@property (readonly) DKSKoin_coreLogger *logger __attribute__((swift_name("logger")));
+@property (readonly) id<DKSKoin_coreQualifier> scopeQualifier __attribute__((swift_name("scopeQualifier")));
+@end;
+
+__attribute__((swift_name("Koin_coreKoinComponent")))
+@protocol DKSKoin_coreKoinComponent
+@required
+- (DKSKoin_coreKoin *)getKoin __attribute__((swift_name("getKoin()")));
+@end;
+
+__attribute__((swift_name("Koin_coreKoinScopeComponent")))
+@protocol DKSKoin_coreKoinScopeComponent <DKSKoin_coreKoinComponent>
+@required
+- (void)closeScope __attribute__((swift_name("closeScope()")));
+@property (readonly) DKSKoin_coreScope *scope __attribute__((swift_name("scope")));
+@end;
+
+__attribute__((swift_name("Koin_coreQualifier")))
+@protocol DKSKoin_coreQualifier
+@required
+@property (readonly) NSString *value __attribute__((swift_name("value")));
+@end;
+
 __attribute__((swift_name("KotlinKDeclarationContainer")))
 @protocol DKSKotlinKDeclarationContainer
 @required
@@ -1360,10 +1455,11 @@ __attribute__((swift_name("KotlinKClass")))
 @property (readonly) NSString * _Nullable simpleName __attribute__((swift_name("simpleName")));
 @end;
 
-__attribute__((swift_name("Koin_coreDefinitionParameters")))
-@interface DKSKoin_coreDefinitionParameters : DKSBase
-- (instancetype)initWithValues:(NSArray<id> *)values __attribute__((swift_name("init(values:)"))) __attribute__((objc_designated_initializer));
-- (DKSKoin_coreDefinitionParameters *)addValue:(id)value __attribute__((swift_name("add(value:)")));
+__attribute__((swift_name("Koin_coreParametersHolder")))
+@interface DKSKoin_coreParametersHolder : DKSBase
+- (instancetype)initWith_values:(NSMutableArray<id> *)_values __attribute__((swift_name("init(_values:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) DKSKoin_coreParametersHolderCompanion *companion __attribute__((swift_name("companion")));
+- (DKSKoin_coreParametersHolder *)addValue:(id)value __attribute__((swift_name("add(value:)")));
 - (id _Nullable)component1 __attribute__((swift_name("component1()")));
 - (id _Nullable)component2 __attribute__((swift_name("component2()")));
 - (id _Nullable)component3 __attribute__((swift_name("component3()")));
@@ -1372,76 +1468,15 @@ __attribute__((swift_name("Koin_coreDefinitionParameters")))
 - (id _Nullable)elementAtI:(int32_t)i clazz:(id<DKSKotlinKClass>)clazz __attribute__((swift_name("elementAt(i:clazz:)")));
 - (id)get __attribute__((swift_name("get()")));
 - (id _Nullable)getI:(int32_t)i __attribute__((swift_name("get(i:)")));
+- (id _Nullable)getOrNull __attribute__((swift_name("getOrNull()")));
 - (id _Nullable)getOrNullClazz:(id<DKSKotlinKClass>)clazz __attribute__((swift_name("getOrNull(clazz:)")));
-- (DKSKoin_coreDefinitionParameters *)insertIndex:(int32_t)index value:(id)value __attribute__((swift_name("insert(index:value:)")));
+- (DKSKoin_coreParametersHolder *)insertIndex:(int32_t)index value:(id)value __attribute__((swift_name("insert(index:value:)")));
 - (BOOL)isEmpty __attribute__((swift_name("isEmpty()")));
 - (BOOL)isNotEmpty __attribute__((swift_name("isNotEmpty()")));
 - (void)setI:(int32_t)i t:(id _Nullable)t __attribute__((swift_name("set(i:t:)")));
 - (int32_t)size __attribute__((swift_name("size()")));
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSArray<id> *values __attribute__((swift_name("values")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Koin_coreScope")))
-@interface DKSKoin_coreScope : DKSBase
-- (instancetype)initWithId:(NSString *)id _scopeDefinition:(DKSKoin_coreScopeDefinition *)_scopeDefinition _koin:(DKSKoin_coreKoin *)_koin __attribute__((swift_name("init(id:_scopeDefinition:_koin:)"))) __attribute__((objc_designated_initializer));
-- (void)addParametersParameters:(DKSKoin_coreDefinitionParameters *)parameters __attribute__((swift_name("addParameters(parameters:)")));
-- (id _Nullable)bindPrimaryType:(id<DKSKotlinKClass>)primaryType secondaryType:(id<DKSKotlinKClass>)secondaryType parameters:(DKSKoin_coreDefinitionParameters *(^ _Nullable)(void))parameters __attribute__((swift_name("bind(primaryType:secondaryType:parameters:)")));
-- (id _Nullable)bindParameters:(DKSKoin_coreDefinitionParameters *(^ _Nullable)(void))parameters __attribute__((swift_name("bind(parameters:)")));
-- (void)clearParameters __attribute__((swift_name("clearParameters()")));
-- (void)close __attribute__((swift_name("close()")));
-- (NSString *)component1 __attribute__((swift_name("component1()")));
-- (DKSKoin_coreScopeDefinition *)component2 __attribute__((swift_name("component2()")));
-- (DKSKoin_coreScope *)doCopyId:(NSString *)id _scopeDefinition:(DKSKoin_coreScopeDefinition *)_scopeDefinition _koin:(DKSKoin_coreKoin *)_koin __attribute__((swift_name("doCopy(id:_scopeDefinition:_koin:)")));
-- (void)declareInstance:(id _Nullable)instance qualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier secondaryTypes:(NSArray<id<DKSKotlinKClass>> * _Nullable)secondaryTypes override:(BOOL)override __attribute__((swift_name("declare(instance:qualifier:secondaryTypes:override:)")));
-- (void)dropInstanceBeanDefinition:(DKSKoin_coreBeanDefinition<id> *)beanDefinition __attribute__((swift_name("dropInstance(beanDefinition:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (id _Nullable)getClazz:(id<DKSKotlinKClass>)clazz qualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier parameters:(DKSKoin_coreDefinitionParameters *(^ _Nullable)(void))parameters __attribute__((swift_name("get(clazz:qualifier:parameters:)")));
-- (id)getQualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier parameters:(DKSKoin_coreDefinitionParameters *(^ _Nullable)(void))parameters __attribute__((swift_name("get(qualifier:parameters:)")));
-- (NSArray<id> *)getAll __attribute__((swift_name("getAll()")));
-- (NSArray<id> *)getAllClazz:(id<DKSKotlinKClass>)clazz __attribute__((swift_name("getAll(clazz:)")));
-- (DKSKoin_coreKoin *)getKoin __attribute__((swift_name("getKoin()")));
-- (id _Nullable)getOrNullClazz:(id<DKSKotlinKClass>)clazz qualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier parameters:(DKSKoin_coreDefinitionParameters *(^ _Nullable)(void))parameters __attribute__((swift_name("getOrNull(clazz:qualifier:parameters:)")));
-- (id _Nullable)getOrNullQualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier parameters:(DKSKoin_coreDefinitionParameters *(^ _Nullable)(void))parameters __attribute__((swift_name("getOrNull(qualifier:parameters:)")));
-- (NSString *)getPropertyKey:(NSString *)key __attribute__((swift_name("getProperty(key:)")));
-- (NSString *)getPropertyKey:(NSString *)key defaultValue:(NSString *)defaultValue __attribute__((swift_name("getProperty(key:defaultValue:)")));
-- (NSString * _Nullable)getPropertyOrNullKey:(NSString *)key __attribute__((swift_name("getPropertyOrNull(key:)")));
-- (DKSKoin_coreScope *)getScopeScopeID:(NSString *)scopeID __attribute__((swift_name("getScope(scopeID:)")));
-- (id)getSource __attribute__((swift_name("getSource()")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (id<DKSKotlinLazy>)injectQualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier mode:(DKSKotlinLazyThreadSafetyMode *)mode parameters:(DKSKoin_coreDefinitionParameters *(^ _Nullable)(void))parameters __attribute__((swift_name("inject(qualifier:mode:parameters:)")));
-- (id<DKSKotlinLazy>)injectOrNullQualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier mode:(DKSKotlinLazyThreadSafetyMode *)mode parameters:(DKSKoin_coreDefinitionParameters *(^ _Nullable)(void))parameters __attribute__((swift_name("injectOrNull(qualifier:mode:parameters:)")));
-- (BOOL)isNotClosed __attribute__((swift_name("isNotClosed()")));
-- (void)linkToScopes:(DKSKotlinArray<DKSKoin_coreScope *> *)scopes __attribute__((swift_name("linkTo(scopes:)")));
-- (void)loadDefinitionBeanDefinition:(DKSKoin_coreBeanDefinition<id> *)beanDefinition __attribute__((swift_name("loadDefinition(beanDefinition:)")));
-- (void)registerCallbackCallback:(id<DKSKoin_coreScopeCallback>)callback __attribute__((swift_name("registerCallback(callback:)")));
-- (void)setSourceT:(id _Nullable)t __attribute__((swift_name("setSource(t:)")));
-- (NSString *)description __attribute__((swift_name("description()")));
-- (void)unlinkScopes:(DKSKotlinArray<DKSKoin_coreScope *> *)scopes __attribute__((swift_name("unlink(scopes:)")));
-@property (readonly) DKSKoin_coreScopeDefinition *_scopeDefinition __attribute__((swift_name("_scopeDefinition")));
-@property (readonly) BOOL closed __attribute__((swift_name("closed")));
-@property (readonly) NSString *id __attribute__((swift_name("id")));
-@property (readonly) DKSKoin_coreLogger *logger __attribute__((swift_name("logger")));
-@end;
-
-__attribute__((swift_name("Koin_coreKoinComponent")))
-@protocol DKSKoin_coreKoinComponent
-@required
-- (DKSKoin_coreKoin *)getKoin __attribute__((swift_name("getKoin()")));
-@end;
-
-__attribute__((swift_name("Koin_coreKoinScopeComponent")))
-@protocol DKSKoin_coreKoinScopeComponent <DKSKoin_coreKoinComponent>
-@required
-- (void)closeScope __attribute__((swift_name("closeScope()")));
-@property (readonly) DKSKoin_coreScope *scope __attribute__((swift_name("scope")));
-@end;
-
-__attribute__((swift_name("Koin_coreQualifier")))
-@protocol DKSKoin_coreQualifier
-@required
-@property (readonly) NSString *value __attribute__((swift_name("value")));
 @end;
 
 __attribute__((swift_name("KotlinLazy")))
@@ -1460,6 +1495,7 @@ __attribute__((swift_name("KotlinComparable")))
 __attribute__((swift_name("KotlinEnum")))
 @interface DKSKotlinEnum<E> : DKSBase <DKSKotlinComparable>
 - (instancetype)initWithName:(NSString *)name ordinal:(int32_t)ordinal __attribute__((swift_name("init(name:ordinal:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) DKSKotlinEnumCompanion *companion __attribute__((swift_name("companion")));
 - (int32_t)compareToOther:(E)other __attribute__((swift_name("compareTo(other:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
@@ -1483,14 +1519,15 @@ __attribute__((swift_name("KotlinLazyThreadSafetyMode")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Koin_coreModule")))
 @interface DKSKoin_coreModule : DKSBase
-- (instancetype)initWithCreateAtStart:(BOOL)createAtStart override:(BOOL)override __attribute__((swift_name("init(createAtStart:override:)"))) __attribute__((objc_designated_initializer));
-- (DKSKoin_coreBeanDefinition<id> *)factoryQualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier override:(BOOL)override definition:(id _Nullable (^)(DKSKoin_coreScope *, DKSKoin_coreDefinitionParameters *))definition __attribute__((swift_name("factory(qualifier:override:definition:)")));
-- (DKSKoin_coreOptions *)makeOptionsOverride:(BOOL)override createdAtStart:(BOOL)createdAtStart __attribute__((swift_name("makeOptions(override:createdAtStart:)")));
+- (instancetype)initWithCreatedAtStart:(BOOL)createdAtStart __attribute__((swift_name("init(createdAtStart:)"))) __attribute__((objc_designated_initializer));
+- (DKSKotlinPair<DKSKoin_coreModule *, DKSKoin_coreInstanceFactory<id> *> *)factoryQualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier definition:(id _Nullable (^)(DKSKoin_coreScope *, DKSKoin_coreParametersHolder *))definition __attribute__((swift_name("factory(qualifier:definition:)")));
 - (NSArray<DKSKoin_coreModule *> *)plusModules:(NSArray<DKSKoin_coreModule *> *)modules __attribute__((swift_name("plus(modules:)")));
 - (NSArray<DKSKoin_coreModule *> *)plusModule:(DKSKoin_coreModule *)module __attribute__((swift_name("plus(module:)")));
 - (void)scopeQualifier:(id<DKSKoin_coreQualifier>)qualifier scopeSet:(void (^)(DKSKoin_coreScopeDSL *))scopeSet __attribute__((swift_name("scope(qualifier:scopeSet:)")));
 - (void)scopeScopeSet:(void (^)(DKSKoin_coreScopeDSL *))scopeSet __attribute__((swift_name("scope(scopeSet:)")));
-- (DKSKoin_coreBeanDefinition<id> *)singleQualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier createdAtStart:(BOOL)createdAtStart override:(BOOL)override definition:(id _Nullable (^)(DKSKoin_coreScope *, DKSKoin_coreDefinitionParameters *))definition __attribute__((swift_name("single(qualifier:createdAtStart:override:definition:)")));
+- (DKSKotlinPair<DKSKoin_coreModule *, DKSKoin_coreInstanceFactory<id> *> *)singleQualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier createdAtStart:(BOOL)createdAtStart definition:(id _Nullable (^)(DKSKoin_coreScope *, DKSKoin_coreParametersHolder *))definition __attribute__((swift_name("single(qualifier:createdAtStart:definition:)")));
+@property (readonly) BOOL createdAtStart __attribute__((swift_name("createdAtStart")));
+@property (readonly) DKSMutableSet<DKSKoin_coreSingleInstanceFactory<id> *> *eagerInstances __attribute__((swift_name("eagerInstances")));
 @property (readonly) BOOL isLoaded __attribute__((swift_name("isLoaded")));
 @end;
 
@@ -1501,8 +1538,19 @@ __attribute__((swift_name("Koin_coreLogger")))
 - (void)errorMsg:(NSString *)msg __attribute__((swift_name("error(msg:)")));
 - (void)infoMsg:(NSString *)msg __attribute__((swift_name("info(msg:)")));
 - (BOOL)isAtLvl:(DKSKoin_coreLevel *)lvl __attribute__((swift_name("isAt(lvl:)")));
+- (void)logLvl:(DKSKoin_coreLevel *)lvl msg:(NSString *(^)(void))msg __attribute__((swift_name("log(lvl:msg:)")));
 - (void)logLevel:(DKSKoin_coreLevel *)level msg:(NSString *)msg __attribute__((swift_name("log(level:msg:)")));
 @property DKSKoin_coreLevel *level __attribute__((swift_name("level")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Koin_coreInstanceRegistry")))
+@interface DKSKoin_coreInstanceRegistry : DKSBase
+- (instancetype)initWith_koin:(DKSKoin_coreKoin *)_koin __attribute__((swift_name("init(_koin:)"))) __attribute__((objc_designated_initializer));
+- (void)saveMappingAllowOverride:(BOOL)allowOverride mapping:(NSString *)mapping factory:(DKSKoin_coreInstanceFactory<id> *)factory logWarning:(BOOL)logWarning __attribute__((swift_name("saveMapping(allowOverride:mapping:factory:logWarning:)")));
+- (int32_t)size __attribute__((swift_name("size()")));
+@property (readonly) DKSKoin_coreKoin *_koin __attribute__((swift_name("_koin")));
+@property (readonly) NSDictionary<NSString *, DKSKoin_coreInstanceFactory<id> *> *instances __attribute__((swift_name("instances")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
@@ -1519,16 +1567,10 @@ __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Koin_coreScopeRegistry")))
 @interface DKSKoin_coreScopeRegistry : DKSBase
 - (instancetype)initWith_koin:(DKSKoin_coreKoin *)_koin __attribute__((swift_name("init(_koin:)"))) __attribute__((objc_designated_initializer));
-- (DKSKoin_coreScope *)createScopeScopeId:(NSString *)scopeId qualifier:(id<DKSKoin_coreQualifier>)qualifier source:(id _Nullable)source __attribute__((swift_name("createScope(scopeId:qualifier:source:)")));
-- (void)declareDefinitionBean:(DKSKoin_coreBeanDefinition<id> *)bean __attribute__((swift_name("declareDefinition(bean:)")));
-- (void)deleteScopeScope:(DKSKoin_coreScope *)scope __attribute__((swift_name("deleteScope(scope:)")));
-- (void)deleteScopeScopeId:(NSString *)scopeId __attribute__((swift_name("deleteScope(scopeId:)")));
-- (DKSKoin_coreScope * _Nullable)getScopeOrNullScopeId:(NSString *)scopeId __attribute__((swift_name("getScopeOrNull(scopeId:)")));
-- (int32_t)size __attribute__((swift_name("size()")));
-- (void)unloadModulesModules:(id)modules __attribute__((swift_name("unloadModules(modules:)")));
-- (void)unloadModulesModule:(DKSKoin_coreModule *)module __attribute__((swift_name("unloadModules(module:)")));
+@property (class, readonly, getter=companion) DKSKoin_coreScopeRegistryCompanion *companion __attribute__((swift_name("companion")));
+- (void)loadScopesModules:(NSArray<DKSKoin_coreModule *> *)modules __attribute__((swift_name("loadScopes(modules:)")));
 @property (readonly) DKSKoin_coreScope *rootScope __attribute__((swift_name("rootScope")));
-@property (readonly) NSDictionary<NSString *, DKSKoin_coreScopeDefinition *> *scopeDefinitions __attribute__((swift_name("scopeDefinitions")));
+@property (readonly) NSSet<id<DKSKoin_coreQualifier>> *scopeDefinitions __attribute__((swift_name("scopeDefinitions")));
 @end;
 
 __attribute__((swift_name("Kotlinx_coroutines_coreCoroutineScope")))
@@ -1540,8 +1582,9 @@ __attribute__((swift_name("Kotlinx_coroutines_coreCoroutineScope")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Koin_coreKoinApplication")))
 @interface DKSKoin_coreKoinApplication : DKSBase
+@property (class, readonly, getter=companion) DKSKoin_coreKoinApplicationCompanion *companion __attribute__((swift_name("companion")));
+- (void)allowOverrideOverride:(BOOL)override __attribute__((swift_name("allowOverride(override:)")));
 - (void)close __attribute__((swift_name("close()")));
-- (DKSKoin_coreKoinApplication *)createEagerInstances __attribute__((swift_name("createEagerInstances()")));
 - (DKSKoin_coreKoinApplication *)loggerLogger:(DKSKoin_coreLogger *)logger __attribute__((swift_name("logger(logger:)")));
 - (DKSKoin_coreKoinApplication *)modulesModules:(DKSKotlinArray<DKSKoin_coreModule *> *)modules __attribute__((swift_name("modules(modules:)")));
 - (DKSKoin_coreKoinApplication *)modulesModules_:(NSArray<DKSKoin_coreModule *> *)modules __attribute__((swift_name("modules(modules_:)")));
@@ -1592,21 +1635,13 @@ __attribute__((swift_name("Kotlinx_coroutines_coreChildHandle")))
 @protocol DKSKotlinx_coroutines_coreChildHandle <DKSKotlinx_coroutines_coreDisposableHandle>
 @required
 - (BOOL)childCancelledCause:(DKSKotlinThrowable *)cause __attribute__((swift_name("childCancelled(cause:)")));
+@property (readonly) id<DKSKotlinx_coroutines_coreJob> _Nullable parent __attribute__((swift_name("parent")));
 @end;
 
 __attribute__((swift_name("Kotlinx_coroutines_coreChildJob")))
 @protocol DKSKotlinx_coroutines_coreChildJob <DKSKotlinx_coroutines_coreJob>
 @required
 - (void)parentCancelledParentJob:(id<DKSKotlinx_coroutines_coreParentJob>)parentJob __attribute__((swift_name("parentCancelled(parentJob:)")));
-@end;
-
-__attribute__((swift_name("Kotlinx_coroutines_coreCancellationException")))
-@interface DKSKotlinx_coroutines_coreCancellationException : DKSKotlinIllegalStateException
-- (instancetype)initWithMessage:(NSString * _Nullable)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer));
-- (instancetype)initWithMessage:(NSString * _Nullable)message cause:(DKSKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer));
-- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
-+ (instancetype)new __attribute__((unavailable));
-- (instancetype)initWithCause:(DKSKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(cause:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 @end;
 
 __attribute__((swift_name("KotlinSequence")))
@@ -1631,6 +1666,21 @@ __attribute__((swift_name("KotlinContinuation")))
 @required
 - (void)resumeWithResult:(id _Nullable)result __attribute__((swift_name("resumeWith(result:)")));
 @property (readonly) id<DKSKotlinCoroutineContext> context __attribute__((swift_name("context")));
+@end;
+
+__attribute__((swift_name("KotlinAbstractCoroutineContextKey")))
+@interface DKSKotlinAbstractCoroutineContextKey<B, E> : DKSBase <DKSKotlinCoroutineContextKey>
+- (instancetype)initWithBaseKey:(id<DKSKotlinCoroutineContextKey>)baseKey safeCast:(E _Nullable (^)(id<DKSKotlinCoroutineContextElement>))safeCast __attribute__((swift_name("init(baseKey:safeCast:)"))) __attribute__((objc_designated_initializer));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Kotlinx_coroutines_coreCoroutineDispatcher.Key")))
+@interface DKSKotlinx_coroutines_coreCoroutineDispatcherKey : DKSKotlinAbstractCoroutineContextKey<id<DKSKotlinContinuationInterceptor>, DKSKotlinx_coroutines_coreCoroutineDispatcher *>
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
+- (instancetype)initWithBaseKey:(id<DKSKotlinCoroutineContextKey>)baseKey safeCast:(id<DKSKotlinCoroutineContextElement> _Nullable (^)(id<DKSKotlinCoroutineContextElement>))safeCast __attribute__((swift_name("init(baseKey:safeCast:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
++ (instancetype)key __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) DKSKotlinx_coroutines_coreCoroutineDispatcherKey *shared __attribute__((swift_name("shared")));
 @end;
 
 __attribute__((swift_name("Kotlinx_coroutines_coreRunnable")))
@@ -1661,6 +1711,7 @@ __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Ktor_httpURLProtocol")))
 @interface DKSKtor_httpURLProtocol : DKSBase
 - (instancetype)initWithName:(NSString *)name defaultPort:(int32_t)defaultPort __attribute__((swift_name("init(name:defaultPort:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) DKSKtor_httpURLProtocolCompanion *companion __attribute__((swift_name("companion")));
 - (NSString *)component1 __attribute__((swift_name("component1()")));
 - (int32_t)component2 __attribute__((swift_name("component2()")));
 - (DKSKtor_httpURLProtocol *)doCopyName:(NSString *)name defaultPort:(int32_t)defaultPort __attribute__((swift_name("doCopy(name:defaultPort:)")));
@@ -1688,60 +1739,22 @@ __attribute__((swift_name("Ktor_utilsStringValues")))
 __attribute__((swift_name("Ktor_httpParameters")))
 @protocol DKSKtor_httpParameters <DKSKtor_utilsStringValues>
 @required
+@property (readonly) DKSKtor_httpUrlEncodingOption *urlEncodingOption __attribute__((swift_name("urlEncodingOption")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Ktor_httpUrl.Companion")))
+@interface DKSKtor_httpUrlCompanion : DKSBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) DKSKtor_httpUrlCompanion *shared __attribute__((swift_name("shared")));
 @end;
 
 __attribute__((swift_name("RuntimeQueryListener")))
 @protocol DKSRuntimeQueryListener
 @required
 - (void)queryResultsChanged __attribute__((swift_name("queryResultsChanged()")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Koin_coreScopeDefinition")))
-@interface DKSKoin_coreScopeDefinition : DKSBase
-- (instancetype)initWithQualifier:(id<DKSKoin_coreQualifier>)qualifier isRoot:(BOOL)isRoot __attribute__((swift_name("init(qualifier:isRoot:)"))) __attribute__((objc_designated_initializer));
-- (id<DKSKoin_coreQualifier>)component1 __attribute__((swift_name("component1()")));
-- (BOOL)component2 __attribute__((swift_name("component2()")));
-- (DKSKoin_coreScopeDefinition *)doCopyQualifier:(id<DKSKoin_coreQualifier>)qualifier isRoot:(BOOL)isRoot __attribute__((swift_name("doCopy(qualifier:isRoot:)")));
-- (DKSKoin_coreBeanDefinition<id> *)declareNewDefinitionInstance:(id _Nullable)instance defQualifier:(id<DKSKoin_coreQualifier> _Nullable)defQualifier secondaryTypes:(NSArray<id<DKSKotlinKClass>> * _Nullable)secondaryTypes override:(BOOL)override __attribute__((swift_name("declareNewDefinition(instance:defQualifier:secondaryTypes:override:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (void)removeBeanDefinition:(DKSKoin_coreBeanDefinition<id> *)beanDefinition __attribute__((swift_name("remove(beanDefinition:)")));
-- (void)saveBeanDefinition:(DKSKoin_coreBeanDefinition<id> *)beanDefinition forceOverride:(BOOL)forceOverride __attribute__((swift_name("save(beanDefinition:forceOverride:)")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) DKSMutableSet<DKSKoin_coreBeanDefinition<id> *> *definitions __attribute__((swift_name("definitions")));
-@property (readonly) BOOL isRoot __attribute__((swift_name("isRoot")));
-@property (readonly) id<DKSKoin_coreQualifier> qualifier __attribute__((swift_name("qualifier")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Koin_coreBeanDefinition")))
-@interface DKSKoin_coreBeanDefinition<T> : DKSBase
-- (instancetype)initWithScopeQualifier:(id<DKSKoin_coreQualifier>)scopeQualifier primaryType:(id<DKSKotlinKClass>)primaryType qualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier definition:(T _Nullable (^)(DKSKoin_coreScope *, DKSKoin_coreDefinitionParameters *))definition kind:(DKSKoin_coreKind *)kind secondaryTypes:(NSArray<id<DKSKotlinKClass>> *)secondaryTypes options:(DKSKoin_coreOptions *)options properties:(DKSKoin_coreProperties *)properties __attribute__((swift_name("init(scopeQualifier:primaryType:qualifier:definition:kind:secondaryTypes:options:properties:)"))) __attribute__((objc_designated_initializer));
-- (BOOL)canBindPrimary:(id<DKSKotlinKClass>)primary secondary:(id<DKSKotlinKClass>)secondary __attribute__((swift_name("canBind(primary:secondary:)")));
-- (id<DKSKoin_coreQualifier>)component1 __attribute__((swift_name("component1()")));
-- (id<DKSKotlinKClass>)component2 __attribute__((swift_name("component2()")));
-- (id<DKSKoin_coreQualifier> _Nullable)component3 __attribute__((swift_name("component3()")));
-- (T _Nullable (^)(DKSKoin_coreScope *, DKSKoin_coreDefinitionParameters *))component4 __attribute__((swift_name("component4()")));
-- (DKSKoin_coreKind *)component5 __attribute__((swift_name("component5()")));
-- (NSArray<id<DKSKotlinKClass>> *)component6 __attribute__((swift_name("component6()")));
-- (DKSKoin_coreOptions *)component7 __attribute__((swift_name("component7()")));
-- (DKSKoin_coreProperties *)component8 __attribute__((swift_name("component8()")));
-- (DKSKoin_coreBeanDefinition<T> *)doCopyScopeQualifier:(id<DKSKoin_coreQualifier>)scopeQualifier primaryType:(id<DKSKotlinKClass>)primaryType qualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier definition:(T _Nullable (^)(DKSKoin_coreScope *, DKSKoin_coreDefinitionParameters *))definition kind:(DKSKoin_coreKind *)kind secondaryTypes:(NSArray<id<DKSKotlinKClass>> *)secondaryTypes options:(DKSKoin_coreOptions *)options properties:(DKSKoin_coreProperties *)properties __attribute__((swift_name("doCopy(scopeQualifier:primaryType:qualifier:definition:kind:secondaryTypes:options:properties:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (BOOL)hasTypeClazz:(id<DKSKotlinKClass>)clazz __attribute__((swift_name("hasType(clazz:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (BOOL)isClazz:(id<DKSKotlinKClass>)clazz qualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier scopeDefinition:(id<DKSKoin_coreQualifier>)scopeDefinition __attribute__((swift_name("is(clazz:qualifier:scopeDefinition:)")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property DKSKoin_coreCallbacks<T> *callbacks __attribute__((swift_name("callbacks")));
-@property (readonly) T _Nullable (^definition)(DKSKoin_coreScope *, DKSKoin_coreDefinitionParameters *) __attribute__((swift_name("definition")));
-@property (readonly) DKSKoin_coreKind *kind __attribute__((swift_name("kind")));
-@property (readonly) DKSKoin_coreOptions *options __attribute__((swift_name("options")));
-@property (readonly) id<DKSKotlinKClass> primaryType __attribute__((swift_name("primaryType")));
-@property (readonly) DKSKoin_coreProperties *properties __attribute__((swift_name("properties")));
-@property (readonly) id<DKSKoin_coreQualifier> _Nullable qualifier __attribute__((swift_name("qualifier")));
-@property (readonly) id<DKSKoin_coreQualifier> scopeQualifier __attribute__((swift_name("scopeQualifier")));
-@property NSArray<id<DKSKotlinKClass>> *secondaryTypes __attribute__((swift_name("secondaryTypes")));
 @end;
 
 __attribute__((swift_name("Koin_coreScopeCallback")))
@@ -1751,30 +1764,70 @@ __attribute__((swift_name("Koin_coreScopeCallback")))
 @end;
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Koin_coreOptions")))
-@interface DKSKoin_coreOptions : DKSBase
-- (instancetype)initWithIsCreatedAtStart:(BOOL)isCreatedAtStart override:(BOOL)override isExtraDefinition:(BOOL)isExtraDefinition __attribute__((swift_name("init(isCreatedAtStart:override:isExtraDefinition:)"))) __attribute__((objc_designated_initializer));
-- (BOOL)component1 __attribute__((swift_name("component1()")));
-- (BOOL)component2 __attribute__((swift_name("component2()")));
-- (BOOL)component3 __attribute__((swift_name("component3()")));
-- (DKSKoin_coreOptions *)doCopyIsCreatedAtStart:(BOOL)isCreatedAtStart override:(BOOL)override isExtraDefinition:(BOOL)isExtraDefinition __attribute__((swift_name("doCopy(isCreatedAtStart:override:isExtraDefinition:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property BOOL isCreatedAtStart __attribute__((swift_name("isCreatedAtStart")));
-@property BOOL isExtraDefinition __attribute__((swift_name("isExtraDefinition")));
-@property BOOL override __attribute__((swift_name("override")));
+__attribute__((swift_name("Koin_coreParametersHolder.Companion")))
+@interface DKSKoin_coreParametersHolderCompanion : DKSBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) DKSKoin_coreParametersHolderCompanion *shared __attribute__((swift_name("shared")));
+@property (readonly) int32_t MAX_PARAMS __attribute__((swift_name("MAX_PARAMS")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("KotlinEnumCompanion")))
+@interface DKSKotlinEnumCompanion : DKSBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) DKSKotlinEnumCompanion *shared __attribute__((swift_name("shared")));
+@end;
+
+__attribute__((swift_name("Koin_coreInstanceFactory")))
+@interface DKSKoin_coreInstanceFactory<T> : DKSBase
+- (instancetype)initWithBeanDefinition:(DKSKoin_coreBeanDefinition<T> *)beanDefinition __attribute__((swift_name("init(beanDefinition:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) DKSKoin_coreInstanceFactoryCompanion *companion __attribute__((swift_name("companion")));
+- (T _Nullable)createContext:(DKSKoin_coreInstanceContext *)context __attribute__((swift_name("create(context:)")));
+- (void)dropScope:(DKSKoin_coreScope * _Nullable)scope __attribute__((swift_name("drop(scope:)")));
+- (void)dropAll __attribute__((swift_name("dropAll()")));
+- (T _Nullable)getContext:(DKSKoin_coreInstanceContext *)context __attribute__((swift_name("get(context:)")));
+- (BOOL)isCreatedContext:(DKSKoin_coreInstanceContext * _Nullable)context __attribute__((swift_name("isCreated(context:)")));
+@property (readonly) DKSKoin_coreBeanDefinition<T> *beanDefinition __attribute__((swift_name("beanDefinition")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("KotlinPair")))
+@interface DKSKotlinPair<__covariant A, __covariant B> : DKSBase
+- (instancetype)initWithFirst:(A _Nullable)first second:(B _Nullable)second __attribute__((swift_name("init(first:second:)"))) __attribute__((objc_designated_initializer));
+- (A _Nullable)component1 __attribute__((swift_name("component1()")));
+- (B _Nullable)component2 __attribute__((swift_name("component2()")));
+- (DKSKotlinPair<A, B> *)doCopyFirst:(A _Nullable)first second:(B _Nullable)second __attribute__((swift_name("doCopy(first:second:)")));
+- (BOOL)equalsOther:(id _Nullable)other __attribute__((swift_name("equals(other:)")));
+- (int32_t)hashCode __attribute__((swift_name("hashCode()")));
+- (NSString *)toString __attribute__((swift_name("toString()")));
+@property (readonly) A _Nullable first __attribute__((swift_name("first")));
+@property (readonly) B _Nullable second __attribute__((swift_name("second")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Koin_coreScopeDSL")))
 @interface DKSKoin_coreScopeDSL : DKSBase
-- (instancetype)initWithScopeQualifier:(id<DKSKoin_coreQualifier>)scopeQualifier definitions:(DKSMutableSet<DKSKoin_coreBeanDefinition<id> *> *)definitions __attribute__((swift_name("init(scopeQualifier:definitions:)"))) __attribute__((objc_designated_initializer));
-- (DKSKoin_coreBeanDefinition<id> *)factoryQualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier override:(BOOL)override definition:(id _Nullable (^)(DKSKoin_coreScope *, DKSKoin_coreDefinitionParameters *))definition __attribute__((swift_name("factory(qualifier:override:definition:)")));
-- (DKSKoin_coreBeanDefinition<id> *)scopedQualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier override:(BOOL)override definition:(id _Nullable (^)(DKSKoin_coreScope *, DKSKoin_coreDefinitionParameters *))definition __attribute__((swift_name("scoped(qualifier:override:definition:)")));
-- (DKSKoin_coreBeanDefinition<id> *)singleQualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier override:(BOOL)override definition:(id _Nullable (^)(DKSKoin_coreScope *, DKSKoin_coreDefinitionParameters *))definition __attribute__((swift_name("single(qualifier:override:definition:)"))) __attribute__((unavailable("Can't use Single in a scope. Use Scoped instead")));
-@property (readonly) DKSMutableSet<DKSKoin_coreBeanDefinition<id> *> *definitions __attribute__((swift_name("definitions")));
+- (instancetype)initWithScopeQualifier:(id<DKSKoin_coreQualifier>)scopeQualifier module:(DKSKoin_coreModule *)module __attribute__((swift_name("init(scopeQualifier:module:)"))) __attribute__((objc_designated_initializer));
+- (DKSKotlinPair<DKSKoin_coreModule *, DKSKoin_coreInstanceFactory<id> *> *)factoryQualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier definition:(id _Nullable (^)(DKSKoin_coreScope *, DKSKoin_coreParametersHolder *))definition __attribute__((swift_name("factory(qualifier:definition:)")));
+- (DKSKotlinPair<DKSKoin_coreModule *, DKSKoin_coreInstanceFactory<id> *> *)scopedQualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier definition:(id _Nullable (^)(DKSKoin_coreScope *, DKSKoin_coreParametersHolder *))definition __attribute__((swift_name("scoped(qualifier:definition:)")));
+- (DKSKotlinPair<DKSKoin_coreModule *, DKSKoin_coreInstanceFactory<id> *> *)singleQualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier definition:(id _Nullable (^)(DKSKoin_coreScope *, DKSKoin_coreParametersHolder *))definition __attribute__((swift_name("single(qualifier:definition:)"))) __attribute__((unavailable("Can't use Single in a scope. Use Scoped instead")));
+@property (readonly) DKSKoin_coreModule *module __attribute__((swift_name("module")));
 @property (readonly) id<DKSKoin_coreQualifier> scopeQualifier __attribute__((swift_name("scopeQualifier")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Koin_coreSingleInstanceFactory")))
+@interface DKSKoin_coreSingleInstanceFactory<T> : DKSKoin_coreInstanceFactory<T>
+- (instancetype)initWithBeanDefinition:(DKSKoin_coreBeanDefinition<T> *)beanDefinition __attribute__((swift_name("init(beanDefinition:)"))) __attribute__((objc_designated_initializer));
+- (T _Nullable)createContext:(DKSKoin_coreInstanceContext *)context __attribute__((swift_name("create(context:)")));
+- (void)dropScope:(DKSKoin_coreScope * _Nullable)scope __attribute__((swift_name("drop(scope:)")));
+- (void)dropAll __attribute__((swift_name("dropAll()")));
+- (T _Nullable)getContext:(DKSKoin_coreInstanceContext *)context __attribute__((swift_name("get(context:)")));
+- (BOOL)isCreatedContext:(DKSKoin_coreInstanceContext * _Nullable)context __attribute__((swift_name("isCreated(context:)")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
@@ -1788,6 +1841,25 @@ __attribute__((swift_name("Koin_coreLevel")))
 @property (class, readonly) DKSKoin_coreLevel *error __attribute__((swift_name("error")));
 @property (class, readonly) DKSKoin_coreLevel *none __attribute__((swift_name("none")));
 + (DKSKotlinArray<DKSKoin_coreLevel *> *)values __attribute__((swift_name("values()")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Koin_coreScopeRegistry.Companion")))
+@interface DKSKoin_coreScopeRegistryCompanion : DKSBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) DKSKoin_coreScopeRegistryCompanion *shared __attribute__((swift_name("shared")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Koin_coreKoinApplication.Companion")))
+@interface DKSKoin_coreKoinApplicationCompanion : DKSBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) DKSKoin_coreKoinApplicationCompanion *shared __attribute__((swift_name("shared")));
+- (DKSKoin_coreKoinApplication *)doInit __attribute__((swift_name("doInit()")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
@@ -1806,7 +1878,7 @@ __attribute__((swift_name("KotlinByteArray")))
 __attribute__((swift_name("Kotlinx_coroutines_coreParentJob")))
 @protocol DKSKotlinx_coroutines_coreParentJob <DKSKotlinx_coroutines_coreJob>
 @required
-- (DKSKotlinx_coroutines_coreCancellationException *)getChildJobCancellationCause __attribute__((swift_name("getChildJobCancellationCause()")));
+- (DKSKotlinCancellationException *)getChildJobCancellationCause __attribute__((swift_name("getChildJobCancellationCause()")));
 @end;
 
 __attribute__((swift_name("Kotlinx_coroutines_coreSelectInstance")))
@@ -1816,7 +1888,7 @@ __attribute__((swift_name("Kotlinx_coroutines_coreSelectInstance")))
 - (id _Nullable)performAtomicTrySelectDesc:(DKSKotlinx_coroutines_coreAtomicDesc *)desc __attribute__((swift_name("performAtomicTrySelect(desc:)")));
 - (void)resumeSelectWithExceptionException:(DKSKotlinThrowable *)exception __attribute__((swift_name("resumeSelectWithException(exception:)")));
 - (BOOL)trySelect __attribute__((swift_name("trySelect()")));
-- (id _Nullable)trySelectOtherOtherOp:(DKSKotlinx_coroutines_coreLockFreeLinkedListNodePrepareOp * _Nullable)otherOp __attribute__((swift_name("trySelectOther(otherOp:)")));
+- (id _Nullable)trySelectOtherOtherOp:(DKSKotlinx_coroutines_corePrepareOp * _Nullable)otherOp __attribute__((swift_name("trySelectOther(otherOp:)")));
 @property (readonly) id<DKSKotlinContinuation> completion __attribute__((swift_name("completion")));
 @property (readonly) BOOL isSelected __attribute__((swift_name("isSelected")));
 @end;
@@ -1829,7 +1901,36 @@ __attribute__((swift_name("KotlinSuspendFunction0")))
  @note This method converts instances of CancellationException to errors.
  Other uncaught Kotlin exceptions are fatal.
 */
-- (void)invokeWithCompletionHandler:(void (^)(id _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("invoke(completionHandler:)")));
+- (void)invokeWithCompletionHandler:(void (^)(id _Nullable_result, NSError * _Nullable))completionHandler __attribute__((swift_name("invoke(completionHandler:)")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Ktor_httpURLProtocol.Companion")))
+@interface DKSKtor_httpURLProtocolCompanion : DKSBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) DKSKtor_httpURLProtocolCompanion *shared __attribute__((swift_name("shared")));
+- (DKSKtor_httpURLProtocol *)createOrDefaultName:(NSString *)name __attribute__((swift_name("createOrDefault(name:)")));
+@property (readonly) DKSKtor_httpURLProtocol *HTTP __attribute__((swift_name("HTTP")));
+@property (readonly) DKSKtor_httpURLProtocol *HTTPS __attribute__((swift_name("HTTPS")));
+@property (readonly) DKSKtor_httpURLProtocol *SOCKS __attribute__((swift_name("SOCKS")));
+@property (readonly) DKSKtor_httpURLProtocol *WS __attribute__((swift_name("WS")));
+@property (readonly) DKSKtor_httpURLProtocol *WSS __attribute__((swift_name("WSS")));
+@property (readonly) NSDictionary<NSString *, DKSKtor_httpURLProtocol *> *byName __attribute__((swift_name("byName")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Ktor_httpUrlEncodingOption")))
+@interface DKSKtor_httpUrlEncodingOption : DKSKotlinEnum<DKSKtor_httpUrlEncodingOption *>
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
+- (instancetype)initWithName:(NSString *)name ordinal:(int32_t)ordinal __attribute__((swift_name("init(name:ordinal:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+@property (class, readonly) DKSKtor_httpUrlEncodingOption *default_ __attribute__((swift_name("default_")));
+@property (class, readonly) DKSKtor_httpUrlEncodingOption *keyOnly __attribute__((swift_name("keyOnly")));
+@property (class, readonly) DKSKtor_httpUrlEncodingOption *valueOnly __attribute__((swift_name("valueOnly")));
+@property (class, readonly) DKSKtor_httpUrlEncodingOption *noEncoding __attribute__((swift_name("noEncoding")));
++ (DKSKotlinArray<DKSKtor_httpUrlEncodingOption *> *)values __attribute__((swift_name("values()")));
 @end;
 
 __attribute__((swift_name("KotlinMapEntry")))
@@ -1840,39 +1941,47 @@ __attribute__((swift_name("KotlinMapEntry")))
 @end;
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Koin_coreKind")))
-@interface DKSKoin_coreKind : DKSKotlinEnum<DKSKoin_coreKind *>
+__attribute__((swift_name("Koin_coreBeanDefinition")))
+@interface DKSKoin_coreBeanDefinition<T> : DKSBase
+- (instancetype)initWithScopeQualifier:(id<DKSKoin_coreQualifier>)scopeQualifier primaryType:(id<DKSKotlinKClass>)primaryType qualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier definition:(T _Nullable (^)(DKSKoin_coreScope *, DKSKoin_coreParametersHolder *))definition kind:(DKSKoin_coreKind *)kind secondaryTypes:(NSArray<id<DKSKotlinKClass>> *)secondaryTypes __attribute__((swift_name("init(scopeQualifier:primaryType:qualifier:definition:kind:secondaryTypes:)"))) __attribute__((objc_designated_initializer));
+- (id<DKSKoin_coreQualifier>)component1 __attribute__((swift_name("component1()")));
+- (id<DKSKotlinKClass>)component2 __attribute__((swift_name("component2()")));
+- (id<DKSKoin_coreQualifier> _Nullable)component3 __attribute__((swift_name("component3()")));
+- (T _Nullable (^)(DKSKoin_coreScope *, DKSKoin_coreParametersHolder *))component4 __attribute__((swift_name("component4()")));
+- (DKSKoin_coreKind *)component5 __attribute__((swift_name("component5()")));
+- (NSArray<id<DKSKotlinKClass>> *)component6 __attribute__((swift_name("component6()")));
+- (DKSKoin_coreBeanDefinition<T> *)doCopyScopeQualifier:(id<DKSKoin_coreQualifier>)scopeQualifier primaryType:(id<DKSKotlinKClass>)primaryType qualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier definition:(T _Nullable (^)(DKSKoin_coreScope *, DKSKoin_coreParametersHolder *))definition kind:(DKSKoin_coreKind *)kind secondaryTypes:(NSArray<id<DKSKotlinKClass>> *)secondaryTypes __attribute__((swift_name("doCopy(scopeQualifier:primaryType:qualifier:definition:kind:secondaryTypes:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (BOOL)hasTypeClazz:(id<DKSKotlinKClass>)clazz __attribute__((swift_name("hasType(clazz:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (BOOL)isClazz:(id<DKSKotlinKClass>)clazz qualifier:(id<DKSKoin_coreQualifier> _Nullable)qualifier scopeDefinition:(id<DKSKoin_coreQualifier>)scopeDefinition __attribute__((swift_name("is(clazz:qualifier:scopeDefinition:)")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property DKSKoin_coreCallbacks<T> *callbacks __attribute__((swift_name("callbacks")));
+@property (readonly) T _Nullable (^definition)(DKSKoin_coreScope *, DKSKoin_coreParametersHolder *) __attribute__((swift_name("definition")));
+@property (readonly) DKSKoin_coreKind *kind __attribute__((swift_name("kind")));
+@property (readonly) id<DKSKotlinKClass> primaryType __attribute__((swift_name("primaryType")));
+@property (readonly) id<DKSKoin_coreQualifier> _Nullable qualifier __attribute__((swift_name("qualifier")));
+@property (readonly) id<DKSKoin_coreQualifier> scopeQualifier __attribute__((swift_name("scopeQualifier")));
+@property NSArray<id<DKSKotlinKClass>> *secondaryTypes __attribute__((swift_name("secondaryTypes")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Koin_coreInstanceFactoryCompanion")))
+@interface DKSKoin_coreInstanceFactoryCompanion : DKSBase
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (instancetype)initWithName:(NSString *)name ordinal:(int32_t)ordinal __attribute__((swift_name("init(name:ordinal:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
-@property (class, readonly) DKSKoin_coreKind *single __attribute__((swift_name("single")));
-@property (class, readonly) DKSKoin_coreKind *factory __attribute__((swift_name("factory")));
-+ (DKSKotlinArray<DKSKoin_coreKind *> *)values __attribute__((swift_name("values()")));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) DKSKoin_coreInstanceFactoryCompanion *shared __attribute__((swift_name("shared")));
+@property (readonly) NSString *ERROR_SEPARATOR __attribute__((swift_name("ERROR_SEPARATOR")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Koin_coreProperties")))
-@interface DKSKoin_coreProperties : DKSBase
-- (instancetype)initWithData:(DKSMutableDictionary<NSString *, id> *)data __attribute__((swift_name("init(data:)"))) __attribute__((objc_designated_initializer));
-- (DKSKoin_coreProperties *)doCopyData:(DKSMutableDictionary<NSString *, id> *)data __attribute__((swift_name("doCopy(data:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (id _Nullable)getKey:(NSString *)key __attribute__((swift_name("get(key:)")));
-- (id _Nullable)getOrNullKey:(NSString *)key __attribute__((swift_name("getOrNull(key:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (void)setKey:(NSString *)key value:(id _Nullable)value __attribute__((swift_name("set(key:value:)")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Koin_coreCallbacks")))
-@interface DKSKoin_coreCallbacks<T> : DKSBase
-- (instancetype)initWithOnClose:(void (^ _Nullable)(T _Nullable))onClose __attribute__((swift_name("init(onClose:)"))) __attribute__((objc_designated_initializer));
-- (void (^ _Nullable)(T _Nullable))component1 __attribute__((swift_name("component1()")));
-- (DKSKoin_coreCallbacks<T> *)doCopyOnClose:(void (^ _Nullable)(T _Nullable))onClose __attribute__((swift_name("doCopy(onClose:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) void (^ _Nullable onClose)(T _Nullable) __attribute__((swift_name("onClose")));
+__attribute__((swift_name("Koin_coreInstanceContext")))
+@interface DKSKoin_coreInstanceContext : DKSBase
+- (instancetype)initWithKoin:(DKSKoin_coreKoin *)koin scope:(DKSKoin_coreScope *)scope parameters:(DKSKoin_coreParametersHolder * _Nullable)parameters __attribute__((swift_name("init(koin:scope:parameters:)"))) __attribute__((objc_designated_initializer));
+@property (readonly) DKSKoin_coreKoin *koin __attribute__((swift_name("koin")));
+@property (readonly) DKSKoin_coreParametersHolder * _Nullable parameters __attribute__((swift_name("parameters")));
+@property (readonly) DKSKoin_coreScope *scope __attribute__((swift_name("scope")));
 @end;
 
 __attribute__((swift_name("KotlinByteIterator")))
@@ -1903,18 +2012,40 @@ __attribute__((swift_name("Kotlinx_coroutines_coreOpDescriptor")))
 @end;
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Kotlinx_coroutines_coreLockFreeLinkedListNode.PrepareOp")))
-@interface DKSKotlinx_coroutines_coreLockFreeLinkedListNodePrepareOp : DKSKotlinx_coroutines_coreOpDescriptor
-- (instancetype)initWithAffected:(DKSKotlinx_coroutines_coreLockFreeLinkedListNode *)affected next:(DKSKotlinx_coroutines_coreLockFreeLinkedListNode *)next desc:(DKSKotlinx_coroutines_coreLockFreeLinkedListNodeAbstractAtomicDesc *)desc __attribute__((swift_name("init(affected:next:desc:)"))) __attribute__((objc_designated_initializer));
+__attribute__((swift_name("Kotlinx_coroutines_corePrepareOp")))
+@interface DKSKotlinx_coroutines_corePrepareOp : DKSKotlinx_coroutines_coreOpDescriptor
+- (instancetype)initWithAffected:(DKSKotlinx_coroutines_coreLinkedListNode *)affected desc:(DKSKotlinx_coroutines_coreAbstractAtomicDesc *)desc atomicOp:(DKSKotlinx_coroutines_coreAtomicOp<id> *)atomicOp __attribute__((swift_name("init(affected:desc:atomicOp:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)new __attribute__((unavailable));
 - (void)finishPrepare __attribute__((swift_name("finishPrepare()")));
 - (id _Nullable)performAffected:(id _Nullable)affected __attribute__((swift_name("perform(affected:)")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) DKSKotlinx_coroutines_coreLockFreeLinkedListNode *affected __attribute__((swift_name("affected")));
+@property (readonly) DKSKotlinx_coroutines_coreLinkedListNode *affected __attribute__((swift_name("affected")));
 @property (readonly) DKSKotlinx_coroutines_coreAtomicOp<id> *atomicOp __attribute__((swift_name("atomicOp")));
-@property (readonly) DKSKotlinx_coroutines_coreLockFreeLinkedListNodeAbstractAtomicDesc *desc __attribute__((swift_name("desc")));
-@property (readonly) DKSKotlinx_coroutines_coreLockFreeLinkedListNode *next __attribute__((swift_name("next")));
+@property (readonly) DKSKotlinx_coroutines_coreAbstractAtomicDesc *desc __attribute__((swift_name("desc")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Koin_coreKind")))
+@interface DKSKoin_coreKind : DKSKotlinEnum<DKSKoin_coreKind *>
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
+- (instancetype)initWithName:(NSString *)name ordinal:(int32_t)ordinal __attribute__((swift_name("init(name:ordinal:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+@property (class, readonly) DKSKoin_coreKind *singleton __attribute__((swift_name("singleton")));
+@property (class, readonly) DKSKoin_coreKind *factory __attribute__((swift_name("factory")));
+@property (class, readonly) DKSKoin_coreKind *scoped __attribute__((swift_name("scoped")));
++ (DKSKotlinArray<DKSKoin_coreKind *> *)values __attribute__((swift_name("values()")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Koin_coreCallbacks")))
+@interface DKSKoin_coreCallbacks<T> : DKSBase
+- (instancetype)initWithOnClose:(void (^ _Nullable)(T _Nullable))onClose __attribute__((swift_name("init(onClose:)"))) __attribute__((objc_designated_initializer));
+- (void (^ _Nullable)(T _Nullable))component1 __attribute__((swift_name("component1()")));
+- (DKSKoin_coreCallbacks<T> *)doCopyOnClose:(void (^ _Nullable)(T _Nullable))onClose __attribute__((swift_name("doCopy(onClose:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) void (^ _Nullable onClose)(T _Nullable) __attribute__((swift_name("onClose")));
 @end;
 
 __attribute__((swift_name("Kotlinx_coroutines_coreAtomicOp")))
@@ -1931,79 +2062,40 @@ __attribute__((swift_name("Kotlinx_coroutines_coreAtomicOp")))
 @property (readonly) int64_t opSequence __attribute__((swift_name("opSequence")));
 @end;
 
-__attribute__((swift_name("Kotlinx_coroutines_coreLockFreeLinkedListNode")))
-@interface DKSKotlinx_coroutines_coreLockFreeLinkedListNode : DKSBase
+__attribute__((swift_name("Kotlinx_coroutines_coreLinkedListNode")))
+@interface DKSKotlinx_coroutines_coreLinkedListNode : DKSBase
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
 + (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
-- (void)addLastNode:(DKSKotlinx_coroutines_coreLockFreeLinkedListNode *)node __attribute__((swift_name("addLast(node:)")));
-- (BOOL)addLastIfNode:(DKSKotlinx_coroutines_coreLockFreeLinkedListNode *)node condition:(DKSBoolean *(^)(void))condition __attribute__((swift_name("addLastIf(node:condition:)")));
-- (BOOL)addLastIfPrevNode:(DKSKotlinx_coroutines_coreLockFreeLinkedListNode *)node predicate:(DKSBoolean *(^)(DKSKotlinx_coroutines_coreLockFreeLinkedListNode *))predicate __attribute__((swift_name("addLastIfPrev(node:predicate:)")));
-- (BOOL)addLastIfPrevAndIfNode:(DKSKotlinx_coroutines_coreLockFreeLinkedListNode *)node predicate:(DKSBoolean *(^)(DKSKotlinx_coroutines_coreLockFreeLinkedListNode *))predicate condition:(DKSBoolean *(^)(void))condition __attribute__((swift_name("addLastIfPrevAndIf(node:predicate:condition:)")));
-- (BOOL)addOneIfEmptyNode:(DKSKotlinx_coroutines_coreLockFreeLinkedListNode *)node __attribute__((swift_name("addOneIfEmpty(node:)")));
-- (DKSKotlinx_coroutines_coreLockFreeLinkedListNodeAddLastDesc<DKSKotlinx_coroutines_coreLockFreeLinkedListNode *> *)describeAddLastNode:(DKSKotlinx_coroutines_coreLockFreeLinkedListNode *)node __attribute__((swift_name("describeAddLast(node:)")));
-- (DKSKotlinx_coroutines_coreLockFreeLinkedListNodeRemoveFirstDesc<DKSKotlinx_coroutines_coreLockFreeLinkedListNode *> *)describeRemoveFirst __attribute__((swift_name("describeRemoveFirst()")));
+- (void)addLastNode:(DKSKotlinx_coroutines_coreLinkedListNode *)node __attribute__((swift_name("addLast(node:)")));
+- (BOOL)addLastIfNode:(DKSKotlinx_coroutines_coreLinkedListNode *)node condition:(DKSBoolean *(^)(void))condition __attribute__((swift_name("addLastIf(node:condition:)")));
+- (BOOL)addLastIfPrevNode:(DKSKotlinx_coroutines_coreLinkedListNode *)node predicate:(DKSBoolean *(^)(DKSKotlinx_coroutines_coreLinkedListNode *))predicate __attribute__((swift_name("addLastIfPrev(node:predicate:)")));
+- (BOOL)addLastIfPrevAndIfNode:(DKSKotlinx_coroutines_coreLinkedListNode *)node predicate:(DKSBoolean *(^)(DKSKotlinx_coroutines_coreLinkedListNode *))predicate condition:(DKSBoolean *(^)(void))condition __attribute__((swift_name("addLastIfPrevAndIf(node:predicate:condition:)")));
+- (BOOL)addOneIfEmptyNode:(DKSKotlinx_coroutines_coreLinkedListNode *)node __attribute__((swift_name("addOneIfEmpty(node:)")));
 - (void)helpRemove __attribute__((swift_name("helpRemove()")));
-- (DKSKotlinx_coroutines_coreLockFreeLinkedListNode * _Nullable)nextIfRemoved __attribute__((swift_name("nextIfRemoved()")));
 - (BOOL)remove __attribute__((swift_name("remove()")));
 - (id _Nullable)removeFirstIfIsInstanceOfOrPeekIfPredicate:(DKSBoolean *(^)(id _Nullable))predicate __attribute__((swift_name("removeFirstIfIsInstanceOfOrPeekIf(predicate:)")));
-- (DKSKotlinx_coroutines_coreLockFreeLinkedListNode * _Nullable)removeFirstOrNull __attribute__((swift_name("removeFirstOrNull()")));
-- (NSString *)description __attribute__((swift_name("description()")));
+- (DKSKotlinx_coroutines_coreLinkedListNode * _Nullable)removeFirstOrNull __attribute__((swift_name("removeFirstOrNull()")));
 @property (readonly) BOOL isRemoved __attribute__((swift_name("isRemoved")));
-@property (readonly, getter=next__) id _Nullable next __attribute__((swift_name("next")));
-@property (readonly) DKSKotlinx_coroutines_coreLockFreeLinkedListNode *nextNode __attribute__((swift_name("nextNode")));
-@property (readonly) DKSKotlinx_coroutines_coreLockFreeLinkedListNode *prevNode __attribute__((swift_name("prevNode")));
+@property (readonly) DKSKotlinx_coroutines_coreLinkedListNode *nextNode __attribute__((swift_name("nextNode")));
+@property (readonly) DKSKotlinx_coroutines_coreLinkedListNode *prevNode __attribute__((swift_name("prevNode")));
 @end;
 
-__attribute__((swift_name("Kotlinx_coroutines_coreLockFreeLinkedListNode.AbstractAtomicDesc")))
-@interface DKSKotlinx_coroutines_coreLockFreeLinkedListNodeAbstractAtomicDesc : DKSKotlinx_coroutines_coreAtomicDesc
+__attribute__((swift_name("Kotlinx_coroutines_coreAbstractAtomicDesc")))
+@interface DKSKotlinx_coroutines_coreAbstractAtomicDesc : DKSKotlinx_coroutines_coreAtomicDesc
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
 + (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
 - (void)completeOp:(DKSKotlinx_coroutines_coreAtomicOp<id> *)op failure:(id _Nullable)failure __attribute__((swift_name("complete(op:failure:)")));
-- (id _Nullable)failureAffected:(DKSKotlinx_coroutines_coreLockFreeLinkedListNode * _Nullable)affected __attribute__((swift_name("failure(affected:)")));
-- (void)finishOnSuccessAffected:(DKSKotlinx_coroutines_coreLockFreeLinkedListNode *)affected next:(DKSKotlinx_coroutines_coreLockFreeLinkedListNode *)next __attribute__((swift_name("finishOnSuccess(affected:next:)")));
-- (void)finishPreparePrepareOp:(DKSKotlinx_coroutines_coreLockFreeLinkedListNodePrepareOp *)prepareOp __attribute__((swift_name("finishPrepare(prepareOp:)")));
-- (id _Nullable)onPreparePrepareOp:(DKSKotlinx_coroutines_coreLockFreeLinkedListNodePrepareOp *)prepareOp __attribute__((swift_name("onPrepare(prepareOp:)")));
-- (void)onRemovedAffected:(DKSKotlinx_coroutines_coreLockFreeLinkedListNode *)affected __attribute__((swift_name("onRemoved(affected:)")));
+- (id _Nullable)failureAffected:(DKSKotlinx_coroutines_coreLinkedListNode *)affected __attribute__((swift_name("failure(affected:)")));
+- (void)finishOnSuccessAffected:(DKSKotlinx_coroutines_coreLinkedListNode *)affected next:(DKSKotlinx_coroutines_coreLinkedListNode *)next __attribute__((swift_name("finishOnSuccess(affected:next:)")));
+- (void)finishPreparePrepareOp:(DKSKotlinx_coroutines_corePrepareOp *)prepareOp __attribute__((swift_name("finishPrepare(prepareOp:)")));
+- (void)onComplete __attribute__((swift_name("onComplete()")));
+- (id _Nullable)onPreparePrepareOp:(DKSKotlinx_coroutines_corePrepareOp *)prepareOp __attribute__((swift_name("onPrepare(prepareOp:)")));
+- (void)onRemovedAffected:(DKSKotlinx_coroutines_coreLinkedListNode *)affected __attribute__((swift_name("onRemoved(affected:)")));
 - (id _Nullable)prepareOp:(DKSKotlinx_coroutines_coreAtomicOp<id> *)op __attribute__((swift_name("prepare(op:)")));
-- (BOOL)retryAffected:(DKSKotlinx_coroutines_coreLockFreeLinkedListNode *)affected next:(id)next __attribute__((swift_name("retry(affected:next:)")));
-- (DKSKotlinx_coroutines_coreLockFreeLinkedListNode * _Nullable)takeAffectedNodeOp:(DKSKotlinx_coroutines_coreOpDescriptor *)op __attribute__((swift_name("takeAffectedNode(op:)")));
-- (id)updatedNextAffected:(DKSKotlinx_coroutines_coreLockFreeLinkedListNode *)affected next:(DKSKotlinx_coroutines_coreLockFreeLinkedListNode *)next __attribute__((swift_name("updatedNext(affected:next:)")));
-@property (readonly) DKSKotlinx_coroutines_coreLockFreeLinkedListNode * _Nullable affectedNode __attribute__((swift_name("affectedNode")));
-@property (readonly) DKSKotlinx_coroutines_coreLockFreeLinkedListNode * _Nullable originalNext __attribute__((swift_name("originalNext")));
+- (BOOL)retryAffected:(DKSKotlinx_coroutines_coreLinkedListNode *)affected next:(id)next __attribute__((swift_name("retry(affected:next:)")));
+@property (readonly) DKSKotlinx_coroutines_coreLinkedListNode *affectedNode __attribute__((swift_name("affectedNode")));
 @end;
 
-__attribute__((swift_name("Kotlinx_coroutines_coreLockFreeLinkedListNodeAddLastDesc")))
-@interface DKSKotlinx_coroutines_coreLockFreeLinkedListNodeAddLastDesc<T> : DKSKotlinx_coroutines_coreLockFreeLinkedListNodeAbstractAtomicDesc
-- (instancetype)initWithQueue:(DKSKotlinx_coroutines_coreLockFreeLinkedListNode *)queue node:(T)node __attribute__((swift_name("init(queue:node:)"))) __attribute__((objc_designated_initializer));
-- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
-+ (instancetype)new __attribute__((unavailable));
-- (void)finishOnSuccessAffected:(DKSKotlinx_coroutines_coreLockFreeLinkedListNode *)affected next:(DKSKotlinx_coroutines_coreLockFreeLinkedListNode *)next __attribute__((swift_name("finishOnSuccess(affected:next:)")));
-- (void)finishPreparePrepareOp:(DKSKotlinx_coroutines_coreLockFreeLinkedListNodePrepareOp *)prepareOp __attribute__((swift_name("finishPrepare(prepareOp:)")));
-- (BOOL)retryAffected:(DKSKotlinx_coroutines_coreLockFreeLinkedListNode *)affected next:(id)next __attribute__((swift_name("retry(affected:next:)")));
-- (DKSKotlinx_coroutines_coreLockFreeLinkedListNode * _Nullable)takeAffectedNodeOp:(DKSKotlinx_coroutines_coreOpDescriptor *)op __attribute__((swift_name("takeAffectedNode(op:)")));
-- (id)updatedNextAffected:(DKSKotlinx_coroutines_coreLockFreeLinkedListNode *)affected next:(DKSKotlinx_coroutines_coreLockFreeLinkedListNode *)next __attribute__((swift_name("updatedNext(affected:next:)")));
-@property (readonly) DKSKotlinx_coroutines_coreLockFreeLinkedListNode * _Nullable affectedNode __attribute__((swift_name("affectedNode")));
-@property (readonly) T node __attribute__((swift_name("node")));
-@property (readonly) DKSKotlinx_coroutines_coreLockFreeLinkedListNode *originalNext __attribute__((swift_name("originalNext")));
-@property (readonly) DKSKotlinx_coroutines_coreLockFreeLinkedListNode *queue __attribute__((swift_name("queue")));
-@end;
-
-__attribute__((swift_name("Kotlinx_coroutines_coreLockFreeLinkedListNodeRemoveFirstDesc")))
-@interface DKSKotlinx_coroutines_coreLockFreeLinkedListNodeRemoveFirstDesc<T> : DKSKotlinx_coroutines_coreLockFreeLinkedListNodeAbstractAtomicDesc
-- (instancetype)initWithQueue:(DKSKotlinx_coroutines_coreLockFreeLinkedListNode *)queue __attribute__((swift_name("init(queue:)"))) __attribute__((objc_designated_initializer));
-- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
-+ (instancetype)new __attribute__((unavailable));
-- (id _Nullable)failureAffected:(DKSKotlinx_coroutines_coreLockFreeLinkedListNode * _Nullable)affected __attribute__((swift_name("failure(affected:)")));
-- (void)finishOnSuccessAffected:(DKSKotlinx_coroutines_coreLockFreeLinkedListNode *)affected next:(DKSKotlinx_coroutines_coreLockFreeLinkedListNode *)next __attribute__((swift_name("finishOnSuccess(affected:next:)")));
-- (void)finishPreparePrepareOp:(DKSKotlinx_coroutines_coreLockFreeLinkedListNodePrepareOp *)prepareOp __attribute__((swift_name("finishPrepare(prepareOp:)")));
-- (BOOL)retryAffected:(DKSKotlinx_coroutines_coreLockFreeLinkedListNode *)affected next:(id)next __attribute__((swift_name("retry(affected:next:)")));
-- (DKSKotlinx_coroutines_coreLockFreeLinkedListNode * _Nullable)takeAffectedNodeOp:(DKSKotlinx_coroutines_coreOpDescriptor *)op __attribute__((swift_name("takeAffectedNode(op:)")));
-- (id)updatedNextAffected:(DKSKotlinx_coroutines_coreLockFreeLinkedListNode *)affected next:(DKSKotlinx_coroutines_coreLockFreeLinkedListNode *)next __attribute__((swift_name("updatedNext(affected:next:)")));
-@property (readonly) DKSKotlinx_coroutines_coreLockFreeLinkedListNode * _Nullable affectedNode __attribute__((swift_name("affectedNode")));
-@property (readonly) DKSKotlinx_coroutines_coreLockFreeLinkedListNode * _Nullable originalNext __attribute__((swift_name("originalNext")));
-@property (readonly) DKSKotlinx_coroutines_coreLockFreeLinkedListNode *queue __attribute__((swift_name("queue")));
-@property (readonly) T _Nullable result __attribute__((swift_name("result")));
-@end;
-
+#pragma pop_macro("_Nullable_result")
 #pragma clang diagnostic pop
 NS_ASSUME_NONNULL_END

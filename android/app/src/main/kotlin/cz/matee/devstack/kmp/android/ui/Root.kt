@@ -61,7 +61,7 @@ fun Root() {
 @Composable
 private fun BottomBar(navController: NavHostController) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
-    val currentRoute = navBackStackEntry?.arguments?.getString(KEY_ROUTE)
+    val currentRoute = navBackStackEntry?.destination?.route
 
     // Don't show NavBar on start
     val isInAuthRoute = currentRoute?.startsWith(Feature.Login.route) ?: true
@@ -93,7 +93,7 @@ private fun BottomBar(navController: NavHostController) {
                         selected = currentRoute?.startsWith(screen.route) ?: false,
                         onClick = {
                             navController.navigate(screen.route) {
-                                popUpTo = navController.graph.startDestination
+                                popUpTo(navController.graph.startDestinationId)
                                 launchSingleTop = true
                             }
                         }

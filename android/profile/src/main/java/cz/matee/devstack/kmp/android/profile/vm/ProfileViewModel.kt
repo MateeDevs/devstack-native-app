@@ -1,7 +1,6 @@
 package cz.matee.devstack.kmp.android.profile.vm
 
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.navigate
 import cz.matee.and.core.system.BaseStateViewModel
 import cz.matee.and.core.system.State
 import cz.matee.and.core.util.launchOnMain
@@ -62,6 +61,9 @@ class ProfileViewModel(
     suspend fun reloadBooks() {
         when (val res = refreshBooks()) {
             is Result.Error -> _errorFlow.emit(res.error)
+            is Result.Success -> {
+                // Do nothing
+            }
         }
     }
 

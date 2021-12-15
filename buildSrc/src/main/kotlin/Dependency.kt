@@ -6,7 +6,7 @@ object Dependency {
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
 
         object Coroutines {
-            const val version = "1.4.3-native-mt"
+            const val version = "1.5.2-native-mt"
 
             const val common = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
             const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
@@ -14,7 +14,7 @@ object Dependency {
     }
 
     object Koin {
-        private const val version = "3.0.1-beta-1"
+        private const val version = "3.1.4"
 
         const val core = "io.insert-koin:koin-core:$version"
         const val android = "io.insert-koin:koin-android:$version"
@@ -22,23 +22,23 @@ object Dependency {
     }
 
     object AndroidX {
-        const val core = "androidx.core:core-ktx:1.5.0-beta03"
+        const val core = "androidx.core:core-ktx:1.7.0"
         const val testRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         object Material {
-            private const val version = "1.3.0"
+            private const val version = "1.4.0"
             const val core = "com.google.android.material:material:$version"
         }
 
         object Lifecycle {
-            private const val version = "2.3.0"
+            private const val version = "2.4.0"
             const val runtime = "androidx.lifecycle:lifecycle-runtime-ktx:$version"
             const val core = "androidx.lifecycle:lifecycle-common-java8:$version"
         }
 
         object Paging {
-            private const val version = "3.0.0-beta03"
-            private const val composeVersion = "1.0.0-alpha08"
+            private const val version = "3.1.0"
+            private const val composeVersion = "1.0.0-alpha14"
 
             const val runtime = "androidx.paging:paging-runtime:$version"
             const val compose = "androidx.paging:paging-compose:$composeVersion"
@@ -46,7 +46,7 @@ object Dependency {
     }
 
     object Compose {
-        const val version = "1.0.0-beta04"
+        const val version = "1.0.5"
 
         const val ui = "androidx.compose.ui:ui:$version"
         const val uiTooling = "androidx.compose.ui:ui-tooling:$version"
@@ -60,23 +60,23 @@ object Dependency {
         const val uiTest = "androidx.compose.ui:ui-test-junit4:$version"
 
         object Activity {
-            private const val version = "1.3.0-alpha06"
+            private const val version = "1.4.0"
             const val core = "androidx.activity:activity-compose:$version"
         }
 
         object Navigation {
-            private const val version = "1.0.0-alpha10"
+            private const val version = "2.4.0-beta02"
             const val core = "androidx.navigation:navigation-compose:$version"
         }
 
         object ConstraintLayout {
-            private const val version = "1.0.0-alpha05"
+            private const val version = "1.0.0-rc02"
             const val core = "androidx.constraintlayout:constraintlayout-compose:$version"
         }
 
         // https://google.github.io/accompanist/
         object Accompanist {
-            private const val version = "0.7.1"
+            private const val version = "0.20.3"
 
             const val insets = "com.google.accompanist:accompanist-insets:$version"
             const val pager = "com.google.accompanist:accompanist-pager:$version"
@@ -88,7 +88,7 @@ object Dependency {
 
 
     object Ktor {
-        private const val version = "1.5.3"
+        private const val version = "1.6.4" // do not change until compose will has a newer kotlin version - current is 1.5.31
 
         const val core = "io.ktor:ktor-client-core:$version"
         const val android = "io.ktor:ktor-client-android:$version"
@@ -100,7 +100,7 @@ object Dependency {
 
     object Matee {
         object Core {
-            private const val version = "1.0.0-rc7"
+            private const val version = "1.0.0-rc8"
 
             //            const val core = "cz.matee.and:core-compose:$version"
             const val compose = "cz.matee.and:core-compose:$version"
@@ -109,7 +109,7 @@ object Dependency {
 
     // https://github.com/russhwolf/multiplatform-settings
     object Settings {
-        private const val version = "0.7.4"
+        private const val version = "0.8.1"
 
         const val core = "com.russhwolf:multiplatform-settings:$version"
         const val noArg = "com.russhwolf:multiplatform-settings-no-arg:$version"
@@ -118,7 +118,7 @@ object Dependency {
 
     // https://github.com/cashapp/sqldelight
     object SqlDelight {
-        const val version = "1.4.4"
+        const val version = "1.5.3"
 
         const val runtime = "com.squareup.sqldelight:runtime:$version"
         const val coroutinesExtension = "com.squareup.sqldelight:coroutines-extensions:$version"

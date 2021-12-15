@@ -12,7 +12,6 @@ import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.navigate
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import cz.matee.devstack.kmp.android.shared.style.Values
