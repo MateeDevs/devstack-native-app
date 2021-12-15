@@ -20,7 +20,6 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.navigate
 import cz.matee.devstack.kmp.android.recipes.R
 import cz.matee.devstack.kmp.android.recipes.navigation.RecipesDestination
 import cz.matee.devstack.kmp.android.shared.style.Values

@@ -6,6 +6,6 @@ repositories {
 }
 
 dependencies {
-    "implementation"("org.jetbrains.kotlin:kotlin-gradle-plugin-api:1.4.31")
+    "implementation"("org.jetbrains.kotlin:kotlin-gradle-plugin-api:1.5.31")
 }
         

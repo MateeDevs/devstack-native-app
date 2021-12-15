@@ -11,7 +11,7 @@ buildscript {
 
     dependencies {
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
-        classpath(GradlePlugins.androidGradle)
+        classpath("com.android.tools.build:gradle:7.0.4")
         classpath(GradlePlugins.sqlDelight)
     }
 }
@@ -34,8 +34,7 @@ allprojects {
     tasks.withType<KotlinCompile> {
         kotlinOptions {
             jvmTarget = "1.8"
-            useIR = true
-            freeCompilerArgs += listOf(
+            freeCompilerArgs = freeCompilerArgs + listOf(
                 "-Xallow-jvm-ir-dependencies",
                 "-Xopt-in=kotlin.RequiresOptIn"
             )
