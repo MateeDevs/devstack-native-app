@@ -3,7 +3,7 @@ const val WINDOWS_PROJECT_HOME_FOLDER_ARG = "projectHomeFolder"
 const val GITHUB_USER = "githubUser"
 const val GITHUB_PAT = "githubPAT"
 
-const val kotlinVersion = "1.5.31"
+const val kotlinVersion = "1.6.10"
 
 object Project {
     const val shared = ":shared"

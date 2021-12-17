@@ -1,5 +1,5 @@
 rootProject.buildFileName = "build.gradle.kts"
-rootProject.name = "devstack-native-app"
+rootProject.name = "Devstack Native app"
 include(":android:app", ":android:shared", ":shared")
 include(":android:login")
 include(":android:profile")
