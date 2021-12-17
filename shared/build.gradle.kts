@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
+
 plugins {
     id("com.android.library")
     kotlin("multiplatform")
@@ -18,11 +20,17 @@ android {
 kotlin {
     android()
 
-    ios {
-        binaries {
-            framework {
-                baseName = Project.iosShared
-            }
+
+    val xcf = XCFramework()
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach {
+        it.binaries.framework {
+            baseName = Project.iosShared
+            isStatic = false
+            xcf.add(this)
         }
     }
 
@@ -52,14 +60,18 @@ kotlin {
             }
         }
 
-
-        val iosMain by getting {
+        val iosX64Main by getting
+        val iosArm64Main by getting
+        val iosSimulatorArm64Main by getting
+        val iosMain by creating {
             dependencies {
                 implementation(Dependency.Ktor.ios)
                 implementation(Dependency.SqlDelight.iosDriver)
             }
+            iosX64Main.dependsOn(this)
+            iosArm64Main.dependsOn(this)
+            iosSimulatorArm64Main.dependsOn(this)
         }
-
     }
 }
 
@@ -81,7 +93,16 @@ sqldelight {
 multiplatformSwiftPackage {
     swiftToolsVersion("5.3")
     targetPlatforms {
-        iOS { v("11") } // device + simulator
+        listOf(
+//            "macosX64", "macosArm64",
+            "iosArm64", "iosX64",
+//            "iosSimulatorArm64",
+//            "watchosArm32", "watchosArm64", "watchosX64", "watchosSimulatorArm64",
+//            "tvosArm64", "tvosX64", "tvosSimulatorArm64"
+        ).forEach {
+            targets(it) { v("11") }
+        }
+//        iOS { v("11") } // device + simulator
 //        targets("iosX64") { v("11") } // simulator
 //        targets("iosArm64") { v("11") }
     }

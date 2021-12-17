@@ -46,7 +46,7 @@ object Dependency {
     }
 
     object Compose {
-        const val version = "1.0.5"
+        const val version = "1.1.0-beta04"
 
         const val ui = "androidx.compose.ui:ui:$version"
         const val uiTooling = "androidx.compose.ui:ui-tooling:$version"
@@ -88,7 +88,7 @@ object Dependency {
 
 
     object Ktor {
-        private const val version = "1.6.4" // do not change until compose will has a newer kotlin version - current is 1.5.31
+        private const val version = "1.6.7" // do not change until compose will has a newer kotlin version - current is 1.5.31
 
         const val core = "io.ktor:ktor-client-core:$version"
         const val android = "io.ktor:ktor-client-android:$version"
