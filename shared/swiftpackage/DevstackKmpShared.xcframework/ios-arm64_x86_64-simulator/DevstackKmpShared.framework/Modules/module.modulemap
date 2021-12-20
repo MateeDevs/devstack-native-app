@@ -1,0 +1,6 @@
+framework module DevstackKmpShared {
+    umbrella header "DevstackKmpShared.h"
+
+    export *
+    module * { export * }
+}

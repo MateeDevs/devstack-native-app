@@ -5,7 +5,6 @@ plugins {
     kotlin("multiplatform")
     kotlin("plugin.serialization") version kotlinVersion
     id("com.squareup.sqldelight")
-    id("com.chromaticnoise.multiplatform-swiftpackage") version "2.0.3"
 }
 
 // https://youtrack.jetbrains.com/issue/KT-43944
@@ -21,14 +20,24 @@ kotlin {
     android()
 
 
-    val xcf = XCFramework()
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach {
-        it.binaries.framework {
-            baseName = Project.iosShared
+    val xcf = XCFramework("DevstackKmpShared")
+    iosX64 {
+        binaries.framework {
+            baseName = "DevstackKmpShared"
+            isStatic = false
+            xcf.add(this)
+        }
+    }
+    iosArm64 {
+        binaries.framework {
+            baseName = "DevstackKmpShared"
+            isStatic = false
+            xcf.add(this)
+        }
+    }
+    iosSimulatorArm64 {
+        binaries.framework {
+            baseName = "DevstackKmpShared"
             isStatic = false
             xcf.add(this)
         }
@@ -90,22 +99,20 @@ sqldelight {
     }
 }
 
-multiplatformSwiftPackage {
-    swiftToolsVersion("5.3")
-    targetPlatforms {
-        listOf(
-//            "macosX64", "macosArm64",
-            "iosArm64", "iosX64",
-//            "iosSimulatorArm64",
-//            "watchosArm32", "watchosArm64", "watchosX64", "watchosSimulatorArm64",
-//            "tvosArm64", "tvosX64", "tvosSimulatorArm64"
-        ).forEach {
-            targets(it) { v("11") }
-        }
-//        iOS { v("11") } // device + simulator
-//        targets("iosX64") { v("11") } // simulator
-//        targets("iosArm64") { v("11") }
-    }
-    packageName(Project.iosShared)
 
+tasks.create("buildXCFramework") {
+    dependsOn("assembleDevstackKmpSharedXCFramework")
+    copyXCFramework()
+}
+
+
+fun copyXCFramework() {
+    val buildPathRelease = "build/XCFrameworks/release/DevstackKmpShared.xcframework"
+    val sharediOSPath = "swiftpackage/DevstackKmpShared.xcframework"
+
+    delete(sharediOSPath)
+    copy {
+        from(buildPathRelease)
+        into(sharediOSPath)
+    }
 }

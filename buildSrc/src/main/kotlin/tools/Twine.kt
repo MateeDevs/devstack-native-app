@@ -8,7 +8,6 @@ class Twine(
     private val project: Project,
     private val twineFolderArg: String,
     private val windowsProjectFolderArg: String,
-    private val bundlerScriptPath: String,
     private val moduleName: String,
     private val twineFileName: String
 ) {
@@ -17,13 +16,12 @@ class Twine(
         val twineFolder = getStringProperty(project, twineFolderArg, "unknown")
 
         val script =
-            if (OperatingSystem.current().isLinux)
-                "twine generate-all-localization-files ${twineFolder}${twineFileName} ${project.rootDir.absolutePath}/$moduleName/src/main/res/ -f android -n generated_strings.xml -d en -r"
-            else if (OperatingSystem.current().isMacOsX)
-                "bash $bundlerScriptPath && bundle exec twine generate-all-localization-files ${twineFolder}${twineFileName} ${project.rootDir.absolutePath}/$moduleName/src/main/res/ -f android -n generated_strings.xml -d en -r"
-            else if (OperatingSystem.current().isWindows)
-                "twine generate-all-localization-files ${twineFolder}${twineFileName} ${windowsProjectFolderArg}/$moduleName/src/main/res/ -f android -n generated_strings.xml -d en -r"
-            else "unsupported"
+            when {
+                OperatingSystem.current().isLinux || OperatingSystem.current().isMacOsX ->
+                    "twine generate-all-localization-files ${twineFolder}${twineFileName} ${project.rootDir.absolutePath}/$moduleName/src/main/res/ -f android -n generated_strings.xml -d en -r"
+                OperatingSystem.current().isWindows -> "twine generate-all-localization-files ${twineFolder}${twineFileName} ${windowsProjectFolderArg}/$moduleName/src/main/res/ -f android -n generated_strings.xml -d en -r"
+                else -> "unsupported"
+            }
 
         project.exec {
             // Add twine into path

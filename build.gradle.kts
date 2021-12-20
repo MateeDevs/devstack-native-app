@@ -48,7 +48,6 @@ tasks.register("generateLocalizations") {
         twineFolderArg = TWINE_HOME_FOLDER_ARG,
         twineFileName = "devstack/strings.txt",
         moduleName = "android/shared",
-        bundlerScriptPath = "${rootDir.absolutePath}/other/tools/run_bundler.sh",
         windowsProjectFolderArg = WINDOWS_PROJECT_HOME_FOLDER_ARG
     ).generate()
 }
