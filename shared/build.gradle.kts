@@ -20,28 +20,15 @@ kotlin {
     android()
 
 
-    val xcf = XCFramework("DevstackKmpShared")
-    iosX64 {
-        binaries.framework {
-            baseName = "DevstackKmpShared"
-            isStatic = false
-            xcf.add(this)
+    val xcf = XCFramework(Project.iosShared)
+    listOf(iosX64(), iosArm64(), iosSimulatorArm64())
+        .forEach {
+            it.binaries.framework {
+                baseName = Project.iosShared
+                isStatic = false
+                xcf.add(this)
+            }
         }
-    }
-    iosArm64 {
-        binaries.framework {
-            baseName = "DevstackKmpShared"
-            isStatic = false
-            xcf.add(this)
-        }
-    }
-    iosSimulatorArm64 {
-        binaries.framework {
-            baseName = "DevstackKmpShared"
-            isStatic = false
-            xcf.add(this)
-        }
-    }
 
     sourceSets {
         val commonMain by getting {
@@ -102,17 +89,17 @@ sqldelight {
 
 tasks.create("buildXCFramework") {
     dependsOn("assembleDevstackKmpSharedXCFramework")
-    copyXCFramework()
+    copyXCFramework(Project.iosShared)
 }
 
 
-fun copyXCFramework() {
-    val buildPathRelease = "build/XCFrameworks/release/DevstackKmpShared.xcframework"
-    val sharediOSPath = "swiftpackage/DevstackKmpShared.xcframework"
+fun copyXCFramework(projectName: String) {
+    val buildPathRelease = "build/XCFrameworks/release/$projectName.xcframework"
+    val sharedIOSPath = "swiftpackage/$projectName.xcframework"
 
-    delete(sharediOSPath)
+    delete(sharedIOSPath)
     copy {
         from(buildPathRelease)
-        into(sharediOSPath)
+        into(sharedIOSPath)
     }
 }
