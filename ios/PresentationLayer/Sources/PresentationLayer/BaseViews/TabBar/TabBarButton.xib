@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TabBarButton" customModule="PresentationLayer">
+            <connections>
+                <outlet property="button" destination="PE5-C6-vbN" id="02d-zB-jTr"/>
+                <outlet property="mainLabel" destination="Kgg-cr-ce3" id="RMx-9d-Mmq"/>
+                <outlet property="numberLabel" destination="dFT-7r-ekv" id="PDP-35-JZ4"/>
+                <outlet property="numberView" destination="2Xy-MX-KRX" id="iMF-Vl-MoU"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="C8e-73-AeR">
+            <rect key="frame" x="0.0" y="0.0" width="115" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PE5-C6-vbN" customClass="LocalizedButton" customModule="A_DevStack" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="115" height="50"/>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Crn-QN-Exe">
+                    <rect key="frame" x="0.0" y="0.0" width="115" height="50"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="60z-vQ-HjK">
+                            <rect key="frame" x="8" y="0.0" width="99" height="50"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kgg-cr-ce3">
+                                    <rect key="frame" x="0.0" y="0.0" width="41.5" height="50"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="2Xy-MX-KRX">
+                                    <rect key="frame" x="53.5" y="0.0" width="45.5" height="50"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dFT-7r-ekv">
+                                            <rect key="frame" x="6" y="2" width="33.5" height="46"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="dFT-7r-ekv" firstAttribute="leading" secondItem="2Xy-MX-KRX" secondAttribute="leading" constant="6" id="42f-aT-LQ1"/>
+                                        <constraint firstItem="dFT-7r-ekv" firstAttribute="top" secondItem="2Xy-MX-KRX" secondAttribute="top" constant="2" id="4Y5-jG-Fon"/>
+                                        <constraint firstAttribute="bottom" secondItem="dFT-7r-ekv" secondAttribute="bottom" constant="2" id="nsT-uU-eXE"/>
+                                        <constraint firstAttribute="trailing" secondItem="dFT-7r-ekv" secondAttribute="trailing" constant="6" id="xhs-bA-8gJ"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="60z-vQ-HjK" secondAttribute="trailing" constant="8" id="RYZ-ni-HBA"/>
+                        <constraint firstItem="60z-vQ-HjK" firstAttribute="centerY" secondItem="Crn-QN-Exe" secondAttribute="centerY" id="hYo-Lb-1af"/>
+                        <constraint firstItem="60z-vQ-HjK" firstAttribute="leading" secondItem="Crn-QN-Exe" secondAttribute="leading" constant="8" id="htm-EQ-ceX"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="Whv-z6-rqA"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Crn-QN-Exe" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Whv-z6-rqA" secondAttribute="leading" id="9c5-Fx-H27"/>
+                <constraint firstItem="Crn-QN-Exe" firstAttribute="centerX" secondItem="Whv-z6-rqA" secondAttribute="centerX" id="JxD-nl-eQJ"/>
+                <constraint firstItem="PE5-C6-vbN" firstAttribute="leading" secondItem="Whv-z6-rqA" secondAttribute="leading" id="RHZ-7a-lCE"/>
+                <constraint firstItem="Crn-QN-Exe" firstAttribute="bottom" secondItem="Whv-z6-rqA" secondAttribute="bottom" id="XZa-A7-RJt"/>
+                <constraint firstItem="Crn-QN-Exe" firstAttribute="centerY" secondItem="Whv-z6-rqA" secondAttribute="centerY" id="aRJ-RP-g9i"/>
+                <constraint firstItem="Whv-z6-rqA" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Crn-QN-Exe" secondAttribute="trailing" id="gsy-cb-sse"/>
+                <constraint firstItem="Whv-z6-rqA" firstAttribute="top" secondItem="Crn-QN-Exe" secondAttribute="top" id="j4C-7s-AMA"/>
+                <constraint firstItem="Whv-z6-rqA" firstAttribute="trailing" secondItem="PE5-C6-vbN" secondAttribute="trailing" id="ktC-LJ-ite"/>
+                <constraint firstItem="PE5-C6-vbN" firstAttribute="top" secondItem="Whv-z6-rqA" secondAttribute="top" id="sNi-1R-FG8"/>
+                <constraint firstItem="Whv-z6-rqA" firstAttribute="bottom" secondItem="PE5-C6-vbN" secondAttribute="bottom" id="ttT-aN-JqY"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-234.5" y="-275"/>
+        </view>
+    </objects>
+    <designables>
+        <designable name="PE5-C6-vbN">
+            <size key="intrinsicContentSize" width="30" height="34"/>
+        </designable>
+    </designables>
+</document>

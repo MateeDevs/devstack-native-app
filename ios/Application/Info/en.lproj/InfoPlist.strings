@@ -1,0 +1,12 @@
+/* 
+  InfoPlist.strings
+  DevStack
+
+  Created by Petr Chmelar on 09/02/2020.
+  Copyright © 2020 Matee. All rights reserved.
+*/
+
+"NSCameraUsageDescription" = "You need to grant access to the camera so you can take a photo.";
+"NSPhotoLibraryUsageDescription" = "You need to grant access to your photo library so you can pick a photo.";
+"NSPhotoLibraryAddUsageDescription" = "You need to grant access to add photos to your photo library.";
+"NSLocationWhenInUseUsageDescription" = "You need to grant access to location services in order to fully benefit from all the features.";

@@ -1,0 +1,40 @@
+sourceryCommand: null
+sourceryTemplate: null
+
+UseCases:
+  sources:
+    include:
+      - ./DomainLayer/Sources/DomainLayer/UseCases/.
+  output: 
+    ./DomainLayer/Sources/UseCaseMocks/Mocks.swift
+  import:
+    - CoreLocation
+    - DomainLayer
+    - Foundation
+    - RxSwift
+
+Repositories:
+  sources:
+    include:
+      - ./DomainLayer/Sources/DomainLayer/Repositories/.
+  output: 
+    ./DomainLayer/Sources/RepositoryMocks/Mocks.swift
+  import:
+    - CoreLocation
+    - DomainLayer
+    - Foundation
+    - RxSwift
+
+Providers:
+  sources:
+    include:
+      - ./DataLayer/Sources/DataLayer/Providers/.
+  output: 
+    ./DataLayer/Sources/ProviderMocks/Mocks.swift
+  import:
+    - CoreLocation
+    - DataLayer
+    - DomainLayer
+    - Foundation
+    - RxSwift
+    - UserNotifications

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CkE-Zn-ye5">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Counter Control View Controller-->
+        <scene sceneID="y7m-UU-Pkg">
+            <objects>
+                <viewController id="CkE-Zn-ye5" customClass="CounterControlViewController" customModule="PresentationLayer" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NqY-lr-Xhd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="64" translatesAutoresizingMaskIntoConstraints="NO" id="hHc-Zq-ZUY">
+                                <rect key="frame" x="64" y="315.5" width="247" height="36"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oun-9O-4ue" customClass="SecondaryButton" customModule="PresentationLayer">
+                                        <rect key="frame" x="0.0" y="0.0" width="91.5" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="counter_view_counter_increase_button"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X5b-b7-xEW" customClass="SecondaryButton" customModule="PresentationLayer">
+                                        <rect key="frame" x="155.5" y="0.0" width="91.5" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="counter_view_counter_decrease_button"/>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="X5b-b7-xEW" firstAttribute="width" secondItem="oun-9O-4ue" secondAttribute="width" id="0M3-8c-rpF"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OMJ-nJ-4WY" customClass="SecondaryButton" customModule="PresentationLayer">
+                                <rect key="frame" x="45.5" y="415.5" width="284" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="counter_view_counter_hide_button"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="titleOnState" value="counter_view_counter_hide_button"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="titleOffState" value="counter_view_counter_show_button"/>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="qdr-Ev-KLG"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="OMJ-nJ-4WY" firstAttribute="centerX" secondItem="qdr-Ev-KLG" secondAttribute="centerX" id="PCc-pS-Vaj"/>
+                            <constraint firstItem="hHc-Zq-ZUY" firstAttribute="centerY" secondItem="qdr-Ev-KLG" secondAttribute="centerY" id="XyQ-jW-LoY"/>
+                            <constraint firstItem="OMJ-nJ-4WY" firstAttribute="top" secondItem="hHc-Zq-ZUY" secondAttribute="bottom" constant="64" id="jaH-uw-lto"/>
+                            <constraint firstItem="hHc-Zq-ZUY" firstAttribute="trailing" secondItem="qdr-Ev-KLG" secondAttribute="trailing" constant="-64" id="pxY-n6-Xh4"/>
+                            <constraint firstItem="hHc-Zq-ZUY" firstAttribute="leading" secondItem="qdr-Ev-KLG" secondAttribute="leading" constant="64" id="uJw-73-kI9"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="decreaseButton" destination="X5b-b7-xEW" id="MjX-lw-hbN"/>
+                        <outlet property="hideButton" destination="OMJ-nJ-4WY" id="zdW-76-rwl"/>
+                        <outlet property="increaseButton" destination="oun-9O-4ue" id="Vgb-yA-NzO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SbZ-rD-OKs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="130" y="111"/>
+        </scene>
+    </scenes>
+    <designables>
+        <designable name="OMJ-nJ-4WY">
+            <size key="intrinsicContentSize" width="284" height="34"/>
+        </designable>
+        <designable name="X5b-b7-xEW">
+            <size key="intrinsicContentSize" width="353" height="36"/>
+        </designable>
+        <designable name="oun-9O-4ue">
+            <size key="intrinsicContentSize" width="347" height="36"/>
+        </designable>
+    </designables>
+</document>

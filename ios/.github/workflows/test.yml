@@ -1,0 +1,24 @@
+name: Test develop
+
+on:
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  test:
+    name: Run tests
+    runs-on: [self-hosted, ios-build]
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        continue-on-error: true
+        with:
+          clean: false
+      - name: Pull Twine repo
+        run: git -C $TWINE_FOLDER pull origin master
+      - name: Setup tools
+        run: ./scripts/setup.sh
+      - name: Run tests
+        run: fastlane test_alpha
