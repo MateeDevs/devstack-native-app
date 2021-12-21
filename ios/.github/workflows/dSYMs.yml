@@ -1,0 +1,29 @@
+name: Sync dSYM files
+
+on: workflow_dispatch
+
+jobs:
+  sync:
+    name: Sync dSYM files
+    runs-on: [self-hosted, ios-internal]
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        continue-on-error: true
+        with:
+          clean: false
+      - name: Get path of Crashlytics upload-symbols
+        run: echo "UPLOAD_SYMBOLS_PATH=`xcodebuild -project *.xcodeproj -showBuildSettings | grep -m 1 "BUILD_DIR" | grep -oEi "\/.*" | sed 's:Build/Products:SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/upload-symbols:' | tr -d '\n'`" >> $GITHUB_ENV
+      - name: Sync Alpha dSYMs
+        env:
+          APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_MATEE }}
+        run: fastlane dsym_alpha
+      - name: Sync Beta dSYMs
+        env:
+          APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_MATEE }}
+        run: fastlane dsym_beta
+      - name: Sync Production dSYMs
+        env:
+          APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_MATEE }}
+        run: fastlane dsym_production

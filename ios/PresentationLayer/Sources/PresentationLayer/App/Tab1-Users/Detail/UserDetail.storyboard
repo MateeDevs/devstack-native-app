@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CkE-Zn-ye5">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--User Detail View Controller-->
+        <scene sceneID="y7m-UU-Pkg">
+            <objects>
+                <viewController id="CkE-Zn-ye5" customClass="UserDetailViewController" customModule="PresentationLayer" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NqY-lr-Xhd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p5y-Hz-A1F">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cAr-b3-J9v">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QtH-oR-xKW" customClass="UserImageView" customModule="PresentationLayer">
+                                                <rect key="frame" x="137.5" y="64" width="100" height="100"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="QtH-oR-xKW" secondAttribute="height" multiplier="1:1" id="Ivj-QK-ULb"/>
+                                                    <constraint firstAttribute="width" constant="100" id="VoD-kI-4Kb"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="initialsBackgroundColor">
+                                                        <color key="value" name="MateeYellow"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="initialsTextColor">
+                                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YI6-hr-GV2">
+                                                <rect key="frame" x="32" y="196" width="311" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="QtH-oR-xKW" firstAttribute="top" secondItem="cAr-b3-J9v" secondAttribute="top" constant="64" id="5gh-2m-ihs"/>
+                                            <constraint firstItem="YI6-hr-GV2" firstAttribute="top" secondItem="QtH-oR-xKW" secondAttribute="bottom" constant="32" id="XwG-13-NBr"/>
+                                            <constraint firstItem="YI6-hr-GV2" firstAttribute="leading" secondItem="cAr-b3-J9v" secondAttribute="leading" constant="32" id="aTi-JE-E7j"/>
+                                            <constraint firstItem="QtH-oR-xKW" firstAttribute="centerX" secondItem="cAr-b3-J9v" secondAttribute="centerX" id="oTQ-ur-6xH"/>
+                                            <constraint firstAttribute="trailing" secondItem="YI6-hr-GV2" secondAttribute="trailing" constant="32" id="qm6-3Q-f24"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="cAr-b3-J9v" firstAttribute="height" secondItem="LX2-wF-xHR" secondAttribute="height" id="5SK-rn-fgQ"/>
+                                    <constraint firstItem="cAr-b3-J9v" firstAttribute="trailing" secondItem="Ikr-Ze-Ale" secondAttribute="trailing" id="Bgu-nF-IJw"/>
+                                    <constraint firstItem="cAr-b3-J9v" firstAttribute="bottom" secondItem="Ikr-Ze-Ale" secondAttribute="bottom" id="N0a-DV-Wkh"/>
+                                    <constraint firstItem="cAr-b3-J9v" firstAttribute="leading" secondItem="Ikr-Ze-Ale" secondAttribute="leading" id="Uiz-Ty-6KQ"/>
+                                    <constraint firstItem="cAr-b3-J9v" firstAttribute="width" secondItem="LX2-wF-xHR" secondAttribute="width" id="sOY-9e-UVr"/>
+                                    <constraint firstItem="cAr-b3-J9v" firstAttribute="top" secondItem="Ikr-Ze-Ale" secondAttribute="top" id="xKz-Om-p6N"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="Ikr-Ze-Ale"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="LX2-wF-xHR"/>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="qdr-Ev-KLG"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="qdr-Ev-KLG" firstAttribute="bottom" secondItem="p5y-Hz-A1F" secondAttribute="bottom" id="CZN-2K-Xm3"/>
+                            <constraint firstItem="qdr-Ev-KLG" firstAttribute="trailing" secondItem="p5y-Hz-A1F" secondAttribute="trailing" id="IYN-og-mnc"/>
+                            <constraint firstItem="p5y-Hz-A1F" firstAttribute="top" secondItem="qdr-Ev-KLG" secondAttribute="top" id="MsH-eE-4R4"/>
+                            <constraint firstItem="p5y-Hz-A1F" firstAttribute="leading" secondItem="qdr-Ev-KLG" secondAttribute="leading" id="NDZ-Ce-RAd"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="scrollView" destination="p5y-Hz-A1F" id="u20-3g-EeR"/>
+                        <outlet property="userImageView" destination="QtH-oR-xKW" id="PCK-03-BOH"/>
+                        <outlet property="userNameLabel" destination="YI6-hr-GV2" id="tjV-Hy-EJ7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SbZ-rD-OKs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="132" y="133"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="MateeYellow">
+            <color red="0.88235294117647056" green="0.74509803921568629" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

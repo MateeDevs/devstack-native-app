@@ -1,0 +1,278 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+
+# Project specific variables
+
+workspace = "DevStack.xcworkspace"
+slack_channel = "#ci"
+
+alpha = {
+  output_name: "A-DevStack",
+  app_identifier: "cz.matee.devstack.alpha",
+  scheme: "DevStack_Alpha",
+  info_plist_path: "./Application/Info/Info+Proxyman.plist",
+  gsp_path: "./Application/GoogleService/GoogleService-Info-Alpha.plist",
+  testflight_groups: ['App Store Connect Users', 'Public'],
+  testflight_link: "NOT AVAILABLE"
+}
+
+beta = {
+  output_name: "B-DevStack",
+  app_identifier: "cz.matee.devstack.beta",
+  scheme: "DevStack_Beta",
+  info_plist_path: "./Application/Info/Info+Proxyman.plist",
+  gsp_path: "./Application/GoogleService/GoogleService-Info-Beta.plist",
+  testflight_groups: ['App Store Connect Users', 'Public'],
+  testflight_link: "https://testflight.apple.com/join/aff9SFVc"
+}
+
+production = {
+  output_name: "DevStack",
+  app_identifier: "cz.matee.devstack",
+  scheme: "DevStack",
+  info_plist_path: "./Application/Info/Info.plist",
+  gsp_path: "./Application/GoogleService/GoogleService-Info-Prod.plist",
+  testflight_groups: ['App Store Connect Users', 'Public'],
+  testflight_link: "https://testflight.apple.com/join/lP4bFs1a"
+}
+
+#####
+
+# Variables shared among all projects (do not change unless necessary)
+
+matee = {
+  team_id_dev: "WNB34WBN42",
+  team_id_connect: "120470944",
+  match_branch: "matee",
+  api_key_id: "CQT3ZM53U8",
+  api_key_issuer_id: "e85e5ea1-4316-4e79-a474-858ab98197e0"
+}
+
+testflight_contact = {
+  first_name: "Petr",
+  last_name: "Chmelar",
+  email: "petr.chmelar@matee.cz",
+  phone: "+420724229167"
+}
+
+match_url = "git@github.com:MateeDevs/match.git"
+
+#####
+
+# Variables to specify developer for production release
+
+client = {
+  team_id_dev: matee[:team_id_dev],
+  team_id_connect: matee[:team_id_connect],
+  match_branch: matee[:match_branch],
+  certificate: matee[:certificate],
+  api_key_id: matee[:api_key_id],
+  api_key_issuer_id: matee[:api_key_issuer_id]
+}
+
+#####
+
+default_platform(:ios)
+
+platform :ios do
+
+  # BUILD
+
+  desc "Create a new Alpha build"
+  lane :build_alpha do |options|
+    build(alpha.merge(matee).merge(options))
+  end
+
+  desc "Create a new Beta build"
+  lane :build_beta do |options|
+    build(beta.merge(matee).merge(options))
+  end
+
+  desc "Create a new Production build"
+  lane :build_production do |options|
+    build(production.merge(client).merge(options))
+  end
+
+  desc "Create a new build"
+  private_lane :build do |config|
+
+    unless ENV["BUILD_NUMBER"] =~ /^\d{1,18}$/
+      UI.user_error!("Invalid build number: \"#{ENV["BUILD_NUMBER"]}\". Expect 1-18 digits")
+    end
+    set_info_plist_value(path: config[:info_plist_path], key: "CFBundleVersion", value: ENV["BUILD_NUMBER"])
+
+    keychain_password = SecureRandom.base64
+    delete_keychain(name: "fastlane") if File.exist?(File.expand_path("~/Library/Keychains/fastlane-db"))
+    create_keychain(
+      name: "fastlane",
+      unlock: true,
+      timeout: 3600,
+      lock_when_sleeps: true,
+      password: keychain_password
+    )
+    app_store_connect_api_key(
+      key_id: config[:api_key_id],
+      issuer_id: config[:api_key_issuer_id],
+      key_content: ENV["APP_STORE_CONNECT_API_KEY_CONTENT"],
+      in_house: false
+    )
+    sync_code_signing(
+      team_id: config[:team_id_dev],
+      app_identifier: config[:app_identifier],
+      git_url: match_url,
+      git_branch: config[:match_branch],
+      type: "appstore",
+      keychain_name: "fastlane",
+      keychain_password: keychain_password
+    )
+    build_ios_app(
+      workspace: workspace,
+      scheme: config[:scheme],
+      clean: true,
+      export_method: "app-store",
+      archive_path: "#{config[:output_name]}.xcarchive",
+      output_directory: "./ipa",
+      output_name: config[:output_name]
+    )
+  end
+
+  # UPLOAD TO THE TESTFLIGHT
+
+  desc "Upload the Alpha build to the TestFlight"
+  lane :upload_testflight_alpha do |options|
+    upload_testflight(alpha.merge(matee).merge(options))
+  end
+
+  desc "Upload the Beta build to the TestFlight"
+  lane :upload_testflight_beta do |options|
+    upload_testflight(beta.merge(matee).merge(options))
+  end
+
+  desc "Upload the Production build to the TestFlight"
+  lane :upload_testflight_production do |options|
+    upload_testflight(production.merge(client).merge(options))
+  end
+
+  desc "Upload the build to the TestFlight"
+  private_lane :upload_testflight do |config|
+    version = get_ipa_info_plist_value(ipa: "./ipa/#{config[:output_name]}.ipa", key: "CFBundleShortVersionString")
+    build = get_ipa_info_plist_value(ipa: "./ipa/#{config[:output_name]}.ipa", key: "CFBundleVersion")
+    changelog = config[:distribute_external] ? "#{config[:output_name]} #{version} build #{build}" : nil
+    app_store_connect_api_key(
+      key_id: config[:api_key_id],
+      issuer_id: config[:api_key_issuer_id],
+      key_content: ENV["APP_STORE_CONNECT_API_KEY_CONTENT"],
+      in_house: false
+    )
+    upload_to_testflight(
+      ipa: "./ipa/#{config[:output_name]}.ipa",
+      app_identifier: config[:app_identifier],
+      skip_waiting_for_build_processing: !config[:distribute_external],
+      distribute_external: config[:distribute_external],
+      groups: config[:testflight_groups],
+      changelog: changelog,
+      beta_app_review_info: {
+        contact_first_name: testflight_contact[:first_name],
+        contact_last_name: testflight_contact[:last_name],
+        contact_email: testflight_contact[:email],
+        contact_phone: testflight_contact[:phone]
+      }
+    )
+    if config[:distribute_external]
+      slack(
+        message: "[iOS #{config[:output_name]}] #{version} build #{build} uploaded to the TestFlight\nLink: #{config[:testflight_link]}",
+        channel: slack_channel,
+        default_payloads: [],
+        payload: {}
+      )
+    end
+  end
+
+  # RUN TESTS
+
+  desc "Run tests on Alpha"
+  lane :test_alpha do
+    tests(alpha)
+  end
+
+  desc "Run tests on Beta"
+  lane :test_beta do
+    tests(beta)
+  end
+
+  desc "Run tests on Production"
+  lane :test_production do
+    tests(production)
+  end
+
+  desc "Run tests"
+  private_lane :tests do |config|
+  run_tests(
+    scheme: config[:scheme]
+  )
+  end
+
+  # SYNC DSYM FILES
+
+  desc "Sync Alpha dSYM files"
+  lane :dsym_alpha do
+    dsym(alpha.merge(matee))
+  end
+
+  desc "Sync Beta dSYM files"
+  lane :dsym_beta do
+    dsym(beta.merge(matee))
+  end
+
+  desc "Sync Production dSYM files"
+  lane :dsym_production do
+    dsym(production.merge(client))
+  end
+
+  desc "Sync dSYM files"
+  private_lane :dsym do |config|
+    app_store_connect_api_key(
+      key_id: config[:api_key_id],
+      issuer_id: config[:api_key_issuer_id],
+      key_content: ENV["APP_STORE_CONNECT_API_KEY_CONTENT"],
+      in_house: false
+    )
+    download_dsyms(
+      team_id: config[:team_id_connect],
+      app_identifier: config[:app_identifier],
+      version: 'latest'
+    )
+    upload_symbols_to_crashlytics(
+      gsp_path: config[:gsp_path],
+      binary_path: ENV["UPLOAD_SYMBOLS_PATH"]
+    )
+    clean_build_artifacts
+  end
+
+  # GIT TAG
+
+  desc "Create and push git tag"
+  lane :tag do
+    version = get_ipa_info_plist_value(ipa: "./ipa/#{production[:output_name]}.ipa", key: "CFBundleShortVersionString")
+    build = get_ipa_info_plist_value(ipa: "./ipa/#{production[:output_name]}.ipa", key: "CFBundleVersion")
+    add_git_tag(tag: "#{version}.#{build}")
+    push_git_tags(tag: "#{version}.#{build}")
+  end
+
+  # You can define as many lanes as you want
+
+  after_all do |lane|
+    # This block is called, only if the executed lane was successful
+    delete_keychain(name: "fastlane") if File.exist?(File.expand_path("~/Library/Keychains/fastlane-db"))
+  end
+
+  error do |lane, exception|
+    # This block is called, only if there was an error in the executed lane
+    delete_keychain(name: "fastlane") if File.exist?(File.expand_path("~/Library/Keychains/fastlane-db"))
+  end
+end

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RatingViewSmall" customModule="PresentationLayer">
+            <connections>
+                <outlet property="star1" destination="2LD-Ak-bhe" id="tN6-eB-PP8"/>
+                <outlet property="star2" destination="cJV-o0-UB2" id="wyG-Lv-Jsw"/>
+                <outlet property="star3" destination="644-m2-UAw" id="amV-Ms-iku"/>
+                <outlet property="star4" destination="ZZF-a8-NHb" id="mlK-mM-v2X"/>
+                <outlet property="star5" destination="qK3-Fu-pnJ" id="U6C-lf-Ceq"/>
+                <outlet property="starEmpty1" destination="cBE-7B-LR6" id="a5D-kH-pYN"/>
+                <outlet property="starEmpty2" destination="16y-bU-3Nu" id="4HS-nm-Qc1"/>
+                <outlet property="starEmpty3" destination="CwN-ds-GVA" id="cEZ-uI-FQo"/>
+                <outlet property="starEmpty4" destination="ma4-sK-LgS" id="WUF-Dy-ZRI"/>
+                <outlet property="starEmpty5" destination="R5h-VM-ofi" id="jiW-SB-Zox"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="dWL-UQ-loM">
+            <rect key="frame" x="0.0" y="0.0" width="116" height="25"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Slm-eJ-sQY">
+                    <rect key="frame" x="10" y="5" width="96" height="15"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="StarSmallEmpty" translatesAutoresizingMaskIntoConstraints="NO" id="cBE-7B-LR6" customClass="ColoredImageView" customModule="A_Shipvio" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="16" height="15"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="StarSmallEmpty" translatesAutoresizingMaskIntoConstraints="NO" id="16y-bU-3Nu" customClass="ColoredImageView" customModule="A_Shipvio" customModuleProvider="target">
+                            <rect key="frame" x="20" y="0.0" width="16" height="15"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="StarSmallEmpty" translatesAutoresizingMaskIntoConstraints="NO" id="CwN-ds-GVA" customClass="ColoredImageView" customModule="A_Shipvio" customModuleProvider="target">
+                            <rect key="frame" x="40" y="0.0" width="16" height="15"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="StarSmallEmpty" translatesAutoresizingMaskIntoConstraints="NO" id="ma4-sK-LgS" customClass="ColoredImageView" customModule="A_Shipvio" customModuleProvider="target">
+                            <rect key="frame" x="60" y="0.0" width="16" height="15"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="StarSmallEmpty" translatesAutoresizingMaskIntoConstraints="NO" id="R5h-VM-ofi" customClass="ColoredImageView" customModule="A_Shipvio" customModuleProvider="target">
+                            <rect key="frame" x="80" y="0.0" width="16" height="15"/>
+                        </imageView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="15" id="wHv-fC-AGu"/>
+                        <constraint firstAttribute="width" constant="96" id="zYW-Bi-7Ur"/>
+                    </constraints>
+                </stackView>
+                <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="20H-sK-oXe">
+                    <rect key="frame" x="10" y="5" width="96" height="15"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dk8-aM-Txx">
+                            <rect key="frame" x="0.0" y="0.0" width="16" height="15"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="StarSmall" translatesAutoresizingMaskIntoConstraints="NO" id="2LD-Ak-bhe" customClass="ColoredImageView" customModule="A_Shipvio" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="16" height="15"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wre-tT-r3K">
+                            <rect key="frame" x="20" y="0.0" width="16" height="15"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="StarSmall" translatesAutoresizingMaskIntoConstraints="NO" id="cJV-o0-UB2" customClass="ColoredImageView" customModule="A_Shipvio" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="16" height="15"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bFf-PD-koE">
+                            <rect key="frame" x="40" y="0.0" width="16" height="15"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="StarSmall" translatesAutoresizingMaskIntoConstraints="NO" id="644-m2-UAw" customClass="ColoredImageView" customModule="A_Shipvio" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="16" height="15"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VnN-2T-SOb">
+                            <rect key="frame" x="60" y="0.0" width="16" height="15"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="StarSmall" translatesAutoresizingMaskIntoConstraints="NO" id="ZZF-a8-NHb" customClass="ColoredImageView" customModule="A_Shipvio" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="16" height="15"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hil-4f-O94">
+                            <rect key="frame" x="80" y="0.0" width="16" height="15"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="StarSmall" translatesAutoresizingMaskIntoConstraints="NO" id="qK3-Fu-pnJ" customClass="ColoredImageView" customModule="A_Shipvio" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="16" height="15"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </view>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Slm-eJ-sQY" firstAttribute="centerX" secondItem="dWL-UQ-loM" secondAttribute="centerX" id="5KL-bM-VhW"/>
+                <constraint firstItem="20H-sK-oXe" firstAttribute="bottom" secondItem="Slm-eJ-sQY" secondAttribute="bottom" id="BMu-6U-KWg"/>
+                <constraint firstItem="20H-sK-oXe" firstAttribute="top" secondItem="Slm-eJ-sQY" secondAttribute="top" id="MDk-4J-W6c"/>
+                <constraint firstItem="20H-sK-oXe" firstAttribute="leading" secondItem="Slm-eJ-sQY" secondAttribute="leading" id="ZQ4-Ir-ZoE"/>
+                <constraint firstItem="20H-sK-oXe" firstAttribute="trailing" secondItem="Slm-eJ-sQY" secondAttribute="trailing" id="kow-Op-9KF"/>
+                <constraint firstItem="Slm-eJ-sQY" firstAttribute="centerY" secondItem="dWL-UQ-loM" secondAttribute="centerY" id="qdY-G0-z26"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="33.600000000000001" y="52.623688155922046"/>
+        </view>
+    </objects>
+    <designables>
+        <designable name="16y-bU-3Nu">
+            <size key="intrinsicContentSize" width="16" height="15.5"/>
+        </designable>
+        <designable name="2LD-Ak-bhe">
+            <size key="intrinsicContentSize" width="16" height="15.5"/>
+        </designable>
+        <designable name="644-m2-UAw">
+            <size key="intrinsicContentSize" width="16" height="15.5"/>
+        </designable>
+        <designable name="CwN-ds-GVA">
+            <size key="intrinsicContentSize" width="16" height="15.5"/>
+        </designable>
+        <designable name="R5h-VM-ofi">
+            <size key="intrinsicContentSize" width="16" height="15.5"/>
+        </designable>
+        <designable name="ZZF-a8-NHb">
+            <size key="intrinsicContentSize" width="16" height="15.5"/>
+        </designable>
+        <designable name="cBE-7B-LR6">
+            <size key="intrinsicContentSize" width="16" height="15.5"/>
+        </designable>
+        <designable name="cJV-o0-UB2">
+            <size key="intrinsicContentSize" width="16" height="15.5"/>
+        </designable>
+        <designable name="ma4-sK-LgS">
+            <size key="intrinsicContentSize" width="16" height="15.5"/>
+        </designable>
+        <designable name="qK3-Fu-pnJ">
+            <size key="intrinsicContentSize" width="16" height="15.5"/>
+        </designable>
+    </designables>
+    <resources>
+        <image name="StarSmall" width="16" height="15.5"/>
+        <image name="StarSmallEmpty" width="16" height="15.5"/>
+    </resources>
+</document>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ActivityIndicatorView" customModule="PresentationLayer">
+            <connections>
+                <outlet property="backgroundView" destination="rbg-qU-taD" id="fgg-EL-BXO"/>
+                <outlet property="indicator" destination="C9Q-y9-jBV" id="itk-HA-Msr"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="KaG-Ie-VPH">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rbg-qU-taD">
+                    <rect key="frame" x="137.5" y="283.5" width="100" height="100"/>
+                    <subviews>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="C9Q-y9-jBV">
+                            <rect key="frame" x="31.5" y="31.5" width="37" height="37"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="FG7-RF-wdN"/>
+                        <constraint firstAttribute="height" constant="100" id="Y0O-cu-9D6"/>
+                        <constraint firstItem="C9Q-y9-jBV" firstAttribute="centerX" secondItem="rbg-qU-taD" secondAttribute="centerX" id="eI8-sf-6aq"/>
+                        <constraint firstItem="C9Q-y9-jBV" firstAttribute="centerY" secondItem="rbg-qU-taD" secondAttribute="centerY" id="txs-DG-HBU"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="rbg-qU-taD" firstAttribute="centerX" secondItem="KaG-Ie-VPH" secondAttribute="centerX" id="PkG-Ub-9Kk"/>
+                <constraint firstItem="rbg-qU-taD" firstAttribute="centerY" secondItem="KaG-Ie-VPH" secondAttribute="centerY" id="cvB-Rd-Nbi"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <point key="canvasLocation" x="39" y="73"/>
+        </view>
+    </objects>
+</document>

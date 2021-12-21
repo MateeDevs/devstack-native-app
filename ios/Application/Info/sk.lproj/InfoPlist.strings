@@ -1,0 +1,12 @@
+/* 
+  InfoPlist.strings
+  DevStack
+
+  Created by Petr Chmelar on 09/02/2020.
+  Copyright © 2020 Matee. All rights reserved.
+*/
+
+"NSCameraUsageDescription" = "Aby ste mohli odfotografovať, musíte udeliť prístup k fotoaparátu.";
+"NSPhotoLibraryUsageDescription" = "Ak chcete vybrať fotografiu, musíte udeliť prístup do vašej knižnice fotografií.";
+"NSPhotoLibraryAddUsageDescription" = "Ak chcete pridať fotky do svojej knižnice fotografií, musíte udeliť prístup.";
+"NSLocationWhenInUseUsageDescription" = "Aby ste mohli plne využívať všetkých funkcií, musíte udeliť prístup k lokalizačným službám.";

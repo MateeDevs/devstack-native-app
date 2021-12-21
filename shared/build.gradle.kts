@@ -50,6 +50,7 @@ kotlin {
         }
 
         val androidMain by getting {
+            dependsOn(commonMain)
             dependencies {
                 implementation(Dependency.Ktor.android)
                 implementation(Dependency.SqlDelight.androidDriver)
@@ -60,6 +61,7 @@ kotlin {
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting
         val iosMain by creating {
+            dependsOn(commonMain)
             dependencies {
                 implementation(Dependency.Ktor.ios)
                 implementation(Dependency.SqlDelight.iosDriver)
@@ -69,7 +71,18 @@ kotlin {
             iosSimulatorArm64Main.dependsOn(this)
         }
     }
+
+    // New memory model - https://github.com/JetBrains/kotlin/blob/master/kotlin-native/NEW_MM.md
+    targets.withType(org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget::class.java) {
+        binaries.all {
+            freeCompilerArgs = freeCompilerArgs + "-Xruntime-logs=gc=info"
+            binaryOptions["memoryModel"] = "experimental"
+            binaryOptions["freezing"] = "disabled"
+        }
+    }
 }
+
+
 
 android {
     compileSdkVersion(Application.Sdk.compile)
@@ -95,11 +108,17 @@ tasks.create("buildXCFramework") {
 
 fun copyXCFramework(projectName: String) {
     val buildPathRelease = "build/XCFrameworks/release/$projectName.xcframework"
-    val sharedIOSPath = "swiftpackage/$projectName.xcframework"
+    val sharedSwiftpackagePath = "swiftpackage/$projectName.xcframework"
+    val iosXCBinaryPath = "../ios/DomainLayer/$projectName.xcframework"
 
-    delete(sharedIOSPath)
+    delete(sharedSwiftpackagePath)
+    delete(iosXCBinaryPath)
     copy {
         from(buildPathRelease)
-        into(sharedIOSPath)
+        into(sharedSwiftpackagePath)
+    }
+    copy {
+        from(buildPathRelease)
+        into(iosXCBinaryPath)
     }
 }

@@ -6,7 +6,7 @@ object Dependency {
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
 
         object Coroutines {
-            const val version = "1.5.2-native-mt"
+            const val version = "1.6.0-RC3"
 
             const val common = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
             const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"

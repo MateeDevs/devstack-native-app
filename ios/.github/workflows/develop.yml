@@ -1,0 +1,81 @@
+name: Build develop
+
+on:
+  pull_request:
+    branches:
+      - develop
+    types: [closed]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Create new build
+    if: github.event.pull_request.merged == true
+    runs-on: [self-hosted, ios-build]
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        continue-on-error: true
+        with:
+          clean: false
+      - name: Pull Twine repo
+        run: git -C $TWINE_FOLDER pull origin master
+      - name: Setup tools
+        run: ./scripts/setup.sh
+      - name: Generate build number
+        run: echo "BUILD_NUMBER=$(echo `date +"%y%m%d%H%M"`)" >> $GITHUB_ENV
+      - name: Create a new Alpha build
+        env:
+          MATCH_PASSWORD: ${{ secrets.FASTLANE_MATCH_PASSWORD }}
+          APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_MATEE }}
+        run: fastlane build_alpha
+
+  deploy-alpha:
+    name: Deploy alpha
+    if: github.event.pull_request.merged == true
+    needs: build
+    runs-on: [self-hosted, ios-internal]
+    timeout-minutes: 15
+    steps:
+      - name: Upload the Alpha build to the TestFlight
+        env:
+          APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_MATEE }}
+          SLACK_URL: ${{ secrets.FASTLANE_SLACK_URL }}
+        run: fastlane upload_testflight_alpha distribute_external:false
+
+      # - name: Login to Jira
+      #   uses: atlassian/gajira-login@master
+      #   env:
+      #     JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+      #     JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
+      #     JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+
+      # - name: Find Jira issue
+      #   id: jira
+      #   uses: atlassian/gajira-find-issue-key@master
+      #   with:
+      #     string: ${{ github.event.pull_request.head.ref }}
+
+      # - name: Check Jira issue state
+      #   id: jira_state
+      #   env:
+      #     ISSUE_CODE: ${{ steps.jira.outputs.issue }}
+      #   run: echo "::set-output name=is_issue_valid::$(if [ -z "$ISSUE_CODE" ]; then echo false; else echo true; fi)"
+
+      # - name: Retrieve version and build numbers
+      #   id: ipa_numbers
+      #   run: |
+      #     unzip -d ipa ./ipa/A-DevStack.ipa
+      #     echo "::set-output name=version_number::$(defaults read `pwd`/ipa/Payload/DevStack.app/Info CFBundleShortVersionString)"
+      #     echo "::set-output name=build_number::$(defaults read `pwd`/ipa/Payload/DevStack.app/Info CFBundleVersion)"
+      #     rm -rf ipa
+
+      # - name: Comment on Jira issue
+      #   if: steps.jira_state.outputs.is_issue_valid == 'true'
+      #   uses: atlassian/gajira-comment@master
+      #   with:
+      #     issue: ${{ steps.jira.outputs.issue }}
+      #     comment: |-
+      #       bq. *Automated message*
+      #       [iOS A-DevStack] ${{ steps.ipa_numbers.outputs.version_number }} build ${{ steps.ipa_numbers.outputs.build_number }} - TestFlight Public link

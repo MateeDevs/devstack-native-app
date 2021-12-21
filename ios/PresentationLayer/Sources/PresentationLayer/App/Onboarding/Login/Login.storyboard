@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZcH-Db-QSc">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--LoginViewController-->
+        <scene sceneID="7bM-w1-anV">
+            <objects>
+                <viewController id="ZcH-Db-QSc" userLabel="LoginViewController" customClass="LoginViewController" customModule="PresentationLayer" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gbU-0s-hk2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="obQ-ZS-x3F">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZQm-U7-xrj">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="login_view_headline_title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WB7-Ew-rrp" customClass="HeadlineLabel" customModule="PresentationLayer">
+                                                <rect key="frame" x="24" y="64" width="327" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="PGK-yN-1Ou">
+                                                <rect key="frame" x="24" y="116.5" width="327" height="160"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dPM-XN-bSq" customClass="TextFieldWithHint" customModule="PresentationLayer">
+                                                        <rect key="frame" x="0.0" y="0.0" width="327" height="72"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="72" id="SbZ-yr-Pch"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="login_view_email_field_hint"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5kV-1L-kH3" customClass="TextFieldWithHint" customModule="PresentationLayer">
+                                                        <rect key="frame" x="0.0" y="88" width="327" height="72"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="72" id="jFp-Ao-h8x"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="login_view_password_field_hint"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6yZ-xb-K3F" customClass="PrimaryButton" customModule="PresentationLayer">
+                                                <rect key="frame" x="24" y="567" width="327" height="30"/>
+                                                <state key="normal" title="login_view_login_button_title"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S8h-Ws-6nH" customClass="SecondaryButton" customModule="PresentationLayer">
+                                                <rect key="frame" x="24" y="605" width="327" height="30"/>
+                                                <state key="normal" title="login_view_register_button_title"/>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="PGK-yN-1Ou" secondAttribute="trailing" constant="24" id="0TY-bK-44i"/>
+                                            <constraint firstItem="PGK-yN-1Ou" firstAttribute="top" secondItem="WB7-Ew-rrp" secondAttribute="bottom" constant="32" id="3mk-ls-0a0"/>
+                                            <constraint firstItem="6yZ-xb-K3F" firstAttribute="leading" secondItem="ZQm-U7-xrj" secondAttribute="leading" constant="24" id="A2y-tA-fTc"/>
+                                            <constraint firstItem="WB7-Ew-rrp" firstAttribute="top" secondItem="ZQm-U7-xrj" secondAttribute="top" constant="64" id="AXS-wD-ouM"/>
+                                            <constraint firstItem="PGK-yN-1Ou" firstAttribute="leading" secondItem="ZQm-U7-xrj" secondAttribute="leading" constant="24" id="Au3-gd-KUj"/>
+                                            <constraint firstAttribute="trailing" secondItem="S8h-Ws-6nH" secondAttribute="trailing" constant="24" id="Bz2-JB-sih"/>
+                                            <constraint firstItem="S8h-Ws-6nH" firstAttribute="leading" secondItem="ZQm-U7-xrj" secondAttribute="leading" constant="24" id="CSK-vH-y9X"/>
+                                            <constraint firstAttribute="trailing" secondItem="WB7-Ew-rrp" secondAttribute="trailing" constant="24" id="HdM-kZ-SZn"/>
+                                            <constraint firstItem="WB7-Ew-rrp" firstAttribute="leading" secondItem="ZQm-U7-xrj" secondAttribute="leading" constant="24" id="XnZ-Cs-iH9"/>
+                                            <constraint firstAttribute="trailing" secondItem="6yZ-xb-K3F" secondAttribute="trailing" constant="24" id="bk8-RT-3Kp"/>
+                                            <constraint firstItem="S8h-Ws-6nH" firstAttribute="top" secondItem="6yZ-xb-K3F" secondAttribute="bottom" constant="8" id="kUe-Bp-jzR"/>
+                                            <constraint firstAttribute="bottom" secondItem="S8h-Ws-6nH" secondAttribute="bottom" constant="32" id="saf-mp-4Or"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="ZQm-U7-xrj" firstAttribute="bottom" secondItem="9bb-Qf-cvW" secondAttribute="bottom" id="1Rr-zH-ENH"/>
+                                    <constraint firstItem="ZQm-U7-xrj" firstAttribute="width" secondItem="DHP-2K-tNy" secondAttribute="width" id="J26-JK-gDb"/>
+                                    <constraint firstItem="ZQm-U7-xrj" firstAttribute="height" secondItem="DHP-2K-tNy" secondAttribute="height" id="agQ-Ww-QP8"/>
+                                    <constraint firstItem="ZQm-U7-xrj" firstAttribute="leading" secondItem="9bb-Qf-cvW" secondAttribute="leading" id="bPd-l3-ylu"/>
+                                    <constraint firstItem="ZQm-U7-xrj" firstAttribute="trailing" secondItem="9bb-Qf-cvW" secondAttribute="trailing" id="k39-QN-NiD"/>
+                                    <constraint firstItem="ZQm-U7-xrj" firstAttribute="top" secondItem="9bb-Qf-cvW" secondAttribute="top" id="mLF-YA-MIa"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="9bb-Qf-cvW"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="DHP-2K-tNy"/>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="lmn-Lr-eoW"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="lmn-Lr-eoW" firstAttribute="bottom" secondItem="obQ-ZS-x3F" secondAttribute="bottom" id="34v-DB-HN9"/>
+                            <constraint firstItem="obQ-ZS-x3F" firstAttribute="leading" secondItem="lmn-Lr-eoW" secondAttribute="leading" id="Gzl-jV-V3x"/>
+                            <constraint firstItem="lmn-Lr-eoW" firstAttribute="trailing" secondItem="obQ-ZS-x3F" secondAttribute="trailing" id="K9p-Zg-7sU"/>
+                            <constraint firstItem="obQ-ZS-x3F" firstAttribute="top" secondItem="lmn-Lr-eoW" secondAttribute="top" id="Px8-bu-FGa"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="dPM-XN-bSq" id="zoT-Zd-0Pg"/>
+                        <outlet property="loginButton" destination="6yZ-xb-K3F" id="R1g-Ye-9uU"/>
+                        <outlet property="passwordTextField" destination="5kV-1L-kH3" id="Boj-3i-bfY"/>
+                        <outlet property="registerButton" destination="S8h-Ws-6nH" id="ioa-ZL-KVl"/>
+                        <outlet property="scrollView" destination="obQ-ZS-x3F" id="39e-4z-mAC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i0Y-qL-2yn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-33" y="158"/>
+        </scene>
+    </scenes>
+    <designables>
+        <designable name="6yZ-xb-K3F">
+            <size key="intrinsicContentSize" width="201" height="30"/>
+        </designable>
+        <designable name="S8h-Ws-6nH">
+            <size key="intrinsicContentSize" width="220" height="30"/>
+        </designable>
+        <designable name="WB7-Ew-rrp">
+            <size key="intrinsicContentSize" width="191" height="20.5"/>
+        </designable>
+    </designables>
+</document>

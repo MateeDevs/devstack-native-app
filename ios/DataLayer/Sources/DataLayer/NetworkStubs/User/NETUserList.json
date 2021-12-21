@@ -1,0 +1,19 @@
+{
+    "page": 0,
+    "limit": 100,
+    "lastPage": 0,
+    "data": [
+        {
+            "id": "5c1a3d7b4a74580016faadf8",
+            "email": "petr.chmelar@matee.cz",
+            "firstName": "Petr",
+            "lastName": "Chmelar"
+        },
+        {
+            "id": "5c50224464662000177f69a9",
+            "email": "user1@matee.cz",
+            "firstName": "User1",
+            "lastName": "Matee"
+        }
+    ]
+}
