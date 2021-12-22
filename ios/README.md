@@ -96,6 +96,5 @@ FIXME
 - [SwiftyMocky](https://github.com/MakeAWishFoundation/SwiftyMocky) is used for automatic mock generation
 
 ## TODO
-- Re-enable KMP example once the module is fixed - [related PR](https://github.com/MateeDevs/devstack-ios-app/pull/133)
 - Replace Mint with SPM Extensible Build Tools once it is available (should be in Swift 5.6)
 - Migrate to SwiftUI + Combine when the time is right
