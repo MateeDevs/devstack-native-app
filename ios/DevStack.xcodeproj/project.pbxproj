@@ -36,6 +36,7 @@
 		4575E65525F6FA7600CCC003 /* AppIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIcon.xcassets; sourceTree = "<group>"; };
 		4597626E20FDF0810034DE29 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		459896B026129CB300C852E0 /* Info+Proxyman.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info+Proxyman.plist"; sourceTree = "<group>"; };
+		459B777827737AFB00EAA694 /* DevstackKmpShared.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = DevstackKmpShared.xcframework; path = DomainLayer/DevstackKmpShared.xcframework; sourceTree = "<group>"; };
 		45CC76B6275F6FE200D45D76 /* DomainLayer */ = {isa = PBXFileReference; lastKnownFileType = folder; path = DomainLayer; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				4534C1C42603D6AD0022ACF4 /* XCTest.framework */,
+				459B777827737AFB00EAA694 /* DevstackKmpShared.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -131,7 +133,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4558D31920FCC900005BC325 /* Build configuration list for PBXNativeTarget "DevStack" */;
 			buildPhases = (
-				4898C70D2771C66C00835A6E /* Build shared kmp module */,
 				0C3E096223F6B3950051287D /* Script for SwiftLint */,
 				4558D30320FCC8FF005BC325 /* Sources */,
 				4558D30420FCC8FF005BC325 /* Frameworks */,
@@ -222,7 +223,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#scripts/swiftlint.sh\n";
+			shellScript = "scripts/swiftlint.sh\n";
 		};
 		453D3FCD25ED976A0094ADD7 /* Copy GoogleService-Info.plist */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -255,24 +256,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${BUILD_DIR%Build/*}SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
-		};
-		4898C70D2771C66C00835A6E /* Build shared kmp module */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Build shared kmp module";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n#cd \"$SRCROOT/..\"\n#./gradlew buildXCFramework -PXCODE_CONFIGURATION=${CONFIGURATION}\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

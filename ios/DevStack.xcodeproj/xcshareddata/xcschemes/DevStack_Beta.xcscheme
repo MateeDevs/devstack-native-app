@@ -9,8 +9,24 @@
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
-               title = "Run Script"
-               scriptText = "cd &quot;${PROJECT_DIR}&quot;&#10;#exec &gt; prebuild.log 2&gt;&amp;1 # For debugging&#10;scripts/twine.sh&#10;scripts/swiftgen.sh&#10;scripts/swiftymocky.sh&#10;">
+               title = "Build KMP"
+               scriptText = "cd &quot;${PROJECT_DIR}&quot;&#10;exec &gt; prebuild-kmp.log 2&gt;&amp;1 # For debugging&#10;scripts/build-kmp.sh&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "4558D30620FCC8FF005BC325"
+                     BuildableName = "DevStack.app"
+                     BlueprintName = "DevStack"
+                     ReferencedContainer = "container:DevStack.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Generate resources and mocks"
+               scriptText = "cd &quot;${PROJECT_DIR}&quot;&#10;exec &gt; prebuild.log 2&gt;&amp;1 # For debugging&#10;scripts/twine.sh&#10;scripts/swiftgen.sh&#10;scripts/swiftymocky.sh&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
