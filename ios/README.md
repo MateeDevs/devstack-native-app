@@ -1,4 +1,5 @@
 # Matee iOS DevStack
+- Historical development prior monorepo can be seen in the [devstack-ios-app](https://github.com/MateeDevs/devstack-ios-app) repo
 
 ## Documents
 - **API Doc:** [Postmanerator](https://matee-devstack.herokuapp.com/apidoc.html)
