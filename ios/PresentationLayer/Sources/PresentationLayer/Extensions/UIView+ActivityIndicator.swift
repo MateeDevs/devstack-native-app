@@ -8,7 +8,7 @@ import UIKit
 extension UIView {
     
     func startActivityIndicator(
-        style: UIActivityIndicatorView.Style = .whiteLarge,
+        style: UIActivityIndicatorView.Style = .large,
         color: UIColor = AppTheme.Colors.activityIndicator,
         backgroundColor: UIColor = .clear
     ) {

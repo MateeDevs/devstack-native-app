@@ -124,7 +124,7 @@ extension Reactive where Base: CLLocationManager {
     // MARK: Responding to Ranging Events
     /// Reactive wrapper for `delegate` message.
     var didRangeBeaconsInRegion: Observable<(beacons: [CLBeacon], region: CLBeaconRegion)> {
-        return delegate.methodInvoked(#selector(CLLocationManagerDelegate.locationManager(_:didRangeBeacons:in:)))
+        return delegate.methodInvoked(#selector(CLLocationManagerDelegate.locationManager(_:didRange:satisfying:)))
             .map { a in
                 let beacons = try castOrThrow([CLBeacon].self, a[1])
                 let region = try castOrThrow(CLBeaconRegion.self, a[2])
@@ -134,7 +134,7 @@ extension Reactive where Base: CLLocationManager {
     
     /// Reactive wrapper for `delegate` message.
     var rangingBeaconsDidFailForRegionWithError: Observable<(region: CLBeaconRegion, error: Error)> {
-        return delegate.methodInvoked(#selector(CLLocationManagerDelegate.locationManager(_:rangingBeaconsDidFailFor:withError:)))
+        return delegate.methodInvoked(#selector(CLLocationManagerDelegate.locationManager(_:didFailRangingFor:error:)))
             .map { a in
                 let region = try castOrThrow(CLBeaconRegion.self, a[1])
                 let error = try castOrThrow(Error.self, a[2])

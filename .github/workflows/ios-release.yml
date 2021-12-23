@@ -1,4 +1,4 @@
-name: Release
+name: iOS - Release
 
 on: workflow_dispatch
 
@@ -16,6 +16,7 @@ jobs:
       - name: Pull Twine repo
         run: git -C $TWINE_FOLDER pull origin master
       - name: Setup tools
+        working-directory: ios
         run: ./scripts/setup.sh
       - name: Generate build number
         run: echo "BUILD_NUMBER=$(echo `date +"%y%m%d%H%M"`)" >> $GITHUB_ENV
@@ -23,6 +24,7 @@ jobs:
         env:
           MATCH_PASSWORD: ${{ secrets.FASTLANE_MATCH_PASSWORD }}
           APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_MATEE }}
+        working-directory: ios
         run: |
           fastlane build_alpha
           fastlane build_beta
@@ -39,6 +41,7 @@ jobs:
         env:
           APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_MATEE }}
           SLACK_URL: ${{ secrets.FASTLANE_SLACK_URL }}
+        working-directory: ios
         run: fastlane upload_testflight_alpha distribute_external:true
 
   deploy-beta:
@@ -51,6 +54,7 @@ jobs:
         env:
           APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_MATEE }}
           SLACK_URL: ${{ secrets.FASTLANE_SLACK_URL }}
+        working-directory: ios
         run: fastlane upload_testflight_beta distribute_external:true
 
   deploy-production:
@@ -63,4 +67,5 @@ jobs:
         env:
           APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_MATEE }}
           SLACK_URL: ${{ secrets.FASTLANE_SLACK_URL }}
+        working-directory: ios
         run: fastlane upload_testflight_production distribute_external:true
