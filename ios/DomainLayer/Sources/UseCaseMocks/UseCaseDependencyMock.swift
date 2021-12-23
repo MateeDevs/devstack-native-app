@@ -34,8 +34,8 @@ public struct UseCaseDependencyMock: UseCaseDependency {
     public let getUsersUseCase: GetUsersUseCase
     public let refreshUsersUseCase: RefreshUsersUseCase
     
-//    public let getBooksUseCase: GetBooksUseCase
-//    public let refreshBooksUseCase: RefreshBooksUseCase
+    public let getBooksUseCase: GetBooksUseCase
+    public let refreshBooksUseCase: RefreshBooksUseCase
     
     public init(
         trackAnalyticsEventUseCase: TrackAnalyticsEventUseCase = TrackAnalyticsEventUseCaseMock(),
@@ -54,9 +54,9 @@ public struct UseCaseDependencyMock: UseCaseDependency {
         refreshUserUseCase: RefreshUserUseCase = RefreshUserUseCaseMock(),
         updateUserUseCase: UpdateUserUseCase = UpdateUserUseCaseMock(),
         getUsersUseCase: GetUsersUseCase = GetUsersUseCaseMock(),
-        refreshUsersUseCase: RefreshUsersUseCase = RefreshUsersUseCaseMock()/*,
+        refreshUsersUseCase: RefreshUsersUseCase = RefreshUsersUseCaseMock(),
         getBooksUseCase: GetBooksUseCase = GetBooksUseCaseMock(),
-        refreshBooksUseCase: RefreshBooksUseCase = RefreshBooksUseCaseMock()*/
+        refreshBooksUseCase: RefreshBooksUseCase = RefreshBooksUseCaseMock()
     ) {
         self.trackAnalyticsEventUseCase = trackAnalyticsEventUseCase
         self.loginUseCase = loginUseCase
@@ -75,7 +75,7 @@ public struct UseCaseDependencyMock: UseCaseDependency {
         self.updateUserUseCase = updateUserUseCase
         self.getUsersUseCase = getUsersUseCase
         self.refreshUsersUseCase = refreshUsersUseCase
-//        self.getBooksUseCase = getBooksUseCase
-//        self.refreshBooksUseCase = refreshBooksUseCase
+        self.getBooksUseCase = getBooksUseCase
+        self.refreshBooksUseCase = refreshBooksUseCase
     }
 }

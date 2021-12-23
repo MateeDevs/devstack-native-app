@@ -1,4 +1,4 @@
-name: Test develop
+name: iOS - Test develop
 
 on:
   pull_request:
@@ -19,6 +19,8 @@ jobs:
       - name: Pull Twine repo
         run: git -C $TWINE_FOLDER pull origin master
       - name: Setup tools
+        working-directory: ios
         run: ./scripts/setup.sh
       - name: Run tests
+        working-directory: ios
         run: fastlane test_alpha

@@ -8,7 +8,7 @@ import Foundation
 
 public protocol KMPDependency {
     func get<T: AnyObject>(_ type: T.Type) -> T
-     func getProtocol<T: AnyObject>(_ proto: Protocol) -> T
+    func getProtocol<T: AnyObject>(_ proto: Protocol) -> T
 }
 
 public class KMPKoinDependency: KMPDependency {
