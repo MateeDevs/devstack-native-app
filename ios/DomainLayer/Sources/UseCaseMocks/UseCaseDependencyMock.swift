@@ -34,8 +34,10 @@ public struct UseCaseDependencyMock: UseCaseDependency {
     public let getUsersUseCase: GetUsersUseCase
     public let refreshUsersUseCase: RefreshUsersUseCase
     
-    public let getBooksUseCase: GetBooksUseCase
-    public let refreshBooksUseCase: RefreshBooksUseCase
+    // swiftlint:disable implicitly_unwrapped_optional
+    public let getBooksUseCase: GetBooksUseCase!
+    public let refreshBooksUseCase: RefreshBooksUseCase!
+    // swiftlint:enable implicitly_unwrapped_optional
     
     public init(
         trackAnalyticsEventUseCase: TrackAnalyticsEventUseCase = TrackAnalyticsEventUseCaseMock(),
@@ -54,9 +56,7 @@ public struct UseCaseDependencyMock: UseCaseDependency {
         refreshUserUseCase: RefreshUserUseCase = RefreshUserUseCaseMock(),
         updateUserUseCase: UpdateUserUseCase = UpdateUserUseCaseMock(),
         getUsersUseCase: GetUsersUseCase = GetUsersUseCaseMock(),
-        refreshUsersUseCase: RefreshUsersUseCase = RefreshUsersUseCaseMock(),
-        getBooksUseCase: GetBooksUseCase = GetBooksUseCaseMock(),
-        refreshBooksUseCase: RefreshBooksUseCase = RefreshBooksUseCaseMock()
+        refreshUsersUseCase: RefreshUsersUseCase = RefreshUsersUseCaseMock()
     ) {
         self.trackAnalyticsEventUseCase = trackAnalyticsEventUseCase
         self.loginUseCase = loginUseCase
@@ -75,7 +75,10 @@ public struct UseCaseDependencyMock: UseCaseDependency {
         self.updateUserUseCase = updateUserUseCase
         self.getUsersUseCase = getUsersUseCase
         self.refreshUsersUseCase = refreshUsersUseCase
-        self.getBooksUseCase = getBooksUseCase
-        self.refreshBooksUseCase = refreshBooksUseCase
+        
+        // SwiftyMocky is not able to provide mocks for use cases from KMP
+        // Just assigning nil for now, for tests we will need mocks provided by KMP
+        self.getBooksUseCase = nil
+        self.refreshBooksUseCase = nil
     }
 }

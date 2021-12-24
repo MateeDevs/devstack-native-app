@@ -54,8 +54,10 @@ public struct UseCaseDependencyImpl: UseCaseDependency {
     public let getUsersUseCase: GetUsersUseCase
     public let refreshUsersUseCase: RefreshUsersUseCase
     
-    public let getBooksUseCase: GetBooksUseCase
-    public let refreshBooksUseCase: RefreshBooksUseCase
+    // swiftlint:disable implicitly_unwrapped_optional
+    public let getBooksUseCase: GetBooksUseCase!
+    public let refreshBooksUseCase: RefreshBooksUseCase!
+    // swiftlint:enable implicitly_unwrapped_optional
     
     public init(dependencies: RepositoryDependency, kmpDependencies: KMPDependency) {
         self.trackAnalyticsEventUseCase = TrackAnalyticsEventUseCaseImpl(dependencies: dependencies)
