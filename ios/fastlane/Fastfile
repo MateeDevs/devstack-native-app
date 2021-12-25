@@ -260,8 +260,8 @@ platform :ios do
   lane :tag do
     version = get_ipa_info_plist_value(ipa: "./ipa/#{production[:output_name]}.ipa", key: "CFBundleShortVersionString")
     build = get_ipa_info_plist_value(ipa: "./ipa/#{production[:output_name]}.ipa", key: "CFBundleVersion")
-    add_git_tag(tag: "#{version}.#{build}")
-    push_git_tags(tag: "#{version}.#{build}")
+    add_git_tag(tag: "ios/#{version}.#{build}")
+    push_git_tags(tag: "ios/#{version}.#{build}")
   end
 
   # You can define as many lanes as you want
