@@ -43,20 +43,20 @@ final class BooksViewModel: BaseViewModel, ViewModel {
         
         let activity = ActivityIndicator()
         
-        let refreshUsers = page.flatMap { _ -> Observable<Int> in
+        let refreshBooks = page.flatMap { _ -> Observable<Int> in
             dependencies.refreshBooksUseCase.execute().map({ _ in 100 }).trackActivity(activity).ignoreErrors()
         }.share()
         
         let isRefreshing = Observable<Bool>.merge(
             activity.asObservable(),
-            refreshUsers.map { _ in false }
+            refreshBooks.map { _ in false }
         )
         
         // MARK: Setup outputs
         
         self.output = Output(
             books: books.asDriver(),
-            loadedCount: refreshUsers.asDriver(),
+            loadedCount: refreshBooks.asDriver(),
             isRefreshing: isRefreshing.asDriver()
         )
         
