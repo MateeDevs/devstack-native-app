@@ -223,7 +223,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "scripts/swiftlint.sh\n";
+			shellScript = "if [ $ENABLE_PREVIEWS == \"NO\" ]\nthen\n    scripts/swiftlint.sh\nfi\n";
 		};
 		453D3FCD25ED976A0094ADD7 /* Copy GoogleService-Info.plist */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -255,7 +255,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${BUILD_DIR%Build/*}SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
+			shellScript = "if [ $ENABLE_PREVIEWS == \"NO\" ]\nthen\n    \"${BUILD_DIR%Build/*}SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
