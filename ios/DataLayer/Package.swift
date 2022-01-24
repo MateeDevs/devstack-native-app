@@ -33,6 +33,7 @@ let package = Package(
             dependencies: [
                 .product(name: "DomainLayer", package: "DomainLayer"),
                 .product(name: "FirebaseAnalyticsWithoutAdIdSupport", package: "firebase-ios-sdk"),
+                .product(name: "FirebaseCrashlytics", package: "firebase-ios-sdk"),
                 .product(name: "FirebaseMessaging", package: "firebase-ios-sdk"),
                 .product(name: "FirebaseRemoteConfig", package: "firebase-ios-sdk"),
                 .product(name: "KeychainAccess", package: "KeychainAccess"),
