@@ -40,6 +40,12 @@ FIXME
 - You can use the `scripts/setup.sh` for quick setup of all required tools
 - There is also `scripts/rename.sh` for quick renaming from DevStack to YourProject
 
+## Kotlin Multiplatform
+- Part of the application is based on Kotlin Multiplatform
+- You will need [JDK 11](https://www.azul.com/downloads) to build the project
+- There is `scripts/build-kmp.sh` that is producing `DomainLayer/DevstackKmpShared.xcframework`
+- It is executed automatically with every build as a part of the build's Pre-actions
+
 ## Architecture (Clean Architecture + MVVM + RxSwift)
 - Whole application is separated into three layers according to the Clean Architecture principles
 - Dependencies between layers: `PresentationLayer -> DomainLayer <- DataLayer`

@@ -2,12 +2,6 @@
 
 cd "$(dirname "$0")"
 
-echo "Creating files for Twine and SwiftGen"
-find ../PresentationLayer/Sources/PresentationLayer/Resources/Localizable/*.lproj -type d -exec sh -c 'touch $0/Localizable.strings' {} \;
-touch ../PresentationLayer/Sources/PresentationLayer/Resources/Constants/Assets.swift
-touch ../PresentationLayer/Sources/PresentationLayer/Resources/Constants/Localizable.swift
-touch ../PresentationLayer/Sources/PresentationLayer/Resources/Constants/Storyboards.swift
-
 echo "Checking file header"
 if [ ! -f ../DevStack.xcworkspace/xcuserdata/`whoami`.xcuserdatad/IDETemplateMacros.plist ]; then
   echo "❌ File header is not set - setting now"

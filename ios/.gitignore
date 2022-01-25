@@ -10,6 +10,9 @@ build/
 DerivedData/
 *.log
 
+## KMP generated
+DomainLayer/DevstackKmpShared.xcframework
+
 ## Twine generated
 Localizable.strings
 
