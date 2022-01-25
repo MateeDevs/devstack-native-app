@@ -24,10 +24,14 @@ jobs:
       - name: Setup tools
         working-directory: ios
         run: ./scripts/setup.sh
+      - name: Build KMP
+        working-directory: ios
+        run: ./scripts/build-kmp.sh
       - name: Generate build number
         run: echo "BUILD_NUMBER=$(echo `date +"%y%m%d%H%M"`)" >> $GITHUB_ENV
       - name: Create a new Alpha build
         env:
+          CI: ${{ true }}
           MATCH_PASSWORD: ${{ secrets.FASTLANE_MATCH_PASSWORD }}
           APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_MATEE }}
         working-directory: ios

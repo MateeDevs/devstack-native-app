@@ -1,4 +1,4 @@
 #!/bin/zsh -l
 
-cd "$SRCROOT/.."
+cd ..
 ./gradlew buildXCFramework -PXCODE_CONFIGURATION=${CONFIGURATION}
