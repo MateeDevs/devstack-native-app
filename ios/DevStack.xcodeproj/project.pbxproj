@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4524472527A41483004853C8 /* DataLayer in Frameworks */ = {isa = PBXBuildFile; productRef = 4524472427A41483004853C8 /* DataLayer */; };
+		4524472727A417B1004853C8 /* WidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4524472627A417B1004853C8 /* WidgetView.swift */; };
+		453614D427A42D4700348CF1 /* DomainLayer in Frameworks */ = {isa = PBXBuildFile; productRef = 453614D327A42D4700348CF1 /* DomainLayer */; };
 		454F6EC426CE8B3900C386B8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 454F6EC226CE8B3500C386B8 /* InfoPlist.strings */; };
 		4558D30B20FCC8FF005BC325 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4558D30A20FCC8FF005BC325 /* AppDelegate.swift */; };
 		4575E65625F6FA7600CCC003 /* AppIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4575E65525F6FA7600CCC003 /* AppIcon.xcassets */; };
@@ -15,7 +18,36 @@
 		4583E850272F47D7002D1E1C /* PresentationLayer in Frameworks */ = {isa = PBXBuildFile; productRef = 4583E84F272F47D7002D1E1C /* PresentationLayer */; };
 		4597626F20FDF0810034DE29 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4597626E20FDF0810034DE29 /* LaunchScreen.storyboard */; };
 		459C3707274B001B00536110 /* Atlantis in Frameworks */ = {isa = PBXBuildFile; productRef = 459C3706274B001B00536110 /* Atlantis */; };
+		45DEBE1A27A153A10075C7E2 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45DEBE1927A153A10075C7E2 /* WidgetKit.framework */; };
+		45DEBE1C27A153A10075C7E2 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45DEBE1B27A153A10075C7E2 /* SwiftUI.framework */; };
+		45DEBE1F27A153A10075C7E2 /* Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DEBE1E27A153A10075C7E2 /* Widget.swift */; };
+		45DEBE2127A153A20075C7E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45DEBE2027A153A20075C7E2 /* Assets.xcassets */; };
+		45DEBE2527A153A20075C7E2 /* DevStack Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 45DEBE1827A153A10075C7E2 /* DevStack Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		45DEBE2327A153A20075C7E2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4558D2FF20FCC8FF005BC325 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 45DEBE1727A153A10075C7E2;
+			remoteInfo = "DevStack WidgetExtension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		45DEBE2627A153A20075C7E2 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				45DEBE2527A153A20075C7E2 /* DevStack Widget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		450392842256B29D0037BF42 /* GoogleService-Info-Alpha.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Alpha.plist"; sourceTree = "<group>"; };
@@ -23,9 +55,8 @@
 		450392882256B3C60037BF42 /* GoogleService-Info-Prod.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Prod.plist"; sourceTree = "<group>"; };
 		45140F8E272F40D200960413 /* DataLayer */ = {isa = PBXFileReference; lastKnownFileType = folder; path = DataLayer; sourceTree = "<group>"; };
 		4523E33D272F3E4C00D9F749 /* PresentationLayer */ = {isa = PBXFileReference; lastKnownFileType = folder; path = PresentationLayer; sourceTree = "<group>"; };
+		4524472627A417B1004853C8 /* WidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetView.swift; sourceTree = "<group>"; };
 		4534C1C42603D6AD0022ACF4 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		453D408325EDBB750094ADD7 /* Debug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Debug.entitlements; sourceTree = "<group>"; };
-		453D408425EDBB750094ADD7 /* Release.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Release.entitlements; sourceTree = "<group>"; };
 		454F6EC326CE8B3500C386B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		454F6EC526CE8B4100C386B8 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		454F6EC626CE8B4600C386B8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -38,6 +69,18 @@
 		459896B026129CB300C852E0 /* Info+Proxyman.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info+Proxyman.plist"; sourceTree = "<group>"; };
 		459B777827737AFB00EAA694 /* DevstackKmpShared.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = DevstackKmpShared.xcframework; path = DomainLayer/DevstackKmpShared.xcframework; sourceTree = "<group>"; };
 		45CC76B6275F6FE200D45D76 /* DomainLayer */ = {isa = PBXFileReference; lastKnownFileType = folder; path = DomainLayer; sourceTree = "<group>"; };
+		45DEBE1827A153A10075C7E2 /* DevStack Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "DevStack Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		45DEBE1927A153A10075C7E2 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		45DEBE1B27A153A10075C7E2 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		45DEBE1E27A153A10075C7E2 /* Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Widget.swift; sourceTree = "<group>"; };
+		45DEBE2027A153A20075C7E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		45DEBE2227A153A20075C7E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		45DEBE3227A400410075C7E2 /* Beta.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Beta.entitlements; sourceTree = "<group>"; };
+		45DEBE3327A400410075C7E2 /* Prod.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Prod.entitlements; sourceTree = "<group>"; };
+		45DEBE3427A400410075C7E2 /* Alpha.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Alpha.entitlements; sourceTree = "<group>"; };
+		45DEBE3627A401A40075C7E2 /* Prod.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Prod.entitlements; sourceTree = "<group>"; };
+		45DEBE3727A401A40075C7E2 /* Beta.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Beta.entitlements; sourceTree = "<group>"; };
+		45DEBE3827A401A40075C7E2 /* Alpha.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Alpha.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +95,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		45DEBE1527A153A10075C7E2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				453614D427A42D4700348CF1 /* DomainLayer in Frameworks */,
+				45DEBE1C27A153A10075C7E2 /* SwiftUI.framework in Frameworks */,
+				45DEBE1A27A153A10075C7E2 /* WidgetKit.framework in Frameworks */,
+				4524472527A41483004853C8 /* DataLayer in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -59,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				4558D30920FCC8FF005BC325 /* Application */,
+				45DEBE1D27A153A10075C7E2 /* Widget */,
 				4523E33D272F3E4C00D9F749 /* PresentationLayer */,
 				45CC76B6275F6FE200D45D76 /* DomainLayer */,
 				45140F8E272F40D200960413 /* DataLayer */,
@@ -71,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				4558D30720FCC8FF005BC325 /* DevStack.app */,
+				45DEBE1827A153A10075C7E2 /* DevStack Widget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -101,8 +157,9 @@
 		4575E61225F6F82C00CCC003 /* Entitlements */ = {
 			isa = PBXGroup;
 			children = (
-				453D408325EDBB750094ADD7 /* Debug.entitlements */,
-				453D408425EDBB750094ADD7 /* Release.entitlements */,
+				45DEBE3427A400410075C7E2 /* Alpha.entitlements */,
+				45DEBE3227A400410075C7E2 /* Beta.entitlements */,
+				45DEBE3327A400410075C7E2 /* Prod.entitlements */,
 			);
 			path = Entitlements;
 			sourceTree = "<group>";
@@ -122,8 +179,32 @@
 			children = (
 				4534C1C42603D6AD0022ACF4 /* XCTest.framework */,
 				459B777827737AFB00EAA694 /* DevstackKmpShared.xcframework */,
+				45DEBE1927A153A10075C7E2 /* WidgetKit.framework */,
+				45DEBE1B27A153A10075C7E2 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		45DEBE1D27A153A10075C7E2 /* Widget */ = {
+			isa = PBXGroup;
+			children = (
+				45DEBE3527A401740075C7E2 /* Entitlements */,
+				45DEBE2027A153A20075C7E2 /* Assets.xcassets */,
+				45DEBE2227A153A20075C7E2 /* Info.plist */,
+				45DEBE1E27A153A10075C7E2 /* Widget.swift */,
+				4524472627A417B1004853C8 /* WidgetView.swift */,
+			);
+			path = Widget;
+			sourceTree = "<group>";
+		};
+		45DEBE3527A401740075C7E2 /* Entitlements */ = {
+			isa = PBXGroup;
+			children = (
+				45DEBE3827A401A40075C7E2 /* Alpha.entitlements */,
+				45DEBE3727A401A40075C7E2 /* Beta.entitlements */,
+				45DEBE3627A401A40075C7E2 /* Prod.entitlements */,
+			);
+			path = Entitlements;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,10 +219,12 @@
 				4558D30420FCC8FF005BC325 /* Frameworks */,
 				4558D30520FCC8FF005BC325 /* Resources */,
 				453D3FCD25ED976A0094ADD7 /* Copy GoogleService-Info.plist */,
+				45DEBE2627A153A20075C7E2 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				45DEBE2427A153A20075C7E2 /* PBXTargetDependency */,
 			);
 			name = DevStack;
 			packageProductDependencies = (
@@ -154,18 +237,42 @@
 			productReference = 4558D30720FCC8FF005BC325 /* DevStack.app */;
 			productType = "com.apple.product-type.application";
 		};
+		45DEBE1727A153A10075C7E2 /* DevStack Widget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 45DEBE2D27A153A20075C7E2 /* Build configuration list for PBXNativeTarget "DevStack Widget" */;
+			buildPhases = (
+				45DEBE1427A153A10075C7E2 /* Sources */,
+				45DEBE1527A153A10075C7E2 /* Frameworks */,
+				45DEBE1627A153A10075C7E2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "DevStack Widget";
+			packageProductDependencies = (
+				4524472427A41483004853C8 /* DataLayer */,
+				453614D327A42D4700348CF1 /* DomainLayer */,
+			);
+			productName = "DevStack WidgetExtension";
+			productReference = 45DEBE1827A153A10075C7E2 /* DevStack Widget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		4558D2FF20FCC8FF005BC325 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1240;
+				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1310;
 				ORGANIZATIONNAME = Matee;
 				TargetAttributes = {
 					4558D30620FCC8FF005BC325 = {
 						CreatedOnToolsVersion = 9.4.1;
+					};
+					45DEBE1727A153A10075C7E2 = {
+						CreatedOnToolsVersion = 13.2.1;
 					};
 				};
 			};
@@ -188,6 +295,7 @@
 			projectRoot = "";
 			targets = (
 				4558D30620FCC8FF005BC325 /* DevStack */,
+				45DEBE1727A153A10075C7E2 /* DevStack Widget */,
 			);
 		};
 /* End PBXProject section */
@@ -200,6 +308,14 @@
 				4575E65625F6FA7600CCC003 /* AppIcon.xcassets in Resources */,
 				454F6EC426CE8B3900C386B8 /* InfoPlist.strings in Resources */,
 				4597626F20FDF0810034DE29 /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		45DEBE1627A153A10075C7E2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				45DEBE2127A153A20075C7E2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,7 +369,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		45DEBE1427A153A10075C7E2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4524472727A417B1004853C8 /* WidgetView.swift in Sources */,
+				45DEBE1F27A153A10075C7E2 /* Widget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		45DEBE2427A153A20075C7E2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 45DEBE1727A153A10075C7E2 /* DevStack Widget */;
+			targetProxy = 45DEBE2327A153A20075C7E2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		454F6EC226CE8B3500C386B8 /* InfoPlist.strings */ = {
@@ -335,9 +468,10 @@
 		453D3F5925ED2AD70094ADD7 /* Alpha Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				APP_DISPLAY_NAME = "A-DevStack";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Alpha";
-				CODE_SIGN_ENTITLEMENTS = Application/Entitlements/Debug.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Application/Entitlements/Alpha.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -429,9 +563,10 @@
 		453D3F5E25ED2AE60094ADD7 /* Beta Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				APP_DISPLAY_NAME = "B-DevStack";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Beta";
-				CODE_SIGN_ENTITLEMENTS = Application/Entitlements/Debug.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Application/Entitlements/Beta.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -517,9 +652,10 @@
 		453D3F6325ED2AF10094ADD7 /* Alpha Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				APP_DISPLAY_NAME = "A-DevStack";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Alpha";
-				CODE_SIGN_ENTITLEMENTS = Application/Entitlements/Release.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Application/Entitlements/Alpha.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
@@ -605,9 +741,10 @@
 		453D3F6825ED2AFB0094ADD7 /* Beta Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				APP_DISPLAY_NAME = "B-DevStack";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Beta";
-				CODE_SIGN_ENTITLEMENTS = Application/Entitlements/Release.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Application/Entitlements/Beta.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
@@ -755,9 +892,10 @@
 		4558D31A20FCC900005BC325 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				APP_DISPLAY_NAME = DevStack;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Application/Entitlements/Debug.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Application/Entitlements/Prod.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -787,9 +925,10 @@
 		4558D31B20FCC900005BC325 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				APP_DISPLAY_NAME = DevStack;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Application/Entitlements/Release.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Application/Entitlements/Prod.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
@@ -815,6 +954,205 @@
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
+		};
+		45DEBE2727A153A20075C7E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_ENTITLEMENTS = Widget/Entitlements/Prod.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WNB34WBN42;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Widget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "DevStack Widget";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 Matee. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				OTHER_SWIFT_FLAGS = "\"-DPRODUCTION\"";
+				PRODUCT_BUNDLE_IDENTIFIER = cz.matee.devstack.widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		45DEBE2827A153A20075C7E2 /* Beta Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_ENTITLEMENTS = Widget/Entitlements/Beta.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WNB34WBN42;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Widget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "DevStack Widget";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 Matee. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				MTL_FAST_MATH = YES;
+				OTHER_SWIFT_FLAGS = "\"-DBETA\"";
+				PRODUCT_BUNDLE_IDENTIFIER = cz.matee.devstack.beta.widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = "Beta Debug";
+		};
+		45DEBE2927A153A20075C7E2 /* Alpha Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_ENTITLEMENTS = Widget/Entitlements/Alpha.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WNB34WBN42;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Widget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "DevStack Widget";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 Matee. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				MTL_FAST_MATH = YES;
+				OTHER_SWIFT_FLAGS = "\"-DALPHA\"";
+				PRODUCT_BUNDLE_IDENTIFIER = cz.matee.devstack.alpha.widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = "Alpha Debug";
+		};
+		45DEBE2A27A153A20075C7E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_ENTITLEMENTS = Widget/Entitlements/Prod.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WNB34WBN42;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Widget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "DevStack Widget";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 Matee. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				MTL_FAST_MATH = YES;
+				OTHER_SWIFT_FLAGS = "\"-DPRODUCTION\"";
+				PRODUCT_BUNDLE_IDENTIFIER = cz.matee.devstack.widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		45DEBE2B27A153A20075C7E2 /* Beta Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_ENTITLEMENTS = Widget/Entitlements/Beta.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WNB34WBN42;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Widget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "DevStack Widget";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 Matee. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				MTL_FAST_MATH = YES;
+				OTHER_SWIFT_FLAGS = "\"-DBETA\"";
+				PRODUCT_BUNDLE_IDENTIFIER = cz.matee.devstack.beta.widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = "Beta Release";
+		};
+		45DEBE2C27A153A20075C7E2 /* Alpha Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_ENTITLEMENTS = Widget/Entitlements/Alpha.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WNB34WBN42;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Widget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "DevStack Widget";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 Matee. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				MTL_FAST_MATH = YES;
+				OTHER_SWIFT_FLAGS = "\"-DALPHA\"";
+				PRODUCT_BUNDLE_IDENTIFIER = cz.matee.devstack.alpha.widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = "Alpha Release";
 		};
 /* End XCBuildConfiguration section */
 
@@ -845,6 +1183,19 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		45DEBE2D27A153A20075C7E2 /* Build configuration list for PBXNativeTarget "DevStack Widget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				45DEBE2727A153A20075C7E2 /* Debug */,
+				45DEBE2827A153A20075C7E2 /* Beta Debug */,
+				45DEBE2927A153A20075C7E2 /* Alpha Debug */,
+				45DEBE2A27A153A20075C7E2 /* Release */,
+				45DEBE2B27A153A20075C7E2 /* Beta Release */,
+				45DEBE2C27A153A20075C7E2 /* Alpha Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -859,6 +1210,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4524472427A41483004853C8 /* DataLayer */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DataLayer;
+		};
+		453614D327A42D4700348CF1 /* DomainLayer */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DomainLayer;
+		};
 		4583E849272F47C6002D1E1C /* DataLayer */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = DataLayer;
