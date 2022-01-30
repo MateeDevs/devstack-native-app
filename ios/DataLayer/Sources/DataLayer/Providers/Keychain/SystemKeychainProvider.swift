@@ -21,19 +21,22 @@ public struct SystemKeychainProvider {
 extension SystemKeychainProvider: KeychainProvider {
     
     public func save(_ key: KeychainCoding, value: String) {
-        let keychain = Keychain(service: Bundle.app.bundleIdentifier!, accessGroup: "group.\(Bundle.app.bundleIdentifier!)")
+        guard let bundleId = Bundle.app.bundleIdentifier else { return }
+        let keychain = Keychain(service: bundleId, accessGroup: "group.\(bundleId)")
         keychain[key.rawValue] = value
     }
     
     public func get(_ key: KeychainCoding) -> String? {
-        let keychain = Keychain(service: Bundle.app.bundleIdentifier!, accessGroup: "group.\(Bundle.app.bundleIdentifier!)")
+        guard let bundleId = Bundle.app.bundleIdentifier else { return nil }
+        let keychain = Keychain(service: bundleId, accessGroup: "group.\(bundleId)")
         guard let value = keychain[key.rawValue] else { return nil }
         return value
     }
     
     public func delete(_ key: KeychainCoding) {
+        guard let bundleId = Bundle.app.bundleIdentifier else { return }
+        let keychain = Keychain(service: bundleId, accessGroup: "group.\(bundleId)")
         do {
-            let keychain = Keychain(service: Bundle.app.bundleIdentifier!, accessGroup: "group.\(Bundle.app.bundleIdentifier!)")
             try keychain.remove(key.rawValue)
         } catch let error {
             Logger.error("Error during KeychainStore delete operation:\n%@", "\(error)", category: .app)

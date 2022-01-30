@@ -12,7 +12,6 @@ struct Provider: TimelineProvider {
     
     #warning("TODO: Temporary keychain access, should be obtained via ViewModel's dependencies instead")
     let keychainProvider = SystemKeychainProvider(userDefaultsProvider: SystemUserDefaultsProvider())
-    let userDefaultsProvider = SystemUserDefaultsProvider()
     
     func placeholder(in context: Context) -> SimpleEntry {
         let isLogged = keychainProvider.get(.userId) != nil
