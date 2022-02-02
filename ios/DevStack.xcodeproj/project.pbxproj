@@ -1063,7 +1063,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = Widget/Entitlements/Prod.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WNB34WBN42;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1081,6 +1081,7 @@
 				OTHER_SWIFT_FLAGS = "\"-DPRODUCTION\"";
 				PRODUCT_BUNDLE_IDENTIFIER = cz.matee.devstack.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore cz.matee.devstack.widget";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1096,7 +1097,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = Widget/Entitlements/Beta.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WNB34WBN42;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1114,6 +1115,7 @@
 				OTHER_SWIFT_FLAGS = "\"-DBETA\"";
 				PRODUCT_BUNDLE_IDENTIFIER = cz.matee.devstack.beta.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore cz.matee.devstack.beta.widget";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1129,7 +1131,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = Widget/Entitlements/Alpha.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WNB34WBN42;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1147,6 +1149,7 @@
 				OTHER_SWIFT_FLAGS = "\"-DALPHA\"";
 				PRODUCT_BUNDLE_IDENTIFIER = cz.matee.devstack.alpha.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore cz.matee.devstack.alpha.widget";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
