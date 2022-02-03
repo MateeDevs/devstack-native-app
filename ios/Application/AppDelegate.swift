@@ -29,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupEnvironment()
         
         Resolver.registerProviders(application: application, appDelegate: self, networkProviderDelegate: self)
+        Resolver.registerRepositories()
         
         // Init main window with navigation controller
         let nc = BaseNavigationController(statusBarStyle: .lightContent)
@@ -41,7 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         flowController = AppFlowController(
             navigationController: nc,
             dependencies: UseCaseDependencyImpl(
-                dependencies: RepositoryDependencyImpl(),
                 kmpDependencies: KMPKoinDependency()
             )
         )

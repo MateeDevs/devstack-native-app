@@ -6,10 +6,6 @@
 import CoreLocation
 import RxSwift
 
-public protocol HasLocationRepository {
-    var locationRepository: LocationRepository { get }
-}
-
 public protocol LocationRepository: AutoMockable {
     
     /// Check whether the location services are enabled and authorized

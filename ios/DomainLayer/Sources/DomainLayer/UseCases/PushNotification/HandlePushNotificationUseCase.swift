@@ -3,6 +3,8 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
+import Resolver
+
 public protocol HasHandlePushNotificationUseCase {
     var handlePushNotificationUseCase: HandlePushNotificationUseCase { get }
 }
@@ -13,15 +15,9 @@ public protocol HandlePushNotificationUseCase: AutoMockable {
 
 public struct HandlePushNotificationUseCaseImpl: HandlePushNotificationUseCase {
     
-    public typealias Dependencies = HasPushNotificationsRepository
-    
-    private let dependencies: Dependencies
-    
-    public init(dependencies: Dependencies) {
-        self.dependencies = dependencies
-    }
+    @Injected private var pushNotificationsRepository: PushNotificationsRepository
     
     public func execute(_ notificationData: [AnyHashable: Any]) -> PushNotification? {
-        dependencies.pushNotificationsRepository.decode(notificationData)
+        pushNotificationsRepository.decode(notificationData)
     }
 }

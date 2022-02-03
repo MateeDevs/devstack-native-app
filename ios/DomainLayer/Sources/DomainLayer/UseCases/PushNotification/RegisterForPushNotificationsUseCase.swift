@@ -3,6 +3,7 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
+import Resolver
 import UserNotifications
 
 public protocol HasRegisterForPushNotificationsUseCase {
@@ -15,16 +16,10 @@ public protocol RegisterForPushNotificationsUseCase: AutoMockable {
 
 public struct RegisterForPushNotificationsUseCaseImpl: RegisterForPushNotificationsUseCase {
     
-    public typealias Dependencies = HasPushNotificationsRepository
-    
-    private let dependencies: Dependencies
-    
-    public init(dependencies: Dependencies) {
-        self.dependencies = dependencies
-    }
+    @Injected private var pushNotificationsRepository: PushNotificationsRepository
 
     public func execute(options: UNAuthorizationOptions, completionHandler: @escaping (Bool, Error?) -> Void) {
-        dependencies.pushNotificationsRepository.register(
+        pushNotificationsRepository.register(
             options: options,
             completionHandler: completionHandler
         )

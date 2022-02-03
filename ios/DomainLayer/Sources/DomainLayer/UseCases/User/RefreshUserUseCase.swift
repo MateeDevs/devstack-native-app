@@ -3,6 +3,7 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
+import Resolver
 import RxSwift
 
 public protocol HasRefreshUserUseCase {
@@ -15,15 +16,9 @@ public protocol RefreshUserUseCase: AutoMockable {
 
 public struct RefreshUserUseCaseImpl: RefreshUserUseCase {
     
-    public typealias Dependencies = HasUserRepository
-    
-    private let dependencies: Dependencies
-    
-    public init(dependencies: Dependencies) {
-        self.dependencies = dependencies
-    }
+    @Injected private var userRepository: UserRepository
     
     public func execute(id: String) -> Observable<Void> {
-        dependencies.userRepository.read(.remote, id: id).mapToVoid()
+        userRepository.read(.remote, id: id).mapToVoid()
     }
 }

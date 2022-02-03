@@ -3,6 +3,7 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
+import Resolver
 import RxSwift
 
 public protocol HasLoginUseCase {
@@ -15,15 +16,9 @@ public protocol LoginUseCase: AutoMockable {
 
 public struct LoginUseCaseImpl: LoginUseCase {
     
-    public typealias Dependencies = HasAuthTokenRepository
-    
-    private let dependencies: Dependencies
-    
-    public init(dependencies: Dependencies) {
-        self.dependencies = dependencies
-    }
+    @Injected private var authTokenRepository: AuthTokenRepository
     
     public func execute(_ data: LoginData) -> Observable<Void> {
-        dependencies.authTokenRepository.create(data).mapToVoid()
+        authTokenRepository.create(data).mapToVoid()
     }
 }

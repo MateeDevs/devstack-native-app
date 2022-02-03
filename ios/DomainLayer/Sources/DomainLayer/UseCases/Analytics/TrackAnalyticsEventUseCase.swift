@@ -3,6 +3,7 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
+import Resolver
 import RxSwift
 
 public protocol HasTrackAnalyticsEventUseCase {
@@ -15,16 +16,9 @@ public protocol TrackAnalyticsEventUseCase: AutoMockable {
 
 public struct TrackAnalyticsEventUseCaseImpl: TrackAnalyticsEventUseCase {
     
-    public typealias Dependencies =
-        HasAnalyticsRepository
-    
-    private let dependencies: Dependencies
-    
-    public init(dependencies: Dependencies) {
-        self.dependencies = dependencies
-    }
+    @Injected private var analyticsRepository: AnalyticsRepository
     
     public func execute(_ event: AnalyticsEvent) {
-        dependencies.analyticsRepository.create(event)
+        analyticsRepository.create(event)
     }
 }

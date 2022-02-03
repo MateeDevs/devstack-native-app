@@ -59,31 +59,31 @@ public struct UseCaseDependencyImpl: UseCaseDependency {
     public let refreshBooksUseCase: RefreshBooksUseCase!
     // swiftlint:enable implicitly_unwrapped_optional
     
-    public init(dependencies: RepositoryDependency, kmpDependencies: KMPDependency) {
-        self.trackAnalyticsEventUseCase = TrackAnalyticsEventUseCaseImpl(dependencies: dependencies)
+    public init(kmpDependencies: KMPDependency) {
+        self.trackAnalyticsEventUseCase = TrackAnalyticsEventUseCaseImpl()
         
-        self.loginUseCase = LoginUseCaseImpl(dependencies: dependencies)
-        self.logoutUseCase = LogoutUseCaseImpl(dependencies: dependencies)
-        self.registrationUseCase = RegistrationUseCaseImpl(dependencies: dependencies)
+        self.loginUseCase = LoginUseCaseImpl()
+        self.logoutUseCase = LogoutUseCaseImpl()
+        self.registrationUseCase = RegistrationUseCaseImpl()
         
-        self.getCurrentLocationUseCase = GetCurrentLocationUseCaseImpl(dependencies: dependencies)
+        self.getCurrentLocationUseCase = GetCurrentLocationUseCaseImpl()
         
-        self.getProfileUseCase = GetProfileUseCaseImpl(dependencies: dependencies)
-        self.getProfileIdUseCase = GetProfileIdUseCaseImpl(dependencies: dependencies)
-        self.refreshProfileUseCase = RefreshProfileUseCaseImpl(dependencies: dependencies)
-        self.updateProfileCounterUseCase = UpdateProfileCounterUseCaseImpl(dependencies: dependencies)
+        self.getProfileUseCase = GetProfileUseCaseImpl()
+        self.getProfileIdUseCase = GetProfileIdUseCaseImpl()
+        self.refreshProfileUseCase = RefreshProfileUseCaseImpl()
+        self.updateProfileCounterUseCase = UpdateProfileCounterUseCaseImpl()
         
-        self.handlePushNotificationUseCase = HandlePushNotificationUseCaseImpl(dependencies: dependencies)
-        self.registerForPushNotificationsUseCase = RegisterForPushNotificationsUseCaseImpl(dependencies: dependencies)
+        self.handlePushNotificationUseCase = HandlePushNotificationUseCaseImpl()
+        self.registerForPushNotificationsUseCase = RegisterForPushNotificationsUseCaseImpl()
         
-        self.getRemoteConfigValueUseCase = GetRemoteConfigValueUseCaseImpl(dependencies: dependencies)
+        self.getRemoteConfigValueUseCase = GetRemoteConfigValueUseCaseImpl()
         
-        self.getUserUseCase = GetUserUseCaseImpl(dependencies: dependencies)
-        self.refreshUserUseCase = RefreshUserUseCaseImpl(dependencies: dependencies)
-        self.updateUserUseCase = UpdateUserUseCaseImpl(dependencies: dependencies)
+        self.getUserUseCase = GetUserUseCaseImpl()
+        self.refreshUserUseCase = RefreshUserUseCaseImpl()
+        self.updateUserUseCase = UpdateUserUseCaseImpl()
         
-        self.getUsersUseCase = GetUsersUseCaseImpl(dependencies: dependencies)
-        self.refreshUsersUseCase = RefreshUsersUseCaseImpl(dependencies: dependencies)
+        self.getUsersUseCase = GetUsersUseCaseImpl()
+        self.refreshUsersUseCase = RefreshUsersUseCaseImpl()
         
         self.getBooksUseCase = kmpDependencies.getProtocol(GetBooksUseCase.self)
         self.refreshBooksUseCase = kmpDependencies.getProtocol(RefreshBooksUseCase.self)

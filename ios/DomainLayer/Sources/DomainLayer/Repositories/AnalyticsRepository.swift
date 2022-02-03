@@ -3,10 +3,6 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-public protocol HasAnalyticsRepository {
-    var analyticsRepository: AnalyticsRepository { get }
-}
-
 public protocol AnalyticsRepository: AutoMockable {
     func create(_ event: AnalyticsEvent)
 }

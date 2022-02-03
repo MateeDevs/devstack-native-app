@@ -5,10 +5,6 @@
 
 import RxSwift
 
-public protocol HasUserRepository {
-    var userRepository: UserRepository { get }
-}
-
 public protocol UserRepository: AutoMockable {
     func create(_ data: RegistrationData) -> Observable<User>
     func read(_ sourceType: SourceType, id: String) -> Observable<User>

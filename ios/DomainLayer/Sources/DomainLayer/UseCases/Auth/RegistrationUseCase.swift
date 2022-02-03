@@ -3,6 +3,7 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
+import Resolver
 import RxSwift
 
 public protocol HasRegistrationUseCase {
@@ -15,15 +16,9 @@ public protocol RegistrationUseCase: AutoMockable {
 
 public struct RegistrationUseCaseImpl: RegistrationUseCase {
     
-    public typealias Dependencies = HasUserRepository
-    
-    private let dependencies: Dependencies
-    
-    public init(dependencies: Dependencies) {
-        self.dependencies = dependencies
-    }
+    @Injected private var userRepository: UserRepository
     
     public func execute(_ data: RegistrationData) -> Observable<Void> {
-        dependencies.userRepository.create(data).mapToVoid()
+        userRepository.create(data).mapToVoid()
     }
 }

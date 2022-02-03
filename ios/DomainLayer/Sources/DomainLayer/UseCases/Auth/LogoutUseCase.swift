@@ -3,6 +3,8 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
+import Resolver
+
 public protocol HasLogoutUseCase {
     var logoutUseCase: LogoutUseCase { get }
 }
@@ -13,15 +15,9 @@ public protocol LogoutUseCase: AutoMockable {
 
 public struct LogoutUseCaseImpl: LogoutUseCase {
     
-    public typealias Dependencies = HasAuthTokenRepository
-    
-    private let dependencies: Dependencies
-    
-    public init(dependencies: Dependencies) {
-        self.dependencies = dependencies
-    }
+    @Injected private var authTokenRepository: AuthTokenRepository
     
     public func execute() {
-        dependencies.authTokenRepository.delete()
+        authTokenRepository.delete()
     }
 }
