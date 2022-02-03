@@ -120,5 +120,14 @@
    <ArchiveAction
       buildConfiguration = "Release"
       revealArchiveInOrganizer = "YES">
+      <PostActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Remove nested frameworks"
+               scriptText = "# Prevent duplication of DevstackKmpShared.xcframework&#10;# https://stackoverflow.com/a/67127583/6947225&#10;rm -rf &quot;${ARCHIVE_PRODUCTS_PATH}/Applications/DevStack.app/PlugIns/DevStack Widget.appex/Frameworks&quot;&#10;">
+            </ActionContent>
+         </ExecutionAction>
+      </PostActions>
    </ArchiveAction>
 </Scheme>
