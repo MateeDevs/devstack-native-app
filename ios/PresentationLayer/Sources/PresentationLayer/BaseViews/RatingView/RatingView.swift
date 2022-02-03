@@ -40,7 +40,7 @@ protocol RatingViewDelegate: AnyObject {
         }
     }
 
-    @IBInspectable var starEmptyColor: UIColor = UIColorCompatible.systemGray4 {
+    @IBInspectable var starEmptyColor: UIColor = .systemGray4 {
         didSet {
             paintEmptyStars()
         }

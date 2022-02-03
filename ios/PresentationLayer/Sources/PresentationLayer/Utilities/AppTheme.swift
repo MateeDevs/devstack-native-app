@@ -19,21 +19,21 @@ enum AppTheme {
         static let navBarTitle = UIColor.white
         
         // Backgrounds
-        static let background = UIColorCompatible.systemBackground
+        static let background = UIColor.systemBackground
         
         // Separators
-        static let separator = UIColorCompatible.separator
+        static let separator = UIColor.separator
         
         // Labels
-        static let label = UIColorCompatible.label
+        static let label = UIColor.label
         static let headlineLabel = Asset.Colors.mateeYellow.color
         
         // Text fields
         static let textFieldTitle = UIColor.systemGray
-        static let textFieldBorder = UIColorCompatible.systemGray4
+        static let textFieldBorder = UIColor.systemGray4
         
         // Placeholders
-        static let placeholder = UIColorCompatible.placeholderText
+        static let placeholder = UIColor.placeholderText
         
         // Buttons
         static let primaryButtonBackground = Asset.Colors.mateeYellow.color

@@ -57,18 +57,12 @@ public class AppFlowController: FlowController, MainFlowControllerDelegate, Onbo
     
     private func setupAppearance() {
         // Navigation bar
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = AppTheme.Colors.navBarBackground
+        appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: AppTheme.Colors.navBarTitle]
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
         UINavigationBar.appearance().tintColor = AppTheme.Colors.navBarTitle
-        if #available(iOS 13.0, *) {
-            let appearance = UINavigationBarAppearance()
-            appearance.backgroundColor = AppTheme.Colors.navBarBackground
-            appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: AppTheme.Colors.navBarTitle]
-            UINavigationBar.appearance().standardAppearance = appearance
-            UINavigationBar.appearance().scrollEdgeAppearance = appearance
-        } else {
-            UINavigationBar.appearance().isTranslucent = false
-            UINavigationBar.appearance().barTintColor = AppTheme.Colors.navBarBackground
-            UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: AppTheme.Colors.navBarTitle]
-        }
 
         // Tab bar
         UITabBar.appearance().tintColor = AppTheme.Colors.primaryColor
