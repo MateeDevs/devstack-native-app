@@ -8,12 +8,8 @@ import DomainLayer
 import RxSwift
 
 public class LocationRepositoryImpl: LocationRepository {
-
-    public typealias Dependencies = HasNoProvider
     
     private let locationManager = CLLocationManager()
-    
-    public init(dependencies: Dependencies) {}
     
     public func isLocationEnabled() -> Bool {
         guard CLLocationManager.locationServicesEnabled() else { return false }

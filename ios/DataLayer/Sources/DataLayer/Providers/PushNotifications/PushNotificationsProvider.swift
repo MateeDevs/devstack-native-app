@@ -6,10 +6,6 @@
 import DomainLayer
 import UserNotifications
 
-public protocol HasPushNotificationsProvider {
-    var pushNotificationsProvider: PushNotificationsProvider { get }
-}
-
 public protocol PushNotificationsProvider: AutoMockable {
     /// Request user's authorization for push notifications
     func requestAuthorization(options: UNAuthorizationOptions, completionHandler: @escaping (Bool, Error?) -> Void)

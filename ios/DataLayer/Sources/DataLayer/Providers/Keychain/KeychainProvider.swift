@@ -5,10 +5,6 @@
 
 import DomainLayer
 
-public protocol HasKeychainProvider {
-    var keychainProvider: KeychainProvider { get }
-}
-
 public enum KeychainCoding: String, CaseIterable {
     case authToken
     case userId

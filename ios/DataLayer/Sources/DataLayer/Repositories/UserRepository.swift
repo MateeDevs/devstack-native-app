@@ -4,21 +4,13 @@
 //
 
 import DomainLayer
+import Resolver
 import RxSwift
 
 public struct UserRepositoryImpl: UserRepository {
     
-    public typealias Dependencies =
-        HasDatabaseProvider &
-        HasNetworkProvider
-
-    private let database: DatabaseProvider
-    private let network: NetworkProvider
-
-    public init(dependencies: Dependencies) {
-        self.database = dependencies.databaseProvider
-        self.network = dependencies.networkProvider
-    }
+    @Injected private var database: DatabaseProvider
+    @Injected private var network: NetworkProvider
     
     public func create(_ data: RegistrationData) -> Observable<User> {
         guard let data = data.networkModel.encoded else { return .error(CommonError.encoding) }

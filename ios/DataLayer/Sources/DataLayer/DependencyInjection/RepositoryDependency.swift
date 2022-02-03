@@ -14,12 +14,12 @@ public struct RepositoryDependencyImpl: RepositoryDependency {
     public let remoteConfigRepository: RemoteConfigRepository
     public let userRepository: UserRepository
     
-    public init(dependencies: ProviderDependency) {
-        self.analyticsRepository = AnalyticsRepositoryImpl(dependencies: dependencies)
-        self.authTokenRepository = AuthTokenRepositoryImpl(dependencies: dependencies)
-        self.locationRepository = LocationRepositoryImpl(dependencies: dependencies)
-        self.pushNotificationsRepository = PushNotificationsRepositoryImpl(dependencies: dependencies)
-        self.remoteConfigRepository = RemoteConfigRepositoryImpl(dependencies: dependencies)
-        self.userRepository = UserRepositoryImpl(dependencies: dependencies)
+    public init() {
+        self.analyticsRepository = AnalyticsRepositoryImpl()
+        self.authTokenRepository = AuthTokenRepositoryImpl()
+        self.locationRepository = LocationRepositoryImpl()
+        self.pushNotificationsRepository = PushNotificationsRepositoryImpl()
+        self.remoteConfigRepository = RemoteConfigRepositoryImpl()
+        self.userRepository = UserRepositoryImpl()
     }
 }

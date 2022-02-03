@@ -4,17 +4,11 @@
 //
 
 import DomainLayer
+import Resolver
 
 public struct AnalyticsRepositoryImpl: AnalyticsRepository {
     
-    public typealias Dependencies =
-        HasAnalyticsProvider
-
-    private let analyticsProvider: AnalyticsProvider
-
-    public init(dependencies: Dependencies) {
-        self.analyticsProvider = dependencies.analyticsProvider
-    }
+    @Injected private var analyticsProvider: AnalyticsProvider
     
     public func create(_ event: AnalyticsEvent) {
         analyticsProvider.track(event)

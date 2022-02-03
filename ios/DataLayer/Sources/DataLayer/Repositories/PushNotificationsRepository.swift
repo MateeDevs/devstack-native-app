@@ -5,18 +5,12 @@
 
 import DomainLayer
 import Foundation
+import Resolver
 import UserNotifications
 
 public struct PushNotificationsRepositoryImpl: PushNotificationsRepository {
     
-    public typealias Dependencies =
-        HasPushNotificationsProvider
-
-    private let pushNotifications: PushNotificationsProvider
-
-    public init(dependencies: Dependencies) {
-        self.pushNotifications = dependencies.pushNotificationsProvider
-    }
+    @Injected private var pushNotifications: PushNotificationsProvider
     
     public func decode(_ notificationData: [AnyHashable: Any]) -> PushNotification? {
         do {
