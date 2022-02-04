@@ -130,6 +130,15 @@ platform :ios do
       keychain_name: "fastlane",
       keychain_password: keychain_password
     )
+    sync_code_signing(
+      team_id: config[:team_id_dev],
+      app_identifier: "#{config[:app_identifier]}.widget",
+      git_url: match_url,
+      git_branch: config[:match_branch],
+      type: "appstore",
+      keychain_name: "fastlane",
+      keychain_password: keychain_password
+    )
     build_ios_app(
       workspace: workspace,
       scheme: config[:scheme],
