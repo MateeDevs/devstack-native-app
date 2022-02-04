@@ -3,8 +3,9 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-import DomainLayer
+@testable import DomainLayer
 import RepositoryMocks
+import Resolver
 import SwiftyMocky
 import XCTest
 
@@ -13,15 +14,17 @@ class TrackAnalyticsEventUseCaseTests: BaseTestCase {
     // MARK: Dependencies
     
     private let analyticsRepository = AnalyticsRepositoryMock()
-    
-    private func setupDependencies() -> RepositoryDependency {
-        return RepositoryDependencyMock(analyticsRepository: analyticsRepository)
+
+    override func registerDependencies() {
+        super.registerDependencies()
+        
+        Resolver.register { self.analyticsRepository as AnalyticsRepository }
     }
     
     // MARK: Tests
 
     func testExecute() {
-        let useCase = TrackAnalyticsEventUseCaseImpl(dependencies: setupDependencies())
+        let useCase = TrackAnalyticsEventUseCaseImpl()
         
         useCase.execute(LoginEvent.screenAppear.analyticsEvent)
         

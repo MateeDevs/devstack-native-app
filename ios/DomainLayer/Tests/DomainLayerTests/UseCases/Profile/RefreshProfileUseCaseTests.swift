@@ -3,9 +3,10 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-import DomainLayer
+@testable import DomainLayer
 import DomainStubs
 import RepositoryMocks
+import Resolver
 import RxSwift
 import SwiftyMocky
 import XCTest
@@ -17,20 +18,20 @@ class RefreshProfileUseCaseTests: BaseTestCase {
     private let authTokenRepository = AuthTokenRepositoryMock()
     private let userRepository = UserRepositoryMock()
     
-    private func setupDependencies() -> RepositoryDependency {
+    override func registerDependencies() {
+        super.registerDependencies()
+        
         Given(authTokenRepository, .read(willReturn: AuthToken.stub))
         Given(userRepository, .read(.value(.remote), id: .value(User.stub.id), willReturn: .just(User.stub)))
         
-        return RepositoryDependencyMock(
-            authTokenRepository: authTokenRepository,
-            userRepository: userRepository
-        )
+        Resolver.register { self.authTokenRepository as AuthTokenRepository }
+        Resolver.register { self.userRepository as UserRepository }
     }
     
     // MARK: Tests
 
     func testExecute() {
-        let useCase = RefreshProfileUseCaseImpl(dependencies: setupDependencies())
+        let useCase = RefreshProfileUseCaseImpl()
         let output = scheduler.createObserver(Bool.self)
         
         useCase.execute().map { _ in true }.bind(to: output).disposed(by: disposeBag)

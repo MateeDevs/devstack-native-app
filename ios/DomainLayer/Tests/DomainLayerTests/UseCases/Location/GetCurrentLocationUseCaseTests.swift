@@ -4,33 +4,36 @@
 //
 
 import CoreLocation
-import DomainLayer
+@testable import DomainLayer
 import RepositoryMocks
+import Resolver
 import RxSwift
 import SwiftyMocky
 import XCTest
 
 class GetCurrentLocationUseCaseTests: BaseTestCase {
     
-    // MARK: Dependencies
-    
     private let location = CLLocation(latitude: 50.0, longitude: 50.0)
+    
+    // MARK: Dependencies
     
     private let locationRepository = LocationRepositoryMock()
     
-    private func setupDependencies() -> RepositoryDependency {
+    override func registerDependencies() {
+        super.registerDependencies()
+        
         Given(locationRepository, .getCurrentLocation(
             withAccuracy: .value(kCLLocationAccuracyThreeKilometers),
             willReturn: .just(location)
         ))
         
-        return RepositoryDependencyMock(locationRepository: locationRepository)
+        Resolver.register { self.locationRepository as LocationRepository }
     }
     
     // MARK: Tests
 
     func testExecute() {
-        let useCase = GetCurrentLocationUseCaseImpl(dependencies: setupDependencies())
+        let useCase = GetCurrentLocationUseCaseImpl()
         let output = scheduler.createObserver(CLLocation.self)
         
         useCase.execute().bind(to: output).disposed(by: disposeBag)

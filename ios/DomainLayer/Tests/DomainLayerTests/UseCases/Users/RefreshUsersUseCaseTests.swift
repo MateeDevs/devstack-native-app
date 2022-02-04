@@ -3,9 +3,10 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-import DomainLayer
+@testable import DomainLayer
 import DomainStubs
 import RepositoryMocks
+import Resolver
 import RxSwift
 import SwiftyMocky
 import XCTest
@@ -16,15 +17,18 @@ class RefreshUsersUseCaseTests: BaseTestCase {
     
     private let userRepository = UserRepositoryMock()
     
-    private func setupDependencies() -> RepositoryDependency {
+    override func registerDependencies() {
+        super.registerDependencies()
+        
         Given(userRepository, .list(.value(.remote), page: .any, sortBy: .any, willReturn: .just(User.stubList)))
-        return RepositoryDependencyMock(userRepository: userRepository)
+        
+        Resolver.register { self.userRepository as UserRepository }
     }
     
     // MARK: Tests
 
     func testExecute() {
-        let useCase = RefreshUsersUseCaseImpl(dependencies: setupDependencies())
+        let useCase = RefreshUsersUseCaseImpl()
         let output = scheduler.createObserver(Bool.self)
         
         useCase.execute(page: 0).map { _ in true }.bind(to: output).disposed(by: disposeBag)

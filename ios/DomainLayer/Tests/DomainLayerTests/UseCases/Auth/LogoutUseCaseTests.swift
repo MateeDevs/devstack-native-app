@@ -3,8 +3,9 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-import DomainLayer
+@testable import DomainLayer
 import RepositoryMocks
+import Resolver
 import RxSwift
 import SwiftyMocky
 import XCTest
@@ -15,14 +16,16 @@ class LogoutUseCaseTests: BaseTestCase {
     
     private let authTokenRepository = AuthTokenRepositoryMock()
     
-    private func setupDependencies() -> RepositoryDependency {
-        RepositoryDependencyMock(authTokenRepository: authTokenRepository)
+    override func registerDependencies() {
+        super.registerDependencies()
+        
+        Resolver.register { self.authTokenRepository as AuthTokenRepository }
     }
     
     // MARK: Tests
 
     func testExecute() {
-        let useCase = LogoutUseCaseImpl(dependencies: setupDependencies())
+        let useCase = LogoutUseCaseImpl()
         
         useCase.execute()
         

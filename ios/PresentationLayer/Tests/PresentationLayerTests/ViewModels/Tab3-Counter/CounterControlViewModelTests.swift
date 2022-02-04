@@ -5,6 +5,7 @@
 
 import DomainLayer
 @testable import PresentationLayer
+import Resolver
 import RxSwift
 import RxTest
 import SwiftyMocky
@@ -17,9 +18,12 @@ class CounterControlViewModelTests: BaseTestCase {
     
     private let updateProfileCounterUseCase = UpdateProfileCounterUseCaseMock()
     
-    private func setupDependencies() -> UseCaseDependency {
+    override func registerDependencies() {
+        super.registerDependencies()
+        
         Given(updateProfileCounterUseCase, .execute(value: .any, willReturn: .just(())))
-        return UseCaseDependencyMock(updateProfileCounterUseCase: updateProfileCounterUseCase)
+        
+        Resolver.register { self.updateProfileCounterUseCase as UpdateProfileCounterUseCase }
     }
 
     // MARK: Inputs and outputs
@@ -38,7 +42,7 @@ class CounterControlViewModelTests: BaseTestCase {
     }
 
     private func generateOutput(for input: Input) -> Output {
-        let viewModel = CounterControlViewModel(dependencies: setupDependencies())
+        let viewModel = CounterControlViewModel()
 
         scheduler.createColdObservable(input.increaseButtonTaps.map { .next($0.time, $0.element) })
             .bind(to: viewModel.input.increaseButtonTaps).disposed(by: disposeBag)

@@ -7,6 +7,7 @@ import CoreLocation
 import DomainLayer
 import DomainStubs
 @testable import PresentationLayer
+import Resolver
 import RxSwift
 import RxTest
 import SwiftyMocky
@@ -15,10 +16,10 @@ import XCTest
 
 class ProfileViewModelTests: BaseTestCase {
     
-    // MARK: Dependencies
-    
     private let dbStream = BehaviorSubject<User>(value: User.stub)
     private let location = CLLocation(latitude: 50.0, longitude: 50.0)
+    
+    // MARK: Dependencies
     
     private let getProfileUseCase = GetProfileUseCaseMock()
     private let refreshProfileUseCase = RefreshProfileUseCaseMock()
@@ -27,20 +28,20 @@ class ProfileViewModelTests: BaseTestCase {
     private let getRemoteConfigValueUseCase = GetRemoteConfigValueUseCaseMock()
     private let registerForPushNotificationsUseCase = RegisterForPushNotificationsUseCaseMock()
     
-    private func setupDependencies() -> UseCaseDependency {
+    override func registerDependencies() {
+        super.registerDependencies()
+        
         Given(getProfileUseCase, .execute(willReturn: dbStream.asObservable()))
         Given(refreshProfileUseCase, .execute(willReturn: .just(())))
         Given(getCurrentLocationUseCase, .execute(willReturn: .just(location)))
         Given(getRemoteConfigValueUseCase, .execute(.value(.profileLabelIsVisible), willReturn: .just(true)))
         
-        return UseCaseDependencyMock(
-            logoutUseCase: logoutUseCase,
-            getCurrentLocationUseCase: getCurrentLocationUseCase,
-            getProfileUseCase: getProfileUseCase,
-            refreshProfileUseCase: refreshProfileUseCase,
-            registerForPushNotificationsUseCase: registerForPushNotificationsUseCase,
-            getRemoteConfigValueUseCase: getRemoteConfigValueUseCase
-        )
+        Resolver.register { self.getProfileUseCase as GetProfileUseCase }
+        Resolver.register { self.refreshProfileUseCase as RefreshProfileUseCase }
+        Resolver.register { self.logoutUseCase as LogoutUseCase }
+        Resolver.register { self.getCurrentLocationUseCase as GetCurrentLocationUseCase }
+        Resolver.register { self.getRemoteConfigValueUseCase as GetRemoteConfigValueUseCase }
+        Resolver.register { self.registerForPushNotificationsUseCase as RegisterForPushNotificationsUseCase }
     }
     
     // MARK: Inputs and outputs
@@ -70,7 +71,7 @@ class ProfileViewModelTests: BaseTestCase {
     }
     
     private func generateOutput(for input: Input) -> Output {
-        let viewModel = ProfileViewModel(dependencies: setupDependencies())
+        let viewModel = ProfileViewModel()
         
         scheduler.createColdObservable(input.registerPushNotificationsButtonTaps.map { .next($0.time, $0.element) })
             .bind(to: viewModel.input.registerPushNotificationsButtonTaps).disposed(by: disposeBag)

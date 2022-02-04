@@ -3,8 +3,9 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-import DomainLayer
+@testable import DomainLayer
 import RepositoryMocks
+import Resolver
 import RxSwift
 import SwiftyMocky
 import XCTest
@@ -15,15 +16,18 @@ class GetRemoteConfigValueUseCaseTests: BaseTestCase {
     
     private let remoteConfigRepository = RemoteConfigRepositoryMock()
     
-    private func setupDependencies() -> RepositoryDependency {
+    override func registerDependencies() {
+        super.registerDependencies()
+        
         Given(remoteConfigRepository, .read(.value(.profileLabelIsVisible), willReturn: .just(true)))
-        return RepositoryDependencyMock(remoteConfigRepository: remoteConfigRepository)
+        
+        Resolver.register { self.remoteConfigRepository as RemoteConfigRepository }
     }
     
     // MARK: Tests
 
     func testExecute() {
-        let useCase = GetRemoteConfigValueUseCaseImpl(dependencies: setupDependencies())
+        let useCase = GetRemoteConfigValueUseCaseImpl()
         let output = scheduler.createObserver(Bool.self)
         
         useCase.execute(.profileLabelIsVisible).bind(to: output).disposed(by: disposeBag)

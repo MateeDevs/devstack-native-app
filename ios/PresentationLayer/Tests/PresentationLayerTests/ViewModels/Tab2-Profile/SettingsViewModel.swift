@@ -12,12 +12,6 @@ import UseCaseMocks
 import XCTest
 
 class SettingsViewModelTests: BaseTestCase {
-    
-    // MARK: Dependencies
-    
-    private func setupDependencies() -> UseCaseDependency {
-        UseCaseDependencyMock()
-    }
 
     // MARK: Inputs and outputs
 
@@ -34,7 +28,7 @@ class SettingsViewModelTests: BaseTestCase {
     }
 
     private func generateOutput(for input: Input) -> Output {
-        let viewModel = SettingsViewModel(dependencies: setupDependencies())
+        let viewModel = SettingsViewModel()
 
         scheduler.createColdObservable(input.smallButtonTaps.map { .next($0.time, $0.element) })
             .bind(to: viewModel.input.smallButtonTaps).disposed(by: disposeBag)

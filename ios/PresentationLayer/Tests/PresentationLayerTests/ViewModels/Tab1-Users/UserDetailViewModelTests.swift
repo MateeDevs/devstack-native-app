@@ -6,6 +6,7 @@
 import DomainLayer
 import DomainStubs
 @testable import PresentationLayer
+import Resolver
 import RxSwift
 import RxTest
 import SwiftyMocky
@@ -14,21 +15,21 @@ import XCTest
 
 class UserDetailViewModelTests: BaseTestCase {
     
-    // MARK: Dependencies
-    
     private let dbStream = BehaviorSubject<User>(value: User.stub)
+    
+    // MARK: Dependencies
     
     private let getUserUseCase = GetUserUseCaseMock()
     private let refreshUserUseCase = RefreshUserUseCaseMock()
     
-    private func setupDependencies() -> UseCaseDependency {
+    override func registerDependencies() {
+        super.registerDependencies()
+        
         Given(getUserUseCase, .execute(id: .value(User.stub.id), willReturn: dbStream.asObservable()))
         Given(refreshUserUseCase, .execute(id: .value(User.stub.id), willReturn: .just(())))
         
-        return UseCaseDependencyMock(
-            getUserUseCase: getUserUseCase,
-            refreshUserUseCase: refreshUserUseCase
-        )
+        Resolver.register { self.getUserUseCase as GetUserUseCase }
+        Resolver.register { self.refreshUserUseCase as RefreshUserUseCase }
     }
     
     // MARK: Inputs and outputs
@@ -51,7 +52,7 @@ class UserDetailViewModelTests: BaseTestCase {
     }
     
     private func generateOutput(for input: Input) -> Output {
-        let viewModel = UserDetailViewModel(dependencies: setupDependencies(), userId: User.stub.id)
+        let viewModel = UserDetailViewModel(userId: User.stub.id)
         
         scheduler.createColdObservable(input.refreshTrigger.map { .next($0.time, $0.element) })
             .do { [weak self] _ in self?.dbStream.onNext(User.stub) }

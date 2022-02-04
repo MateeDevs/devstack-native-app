@@ -70,7 +70,8 @@ let package = Package(
                 "RepositoryMocks",
                 .product(name: "RxCocoa", package: "RxSwift"),
                 .product(name: "RxTest", package: "RxSwift"),
-                .product(name: "SwiftyMocky", package: "SwiftyMocky")
+                .product(name: "SwiftyMocky", package: "SwiftyMocky"),
+                .product(name: "Resolver", package: "Resolver")
             ]
         )
     ]

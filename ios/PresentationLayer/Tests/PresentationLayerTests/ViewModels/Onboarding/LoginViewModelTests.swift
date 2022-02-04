@@ -6,6 +6,7 @@
 import DomainLayer
 import DomainStubs
 @testable import PresentationLayer
+import Resolver
 import RxSwift
 import RxTest
 import SwiftyMocky
@@ -19,20 +20,17 @@ class LoginViewModelTests: BaseTestCase {
     private let loginUseCase = LoginUseCaseMock()
     private let trackAnalyticsEventUseCase = TrackAnalyticsEventUseCaseMock()
     
-    private func setupDependencies() -> UseCaseDependency {
-        setupLoginUseCase()
-        return UseCaseDependencyMock(
-            trackAnalyticsEventUseCase: trackAnalyticsEventUseCase,
-            loginUseCase: loginUseCase
-        )
-    }
-    
-    private func setupLoginUseCase() {
+    override func registerDependencies() {
+        super.registerDependencies()
+        
         Given(loginUseCase, .execute(
             .value(.stubInvalidPassword),
             willReturn: .error(RepositoryError(statusCode: StatusCode.httpUnathorized, message: ""))
         ))
         Given(loginUseCase, .execute(.any, willReturn: .just(())))
+        
+        Resolver.register { self.loginUseCase as LoginUseCase }
+        Resolver.register { self.trackAnalyticsEventUseCase as TrackAnalyticsEventUseCase }
     }
 
     // MARK: Inputs and outputs
@@ -59,7 +57,7 @@ class LoginViewModelTests: BaseTestCase {
     }
 
     private func generateOutput(for input: Input) -> Output {
-        let viewModel = LoginViewModel(dependencies: setupDependencies())
+        let viewModel = LoginViewModel()
         
         scheduler.createColdObservable(input.loginData.map { .next($0.time, $0.element.email) })
             .bind(to: viewModel.input.email).disposed(by: disposeBag)

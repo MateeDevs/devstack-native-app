@@ -12,12 +12,6 @@ import UseCaseMocks
 import XCTest
 
 class CounterSharedViewModelTests: BaseTestCase {
-    
-    // MARK: Dependencies
-    
-    private func setupDependencies() -> UseCaseDependency {
-        UseCaseDependencyMock()
-    }
 
     // MARK: Inputs and outputs
 
@@ -33,7 +27,7 @@ class CounterSharedViewModelTests: BaseTestCase {
     }
 
     private func generateOutput(for input: Input) -> Output {
-        let viewModel = CounterSharedViewModel(dependencies: setupDependencies())
+        let viewModel = CounterSharedViewModel()
 
         scheduler.createColdObservable(input.hideButtonIsOn.map { .next($0.time, $0.element) })
             .bind(to: viewModel.input.hideButtonIsOn).disposed(by: disposeBag)

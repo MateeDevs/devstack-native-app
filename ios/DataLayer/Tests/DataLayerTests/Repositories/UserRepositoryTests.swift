@@ -9,6 +9,7 @@
 import DomainLayer
 import DomainStubs
 import ProviderMocks
+import Resolver
 import RxSwift
 import SwiftyMocky
 import XCTest
@@ -20,17 +21,17 @@ class UserRepositoryTests: BaseTestCase {
     private let databaseProvider = DatabaseProviderMock()
     private let networkProvider = NetworkProviderMock()
     
-    private func setupDependencies() -> ProviderDependency {
-        ProviderDependencyMock(
-            databaseProvider: databaseProvider,
-            networkProvider: networkProvider
-        )
+    override func registerDependencies() {
+        super.registerDependencies()
+        
+        Resolver.register { self.databaseProvider as DatabaseProvider }
+        Resolver.register { self.networkProvider as NetworkProvider }
     }
     
     // MARK: Tests
     
     func testCreateValid() {
-        let repository = UserRepositoryImpl(dependencies: setupDependencies())
+        let repository = UserRepositoryImpl()
         let output = scheduler.createObserver(User.self)
         
         repository.create(.stubValid).bind(to: output).disposed(by: disposeBag)
@@ -45,7 +46,7 @@ class UserRepositoryTests: BaseTestCase {
     }
     
     func testCreateExistingEmail() {
-        let repository = UserRepositoryImpl(dependencies: setupDependencies())
+        let repository = UserRepositoryImpl()
         networkProvider.observableRequestReturnError = RepositoryError(statusCode: StatusCode.httpConflict, message: "")
         let output = scheduler.createObserver(User.self)
 
@@ -60,7 +61,7 @@ class UserRepositoryTests: BaseTestCase {
     }
     
     func testReadLocal() {
-        let repository = UserRepositoryImpl(dependencies: setupDependencies())
+        let repository = UserRepositoryImpl()
         databaseProvider.observableObjectReturnValue = User.stub.databaseModel
         let output = scheduler.createObserver(User.self)
 
@@ -77,7 +78,7 @@ class UserRepositoryTests: BaseTestCase {
     }
     
     func testReadRemote() {
-        let repository = UserRepositoryImpl(dependencies: setupDependencies())
+        let repository = UserRepositoryImpl()
         let output = scheduler.createObserver(User.self)
 
         repository.read(.remote, id: User.stub.id).bind(to: output).disposed(by: disposeBag)
@@ -93,7 +94,7 @@ class UserRepositoryTests: BaseTestCase {
     }
     
     func testReadBoth() {
-        let repository = UserRepositoryImpl(dependencies: setupDependencies())
+        let repository = UserRepositoryImpl()
         databaseProvider.observableObjectReturnValue = User.stub.databaseModel
         let output = scheduler.createObserver(User.self)
 
@@ -110,7 +111,7 @@ class UserRepositoryTests: BaseTestCase {
     }
     
     func testListLocal() {
-        let repository = UserRepositoryImpl(dependencies: setupDependencies())
+        let repository = UserRepositoryImpl()
         databaseProvider.observableCollectionReturnValue = User.stubList.map { $0.databaseModel }
         let output = scheduler.createObserver([User].self)
 
@@ -127,7 +128,7 @@ class UserRepositoryTests: BaseTestCase {
     }
     
     func testListRemote() {
-        let repository = UserRepositoryImpl(dependencies: setupDependencies())
+        let repository = UserRepositoryImpl()
         let output = scheduler.createObserver([User].self)
 
         repository.list(.remote, page: 0, sortBy: "id").bind(to: output).disposed(by: disposeBag)
@@ -143,7 +144,7 @@ class UserRepositoryTests: BaseTestCase {
     }
 
     func testListBoth() {
-        let repository = UserRepositoryImpl(dependencies: setupDependencies())
+        let repository = UserRepositoryImpl()
         databaseProvider.observableCollectionReturnValue = User.stubList.map { $0.databaseModel }
         let output = scheduler.createObserver([User].self)
 
@@ -160,7 +161,7 @@ class UserRepositoryTests: BaseTestCase {
     }
     
     func testUpdateLocal() {
-        let repository = UserRepositoryImpl(dependencies: setupDependencies())
+        let repository = UserRepositoryImpl()
         let output = scheduler.createObserver(User.self)
 
         repository.update(.local, user: .stub).bind(to: output).disposed(by: disposeBag)
@@ -175,7 +176,7 @@ class UserRepositoryTests: BaseTestCase {
     }
     
     func testUpdateRemote() {
-        let repository = UserRepositoryImpl(dependencies: setupDependencies())
+        let repository = UserRepositoryImpl()
         let output = scheduler.createObserver(User.self)
 
         repository.update(.remote, user: .stub).bind(to: output).disposed(by: disposeBag)
@@ -190,7 +191,7 @@ class UserRepositoryTests: BaseTestCase {
     }
     
     func testUpdateBoth() {
-        let repository = UserRepositoryImpl(dependencies: setupDependencies())
+        let repository = UserRepositoryImpl()
         let output = scheduler.createObserver(User.self)
 
         repository.update(.both, user: .stub).bind(to: output).disposed(by: disposeBag)

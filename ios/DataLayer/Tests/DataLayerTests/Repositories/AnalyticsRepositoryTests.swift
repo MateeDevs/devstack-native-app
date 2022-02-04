@@ -3,9 +3,10 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-import DataLayer
+@testable import DataLayer
 import DomainLayer
 import ProviderMocks
+import Resolver
 import SwiftyMocky
 import XCTest
 
@@ -15,14 +16,16 @@ class AnalyticsRepositoryTests: BaseTestCase {
     
     private let analyticsProvider = AnalyticsProviderMock()
     
-    private func setupDependencies() -> ProviderDependency {
-        return ProviderDependencyMock(analyticsProvider: analyticsProvider)
+    override func registerDependencies() {
+        super.registerDependencies()
+        
+        Resolver.register { self.analyticsProvider as AnalyticsProvider }
     }
     
     // MARK: Tests
     
     func testCreate() {
-        let repository = AnalyticsRepositoryImpl(dependencies: setupDependencies())
+        let repository = AnalyticsRepositoryImpl()
         
         repository.create(LoginEvent.screenAppear.analyticsEvent)
         

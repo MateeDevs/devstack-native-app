@@ -3,37 +3,38 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-import DomainLayer
+@testable import DomainLayer
 import DomainStubs
 import RepositoryMocks
+import Resolver
 import RxSwift
 import SwiftyMocky
 import XCTest
 
 class UpdateProfileCounterUseCaseTests: BaseTestCase {
     
-    // MARK: Dependencies
-    
     private let updatedUser = User(copy: User.stub, counter: User.stub.counter + 1)
+    
+    // MARK: Dependencies
     
     private let authTokenRepository = AuthTokenRepositoryMock()
     private let userRepository = UserRepositoryMock()
     
-    private func setupDependencies() -> RepositoryDependency {
+    override func registerDependencies() {
+        super.registerDependencies()
+        
         Given(authTokenRepository, .read(willReturn: AuthToken.stub))
         Given(userRepository, .read(.value(.local), id: .value(User.stub.id), willReturn: .just(User.stub)))
         Given(userRepository, .update(.value(.local), user: .value(updatedUser), willReturn: .just(updatedUser)))
         
-        return RepositoryDependencyMock(
-            authTokenRepository: authTokenRepository,
-            userRepository: userRepository
-        )
+        Resolver.register { self.authTokenRepository as AuthTokenRepository }
+        Resolver.register { self.userRepository as UserRepository }
     }
     
     // MARK: Tests
 
     func testExecute() {
-        let useCase = UpdateProfileCounterUseCaseImpl(dependencies: setupDependencies())
+        let useCase = UpdateProfileCounterUseCaseImpl()
         let output = scheduler.createObserver(Bool.self)
         
         useCase.execute(value: User.stub.counter + 1).map { _ in true }.bind(to: output).disposed(by: disposeBag)

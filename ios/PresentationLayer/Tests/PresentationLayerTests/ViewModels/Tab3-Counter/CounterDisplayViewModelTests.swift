@@ -5,6 +5,7 @@
 
 import DomainLayer
 @testable import PresentationLayer
+import Resolver
 import RxSwift
 import RxTest
 import SwiftyMocky
@@ -17,9 +18,12 @@ class CounterDisplayViewModelTests: BaseTestCase {
     
     private let getProfileUseCase = GetProfileUseCaseMock()
     
-    private func setupDependencies() -> UseCaseDependency {
+    override func registerDependencies() {
+        super.registerDependencies()
+        
         Given(getProfileUseCase, .execute(willReturn: .just(User.stub)))
-        return UseCaseDependencyMock(getProfileUseCase: getProfileUseCase)
+        
+        Resolver.register { self.getProfileUseCase as GetProfileUseCase }
     }
     
     // MARK: Inputs and outputs
@@ -33,7 +37,7 @@ class CounterDisplayViewModelTests: BaseTestCase {
     }
     
     private func generateOutput(for input: Input) -> Output {
-        let viewModel = CounterDisplayViewModel(dependencies: setupDependencies())
+        let viewModel = CounterDisplayViewModel()
         
         return Output(
             counterValue: testableOutput(from: viewModel.output.counterValue)
