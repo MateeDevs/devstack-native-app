@@ -4,12 +4,11 @@
 //
 
 import DomainLayer
+import Resolver
 import RxCocoa
 import RxSwift
 
 final class CounterDisplayViewModel: BaseViewModel, ViewModel {
-
-    typealias Dependencies = HasGetProfileUseCase
 
     let input: Input
     let output: Output
@@ -20,8 +19,16 @@ final class CounterDisplayViewModel: BaseViewModel, ViewModel {
     struct Output {
         let counterValue: Driver<String>
     }
+    
+    convenience init() {
+        self.init(
+            getProfileUseCase: Resolver.resolve()
+        )
+    }
 
-    init(dependencies: Dependencies) {
+    init(
+        getProfileUseCase: GetProfileUseCase
+    ) {
 
         // MARK: Setup inputs
 
@@ -29,7 +36,7 @@ final class CounterDisplayViewModel: BaseViewModel, ViewModel {
 
         // MARK: Setup outputs
         
-        let profile = dependencies.getProfileUseCase.execute().ignoreErrors()
+        let profile = getProfileUseCase.execute().ignoreErrors()
 
         self.output = Output(
             counterValue: profile.map { "\($0.counter)" }.asDriver()

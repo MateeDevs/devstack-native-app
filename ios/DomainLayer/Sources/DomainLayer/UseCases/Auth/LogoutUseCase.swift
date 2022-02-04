@@ -5,10 +5,6 @@
 
 import Resolver
 
-public protocol HasLogoutUseCase {
-    var logoutUseCase: LogoutUseCase { get }
-}
-
 public protocol LogoutUseCase: AutoMockable {
     func execute()
 }

@@ -7,10 +7,6 @@ import CoreLocation
 import Resolver
 import RxSwift
 
-public protocol HasGetCurrentLocationUseCase {
-    var getCurrentLocationUseCase: GetCurrentLocationUseCase { get }
-}
-
 public protocol GetCurrentLocationUseCase: AutoMockable {
     func execute() -> Observable<CLLocation>
 }

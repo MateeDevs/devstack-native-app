@@ -6,10 +6,6 @@
 import Resolver
 import RxSwift
 
-public protocol HasGetProfileUseCase {
-    var getProfileUseCase: GetProfileUseCase { get }
-}
-
 public protocol GetProfileUseCase: AutoMockable {
     func execute() -> Observable<User>
 }

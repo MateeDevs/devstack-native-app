@@ -9,21 +9,7 @@ import RxSwift
 
 // swiftlint:disable file_length
 
-public extension RefreshBooksUseCase {
-    func execute() -> Observable<Event<Void>> {
-        return createObservable(self)
-    }
-}
-
-public extension GetBooksUseCase {
-    func execute() -> Observable<[Book]> {
-        return createObservable(self).map { (nsArray: NSArray) -> [Book] in
-            nsArray as! [Book] // swiftlint:disable:this force_cast
-        }
-    }
-}
-
-// All usecases runs on Dispatcher.Default and it means that every async operation is executed by system backround thread - in case of ios it should be an IO thread
+// All usecases runs on Dispatcher.Default and it means that every async operation is executed by system background thread - in case of iOS it should be an IO thread
 
 // Create observable from suspendable usecase with params
 // Invoke usecase and complete

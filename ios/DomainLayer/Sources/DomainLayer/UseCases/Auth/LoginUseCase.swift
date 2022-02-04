@@ -6,10 +6,6 @@
 import Resolver
 import RxSwift
 
-public protocol HasLoginUseCase {
-    var loginUseCase: LoginUseCase { get }
-}
-
 public protocol LoginUseCase: AutoMockable {
     func execute(_ data: LoginData) -> Observable<Void>
 }

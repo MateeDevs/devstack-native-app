@@ -6,10 +6,6 @@
 import Resolver
 import RxSwift
 
-public protocol HasRefreshUsersUseCase {
-    var refreshUsersUseCase: RefreshUsersUseCase { get }
-}
-
 public protocol RefreshUsersUseCase: AutoMockable {
     func execute(page: Int) -> Observable<Int>
 }

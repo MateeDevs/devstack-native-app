@@ -8,27 +8,19 @@ import UIKit
 class BooksFlowController: FlowController {
     
     override func setup() -> UIViewController {
-        let vm = BooksViewModel(dependencies: dependencies)
+        let vm = BooksViewModel()
         return BooksViewController.instantiate(fc: self, vm: vm)
     }
     
     override func handleFlow(_ flow: Flow) {
         switch flow {
-        case .books(let usersFlow): handleBooksFlow(usersFlow)
+        case .books(let booksFlow): handleBooksFlow(booksFlow)
         default: ()
         }
     }
 }
 
-// MARK: Users flow
+// MARK: Books flow
 extension BooksFlowController {
-    func handleBooksFlow(_ flow: Flow.Books) {
-        
-    }
-    
-    private func showUserDetailForId(_ userId: String) {
-        let vm = UserDetailViewModel(dependencies: dependencies, userId: userId)
-        let vc = UserDetailViewController.instantiate(fc: self, vm: vm)
-        navigationController.show(vc, sender: nil)
-    }
+    func handleBooksFlow(_ flow: Flow.Books) {}
 }

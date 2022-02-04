@@ -4,15 +4,11 @@
 //
 
 import DomainLayer
+import Resolver
 import RxCocoa
 import RxSwift
 
 final class UserDetailViewModel: BaseViewModel, ViewModel {
-    
-    typealias Dependencies =
-        HasGetUserUseCase &
-        HasRefreshUserUseCase &
-        HasTrackAnalyticsEventUseCase
     
     let input: Input
     let output: Output
@@ -32,7 +28,21 @@ final class UserDetailViewModel: BaseViewModel, ViewModel {
         let imageURL: Driver<String?>
     }
     
-    init(dependencies: Dependencies, userId: String) {
+    convenience init(userId: String) {
+        self.init(
+            userId: userId,
+            getUserUseCase: Resolver.resolve(),
+            refreshUserUseCase: Resolver.resolve(),
+            trackAnalyticsEventUseCase: Resolver.resolve()
+        )
+    }
+    
+    init(
+        userId: String,
+        getUserUseCase: GetUserUseCase,
+        refreshUserUseCase: RefreshUserUseCase,
+        trackAnalyticsEventUseCase: TrackAnalyticsEventUseCase
+    ) {
         
         // MARK: Setup inputs
         
@@ -44,12 +54,12 @@ final class UserDetailViewModel: BaseViewModel, ViewModel {
 
         // MARK: Transformations
         
-        let user = dependencies.getUserUseCase.execute(id: userId).ignoreErrors().share(replay: 1)
+        let user = getUserUseCase.execute(id: userId).ignoreErrors().share(replay: 1)
         
         let activity = ActivityIndicator()
         
         let refreshUser = refreshTrigger.flatMap { _ -> Observable<Void> in
-            dependencies.refreshUserUseCase.execute(id: userId).trackActivity(activity).ignoreErrors()
+            refreshUserUseCase.execute(id: userId).trackActivity(activity).ignoreErrors()
         }.share()
         
         let isRefreshing = Observable<Bool>.merge(
@@ -69,7 +79,7 @@ final class UserDetailViewModel: BaseViewModel, ViewModel {
         )
         
         super.init(
-            trackScreenAppear: { dependencies.trackAnalyticsEventUseCase.execute(UserEvent.userDetail(id: userId).analyticsEvent) }
+            trackScreenAppear: { trackAnalyticsEventUseCase.execute(UserEvent.userDetail(id: userId).analyticsEvent) }
         )
     }
 }

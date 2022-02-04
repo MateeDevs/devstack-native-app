@@ -6,10 +6,6 @@
 import Resolver
 import RxSwift
 
-public protocol HasTrackAnalyticsEventUseCase {
-    var trackAnalyticsEventUseCase: TrackAnalyticsEventUseCase { get }
-}
-
 public protocol TrackAnalyticsEventUseCase: AutoMockable {
     func execute(_ event: AnalyticsEvent)
 }

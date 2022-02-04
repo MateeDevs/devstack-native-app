@@ -5,10 +5,6 @@
 
 import Resolver
 
-public protocol HasHandlePushNotificationUseCase {
-    var handlePushNotificationUseCase: HandlePushNotificationUseCase { get }
-}
-
 public protocol HandlePushNotificationUseCase: AutoMockable {
     func execute(_ notificationData: [AnyHashable: Any]) -> PushNotification?
 }

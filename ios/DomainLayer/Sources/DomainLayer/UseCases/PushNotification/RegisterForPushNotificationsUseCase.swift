@@ -6,10 +6,6 @@
 import Resolver
 import UserNotifications
 
-public protocol HasRegisterForPushNotificationsUseCase {
-    var registerForPushNotificationsUseCase: RegisterForPushNotificationsUseCase { get }
-}
-
 public protocol RegisterForPushNotificationsUseCase: AutoMockable {
     func execute(options: UNAuthorizationOptions, completionHandler: @escaping (Bool, Error?) -> Void)
 }

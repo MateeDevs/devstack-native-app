@@ -6,10 +6,6 @@
 import Resolver
 import RxSwift
 
-public protocol HasRegistrationUseCase {
-    var registrationUseCase: RegistrationUseCase { get }
-}
-
 public protocol RegistrationUseCase: AutoMockable {
     func execute(_ data: RegistrationData) -> Observable<Void>
 }

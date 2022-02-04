@@ -28,8 +28,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         setupEnvironment()
         
+        // Register all dependencies
         Resolver.registerProviders(application: application, appDelegate: self, networkProviderDelegate: self)
         Resolver.registerRepositories()
+        Resolver.registerUseCases(kmpDependencies: KMPKoinDependency())
         
         // Init main window with navigation controller
         let nc = BaseNavigationController(statusBarStyle: .lightContent)
@@ -39,12 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         // Init main flow controller and start the flow
-        flowController = AppFlowController(
-            navigationController: nc,
-            dependencies: UseCaseDependencyImpl(
-                kmpDependencies: KMPKoinDependency()
-            )
-        )
+        flowController = AppFlowController(navigationController: nc)
         flowController?.start()
         
         return true

@@ -6,10 +6,6 @@
 import Resolver
 import RxSwift
 
-public protocol HasGetRemoteConfigValueUseCase {
-    var getRemoteConfigValueUseCase: GetRemoteConfigValueUseCase { get }
-}
-
 public protocol GetRemoteConfigValueUseCase: AutoMockable {
     func execute(_ key: RemoteConfigCoding) -> Observable<Bool>
 }

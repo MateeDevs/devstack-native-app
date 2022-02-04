@@ -4,14 +4,11 @@
 //
 
 import DomainLayer
+import Resolver
 import RxCocoa
 import RxSwift
 
 final class LoginViewModel: BaseViewModel, ViewModel {
-    
-    typealias Dependencies =
-        HasLoginUseCase &
-        HasTrackAnalyticsEventUseCase
     
     let input: Input
     let output: Output
@@ -29,7 +26,17 @@ final class LoginViewModel: BaseViewModel, ViewModel {
         let alertAction: Driver<AlertAction>
     }
     
-    init(dependencies: Dependencies) {
+    convenience init() {
+        self.init(
+            loginUseCase: Resolver.resolve(),
+            trackAnalyticsEventUseCase: Resolver.resolve()
+        )
+    }
+    
+    init(
+        loginUseCase: LoginUseCase,
+        trackAnalyticsEventUseCase: TrackAnalyticsEventUseCase
+    ) {
         
         // MARK: Setup inputs
         
@@ -55,16 +62,16 @@ final class LoginViewModel: BaseViewModel, ViewModel {
             if inputs.email.isEmpty || inputs.password.isEmpty {
                 return .just(.error(ValidationError(L10n.invalid_credentials)))
             } else {
-                dependencies.trackAnalyticsEventUseCase.execute(LoginEvent.loginButtonTap.analyticsEvent)
+                trackAnalyticsEventUseCase.execute(LoginEvent.loginButtonTap.analyticsEvent)
                 let data = LoginData(email: inputs.email, password: inputs.password)
-                return dependencies.loginUseCase.execute(data).trackActivity(activity).materialize()
+                return loginUseCase.execute(data).trackActivity(activity).materialize()
             }
         }.share()
         
         let flow = Observable<Flow.Login>.merge(
             login.compactMap { $0.element }.map { .dismiss },
             registerButtonTaps.map { .showRegistration }.do { _ in
-                dependencies.trackAnalyticsEventUseCase.execute(LoginEvent.registerButtonTap.analyticsEvent)
+                trackAnalyticsEventUseCase.execute(LoginEvent.registerButtonTap.analyticsEvent)
             }
         )
         
@@ -87,7 +94,7 @@ final class LoginViewModel: BaseViewModel, ViewModel {
         )
         
         super.init(
-            trackScreenAppear: { dependencies.trackAnalyticsEventUseCase.execute(LoginEvent.screenAppear.analyticsEvent) }
+            trackScreenAppear: { trackAnalyticsEventUseCase.execute(LoginEvent.screenAppear.analyticsEvent) }
         )
     }
 }

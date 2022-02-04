@@ -4,14 +4,11 @@
 //
 
 import DomainLayer
+import Resolver
 import RxCocoa
 import RxSwift
 
 final class UsersViewModel: BaseViewModel, ViewModel {
-    
-    typealias Dependencies =
-        HasGetUsersUseCase &
-        HasRefreshUsersUseCase
 
     let input: Input
     let output: Output
@@ -26,7 +23,17 @@ final class UsersViewModel: BaseViewModel, ViewModel {
         let isRefreshing: Driver<Bool>
     }
     
-    init(dependencies: Dependencies) {
+    convenience init() {
+        self.init(
+            getUsersUseCase: Resolver.resolve(),
+            refreshUsersUseCase: Resolver.resolve()
+        )
+    }
+    
+    init(
+        getUsersUseCase: GetUsersUseCase,
+        refreshUsersUseCase: RefreshUsersUseCase
+    ) {
         
         // MARK: Setup inputs
         
@@ -38,12 +45,12 @@ final class UsersViewModel: BaseViewModel, ViewModel {
 
         // MARK: Transformations
         
-        let users = dependencies.getUsersUseCase.execute().ignoreErrors().share(replay: 1)
+        let users = getUsersUseCase.execute().ignoreErrors().share(replay: 1)
         
         let activity = ActivityIndicator()
         
         let refreshUsers = page.flatMap { page -> Observable<Int> in
-            dependencies.refreshUsersUseCase.execute(page: page).trackActivity(activity).ignoreErrors()
+            refreshUsersUseCase.execute(page: page).trackActivity(activity).ignoreErrors()
         }.share()
         
         let isRefreshing = Observable<Bool>.merge(

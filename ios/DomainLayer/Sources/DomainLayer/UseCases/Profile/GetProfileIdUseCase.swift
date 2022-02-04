@@ -5,10 +5,6 @@
 
 import Resolver
 
-public protocol HasGetProfileIdUseCase {
-    var getProfileIdUseCase: GetProfileIdUseCase { get }
-}
-
 public protocol GetProfileIdUseCase: AutoMockable {
     func execute() -> String?
 }
