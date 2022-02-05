@@ -4,14 +4,23 @@
 //
 
 import DomainLayer
-import Resolver
 import RxSwift
 
 public struct AuthTokenRepositoryImpl: AuthTokenRepository {
     
-    @Injected private var database: DatabaseProvider
-    @Injected private var keychain: KeychainProvider
-    @Injected private var network: NetworkProvider
+    private let database: DatabaseProvider
+    private let keychain: KeychainProvider
+    private let network: NetworkProvider
+    
+    public init(
+        databaseProvider: DatabaseProvider,
+        keychainProvider: KeychainProvider,
+        networkProvider: NetworkProvider
+    ) {
+        database = databaseProvider
+        keychain = keychainProvider
+        network = networkProvider
+    }
     
     public func create(_ data: LoginData) -> Observable<AuthToken> {
         guard let data = data.networkModel.encoded else { return .error(CommonError.encoding) }

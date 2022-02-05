@@ -3,7 +3,6 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-import Resolver
 import RxSwift
 
 public protocol GetProfileUseCase: AutoMockable {
@@ -12,8 +11,16 @@ public protocol GetProfileUseCase: AutoMockable {
 
 public struct GetProfileUseCaseImpl: GetProfileUseCase {
     
-    @Injected private var authTokenRepository: AuthTokenRepository
-    @Injected private var userRepository: UserRepository
+    private let authTokenRepository: AuthTokenRepository
+    private let userRepository: UserRepository
+    
+    public init(
+        authTokenRepository: AuthTokenRepository,
+        userRepository: UserRepository
+    ) {
+        self.authTokenRepository = authTokenRepository
+        self.userRepository = userRepository
+    }
     
     public func execute() -> Observable<User> {
         guard let authToken = authTokenRepository.read() else { return .error(CommonError.noAuthToken) }

@@ -3,15 +3,17 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-import Resolver
-
 public protocol HandlePushNotificationUseCase: AutoMockable {
     func execute(_ notificationData: [AnyHashable: Any]) -> PushNotification?
 }
 
 public struct HandlePushNotificationUseCaseImpl: HandlePushNotificationUseCase {
     
-    @Injected private var pushNotificationsRepository: PushNotificationsRepository
+    private let pushNotificationsRepository: PushNotificationsRepository
+    
+    public init(pushNotificationsRepository: PushNotificationsRepository) {
+        self.pushNotificationsRepository = pushNotificationsRepository
+    }
     
     public func execute(_ notificationData: [AnyHashable: Any]) -> PushNotification? {
         pushNotificationsRepository.decode(notificationData)

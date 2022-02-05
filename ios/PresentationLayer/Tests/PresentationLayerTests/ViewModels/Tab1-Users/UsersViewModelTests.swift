@@ -6,7 +6,6 @@
 import DomainLayer
 import DomainStubs
 @testable import PresentationLayer
-import Resolver
 import RxSwift
 import RxTest
 import SwiftyMocky
@@ -22,14 +21,11 @@ class UsersViewModelTests: BaseTestCase {
     private let getUsersUseCase = GetUsersUseCaseMock()
     private let refreshUsersUseCase = RefreshUsersUseCaseMock()
     
-    override func registerDependencies() {
-        super.registerDependencies()
+    override func setupDependencies() {
+        super.setupDependencies()
         
         Given(getUsersUseCase, .execute(willReturn: dbStream.asObservable()))
         Given(refreshUsersUseCase, .execute(page: .any, willReturn: .just(Constants.paginationCount)))
-        
-        Resolver.register { self.getUsersUseCase as GetUsersUseCase }
-        Resolver.register { self.refreshUsersUseCase as RefreshUsersUseCase }
     }
     
     // MARK: Inputs and outputs
@@ -47,7 +43,10 @@ class UsersViewModelTests: BaseTestCase {
     }
     
     private func generateOutput(for input: Input) -> Output {
-        let viewModel = UsersViewModel()
+        let viewModel = UsersViewModel(
+            getUsersUseCase: getUsersUseCase,
+            refreshUsersUseCase: refreshUsersUseCase
+        )
         
         scheduler.createColdObservable(input.page.map { .next($0.time, $0.element) })
             .do { [weak self] _ in self?.dbStream.onNext(User.stubList) }

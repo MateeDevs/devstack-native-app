@@ -4,12 +4,15 @@
 //
 
 import DomainLayer
-import Resolver
 import RxSwift
 
 public struct RemoteConfigRepositoryImpl: RemoteConfigRepository {
     
-    @Injected private var remoteConfig: RemoteConfigProvider
+    private let remoteConfig: RemoteConfigProvider
+    
+    public init(remoteConfigProvider: RemoteConfigProvider) {
+        remoteConfig = remoteConfigProvider
+    }
     
     public func read(_ key: RemoteConfigCoding) -> Observable<Bool> {
         remoteConfig.get(key)

@@ -3,7 +3,6 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-import Resolver
 import RxSwift
 
 public protocol TrackAnalyticsEventUseCase: AutoMockable {
@@ -12,7 +11,11 @@ public protocol TrackAnalyticsEventUseCase: AutoMockable {
 
 public struct TrackAnalyticsEventUseCaseImpl: TrackAnalyticsEventUseCase {
     
-    @Injected private var analyticsRepository: AnalyticsRepository
+    private let analyticsRepository: AnalyticsRepository
+    
+    public init(analyticsRepository: AnalyticsRepository) {
+        self.analyticsRepository = analyticsRepository
+    }
     
     public func execute(_ event: AnalyticsEvent) {
         analyticsRepository.create(event)

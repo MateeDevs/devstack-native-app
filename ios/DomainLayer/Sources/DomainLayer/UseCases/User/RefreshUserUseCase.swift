@@ -3,7 +3,6 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-import Resolver
 import RxSwift
 
 public protocol RefreshUserUseCase: AutoMockable {
@@ -12,7 +11,11 @@ public protocol RefreshUserUseCase: AutoMockable {
 
 public struct RefreshUserUseCaseImpl: RefreshUserUseCase {
     
-    @Injected private var userRepository: UserRepository
+    private let userRepository: UserRepository
+    
+    public init(userRepository: UserRepository) {
+        self.userRepository = userRepository
+    }
     
     public func execute(id: String) -> Observable<Void> {
         userRepository.read(.remote, id: id).mapToVoid()

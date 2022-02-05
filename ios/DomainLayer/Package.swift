@@ -25,8 +25,7 @@ let package = Package(
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
         .package(url: "https://github.com/ReactiveX/RxSwift.git", .upToNextMajor(from: "6.0.0")),
-        .package(url: "https://github.com/MakeAWishFoundation/SwiftyMocky", .upToNextMajor(from: "4.0.0")),
-        .package(url: "https://github.com/hmlongco/Resolver.git", .upToNextMajor(from: "1.0.0"))
+        .package(url: "https://github.com/MakeAWishFoundation/SwiftyMocky", .upToNextMajor(from: "4.0.0"))
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -39,7 +38,6 @@ let package = Package(
             name: "DomainLayer",
             dependencies: [
                 .product(name: "RxSwift", package: "RxSwift"),
-                .product(name: "Resolver", package: "Resolver"),
                 "DevstackKmpShared"
             ]
         ),
@@ -70,8 +68,7 @@ let package = Package(
                 "RepositoryMocks",
                 .product(name: "RxCocoa", package: "RxSwift"),
                 .product(name: "RxTest", package: "RxSwift"),
-                .product(name: "SwiftyMocky", package: "SwiftyMocky"),
-                .product(name: "Resolver", package: "Resolver")
+                .product(name: "SwiftyMocky", package: "SwiftyMocky")
             ]
         )
     ]

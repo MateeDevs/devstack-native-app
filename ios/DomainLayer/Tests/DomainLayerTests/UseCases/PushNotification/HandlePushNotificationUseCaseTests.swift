@@ -3,10 +3,9 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-@testable import DomainLayer
+import DomainLayer
 import DomainStubs
 import RepositoryMocks
-import Resolver
 import RxSwift
 import SwiftyMocky
 import XCTest
@@ -17,19 +16,17 @@ class HandlePushNotificationUseCaseTests: BaseTestCase {
     
     private let pushNotificationsRepository = PushNotificationsRepositoryMock()
     
-    override func registerDependencies() {
-        super.registerDependencies()
+    override func setupDependencies() {
+        super.setupDependencies()
         
         // We should test against concrete value instead of any, but I don't know how to mock [AnyHashable:Any]
         Given(pushNotificationsRepository, .decode(.any, willReturn: PushNotification.stub))
-        
-        Resolver.register { self.pushNotificationsRepository as PushNotificationsRepository }
     }
     
     // MARK: Tests
 
     func testExecute() {
-        let useCase = HandlePushNotificationUseCaseImpl()
+        let useCase = HandlePushNotificationUseCaseImpl(pushNotificationsRepository: pushNotificationsRepository)
         
         let output = useCase.execute([:])
         

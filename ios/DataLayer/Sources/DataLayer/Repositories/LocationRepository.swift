@@ -11,6 +11,8 @@ public class LocationRepositoryImpl: LocationRepository {
     
     private let locationManager = CLLocationManager()
     
+    public init() {}
+    
     public func isLocationEnabled() -> Bool {
         guard CLLocationManager.locationServicesEnabled() else { return false }
         switch CLLocationManager.authorizationStatus() {

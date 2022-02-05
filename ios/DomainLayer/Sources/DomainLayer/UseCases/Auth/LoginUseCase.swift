@@ -3,7 +3,6 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-import Resolver
 import RxSwift
 
 public protocol LoginUseCase: AutoMockable {
@@ -12,7 +11,11 @@ public protocol LoginUseCase: AutoMockable {
 
 public struct LoginUseCaseImpl: LoginUseCase {
     
-    @Injected private var authTokenRepository: AuthTokenRepository
+    private let authTokenRepository: AuthTokenRepository
+    
+    public init(authTokenRepository: AuthTokenRepository) {
+        self.authTokenRepository = authTokenRepository
+    }
     
     public func execute(_ data: LoginData) -> Observable<Void> {
         authTokenRepository.create(data).mapToVoid()

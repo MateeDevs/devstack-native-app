@@ -3,15 +3,17 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-import Resolver
-
 public protocol LogoutUseCase: AutoMockable {
     func execute()
 }
 
 public struct LogoutUseCaseImpl: LogoutUseCase {
     
-    @Injected private var authTokenRepository: AuthTokenRepository
+    private let authTokenRepository: AuthTokenRepository
+    
+    public init(authTokenRepository: AuthTokenRepository) {
+        self.authTokenRepository = authTokenRepository
+    }
     
     public func execute() {
         authTokenRepository.delete()

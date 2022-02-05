@@ -3,11 +3,10 @@
 //  Copyright © 2020 Matee. All rights reserved.
 //
 
-@testable import DataLayer
+import DataLayer
 import DomainLayer
 import DomainStubs
 import ProviderMocks
-import Resolver
 import RxSwift
 import SwiftyMocky
 import XCTest
@@ -20,21 +19,25 @@ class AuthTokenRepositoryTests: BaseTestCase {
     private let keychainProvider = KeychainProviderMock()
     private let networkProvider = NetworkProviderMock()
     
-    override func registerDependencies() {
-        super.registerDependencies()
+    override func setupDependencies() {
+        super.setupDependencies()
         
         Given(keychainProvider, .get(.value(.authToken), willReturn: AuthToken.stub.token))
         Given(keychainProvider, .get(.value(.userId), willReturn: AuthToken.stub.userId))
-        
-        Resolver.register { self.databaseProvider as DatabaseProvider }
-        Resolver.register { self.keychainProvider as KeychainProvider }
-        Resolver.register { self.networkProvider as NetworkProvider }
+    }
+    
+    private func createRepository() -> AuthTokenRepository {
+        AuthTokenRepositoryImpl(
+            databaseProvider: databaseProvider,
+            keychainProvider: keychainProvider,
+            networkProvider: networkProvider
+        )
     }
     
     // MARK: Tests
     
     func testCreateValid() {
-        let repository = AuthTokenRepositoryImpl()
+        let repository = createRepository()
         let output = scheduler.createObserver(AuthToken.self)
         
         repository.create(.stubValid).bind(to: output).disposed(by: disposeBag)
@@ -50,7 +53,7 @@ class AuthTokenRepositoryTests: BaseTestCase {
     }
     
     func testCreateInvalidPassword() {
-        let repository = AuthTokenRepositoryImpl()
+        let repository = createRepository()
         networkProvider.observableRequestReturnError = RepositoryError(statusCode: StatusCode.httpUnathorized, message: "")
         let output = scheduler.createObserver(AuthToken.self)
         
@@ -65,7 +68,7 @@ class AuthTokenRepositoryTests: BaseTestCase {
     }
     
     func testRead() {
-        let repository = AuthTokenRepositoryImpl()
+        let repository = createRepository()
         
         let output = repository.read()
         
@@ -75,7 +78,7 @@ class AuthTokenRepositoryTests: BaseTestCase {
     }
     
     func testDelete() {
-        let repository = AuthTokenRepositoryImpl()
+        let repository = createRepository()
         
         repository.delete()
         

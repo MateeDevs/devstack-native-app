@@ -3,9 +3,8 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-@testable import DomainLayer
+import DomainLayer
 import RepositoryMocks
-import Resolver
 import RxSwift
 import SwiftyMocky
 import XCTest
@@ -16,16 +15,10 @@ class RegisterForPushNotificationsUseCaseTests: BaseTestCase {
     
     private let pushNotificationsRepository = PushNotificationsRepositoryMock()
     
-    override func registerDependencies() {
-        super.registerDependencies()
-        
-        Resolver.register { self.pushNotificationsRepository as PushNotificationsRepository }
-    }
-    
     // MARK: Tests
 
     func testExecute() {
-        let useCase = RegisterForPushNotificationsUseCaseImpl()
+        let useCase = RegisterForPushNotificationsUseCaseImpl(pushNotificationsRepository: pushNotificationsRepository)
         
         useCase.execute(options: [.alert, .badge, .sound], completionHandler: { _, _ in })
         

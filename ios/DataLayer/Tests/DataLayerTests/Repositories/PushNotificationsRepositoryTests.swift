@@ -3,9 +3,8 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-@testable import DataLayer
+import DataLayer
 import ProviderMocks
-import Resolver
 import RxSwift
 import SwiftyMocky
 import XCTest
@@ -16,16 +15,10 @@ class PushNotificationsRepositoryTests: BaseTestCase {
     
     private let pushNotificationsProvider = PushNotificationsProviderMock()
     
-    override func registerDependencies() {
-        super.registerDependencies()
-        
-        Resolver.register { self.pushNotificationsProvider as PushNotificationsProvider }
-    }
-    
     // MARK: Tests
     
     func testRead() {
-        let repository = PushNotificationsRepositoryImpl()
+        let repository = PushNotificationsRepositoryImpl(pushNotificationsProvider: pushNotificationsProvider)
         
         repository.register(options: [.alert, .badge, .sound], completionHandler: { _, _ in })
 

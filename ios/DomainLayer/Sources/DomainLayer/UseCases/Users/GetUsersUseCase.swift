@@ -3,7 +3,6 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-import Resolver
 import RxSwift
 
 public protocol GetUsersUseCase: AutoMockable {
@@ -12,7 +11,11 @@ public protocol GetUsersUseCase: AutoMockable {
 
 public struct GetUsersUseCaseImpl: GetUsersUseCase {
     
-    @Injected private var userRepository: UserRepository
+    private let userRepository: UserRepository
+    
+    public init(userRepository: UserRepository) {
+        self.userRepository = userRepository
+    }
     
     public func execute() -> Observable<[User]> {
         userRepository.list(.local, page: 0, sortBy: "id")

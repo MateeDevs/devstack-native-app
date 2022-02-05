@@ -14,12 +14,12 @@ class BaseTestCase: XCTestCase {
     var disposeBag: DisposeBag! // swiftlint:disable:this implicitly_unwrapped_optional
     
     /// Override this method in a subclass and register dependencies
-    func registerDependencies() {}
+    func setupDependencies() {}
 
     override func setUp() {
         super.setUp()
 
-        registerDependencies()
+        setupDependencies()
         scheduler = TestScheduler(initialClock: 0)
         disposeBag = DisposeBag()
     }

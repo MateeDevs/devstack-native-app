@@ -4,13 +4,16 @@
 //
 
 import DomainLayer
-import Resolver
 
 public struct AnalyticsRepositoryImpl: AnalyticsRepository {
     
-    @Injected private var analyticsProvider: AnalyticsProvider
+    private let analytics: AnalyticsProvider
+    
+    public init(analyticsProvider: AnalyticsProvider) {
+        analytics = analyticsProvider
+    }
     
     public func create(_ event: AnalyticsEvent) {
-        analyticsProvider.track(event)
+        analytics.track(event)
     }
 }

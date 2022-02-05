@@ -31,7 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Register all dependencies
         Resolver.registerProviders(application: application, appDelegate: self, networkProviderDelegate: self)
         Resolver.registerRepositories()
-        Resolver.registerUseCases(kmpDependencies: KMPKoinDependency())
+        Resolver.registerUseCases()
+        Resolver.registerKMPUseCases(kmp: KMPKoinDependency())
         
         // Init main window with navigation controller
         let nc = BaseNavigationController(statusBarStyle: .lightContent)

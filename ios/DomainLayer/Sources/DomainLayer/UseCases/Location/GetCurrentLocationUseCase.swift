@@ -4,7 +4,6 @@
 //
 
 import CoreLocation
-import Resolver
 import RxSwift
 
 public protocol GetCurrentLocationUseCase: AutoMockable {
@@ -13,7 +12,11 @@ public protocol GetCurrentLocationUseCase: AutoMockable {
 
 public struct GetCurrentLocationUseCaseImpl: GetCurrentLocationUseCase {
     
-    @Injected private var locationRepository: LocationRepository
+    private let locationRepository: LocationRepository
+    
+    public init(locationRepository: LocationRepository) {
+        self.locationRepository = locationRepository
+    }
     
     public func execute() -> Observable<CLLocation> {
         locationRepository.getCurrentLocation(withAccuracy: kCLLocationAccuracyThreeKilometers)

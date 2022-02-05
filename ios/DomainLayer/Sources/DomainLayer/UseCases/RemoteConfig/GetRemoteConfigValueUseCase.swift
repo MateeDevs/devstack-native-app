@@ -3,7 +3,6 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-import Resolver
 import RxSwift
 
 public protocol GetRemoteConfigValueUseCase: AutoMockable {
@@ -12,7 +11,11 @@ public protocol GetRemoteConfigValueUseCase: AutoMockable {
 
 public struct GetRemoteConfigValueUseCaseImpl: GetRemoteConfigValueUseCase {
     
-    @Injected private var remoteConfigRepository: RemoteConfigRepository
+    private let remoteConfigRepository: RemoteConfigRepository
+    
+    public init(remoteConfigRepository: RemoteConfigRepository) {
+        self.remoteConfigRepository = remoteConfigRepository
+    }
     
     public func execute(_ key: RemoteConfigCoding) -> Observable<Bool> {
         remoteConfigRepository.read(key)

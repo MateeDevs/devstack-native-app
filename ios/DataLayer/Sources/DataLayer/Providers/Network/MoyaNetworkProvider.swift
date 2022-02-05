@@ -17,8 +17,10 @@ public struct MoyaNetworkProvider {
     /// Idea taken from [Moya - ComposingProvider](https://github.com/Moya/Moya/blob/master/docs/Examples/ComposingProvider.md)
     private let moyaProvider: MoyaProvider<MultiTarget>
 
-    public init(keychainProvider: KeychainProvider, delegate: NetworkProviderDelegate) {
-        
+    public init(
+        keychainProvider: KeychainProvider,
+        delegate: NetworkProviderDelegate?
+    ) {
         self._delegate = delegate
         
         let endpointClosure = { (target: MultiTarget) -> Endpoint in

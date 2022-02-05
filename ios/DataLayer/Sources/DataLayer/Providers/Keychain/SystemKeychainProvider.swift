@@ -6,17 +6,14 @@
 import DomainLayer
 import Foundation
 import KeychainAccess
-import Resolver
 
 public struct SystemKeychainProvider {
     
-    @Injected private var userDefaults: UserDefaultsProvider
-    
-    public init() {
+    public init(userDefaultsProvider: UserDefaultsProvider) {
         // Clear keychain on first run
-        if (userDefaults.get(.hasRunBefore) as Bool?) == nil {
+        if (userDefaultsProvider.get(.hasRunBefore) as Bool?) == nil {
             deleteAll()
-            userDefaults.save(.hasRunBefore, value: true)
+            userDefaultsProvider.save(.hasRunBefore, value: true)
         }
     }
 }

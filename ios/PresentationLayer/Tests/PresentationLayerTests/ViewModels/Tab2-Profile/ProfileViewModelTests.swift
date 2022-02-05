@@ -7,7 +7,6 @@ import CoreLocation
 import DomainLayer
 import DomainStubs
 @testable import PresentationLayer
-import Resolver
 import RxSwift
 import RxTest
 import SwiftyMocky
@@ -28,20 +27,13 @@ class ProfileViewModelTests: BaseTestCase {
     private let getRemoteConfigValueUseCase = GetRemoteConfigValueUseCaseMock()
     private let registerForPushNotificationsUseCase = RegisterForPushNotificationsUseCaseMock()
     
-    override func registerDependencies() {
-        super.registerDependencies()
+    override func setupDependencies() {
+        super.setupDependencies()
         
         Given(getProfileUseCase, .execute(willReturn: dbStream.asObservable()))
         Given(refreshProfileUseCase, .execute(willReturn: .just(())))
         Given(getCurrentLocationUseCase, .execute(willReturn: .just(location)))
         Given(getRemoteConfigValueUseCase, .execute(.value(.profileLabelIsVisible), willReturn: .just(true)))
-        
-        Resolver.register { self.getProfileUseCase as GetProfileUseCase }
-        Resolver.register { self.refreshProfileUseCase as RefreshProfileUseCase }
-        Resolver.register { self.logoutUseCase as LogoutUseCase }
-        Resolver.register { self.getCurrentLocationUseCase as GetCurrentLocationUseCase }
-        Resolver.register { self.getRemoteConfigValueUseCase as GetRemoteConfigValueUseCase }
-        Resolver.register { self.registerForPushNotificationsUseCase as RegisterForPushNotificationsUseCase }
     }
     
     // MARK: Inputs and outputs
@@ -71,7 +63,14 @@ class ProfileViewModelTests: BaseTestCase {
     }
     
     private func generateOutput(for input: Input) -> Output {
-        let viewModel = ProfileViewModel()
+        let viewModel = ProfileViewModel(
+            getProfileUseCase: getProfileUseCase,
+            refreshProfileUseCase: refreshProfileUseCase,
+            logoutUseCase: logoutUseCase,
+            getCurrentLocationUseCase: getCurrentLocationUseCase,
+            getRemoteConfigValueUseCase: getRemoteConfigValueUseCase,
+            registerForPushNotificationsUseCase: registerForPushNotificationsUseCase
+        )
         
         scheduler.createColdObservable(input.registerPushNotificationsButtonTaps.map { .next($0.time, $0.element) })
             .bind(to: viewModel.input.registerPushNotificationsButtonTaps).disposed(by: disposeBag)

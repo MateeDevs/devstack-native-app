@@ -3,10 +3,9 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-@testable import DomainLayer
+import DomainLayer
 import DomainStubs
 import RepositoryMocks
-import Resolver
 import RxSwift
 import SwiftyMocky
 import XCTest
@@ -17,18 +16,16 @@ class GetProfileIdUseCaseTests: BaseTestCase {
     
     private let authTokenRepository = AuthTokenRepositoryMock()
     
-    override func registerDependencies() {
-        super.registerDependencies()
+    override func setupDependencies() {
+        super.setupDependencies()
         
         Given(authTokenRepository, .read(willReturn: AuthToken.stub))
-        
-        Resolver.register { self.authTokenRepository as AuthTokenRepository }
     }
     
     // MARK: Tests
 
     func testExecute() {
-        let useCase = GetProfileIdUseCaseImpl()
+        let useCase = GetProfileIdUseCaseImpl(authTokenRepository: authTokenRepository)
         
         let output = useCase.execute()
         

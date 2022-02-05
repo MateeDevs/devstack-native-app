@@ -12,7 +12,10 @@ public class FirebasePushNotificationsProvider: NSObject {
     
     private let application: UIApplication
     
-    public init(application: UIApplication, appDelegate: (UIApplicationDelegate & UNUserNotificationCenterDelegate)) {
+    public init(
+        application: UIApplication,
+        appDelegate: (UIApplicationDelegate & UNUserNotificationCenterDelegate)
+    ) {
         self.application = application
         super.init()
         

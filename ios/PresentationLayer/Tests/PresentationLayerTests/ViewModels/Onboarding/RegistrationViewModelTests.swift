@@ -6,7 +6,6 @@
 import DomainLayer
 import DomainStubs
 @testable import PresentationLayer
-import Resolver
 import RxSwift
 import RxTest
 import SwiftyMocky
@@ -19,16 +18,14 @@ class RegistrationViewModelTests: BaseTestCase {
     
     private let registrationUseCase = RegistrationUseCaseMock()
     
-    override func registerDependencies() {
-        super.registerDependencies()
+    override func setupDependencies() {
+        super.setupDependencies()
         
         Given(registrationUseCase, .execute(
             .value(.stubExistingEmail),
             willReturn: .error(RepositoryError(statusCode: StatusCode.httpConflict, message: ""))
         ))
         Given(registrationUseCase, .execute(.any, willReturn: .just(())))
-        
-        Resolver.register { self.registrationUseCase as RegistrationUseCase }
     }
     
     // MARK: Inputs and outputs
@@ -52,7 +49,7 @@ class RegistrationViewModelTests: BaseTestCase {
     }
     
     private func generateOutput(for input: Input) -> Output {
-        let viewModel = RegistrationViewModel()
+        let viewModel = RegistrationViewModel(registrationUseCase: registrationUseCase)
         
         scheduler.createColdObservable([.next(0, input.registrationData.email)])
             .bind(to: viewModel.input.email).disposed(by: disposeBag)

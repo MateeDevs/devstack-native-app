@@ -3,9 +3,8 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-@testable import DataLayer
+import DataLayer
 import ProviderMocks
-import Resolver
 import RxSwift
 import SwiftyMocky
 import XCTest
@@ -16,18 +15,16 @@ class RemoteConfigRepositoryTests: BaseTestCase {
     
     private let remoteConfigProvider = RemoteConfigProviderMock()
     
-    override func registerDependencies() {
-        super.registerDependencies()
+    override func setupDependencies() {
+        super.setupDependencies()
         
         Given(remoteConfigProvider, .get(.any, willReturn: .just(true)))
-        
-        Resolver.register { self.remoteConfigProvider as RemoteConfigProvider }
     }
     
     // MARK: Tests
     
     func testRead() {
-        let repository = RemoteConfigRepositoryImpl()
+        let repository = RemoteConfigRepositoryImpl(remoteConfigProvider: remoteConfigProvider)
         let output = scheduler.createObserver(Bool.self)
         
         repository.read(.profileLabelIsVisible).bind(to: output).disposed(by: disposeBag)
