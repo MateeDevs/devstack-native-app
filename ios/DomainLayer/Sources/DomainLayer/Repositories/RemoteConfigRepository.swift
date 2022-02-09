@@ -5,10 +5,6 @@
 
 import RxSwift
 
-public protocol HasRemoteConfigRepository {
-    var remoteConfigRepository: RemoteConfigRepository { get }
-}
-
 public protocol RemoteConfigRepository: AutoMockable {
     func read(_ key: RemoteConfigCoding) -> Observable<Bool>
 }

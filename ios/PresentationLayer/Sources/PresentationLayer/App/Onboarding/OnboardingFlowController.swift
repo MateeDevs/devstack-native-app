@@ -14,7 +14,7 @@ class OnboardingFlowController: FlowController {
     weak var delegate: OnboardingFlowControllerDelegate?
     
     override func setup() -> UIViewController {
-        let vm = LoginViewModel(dependencies: dependencies)
+        let vm = LoginViewModel()
         return LoginViewController.instantiate(fc: self, vm: vm)
     }
     
@@ -42,7 +42,7 @@ extension OnboardingFlowController {
     }
     
     private func showRegistration() {
-        let vm = RegistrationViewModel(dependencies: dependencies)
+        let vm = RegistrationViewModel()
         let vc = RegistrationViewController.instantiate(fc: self, vm: vm)
         navigationController.show(vc, sender: nil)
     }

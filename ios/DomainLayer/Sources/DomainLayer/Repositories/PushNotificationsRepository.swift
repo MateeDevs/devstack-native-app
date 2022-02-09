@@ -5,10 +5,6 @@
 
 import UserNotifications
 
-public protocol HasPushNotificationsRepository {
-    var pushNotificationsRepository: PushNotificationsRepository { get }
-}
-
 public protocol PushNotificationsRepository: AutoMockable {
     func decode(_ notificationData: [AnyHashable: Any]) -> PushNotification?
     func register(options: UNAuthorizationOptions, completionHandler: @escaping (Bool, Error?) -> Void)

@@ -14,14 +14,10 @@ class TrackAnalyticsEventUseCaseTests: BaseTestCase {
     
     private let analyticsRepository = AnalyticsRepositoryMock()
     
-    private func setupDependencies() -> RepositoryDependency {
-        return RepositoryDependencyMock(analyticsRepository: analyticsRepository)
-    }
-    
     // MARK: Tests
 
     func testExecute() {
-        let useCase = TrackAnalyticsEventUseCaseImpl(dependencies: setupDependencies())
+        let useCase = TrackAnalyticsEventUseCaseImpl(analyticsRepository: analyticsRepository)
         
         useCase.execute(LoginEvent.screenAppear.analyticsEvent)
         

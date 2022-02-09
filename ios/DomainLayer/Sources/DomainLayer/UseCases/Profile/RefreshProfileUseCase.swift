@@ -5,28 +5,25 @@
 
 import RxSwift
 
-public protocol HasRefreshProfileUseCase {
-    var refreshProfileUseCase: RefreshProfileUseCase { get }
-}
-
 public protocol RefreshProfileUseCase: AutoMockable {
     func execute() -> Observable<Void>
 }
 
 public struct RefreshProfileUseCaseImpl: RefreshProfileUseCase {
     
-    public typealias Dependencies =
-        HasAuthTokenRepository &
-        HasUserRepository
+    private let authTokenRepository: AuthTokenRepository
+    private let userRepository: UserRepository
     
-    private let dependencies: Dependencies
-    
-    public init(dependencies: Dependencies) {
-        self.dependencies = dependencies
+    public init(
+        authTokenRepository: AuthTokenRepository,
+        userRepository: UserRepository
+    ) {
+        self.authTokenRepository = authTokenRepository
+        self.userRepository = userRepository
     }
     
     public func execute() -> Observable<Void> {
-        guard let authToken = dependencies.authTokenRepository.read() else { return .error(CommonError.noAuthToken) }
-        return dependencies.userRepository.read(.remote, id: authToken.userId).mapToVoid()
+        guard let authToken = authTokenRepository.read() else { return .error(CommonError.noAuthToken) }
+        return userRepository.read(.remote, id: authToken.userId).mapToVoid()
     }
 }

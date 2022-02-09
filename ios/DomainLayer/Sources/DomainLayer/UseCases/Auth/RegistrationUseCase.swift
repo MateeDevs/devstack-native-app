@@ -5,25 +5,19 @@
 
 import RxSwift
 
-public protocol HasRegistrationUseCase {
-    var registrationUseCase: RegistrationUseCase { get }
-}
-
 public protocol RegistrationUseCase: AutoMockable {
     func execute(_ data: RegistrationData) -> Observable<Void>
 }
 
 public struct RegistrationUseCaseImpl: RegistrationUseCase {
     
-    public typealias Dependencies = HasUserRepository
+    private let userRepository: UserRepository
     
-    private let dependencies: Dependencies
-    
-    public init(dependencies: Dependencies) {
-        self.dependencies = dependencies
+    public init(userRepository: UserRepository) {
+        self.userRepository = userRepository
     }
     
     public func execute(_ data: RegistrationData) -> Observable<Void> {
-        dependencies.userRepository.create(data).mapToVoid()
+        userRepository.create(data).mapToVoid()
     }
 }

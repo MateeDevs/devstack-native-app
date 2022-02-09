@@ -5,10 +5,6 @@
 
 import RxSwift
 
-public protocol HasAuthTokenRepository {
-    var authTokenRepository: AuthTokenRepository { get }
-}
-
 public protocol AuthTokenRepository: AutoMockable {
     func create(_ data: LoginData) -> Observable<AuthToken>
     func read() -> AuthToken?

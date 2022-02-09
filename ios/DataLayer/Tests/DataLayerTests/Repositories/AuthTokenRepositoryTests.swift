@@ -19,11 +19,15 @@ class AuthTokenRepositoryTests: BaseTestCase {
     private let keychainProvider = KeychainProviderMock()
     private let networkProvider = NetworkProviderMock()
     
-    private func setupDependencies() -> ProviderDependency {
+    override func setupDependencies() {
+        super.setupDependencies()
+        
         Given(keychainProvider, .get(.value(.authToken), willReturn: AuthToken.stub.token))
         Given(keychainProvider, .get(.value(.userId), willReturn: AuthToken.stub.userId))
-        
-        return ProviderDependencyMock(
+    }
+    
+    private func createRepository() -> AuthTokenRepository {
+        AuthTokenRepositoryImpl(
             databaseProvider: databaseProvider,
             keychainProvider: keychainProvider,
             networkProvider: networkProvider
@@ -33,7 +37,7 @@ class AuthTokenRepositoryTests: BaseTestCase {
     // MARK: Tests
     
     func testCreateValid() {
-        let repository = AuthTokenRepositoryImpl(dependencies: setupDependencies())
+        let repository = createRepository()
         let output = scheduler.createObserver(AuthToken.self)
         
         repository.create(.stubValid).bind(to: output).disposed(by: disposeBag)
@@ -49,7 +53,7 @@ class AuthTokenRepositoryTests: BaseTestCase {
     }
     
     func testCreateInvalidPassword() {
-        let repository = AuthTokenRepositoryImpl(dependencies: setupDependencies())
+        let repository = createRepository()
         networkProvider.observableRequestReturnError = RepositoryError(statusCode: StatusCode.httpUnathorized, message: "")
         let output = scheduler.createObserver(AuthToken.self)
         
@@ -64,7 +68,7 @@ class AuthTokenRepositoryTests: BaseTestCase {
     }
     
     func testRead() {
-        let repository = AuthTokenRepositoryImpl(dependencies: setupDependencies())
+        let repository = createRepository()
         
         let output = repository.read()
         
@@ -74,7 +78,7 @@ class AuthTokenRepositoryTests: BaseTestCase {
     }
     
     func testDelete() {
-        let repository = AuthTokenRepositoryImpl(dependencies: setupDependencies())
+        let repository = createRepository()
         
         repository.delete()
         

@@ -15,14 +15,10 @@ class PushNotificationsRepositoryTests: BaseTestCase {
     
     private let pushNotificationsProvider = PushNotificationsProviderMock()
     
-    private func setupDependencies() -> ProviderDependency {
-        ProviderDependencyMock(pushNotificationsProvider: pushNotificationsProvider)
-    }
-    
     // MARK: Tests
     
     func testRead() {
-        let repository = PushNotificationsRepositoryImpl(dependencies: setupDependencies())
+        let repository = PushNotificationsRepositoryImpl(pushNotificationsProvider: pushNotificationsProvider)
         
         repository.register(options: [.alert, .badge, .sound], completionHandler: { _, _ in })
 

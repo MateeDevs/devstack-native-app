@@ -16,15 +16,16 @@ class GetProfileIdUseCaseTests: BaseTestCase {
     
     private let authTokenRepository = AuthTokenRepositoryMock()
     
-    private func setupDependencies() -> RepositoryDependency {
+    override func setupDependencies() {
+        super.setupDependencies()
+        
         Given(authTokenRepository, .read(willReturn: AuthToken.stub))
-        return RepositoryDependencyMock(authTokenRepository: authTokenRepository)
     }
     
     // MARK: Tests
 
     func testExecute() {
-        let useCase = GetProfileIdUseCaseImpl(dependencies: setupDependencies())
+        let useCase = GetProfileIdUseCaseImpl(authTokenRepository: authTokenRepository)
         
         let output = useCase.execute()
         

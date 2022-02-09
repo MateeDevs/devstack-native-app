@@ -15,15 +15,16 @@ class RemoteConfigRepositoryTests: BaseTestCase {
     
     private let remoteConfigProvider = RemoteConfigProviderMock()
     
-    private func setupDependencies() -> ProviderDependency {
+    override func setupDependencies() {
+        super.setupDependencies()
+        
         Given(remoteConfigProvider, .get(.any, willReturn: .just(true)))
-        return ProviderDependencyMock(remoteConfigProvider: remoteConfigProvider)
     }
     
     // MARK: Tests
     
     func testRead() {
-        let repository = RemoteConfigRepositoryImpl(dependencies: setupDependencies())
+        let repository = RemoteConfigRepositoryImpl(remoteConfigProvider: remoteConfigProvider)
         let output = scheduler.createObserver(Bool.self)
         
         repository.read(.profileLabelIsVisible).bind(to: output).disposed(by: disposeBag)

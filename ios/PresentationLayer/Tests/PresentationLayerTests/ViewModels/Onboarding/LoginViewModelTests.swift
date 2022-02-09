@@ -19,15 +19,9 @@ class LoginViewModelTests: BaseTestCase {
     private let loginUseCase = LoginUseCaseMock()
     private let trackAnalyticsEventUseCase = TrackAnalyticsEventUseCaseMock()
     
-    private func setupDependencies() -> UseCaseDependency {
-        setupLoginUseCase()
-        return UseCaseDependencyMock(
-            trackAnalyticsEventUseCase: trackAnalyticsEventUseCase,
-            loginUseCase: loginUseCase
-        )
-    }
-    
-    private func setupLoginUseCase() {
+    override func setupDependencies() {
+        super.setupDependencies()
+        
         Given(loginUseCase, .execute(
             .value(.stubInvalidPassword),
             willReturn: .error(RepositoryError(statusCode: StatusCode.httpUnathorized, message: ""))
@@ -59,7 +53,10 @@ class LoginViewModelTests: BaseTestCase {
     }
 
     private func generateOutput(for input: Input) -> Output {
-        let viewModel = LoginViewModel(dependencies: setupDependencies())
+        let viewModel = LoginViewModel(
+            loginUseCase: loginUseCase,
+            trackAnalyticsEventUseCase: trackAnalyticsEventUseCase
+        )
         
         scheduler.createColdObservable(input.loginData.map { .next($0.time, $0.element.email) })
             .bind(to: viewModel.input.email).disposed(by: disposeBag)

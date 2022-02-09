@@ -18,12 +18,9 @@ class RegistrationViewModelTests: BaseTestCase {
     
     private let registrationUseCase = RegistrationUseCaseMock()
     
-    private func setupDependencies() -> UseCaseDependency {
-        setupRegistrationUseCase()
-        return UseCaseDependencyMock(registrationUseCase: registrationUseCase)
-    }
-    
-    private func setupRegistrationUseCase() {
+    override func setupDependencies() {
+        super.setupDependencies()
+        
         Given(registrationUseCase, .execute(
             .value(.stubExistingEmail),
             willReturn: .error(RepositoryError(statusCode: StatusCode.httpConflict, message: ""))
@@ -52,7 +49,7 @@ class RegistrationViewModelTests: BaseTestCase {
     }
     
     private func generateOutput(for input: Input) -> Output {
-        let viewModel = RegistrationViewModel(dependencies: setupDependencies())
+        let viewModel = RegistrationViewModel(registrationUseCase: registrationUseCase)
         
         scheduler.createColdObservable([.next(0, input.registrationData.email)])
             .bind(to: viewModel.input.email).disposed(by: disposeBag)

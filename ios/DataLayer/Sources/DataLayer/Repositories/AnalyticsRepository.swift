@@ -7,16 +7,13 @@ import DomainLayer
 
 public struct AnalyticsRepositoryImpl: AnalyticsRepository {
     
-    public typealias Dependencies =
-        HasAnalyticsProvider
-
-    private let analyticsProvider: AnalyticsProvider
-
-    public init(dependencies: Dependencies) {
-        self.analyticsProvider = dependencies.analyticsProvider
+    private let analytics: AnalyticsProvider
+    
+    public init(analyticsProvider: AnalyticsProvider) {
+        analytics = analyticsProvider
     }
     
     public func create(_ event: AnalyticsEvent) {
-        analyticsProvider.track(event)
+        analytics.track(event)
     }
 }

@@ -4,14 +4,19 @@
 //
 
 import DomainLayer
+import Resolver
 import UIKit
 
 public class AppFlowController: FlowController, MainFlowControllerDelegate, OnboardingFlowControllerDelegate {
     
+    @Injected private var getProfileIdUseCase: GetProfileIdUseCase
+    @Injected private var handlePushNotificationUseCase: HandlePushNotificationUseCase
+    @Injected private var logoutUseCase: LogoutUseCase
+    
     public func start() {
         setupAppearance()
         
-        if dependencies.getProfileIdUseCase.execute() != nil {
+        if getProfileIdUseCase.execute() != nil {
             setupMain()
         } else {
             presentOnboarding(animated: false, completion: nil)
@@ -19,7 +24,7 @@ public class AppFlowController: FlowController, MainFlowControllerDelegate, Onbo
     }
     
     func setupMain() {
-        let fc = MainFlowController(navigationController: navigationController, dependencies: dependencies)
+        let fc = MainFlowController(navigationController: navigationController)
         fc.delegate = self
         let rootVC = startChildFlow(fc)
         navigationController.viewControllers = [rootVC]
@@ -27,7 +32,7 @@ public class AppFlowController: FlowController, MainFlowControllerDelegate, Onbo
     
     func presentOnboarding(animated: Bool, completion: (() -> Void)?) {
         let nc = BaseNavigationController()
-        let fc = OnboardingFlowController(navigationController: nc, dependencies: dependencies)
+        let fc = OnboardingFlowController(navigationController: nc)
         fc.delegate = self
         let rootVC = startChildFlow(fc)
         nc.viewControllers = [rootVC]
@@ -37,7 +42,7 @@ public class AppFlowController: FlowController, MainFlowControllerDelegate, Onbo
     }
     
     public func handlePushNotification(_ notification: [AnyHashable: Any]) {
-        guard let notification = dependencies.handlePushNotificationUseCase.execute(notification),
+        guard let notification = handlePushNotificationUseCase.execute(notification),
               let main = childControllers.first(where: { $0 is MainFlowController }) as? MainFlowController else { return }
         main.handleDeeplink(for: notification)
     }
@@ -47,7 +52,7 @@ public class AppFlowController: FlowController, MainFlowControllerDelegate, Onbo
 
         let action = UIAlertAction(title: L10n.dialog_interceptor_button_title, style: .default, handler: { _ in
             // Perform logout and present login screen
-            self.dependencies.logoutUseCase.execute()
+            self.logoutUseCase.execute()
             self.presentOnboarding(animated: true, completion: nil)
         })
 

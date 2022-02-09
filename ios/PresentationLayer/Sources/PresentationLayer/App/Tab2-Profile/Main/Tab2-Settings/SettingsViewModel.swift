@@ -10,8 +10,6 @@ import UIKit
 
 final class SettingsViewModel: BaseViewModel, ViewModel {
     
-    typealias Dependencies = HasNoUseCase
-    
     let input: Input
     let output: Output
 
@@ -24,7 +22,7 @@ final class SettingsViewModel: BaseViewModel, ViewModel {
         let topViewHeight: Driver<CGFloat>
     }
     
-    init(dependencies: Dependencies) {
+    init() {
 
         // MARK: Setup inputs
 

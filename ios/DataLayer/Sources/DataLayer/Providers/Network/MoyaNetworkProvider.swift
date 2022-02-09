@@ -11,18 +11,17 @@ import UIKit
 
 public struct MoyaNetworkProvider {
     
-    private let keychain: KeychainProvider
-    private let database: DatabaseProvider
-    
     private weak var _delegate: NetworkProviderDelegate?
 
     /// Custom Moya provider
     /// Idea taken from [Moya - ComposingProvider](https://github.com/Moya/Moya/blob/master/docs/Examples/ComposingProvider.md)
     private let moyaProvider: MoyaProvider<MultiTarget>
 
-    public init(keychainProvider: KeychainProvider, databaseProvider: DatabaseProvider) {
-        self.keychain = keychainProvider
-        self.database = databaseProvider
+    public init(
+        keychainProvider: KeychainProvider,
+        delegate: NetworkProviderDelegate?
+    ) {
+        self._delegate = delegate
         
         let endpointClosure = { (target: MultiTarget) -> Endpoint in
             var defaultEndpoint = MoyaProvider.defaultEndpointMapping(for: target)

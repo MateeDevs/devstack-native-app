@@ -16,15 +16,16 @@ class GetUserUseCaseTests: BaseTestCase {
     
     private let userRepository = UserRepositoryMock()
     
-    private func setupDependencies() -> RepositoryDependency {
+    override func setupDependencies() {
+        super.setupDependencies()
+        
         Given(userRepository, .read(.value(.local), id: .value(User.stub.id), willReturn: .just(User.stub)))
-        return RepositoryDependencyMock(userRepository: userRepository)
     }
     
     // MARK: Tests
 
     func testExecute() {
-        let useCase = GetUserUseCaseImpl(dependencies: setupDependencies())
+        let useCase = GetUserUseCaseImpl(userRepository: userRepository)
         let output = scheduler.createObserver(User.self)
         
         useCase.execute(id: User.stub.id).bind(to: output).disposed(by: disposeBag)

@@ -8,13 +8,10 @@ import RxSwift
 
 public struct RemoteConfigRepositoryImpl: RemoteConfigRepository {
     
-    public typealias Dependencies =
-        HasRemoteConfigProvider
-
     private let remoteConfig: RemoteConfigProvider
-
-    public init(dependencies: Dependencies) {
-        self.remoteConfig = dependencies.remoteConfigProvider
+    
+    public init(remoteConfigProvider: RemoteConfigProvider) {
+        remoteConfig = remoteConfigProvider
     }
     
     public func read(_ key: RemoteConfigCoding) -> Observable<Bool> {

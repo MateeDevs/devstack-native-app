@@ -3,16 +3,13 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-import class DevstackKmpShared.Book
+import DevstackKmpShared
 import DomainLayer
+import Resolver
 import RxCocoa
 import RxSwift
 
 final class BooksViewModel: BaseViewModel, ViewModel {
-    
-    typealias Dependencies =
-        HasGetBooksUseCase &
-        HasRefreshBooksUseCase
     
     let input: Input
     let output: Output
@@ -27,7 +24,17 @@ final class BooksViewModel: BaseViewModel, ViewModel {
         let isRefreshing: Driver<Bool>
     }
     
-    init(dependencies: Dependencies) {
+    convenience init() {
+        self.init(
+            getBooksUseCase: Resolver.resolve(),
+            refreshBooksUseCase: Resolver.resolve()
+        )
+    }
+    
+    init(
+        getBooksUseCase: GetBooksUseCase,
+        refreshBooksUseCase: RefreshBooksUseCase
+    ) {
         
         // MARK: Setup inputs
         
@@ -39,12 +46,12 @@ final class BooksViewModel: BaseViewModel, ViewModel {
         
         // MARK: Transformations
         
-        let books = dependencies.getBooksUseCase.execute().ignoreErrors().share(replay: 1)
+        let books = getBooksUseCase.execute().ignoreErrors().share(replay: 1)
         
         let activity = ActivityIndicator()
         
         let refreshBooks = page.flatMap { _ -> Observable<Int> in
-            dependencies.refreshBooksUseCase.execute().map({ _ in 100 }).trackActivity(activity).ignoreErrors()
+            refreshBooksUseCase.execute().map({ _ in 100 }).trackActivity(activity).ignoreErrors()
         }.share()
         
         let isRefreshing = Observable<Bool>.merge(

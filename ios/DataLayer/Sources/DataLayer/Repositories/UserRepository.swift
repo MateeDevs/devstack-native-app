@@ -8,16 +8,15 @@ import RxSwift
 
 public struct UserRepositoryImpl: UserRepository {
     
-    public typealias Dependencies =
-        HasDatabaseProvider &
-        HasNetworkProvider
-
     private let database: DatabaseProvider
     private let network: NetworkProvider
-
-    public init(dependencies: Dependencies) {
-        self.database = dependencies.databaseProvider
-        self.network = dependencies.networkProvider
+    
+    public init(
+        databaseProvider: DatabaseProvider,
+        networkProvider: NetworkProvider
+    ) {
+        database = databaseProvider
+        network = networkProvider
     }
     
     public func create(_ data: RegistrationData) -> Observable<User> {

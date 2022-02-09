@@ -5,10 +5,6 @@
 
 import DomainLayer
 
-public protocol HasUserDefaultsProvider {
-    var userDefaultsProvider: UserDefaultsProvider { get }
-}
-
 public enum UserDefaultsCoding: String, CaseIterable {
     case hasRunBefore
 }

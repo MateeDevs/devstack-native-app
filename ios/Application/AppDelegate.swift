@@ -10,6 +10,7 @@ import Atlantis
 import DataLayer
 import DomainLayer
 import PresentationLayer
+import Resolver
 import UIKit
 import UserNotifications
 import WidgetKit
@@ -27,6 +28,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         setupEnvironment()
         
+        // Register all dependencies
+        Resolver.registerProviders(application: application, appDelegate: self, networkProviderDelegate: self)
+        Resolver.registerRepositories()
+        Resolver.registerUseCases()
+        Resolver.registerKMPUseCases(kmp: KMPKoinDependency())
+        
         // Init main window with navigation controller
         let nc = BaseNavigationController(statusBarStyle: .lightContent)
         nc.navigationBar.isHidden = true
@@ -35,13 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         // Init main flow controller and start the flow
-        flowController = AppFlowController(
-            navigationController: nc,
-            dependencies: UseCaseDependencyImpl(
-                dependencies: RepositoryDependencyImpl(dependencies: setupProviders(for: application)),
-                kmpDependencies: KMPKoinDependency()
-            )
-        )
+        flowController = AppFlowController(navigationController: nc)
         flowController?.start()
         
         return true
@@ -93,29 +94,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #else
         Environment.flavor = .release
         #endif
-    }
-    
-    // MARK: Setup providers
-    private func setupProviders(for application: UIApplication) -> ProviderDependency {
-        let analyticsProvider = FirebaseAnalyticsProvider()
-        let databaseProvider = RealmDatabaseProvider()
-        let userDefaultsProvider = SystemUserDefaultsProvider()
-        let keychainProvider = SystemKeychainProvider(userDefaultsProvider: userDefaultsProvider)
-        var networkProvider = MoyaNetworkProvider(keychainProvider: keychainProvider, databaseProvider: databaseProvider)
-        let pushNotificationsProvider = FirebasePushNotificationsProvider(application: application, appDelegate: self)
-        let remoteConfigProvider = FirebaseRemoteConfigProvider()
-        
-        networkProvider.delegate = self
-
-        return ProviderDependencyImpl(
-            analyticsProvider: analyticsProvider,
-            databaseProvider: databaseProvider,
-            keychainProvider: keychainProvider,
-            networkProvider: networkProvider,
-            pushNotificationsProvider: pushNotificationsProvider,
-            remoteConfigProvider: remoteConfigProvider,
-            userDefaultsProvider: userDefaultsProvider
-        )
     }
 }
 

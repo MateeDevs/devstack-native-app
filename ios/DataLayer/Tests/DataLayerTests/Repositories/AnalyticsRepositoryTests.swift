@@ -15,14 +15,10 @@ class AnalyticsRepositoryTests: BaseTestCase {
     
     private let analyticsProvider = AnalyticsProviderMock()
     
-    private func setupDependencies() -> ProviderDependency {
-        return ProviderDependencyMock(analyticsProvider: analyticsProvider)
-    }
-    
     // MARK: Tests
     
     func testCreate() {
-        let repository = AnalyticsRepositoryImpl(dependencies: setupDependencies())
+        let repository = AnalyticsRepositoryImpl(analyticsProvider: analyticsProvider)
         
         repository.create(LoginEvent.screenAppear.analyticsEvent)
         

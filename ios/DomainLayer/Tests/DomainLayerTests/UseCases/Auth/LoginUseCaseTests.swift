@@ -16,15 +16,16 @@ class LoginUseCaseTests: BaseTestCase {
     
     private let authTokenRepository = AuthTokenRepositoryMock()
     
-    private func setupDependencies() -> RepositoryDependency {
+    override func setupDependencies() {
+        super.setupDependencies()
+        
         Given(authTokenRepository, .create(.any, willReturn: .just(AuthToken.stub)))
-        return RepositoryDependencyMock(authTokenRepository: authTokenRepository)
     }
     
     // MARK: Tests
 
     func testExecute() {
-        let useCase = LoginUseCaseImpl(dependencies: setupDependencies())
+        let useCase = LoginUseCaseImpl(authTokenRepository: authTokenRepository)
         let output = scheduler.createObserver(Bool.self)
         
         useCase.execute(.stubValid).map { _ in true }.bind(to: output).disposed(by: disposeBag)

@@ -7,10 +7,6 @@ import Foundation
 import RealmSwift
 import RxSwift
 
-public protocol HasDatabaseProvider {
-    var databaseProvider: DatabaseProvider { get }
-}
-
 public protocol DatabaseProvider {
     
     ///

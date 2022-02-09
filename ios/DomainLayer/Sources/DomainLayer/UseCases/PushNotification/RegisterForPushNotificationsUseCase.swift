@@ -5,26 +5,20 @@
 
 import UserNotifications
 
-public protocol HasRegisterForPushNotificationsUseCase {
-    var registerForPushNotificationsUseCase: RegisterForPushNotificationsUseCase { get }
-}
-
 public protocol RegisterForPushNotificationsUseCase: AutoMockable {
     func execute(options: UNAuthorizationOptions, completionHandler: @escaping (Bool, Error?) -> Void)
 }
 
 public struct RegisterForPushNotificationsUseCaseImpl: RegisterForPushNotificationsUseCase {
     
-    public typealias Dependencies = HasPushNotificationsRepository
+    private let pushNotificationsRepository: PushNotificationsRepository
     
-    private let dependencies: Dependencies
-    
-    public init(dependencies: Dependencies) {
-        self.dependencies = dependencies
+    public init(pushNotificationsRepository: PushNotificationsRepository) {
+        self.pushNotificationsRepository = pushNotificationsRepository
     }
 
     public func execute(options: UNAuthorizationOptions, completionHandler: @escaping (Bool, Error?) -> Void) {
-        dependencies.pushNotificationsRepository.register(
+        pushNotificationsRepository.register(
             options: options,
             completionHandler: completionHandler
         )

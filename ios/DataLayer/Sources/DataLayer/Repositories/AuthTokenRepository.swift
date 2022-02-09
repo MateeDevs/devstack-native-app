@@ -7,20 +7,19 @@ import DomainLayer
 import RxSwift
 
 public struct AuthTokenRepositoryImpl: AuthTokenRepository {
-
-    public typealias Dependencies =
-        HasDatabaseProvider &
-        HasKeychainProvider &
-        HasNetworkProvider
-
+    
     private let database: DatabaseProvider
     private let keychain: KeychainProvider
     private let network: NetworkProvider
     
-    public init(dependencies: Dependencies) {
-        self.database = dependencies.databaseProvider
-        self.keychain = dependencies.keychainProvider
-        self.network = dependencies.networkProvider
+    public init(
+        databaseProvider: DatabaseProvider,
+        keychainProvider: KeychainProvider,
+        networkProvider: NetworkProvider
+    ) {
+        database = databaseProvider
+        keychain = keychainProvider
+        network = networkProvider
     }
     
     public func create(_ data: LoginData) -> Observable<AuthToken> {

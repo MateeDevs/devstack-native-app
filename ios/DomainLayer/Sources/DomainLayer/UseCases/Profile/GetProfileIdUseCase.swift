@@ -3,25 +3,19 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-public protocol HasGetProfileIdUseCase {
-    var getProfileIdUseCase: GetProfileIdUseCase { get }
-}
-
 public protocol GetProfileIdUseCase: AutoMockable {
     func execute() -> String?
 }
 
 public struct GetProfileIdUseCaseImpl: GetProfileIdUseCase {
     
-    public typealias Dependencies = HasAuthTokenRepository
+    private let authTokenRepository: AuthTokenRepository
     
-    private let dependencies: Dependencies
-    
-    public init(dependencies: Dependencies) {
-        self.dependencies = dependencies
+    public init(authTokenRepository: AuthTokenRepository) {
+        self.authTokenRepository = authTokenRepository
     }
     
     public func execute() -> String? {
-        dependencies.authTokenRepository.read()?.userId
+        authTokenRepository.read()?.userId
     }
 }

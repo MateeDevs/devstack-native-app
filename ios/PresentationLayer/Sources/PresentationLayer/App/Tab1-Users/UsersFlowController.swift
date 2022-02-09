@@ -8,7 +8,7 @@ import UIKit
 class UsersFlowController: FlowController {
     
     override func setup() -> UIViewController {
-        let vm = UsersViewModel(dependencies: dependencies)
+        let vm = UsersViewModel()
         return UsersViewController.instantiate(fc: self, vm: vm)
     }
     
@@ -29,7 +29,7 @@ extension UsersFlowController {
     }
     
     private func showUserDetailForId(_ userId: String) {
-        let vm = UserDetailViewModel(dependencies: dependencies, userId: userId)
+        let vm = UserDetailViewModel(userId: userId)
         let vc = UserDetailViewController.instantiate(fc: self, vm: vm)
         navigationController.show(vc, sender: nil)
     }

@@ -5,25 +5,19 @@
 
 import RxSwift
 
-public protocol HasRefreshUserUseCase {
-    var refreshUserUseCase: RefreshUserUseCase { get }
-}
-
 public protocol RefreshUserUseCase: AutoMockable {
     func execute(id: String) -> Observable<Void>
 }
 
 public struct RefreshUserUseCaseImpl: RefreshUserUseCase {
     
-    public typealias Dependencies = HasUserRepository
+    private let userRepository: UserRepository
     
-    private let dependencies: Dependencies
-    
-    public init(dependencies: Dependencies) {
-        self.dependencies = dependencies
+    public init(userRepository: UserRepository) {
+        self.userRepository = userRepository
     }
     
     public func execute(id: String) -> Observable<Void> {
-        dependencies.userRepository.read(.remote, id: id).mapToVoid()
+        userRepository.read(.remote, id: id).mapToVoid()
     }
 }

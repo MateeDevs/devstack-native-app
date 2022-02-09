@@ -5,18 +5,11 @@
 
 import CoreLocation
 import DomainLayer
+import Resolver
 import RxCocoa
 import RxSwift
 
 final class ProfileViewModel: BaseViewModel, ViewModel {
-    
-    typealias Dependencies =
-        HasGetProfileUseCase &
-        HasRefreshProfileUseCase &
-        HasLogoutUseCase &
-        HasGetCurrentLocationUseCase &
-        HasGetRemoteConfigValueUseCase &
-        HasRegisterForPushNotificationsUseCase
     
     let input: Input
     let output: Output
@@ -41,7 +34,25 @@ final class ProfileViewModel: BaseViewModel, ViewModel {
         let imageURL: Driver<String?>
     }
     
-    init(dependencies: Dependencies) {
+    convenience init() {
+        self.init(
+            getProfileUseCase: Resolver.resolve(),
+            refreshProfileUseCase: Resolver.resolve(),
+            logoutUseCase: Resolver.resolve(),
+            getCurrentLocationUseCase: Resolver.resolve(),
+            getRemoteConfigValueUseCase: Resolver.resolve(),
+            registerForPushNotificationsUseCase: Resolver.resolve()
+        )
+    }
+    
+    init(
+        getProfileUseCase: GetProfileUseCase,
+        refreshProfileUseCase: RefreshProfileUseCase,
+        logoutUseCase: LogoutUseCase,
+        getCurrentLocationUseCase: GetCurrentLocationUseCase,
+        getRemoteConfigValueUseCase: GetRemoteConfigValueUseCase,
+        registerForPushNotificationsUseCase: RegisterForPushNotificationsUseCase
+    ) {
         
         // MARK: Setup inputs
 
@@ -57,21 +68,21 @@ final class ProfileViewModel: BaseViewModel, ViewModel {
         
         let activity = ActivityIndicator()
 
-        let profile = dependencies.getProfileUseCase.execute().ignoreErrors().share(replay: 1)
-        let refreshProfile = dependencies.refreshProfileUseCase.execute().trackActivity(activity).ignoreErrors().share()
+        let profile = getProfileUseCase.execute().ignoreErrors().share(replay: 1)
+        let refreshProfile = refreshProfileUseCase.execute().trackActivity(activity).ignoreErrors().share()
         
         let isRefreshing = Observable<Bool>.merge(
             activity.asObservable(),
             refreshProfile.map { _ in false }
         )
         
-        let currentLocation = dependencies.getCurrentLocationUseCase.execute().ignoreErrors().take(1)
+        let currentLocation = getCurrentLocationUseCase.execute().ignoreErrors().take(1)
         
-        let remoteConfigLabelIsHidden = dependencies.getRemoteConfigValueUseCase
+        let remoteConfigLabelIsHidden = getRemoteConfigValueUseCase
             .execute(.profileLabelIsVisible).ignoreErrors().map { !$0 }
         
         let registerForPushNotifications = registerPushNotificationsButtonTaps.flatMapLatest { _ -> Observable<Void> in
-            dependencies.registerForPushNotificationsUseCase.execute(
+            registerForPushNotificationsUseCase.execute(
                 options: [.alert, .badge, .sound],
                 completionHandler: { _, _ in }
             )
@@ -79,7 +90,7 @@ final class ProfileViewModel: BaseViewModel, ViewModel {
         }.share()
 
         let logout = logoutButtonTaps.flatMapLatest { _ -> Observable<Void> in
-            dependencies.logoutUseCase.execute()
+            logoutUseCase.execute()
             return .just(())
         }.share()
 

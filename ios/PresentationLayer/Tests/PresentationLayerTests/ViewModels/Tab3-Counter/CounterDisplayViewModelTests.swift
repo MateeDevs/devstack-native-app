@@ -17,9 +17,10 @@ class CounterDisplayViewModelTests: BaseTestCase {
     
     private let getProfileUseCase = GetProfileUseCaseMock()
     
-    private func setupDependencies() -> UseCaseDependency {
+    override func setupDependencies() {
+        super.setupDependencies()
+        
         Given(getProfileUseCase, .execute(willReturn: .just(User.stub)))
-        return UseCaseDependencyMock(getProfileUseCase: getProfileUseCase)
     }
     
     // MARK: Inputs and outputs
@@ -33,7 +34,7 @@ class CounterDisplayViewModelTests: BaseTestCase {
     }
     
     private func generateOutput(for input: Input) -> Output {
-        let viewModel = CounterDisplayViewModel(dependencies: setupDependencies())
+        let viewModel = CounterDisplayViewModel(getProfileUseCase: getProfileUseCase)
         
         return Output(
             counterValue: testableOutput(from: viewModel.output.counterValue)

@@ -15,14 +15,10 @@ class LogoutUseCaseTests: BaseTestCase {
     
     private let authTokenRepository = AuthTokenRepositoryMock()
     
-    private func setupDependencies() -> RepositoryDependency {
-        RepositoryDependencyMock(authTokenRepository: authTokenRepository)
-    }
-    
     // MARK: Tests
 
     func testExecute() {
-        let useCase = LogoutUseCaseImpl(dependencies: setupDependencies())
+        let useCase = LogoutUseCaseImpl(authTokenRepository: authTokenRepository)
         
         useCase.execute()
         

@@ -14,21 +14,19 @@ import XCTest
 
 class UserDetailViewModelTests: BaseTestCase {
     
-    // MARK: Dependencies
-    
     private let dbStream = BehaviorSubject<User>(value: User.stub)
+    
+    // MARK: Dependencies
     
     private let getUserUseCase = GetUserUseCaseMock()
     private let refreshUserUseCase = RefreshUserUseCaseMock()
+    private let trackAnalyticsEventUseCase = TrackAnalyticsEventUseCaseMock()
     
-    private func setupDependencies() -> UseCaseDependency {
+    override func setupDependencies() {
+        super.setupDependencies()
+        
         Given(getUserUseCase, .execute(id: .value(User.stub.id), willReturn: dbStream.asObservable()))
         Given(refreshUserUseCase, .execute(id: .value(User.stub.id), willReturn: .just(())))
-        
-        return UseCaseDependencyMock(
-            getUserUseCase: getUserUseCase,
-            refreshUserUseCase: refreshUserUseCase
-        )
     }
     
     // MARK: Inputs and outputs
@@ -51,7 +49,12 @@ class UserDetailViewModelTests: BaseTestCase {
     }
     
     private func generateOutput(for input: Input) -> Output {
-        let viewModel = UserDetailViewModel(dependencies: setupDependencies(), userId: User.stub.id)
+        let viewModel = UserDetailViewModel(
+            userId: User.stub.id,
+            getUserUseCase: getUserUseCase,
+            refreshUserUseCase: refreshUserUseCase,
+            trackAnalyticsEventUseCase: trackAnalyticsEventUseCase
+        )
         
         scheduler.createColdObservable(input.refreshTrigger.map { .next($0.time, $0.element) })
             .do { [weak self] _ in self?.dbStream.onNext(User.stub) }

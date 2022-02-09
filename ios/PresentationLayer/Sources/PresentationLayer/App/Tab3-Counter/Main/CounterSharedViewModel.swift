@@ -9,8 +9,6 @@ import RxSwift
 
 final class CounterSharedViewModel: BaseViewModel, ViewModel {
     
-    typealias Dependencies = HasNoUseCase
-    
     let input: Input
     let output: Output
 
@@ -22,7 +20,7 @@ final class CounterSharedViewModel: BaseViewModel, ViewModel {
         let isCounterHidden: Driver<Bool>
     }
     
-    init(dependencies: Dependencies) {
+    init() {
 
         // MARK: Setup inputs
 

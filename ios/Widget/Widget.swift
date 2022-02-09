@@ -5,27 +5,28 @@
 
 import DataLayer
 import DomainLayer
+import Resolver
 import SwiftUI
 import WidgetKit
 
 struct Provider: TimelineProvider {
     
-    #warning("TODO: Temporary keychain access, should be obtained via ViewModel's dependencies instead")
-    let keychainProvider = SystemKeychainProvider(userDefaultsProvider: SystemUserDefaultsProvider())
+    #warning("TODO: Temporary use case access, should be obtained via ViewModel instead")
+    @Injected private var getProfileIdUseCase: GetProfileIdUseCase
     
     func placeholder(in context: Context) -> SimpleEntry {
-        let isLogged = keychainProvider.get(.userId) != nil
+        let isLogged = getProfileIdUseCase.execute() != nil
         return SimpleEntry(date: Date(), isLogged: isLogged)
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> Void) {
-        let isLogged = keychainProvider.get(.userId) != nil
+        let isLogged = getProfileIdUseCase.execute() != nil
         let entry = SimpleEntry(date: Date(), isLogged: isLogged)
         completion(entry)
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> Void) {
-        let isLogged = keychainProvider.get(.userId) != nil
+        let isLogged = getProfileIdUseCase.execute() != nil
         let entry = SimpleEntry(date: Date(), isLogged: isLogged)
         let timeline = Timeline(entries: [entry], policy: .atEnd)
         completion(timeline)
@@ -51,6 +52,7 @@ struct DevStackWidget: Widget {
     
     init() {
         setupEnvironment()
+        Resolver.registerDependencies()
     }
 
     var body: some WidgetConfiguration {

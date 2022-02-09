@@ -5,26 +5,19 @@
 
 import RxSwift
 
-public protocol HasGetRemoteConfigValueUseCase {
-    var getRemoteConfigValueUseCase: GetRemoteConfigValueUseCase { get }
-}
-
 public protocol GetRemoteConfigValueUseCase: AutoMockable {
     func execute(_ key: RemoteConfigCoding) -> Observable<Bool>
 }
 
 public struct GetRemoteConfigValueUseCaseImpl: GetRemoteConfigValueUseCase {
     
-    public typealias Dependencies =
-        HasRemoteConfigRepository
+    private let remoteConfigRepository: RemoteConfigRepository
     
-    private let dependencies: Dependencies
-    
-    public init(dependencies: Dependencies) {
-        self.dependencies = dependencies
+    public init(remoteConfigRepository: RemoteConfigRepository) {
+        self.remoteConfigRepository = remoteConfigRepository
     }
     
     public func execute(_ key: RemoteConfigCoding) -> Observable<Bool> {
-        dependencies.remoteConfigRepository.read(key)
+        remoteConfigRepository.read(key)
     }
 }

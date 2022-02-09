@@ -16,16 +16,17 @@ class HandlePushNotificationUseCaseTests: BaseTestCase {
     
     private let pushNotificationsRepository = PushNotificationsRepositoryMock()
     
-    private func setupDependencies() -> RepositoryDependency {
+    override func setupDependencies() {
+        super.setupDependencies()
+        
         // We should test against concrete value instead of any, but I don't know how to mock [AnyHashable:Any]
         Given(pushNotificationsRepository, .decode(.any, willReturn: PushNotification.stub))
-        return RepositoryDependencyMock(pushNotificationsRepository: pushNotificationsRepository)
     }
     
     // MARK: Tests
 
     func testExecute() {
-        let useCase = HandlePushNotificationUseCaseImpl(dependencies: setupDependencies())
+        let useCase = HandlePushNotificationUseCaseImpl(pushNotificationsRepository: pushNotificationsRepository)
         
         let output = useCase.execute([:])
         

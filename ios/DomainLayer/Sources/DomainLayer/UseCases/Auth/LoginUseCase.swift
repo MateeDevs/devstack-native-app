@@ -5,25 +5,19 @@
 
 import RxSwift
 
-public protocol HasLoginUseCase {
-    var loginUseCase: LoginUseCase { get }
-}
-
 public protocol LoginUseCase: AutoMockable {
     func execute(_ data: LoginData) -> Observable<Void>
 }
 
 public struct LoginUseCaseImpl: LoginUseCase {
     
-    public typealias Dependencies = HasAuthTokenRepository
+    private let authTokenRepository: AuthTokenRepository
     
-    private let dependencies: Dependencies
-    
-    public init(dependencies: Dependencies) {
-        self.dependencies = dependencies
+    public init(authTokenRepository: AuthTokenRepository) {
+        self.authTokenRepository = authTokenRepository
     }
     
     public func execute(_ data: LoginData) -> Observable<Void> {
-        dependencies.authTokenRepository.create(data).mapToVoid()
+        authTokenRepository.create(data).mapToVoid()
     }
 }

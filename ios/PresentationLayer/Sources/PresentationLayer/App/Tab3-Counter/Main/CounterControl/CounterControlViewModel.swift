@@ -4,12 +4,11 @@
 //
 
 import DomainLayer
+import Resolver
 import RxCocoa
 import RxSwift
 
 final class CounterControlViewModel: BaseViewModel, ViewModel {
-
-    typealias Dependencies = HasUpdateProfileCounterUseCase
 
     let input: Input
     let output: Output
@@ -23,8 +22,16 @@ final class CounterControlViewModel: BaseViewModel, ViewModel {
         let increaseCounter: Driver<Void>
         let decreaseCounter: Driver<Void>
     }
+    
+    convenience init() {
+        self.init(
+            updateProfileCounterUseCase: Resolver.resolve()
+        )
+    }
 
-    init(dependencies: Dependencies) {
+    init(
+        updateProfileCounterUseCase: UpdateProfileCounterUseCase
+    ) {
 
         // MARK: Setup inputs
 
@@ -39,11 +46,11 @@ final class CounterControlViewModel: BaseViewModel, ViewModel {
         // MARK: Transformations
 
         let increaseCounter = increaseButtonTaps.flatMapLatest { _ -> Observable<Void> in
-            dependencies.updateProfileCounterUseCase.execute(value: 1).ignoreErrors()
+            updateProfileCounterUseCase.execute(value: 1).ignoreErrors()
         }.share()
 
         let decreaseCounter = decreaseButtonTaps.flatMapLatest { _ -> Observable<Void> in
-            dependencies.updateProfileCounterUseCase.execute(value: -1).ignoreErrors()
+            updateProfileCounterUseCase.execute(value: -1).ignoreErrors()
         }.share()
 
         // MARK: Setup outputs

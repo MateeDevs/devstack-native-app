@@ -15,15 +15,16 @@ class GetRemoteConfigValueUseCaseTests: BaseTestCase {
     
     private let remoteConfigRepository = RemoteConfigRepositoryMock()
     
-    private func setupDependencies() -> RepositoryDependency {
+    override func setupDependencies() {
+        super.setupDependencies()
+        
         Given(remoteConfigRepository, .read(.value(.profileLabelIsVisible), willReturn: .just(true)))
-        return RepositoryDependencyMock(remoteConfigRepository: remoteConfigRepository)
     }
     
     // MARK: Tests
 
     func testExecute() {
-        let useCase = GetRemoteConfigValueUseCaseImpl(dependencies: setupDependencies())
+        let useCase = GetRemoteConfigValueUseCaseImpl(remoteConfigRepository: remoteConfigRepository)
         let output = scheduler.createObserver(Bool.self)
         
         useCase.execute(.profileLabelIsVisible).bind(to: output).disposed(by: disposeBag)

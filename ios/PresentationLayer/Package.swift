@@ -21,7 +21,8 @@ let package = Package(
         .package(url: "https://github.com/Alamofire/AlamofireImage.git", .upToNextMajor(from: "4.0.0")),
         .package(url: "https://github.com/ReactiveX/RxSwift.git", .upToNextMajor(from: "6.0.0")),
         .package(url: "https://github.com/Juanpe/SkeletonView.git", .upToNextMajor(from: "1.0.0")),
-        .package(url: "https://github.com/MakeAWishFoundation/SwiftyMocky", .upToNextMajor(from: "4.0.0"))
+        .package(url: "https://github.com/MakeAWishFoundation/SwiftyMocky", .upToNextMajor(from: "4.0.0")),
+        .package(url: "https://github.com/hmlongco/Resolver.git", .upToNextMajor(from: "1.0.0"))
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -33,7 +34,8 @@ let package = Package(
                 .product(name: "AlamofireImage", package: "AlamofireImage"),
                 .product(name: "RxSwift", package: "RxSwift"),
                 .product(name: "RxCocoa", package: "RxSwift"),
-                .product(name: "SkeletonView", package: "SkeletonView")
+                .product(name: "SkeletonView", package: "SkeletonView"),
+                .product(name: "Resolver", package: "Resolver")
             ]
         ),
         .testTarget(

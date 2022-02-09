@@ -27,7 +27,7 @@ class MainFlowController: FlowController, ProfileFlowControllerDelegate {
             image: Asset.Images.usersTabBar.image,
             tag: MainTab.users.rawValue
         )
-        let usersFC = UsersFlowController(navigationController: usersNC, dependencies: dependencies)
+        let usersFC = UsersFlowController(navigationController: usersNC)
         let usersRootVC = startChildFlow(usersFC)
         usersNC.viewControllers = [usersRootVC]
         return usersNC
@@ -40,7 +40,7 @@ class MainFlowController: FlowController, ProfileFlowControllerDelegate {
             image: Asset.Images.usersTabBar.image,
             tag: MainTab.books.rawValue
         )
-        let booksFC = BooksFlowController(navigationController: booksNC, dependencies: dependencies)
+        let booksFC = BooksFlowController(navigationController: booksNC)
         let booksRootVC = startChildFlow(booksFC)
         booksNC.viewControllers = [booksRootVC]
         return booksNC
@@ -53,7 +53,7 @@ class MainFlowController: FlowController, ProfileFlowControllerDelegate {
             image: Asset.Images.profileTabBar.image,
             tag: MainTab.profile.rawValue
         )
-        let profileFC = ProfileFlowController(navigationController: profileNC, dependencies: dependencies)
+        let profileFC = ProfileFlowController(navigationController: profileNC)
         profileFC.delegate = self
         let profileRootVC = startChildFlow(profileFC)
         profileNC.viewControllers = [profileRootVC]
@@ -67,7 +67,7 @@ class MainFlowController: FlowController, ProfileFlowControllerDelegate {
             image: Asset.Images.counterTabBar.image,
             tag: MainTab.counter.rawValue
         )
-        let counterFC = CounterFlowController(navigationController: counterNC, dependencies: dependencies)
+        let counterFC = CounterFlowController(navigationController: counterNC)
         let counterRootVC = startChildFlow(counterFC)
         counterNC.viewControllers = [counterRootVC]
         return counterNC

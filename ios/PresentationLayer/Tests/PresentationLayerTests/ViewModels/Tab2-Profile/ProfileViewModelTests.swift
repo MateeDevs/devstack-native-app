@@ -15,10 +15,10 @@ import XCTest
 
 class ProfileViewModelTests: BaseTestCase {
     
-    // MARK: Dependencies
-    
     private let dbStream = BehaviorSubject<User>(value: User.stub)
     private let location = CLLocation(latitude: 50.0, longitude: 50.0)
+    
+    // MARK: Dependencies
     
     private let getProfileUseCase = GetProfileUseCaseMock()
     private let refreshProfileUseCase = RefreshProfileUseCaseMock()
@@ -27,20 +27,13 @@ class ProfileViewModelTests: BaseTestCase {
     private let getRemoteConfigValueUseCase = GetRemoteConfigValueUseCaseMock()
     private let registerForPushNotificationsUseCase = RegisterForPushNotificationsUseCaseMock()
     
-    private func setupDependencies() -> UseCaseDependency {
+    override func setupDependencies() {
+        super.setupDependencies()
+        
         Given(getProfileUseCase, .execute(willReturn: dbStream.asObservable()))
         Given(refreshProfileUseCase, .execute(willReturn: .just(())))
         Given(getCurrentLocationUseCase, .execute(willReturn: .just(location)))
         Given(getRemoteConfigValueUseCase, .execute(.value(.profileLabelIsVisible), willReturn: .just(true)))
-        
-        return UseCaseDependencyMock(
-            logoutUseCase: logoutUseCase,
-            getCurrentLocationUseCase: getCurrentLocationUseCase,
-            getProfileUseCase: getProfileUseCase,
-            refreshProfileUseCase: refreshProfileUseCase,
-            registerForPushNotificationsUseCase: registerForPushNotificationsUseCase,
-            getRemoteConfigValueUseCase: getRemoteConfigValueUseCase
-        )
     }
     
     // MARK: Inputs and outputs
@@ -70,7 +63,14 @@ class ProfileViewModelTests: BaseTestCase {
     }
     
     private func generateOutput(for input: Input) -> Output {
-        let viewModel = ProfileViewModel(dependencies: setupDependencies())
+        let viewModel = ProfileViewModel(
+            getProfileUseCase: getProfileUseCase,
+            refreshProfileUseCase: refreshProfileUseCase,
+            logoutUseCase: logoutUseCase,
+            getCurrentLocationUseCase: getCurrentLocationUseCase,
+            getRemoteConfigValueUseCase: getRemoteConfigValueUseCase,
+            registerForPushNotificationsUseCase: registerForPushNotificationsUseCase
+        )
         
         scheduler.createColdObservable(input.registerPushNotificationsButtonTaps.map { .next($0.time, $0.element) })
             .bind(to: viewModel.input.registerPushNotificationsButtonTaps).disposed(by: disposeBag)

@@ -18,6 +18,13 @@
 		4583E850272F47D7002D1E1C /* PresentationLayer in Frameworks */ = {isa = PBXBuildFile; productRef = 4583E84F272F47D7002D1E1C /* PresentationLayer */; };
 		4597626F20FDF0810034DE29 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4597626E20FDF0810034DE29 /* LaunchScreen.storyboard */; };
 		459C3707274B001B00536110 /* Atlantis in Frameworks */ = {isa = PBXBuildFile; productRef = 459C3706274B001B00536110 /* Atlantis */; };
+		45A0EBA227ADDE620005A01E /* UseCase+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0EB9F27ADDE620005A01E /* UseCase+Injection.swift */; };
+		45A0EBA327ADDE620005A01E /* Repositories+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0EBA027ADDE620005A01E /* Repositories+Injection.swift */; };
+		45A0EBA427ADDE620005A01E /* Providers+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0EBA127ADDE620005A01E /* Providers+Injection.swift */; };
+		45A0EBA827ADF2610005A01E /* KMPUseCase+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0EBA727ADF2610005A01E /* KMPUseCase+Injection.swift */; };
+		45A0EBAC27ADF5AD0005A01E /* Widget+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0EBAA27ADF5900005A01E /* Widget+Injection.swift */; };
+		45A0EBB227ADFA210005A01E /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = 45A0EBB127ADFA210005A01E /* Resolver */; };
+		45A0EBB427ADFA290005A01E /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = 45A0EBB327ADFA290005A01E /* Resolver */; };
 		45DEBE1A27A153A10075C7E2 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45DEBE1927A153A10075C7E2 /* WidgetKit.framework */; };
 		45DEBE1C27A153A10075C7E2 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45DEBE1B27A153A10075C7E2 /* SwiftUI.framework */; };
 		45DEBE1F27A153A10075C7E2 /* Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DEBE1E27A153A10075C7E2 /* Widget.swift */; };
@@ -68,6 +75,11 @@
 		4597626E20FDF0810034DE29 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		459896B026129CB300C852E0 /* Info+Proxyman.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info+Proxyman.plist"; sourceTree = "<group>"; };
 		459B777827737AFB00EAA694 /* DevstackKmpShared.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = DevstackKmpShared.xcframework; path = DomainLayer/DevstackKmpShared.xcframework; sourceTree = "<group>"; };
+		45A0EB9F27ADDE620005A01E /* UseCase+Injection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UseCase+Injection.swift"; sourceTree = "<group>"; };
+		45A0EBA027ADDE620005A01E /* Repositories+Injection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Repositories+Injection.swift"; sourceTree = "<group>"; };
+		45A0EBA127ADDE620005A01E /* Providers+Injection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Providers+Injection.swift"; sourceTree = "<group>"; };
+		45A0EBA727ADF2610005A01E /* KMPUseCase+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KMPUseCase+Injection.swift"; sourceTree = "<group>"; };
+		45A0EBAA27ADF5900005A01E /* Widget+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Widget+Injection.swift"; sourceTree = "<group>"; };
 		45CC76B6275F6FE200D45D76 /* DomainLayer */ = {isa = PBXFileReference; lastKnownFileType = folder; path = DomainLayer; sourceTree = "<group>"; };
 		45DEBE1827A153A10075C7E2 /* DevStack Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "DevStack Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		45DEBE1927A153A10075C7E2 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -91,6 +103,7 @@
 				4583E84E272F47D1002D1E1C /* DomainLayer in Frameworks */,
 				459C3707274B001B00536110 /* Atlantis in Frameworks */,
 				4583E84A272F47C6002D1E1C /* DataLayer in Frameworks */,
+				45A0EBB227ADFA210005A01E /* Resolver in Frameworks */,
 				4583E850272F47D7002D1E1C /* PresentationLayer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -102,6 +115,7 @@
 				453614D427A42D4700348CF1 /* DomainLayer in Frameworks */,
 				45DEBE1C27A153A10075C7E2 /* SwiftUI.framework in Frameworks */,
 				45DEBE1A27A153A10075C7E2 /* WidgetKit.framework in Frameworks */,
+				45A0EBB427ADFA290005A01E /* Resolver in Frameworks */,
 				4524472527A41483004853C8 /* DataLayer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -134,6 +148,7 @@
 		4558D30920FCC8FF005BC325 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				45A0EB9E27ADDE370005A01E /* DependencyInjection */,
 				4575E61225F6F82C00CCC003 /* Entitlements */,
 				456E73DC25F817CF007D9A6D /* Info */,
 				4575E61325F6F83600CCC003 /* GoogleService */,
@@ -185,9 +200,29 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		45A0EB9E27ADDE370005A01E /* DependencyInjection */ = {
+			isa = PBXGroup;
+			children = (
+				45A0EBA127ADDE620005A01E /* Providers+Injection.swift */,
+				45A0EBA027ADDE620005A01E /* Repositories+Injection.swift */,
+				45A0EB9F27ADDE620005A01E /* UseCase+Injection.swift */,
+				45A0EBA727ADF2610005A01E /* KMPUseCase+Injection.swift */,
+			);
+			path = DependencyInjection;
+			sourceTree = "<group>";
+		};
+		45A0EBA927ADF5830005A01E /* DependencyInjection */ = {
+			isa = PBXGroup;
+			children = (
+				45A0EBAA27ADF5900005A01E /* Widget+Injection.swift */,
+			);
+			path = DependencyInjection;
+			sourceTree = "<group>";
+		};
 		45DEBE1D27A153A10075C7E2 /* Widget */ = {
 			isa = PBXGroup;
 			children = (
+				45A0EBA927ADF5830005A01E /* DependencyInjection */,
 				45DEBE3527A401740075C7E2 /* Entitlements */,
 				45DEBE2027A153A20075C7E2 /* Assets.xcassets */,
 				45DEBE2227A153A20075C7E2 /* Info.plist */,
@@ -232,6 +267,7 @@
 				4583E84D272F47D1002D1E1C /* DomainLayer */,
 				4583E84F272F47D7002D1E1C /* PresentationLayer */,
 				459C3706274B001B00536110 /* Atlantis */,
+				45A0EBB127ADFA210005A01E /* Resolver */,
 			);
 			productName = DevStack;
 			productReference = 4558D30720FCC8FF005BC325 /* DevStack.app */;
@@ -253,6 +289,7 @@
 			packageProductDependencies = (
 				4524472427A41483004853C8 /* DataLayer */,
 				453614D327A42D4700348CF1 /* DomainLayer */,
+				45A0EBB327ADFA290005A01E /* Resolver */,
 			);
 			productName = "DevStack WidgetExtension";
 			productReference = 45DEBE1827A153A10075C7E2 /* DevStack Widget.appex */;
@@ -289,6 +326,7 @@
 			mainGroup = 4558D2FE20FCC8FF005BC325;
 			packageReferences = (
 				459EF41025BF6EEF00C9DAC0 /* XCRemoteSwiftPackageReference "atlantis" */,
+				45A0EBB027ADFA210005A01E /* XCRemoteSwiftPackageReference "Resolver" */,
 			);
 			productRefGroup = 4558D30820FCC8FF005BC325 /* Products */;
 			projectDirPath = "";
@@ -365,7 +403,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45A0EBA427ADDE620005A01E /* Providers+Injection.swift in Sources */,
 				4558D30B20FCC8FF005BC325 /* AppDelegate.swift in Sources */,
+				45A0EBA327ADDE620005A01E /* Repositories+Injection.swift in Sources */,
+				45A0EBA227ADDE620005A01E /* UseCase+Injection.swift in Sources */,
+				45A0EBA827ADF2610005A01E /* KMPUseCase+Injection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,6 +416,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4524472727A417B1004853C8 /* WidgetView.swift in Sources */,
+				45A0EBAC27ADF5AD0005A01E /* Widget+Injection.swift in Sources */,
 				45DEBE1F27A153A10075C7E2 /* Widget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1210,6 +1253,14 @@
 				minimumVersion = 1.7.1;
 			};
 		};
+		45A0EBB027ADFA210005A01E /* XCRemoteSwiftPackageReference "Resolver" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hmlongco/Resolver";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1237,6 +1288,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 459EF41025BF6EEF00C9DAC0 /* XCRemoteSwiftPackageReference "atlantis" */;
 			productName = Atlantis;
+		};
+		45A0EBB127ADFA210005A01E /* Resolver */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 45A0EBB027ADFA210005A01E /* XCRemoteSwiftPackageReference "Resolver" */;
+			productName = Resolver;
+		};
+		45A0EBB327ADFA290005A01E /* Resolver */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 45A0EBB027ADFA210005A01E /* XCRemoteSwiftPackageReference "Resolver" */;
+			productName = Resolver;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

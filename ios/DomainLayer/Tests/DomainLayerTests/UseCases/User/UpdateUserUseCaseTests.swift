@@ -12,21 +12,22 @@ import XCTest
 
 class UpdateUserUseCaseTests: BaseTestCase {
     
-    // MARK: Dependencies
-    
     private let updatedUser = User(copy: User.stub, bio: "Updated user")
+    
+    // MARK: Dependencies
     
     private let userRepository = UserRepositoryMock()
     
-    private func setupDependencies() -> RepositoryDependency {
+    override func setupDependencies() {
+        super.setupDependencies()
+        
         Given(userRepository, .update(.value(.remote), user: .value(updatedUser), willReturn: .just(updatedUser)))
-        return RepositoryDependencyMock(userRepository: userRepository)
     }
     
     // MARK: Tests
 
     func testExecute() {
-        let useCase = UpdateUserUseCaseImpl(dependencies: setupDependencies())
+        let useCase = UpdateUserUseCaseImpl(userRepository: userRepository)
         let output = scheduler.createObserver(Bool.self)
         
         useCase.execute(user: updatedUser).map { _ in true }.bind(to: output).disposed(by: disposeBag)

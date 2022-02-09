@@ -12,28 +12,28 @@ import XCTest
 
 class UpdateProfileCounterUseCaseTests: BaseTestCase {
     
-    // MARK: Dependencies
-    
     private let updatedUser = User(copy: User.stub, counter: User.stub.counter + 1)
+    
+    // MARK: Dependencies
     
     private let authTokenRepository = AuthTokenRepositoryMock()
     private let userRepository = UserRepositoryMock()
     
-    private func setupDependencies() -> RepositoryDependency {
+    override func setupDependencies() {
+        super.setupDependencies()
+        
         Given(authTokenRepository, .read(willReturn: AuthToken.stub))
         Given(userRepository, .read(.value(.local), id: .value(User.stub.id), willReturn: .just(User.stub)))
         Given(userRepository, .update(.value(.local), user: .value(updatedUser), willReturn: .just(updatedUser)))
-        
-        return RepositoryDependencyMock(
-            authTokenRepository: authTokenRepository,
-            userRepository: userRepository
-        )
     }
     
     // MARK: Tests
 
     func testExecute() {
-        let useCase = UpdateProfileCounterUseCaseImpl(dependencies: setupDependencies())
+        let useCase = UpdateProfileCounterUseCaseImpl(
+            authTokenRepository: authTokenRepository,
+            userRepository: userRepository
+        )
         let output = scheduler.createObserver(Bool.self)
         
         useCase.execute(value: User.stub.counter + 1).map { _ in true }.bind(to: output).disposed(by: disposeBag)

@@ -17,9 +17,10 @@ class CounterControlViewModelTests: BaseTestCase {
     
     private let updateProfileCounterUseCase = UpdateProfileCounterUseCaseMock()
     
-    private func setupDependencies() -> UseCaseDependency {
+    override func setupDependencies() {
+        super.setupDependencies()
+        
         Given(updateProfileCounterUseCase, .execute(value: .any, willReturn: .just(())))
-        return UseCaseDependencyMock(updateProfileCounterUseCase: updateProfileCounterUseCase)
     }
 
     // MARK: Inputs and outputs
@@ -38,7 +39,7 @@ class CounterControlViewModelTests: BaseTestCase {
     }
 
     private func generateOutput(for input: Input) -> Output {
-        let viewModel = CounterControlViewModel(dependencies: setupDependencies())
+        let viewModel = CounterControlViewModel(updateProfileCounterUseCase: updateProfileCounterUseCase)
 
         scheduler.createColdObservable(input.increaseButtonTaps.map { .next($0.time, $0.element) })
             .bind(to: viewModel.input.increaseButtonTaps).disposed(by: disposeBag)

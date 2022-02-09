@@ -14,9 +14,9 @@ class ProfileFlowController: FlowController {
     weak var delegate: ProfileFlowControllerDelegate?
     
     override func setup() -> UIViewController {
-        let profileVM = ProfileViewModel(dependencies: dependencies)
+        let profileVM = ProfileViewModel()
         let profileVC = ProfileViewController.instantiate(fc: self, vm: profileVM)
-        let settingsVM = SettingsViewModel(dependencies: dependencies)
+        let settingsVM = SettingsViewModel()
         let settingsVC = SettingsViewController.instantiate(fc: self, vm: settingsVM)
         return ProfileWrapperViewController.instantiate(viewControllers: [profileVC, settingsVC])
     }

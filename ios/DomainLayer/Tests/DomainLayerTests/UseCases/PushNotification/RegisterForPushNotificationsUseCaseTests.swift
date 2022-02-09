@@ -15,14 +15,10 @@ class RegisterForPushNotificationsUseCaseTests: BaseTestCase {
     
     private let pushNotificationsRepository = PushNotificationsRepositoryMock()
     
-    private func setupDependencies() -> RepositoryDependency {
-        RepositoryDependencyMock(pushNotificationsRepository: pushNotificationsRepository)
-    }
-    
     // MARK: Tests
 
     func testExecute() {
-        let useCase = RegisterForPushNotificationsUseCaseImpl(dependencies: setupDependencies())
+        let useCase = RegisterForPushNotificationsUseCaseImpl(pushNotificationsRepository: pushNotificationsRepository)
         
         useCase.execute(options: [.alert, .badge, .sound], completionHandler: { _, _ in })
         

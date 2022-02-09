@@ -12,25 +12,25 @@ import XCTest
 
 class GetCurrentLocationUseCaseTests: BaseTestCase {
     
-    // MARK: Dependencies
-    
     private let location = CLLocation(latitude: 50.0, longitude: 50.0)
+    
+    // MARK: Dependencies
     
     private let locationRepository = LocationRepositoryMock()
     
-    private func setupDependencies() -> RepositoryDependency {
+    override func setupDependencies() {
+        super.setupDependencies()
+        
         Given(locationRepository, .getCurrentLocation(
             withAccuracy: .value(kCLLocationAccuracyThreeKilometers),
             willReturn: .just(location)
         ))
-        
-        return RepositoryDependencyMock(locationRepository: locationRepository)
     }
     
     // MARK: Tests
 
     func testExecute() {
-        let useCase = GetCurrentLocationUseCaseImpl(dependencies: setupDependencies())
+        let useCase = GetCurrentLocationUseCaseImpl(locationRepository: locationRepository)
         let output = scheduler.createObserver(CLLocation.self)
         
         useCase.execute().bind(to: output).disposed(by: disposeBag)

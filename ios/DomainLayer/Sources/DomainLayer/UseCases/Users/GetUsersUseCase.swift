@@ -5,25 +5,19 @@
 
 import RxSwift
 
-public protocol HasGetUsersUseCase {
-    var getUsersUseCase: GetUsersUseCase { get }
-}
-
 public protocol GetUsersUseCase: AutoMockable {
     func execute() -> Observable<[User]>
 }
 
 public struct GetUsersUseCaseImpl: GetUsersUseCase {
     
-    public typealias Dependencies = HasUserRepository
+    private let userRepository: UserRepository
     
-    private let dependencies: Dependencies
-    
-    public init(dependencies: Dependencies) {
-        self.dependencies = dependencies
+    public init(userRepository: UserRepository) {
+        self.userRepository = userRepository
     }
     
     public func execute() -> Observable<[User]> {
-        dependencies.userRepository.list(.local, page: 0, sortBy: "id")
+        userRepository.list(.local, page: 0, sortBy: "id")
     }
 }

@@ -5,26 +5,19 @@
 
 import RxSwift
 
-public protocol HasTrackAnalyticsEventUseCase {
-    var trackAnalyticsEventUseCase: TrackAnalyticsEventUseCase { get }
-}
-
 public protocol TrackAnalyticsEventUseCase: AutoMockable {
     func execute(_ event: AnalyticsEvent)
 }
 
 public struct TrackAnalyticsEventUseCaseImpl: TrackAnalyticsEventUseCase {
     
-    public typealias Dependencies =
-        HasAnalyticsRepository
+    private let analyticsRepository: AnalyticsRepository
     
-    private let dependencies: Dependencies
-    
-    public init(dependencies: Dependencies) {
-        self.dependencies = dependencies
+    public init(analyticsRepository: AnalyticsRepository) {
+        self.analyticsRepository = analyticsRepository
     }
     
     public func execute(_ event: AnalyticsEvent) {
-        dependencies.analyticsRepository.create(event)
+        analyticsRepository.create(event)
     }
 }

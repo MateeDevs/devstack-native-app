@@ -5,32 +5,29 @@
 
 import RxSwift
 
-public protocol HasUpdateProfileCounterUseCase {
-    var updateProfileCounterUseCase: UpdateProfileCounterUseCase { get }
-}
-
 public protocol UpdateProfileCounterUseCase: AutoMockable {
     func execute(value: Int) -> Observable<Void>
 }
 
 public struct UpdateProfileCounterUseCaseImpl: UpdateProfileCounterUseCase {
     
-    public typealias Dependencies =
-        HasAuthTokenRepository &
-        HasUserRepository
+    private let authTokenRepository: AuthTokenRepository
+    private let userRepository: UserRepository
     
-    private let dependencies: Dependencies
-    
-    public init(dependencies: Dependencies) {
-        self.dependencies = dependencies
+    public init(
+        authTokenRepository: AuthTokenRepository,
+        userRepository: UserRepository
+    ) {
+        self.authTokenRepository = authTokenRepository
+        self.userRepository = userRepository
     }
     
     public func execute(value: Int) -> Observable<Void> {
-        guard let authToken = dependencies.authTokenRepository.read() else { return .error(CommonError.noAuthToken) }
-        return dependencies.userRepository.read(.local, id: authToken.userId).take(1)
+        guard let authToken = authTokenRepository.read() else { return .error(CommonError.noAuthToken) }
+        return userRepository.read(.local, id: authToken.userId).take(1)
             .flatMap { profile -> Observable<User> in
                 let updatedProfile = User(copy: profile, counter: profile.counter + value)
-                return dependencies.userRepository.update(.local, user: updatedProfile)
+                return userRepository.update(.local, user: updatedProfile)
             }.mapToVoid()
     }
 }

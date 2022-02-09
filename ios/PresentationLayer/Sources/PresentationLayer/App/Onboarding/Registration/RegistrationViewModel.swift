@@ -4,12 +4,11 @@
 //
 
 import DomainLayer
+import Resolver
 import RxCocoa
 import RxSwift
 
 final class RegistrationViewModel: BaseViewModel, ViewModel {
-    
-    typealias Dependencies = HasRegistrationUseCase
     
     let input: Input
     let output: Output
@@ -27,7 +26,15 @@ final class RegistrationViewModel: BaseViewModel, ViewModel {
         let alertAction: Driver<AlertAction>
     }
     
-    init(dependencies: Dependencies) {
+    convenience init() {
+        self.init(
+            registrationUseCase: Resolver.resolve()
+        )
+    }
+    
+    init(
+        registrationUseCase: RegistrationUseCase
+    ) {
         
         // MARK: Setup inputs
         
@@ -56,7 +63,7 @@ final class RegistrationViewModel: BaseViewModel, ViewModel {
                 return .just(.error(ValidationError(L10n.invalid_email)))
             } else {
                 let data = RegistrationData(email: inputs.email, password: inputs.password, firstName: "Anonymous", lastName: "")
-                return dependencies.registrationUseCase.execute(data).trackActivity(activity).materialize()
+                return registrationUseCase.execute(data).trackActivity(activity).materialize()
             }
         }.share()
         

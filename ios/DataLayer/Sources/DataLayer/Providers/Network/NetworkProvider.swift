@@ -10,10 +10,6 @@ public protocol NetworkProviderDelegate: AnyObject {
     func didReceiveHttpUnauthorized()
 }
 
-public protocol HasNetworkProvider {
-    var networkProvider: NetworkProvider { get }
-}
-
 public protocol NetworkProvider {
     
     var delegate: NetworkProviderDelegate? { get set }
