@@ -157,7 +157,7 @@ extension Reactive where Base: CLLocationManager {
     // MARK: Responding to Authorization Changes
     /// Reactive wrapper for `delegate` message.
     var didChangeAuthorizationStatus: Observable<CLAuthorizationStatus> {
-        return delegate.methodInvoked(#selector(CLLocationManagerDelegate.locationManager(_:didChangeAuthorization:)))
+        return delegate.methodInvoked(#selector(CLLocationManagerDelegate.locationManagerDidChangeAuthorization))
             .map { a in
                 let number = try castOrThrow(NSNumber.self, a[1])
                 return CLAuthorizationStatus(rawValue: Int32(number.intValue)) ?? .notDetermined
