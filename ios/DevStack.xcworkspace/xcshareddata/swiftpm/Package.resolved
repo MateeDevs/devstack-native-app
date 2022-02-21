@@ -42,8 +42,8 @@
         "repositoryURL": "https://github.com/ProxymanApp/atlantis",
         "state": {
           "branch": null,
-          "revision": "0f79efcbad23ecb45525ca6e0b8f0721514535f9",
-          "version": "1.14.0"
+          "revision": "5e848072d45e3969bd1d69fab3b6c2151f826c41",
+          "version": "1.15.0"
         }
       },
       {
@@ -78,8 +78,8 @@
         "repositoryURL": "https://github.com/firebase/firebase-ios-sdk.git",
         "state": {
           "branch": null,
-          "revision": "08686f04881483d2bc098b2696e674c0ba135e47",
-          "version": "8.10.0"
+          "revision": "78f7087fd5d48eb7c36e299f330b6dddccd647b2",
+          "version": "8.12.1"
         }
       },
       {
@@ -87,8 +87,8 @@
         "repositoryURL": "https://github.com/google/GoogleAppMeasurement.git",
         "state": {
           "branch": null,
-          "revision": "9b2f6aca5b4685c45f9f5481f19bee8e7982c538",
-          "version": "8.9.1"
+          "revision": "6cc2991c11872510a5314bc112cc7558dd9d046a",
+          "version": "8.12.0"
         }
       },
       {
@@ -105,8 +105,8 @@
         "repositoryURL": "https://github.com/google/GoogleUtilities.git",
         "state": {
           "branch": null,
-          "revision": "797005ad8a1f0614063933e2fa010a5d13cb09d0",
-          "version": "7.6.0"
+          "revision": "b3bb0c5551fb3f80ca939829639ab5b093edd14f",
+          "version": "7.7.0"
         }
       },
       {
@@ -204,8 +204,8 @@
         "repositoryURL": "https://github.com/realm/realm-cocoa.git",
         "state": {
           "branch": null,
-          "revision": "e83cc9f28e8bccd477b6b81cee521c02239d2773",
-          "version": "10.20.2"
+          "revision": "9dff9f2862240d521ad6ad599541269177ddb993",
+          "version": "10.22.0"
         }
       },
       {
@@ -213,8 +213,17 @@
         "repositoryURL": "https://github.com/realm/realm-core",
         "state": {
           "branch": null,
-          "revision": "c3c11a841642ac93c27bd1edd61f989fc0bfb809",
-          "version": "11.6.1"
+          "revision": "6b81f1a7a2d421f9e0b9e7f04e76bcf736a54409",
+          "version": "11.9.0"
+        }
+      },
+      {
+        "package": "Resolver",
+        "repositoryURL": "https://github.com/hmlongco/Resolver",
+        "state": {
+          "branch": null,
+          "revision": "97de0b0320036607564af4a60025b48f8d041221",
+          "version": "1.5.0"
         }
       },
       {
@@ -222,8 +231,8 @@
         "repositoryURL": "https://github.com/RxSwiftCommunity/RxRealm.git",
         "state": {
           "branch": null,
-          "revision": "d9e612a1bc3788c910b307e49093dec788d102df",
-          "version": "5.0.3"
+          "revision": "63d00c6349b31d4e26fd5b5a5e428400b6b91356",
+          "version": "5.0.4"
         }
       },
       {
@@ -231,8 +240,8 @@
         "repositoryURL": "https://github.com/ReactiveX/RxSwift.git",
         "state": {
           "branch": null,
-          "revision": "7c17a6ccca06b5c107cfa4284e634562ddaf5951",
-          "version": "6.2.0"
+          "revision": "b4307ba0b6425c0ba4178e138799946c3da594f8",
+          "version": "6.5.0"
         }
       },
       {
@@ -249,8 +258,8 @@
         "repositoryURL": "https://github.com/Juanpe/SkeletonView.git",
         "state": {
           "branch": null,
-          "revision": "a9c22f502a4d938bd3fb6f17fe4d6633c423085a",
-          "version": "1.26.0"
+          "revision": "9e61ff3a85a3780a2cdfceae0257ad32fa8ae4d3",
+          "version": "1.29.2"
         }
       },
       {

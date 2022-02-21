@@ -524,7 +524,7 @@
 				FRAMEWORK_SEARCH_PATHS = "";
 				GOOGLE_SERVICE_INFO_PLIST_FILE = "Application/GoogleService/GoogleService-Info-Alpha.plist";
 				INFOPLIST_FILE = "Application/Info/Info+Proxyman.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -619,7 +619,7 @@
 				FRAMEWORK_SEARCH_PATHS = "";
 				GOOGLE_SERVICE_INFO_PLIST_FILE = "Application/GoogleService/GoogleService-Info-Beta.plist";
 				INFOPLIST_FILE = "Application/Info/Info+Proxyman.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -708,7 +708,7 @@
 				FRAMEWORK_SEARCH_PATHS = "";
 				GOOGLE_SERVICE_INFO_PLIST_FILE = "Application/GoogleService/GoogleService-Info-Alpha.plist";
 				INFOPLIST_FILE = "Application/Info/Info+Proxyman.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -797,7 +797,7 @@
 				FRAMEWORK_SEARCH_PATHS = "";
 				GOOGLE_SERVICE_INFO_PLIST_FILE = "Application/GoogleService/GoogleService-Info-Beta.plist";
 				INFOPLIST_FILE = "Application/Info/Info+Proxyman.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -948,7 +948,7 @@
 				FRAMEWORK_SEARCH_PATHS = "";
 				GOOGLE_SERVICE_INFO_PLIST_FILE = "Application/GoogleService/GoogleService-Info-Prod.plist";
 				INFOPLIST_FILE = "Application/Info/Info+Proxyman.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -981,7 +981,7 @@
 				FRAMEWORK_SEARCH_PATHS = "";
 				GOOGLE_SERVICE_INFO_PLIST_FILE = "Application/GoogleService/GoogleService-Info-Prod.plist";
 				INFOPLIST_FILE = Application/Info/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
