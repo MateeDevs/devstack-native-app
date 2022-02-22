@@ -20,7 +20,7 @@ final class LoginViewController: InputViewController {
     private weak var flowController: FlowController?
     
     // MARK: ViewModels
-    private var viewModel: LoginViewModel?
+    private var viewModel: LoginViewModelUIKit?
     
     // MARK: UI components
     @IBOutlet private weak var emailTextField: TextFieldWithHint! {
@@ -39,7 +39,7 @@ final class LoginViewController: InputViewController {
     // MARK: Stored properties
     
     // MARK: Inits
-    static func instantiate(fc: FlowController, vm: LoginViewModel) -> LoginViewController {
+    static func instantiate(fc: FlowController, vm: LoginViewModelUIKit) -> LoginViewController {
         let vc = StoryboardScene.Login.initialScene.instantiate()
         vc.flowController = fc
         vc.viewModel = vm

@@ -5,6 +5,7 @@
 
 import UIKit
 
+@MainActor
 protocol ProfileFlowControllerDelegate: AnyObject {
     func presentOnboarding()
 }

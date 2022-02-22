@@ -9,7 +9,7 @@ import Resolver
 import RxCocoa
 import RxSwift
 
-final class ProfileViewModel: BaseViewModel, ViewModel {
+final class ProfileViewModel: BaseViewModel, ViewModelUIKit {
     
     let input: Input
     let output: Output

@@ -8,6 +8,7 @@ import RxCocoa
 import RxSwift
 import UIKit
 
+@MainActor
 public class FlowController: NSObject {
     
     let navigationController: UINavigationController
@@ -78,6 +79,7 @@ extension FlowController: UINavigationControllerDelegate {
     }
 }
 
+@MainActor
 extension Reactive where Base: FlowController {
     /// Bindable sink for `handleFlow` method
     var handleFlow: Binder<Flow> {

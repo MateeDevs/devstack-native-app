@@ -7,7 +7,7 @@ import DomainLayer
 import RxCocoa
 import RxSwift
 
-final class CounterSharedViewModel: BaseViewModel, ViewModel {
+final class CounterSharedViewModel: BaseViewModel, ViewModelUIKit {
     
     let input: Input
     let output: Output

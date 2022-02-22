@@ -9,7 +9,7 @@ import Resolver
 import RxCocoa
 import RxSwift
 
-final class BooksViewModel: BaseViewModel, ViewModel {
+final class BooksViewModel: BaseViewModel, ViewModelUIKit {
     
     let input: Input
     let output: Output

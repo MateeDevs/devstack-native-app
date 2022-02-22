@@ -12,7 +12,7 @@ import SwiftyMocky
 import UseCaseMocks
 import XCTest
 
-class LoginViewModelTests: BaseTestCase {
+class LoginViewModelUIKitTests: BaseTestCase {
     
     // MARK: Dependencies
     
@@ -53,7 +53,7 @@ class LoginViewModelTests: BaseTestCase {
     }
 
     private func generateOutput(for input: Input) -> Output {
-        let viewModel = LoginViewModel(
+        let viewModel = LoginViewModelUIKit(
             loginUseCase: loginUseCase,
             trackAnalyticsEventUseCase: trackAnalyticsEventUseCase
         )

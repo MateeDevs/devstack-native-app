@@ -8,7 +8,7 @@ import Resolver
 import RxCocoa
 import RxSwift
 
-final class UsersViewModel: BaseViewModel, ViewModel {
+final class UsersViewModel: BaseViewModel, ViewModelUIKit {
 
     let input: Input
     let output: Output

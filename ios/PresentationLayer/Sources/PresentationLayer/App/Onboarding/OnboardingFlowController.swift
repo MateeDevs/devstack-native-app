@@ -3,8 +3,10 @@
 //  Copyright © 2019 Matee. All rights reserved.
 //
 
+import SwiftUI
 import UIKit
 
+@MainActor
 protocol OnboardingFlowControllerDelegate: AnyObject {
     func setupMain()
 }
@@ -14,8 +16,13 @@ class OnboardingFlowController: FlowController {
     weak var delegate: OnboardingFlowControllerDelegate?
     
     override func setup() -> UIViewController {
-        let vm = LoginViewModel()
-        return LoginViewController.instantiate(fc: self, vm: vm)
+        // UIKit
+//        let vm = LoginViewModelUIKit()
+//        return LoginViewController.instantiate(fc: self, vm: vm)
+        
+        // SwiftUI
+        let vm = LoginViewModel(flowController: self)
+        return UIHostingController(rootView: LoginView(viewModel: vm))
     }
     
     override func handleFlow(_ flow: Flow) {

@@ -5,6 +5,7 @@
 
 import DomainLayer
 
+@MainActor
 class BaseViewModel {
     
     let trackScreenAppear: () -> Void
