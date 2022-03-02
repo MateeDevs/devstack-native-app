@@ -8,7 +8,7 @@ import Resolver
 import RxCocoa
 import RxSwift
 
-final class CounterControlViewModel: BaseViewModel, ViewModel {
+final class CounterControlViewModel: BaseViewModel, ViewModelUIKit {
 
     let input: Input
     let output: Output

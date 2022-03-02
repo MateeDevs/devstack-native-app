@@ -8,7 +8,7 @@ import RxCocoa
 import RxSwift
 import UIKit
 
-final class SettingsViewModel: BaseViewModel, ViewModel {
+final class SettingsViewModel: BaseViewModel, ViewModelUIKit {
     
     let input: Input
     let output: Output

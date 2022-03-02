@@ -1,12 +1,14 @@
 //
-//  Created by Petr Chmelar on 17/07/2018.
-//  Copyright © 2018 Matee. All rights reserved.
+//  Created by Petr Chmelar on 21.02.2022
+//  Copyright © 2022 Matee. All rights reserved.
 //
 
+@MainActor
 protocol ViewModel {
-    associatedtype Input
-    associatedtype Output
+    associatedtype State
+    associatedtype Intent
 
-    var input: Input { get }
-    var output: Output { get }
+    var state: State { get }
+    
+    func intent(_ intent: Intent)
 }

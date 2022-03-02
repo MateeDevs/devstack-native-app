@@ -8,6 +8,7 @@ import RxSwift
 import RxTest
 import XCTest
 
+@MainActor
 class BaseTestCase: XCTestCase {
 
     var scheduler: TestScheduler! // swiftlint:disable:this implicitly_unwrapped_optional
@@ -16,6 +17,7 @@ class BaseTestCase: XCTestCase {
     /// Override this method in a subclass and register dependencies
     func setupDependencies() {}
 
+    @MainActor
     override func setUp() {
         super.setUp()
 
