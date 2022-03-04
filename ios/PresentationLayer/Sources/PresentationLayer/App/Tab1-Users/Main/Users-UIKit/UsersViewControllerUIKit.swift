@@ -13,20 +13,20 @@ extension Flow {
     }
 }
 
-final class UsersViewController: BaseTableViewController<User> {
+final class UsersViewControllerUIKit: BaseTableViewController<User> {
     
     // MARK: FlowController
     private weak var flowController: FlowController?
 
     // MARK: ViewModels
-    private var viewModel: UsersViewModel?
+    private var viewModel: UsersViewModelUIKit?
 
     // MARK: UI components
 
     // MARK: Stored properties
     
     // MARK: Inits
-    static func instantiate(fc: FlowController, vm: UsersViewModel) -> UsersViewController {
+    static func instantiate(fc: FlowController, vm: UsersViewModelUIKit) -> UsersViewControllerUIKit {
         let vc = StoryboardScene.Users.initialScene.instantiate()
         vc.flowController = fc
         vc.viewModel = vm
