@@ -86,7 +86,7 @@ class LoginViewModelUIKitTests: BaseTestCase {
         
         XCTAssertEqual(output.flow.events, [])
         XCTAssertEqual(output.alertAction.events, [
-            .next(0, .showWhisper(Whisper(error: L10n.invalid_credentials)))
+            .next(0, .showWhisper(WhisperData(error: L10n.invalid_credentials)))
         ])
         XCTAssertEqual(output.loginButtonEnabled.events, [
             .next(0, true)
@@ -103,7 +103,7 @@ class LoginViewModelUIKitTests: BaseTestCase {
             .next(0, .dismiss)
         ])
         XCTAssertEqual(output.alertAction.events, [
-            .next(0, .showWhisper(Whisper(L10n.signing_in))),
+            .next(0, .showWhisper(WhisperData(L10n.signing_in))),
             .next(0, .hideWhisper)
         ])
         XCTAssertEqual(output.loginButtonEnabled.events, [
@@ -122,8 +122,8 @@ class LoginViewModelUIKitTests: BaseTestCase {
         
         XCTAssertEqual(output.flow.events, [])
         XCTAssertEqual(output.alertAction.events, [
-            .next(0, .showWhisper(Whisper(L10n.signing_in))),
-            .next(0, .showWhisper(Whisper(error: L10n.invalid_credentials)))
+            .next(0, .showWhisper(WhisperData(L10n.signing_in))),
+            .next(0, .showWhisper(WhisperData(error: L10n.invalid_credentials)))
         ])
         XCTAssertEqual(output.loginButtonEnabled.events, [
             .next(0, true),
@@ -142,9 +142,9 @@ class LoginViewModelUIKitTests: BaseTestCase {
             .next(10, .dismiss)
         ])
         XCTAssertEqual(output.alertAction.events, [
-            .next(0, .showWhisper(Whisper(L10n.signing_in))),
-            .next(0, .showWhisper(Whisper(error: L10n.invalid_credentials))),
-            .next(10, .showWhisper(Whisper(L10n.signing_in))),
+            .next(0, .showWhisper(WhisperData(L10n.signing_in))),
+            .next(0, .showWhisper(WhisperData(error: L10n.invalid_credentials))),
+            .next(10, .showWhisper(WhisperData(L10n.signing_in))),
             .next(10, .hideWhisper)
         ])
         XCTAssertEqual(output.loginButtonEnabled.events, [

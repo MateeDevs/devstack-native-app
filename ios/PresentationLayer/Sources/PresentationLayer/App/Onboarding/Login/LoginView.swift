@@ -15,43 +15,24 @@ struct LoginView: View {
     }
     
     var body: some View {
-        
         return VStack {
-            VStack(alignment: .leading, spacing: 16) {
-                HeadlineText(L10n.login_view_headline_title)
-                    .padding(.top, 32)
-                
-                PrimaryTextField(L10n.login_view_email_field_hint, text: Binding<String>(
-                    get: { viewModel.state.email },
-                    set: { email in viewModel.intent(.onEmailChange(email)) }
-                ))
-                .keyboardType(.emailAddress)
-                
-                PrimaryTextField(L10n.login_view_password_field_hint, text: Binding<String>(
-                    get: { viewModel.state.password },
-                    set: { password in viewModel.intent(.onPasswordChange(password)) }
-                ), secure: true)
-            }
-            .padding()
-            
+            LoginViewFields(
+                email: viewModel.state.email,
+                password: viewModel.state.password,
+                onEmailChange: { email in viewModel.intent(.onEmailChange(email)) },
+                onPasswordChange: { password in viewModel.intent(.onPasswordChange(password)) }
+            )
             Spacer()
-            
-            VStack {
-                Button(L10n.login_view_login_button_title) {
-                    viewModel.intent(.onLogin)
-                }
-                .buttonStyle(PrimaryButtonStyle())
-                .disabled(!viewModel.state.loginButtonEnabled)
-                
-                Button(L10n.login_view_register_button_title) {
-                    viewModel.intent(.onRegister)
-                }
-                .buttonStyle(SecondaryButtonStyle())
-            }
-            .padding()
-            
-            Text(viewModel.state.alert)
+            LoginViewButtons(
+                loginButtonLoading: viewModel.state.loginButtonLoading,
+                onLoginButtonTap: { viewModel.intent(.onLoginButtonTap) },
+                onRegisterButtonTap: { viewModel.intent(.onRegisterButtonTap) }
+            )
         }
+        .alert(item: Binding<AlertData?>(
+            get: { viewModel.state.alert },
+            set: { _ in viewModel.intent(.onAlertDismiss) }
+        )) { alert in .init(alert) }
         .onAppear {
             viewModel.intent(.onAppear)
         }

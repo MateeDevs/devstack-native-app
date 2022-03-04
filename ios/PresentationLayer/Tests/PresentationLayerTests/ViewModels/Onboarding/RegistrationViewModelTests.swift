@@ -79,7 +79,7 @@ class RegistrationViewModelTests: BaseTestCase {
         
         XCTAssertEqual(output.flow.events, [])
         XCTAssertEqual(output.alertAction.events, [
-            .next(0, .showWhisper(Whisper(error: L10n.invalid_credentials)))
+            .next(0, .showWhisper(WhisperData(error: L10n.invalid_credentials)))
         ])
         XCTAssertEqual(output.registerButtonEnabled.events, [
             .next(0, true)
@@ -96,7 +96,7 @@ class RegistrationViewModelTests: BaseTestCase {
             .next(0, .popRegistration)
         ])
         XCTAssertEqual(output.alertAction.events, [
-            .next(0, .showWhisper(Whisper(L10n.signing_up))),
+            .next(0, .showWhisper(WhisperData(L10n.signing_up))),
             .next(0, .hideWhisper)
         ])
         XCTAssertEqual(output.registerButtonEnabled.events, [
@@ -114,7 +114,7 @@ class RegistrationViewModelTests: BaseTestCase {
         
         XCTAssertEqual(output.flow.events, [])
         XCTAssertEqual(output.alertAction.events, [
-            .next(0, .showWhisper(Whisper(error: L10n.invalid_email)))
+            .next(0, .showWhisper(WhisperData(error: L10n.invalid_email)))
         ])
         XCTAssertEqual(output.registerButtonEnabled.events, [
             .next(0, true)
@@ -129,8 +129,8 @@ class RegistrationViewModelTests: BaseTestCase {
         
         XCTAssertEqual(output.flow.events, [])
         XCTAssertEqual(output.alertAction.events, [
-            .next(0, .showWhisper(Whisper(L10n.signing_up))),
-            .next(0, .showWhisper(Whisper(error: L10n.register_view_email_already_exists)))
+            .next(0, .showWhisper(WhisperData(L10n.signing_up))),
+            .next(0, .showWhisper(WhisperData(error: L10n.register_view_email_already_exists)))
         ])
         XCTAssertEqual(output.registerButtonEnabled.events, [
             .next(0, true),

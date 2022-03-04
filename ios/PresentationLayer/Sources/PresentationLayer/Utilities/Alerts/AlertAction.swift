@@ -6,9 +6,9 @@
 import Foundation
 
 enum AlertAction: Equatable {
-    case showWhisper(_ whisper: Whisper)
+    case showWhisper(_ whisper: WhisperData)
     case hideWhisper
-    case showAlert(_ alert: Alert)
+    case showAlert(_ alert: AlertData)
 
     static func == (lhs: AlertAction, rhs: AlertAction) -> Bool {
         switch (lhs, rhs) {

@@ -11,7 +11,7 @@ struct PrimaryTextField: View {
     private let text: Binding<String>
     private let secure: Bool
     
-    public init(
+    init(
         _ titleKey: String,
         text: Binding<String>,
         secure: Bool = false
@@ -21,7 +21,7 @@ struct PrimaryTextField: View {
         self.secure = secure
     }
     
-    public var body: some View {
+    var body: some View {
         VStack(alignment: .leading) {
             Text(titleKey)
                 .font(Font(AppTheme.Fonts.textFieldTitle as CTFont))

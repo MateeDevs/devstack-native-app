@@ -50,13 +50,13 @@ public class AppFlowController: FlowController, MainFlowControllerDelegate, Onbo
     public func handleLogout() {
         guard let vc = navigationController.topViewController as? BaseViewController else { return }
 
-        let action = UIAlertAction(title: L10n.dialog_interceptor_button_title, style: .default, handler: { _ in
+        let action = AlertData.Action(title: L10n.dialog_interceptor_button_title, style: .default, handler: {
             // Perform logout and present login screen
             self.logoutUseCase.execute()
             self.presentOnboarding(animated: true, completion: nil)
         })
 
-        let alert = Alert(title: L10n.dialog_interceptor_title, message: L10n.dialog_interceptor_text, primaryAction: action)
+        let alert = AlertData(title: L10n.dialog_interceptor_title, message: L10n.dialog_interceptor_text, primaryAction: action)
         vc.handleAlertAction(.showAlert(alert))
     }
     

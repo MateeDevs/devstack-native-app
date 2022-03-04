@@ -81,7 +81,7 @@ final class LoginViewModelUIKit: BaseViewModel, ViewModelUIKit {
             activity.toWhisper(L10n.signing_in),
             login.compactMap { $0.element }.map { .hideWhisper },
             login.compactMap { $0.error }.map {
-                .showWhisper(Whisper(error: $0.toString(messages)))
+                .showWhisper(WhisperData(error: $0.toString(messages)))
             }
         )
 
