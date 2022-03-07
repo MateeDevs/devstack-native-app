@@ -48,14 +48,17 @@ final class LoginViewModel: BaseViewModel, ViewModel, ObservableObject {
         case onRegisterButtonTap
     }
 
-    func intent(_ intent: Intent) {
-        switch intent {
-        case .onAppear: onAppear()
-        case .onAlertDismiss: onAlertDismiss()
-        case .onEmailChange(let email): onEmailChange(email)
-        case .onPasswordChange(let password): onPasswordChange(password)
-        case .onLoginButtonTap: onLoginButtonTap()
-        case .onRegisterButtonTap: onRegisterButtonTap()
+    @discardableResult
+    func intent(_ intent: Intent) -> Task<Void, Never> {
+        return Task {
+            switch intent {
+            case .onAppear: onAppear()
+            case .onAlertDismiss: onAlertDismiss()
+            case .onEmailChange(let email): onEmailChange(email)
+            case .onPasswordChange(let password): onPasswordChange(password)
+            case .onLoginButtonTap: await onLoginButtonTap()
+            case .onRegisterButtonTap: onRegisterButtonTap()
+            }
         }
     }
     
@@ -77,24 +80,22 @@ final class LoginViewModel: BaseViewModel, ViewModel, ObservableObject {
         state.password = password
     }
 
-    private func onLoginButtonTap() {
+    private func onLoginButtonTap() async {
         guard !state.email.isEmpty && !state.password.isEmpty else {
             state.alert = .init(title: L10n.invalid_credentials)
             return
         }
-
-        Task {
-            do {
-                state.loginButtonLoading = true
-                let data = LoginData(email: state.email, password: state.password)
-                try await loginUseCase.execute(data).asSingle().value
-                trackAnalyticsEventUseCase.execute(LoginEvent.loginButtonTap.analyticsEvent)
-                flowController?.handleFlow(.login(.dismiss))
-            } catch {
-                state.loginButtonLoading = false
-                let messages = ErrorMessages([.httpUnathorized: L10n.invalid_credentials], defaultMessage: L10n.signing_failed)
-                state.alert = .init(title: error.toString(messages))
-            }
+        
+        do {
+            state.loginButtonLoading = true
+            let data = LoginData(email: state.email, password: state.password)
+            try await loginUseCase.execute(data).asSingle().value
+            trackAnalyticsEventUseCase.execute(LoginEvent.loginButtonTap.analyticsEvent)
+            flowController?.handleFlow(.login(.dismiss))
+        } catch {
+            state.loginButtonLoading = false
+            let messages = ErrorMessages([.httpUnathorized: L10n.invalid_credentials], defaultMessage: L10n.signing_failed)
+            state.alert = .init(title: error.toString(messages))
         }
     }
 

@@ -8,7 +8,7 @@ import RxSwift
 import UIKit
 
 extension Flow {
-    enum Profile {
+    enum Profile: Equatable {
         case presentOnboarding
     }
 }

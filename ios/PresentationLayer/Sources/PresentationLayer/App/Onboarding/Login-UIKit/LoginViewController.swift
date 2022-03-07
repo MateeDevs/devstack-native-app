@@ -8,7 +8,7 @@ import RxSwift
 import UIKit
 
 extension Flow {
-    enum Login {
+    enum Login: Equatable {
         case dismiss
         case showRegistration
     }
