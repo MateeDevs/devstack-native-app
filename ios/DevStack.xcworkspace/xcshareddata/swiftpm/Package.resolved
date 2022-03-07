@@ -42,8 +42,8 @@
         "repositoryURL": "https://github.com/ProxymanApp/atlantis",
         "state": {
           "branch": null,
-          "revision": "5e848072d45e3969bd1d69fab3b6c2151f826c41",
-          "version": "1.15.0"
+          "revision": "b60ef22babc5cc8997841b378bb2993229fac9eb",
+          "version": "1.16.0"
         }
       },
       {
@@ -215,15 +215,6 @@
           "branch": null,
           "revision": "6b81f1a7a2d421f9e0b9e7f04e76bcf736a54409",
           "version": "11.9.0"
-        }
-      },
-      {
-        "package": "Resolver",
-        "repositoryURL": "https://github.com/hmlongco/Resolver",
-        "state": {
-          "branch": null,
-          "revision": "97de0b0320036607564af4a60025b48f8d041221",
-          "version": "1.5.0"
         }
       },
       {

@@ -8,6 +8,7 @@
 
 {% if tables.count > 0 %}
 {% set accessModifier %}{% if param.publicAccess %}public{% else %}internal{% endif %}{% endset %}
+import DomainLayer
 import Foundation
 
 // swiftlint:disable superfluous_disable_command file_length implicit_return
@@ -77,12 +78,18 @@ import Foundation
 
 extension {{enumName}} {
   private static func tr(_ table: String, _ key: String, _ args: CVarArg...) -> String {
-    {% if param.lookupFunction %}
-    let format = {{ param.lookupFunction }}(key, table)
-    {% else %}
-    let format = {{param.bundle|default:"BundleToken.bundle"}}.localizedString(forKey: key, value: nil, table: table)
-    {% endif %}
-    return String(format: format, locale: Locale.current, arguments: args)
+    if let preview = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"], preview == "1",
+     let path = BundleToken.bundle.path(forResource: Environment.locale.identifier, ofType: "lproj"), let bundle = Bundle(path: path) {
+      let format = bundle.localizedString(forKey: key, value: nil, table: table)
+      return String(format: format, locale: Environment.locale, arguments: args)
+    } else {
+      {% if param.lookupFunction %}
+      let format = {{ param.lookupFunction }}(key, table)
+      {% else %}
+      let format = {{param.bundle|default:"BundleToken.bundle"}}.localizedString(forKey: key, value: nil, table: table)
+      {% endif %}
+      return String(format: format, locale: Locale.current, arguments: args)
+    }
   }
 }
 {% if not param.bundle and not param.lookupFunction %}

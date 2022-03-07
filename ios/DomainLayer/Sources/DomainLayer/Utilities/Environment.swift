@@ -3,6 +3,8 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
+import Foundation
+
 public enum EnvironmentType {
     case alpha
     case beta
@@ -17,4 +19,5 @@ public enum EnvironmentFlavor {
 public struct Environment {
     public static var type: EnvironmentType = .alpha
     public static var flavor: EnvironmentFlavor = .debug
+    public static var locale: Locale = Locale.current
 }
