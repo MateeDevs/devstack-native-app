@@ -218,6 +218,15 @@
         }
       },
       {
+        "package": "Resolver",
+        "repositoryURL": "https://github.com/hmlongco/Resolver",
+        "state": {
+          "branch": null,
+          "revision": "97de0b0320036607564af4a60025b48f8d041221",
+          "version": "1.5.0"
+        }
+      },
+      {
         "package": "RxRealm",
         "repositoryURL": "https://github.com/RxSwiftCommunity/RxRealm.git",
         "state": {
