@@ -9,11 +9,11 @@ struct HeadlineText: View {
     
     private let content: String
     
-    public init(_ content: String) {
+    init(_ content: String) {
         self.content = content
     }
     
-    public var body: some View {
+    var body: some View {
         Text(content)
             .font(Font(AppTheme.Fonts.headlineLabel as CTFont))
             .foregroundColor(Color(AppTheme.Colors.headlineLabel))

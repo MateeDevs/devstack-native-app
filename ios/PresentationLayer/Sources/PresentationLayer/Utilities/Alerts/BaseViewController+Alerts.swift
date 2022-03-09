@@ -20,12 +20,12 @@ extension BaseViewController {
     }
     
     /// Present UIAlertController on current top ViewController.
-    func showAlert(_ alert: Alert, textFieldHandler: ((UITextField) -> Void)? = nil) {
+    func showAlert(_ alert: AlertData, textFieldHandler: ((UITextField) -> Void)? = nil) {
         let alertController = UIAlertController(title: alert.title, message: alert.message, preferredStyle: .alert)
-        alertController.addAction(alert.primaryAction)
+        alertController.addAction(.init(alert.primaryAction))
         
         if let secondaryAction = alert.secondaryAction {
-            alertController.addAction(secondaryAction)
+            alertController.addAction(.init(secondaryAction))
         }
         
         if textFieldHandler != nil {
@@ -37,7 +37,7 @@ extension BaseViewController {
     }
     
     /// Present WhisperView on current top ViewController.
-    func showWhisper(_ whisper: Whisper) {
+    func showWhisper(_ whisper: WhisperData) {
         let whisperView = WhisperView(frame: CGRect(
             x: 0,
             y: -view.safeAreaInsets.top - 25,

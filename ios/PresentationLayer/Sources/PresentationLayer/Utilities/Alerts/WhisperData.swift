@@ -5,7 +5,7 @@
 
 import Foundation
 
-struct Whisper {
+struct WhisperData {
     let message: String
     let style: WhisperStyle
     let hideAfter: TimeInterval
@@ -22,9 +22,9 @@ struct Whisper {
         self.hideAfter = hideAfter
     }
     
-    static func == (lhs: Whisper, rhs: Whisper) -> Bool {
+    static func == (lhs: WhisperData, rhs: WhisperData) -> Bool {
         lhs.message == rhs.message &&
-            lhs.style == rhs.style &&
-            lhs.hideAfter == rhs.hideAfter
+        lhs.style == rhs.style &&
+        lhs.hideAfter == rhs.hideAfter
     }
 }
