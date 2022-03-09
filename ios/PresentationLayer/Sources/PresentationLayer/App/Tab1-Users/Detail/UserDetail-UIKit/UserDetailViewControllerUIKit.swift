@@ -6,7 +6,7 @@
 import RxSwift
 import UIKit
 
-final class UserDetailViewController: BaseViewController {
+final class UserDetailViewControllerUIKit: BaseViewController {
 
     // MARK: FlowController
     private weak var flowController: FlowController?
@@ -22,7 +22,7 @@ final class UserDetailViewController: BaseViewController {
     // MARK: Stored properties
     
     // MARK: Inits
-    static func instantiate(fc: FlowController, vm: UserDetailViewModel) -> UserDetailViewController {
+    static func instantiate(fc: FlowController, vm: UserDetailViewModel) -> UserDetailViewControllerUIKit {
         let vc = StoryboardScene.UserDetail.initialScene.instantiate()
         vc.flowController = fc
         vc.viewModel = vm
