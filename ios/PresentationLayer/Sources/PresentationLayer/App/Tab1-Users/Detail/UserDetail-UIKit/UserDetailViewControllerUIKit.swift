@@ -12,7 +12,7 @@ final class UserDetailViewControllerUIKit: BaseViewController {
     private weak var flowController: FlowController?
 
     // MARK: ViewModels
-    private var viewModel: UserDetailViewModel?
+    private var viewModel: UserDetailViewModelUIKit?
 
     // MARK: UI components
     @IBOutlet private weak var scrollView: UIScrollView!
@@ -22,7 +22,7 @@ final class UserDetailViewControllerUIKit: BaseViewController {
     // MARK: Stored properties
     
     // MARK: Inits
-    static func instantiate(fc: FlowController, vm: UserDetailViewModel) -> UserDetailViewControllerUIKit {
+    static func instantiate(fc: FlowController, vm: UserDetailViewModelUIKit) -> UserDetailViewControllerUIKit {
         let vc = StoryboardScene.UserDetail.initialScene.instantiate()
         vc.flowController = fc
         vc.viewModel = vm
