@@ -22,11 +22,11 @@ class LoginViewModelUIKitTests: BaseTestCase {
     override func setupDependencies() {
         super.setupDependencies()
         
-        Given(loginUseCase, .execute(
+        Given(loginUseCase, .executeRx(
             .value(.stubInvalidPassword),
             willReturn: .error(RepositoryError(statusCode: StatusCode.httpUnathorized, message: ""))
         ))
-        Given(loginUseCase, .execute(.any, willReturn: .just(())))
+        Given(loginUseCase, .executeRx(.any, willReturn: .just(())))
     }
 
     // MARK: Inputs and outputs
@@ -111,7 +111,7 @@ class LoginViewModelUIKitTests: BaseTestCase {
             .next(0, false),
             .next(0, true)
         ])
-        Verify(loginUseCase, 1, .execute(.value(.stubValid)))
+        Verify(loginUseCase, 1, .executeRx(.value(.stubValid)))
         Verify(trackAnalyticsEventUseCase, 1, .execute(.value(LoginEvent.loginButtonTap.analyticsEvent)))
     }
 
@@ -130,7 +130,7 @@ class LoginViewModelUIKitTests: BaseTestCase {
             .next(0, false),
             .next(0, true)
         ])
-        Verify(loginUseCase, 1, .execute(.value(.stubInvalidPassword)))
+        Verify(loginUseCase, 1, .executeRx(.value(.stubInvalidPassword)))
     }
     
     func testLoginInvalidThenValid() {
@@ -154,8 +154,8 @@ class LoginViewModelUIKitTests: BaseTestCase {
             .next(10, false),
             .next(10, true)
         ])
-        Verify(loginUseCase, 1, .execute(.value(.stubInvalidPassword)))
-        Verify(loginUseCase, 1, .execute(.value(.stubValid)))
+        Verify(loginUseCase, 1, .executeRx(.value(.stubInvalidPassword)))
+        Verify(loginUseCase, 1, .executeRx(.value(.stubValid)))
     }
 
     func testRegister() {
@@ -170,7 +170,7 @@ class LoginViewModelUIKitTests: BaseTestCase {
         XCTAssertEqual(output.loginButtonEnabled.events, [
             .next(0, true)
         ])
-        Verify(loginUseCase, 0, .execute(.any))
+        Verify(loginUseCase, 0, .executeRx(.any))
         Verify(trackAnalyticsEventUseCase, 1, .execute(.value(LoginEvent.registerButtonTap.analyticsEvent)))
     }
 }

@@ -11,7 +11,7 @@ public struct CommonError {
     public static let encoding = RepositoryError(statusCode: .networkError, message: "Object can't be encoded")
 }
 
-public struct RepositoryError: LocalizedError {
+public struct RepositoryError: LocalizedError, Equatable {
     
     public let statusCode: StatusCode
     private let message: String

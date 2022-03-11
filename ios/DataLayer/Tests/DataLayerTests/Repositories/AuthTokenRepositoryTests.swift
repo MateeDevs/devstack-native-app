@@ -36,11 +36,22 @@ class AuthTokenRepositoryTests: BaseTestCase {
     
     // MARK: Tests
     
-    func testCreateValid() {
+    func testCreateValid() async throws {
+        let repository = createRepository()
+        
+        let authToken = try await repository.create(.stubValid)
+        
+        XCTAssertEqual(authToken, AuthToken.stub)
+        XCTAssertEqual(networkProvider.observableRequestCallsCount, 1)
+        Verify(keychainProvider, 1, .save(.value(.authToken), value: .value(AuthToken.stub.token)))
+        Verify(keychainProvider, 1, .save(.value(.userId), value: .value(AuthToken.stub.userId)))
+    }
+    
+    func testCreateRxValid() {
         let repository = createRepository()
         let output = scheduler.createObserver(AuthToken.self)
         
-        repository.create(.stubValid).bind(to: output).disposed(by: disposeBag)
+        repository.createRx(.stubValid).bind(to: output).disposed(by: disposeBag)
         scheduler.start()
         
         XCTAssertEqual(output.events, [
@@ -52,12 +63,26 @@ class AuthTokenRepositoryTests: BaseTestCase {
         Verify(keychainProvider, 1, .save(.value(.userId), value: .value(AuthToken.stub.userId)))
     }
     
-    func testCreateInvalidPassword() {
+    func testCreateInvalidPassword() async throws {
+        let repository = createRepository()
+        networkProvider.observableRequestReturnError = RepositoryError(statusCode: StatusCode.httpUnathorized, message: "")
+        
+        do {
+            _ = try await repository.create(.stubInvalidPassword)
+            XCTFail("Should throw")
+        } catch {
+            XCTAssertEqual(error as? RepositoryError, RepositoryError(statusCode: StatusCode.httpUnathorized, message: ""))
+            XCTAssertEqual(networkProvider.observableRequestCallsCount, 1)
+            Verify(keychainProvider, 0, .save(.any, value: .any))
+        }
+    }
+    
+    func testCreateRxInvalidPassword() {
         let repository = createRepository()
         networkProvider.observableRequestReturnError = RepositoryError(statusCode: StatusCode.httpUnathorized, message: "")
         let output = scheduler.createObserver(AuthToken.self)
         
-        repository.create(.stubInvalidPassword).bind(to: output).disposed(by: disposeBag)
+        repository.createRx(.stubInvalidPassword).bind(to: output).disposed(by: disposeBag)
         scheduler.start()
         
         XCTAssertEqual(output.events, [

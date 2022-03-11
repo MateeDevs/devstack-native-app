@@ -89,7 +89,7 @@ final class LoginViewModel: BaseViewModel, ViewModel, ObservableObject {
         do {
             state.loginButtonLoading = true
             let data = LoginData(email: state.email, password: state.password)
-            try await loginUseCase.execute(data).asSingle().value
+            try await loginUseCase.execute(data)
             trackAnalyticsEventUseCase.execute(LoginEvent.loginButtonTap.analyticsEvent)
             flowController?.handleFlow(.login(.dismiss))
         } catch {

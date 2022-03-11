@@ -8,7 +8,8 @@ import Foundation
 import RxSwift
 
 class LoginUseCasePreviewMock: LoginUseCase {
-    func execute(_ data: LoginData) -> Observable<Void> { .just(()) }
+    func execute(_ data: LoginData) async throws {}
+    func executeRx(_ data: LoginData) -> Observable<Void> { .just(()) }
 }
 
 class TrackAnalyticsEventUseCasePreviewMock: TrackAnalyticsEventUseCase {

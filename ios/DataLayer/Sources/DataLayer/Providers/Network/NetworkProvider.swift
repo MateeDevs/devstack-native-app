@@ -23,6 +23,16 @@ public protocol NetworkProvider {
     /// - returns: Observable which emits Response of a network call.
     ///
     func observableRequest(_ endpoint: TargetType, withInterceptor: Bool) -> Observable<Response>
+    
+    ///
+    /// Function for triggering a specified network call.
+    /// Automatically filters out API errors.
+    ///
+    /// - parameter endpoint: TargetType from Moya which specify API endpoint to be called.
+    /// - parameter withInterceptor: Optional parameter to specify whether build-in interceptor should be enabled.
+    /// - returns: Response of a network call.
+    ///
+    func request(_ endpoint: TargetType, withInterceptor: Bool) async throws -> Response
 }
 
 // This extension exists only to provide default values for parameters

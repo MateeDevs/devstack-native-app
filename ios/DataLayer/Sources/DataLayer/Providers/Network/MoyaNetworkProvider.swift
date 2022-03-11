@@ -107,4 +107,8 @@ extension MoyaNetworkProvider: NetworkProvider {
                 return .error(RepositoryError(statusCode: statusCode, message: response.description))
             }
     }
+    
+    public func request(_ endpoint: TargetType, withInterceptor: Bool) async throws -> Response {
+        return try await observableRequest(endpoint, withInterceptor: withInterceptor).asSingle().value
+    }
 }

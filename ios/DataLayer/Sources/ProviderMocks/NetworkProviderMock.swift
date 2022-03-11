@@ -50,4 +50,8 @@ extension NetworkProviderMock: NetworkProvider {
             return stubbingProvider.rx.request(MultiTarget(endpoint)).asObservable().do { _ in self.observableRequestCallsCount += 1 }
         }
     }
+    
+    public func request(_ endpoint: TargetType, withInterceptor: Bool) async throws -> Response {
+        return try await observableRequest(endpoint, withInterceptor: withInterceptor).asSingle().value
+    }
 }

@@ -64,7 +64,7 @@ final class LoginViewModelUIKit: BaseViewModel, ViewModelUIKit {
             } else {
                 trackAnalyticsEventUseCase.execute(LoginEvent.loginButtonTap.analyticsEvent)
                 let data = LoginData(email: inputs.email, password: inputs.password)
-                return loginUseCase.execute(data).trackActivity(activity).materialize()
+                return loginUseCase.executeRx(data).trackActivity(activity).materialize()
             }
         }.share()
         

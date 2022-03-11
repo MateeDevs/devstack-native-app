@@ -28,9 +28,8 @@ class LoginViewModelTests: BaseTestCase {
         
         Given(loginUseCase, .execute(
             .value(.stubInvalidPassword),
-            willReturn: .error(RepositoryError(statusCode: StatusCode.httpUnathorized, message: ""))
+            willThrow: RepositoryError(statusCode: StatusCode.httpUnathorized, message: "")
         ))
-        Given(loginUseCase, .execute(.any, willReturn: .just(())))
     }
 
     // MARK: Tests
