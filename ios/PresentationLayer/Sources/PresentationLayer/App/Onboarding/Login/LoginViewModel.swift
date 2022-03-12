@@ -26,6 +26,13 @@ final class LoginViewModel: BaseViewModel, ViewModel, ObservableObject {
         }
     }
     
+    // MARK: Lifecycle
+    
+    override func onAppear() {
+        super.onAppear()
+        trackAnalyticsEventUseCase.execute(LoginEvent.screenAppear.analyticsEvent)
+    }
+    
     // MARK: State
     
     @Published private(set) var state: State = State()
@@ -40,47 +47,37 @@ final class LoginViewModel: BaseViewModel, ViewModel, ObservableObject {
     // MARK: Intent
 
     enum Intent {
-        case onAppear
-        case onAlertDismiss
-        case onEmailChange(String)
-        case onPasswordChange(String)
-        case onLoginButtonTap
-        case onRegisterButtonTap
+        case changeEmail(String)
+        case changePassword(String)
+        case login
+        case register
+        case dismissAlert
     }
 
     @discardableResult
-    func intent(_ intent: Intent) -> Task<Void, Never> {
-        return Task {
+    func onIntent(_ intent: Intent) -> Task<Void, Never> {
+        executeTask(Task {
             switch intent {
-            case .onAppear: onAppear()
-            case .onAlertDismiss: onAlertDismiss()
-            case .onEmailChange(let email): onEmailChange(email)
-            case .onPasswordChange(let password): onPasswordChange(password)
-            case .onLoginButtonTap: await onLoginButtonTap()
-            case .onRegisterButtonTap: onRegisterButtonTap()
+            case .changeEmail(let email): changeEmail(email)
+            case .changePassword(let password): changePassword(password)
+            case .login: await login()
+            case .register: register()
+            case .dismissAlert: dismissAlert()
             }
-        }
+        })
     }
     
     // MARK: Private
     
-    private func onAppear() {
-        trackAnalyticsEventUseCase.execute(LoginEvent.screenAppear.analyticsEvent)
-    }
-    
-    private func onAlertDismiss() {
-        state.alert = nil
-    }
-    
-    private func onEmailChange(_ email: String) {
+    private func changeEmail(_ email: String) {
         state.email = email
     }
     
-    private func onPasswordChange(_ password: String) {
+    private func changePassword(_ password: String) {
         state.password = password
     }
 
-    private func onLoginButtonTap() async {
+    private func login() async {
         guard !state.email.isEmpty && !state.password.isEmpty else {
             state.alert = .init(title: L10n.invalid_credentials)
             return
@@ -99,8 +96,12 @@ final class LoginViewModel: BaseViewModel, ViewModel, ObservableObject {
         }
     }
 
-    private func onRegisterButtonTap() {
+    private func register() {
         trackAnalyticsEventUseCase.execute(LoginEvent.registerButtonTap.analyticsEvent)
         flowController?.handleFlow(.login(.showRegistration))
+    }
+    
+    private func dismissAlert() {
+        state.alert = nil
     }
 }

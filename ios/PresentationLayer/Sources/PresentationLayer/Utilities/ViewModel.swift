@@ -5,11 +5,15 @@
 
 @MainActor
 protocol ViewModel {
+    // Lifecycle
+    func onAppear()
+    func onDisappear()
+    
+    // State
     associatedtype State
-    associatedtype Intent
-
     var state: State { get }
     
-    @discardableResult
-    func intent(_ intent: Intent) -> Task<Void, Never>
+    // Intent
+    associatedtype Intent
+    @discardableResult func onIntent(_ intent: Intent) -> Task<Void, Never>
 }

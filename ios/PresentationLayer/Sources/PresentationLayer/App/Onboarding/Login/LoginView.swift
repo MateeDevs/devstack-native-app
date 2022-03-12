@@ -19,23 +19,21 @@ struct LoginView: View {
             LoginViewFields(
                 email: viewModel.state.email,
                 password: viewModel.state.password,
-                onEmailChange: { email in viewModel.intent(.onEmailChange(email)) },
-                onPasswordChange: { password in viewModel.intent(.onPasswordChange(password)) }
+                onEmailChange: { email in viewModel.onIntent(.changeEmail(email)) },
+                onPasswordChange: { password in viewModel.onIntent(.changePassword(password)) }
             )
             Spacer()
             LoginViewButtons(
                 loginButtonLoading: viewModel.state.loginButtonLoading,
-                onLoginButtonTap: { viewModel.intent(.onLoginButtonTap) },
-                onRegisterButtonTap: { viewModel.intent(.onRegisterButtonTap) }
+                onLoginButtonTap: { viewModel.onIntent(.login) },
+                onRegisterButtonTap: { viewModel.onIntent(.register) }
             )
         }
         .alert(item: Binding<AlertData?>(
             get: { viewModel.state.alert },
-            set: { _ in viewModel.intent(.onAlertDismiss) }
+            set: { _ in viewModel.onIntent(.dismissAlert) }
         )) { alert in .init(alert) }
-        .onAppear {
-            viewModel.intent(.onAppear)
-        }
+        .lifecycle(viewModel)
     }
 }
 
