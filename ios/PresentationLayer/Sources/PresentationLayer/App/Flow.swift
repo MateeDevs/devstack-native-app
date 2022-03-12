@@ -5,10 +5,9 @@
 
 import Foundation
 
-enum Flow {
+enum Flow: Equatable {
     case login(Login)
     case registration(Registration)
     case users(Users)
-    case books(Books)
     case profile(Profile)
 }

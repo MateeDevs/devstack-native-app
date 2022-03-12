@@ -8,7 +8,7 @@ import RxSwift
 import UIKit
 
 extension Flow {
-    enum Users {
+    enum Users: Equatable {
         case showUserDetailForId(_ userId: String)
     }
 }

@@ -10,5 +10,6 @@ protocol ViewModel {
 
     var state: State { get }
     
-    func intent(_ intent: Intent)
+    @discardableResult
+    func intent(_ intent: Intent) -> Task<Void, Never>
 }

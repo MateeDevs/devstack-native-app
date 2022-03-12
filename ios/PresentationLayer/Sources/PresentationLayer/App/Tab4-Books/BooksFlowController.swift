@@ -11,16 +11,4 @@ class BooksFlowController: FlowController {
         let vm = BooksViewModel()
         return BooksViewController.instantiate(fc: self, vm: vm)
     }
-    
-    override func handleFlow(_ flow: Flow) {
-        switch flow {
-        case .books(let booksFlow): handleBooksFlow(booksFlow)
-        default: ()
-        }
-    }
-}
-
-// MARK: Books flow
-extension BooksFlowController {
-    func handleBooksFlow(_ flow: Flow.Books) {}
 }

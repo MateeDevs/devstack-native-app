@@ -5,7 +5,7 @@
 
 import Foundation
 
-struct AlertData: Identifiable {
+struct AlertData: Equatable, Identifiable {
     
     var id: String { title + (message ?? "") }
     

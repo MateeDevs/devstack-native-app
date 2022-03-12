@@ -7,7 +7,7 @@ import RxSwift
 import UIKit
 
 extension Flow {
-    enum Registration {
+    enum Registration: Equatable {
         case popRegistration
     }
 }
