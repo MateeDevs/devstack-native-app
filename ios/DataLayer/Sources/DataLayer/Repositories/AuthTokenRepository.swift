@@ -22,7 +22,15 @@ public struct AuthTokenRepositoryImpl: AuthTokenRepository {
         network = networkProvider
     }
     
-    public func create(_ data: LoginData) -> Observable<AuthToken> {
+    public func create(_ data: LoginData) async throws -> AuthToken {
+        guard let data = data.networkModel.encoded else { throw CommonError.encoding }
+        let authToken = try await network.request(AuthAPI.login(data), withInterceptor: false).map(NETAuthToken.self).domainModel
+        keychain.save(.authToken, value: authToken.token)
+        keychain.save(.userId, value: authToken.userId)
+        return authToken
+    }
+    
+    public func createRx(_ data: LoginData) -> Observable<AuthToken> {
         guard let data = data.networkModel.encoded else { return .error(CommonError.encoding) }
         let endpoint = AuthAPI.login(data)
         return network.observableRequest(endpoint, withInterceptor: false).map(NETAuthToken.self).mapToDomain().do { authToken in
