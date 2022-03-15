@@ -6,7 +6,6 @@
 import DomainLayer
 import UIKit
 
-@MainActor
 protocol MainFlowControllerDelegate: AnyObject {
     func presentOnboarding(animated: Bool, completion: (() -> Void)?)
 }

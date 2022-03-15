@@ -6,7 +6,6 @@
 import SwiftUI
 import UIKit
 
-@MainActor
 protocol OnboardingFlowControllerDelegate: AnyObject {
     func setupMain()
 }
