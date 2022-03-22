@@ -34,6 +34,16 @@ final class BooksViewController: BaseTableViewController<Book> {
         registerCells([BookTableViewCell.nameOfClass])
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel?.start()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        viewModel?.stop()
+    }
+    
     // MARK: Default methods
     override func setupBindings() {
         super.setupBindings()
