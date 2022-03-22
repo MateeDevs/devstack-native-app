@@ -4,6 +4,7 @@
 //
 
 import DomainLayer
+import Foundation
 
 @MainActor
 public class BaseViewModel {
@@ -35,7 +36,11 @@ public class BaseViewModel {
         tasks.append(task)
         return Task {
             await task.value
-            tasks = tasks.filter { $0 != task } // Remove task when done
+            
+            // Remove task when done
+            objc_sync_enter(tasks)
+            tasks = tasks.filter { $0 != task }
+            objc_sync_exit(tasks)
         }
     }
 }
