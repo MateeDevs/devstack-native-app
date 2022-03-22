@@ -4,11 +4,15 @@
 //
 
 import DomainLayer
+import Foundation
 
 @MainActor
-class BaseViewModel {
+public class BaseViewModel {
     
     let trackScreenAppear: () -> Void
+    
+    /// All tasks that are currently executed
+    private var tasks: [Task<Void, Never>] = []
 
     init(trackScreenAppear: @escaping () -> Void = {}) {
         self.trackScreenAppear = trackScreenAppear
@@ -17,5 +21,26 @@ class BaseViewModel {
     
     deinit {
         Logger.info("%@ deinitialized", "\(type(of: self))", category: .lifecycle)
+    }
+    
+    /// Override this method in a subclass for custom behavior when a view appears
+    public func onAppear() {}
+    
+    /// Override this method in a subclass for custom behavior when a view disappears
+    public func onDisappear() {
+        // Cancel all tasks when we are going away
+        tasks.forEach { $0.cancel() }
+    }
+    
+    func executeTask(_ task: Task<Void, Never>) -> Task<Void, Never> {
+        tasks.append(task)
+        return Task {
+            await task.value
+            
+            // Remove task when done
+            objc_sync_enter(tasks)
+            tasks = tasks.filter { $0 != task }
+            objc_sync_exit(tasks)
+        }
     }
 }

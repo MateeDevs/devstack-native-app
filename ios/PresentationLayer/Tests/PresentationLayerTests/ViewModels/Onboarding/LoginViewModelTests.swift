@@ -37,7 +37,7 @@ class LoginViewModelTests: BaseTestCase {
     func testAppear() async {
         let vm = LoginViewModel(flowController: flowController)
         
-        await vm.intent(.onAppear).value
+        vm.onAppear()
         
         Verify(trackAnalyticsEventUseCase, 1, .execute(.value(LoginEvent.screenAppear.analyticsEvent)))
     }
@@ -45,9 +45,9 @@ class LoginViewModelTests: BaseTestCase {
     func testLoginEmpty() async {
         let vm = LoginViewModel(flowController: flowController)
         
-        vm.intent(.onEmailChange(LoginData.stubEmpty.email))
-        vm.intent(.onPasswordChange(LoginData.stubEmpty.password))
-        await vm.intent(.onLoginButtonTap).value
+        vm.onIntent(.changeEmail(LoginData.stubEmpty.email))
+        vm.onIntent(.changePassword(LoginData.stubEmpty.password))
+        await vm.onIntent(.login).value
         
         XCTAssert(!vm.state.loginButtonLoading)
         XCTAssertEqual(vm.state.alert, AlertData(title: L10n.invalid_credentials))
@@ -59,9 +59,9 @@ class LoginViewModelTests: BaseTestCase {
     func testLoginValid() async {
         let vm = LoginViewModel(flowController: flowController)
         
-        vm.intent(.onEmailChange(LoginData.stubValid.email))
-        vm.intent(.onPasswordChange(LoginData.stubValid.password))
-        await vm.intent(.onLoginButtonTap).value
+        vm.onIntent(.changeEmail(LoginData.stubValid.email))
+        vm.onIntent(.changePassword(LoginData.stubValid.password))
+        await vm.onIntent(.login).value
         
         XCTAssert(vm.state.loginButtonLoading)
         XCTAssertEqual(vm.state.alert, nil)
@@ -73,9 +73,9 @@ class LoginViewModelTests: BaseTestCase {
     func testLoginInvalidPassword() async {
         let vm = LoginViewModel(flowController: flowController)
         
-        vm.intent(.onEmailChange(LoginData.stubInvalidPassword.email))
-        vm.intent(.onPasswordChange(LoginData.stubInvalidPassword.password))
-        await vm.intent(.onLoginButtonTap).value
+        vm.onIntent(.changeEmail(LoginData.stubInvalidPassword.email))
+        vm.onIntent(.changePassword(LoginData.stubInvalidPassword.password))
+        await vm.onIntent(.login).value
         
         XCTAssert(!vm.state.loginButtonLoading)
         XCTAssertEqual(vm.state.alert, AlertData(title: L10n.invalid_credentials))
@@ -87,7 +87,7 @@ class LoginViewModelTests: BaseTestCase {
     func testRegister() async {
         let vm = LoginViewModel(flowController: flowController)
         
-        await vm.intent(.onRegisterButtonTap).value
+        await vm.onIntent(.register).value
         
         XCTAssert(!vm.state.loginButtonLoading)
         XCTAssertEqual(vm.state.alert, nil)
