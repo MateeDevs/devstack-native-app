@@ -69,9 +69,7 @@ FIXME
 
 ## Localization
 - All strings in the application are localized and shared with the Android team via [Twine](https://github.com/scelis/twine)
-- Strings are stored in the file `strings.txt` in the separate repository [twine-localization](https://github.com/MateeDevs/twine-localization)
-- Path to the `twine-localization` folder is loaded from the bash variable `TWINE_FOLDER`
-- Add this line `export TWINE_FOLDER=<PATH_TO_TWINE_FOLDER>` into your `~/.zshenv`
+- Strings are stored in the `twine/strings.txt` file
 - The build phase script then generates appropriate `Localizable.strings` files from the mentioned `strings.txt` file
 - When modifying `strings.txt` it is required to comply with the specified syntax and to pull/push all the changes frequently
 
