@@ -1,4 +1,4 @@
-sourceryCommand: null
+sourceryCommand: mint run sourcery
 sourceryTemplate: null
 
 UseCases:
