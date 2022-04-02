@@ -4,6 +4,7 @@
 //
 
 import DomainLayer
+import OSLog
 import RxSwift
 import UIKit
 
@@ -16,16 +17,16 @@ class BaseViewController: UIViewController {
     // MARK: Inits
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        Logger.info("%@ initialized", "\(type(of: self))", category: .lifecycle)
+        Logger.lifecycle.info("\(type(of: self)) initialized")
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        Logger.info("%@ initialized", "\(type(of: self))", category: .lifecycle)
+        Logger.lifecycle.info("\(type(of: self)) initialized")
     }
     
     deinit {
-        Logger.info("%@ deinitialized", "\(type(of: self))", category: .lifecycle)
+        Logger.lifecycle.info("\(type(of: self)) deinitialized")
     }
     
     // MARK: Lifecycle methods

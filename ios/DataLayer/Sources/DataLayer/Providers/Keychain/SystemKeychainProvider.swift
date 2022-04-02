@@ -6,6 +6,7 @@
 import DomainLayer
 import Foundation
 import KeychainAccess
+import OSLog
 
 public struct SystemKeychainProvider {
     
@@ -39,7 +40,7 @@ extension SystemKeychainProvider: KeychainProvider {
         do {
             try keychain.remove(key.rawValue)
         } catch let error {
-            Logger.error("Error during KeychainStore delete operation:\n%@", "\(error)", category: .app)
+            Logger.app.error("Error during KeychainStore delete operation:\n\(error.localizedDescription)")
         }
     }
     

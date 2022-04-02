@@ -4,6 +4,7 @@
 //
 
 import DomainLayer
+import OSLog
 import RealmSwift
 
 extension Realm {
@@ -14,7 +15,7 @@ extension Realm {
             let realm = try Realm()
             return realm
         } catch {
-            Logger.error("Error during Realm init:\n%@", "\(error)", category: .app)
+            Logger.app.error("Error during Realm init:\n\(error.localizedDescription)")
         }
         return nil
     }

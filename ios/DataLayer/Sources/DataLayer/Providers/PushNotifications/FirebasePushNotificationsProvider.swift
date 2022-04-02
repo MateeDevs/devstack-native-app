@@ -5,6 +5,7 @@
 
 import DomainLayer
 import Firebase
+import OSLog
 import UIKit
 import UserNotifications
 
@@ -39,6 +40,6 @@ extension FirebasePushNotificationsProvider: PushNotificationsProvider {
 
 extension FirebasePushNotificationsProvider: MessagingDelegate {
     public func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        Logger.info("PushNotificationsProvider: FirebaseMessaging registration token:\n%@", fcmToken ?? "", category: .networking)
+        Logger.networking.info("PushNotificationsProvider: FirebaseMessaging registration token:\n\(fcmToken ?? "")")
     }
 }

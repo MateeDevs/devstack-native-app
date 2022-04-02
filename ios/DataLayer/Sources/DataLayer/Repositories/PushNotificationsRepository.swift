@@ -5,6 +5,7 @@
 
 import DomainLayer
 import Foundation
+import OSLog
 import UserNotifications
 
 public struct PushNotificationsRepositoryImpl: PushNotificationsRepository {
@@ -19,10 +20,10 @@ public struct PushNotificationsRepositoryImpl: PushNotificationsRepository {
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: notificationData, options: [])
             let notification = try JSONDecoder().decode(NETPushNotification.self, from: jsonData)
-            Logger.info("PushNotificationsRepository: Notification received:\n%@", "\(notification)", category: .networking)
+            Logger.networking.info("PushNotificationsRepository: Notification received:\n\(jsonData)")
             return notification.domainModel
         } catch let error {
-            Logger.error("PushNotificationsRepository: Error during notification decoding:\n%@", "\(error)", category: .networking)
+            Logger.networking.error("PushNotificationsRepository: Error during notification decoding:\n\(error.localizedDescription)")
             return nil
         }
     }
