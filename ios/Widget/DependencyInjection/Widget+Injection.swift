@@ -24,7 +24,7 @@ public extension Resolver {
         // Providers
         register { RealmDatabaseProvider() as DatabaseProvider }
         register { SystemKeychainProvider(userDefaultsProvider: resolve()) as KeychainProvider }
-        register { MoyaNetworkProvider(keychainProvider: resolve(), delegate: nil) as NetworkProvider }
+        register { SystemNetworkProvider(keychainProvider: resolve(), delegate: nil) as NetworkProvider }
         register { SystemUserDefaultsProvider() as UserDefaultsProvider }
     }
 }

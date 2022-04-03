@@ -16,7 +16,7 @@ public extension Resolver {
         register { FirebaseAnalyticsProvider() as AnalyticsProvider }
         register { RealmDatabaseProvider() as DatabaseProvider }
         register { SystemKeychainProvider(userDefaultsProvider: resolve()) as KeychainProvider }
-        register { MoyaNetworkProvider(keychainProvider: resolve(), delegate: networkProviderDelegate) as NetworkProvider }
+        register { SystemNetworkProvider(keychainProvider: resolve(), delegate: networkProviderDelegate) as NetworkProvider }
         register { FirebasePushNotificationsProvider(application: application, appDelegate: appDelegate) as PushNotificationsProvider }
         register { FirebaseRemoteConfigProvider() as RemoteConfigProvider }
         register { SystemUserDefaultsProvider() as UserDefaultsProvider }
