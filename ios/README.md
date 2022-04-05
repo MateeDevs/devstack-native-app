@@ -46,17 +46,24 @@ FIXME
 - There is `scripts/build-kmp.sh` that is producing `DomainLayer/DevstackKmpShared.xcframework`
 - It is executed automatically with every build as a part of the build's Pre-actions
 
-## Architecture (Clean Architecture + MVVM + RxSwift)
+## Architecture
 - Whole application is separated into three layers according to the Clean Architecture principles
 - Dependencies between layers: `PresentationLayer -> DomainLayer <- DataLayer`
-- PresentationLayer is represented by ViewModels + ViewControllers and FlowControllers
-- ViewModel has its inputs and outputs which are then binded or observed in a relevant ViewController
 - DomainLayer reflects whole business logic of the application via DomainModels and UseCases
 - DataLayer provides required data via Repositories and Providers from database / network / etc.
-- Network communication is based on [Moya](https://github.com/Moya/Moya) and native Decodable is used for mapping from JSON
+- Network communication is based on URLSession and native Decodable is used for mapping from JSON
 - Database models are represented via [Realm](https://github.com/realm/realm-cocoa) object models
+- Providers/Repositories/UseCases are "injected" during the init via [Resolver](https://github.com/hmlongco/Resolver)
+
+## Presentation layer (SwiftUI + MVI + async/await)
+- Presentation layer is represented by ViewModels + Views and FlowControllers
+- ViewModel has its state and intents which are then used in a relevant SwiftUI View
+- Asynchronous work is represented via native async/await
+
+## Legacy presentation layer (UIKit + MVVM + RxSwift)
+- PresentationLayer is represented by ViewModels + ViewControllers and FlowControllers
+- ViewModel has its inputs and outputs which are then binded or observed in a relevant ViewController
 - Asynchronous work is represented as Observable from the [RxSwift](https://github.com/ReactiveX/RxSwift) framework
-- Providers/Repositories/UseCases are "injected" during the init via Dependencies typealias
 
 ## Style Guide
 - [Swift Style Guide](https://github.com/raywenderlich/swift-style-guide)
@@ -81,8 +88,8 @@ FIXME
 - Notifications can be easily tested with scripts from the [ios-push-tester](https://github.com/MateeDevs/ios-push-tester) repository
 
 ## Debug
-- All important information should be logged using the default `os_log` (wrapper `Logger` is available for convenience)
-- All network requests going through the `MoyaNetworkProvider` are printed into the console in debug builds
+- All important information should be logged using the system `Logger`
+- All network requests going through the `SystemNetworkProvider` are logged in debug builds
 - [Proxyman](https://proxyman.io) for HTTP request/response debugging is enabled for alpha and beta builds
 
 ## Build + Release
@@ -99,9 +106,7 @@ FIXME
 
 ## Tests
 - All newly created ViewModels / UseCases / Repositories should have at least a basic set of tests
-- Mocking of network requests is based on [Moya stubbing provider](https://github.com/Moya/Moya/blob/master/docs/Testing.md)
 - [SwiftyMocky](https://github.com/MakeAWishFoundation/SwiftyMocky) is used for automatic mock generation
 
 ## TODO
 - Replace Mint with SPM Extensible Build Tools once it is available (should be in Swift 5.6)
-- Migrate to SwiftUI + Combine when the time is right
