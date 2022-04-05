@@ -5,6 +5,7 @@
 
 import DomainLayer
 import Foundation
+import OSLog
 
 @MainActor
 public class BaseViewModel {
@@ -16,11 +17,11 @@ public class BaseViewModel {
 
     init(trackScreenAppear: @escaping () -> Void = {}) {
         self.trackScreenAppear = trackScreenAppear
-        Logger.info("%@ initialized", "\(type(of: self))", category: .lifecycle)
+        Logger.lifecycle.info("\(type(of: self)) initialized")
     }
     
     deinit {
-        Logger.info("%@ deinitialized", "\(type(of: self))", category: .lifecycle)
+        Logger.lifecycle.info("\(type(of: self)) deinitialized")
     }
     
     /// Override this method in a subclass for custom behavior when a view appears

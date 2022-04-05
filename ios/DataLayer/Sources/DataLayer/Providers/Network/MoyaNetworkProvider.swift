@@ -5,6 +5,7 @@
 
 import DomainLayer
 import Moya
+import OSLog
 import RxMoya
 import RxSwift
 import UIKit
@@ -49,7 +50,7 @@ public struct MoyaNetworkProvider {
                 let request = try endpoint.urlRequest()
                 done(.success(request))
             } catch let error as NSError {
-                Logger.error("Moya request closure error:\n%@", "\(error)", category: .networking)
+                Logger.networking.error("Moya request closure error:\n\(error)")
                 return
             }
         }

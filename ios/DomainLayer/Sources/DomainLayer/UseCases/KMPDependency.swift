@@ -5,6 +5,7 @@
 
 import DevstackKmpShared
 import Foundation
+import OSLog
 
 public protocol KMPDependency {
     func get<T: AnyObject>(_ type: T.Type) -> T
@@ -21,7 +22,7 @@ public class KMPKoinDependency: KMPDependency {
     
     private func startKoin() {
         let onStartup = {
-            DomainLayer.Logger.info("Koin Started", category: .app)
+            Logger.app.info("Koin Started")
         }
         
         let koinApplication = KoinIOSKt.doInitKoinIos(doOnStartup: onStartup)
