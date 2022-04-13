@@ -4,14 +4,13 @@
 //
 
 import Foundation
-import Moya
 
 enum AuthAPI {
     case login(_ data: [String: Any])
     case registration(_ data: [String: Any])
 }
 
-extension AuthAPI: TargetType {
+extension AuthAPI: NetworkEndpoint {
     var baseURL: URL { URL(string: "\(NetworkingConstants.baseURL)/api")! }
     var path: String {
         switch self {
@@ -21,7 +20,7 @@ extension AuthAPI: TargetType {
             return "/auth/registration"
         }
     }
-    var method: Moya.Method {
+    var method: NetworkMethod {
         switch self {
         case .login, .registration:
             return .post
@@ -30,7 +29,7 @@ extension AuthAPI: TargetType {
     var headers: [String: String]? {
         nil
     }
-    var task: Task {
+    var task: NetworkTask {
         switch self {
         case let .login(data):
             return .requestParameters(parameters: data, encoding: JSONEncoding.default)

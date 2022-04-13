@@ -5,31 +5,16 @@
 
 import DataLayer
 import Foundation
-import Moya
 import RxSwift
 
 public class NetworkProviderMock {
     
-    public var observableRequestCallsCount = 0
-    public var observableRequestReturnError: Error?
+    public var requestCallsCount = 0
+    public var requestReturnError: Error?
 
     private weak var _delegate: NetworkProviderDelegate?
-    private let stubbingProvider: MoyaProvider<MultiTarget>
 
-    public init() {
-        stubbingProvider = MoyaProvider<MultiTarget>(
-            endpointClosure: { (target: MultiTarget) -> Endpoint in
-                Endpoint(
-                    url: URL(target: target).absoluteString,
-                    sampleResponseClosure: { .networkResponse(200, target.sampleData) },
-                    method: target.method,
-                    task: target.task,
-                    httpHeaderFields: target.headers
-                )
-            },
-            stubClosure: MoyaProvider.immediatelyStub
-        )
-    }
+    public init() {}
 }
 
 extension NetworkProviderMock: NetworkProvider {
@@ -43,15 +28,20 @@ extension NetworkProviderMock: NetworkProvider {
         }
     }
     
-    public func observableRequest(_ endpoint: TargetType, withInterceptor: Bool) -> Observable<Response> {
-        if let error = observableRequestReturnError {
-            return Observable.error(error).do(onError: { _ in self.observableRequestCallsCount += 1 })
+    public func request(_ endpoint: NetworkEndpoint, withInterceptor: Bool) async throws -> Data {
+        requestCallsCount += 1
+        if let error = requestReturnError {
+            throw error
         } else {
-            return stubbingProvider.rx.request(MultiTarget(endpoint)).asObservable().do { _ in self.observableRequestCallsCount += 1 }
+            return endpoint.sampleData
         }
     }
     
-    public func request(_ endpoint: TargetType, withInterceptor: Bool) async throws -> Response {
-        return try await observableRequest(endpoint, withInterceptor: withInterceptor).asSingle().value
+    public func observableRequest(_ endpoint: NetworkEndpoint, withInterceptor: Bool) -> Observable<Data> {
+        if let error = requestReturnError {
+            return Observable.error(error).do(onError: { _ in self.requestCallsCount += 1 })
+        } else {
+            return Observable.just(endpoint.sampleData).do(onNext: { _ in self.requestCallsCount += 1 })
+        }
     }
 }

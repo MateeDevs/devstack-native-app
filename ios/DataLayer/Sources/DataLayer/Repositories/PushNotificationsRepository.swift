@@ -18,7 +18,7 @@ public struct PushNotificationsRepositoryImpl: PushNotificationsRepository {
     
     public func decode(_ notificationData: [AnyHashable: Any]) -> PushNotification? {
         do {
-            let jsonData = try JSONSerialization.data(withJSONObject: notificationData, options: [])
+            let jsonData = try JSONSerialization.data(withJSONObject: notificationData)
             let notification = try JSONDecoder().decode(NETPushNotification.self, from: jsonData)
             Logger.networking.info("PushNotificationsRepository: Notification received:\n\(jsonData)")
             return notification.domainModel
