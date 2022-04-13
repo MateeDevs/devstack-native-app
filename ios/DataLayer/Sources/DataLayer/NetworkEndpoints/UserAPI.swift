@@ -5,7 +5,6 @@
 
 import DomainLayer
 import Foundation
-import Moya
 
 enum UserAPI {
     case getUsersForPage(_ page: Int)
@@ -13,7 +12,7 @@ enum UserAPI {
     case updateUserById(_ id: String, data: [String: Any])
 }
 
-extension UserAPI: TargetType {
+extension UserAPI: NetworkEndpoint {
     var baseURL: URL { URL(string: "\(NetworkingConstants.baseURL)/api")! }
     var path: String {
         switch self {
@@ -25,7 +24,7 @@ extension UserAPI: TargetType {
             return "/user/\(id)"
         }
     }
-    var method: Moya.Method {
+    var method: NetworkMethod {
         switch self {
         case .updateUserById:
             return .put
@@ -36,7 +35,7 @@ extension UserAPI: TargetType {
     var headers: [String: String]? {
         nil
     }
-    var task: Task {
+    var task: NetworkTask {
         switch self {
         case .getUsersForPage(let page):
             let params: [String: Any] = [
