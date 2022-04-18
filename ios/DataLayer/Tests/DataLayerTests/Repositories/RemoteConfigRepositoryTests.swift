@@ -18,7 +18,7 @@ class RemoteConfigRepositoryTests: BaseTestCase {
     override func setupDependencies() {
         super.setupDependencies()
         
-        Given(remoteConfigProvider, .get(.any, willReturn: .just(true)))
+        Given(remoteConfigProvider, .read(.any, willReturn: .just(true)))
     }
     
     // MARK: Tests
@@ -34,6 +34,6 @@ class RemoteConfigRepositoryTests: BaseTestCase {
             .next(0, true),
             .completed(0)
         ])
-        Verify(remoteConfigProvider, 1, .get(.any))
+        Verify(remoteConfigProvider, 1, .read(.any))
     }
 }

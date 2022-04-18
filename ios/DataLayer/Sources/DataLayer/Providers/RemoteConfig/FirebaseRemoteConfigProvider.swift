@@ -27,7 +27,7 @@ public struct FirebaseRemoteConfigProvider {
 
 extension FirebaseRemoteConfigProvider: RemoteConfigProvider {
     
-    public func get(_ key: RemoteConfigCoding) -> Observable<Bool> {
+    public func read(_ key: RemoteConfigCoding) -> Observable<Bool> {
         return RemoteConfig.remoteConfig().rx.fetch().flatMap { _ -> Observable<Bool> in
             let boolValue = RemoteConfig.remoteConfig().configValue(forKey: key.rawValue).boolValue
             return Observable.just(boolValue)

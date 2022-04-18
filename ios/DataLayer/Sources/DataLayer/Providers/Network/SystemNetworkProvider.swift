@@ -53,7 +53,7 @@ extension SystemNetworkProvider: NetworkProvider {
         if let headers = endpoint.headers {
             headers.forEach { request.addValue($0.value, forHTTPHeaderField: $0.key) }
         }
-        if let authToken = keychainProvider.get(.authToken) {
+        if let authToken = keychainProvider.read(.authToken) {
             request.addValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
         }
         
