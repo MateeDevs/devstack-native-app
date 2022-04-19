@@ -18,11 +18,6 @@ extension String {
         return userInitials
     }
     
-    /// Conversion from String to Date using a given formatter.
-    func toDate(formatter: DateFormatter = Formatter.dateDefault) -> Date? {
-        formatter.date(from: self)
-    }
-    
     ///
     /// Checks whether a given email is valid
     ///
