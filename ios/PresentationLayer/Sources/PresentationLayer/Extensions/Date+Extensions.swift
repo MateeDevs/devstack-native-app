@@ -3,12 +3,13 @@
 //  Copyright © 2019 Matee. All rights reserved.
 //
 
+import DomainLayer
 import Foundation
 
 extension Date {
     
     /// Conversion from Date to String using a given formatter.
-    func toString(formatter: DateFormatter = Formatter.dateDefault) -> String {
+    func toString(formatter: DateFormatter = Formatter.Date.default) -> String {
         formatter.string(from: self)
     }
     
