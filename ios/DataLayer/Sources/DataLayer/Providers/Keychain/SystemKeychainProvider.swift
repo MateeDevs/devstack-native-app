@@ -12,26 +12,26 @@ public struct SystemKeychainProvider {
     
     public init(userDefaultsProvider: UserDefaultsProvider) {
         // Clear keychain on first run
-        if (userDefaultsProvider.get(.hasRunBefore) as Bool?) == nil {
+        if (userDefaultsProvider.read(.hasRunBefore) as Bool?) == nil {
             deleteAll()
-            userDefaultsProvider.save(.hasRunBefore, value: true)
+            userDefaultsProvider.update(.hasRunBefore, value: true)
         }
     }
 }
 
 extension SystemKeychainProvider: KeychainProvider {
     
-    public func save(_ key: KeychainCoding, value: String) {
-        guard let bundleId = Bundle.app.bundleIdentifier else { return }
-        let keychain = Keychain(service: bundleId, accessGroup: "group.\(bundleId)")
-        keychain[key.rawValue] = value
-    }
-    
-    public func get(_ key: KeychainCoding) -> String? {
+    public func read(_ key: KeychainCoding) -> String? {
         guard let bundleId = Bundle.app.bundleIdentifier else { return nil }
         let keychain = Keychain(service: bundleId, accessGroup: "group.\(bundleId)")
         guard let value = keychain[key.rawValue] else { return nil }
         return value
+    }
+    
+    public func update(_ key: KeychainCoding, value: String) {
+        guard let bundleId = Bundle.app.bundleIdentifier else { return }
+        let keychain = Keychain(service: bundleId, accessGroup: "group.\(bundleId)")
+        keychain[key.rawValue] = value
     }
     
     public func delete(_ key: KeychainCoding) {

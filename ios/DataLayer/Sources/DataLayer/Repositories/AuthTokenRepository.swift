@@ -25,8 +25,8 @@ public struct AuthTokenRepositoryImpl: AuthTokenRepository {
     public func create(_ data: LoginData) async throws -> AuthToken {
         guard let data = data.networkModel.encoded else { throw CommonError.encoding }
         let authToken = try await network.request(AuthAPI.login(data), withInterceptor: false).map(NETAuthToken.self).domainModel
-        keychain.save(.authToken, value: authToken.token)
-        keychain.save(.userId, value: authToken.userId)
+        keychain.update(.authToken, value: authToken.token)
+        keychain.update(.userId, value: authToken.userId)
         return authToken
     }
     
@@ -34,13 +34,13 @@ public struct AuthTokenRepositoryImpl: AuthTokenRepository {
         guard let data = data.networkModel.encoded else { return .error(CommonError.encoding) }
         let endpoint = AuthAPI.login(data)
         return network.observableRequest(endpoint, withInterceptor: false).map(NETAuthToken.self).mapToDomain().do { authToken in
-            self.keychain.save(.authToken, value: authToken.token)
-            self.keychain.save(.userId, value: authToken.userId)
+            self.keychain.update(.authToken, value: authToken.token)
+            self.keychain.update(.userId, value: authToken.userId)
         }
     }
     
     public func read() -> AuthToken? {
-        guard let userId = keychain.get(.userId), let token = keychain.get(.authToken) else { return nil }
+        guard let userId = keychain.read(.userId), let token = keychain.read(.authToken) else { return nil }
         return AuthToken(userId: userId, token: token)
     }
     

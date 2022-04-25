@@ -7,6 +7,6 @@ import DomainLayer
 import RxSwift
 
 public protocol RemoteConfigProvider: AutoMockable {
-    /// Try to retrieve a value for the given key
-    func get(_ key: RemoteConfigCoding) -> Observable<Bool>
+    /// Try to read a value for the given key
+    func read(_ key: RemoteConfigCoding) -> Observable<Bool>
 }
