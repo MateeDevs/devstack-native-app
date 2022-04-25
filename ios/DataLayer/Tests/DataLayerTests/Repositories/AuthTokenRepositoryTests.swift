@@ -22,8 +22,8 @@ class AuthTokenRepositoryTests: BaseTestCase {
     override func setupDependencies() {
         super.setupDependencies()
         
-        Given(keychainProvider, .get(.value(.authToken), willReturn: AuthToken.stub.token))
-        Given(keychainProvider, .get(.value(.userId), willReturn: AuthToken.stub.userId))
+        Given(keychainProvider, .read(.value(.authToken), willReturn: AuthToken.stub.token))
+        Given(keychainProvider, .read(.value(.userId), willReturn: AuthToken.stub.userId))
     }
     
     private func createRepository() -> AuthTokenRepository {
@@ -43,8 +43,8 @@ class AuthTokenRepositoryTests: BaseTestCase {
         
         XCTAssertEqual(authToken, AuthToken.stub)
         XCTAssertEqual(networkProvider.requestCallsCount, 1)
-        Verify(keychainProvider, 1, .save(.value(.authToken), value: .value(AuthToken.stub.token)))
-        Verify(keychainProvider, 1, .save(.value(.userId), value: .value(AuthToken.stub.userId)))
+        Verify(keychainProvider, 1, .update(.value(.authToken), value: .value(AuthToken.stub.token)))
+        Verify(keychainProvider, 1, .update(.value(.userId), value: .value(AuthToken.stub.userId)))
     }
     
     func testCreateRxValid() {
@@ -59,8 +59,8 @@ class AuthTokenRepositoryTests: BaseTestCase {
             .completed(0)
         ])
         XCTAssertEqual(networkProvider.requestCallsCount, 1)
-        Verify(keychainProvider, 1, .save(.value(.authToken), value: .value(AuthToken.stub.token)))
-        Verify(keychainProvider, 1, .save(.value(.userId), value: .value(AuthToken.stub.userId)))
+        Verify(keychainProvider, 1, .update(.value(.authToken), value: .value(AuthToken.stub.token)))
+        Verify(keychainProvider, 1, .update(.value(.userId), value: .value(AuthToken.stub.userId)))
     }
     
     func testCreateInvalidPassword() async throws {
@@ -73,7 +73,7 @@ class AuthTokenRepositoryTests: BaseTestCase {
         } catch {
             XCTAssertEqual(error as? RepositoryError, RepositoryError(statusCode: StatusCode.httpUnathorized, message: ""))
             XCTAssertEqual(networkProvider.requestCallsCount, 1)
-            Verify(keychainProvider, 0, .save(.any, value: .any))
+            Verify(keychainProvider, 0, .update(.any, value: .any))
         }
     }
     
@@ -89,7 +89,7 @@ class AuthTokenRepositoryTests: BaseTestCase {
             .error(0, RepositoryError(statusCode: StatusCode.httpUnathorized, message: ""))
         ])
         XCTAssertEqual(networkProvider.requestCallsCount, 1)
-        Verify(keychainProvider, 0, .save(.any, value: .any))
+        Verify(keychainProvider, 0, .update(.any, value: .any))
     }
     
     func testRead() {
@@ -98,8 +98,8 @@ class AuthTokenRepositoryTests: BaseTestCase {
         let output = repository.read()
         
         XCTAssertEqual(output, AuthToken.stub)
-        Verify(keychainProvider, 1, .get(.value(.userId)))
-        Verify(keychainProvider, 1, .get(.value(.authToken)))
+        Verify(keychainProvider, 1, .read(.value(.userId)))
+        Verify(keychainProvider, 1, .read(.value(.authToken)))
     }
     
     func testDelete() {

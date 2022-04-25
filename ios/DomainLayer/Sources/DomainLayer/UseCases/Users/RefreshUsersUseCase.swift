@@ -18,6 +18,6 @@ public struct RefreshUsersUseCaseImpl: RefreshUsersUseCase {
     }
     
     public func execute(page: Int) -> Observable<Int> {
-        userRepository.list(.remote, page: page, sortBy: nil).map { $0.count }
+        userRepository.read(.remote, page: page, sortBy: nil).map { $0.count }
     }
 }

@@ -22,6 +22,7 @@ public protocol NetworkProvider {
     /// - parameter withInterceptor: Optional parameter to specify whether build-in interceptor should be enabled.
     /// - returns: Data from a network call.
     ///
+    @discardableResult
     func request(_ endpoint: NetworkEndpoint, withInterceptor: Bool) async throws -> Data
 
     ///
@@ -37,6 +38,7 @@ public protocol NetworkProvider {
 
 // This extension exists only to provide default values for parameters
 extension NetworkProvider {
+    @discardableResult
     func request(_ endpoint: NetworkEndpoint, withInterceptor: Bool = true) async throws -> Data {
         try await request(endpoint, withInterceptor: withInterceptor)
     }

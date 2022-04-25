@@ -15,6 +15,6 @@ public struct RemoteConfigRepositoryImpl: RemoteConfigRepository {
     }
     
     public func read(_ key: RemoteConfigCoding) -> Observable<Bool> {
-        remoteConfig.get(key)
+        remoteConfig.read(key)
     }
 }

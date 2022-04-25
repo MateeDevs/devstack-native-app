@@ -114,7 +114,7 @@ class UserRepositoryTests: BaseTestCase {
         databaseProvider.observableCollectionReturnValue = User.stubList.map { $0.databaseModel }
         let output = scheduler.createObserver([User].self)
 
-        repository.list(.local, page: 0, sortBy: "id").bind(to: output).disposed(by: disposeBag)
+        repository.read(.local, page: 0, sortBy: "id").bind(to: output).disposed(by: disposeBag)
         scheduler.start()
         
         XCTAssertEqual(output.events, [
@@ -130,7 +130,7 @@ class UserRepositoryTests: BaseTestCase {
         let repository = createRepository()
         let output = scheduler.createObserver([User].self)
 
-        repository.list(.remote, page: 0, sortBy: "id").bind(to: output).disposed(by: disposeBag)
+        repository.read(.remote, page: 0, sortBy: "id").bind(to: output).disposed(by: disposeBag)
         scheduler.start()
         
         XCTAssertEqual(output.events, [
@@ -147,7 +147,7 @@ class UserRepositoryTests: BaseTestCase {
         databaseProvider.observableCollectionReturnValue = User.stubList.map { $0.databaseModel }
         let output = scheduler.createObserver([User].self)
 
-        repository.list(.both, page: 0, sortBy: "id").bind(to: output).disposed(by: disposeBag)
+        repository.read(.both, page: 0, sortBy: "id").bind(to: output).disposed(by: disposeBag)
         scheduler.start()
         
         XCTAssertEqual(output.events, [
