@@ -18,6 +18,6 @@ public struct RefreshUserUseCaseImpl: RefreshUserUseCase {
     }
     
     public func execute(id: String) -> Observable<Void> {
-        userRepository.read(.remote, id: id).mapToVoid()
+        userRepository.readRx(.remote, id: id).mapToVoid()
     }
 }
