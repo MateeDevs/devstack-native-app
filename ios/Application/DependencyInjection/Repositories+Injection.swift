@@ -3,6 +3,8 @@
 //  Copyright © 2018 Matee. All rights reserved.
 //
 
+// swiftlint:disable line_length
+
 import DataLayer
 import DomainLayer
 import Resolver
@@ -25,6 +27,12 @@ public extension Resolver {
         
         register { RemoteConfigRepositoryImpl(remoteConfigProvider: resolve()) as RemoteConfigRepository }
         
-        register { UserRepositoryImpl(databaseProvider: resolve(), networkProvider: resolve()) as UserRepository }
+        register {
+            UserRepositoryImpl(
+                newDatabaseProvider: resolve(),
+                databaseProvider: resolve(),
+                networkProvider: resolve()
+            ) as UserRepository
+        }
     }
 }

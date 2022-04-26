@@ -18,6 +18,6 @@ public struct RegistrationUseCaseImpl: RegistrationUseCase {
     }
     
     public func execute(_ data: RegistrationData) -> Observable<Void> {
-        userRepository.create(data).mapToVoid()
+        userRepository.createRx(data).mapToVoid()
     }
 }

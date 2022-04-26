@@ -24,10 +24,10 @@ public struct UpdateProfileCounterUseCaseImpl: UpdateProfileCounterUseCase {
     
     public func execute(value: Int) -> Observable<Void> {
         guard let authToken = authTokenRepository.read() else { return .error(CommonError.noAuthToken) }
-        return userRepository.read(.local, id: authToken.userId).take(1)
+        return userRepository.readRx(.local, id: authToken.userId).take(1)
             .flatMap { profile -> Observable<User> in
                 let updatedProfile = User(copy: profile, counter: profile.counter + value)
-                return userRepository.update(.local, user: updatedProfile)
+                return userRepository.updateRx(.local, user: updatedProfile)
             }.mapToVoid()
     }
 }

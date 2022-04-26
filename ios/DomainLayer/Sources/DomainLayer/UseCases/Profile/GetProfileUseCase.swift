@@ -24,6 +24,6 @@ public struct GetProfileUseCaseImpl: GetProfileUseCase {
     
     public func execute() -> Observable<User> {
         guard let authToken = authTokenRepository.read() else { return .error(CommonError.noAuthToken) }
-        return userRepository.read(.local, id: authToken.userId)
+        return userRepository.readRx(.local, id: authToken.userId)
     }
 }
