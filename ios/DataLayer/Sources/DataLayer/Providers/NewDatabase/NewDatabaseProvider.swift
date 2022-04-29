@@ -63,6 +63,9 @@ public protocol NewDatabaseProvider {
     
     /// Delete all records
     func deleteAll() throws
+    
+    /// Delete all records except specified types
+    func deleteAll(except types: [Any.Type]) throws
 }
 
 // This extension exists only to provide default values for parameters

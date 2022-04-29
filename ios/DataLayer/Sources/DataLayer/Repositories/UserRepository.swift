@@ -77,7 +77,7 @@ public struct UserRepositoryImpl: UserRepository {
     public func update(_ sourceType: SourceType, user: User) async throws -> User {
         switch sourceType {
         case .local:
-            return try newDatabase.update(user, model: .fullModel)
+            return try newDatabase.update(user.databaseModel, model: .fullModel).domainModel
         case .remote:
             guard let data = user.networkModel.encoded else { throw CommonError.encoding }
             let endpoint = UserAPI.updateUserById(user.id, data: data)

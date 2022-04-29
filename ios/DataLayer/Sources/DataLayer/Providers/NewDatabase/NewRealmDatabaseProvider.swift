@@ -62,7 +62,7 @@ extension NewRealmDatabaseProvider: NewDatabaseProvider {
             realmObjects = realmObjects.sorted(byKeyPath: sortBy, ascending: ascending)
         }
         
-        if let objects = realmObjects.toArray() as? [T] {
+        if let objects = Array(realmObjects) as? [T] {
             return objects
         } else {
             throw CommonError.realmNotAvailable
@@ -105,6 +105,18 @@ extension NewRealmDatabaseProvider: NewDatabaseProvider {
         let realm = try Realm()
         try realm.write {
             realm.deleteAll()
+        }
+    }
+    
+    public func deleteAll(except types: [Any.Type]) throws {
+        let realm = try Realm()
+        try realm.write {
+            realm.configuration.objectTypes?
+                .filter { type in types.contains { $0 == type } == false }
+                .forEach { objectType in
+                    guard let type = objectType as? Object.Type else { return }
+                    realm.delete(realm.objects(type))
+                }
         }
     }
 }
