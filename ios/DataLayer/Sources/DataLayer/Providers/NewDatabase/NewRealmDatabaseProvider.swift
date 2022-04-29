@@ -87,6 +87,20 @@ extension NewRealmDatabaseProvider: NewDatabaseProvider {
         return objects
     }
     
+    public func delete<T>(_ object: T) throws {
+        guard let realmObject = object as? Object else { throw CommonError.realmNotAvailable }
+        let realm = try Realm()
+        try realm.write {
+            realm.delete(realmObject)
+        }
+    }
+    
+    public func delete<T>(_ objects: [T]) throws {
+        try objects.forEach { object in
+            try delete(object)
+        }
+    }
+    
     public func deleteAll() throws {
         let realm = try Realm()
         try realm.write {

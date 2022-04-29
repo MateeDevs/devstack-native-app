@@ -47,6 +47,20 @@ public protocol NewDatabaseProvider {
     @discardableResult
     func update<T>(_ objects: [T], model: UpdateModel) throws -> [T]
     
+    ///
+    /// Generic function that deletes a given object.
+    ///
+    /// - parameter object: Object to be deleted.
+    ///
+    func delete<T>(_ object: T) throws
+    
+    ///
+    /// Generic function that deletes a collection of objects.
+    ///
+    /// - parameter objects: Objects to be deleted
+    ///
+    func delete<T>(_ objects: [T]) throws
+    
     /// Delete all records
     func deleteAll() throws
 }
