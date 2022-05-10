@@ -1,5 +1,9 @@
 # Matee KMP DevStack
 
+## Login credentials
+ - email = petr.chmelar@matee.cz
+ - password = 11111111
+
 ## About
 This repo contains our template for multiplatform mobile project. Both Android and iOS implementations
 are present with shared module containing all common business logic organized in Clean architecture.  

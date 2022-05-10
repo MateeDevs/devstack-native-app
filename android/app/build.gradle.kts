@@ -78,7 +78,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Dependency.Compose.version
+        kotlinCompilerExtensionVersion = Dependency.Compose.compilerExtensionVersion
     }
 
     applicationVariants.all {
@@ -98,6 +98,7 @@ dependencies {
     implementation(project(Project.Android.users))
     implementation(project(Project.Android.profile))
     implementation(project(Project.Android.recipes))
+    implementation(project(Project.Android.books))
 
     implementation(Dependency.Kotlin.stdlib)
     implementation(Dependency.AndroidX.core)

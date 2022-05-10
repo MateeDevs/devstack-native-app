@@ -23,6 +23,7 @@ import com.google.accompanist.insets.navigationBarsPadding
 import com.google.accompanist.insets.statusBarsPadding
 import cz.matee.and.core.ui.util.BackPressOverride
 import cz.matee.and.core.util.get
+import cz.matee.devstack.kmp.android.login.BuildConfig
 import cz.matee.devstack.kmp.android.login.R
 import cz.matee.devstack.kmp.android.login.vm.AuthViewModel
 import cz.matee.devstack.kmp.android.shared.navigation.Feature
