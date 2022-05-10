@@ -9,4 +9,5 @@ sealed class Feature(val route: String, @StringRes val titleRes: Int) {
     object Users : Feature("users", R.string.bottom_bar_item_1)
     object Profile : Feature("profile", R.string.bottom_bar_item_2)
     object Recipes : Feature("recipes", R.string.bottom_bar_item_3)
+    object Books : Feature("books", R.string.bottom_bar_item_4)
 }

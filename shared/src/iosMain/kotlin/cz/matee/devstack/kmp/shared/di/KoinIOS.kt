@@ -3,6 +3,8 @@ package cz.matee.devstack.kmp.shared.di
 import cz.matee.devstack.kmp.shared.infrastructure.local.DriverFactory
 import cz.matee.devstack.kmp.shared.system.Config
 import cz.matee.devstack.kmp.shared.system.ConfigImpl
+import cz.matee.devstack.kmp.shared.system.Log
+import cz.matee.devstack.kmp.shared.system.Logger
 import kotlinx.cinterop.ObjCClass
 import kotlinx.cinterop.ObjCProtocol
 import kotlinx.cinterop.getOriginalKotlinClass
@@ -23,6 +25,7 @@ fun initKoinIos(doOnStartup: () -> Unit) = initKoin {
 actual val platformModule = module {
     single<Config> { ConfigImpl() }
     single { DriverFactory() }
+    single<Logger> { Log }
 }
 
 fun Koin.get(objCProtocol: ObjCProtocol): Any {

@@ -41,9 +41,9 @@ class LocationControllerImpl(
     override val locationFlow = callbackFlow {
         if (locationListeners.isEmpty() || (locationListeners.isNotEmpty() && !listening))
             startListening()
-        offer(lastLocation)
+        this.trySend(lastLocation).isSuccess
 
-        val callback = LocationUpdateCallback { location -> offer(location) }
+        val callback = LocationUpdateCallback { location -> this.trySend(location).isSuccess }
         accessListeners { add(callback) }
 
         awaitClose {

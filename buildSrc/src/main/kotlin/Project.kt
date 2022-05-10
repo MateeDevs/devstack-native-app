@@ -16,6 +16,7 @@ object Project {
         const val profile = "$root:profile"
         const val users = "$root:users"
         const val recipes = "$root:recipes"
+        const val books = "$root:books"
     }
 }
 

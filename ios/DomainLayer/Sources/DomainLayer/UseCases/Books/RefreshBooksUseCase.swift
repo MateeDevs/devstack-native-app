@@ -8,7 +8,7 @@ import Foundation
 import RxSwift
 
 public extension RefreshBooksUseCase {
-    func execute() -> Observable<Event<Void>> {
-        return createObservable(self)
+    func execute(params: Int) -> Observable<Event<Void>> {
+        return createObservable(self, params)
     }
 }
