@@ -10,12 +10,12 @@ public enum UserDefaultsCoding: String, CaseIterable {
 }
 
 public protocol UserDefaultsProvider: AutoMockable {
+    
+    /// Try to read a value for the given key
+    func read<T>(_ key: UserDefaultsCoding) -> T?
 
-    /// Save the given key/value combination
-    func save<T>(_ key: UserDefaultsCoding, value: T)
-
-    /// Try to retrieve a value for the given key
-    func get<T>(_ key: UserDefaultsCoding) -> T?
+    /// Create or update the given key with a given value
+    func update<T>(_ key: UserDefaultsCoding, value: T)
 
     /// Delete value for the given key
     func delete(_ key: UserDefaultsCoding)

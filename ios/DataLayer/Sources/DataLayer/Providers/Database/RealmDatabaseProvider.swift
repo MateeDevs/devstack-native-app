@@ -5,6 +5,7 @@
 
 import DomainLayer
 import Foundation
+import OSLog
 import RealmSwift
 import RxRealm
 import RxSwift
@@ -119,7 +120,7 @@ extension RealmDatabaseProvider: DatabaseProvider {
                 realm.deleteAll()
             }
         } catch let error as NSError {
-            Logger.error("Error during Realm deleteAll operation:\n%@", "\(error)", category: .app)
+            Logger.app.error("Error during Realm deleteAll operation:\n\(error)")
         }
     }
 }

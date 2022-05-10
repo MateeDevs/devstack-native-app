@@ -19,7 +19,7 @@ class GetUsersUseCaseTests: BaseTestCase {
     override func setupDependencies() {
         super.setupDependencies()
         
-        Given(userRepository, .list(.value(.local), page: .any, sortBy: .any, willReturn: .just(User.stubList)))
+        Given(userRepository, .read(.value(.local), page: .any, sortBy: .any, willReturn: .just(User.stubList)))
     }
     
     // MARK: Tests
@@ -35,6 +35,6 @@ class GetUsersUseCaseTests: BaseTestCase {
             .next(0, User.stubList),
             .completed(0)
         ])
-        Verify(userRepository, 1, .list(.value(.local), page: 0, sortBy: "id"))
+        Verify(userRepository, 1, .read(.value(.local), page: 0, sortBy: "id"))
     }
 }

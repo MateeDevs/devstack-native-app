@@ -15,8 +15,6 @@ class LoginViewModelTests: BaseTestCase {
     
     // MARK: Dependencies
     
-    private let flowController = FlowControllerMock(navigationController: UINavigationController())
-    
     private let loginUseCase = LoginUseCaseMock()
     private let trackAnalyticsEventUseCase = TrackAnalyticsEventUseCaseMock()
     
@@ -35,7 +33,8 @@ class LoginViewModelTests: BaseTestCase {
     // MARK: Tests
     
     func testAppear() async {
-        let vm = LoginViewModel(flowController: flowController)
+        let fc = FlowControllerMock(navigationController: UINavigationController())
+        let vm = LoginViewModel(flowController: fc)
         
         vm.onAppear()
         
@@ -43,7 +42,8 @@ class LoginViewModelTests: BaseTestCase {
     }
 
     func testLoginEmpty() async {
-        let vm = LoginViewModel(flowController: flowController)
+        let fc = FlowControllerMock(navigationController: UINavigationController())
+        let vm = LoginViewModel(flowController: fc)
         
         vm.onIntent(.changeEmail(LoginData.stubEmpty.email))
         vm.onIntent(.changePassword(LoginData.stubEmpty.password))
@@ -51,13 +51,14 @@ class LoginViewModelTests: BaseTestCase {
         
         XCTAssert(!vm.state.loginButtonLoading)
         XCTAssertEqual(vm.state.alert, AlertData(title: L10n.invalid_credentials))
-        XCTAssertEqual(flowController.handleFlowValue, nil)
+        XCTAssertEqual(fc.handleFlowValue, nil)
         Verify(loginUseCase, 0, .execute(.any))
         Verify(trackAnalyticsEventUseCase, 0, .execute(.any))
     }
     
     func testLoginValid() async {
-        let vm = LoginViewModel(flowController: flowController)
+        let fc = FlowControllerMock(navigationController: UINavigationController())
+        let vm = LoginViewModel(flowController: fc)
         
         vm.onIntent(.changeEmail(LoginData.stubValid.email))
         vm.onIntent(.changePassword(LoginData.stubValid.password))
@@ -65,13 +66,14 @@ class LoginViewModelTests: BaseTestCase {
         
         XCTAssert(vm.state.loginButtonLoading)
         XCTAssertEqual(vm.state.alert, nil)
-        XCTAssertEqual(flowController.handleFlowValue, .login(.dismiss))
+        XCTAssertEqual(fc.handleFlowValue, .login(.dismiss))
         Verify(loginUseCase, 1, .execute(.value(.stubValid)))
         Verify(trackAnalyticsEventUseCase, 1, .execute(.value(LoginEvent.loginButtonTap.analyticsEvent)))
     }
     
     func testLoginInvalidPassword() async {
-        let vm = LoginViewModel(flowController: flowController)
+        let fc = FlowControllerMock(navigationController: UINavigationController())
+        let vm = LoginViewModel(flowController: fc)
         
         vm.onIntent(.changeEmail(LoginData.stubInvalidPassword.email))
         vm.onIntent(.changePassword(LoginData.stubInvalidPassword.password))
@@ -79,19 +81,20 @@ class LoginViewModelTests: BaseTestCase {
         
         XCTAssert(!vm.state.loginButtonLoading)
         XCTAssertEqual(vm.state.alert, AlertData(title: L10n.invalid_credentials))
-        XCTAssertEqual(flowController.handleFlowValue, nil)
+        XCTAssertEqual(fc.handleFlowValue, nil)
         Verify(loginUseCase, 1, .execute(.value(.stubInvalidPassword)))
         Verify(trackAnalyticsEventUseCase, 0, .execute(.any))
     }
 
     func testRegister() async {
-        let vm = LoginViewModel(flowController: flowController)
+        let fc = FlowControllerMock(navigationController: UINavigationController())
+        let vm = LoginViewModel(flowController: fc)
         
         await vm.onIntent(.register).value
         
         XCTAssert(!vm.state.loginButtonLoading)
         XCTAssertEqual(vm.state.alert, nil)
-        XCTAssertEqual(flowController.handleFlowValue, .login(.showRegistration))
+        XCTAssertEqual(fc.handleFlowValue, .login(.showRegistration))
         Verify(loginUseCase, 0, .execute(.any))
         Verify(trackAnalyticsEventUseCase, 1, .execute(.value(LoginEvent.registerButtonTap.analyticsEvent)))
     }

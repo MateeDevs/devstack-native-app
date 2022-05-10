@@ -12,14 +12,14 @@ public struct SystemUserDefaultsProvider {
 
 extension SystemUserDefaultsProvider: UserDefaultsProvider {
     
-    public func save<T>(_ key: UserDefaultsCoding, value: T) {
-        guard let bundleId = Bundle.app.bundleIdentifier, let defaults = UserDefaults(suiteName: "group.\(bundleId)") else { return }
-        defaults.set(value, forKey: key.rawValue)
-    }
-    
-    public func get<T>(_ key: UserDefaultsCoding) -> T? {
+    public func read<T>(_ key: UserDefaultsCoding) -> T? {
         guard let bundleId = Bundle.app.bundleIdentifier, let defaults = UserDefaults(suiteName: "group.\(bundleId)") else { return nil }
         return defaults.object(forKey: key.rawValue) as? T
+    }
+    
+    public func update<T>(_ key: UserDefaultsCoding, value: T) {
+        guard let bundleId = Bundle.app.bundleIdentifier, let defaults = UserDefaults(suiteName: "group.\(bundleId)") else { return }
+        defaults.set(value, forKey: key.rawValue)
     }
     
     public func delete(_ key: UserDefaultsCoding) {

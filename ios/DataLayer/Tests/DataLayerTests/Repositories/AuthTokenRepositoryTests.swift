@@ -22,8 +22,8 @@ class AuthTokenRepositoryTests: BaseTestCase {
     override func setupDependencies() {
         super.setupDependencies()
         
-        Given(keychainProvider, .get(.value(.authToken), willReturn: AuthToken.stub.token))
-        Given(keychainProvider, .get(.value(.userId), willReturn: AuthToken.stub.userId))
+        Given(keychainProvider, .read(.value(.authToken), willReturn: AuthToken.stub.token))
+        Given(keychainProvider, .read(.value(.userId), willReturn: AuthToken.stub.userId))
     }
     
     private func createRepository() -> AuthTokenRepository {
@@ -42,9 +42,9 @@ class AuthTokenRepositoryTests: BaseTestCase {
         let authToken = try await repository.create(.stubValid)
         
         XCTAssertEqual(authToken, AuthToken.stub)
-        XCTAssertEqual(networkProvider.observableRequestCallsCount, 1)
-        Verify(keychainProvider, 1, .save(.value(.authToken), value: .value(AuthToken.stub.token)))
-        Verify(keychainProvider, 1, .save(.value(.userId), value: .value(AuthToken.stub.userId)))
+        XCTAssertEqual(networkProvider.requestCallsCount, 1)
+        Verify(keychainProvider, 1, .update(.value(.authToken), value: .value(AuthToken.stub.token)))
+        Verify(keychainProvider, 1, .update(.value(.userId), value: .value(AuthToken.stub.userId)))
     }
     
     func testCreateRxValid() {
@@ -58,28 +58,28 @@ class AuthTokenRepositoryTests: BaseTestCase {
             .next(0, AuthToken.stub),
             .completed(0)
         ])
-        XCTAssertEqual(networkProvider.observableRequestCallsCount, 1)
-        Verify(keychainProvider, 1, .save(.value(.authToken), value: .value(AuthToken.stub.token)))
-        Verify(keychainProvider, 1, .save(.value(.userId), value: .value(AuthToken.stub.userId)))
+        XCTAssertEqual(networkProvider.requestCallsCount, 1)
+        Verify(keychainProvider, 1, .update(.value(.authToken), value: .value(AuthToken.stub.token)))
+        Verify(keychainProvider, 1, .update(.value(.userId), value: .value(AuthToken.stub.userId)))
     }
     
     func testCreateInvalidPassword() async throws {
         let repository = createRepository()
-        networkProvider.observableRequestReturnError = RepositoryError(statusCode: StatusCode.httpUnathorized, message: "")
+        networkProvider.requestReturnError = RepositoryError(statusCode: StatusCode.httpUnathorized, message: "")
         
         do {
             _ = try await repository.create(.stubInvalidPassword)
             XCTFail("Should throw")
         } catch {
             XCTAssertEqual(error as? RepositoryError, RepositoryError(statusCode: StatusCode.httpUnathorized, message: ""))
-            XCTAssertEqual(networkProvider.observableRequestCallsCount, 1)
-            Verify(keychainProvider, 0, .save(.any, value: .any))
+            XCTAssertEqual(networkProvider.requestCallsCount, 1)
+            Verify(keychainProvider, 0, .update(.any, value: .any))
         }
     }
     
     func testCreateRxInvalidPassword() {
         let repository = createRepository()
-        networkProvider.observableRequestReturnError = RepositoryError(statusCode: StatusCode.httpUnathorized, message: "")
+        networkProvider.requestReturnError = RepositoryError(statusCode: StatusCode.httpUnathorized, message: "")
         let output = scheduler.createObserver(AuthToken.self)
         
         repository.createRx(.stubInvalidPassword).bind(to: output).disposed(by: disposeBag)
@@ -88,8 +88,8 @@ class AuthTokenRepositoryTests: BaseTestCase {
         XCTAssertEqual(output.events, [
             .error(0, RepositoryError(statusCode: StatusCode.httpUnathorized, message: ""))
         ])
-        XCTAssertEqual(networkProvider.observableRequestCallsCount, 1)
-        Verify(keychainProvider, 0, .save(.any, value: .any))
+        XCTAssertEqual(networkProvider.requestCallsCount, 1)
+        Verify(keychainProvider, 0, .update(.any, value: .any))
     }
     
     func testRead() {
@@ -98,8 +98,8 @@ class AuthTokenRepositoryTests: BaseTestCase {
         let output = repository.read()
         
         XCTAssertEqual(output, AuthToken.stub)
-        Verify(keychainProvider, 1, .get(.value(.userId)))
-        Verify(keychainProvider, 1, .get(.value(.authToken)))
+        Verify(keychainProvider, 1, .read(.value(.userId)))
+        Verify(keychainProvider, 1, .read(.value(.authToken)))
     }
     
     func testDelete() {

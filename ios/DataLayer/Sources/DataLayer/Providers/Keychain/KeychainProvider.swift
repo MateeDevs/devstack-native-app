@@ -11,12 +11,12 @@ public enum KeychainCoding: String, CaseIterable {
 }
 
 public protocol KeychainProvider: AutoMockable {
+    
+    /// Try to read a value for the given key
+    func read(_ key: KeychainCoding) -> String?
 
-    /// Save the given key/value combination
-    func save(_ key: KeychainCoding, value: String)
-
-    /// Try to retrieve a value for the given key
-    func get(_ key: KeychainCoding) -> String?
+    /// Create or update the given key with a given value
+    func update(_ key: KeychainCoding, value: String)
 
     /// Delete value for the given key
     func delete(_ key: KeychainCoding)

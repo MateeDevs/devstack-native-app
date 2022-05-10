@@ -4,6 +4,7 @@
 //
 
 import DomainLayer
+import OSLog
 import RxCocoa
 import RxSwift
 import UIKit
@@ -20,11 +21,11 @@ public class FlowController: NSObject {
     
     public init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        Logger.info("%@ initialized", "\(type(of: self))", category: .lifecycle)
+        Logger.lifecycle.info("\(type(of: self)) initialized")
     }
     
     deinit {
-        Logger.info("%@ deinitialized", "\(type(of: self))", category: .lifecycle)
+        Logger.lifecycle.info("\(type(of: self)) deinitialized")
     }
     
     /// Override this method in a subclass and return initial ViewController of the flow.

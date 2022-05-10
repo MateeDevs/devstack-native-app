@@ -9,6 +9,7 @@ import Atlantis
 
 import DataLayer
 import DomainLayer
+import OSLog
 import PresentationLayer
 import Resolver
 import UIKit
@@ -77,14 +78,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #if ALPHA
         Atlantis.start()
         Environment.type = .alpha
-        Logger.info("ALPHA environment", category: .app)
+        Logger.app.info("ALPHA environment")
         #elseif BETA
         Atlantis.start()
         Environment.type = .beta
-        Logger.info("BETA environment", category: .app)
+        Logger.app.info("BETA environment")
         #elseif PRODUCTION
         Environment.type = .production
-        Logger.info("PRODUCTION environment", category: .app)
+        Logger.app.info("PRODUCTION environment")
         #endif
         
         #if DEBUG

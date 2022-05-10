@@ -40,13 +40,13 @@ class UserRepositoryTests: BaseTestCase {
             .next(0, User.stub),
             .completed(0)
         ])
-        XCTAssertEqual(networkProvider.observableRequestCallsCount, 1)
+        XCTAssertEqual(networkProvider.requestCallsCount, 1)
         XCTAssertEqual(databaseProvider.saveObjectCallsCount, 1)
     }
     
     func testCreateExistingEmail() {
         let repository = createRepository()
-        networkProvider.observableRequestReturnError = RepositoryError(statusCode: StatusCode.httpConflict, message: "")
+        networkProvider.requestReturnError = RepositoryError(statusCode: StatusCode.httpConflict, message: "")
         let output = scheduler.createObserver(User.self)
 
         repository.create(.stubExistingEmail).bind(to: output).disposed(by: disposeBag)
@@ -55,7 +55,7 @@ class UserRepositoryTests: BaseTestCase {
         XCTAssertEqual(output.events, [
             .error(0, RepositoryError(statusCode: StatusCode.httpConflict, message: ""))
         ])
-        XCTAssertEqual(networkProvider.observableRequestCallsCount, 1)
+        XCTAssertEqual(networkProvider.requestCallsCount, 1)
         XCTAssertEqual(databaseProvider.saveObjectCallsCount, 0)
     }
     
@@ -72,7 +72,7 @@ class UserRepositoryTests: BaseTestCase {
             .completed(0)
         ])
         XCTAssertEqual(databaseProvider.observableObjectCallsCount, 1)
-        XCTAssertEqual(networkProvider.observableRequestCallsCount, 0)
+        XCTAssertEqual(networkProvider.requestCallsCount, 0)
         XCTAssertEqual(databaseProvider.saveObjectCallsCount, 0)
     }
     
@@ -88,7 +88,7 @@ class UserRepositoryTests: BaseTestCase {
             .completed(0)
         ])
         XCTAssertEqual(databaseProvider.observableObjectCallsCount, 0)
-        XCTAssertEqual(networkProvider.observableRequestCallsCount, 1)
+        XCTAssertEqual(networkProvider.requestCallsCount, 1)
         XCTAssertEqual(databaseProvider.saveObjectCallsCount, 1)
     }
     
@@ -105,7 +105,7 @@ class UserRepositoryTests: BaseTestCase {
             .completed(0)
         ])
         XCTAssertEqual(databaseProvider.observableObjectCallsCount, 1)
-        XCTAssertEqual(networkProvider.observableRequestCallsCount, 1)
+        XCTAssertEqual(networkProvider.requestCallsCount, 1)
         XCTAssertEqual(databaseProvider.saveObjectCallsCount, 1)
     }
     
@@ -114,7 +114,7 @@ class UserRepositoryTests: BaseTestCase {
         databaseProvider.observableCollectionReturnValue = User.stubList.map { $0.databaseModel }
         let output = scheduler.createObserver([User].self)
 
-        repository.list(.local, page: 0, sortBy: "id").bind(to: output).disposed(by: disposeBag)
+        repository.read(.local, page: 0, sortBy: "id").bind(to: output).disposed(by: disposeBag)
         scheduler.start()
         
         XCTAssertEqual(output.events, [
@@ -122,7 +122,7 @@ class UserRepositoryTests: BaseTestCase {
             .completed(0)
         ])
         XCTAssertEqual(databaseProvider.observableCollectionCallsCount, 1)
-        XCTAssertEqual(networkProvider.observableRequestCallsCount, 0)
+        XCTAssertEqual(networkProvider.requestCallsCount, 0)
         XCTAssertEqual(databaseProvider.saveCollectionCallsCount, 0)
     }
     
@@ -130,7 +130,7 @@ class UserRepositoryTests: BaseTestCase {
         let repository = createRepository()
         let output = scheduler.createObserver([User].self)
 
-        repository.list(.remote, page: 0, sortBy: "id").bind(to: output).disposed(by: disposeBag)
+        repository.read(.remote, page: 0, sortBy: "id").bind(to: output).disposed(by: disposeBag)
         scheduler.start()
         
         XCTAssertEqual(output.events, [
@@ -138,7 +138,7 @@ class UserRepositoryTests: BaseTestCase {
             .completed(0)
         ])
         XCTAssertEqual(databaseProvider.observableCollectionCallsCount, 0)
-        XCTAssertEqual(networkProvider.observableRequestCallsCount, 1)
+        XCTAssertEqual(networkProvider.requestCallsCount, 1)
         XCTAssertEqual(databaseProvider.saveCollectionCallsCount, 1)
     }
 
@@ -147,7 +147,7 @@ class UserRepositoryTests: BaseTestCase {
         databaseProvider.observableCollectionReturnValue = User.stubList.map { $0.databaseModel }
         let output = scheduler.createObserver([User].self)
 
-        repository.list(.both, page: 0, sortBy: "id").bind(to: output).disposed(by: disposeBag)
+        repository.read(.both, page: 0, sortBy: "id").bind(to: output).disposed(by: disposeBag)
         scheduler.start()
         
         XCTAssertEqual(output.events, [
@@ -155,7 +155,7 @@ class UserRepositoryTests: BaseTestCase {
             .completed(0)
         ])
         XCTAssertEqual(databaseProvider.observableCollectionCallsCount, 1)
-        XCTAssertEqual(networkProvider.observableRequestCallsCount, 1)
+        XCTAssertEqual(networkProvider.requestCallsCount, 1)
         XCTAssertEqual(databaseProvider.saveCollectionCallsCount, 1)
     }
     
@@ -170,7 +170,7 @@ class UserRepositoryTests: BaseTestCase {
             .next(0, User.stub),
             .completed(0)
         ])
-        XCTAssertEqual(networkProvider.observableRequestCallsCount, 0)
+        XCTAssertEqual(networkProvider.requestCallsCount, 0)
         XCTAssertEqual(databaseProvider.saveObjectCallsCount, 1)
     }
     
@@ -185,7 +185,7 @@ class UserRepositoryTests: BaseTestCase {
             .next(0, User.stub),
             .completed(0)
         ])
-        XCTAssertEqual(networkProvider.observableRequestCallsCount, 1)
+        XCTAssertEqual(networkProvider.requestCallsCount, 1)
         XCTAssertEqual(databaseProvider.saveObjectCallsCount, 1)
     }
     
@@ -200,7 +200,7 @@ class UserRepositoryTests: BaseTestCase {
             .next(0, User.stub),
             .completed(0)
         ])
-        XCTAssertEqual(networkProvider.observableRequestCallsCount, 1)
+        XCTAssertEqual(networkProvider.requestCallsCount, 1)
         XCTAssertEqual(databaseProvider.saveObjectCallsCount, 2)
     }
 }
