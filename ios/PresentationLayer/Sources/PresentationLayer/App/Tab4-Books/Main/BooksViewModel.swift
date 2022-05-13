@@ -3,27 +3,29 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
+import CoreGraphics
 import DevstackKmpShared
 import DomainLayer
 import Resolver
 import RxCocoa
 import RxSwift
-import CoreGraphics
 
-class JobWrapper{
+// swiftlint:disable line_length file_length
+
+class JobWrapper {
     var job: Kotlinx_coroutines_coreJob?
     
-    func setJob(_ job: Kotlinx_coroutines_coreJob?){
+    func setJob(_ job: Kotlinx_coroutines_coreJob?) {
         self.job = job
     }
     
 }
 
-extension UseCaseResult{
+extension UseCaseResult {
     
 //    func executes<In: Any,Out:Void>(params: In) async throws -> Out {
     func executes<In: Any>(params: In) async throws {
-        var jobWrapper: JobWrapper = JobWrapper()
+        let jobWrapper: JobWrapper = JobWrapper()
         return try await withTaskCancellationHandler(
             operation: {
                 try await withCheckedThrowingContinuation { continuation in
@@ -34,7 +36,7 @@ extension UseCaseResult{
                         onSuccess: { result in
                             guard result is ResultSuccess else {
 //                                guard let errorResult = result as! ResultError else { return }
-                                continuation.resume(throwing: (result as! ResultError).error.throwable!.asError())
+                                continuation.resume(throwing: (result as! ResultError).error.throwable!.asError()) // swiftlint:disable:this force_cast
                                 return
                             }
                             continuation.resume()
@@ -48,8 +50,9 @@ extension UseCaseResult{
                 }
             },
             onCancel: {[jobWrapper] in
-                print("Refresh: onCancel\(jobWrapper.job)")
-                jobWrapper.job?.cancel(cause: nil)
+                guard let job = jobWrapper.job else { return }
+                print("Refresh: onCancel\(job)")
+                job.cancel(cause: nil)
                 print("Refresh: coroutine has been cancelled")
             }
         )
@@ -57,12 +60,10 @@ extension UseCaseResult{
 
 }
 
-extension BaseViewModel{
-    
-    
+extension BaseViewModel {
     
     func execute(params: Any, uc: UseCaseResult) async throws -> Result<AnyObject> {
-        var jobWrapper: JobWrapper = JobWrapper()
+        let jobWrapper: JobWrapper = JobWrapper()
         return try await withTaskCancellationHandler(
             operation: {
                 try await withCheckedThrowingContinuation { continuation in
@@ -82,13 +83,12 @@ extension BaseViewModel{
                 }
             },
             onCancel: {[jobWrapper] in
-                print("Refresh: onCancel\(jobWrapper.job)")
-                jobWrapper.job?.cancel(cause: nil)
+                guard let job = jobWrapper.job else { return }
+                print("Refresh: onCancel\(job)")
+                job.cancel(cause: nil)
                 print("Refresh: coroutine has been cancelled")
             }
         )
-        
-        
         
 //        let job = SwiftCoroutinesKt.subscribe(
 //            uc,
@@ -122,7 +122,6 @@ final class BooksViewModel: BaseViewModel, ViewModelUIKit {
     }
     
     let refreshBooks: RefreshBooksUseCase
-
     
     init(
         getBooksUseCase: GetBooksUseCase,
@@ -138,7 +137,6 @@ final class BooksViewModel: BaseViewModel, ViewModelUIKit {
             page: page.asObserver()
         )
         
-        
         // MARK: Transformations
 //        Task{
 //            for n in 0...1000 {
@@ -147,20 +145,15 @@ final class BooksViewModel: BaseViewModel, ViewModelUIKit {
 //                do{
 //                    print("Refresh start:\(n)")
 //                    try await refreshBooksUseCase.execute(params: 10_000).asSingle().value
-////                    let result = try await refreshBooksUseCase.invoke(params: 1000)
+//                    // let result = try await refreshBooksUseCase.invoke(params: 1000)
 //                    print("Refresh done:\(n)")
 //                    sleep(1)
 //                }catch{
 //                    print("Refresh failed:\(n)")
 //                }
-////                try await UC2(n: n, refreshBooksUseCase: refreshBooksUseCase)
+//                // try await UC2(n: n, refreshBooksUseCase: refreshBooksUseCase)
 //            }
 //        }
-        
-        
-    
-            
-        
         
         let books = getBooksUseCase.execute().ignoreErrors().share(replay: 1)
         
@@ -185,7 +178,6 @@ final class BooksViewModel: BaseViewModel, ViewModelUIKit {
         
         super.init()
         
-        
 //        for n in 0...1000 {
 //            execute(params: 10_000_000,uc: refreshBooksUseCase,
 //                    onSuccess: { result in
@@ -203,16 +195,14 @@ final class BooksViewModel: BaseViewModel, ViewModelUIKit {
 //            })
 //        }
         
-    
-        
     }
     
     var task: Task<Void, Never>?
     
-    func start(){
+    func start() {
         task = Task<Void, Never> {
             for n in 0...1000 {
-                if Task.isCancelled {break}
+                if Task.isCancelled { break }
                 do {
                     print("Refresh start:\(n)")
                     
@@ -226,7 +216,7 @@ final class BooksViewModel: BaseViewModel, ViewModelUIKit {
         }
     }
     
-    func stop(){
+    func stop() {
         if let task = task, !task.isCancelled {
             task.cancel()
         }
