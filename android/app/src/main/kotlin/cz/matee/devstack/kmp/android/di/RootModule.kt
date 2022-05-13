@@ -2,6 +2,7 @@ package cz.matee.devstack.kmp.android.di
 
 import android.content.Context
 import androidx.activity.ComponentActivity
+import cz.matee.devstack.kmp.android.books.di.booksModule
 import cz.matee.devstack.kmp.android.login.di.loginModule
 import cz.matee.devstack.kmp.android.profile.di.profileModule
 import cz.matee.devstack.kmp.android.shared.di.androidSharedModule
@@ -21,7 +22,8 @@ fun ComponentActivity.initDependencyInjection() {
             androidSharedModule,
             loginModule,
             profileModule,
-            usersModule
+            usersModule,
+            booksModule
         )
     }
 }

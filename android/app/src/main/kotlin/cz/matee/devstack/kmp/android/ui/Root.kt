@@ -11,7 +11,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.*
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.insets.navigationBarsPadding
 import cz.matee.devstack.kmp.android.login.LoginRoot
 import cz.matee.devstack.kmp.android.profile.ProfileRoot
@@ -20,11 +22,12 @@ import cz.matee.devstack.kmp.android.shared.navigation.Feature
 import cz.matee.devstack.kmp.android.shared.style.Values
 import cz.matee.devstack.kmp.android.shared.util.composition.LocalScaffoldPadding
 import cz.matee.devstack.kmp.android.shared.util.extension.get
+import cz.matee.devstack.kmp.android.books.BooksRoot
 import cz.matee.devstack.kmp.android.users.UsersRoot
 import cz.matee.devstack.kmp.shared.domain.usecase.user.IsUserLoggedInUseCase
 
 val navBarFeatures = listOf(
-    Feature.Users, Feature.Profile, Feature.Recipes
+    Feature.Users, Feature.Profile, Feature.Recipes, Feature.Books
 )
 
 @Composable
@@ -52,6 +55,7 @@ fun Root() {
                     UsersRoot(navController)
                     ProfileRoot(navController)
                     RecipesRoot(navController)
+                    BooksRoot(navController)
                 }
             }
     }
@@ -86,6 +90,7 @@ private fun BottomBar(navController: NavHostController) {
                                 Feature.Users -> Icon(Icons.Filled.List, "")
                                 Feature.Profile -> Icon(Icons.Filled.Person, "")
                                 Feature.Recipes -> Icon(Icons.Filled.Build, "")
+                                Feature.Books -> Icon(Icons.Filled.Build, "")
                                 else -> error("Icon not handled for ${screen.route}")
                             }
                         },

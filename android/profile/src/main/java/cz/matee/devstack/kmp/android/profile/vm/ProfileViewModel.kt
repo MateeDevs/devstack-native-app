@@ -59,7 +59,7 @@ class ProfileViewModel(
     }
 
     suspend fun reloadBooks() {
-        when (val res = refreshBooks()) {
+        when (val res = refreshBooks(10)) {
             is Result.Error -> _errorFlow.emit(res.error)
             is Result.Success -> {
                 // Do nothing

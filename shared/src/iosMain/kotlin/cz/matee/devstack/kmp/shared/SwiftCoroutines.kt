@@ -2,6 +2,7 @@ package cz.matee.devstack.kmp.shared
 
 import cz.matee.devstack.kmp.shared.base.Result
 import cz.matee.devstack.kmp.shared.base.usecase.*
+import cz.matee.devstack.kmp.shared.domain.usecase.book.RefreshBooksUseCase
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import kotlin.coroutines.CoroutineContext
@@ -11,6 +12,28 @@ import kotlin.native.concurrent.freeze
 val iosDefaultScope: CoroutineScope = object : CoroutineScope {
     override val coroutineContext: CoroutineContext
         get() = SupervisorJob() + Dispatchers.Default
+}
+
+interface KMMViewModel {
+
+    fun l(uc: RefreshBooksUseCase) {
+
+        val a = execute(1, uc, onSuccess = {
+
+        }, {
+
+        })
+
+    }
+
+    fun <Params : Any, Out : Any> execute(
+        params: Params,
+        uc: UseCaseResult<Params, Out>,
+        onSuccess: (item: Result<Out>) -> Unit,
+        onThrow: (error: Throwable) -> Unit
+    ) {
+        uc.subscribe(params = params, onSuccess, onThrow)
+    }
 }
 
 sealed class SuspendWrapperParent<Params, Out>(
