@@ -5,7 +5,7 @@
 
 import SwiftUI
 
-struct LoginViewFields: View {
+struct EmailAndPasswordFields: View {
     
     private let email: String
     private let password: String
@@ -51,9 +51,9 @@ struct LoginViewFields: View {
 }
 
 #if DEBUG
-struct LoginViewFields_Previews: PreviewProvider {
+struct EmailAndPasswordFields_Previews: PreviewProvider {
     static var previews: some View {
-        LoginViewFields(
+        EmailAndPasswordFields(
             email: "abc@abc.cz",
             password: "1111",
             onEmailChange: { _ in },

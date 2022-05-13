@@ -6,6 +6,17 @@
 import SwiftUI
 import UIKit
 
+extension Flow {
+    enum Login: Equatable {
+        case dismiss
+        case showRegistration
+    }
+    
+    enum Registration: Equatable {
+        case pop
+    }
+}
+
 protocol OnboardingFlowControllerDelegate: AnyObject {
     func setupMain()
 }
@@ -15,11 +26,6 @@ class OnboardingFlowController: FlowController {
     weak var delegate: OnboardingFlowControllerDelegate?
     
     override func setup() -> UIViewController {
-        // UIKit
-//        let vm = LoginViewModelUIKit()
-//        return LoginViewController.instantiate(fc: self, vm: vm)
-        
-        // SwiftUI
         let vm = LoginViewModel(flowController: self)
         return UIHostingController(rootView: LoginView(viewModel: vm))
     }
@@ -48,8 +54,8 @@ extension OnboardingFlowController {
     }
     
     private func showRegistration() {
-        let vm = RegistrationViewModel()
-        let vc = RegistrationViewController.instantiate(fc: self, vm: vm)
+        let vm = RegistrationViewModel(flowController: self)
+        let vc = UIHostingController(rootView: RegistrationView(viewModel: vm))
         navigationController.show(vc, sender: nil)
     }
 }
@@ -58,11 +64,7 @@ extension OnboardingFlowController {
 extension OnboardingFlowController {
     func handleRegistrationFlow(_ flow: Flow.Registration) {
         switch flow {
-        case .popRegistration: popRegistration()
+        case .pop: pop()
         }
-    }
-    
-    private func popRegistration() {
-        navigationController.popViewController(animated: true)
     }
 }

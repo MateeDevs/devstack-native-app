@@ -43,6 +43,11 @@ public class FlowController: NSObject {
         })
     }
     
+    /// Default for poping a current view controller. Override in a subclass if you want a custom behavior.
+    func pop() {
+        navigationController.popViewController(animated: true)
+    }
+    
     /// Starts child flow controller and returns initial ViewController.
     func startChildFlow(_ flowController: FlowController) -> UIViewController {
         childControllers.append(flowController)

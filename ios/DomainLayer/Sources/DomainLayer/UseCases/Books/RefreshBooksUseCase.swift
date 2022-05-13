@@ -9,6 +9,7 @@ import RxSwift
 
 public extension RefreshBooksUseCase {
     func execute(params: Int) -> Observable<Event<Void>> {
-        return createObservable(self, params)
+        //return createObservable(self, params)
+        return .just(.next(()))
     }
 }

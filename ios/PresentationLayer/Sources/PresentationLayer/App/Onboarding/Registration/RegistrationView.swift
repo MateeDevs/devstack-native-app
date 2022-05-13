@@ -1,16 +1,16 @@
 //
-//  Created by Petr Chmelar on 20.02.2022
+//  Created by Petr Chmelar on 13.05.2022
 //  Copyright © 2022 Matee. All rights reserved.
 //
 
 import DomainLayer
 import SwiftUI
 
-struct LoginView: View {
+struct RegistrationView: View {
     
-    @ObservedObject private var viewModel: LoginViewModel
+    @ObservedObject private var viewModel: RegistrationViewModel
     
-    init(viewModel: LoginViewModel) {
+    init(viewModel: RegistrationViewModel) {
         self.viewModel = viewModel
     }
     
@@ -24,11 +24,11 @@ struct LoginView: View {
             )
             Spacer()
             PrimaryAndSecondaryButtons(
-                primaryButtonTitle: L10n.login_view_login_button_title,
-                primaryButtonLoading: viewModel.state.loginButtonLoading,
-                onPrimaryButtonTap: { viewModel.onIntent(.login) },
-                secondaryButtonTitle: L10n.login_view_register_button_title,
-                onSecondaryButtonTap: { viewModel.onIntent(.register) }
+                primaryButtonTitle: L10n.login_view_register_button_title,
+                primaryButtonLoading: viewModel.state.registerButtonLoading,
+                onPrimaryButtonTap: { viewModel.onIntent(.register) },
+                secondaryButtonTitle: L10n.login_view_login_button_title,
+                onSecondaryButtonTap: { viewModel.onIntent(.login) }
             )
         }
         .alert(item: Binding<AlertData?>(
@@ -42,14 +42,14 @@ struct LoginView: View {
 #if DEBUG
 import Resolver
 
-struct LoginView_Previews: PreviewProvider {
+struct RegistrationView_Previews: PreviewProvider {
     static var previews: some View {
         DomainLayer.Environment.locale = .init(identifier: "cs")
         Resolver.registerUseCasesForPreviews()
         
-        let vm = LoginViewModel(flowController: nil)
+        let vm = RegistrationViewModel(flowController: nil)
         return PreviewGroup {
-            LoginView(viewModel: vm)
+            RegistrationView(viewModel: vm)
         }
     }
 }
