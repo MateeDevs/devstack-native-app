@@ -21,7 +21,7 @@ class UpdateUserUseCaseTests: BaseTestCase {
     override func setupDependencies() {
         super.setupDependencies()
         
-        Given(userRepository, .update(.value(.remote), user: .value(updatedUser), willReturn: .just(updatedUser)))
+        Given(userRepository, .updateRx(.value(.remote), user: .value(updatedUser), willReturn: .just(updatedUser)))
     }
     
     // MARK: Tests
@@ -37,6 +37,6 @@ class UpdateUserUseCaseTests: BaseTestCase {
             .next(0, true),
             .completed(0)
         ])
-        Verify(userRepository, 1, .update(.value(.remote), user: .value(updatedUser)))
+        Verify(userRepository, 1, .updateRx(.value(.remote), user: .value(updatedUser)))
     }
 }

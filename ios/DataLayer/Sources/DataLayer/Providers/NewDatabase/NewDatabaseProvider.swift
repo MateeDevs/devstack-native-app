@@ -3,9 +3,10 @@
 //  Copyright © 2022 Matee. All rights reserved.
 //
 
+import DomainLayer
 import Foundation
 
-public protocol NewDatabaseProvider {
+public protocol NewDatabaseProvider: AutoMockable {
     
     ///
     /// Generic function for reading a specified object from database.

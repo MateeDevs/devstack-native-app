@@ -3,8 +3,6 @@
 //  Copyright © 2018 Matee. All rights reserved.
 //
 
-// swiftlint:disable line_length
-
 import DataLayer
 import DomainLayer
 import Resolver

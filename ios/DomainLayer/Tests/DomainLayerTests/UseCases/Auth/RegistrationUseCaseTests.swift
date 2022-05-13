@@ -19,7 +19,7 @@ class RegistrationUseCaseTests: BaseTestCase {
     override func setupDependencies() {
         super.setupDependencies()
         
-        Given(userRepository, .create(.any, willReturn: .just(User.stub)))
+        Given(userRepository, .createRx(.any, willReturn: .just(User.stub)))
     }
     
     // MARK: Tests
@@ -35,6 +35,6 @@ class RegistrationUseCaseTests: BaseTestCase {
             .next(0, true),
             .completed(0)
         ])
-        Verify(userRepository, 1, .create(.value(.stubValid)))
+        Verify(userRepository, 1, .createRx(.value(.stubValid)))
     }
 }

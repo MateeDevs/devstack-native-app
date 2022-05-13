@@ -19,7 +19,7 @@ class RefreshUserUseCaseTests: BaseTestCase {
     override func setupDependencies() {
         super.setupDependencies()
         
-        Given(userRepository, .read(.value(.remote), id: .value(User.stub.id), willReturn: .just(User.stub)))
+        Given(userRepository, .readRx(.value(.remote), id: .value(User.stub.id), willReturn: .just(User.stub)))
     }
     
     // MARK: Tests
@@ -35,6 +35,6 @@ class RefreshUserUseCaseTests: BaseTestCase {
             .next(0, true),
             .completed(0)
         ])
-        Verify(userRepository, 1, .read(.value(.remote), id: .value(User.stub.id)))
+        Verify(userRepository, 1, .readRx(.value(.remote), id: .value(User.stub.id)))
     }
 }
