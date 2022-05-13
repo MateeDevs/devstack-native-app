@@ -18,6 +18,6 @@ public struct GetUserUseCaseImpl: GetUserUseCase {
     }
     
     public func execute(id: String) -> Observable<User> {
-        userRepository.read(.local, id: id)
+        userRepository.readRx(.local, id: id)
     }
 }

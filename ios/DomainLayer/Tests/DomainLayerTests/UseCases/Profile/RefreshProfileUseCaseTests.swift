@@ -21,7 +21,7 @@ class RefreshProfileUseCaseTests: BaseTestCase {
         super.setupDependencies()
         
         Given(authTokenRepository, .read(willReturn: AuthToken.stub))
-        Given(userRepository, .read(.value(.remote), id: .value(User.stub.id), willReturn: .just(User.stub)))
+        Given(userRepository, .readRx(.value(.remote), id: .value(User.stub.id), willReturn: .just(User.stub)))
     }
     
     // MARK: Tests
@@ -41,6 +41,6 @@ class RefreshProfileUseCaseTests: BaseTestCase {
             .completed(0)
         ])
         Verify(authTokenRepository, 1, .read())
-        Verify(userRepository, 1, .read(.value(.remote), id: .value(User.stub.id)))
+        Verify(userRepository, 1, .readRx(.value(.remote), id: .value(User.stub.id)))
     }
 }

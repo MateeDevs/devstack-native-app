@@ -18,6 +18,6 @@ public struct UpdateUserUseCaseImpl: UpdateUserUseCase {
     }
     
     public func execute(user: User) -> Observable<Void> {
-        userRepository.update(.remote, user: user).mapToVoid()
+        userRepository.updateRx(.remote, user: user).mapToVoid()
     }
 }

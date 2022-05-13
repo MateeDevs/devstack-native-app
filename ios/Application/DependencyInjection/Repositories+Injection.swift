@@ -25,6 +25,12 @@ public extension Resolver {
         
         register { RemoteConfigRepositoryImpl(remoteConfigProvider: resolve()) as RemoteConfigRepository }
         
-        register { UserRepositoryImpl(databaseProvider: resolve(), networkProvider: resolve()) as UserRepository }
+        register {
+            UserRepositoryImpl(
+                newDatabaseProvider: resolve(),
+                databaseProvider: resolve(),
+                networkProvider: resolve()
+            ) as UserRepository
+        }
     }
 }

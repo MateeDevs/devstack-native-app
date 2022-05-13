@@ -24,6 +24,6 @@ public struct RefreshProfileUseCaseImpl: RefreshProfileUseCase {
     
     public func execute() -> Observable<Void> {
         guard let authToken = authTokenRepository.read() else { return .error(CommonError.noAuthToken) }
-        return userRepository.read(.remote, id: authToken.userId).mapToVoid()
+        return userRepository.readRx(.remote, id: authToken.userId).mapToVoid()
     }
 }

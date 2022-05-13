@@ -23,8 +23,8 @@ class UpdateProfileCounterUseCaseTests: BaseTestCase {
         super.setupDependencies()
         
         Given(authTokenRepository, .read(willReturn: AuthToken.stub))
-        Given(userRepository, .read(.value(.local), id: .value(User.stub.id), willReturn: .just(User.stub)))
-        Given(userRepository, .update(.value(.local), user: .value(updatedUser), willReturn: .just(updatedUser)))
+        Given(userRepository, .readRx(.value(.local), id: .value(User.stub.id), willReturn: .just(User.stub)))
+        Given(userRepository, .updateRx(.value(.local), user: .value(updatedUser), willReturn: .just(updatedUser)))
     }
     
     // MARK: Tests
@@ -44,7 +44,7 @@ class UpdateProfileCounterUseCaseTests: BaseTestCase {
             .completed(0)
         ])
         Verify(authTokenRepository, 1, .read())
-        Verify(userRepository, 1, .read(.value(.local), id: .value(User.stub.id)))
-        Verify(userRepository, 1, .update(.value(.local), user: .value(updatedUser)))
+        Verify(userRepository, 1, .readRx(.value(.local), id: .value(User.stub.id)))
+        Verify(userRepository, 1, .updateRx(.value(.local), user: .value(updatedUser)))
     }
 }
