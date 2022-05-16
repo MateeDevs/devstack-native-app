@@ -57,5 +57,7 @@ dependencies {
     implementation(Dependency.Koin.android)
     implementation(Dependency.Koin.compose)
 
+    implementation(Dependency.Accompanist.placeholder)
+
     androidTestImplementation(Dependency.Compose.uiTest)
 }

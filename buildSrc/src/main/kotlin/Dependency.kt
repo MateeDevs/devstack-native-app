@@ -133,4 +133,9 @@ object Dependency {
 
         const val location = "com.google.android.gms:play-services-location:$version"
     }
+
+    object Accompanist {
+        private const val version = "0.23.1"
+        const val placeholder = "com.google.accompanist:accompanist-placeholder:$version"
+    }
 }
