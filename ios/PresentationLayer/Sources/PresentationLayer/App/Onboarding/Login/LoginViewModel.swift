@@ -78,11 +78,6 @@ final class LoginViewModel: BaseViewModel, ViewModel, ObservableObject {
     }
 
     private func login() async {
-        guard !state.email.isEmpty && !state.password.isEmpty else {
-            state.alert = .init(title: L10n.invalid_credentials)
-            return
-        }
-        
         do {
             state.loginButtonLoading = true
             let data = LoginData(email: state.email, password: state.password)
@@ -91,8 +86,7 @@ final class LoginViewModel: BaseViewModel, ViewModel, ObservableObject {
             flowController?.handleFlow(.login(.dismiss))
         } catch {
             state.loginButtonLoading = false
-            let messages = ErrorMessages([.httpUnathorized: L10n.invalid_credentials], defaultMessage: L10n.signing_failed)
-            state.alert = .init(title: error.toString(messages))
+            state.alert = .init(title: error.localizedDescription)
         }
     }
 

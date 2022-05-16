@@ -23,11 +23,13 @@ public struct AuthTokenRepositoryImpl: AuthTokenRepository {
     }
     
     public func create(_ data: LoginData) async throws -> AuthToken {
-        guard let data = data.networkModel.encoded else { throw CommonError.encoding }
-        let authToken = try await network.request(AuthAPI.login(data), withInterceptor: false).map(NETAuthToken.self).domainModel
-        keychain.update(.authToken, value: authToken.token)
-        keychain.update(.userId, value: authToken.userId)
-        return authToken
+        do {
+            let data = try data.networkModel.encode()
+            let authToken = try await network.request(AuthAPI.login(data), withInterceptor: false).map(NETAuthToken.self).domainModel
+            keychain.update(.authToken, value: authToken.token)
+            keychain.update(.userId, value: authToken.userId)
+            return authToken
+        } catch { throw AuthError(error) }
     }
     
     public func createRx(_ data: LoginData) -> Observable<AuthToken> {

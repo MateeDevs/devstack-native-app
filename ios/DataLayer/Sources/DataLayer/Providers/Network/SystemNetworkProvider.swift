@@ -76,13 +76,13 @@ extension SystemNetworkProvider: NetworkProvider {
         
         // Catch HTTP errors
         if let httpResponse = response as? HTTPURLResponse {
-            if withInterceptor, httpResponse.statusCode == StatusCode.httpUnathorized.rawValue {
+            if withInterceptor, httpResponse.statusCode == NetworkStatusCode.unathorized.rawValue {
                 delegate?.didReceiveHttpUnauthorized()
             }
             
             if !(200...299).contains(httpResponse.statusCode) {
-                throw RepositoryError(
-                    statusCode: StatusCode(rawValue: httpResponse.statusCode) ?? .networkError,
+                throw NetworkProviderError.requestFailed(
+                    statusCode: NetworkStatusCode(rawValue: httpResponse.statusCode) ?? .unknown,
                     message: String(data: data, encoding: .utf8) ?? ""
                 )
             }
@@ -98,8 +98,11 @@ extension SystemNetworkProvider: NetworkProvider {
                     let data = try await self.request(endpoint, withInterceptor: withInterceptor)
                     observer.onNext(data)
                     observer.onCompleted()
-                } catch {
-                    observer.onError(error)
+                } catch let NetworkProviderError.requestFailed(statusCode, message) {
+                    observer.onError(RepositoryError(
+                        statusCode: StatusCode(rawValue: statusCode.rawValue) ?? .unknown,
+                        message: message)
+                    )
                 }
             }
             return Disposables.create()
