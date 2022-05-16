@@ -65,13 +65,13 @@ class AuthTokenRepositoryTests: BaseTestCase {
     
     func testCreateInvalidPassword() async throws {
         let repository = createRepository()
-        networkProvider.requestReturnError = RepositoryError(statusCode: StatusCode.httpUnathorized, message: "")
+        networkProvider.requestReturnError = NetworkProviderError.requestFailed(statusCode: .unathorized, message: "")
         
         do {
             _ = try await repository.create(.stubInvalidPassword)
             XCTFail("Should throw")
         } catch {
-            XCTAssertEqual(error as? RepositoryError, RepositoryError(statusCode: StatusCode.httpUnathorized, message: ""))
+            XCTAssertEqual(error as? AuthError, AuthError.invalidCredentials)
             XCTAssertEqual(networkProvider.requestCallsCount, 1)
             Verify(keychainProvider, 0, .update(.any, value: .any))
         }

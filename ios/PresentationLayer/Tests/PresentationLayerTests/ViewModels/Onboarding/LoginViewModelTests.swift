@@ -24,10 +24,8 @@ class LoginViewModelTests: BaseTestCase {
         Resolver.register { self.loginUseCase as LoginUseCase }
         Resolver.register { self.trackAnalyticsEventUseCase as TrackAnalyticsEventUseCase }
         
-        Given(loginUseCase, .execute(
-            .value(.stubInvalidPassword),
-            willThrow: RepositoryError(statusCode: StatusCode.httpUnathorized, message: "")
-        ))
+        Given(loginUseCase, .execute(.value(.stubEmpty), willThrow: AuthError.invalidEmail))
+        Given(loginUseCase, .execute(.value(.stubInvalidPassword), willThrow: AuthError.invalidCredentials))
     }
 
     // MARK: Tests
@@ -50,9 +48,9 @@ class LoginViewModelTests: BaseTestCase {
         await vm.onIntent(.login).value
         
         XCTAssert(!vm.state.loginButtonLoading)
-        XCTAssertEqual(vm.state.alert, AlertData(title: L10n.invalid_credentials))
+        XCTAssertEqual(vm.state.alert, AlertData(title: L10n.invalid_email))
         XCTAssertEqual(fc.handleFlowValue, nil)
-        Verify(loginUseCase, 0, .execute(.any))
+        Verify(loginUseCase, 1, .execute(.value(.stubEmpty)))
         Verify(trackAnalyticsEventUseCase, 0, .execute(.any))
     }
     
