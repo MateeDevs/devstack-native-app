@@ -39,17 +39,17 @@ public struct NewRealmDatabaseProvider {
 
 extension NewRealmDatabaseProvider: NewDatabaseProvider {
     public func read<T>(_ type: T.Type, id: String) throws -> T {
-        guard let realmType = T.self as? Object.Type else { throw CommonError.realmNotAvailable }
+        guard let realmType = T.self as? Object.Type else { throw NewDatabaseProviderError.typeNotRepresentable }
         let realm = try Realm()
         if let object = realm.object(ofType: realmType.self, forPrimaryKey: id) as? T {
             return object
         } else {
-            throw CommonError.realmNotAvailable
+            throw NewDatabaseProviderError.objectNotFound
         }
     }
     
     public func read<T>(_ type: T.Type, predicate: NSPredicate?, sortBy: String?, ascending: Bool) throws -> [T] {
-        guard let realmType = T.self as? Object.Type else { throw CommonError.realmNotAvailable }
+        guard let realmType = T.self as? Object.Type else { throw NewDatabaseProviderError.typeNotRepresentable }
         
         let realm = try Realm()
         var realmObjects = realm.objects(realmType.self)
@@ -65,13 +65,13 @@ extension NewRealmDatabaseProvider: NewDatabaseProvider {
         if let objects = Array(realmObjects) as? [T] {
             return objects
         } else {
-            throw CommonError.realmNotAvailable
+            return []
         }
     }
     
     @discardableResult
     public func update<T>(_ object: T, model: UpdateModel) throws -> T {
-        guard let realmObject = object as? Object else { throw CommonError.realmNotAvailable }
+        guard let realmObject = object as? Object else { throw NewDatabaseProviderError.typeNotRepresentable }
         let realm = try Realm()
         try realm.write {
             realm.create(type(of: realmObject).self, value: model.value(for: realmObject), update: .modified)
@@ -88,7 +88,7 @@ extension NewRealmDatabaseProvider: NewDatabaseProvider {
     }
     
     public func delete<T>(_ object: T) throws {
-        guard let realmObject = object as? Object else { throw CommonError.realmNotAvailable }
+        guard let realmObject = object as? Object else { throw NewDatabaseProviderError.typeNotRepresentable }
         let realm = try Realm()
         try realm.write {
             realm.delete(realmObject)

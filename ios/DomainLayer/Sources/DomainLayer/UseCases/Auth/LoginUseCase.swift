@@ -19,7 +19,13 @@ public struct LoginUseCaseImpl: LoginUseCase {
     }
     
     public func execute(_ data: LoginData) async throws {
-        _ = try await authTokenRepository.create(data)
+        if data.email.isEmpty {
+            throw AuthError.invalidEmail
+        } else if data.password.isEmpty {
+            throw AuthError.invalidPassword
+        } else {
+            _ = try await authTokenRepository.create(data)
+        }
     }
     
     public func executeRx(_ data: LoginData) -> Observable<Void> {
