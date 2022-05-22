@@ -4,7 +4,7 @@
 //
 
 public protocol HandlePushNotificationUseCase: AutoMockable {
-    func execute(_ notificationData: [AnyHashable: Any]) -> PushNotification?
+    func execute(_ notificationData: [AnyHashable: Any]) throws -> PushNotification
 }
 
 public struct HandlePushNotificationUseCaseImpl: HandlePushNotificationUseCase {
@@ -15,7 +15,7 @@ public struct HandlePushNotificationUseCaseImpl: HandlePushNotificationUseCase {
         self.pushNotificationsRepository = pushNotificationsRepository
     }
     
-    public func execute(_ notificationData: [AnyHashable: Any]) -> PushNotification? {
-        pushNotificationsRepository.decode(notificationData)
+    public func execute(_ notificationData: [AnyHashable: Any]) throws -> PushNotification {
+        try pushNotificationsRepository.decode(notificationData)
     }
 }

@@ -3,27 +3,25 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-import RxSwift
-
 public protocol GetProfileUseCase: AutoMockable {
-    func execute() -> Observable<User>
+    func execute(_ sourceType: SourceType) async throws -> User
 }
 
 public struct GetProfileUseCaseImpl: GetProfileUseCase {
     
-    private let authTokenRepository: AuthTokenRepository
     private let userRepository: UserRepository
+    private let getProfileIdUseCase: GetProfileIdUseCase
     
     public init(
-        authTokenRepository: AuthTokenRepository,
-        userRepository: UserRepository
+        userRepository: UserRepository,
+        getProfileIdUseCase: GetProfileIdUseCase
     ) {
-        self.authTokenRepository = authTokenRepository
         self.userRepository = userRepository
+        self.getProfileIdUseCase = getProfileIdUseCase
     }
     
-    public func execute() -> Observable<User> {
-        guard let authToken = authTokenRepository.read() else { return .error(CommonError.noAuthToken) }
-        return userRepository.readRx(.local, id: authToken.userId)
+    public func execute(_ sourceType: SourceType) async throws -> User {
+        let profileId = try getProfileIdUseCase.execute()
+        return try await userRepository.read(sourceType, id: profileId)
     }
 }

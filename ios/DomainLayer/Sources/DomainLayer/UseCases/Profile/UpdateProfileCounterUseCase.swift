@@ -3,31 +3,27 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-import RxSwift
-
 public protocol UpdateProfileCounterUseCase: AutoMockable {
-    func execute(value: Int) -> Observable<Void>
+    func execute(value: Int) async throws
 }
 
 public struct UpdateProfileCounterUseCaseImpl: UpdateProfileCounterUseCase {
     
-    private let authTokenRepository: AuthTokenRepository
     private let userRepository: UserRepository
+    private let getProfileIdUseCase: GetProfileIdUseCase
     
     public init(
-        authTokenRepository: AuthTokenRepository,
-        userRepository: UserRepository
+        userRepository: UserRepository,
+        getProfileIdUseCase: GetProfileIdUseCase
     ) {
-        self.authTokenRepository = authTokenRepository
         self.userRepository = userRepository
+        self.getProfileIdUseCase = getProfileIdUseCase
     }
     
-    public func execute(value: Int) -> Observable<Void> {
-        guard let authToken = authTokenRepository.read() else { return .error(CommonError.noAuthToken) }
-        return userRepository.readRx(.local, id: authToken.userId).take(1)
-            .flatMap { profile -> Observable<User> in
-                let updatedProfile = User(copy: profile, counter: profile.counter + value)
-                return userRepository.updateRx(.local, user: updatedProfile)
-            }.mapToVoid()
+    public func execute(value: Int) async throws {
+        let profileId = try getProfileIdUseCase.execute()
+        let profile = try await userRepository.read(.local, id: profileId)
+        let updatedProfile = User(copy: profile, counter: value)
+        _ = try await userRepository.update(.local, user: updatedProfile)
     }
 }

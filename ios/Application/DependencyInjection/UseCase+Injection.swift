@@ -14,6 +14,7 @@ public extension Resolver {
         register { TrackAnalyticsEventUseCaseImpl(analyticsRepository: resolve()) as TrackAnalyticsEventUseCase }
         
         // Auth
+        register { IsUserLoggedUseCaseImpl(getProfileIdUseCase: resolve()) as IsUserLoggedUseCase }
         register { LoginUseCaseImpl(authTokenRepository: resolve()) as LoginUseCase }
         register { LogoutUseCaseImpl(authTokenRepository: resolve()) as LogoutUseCase }
         register { RegistrationUseCaseImpl(userRepository: resolve()) as RegistrationUseCase }
@@ -22,10 +23,9 @@ public extension Resolver {
         register { GetCurrentLocationUseCaseImpl(locationRepository: resolve()) as GetCurrentLocationUseCase }
         
         // Profile
-        register { GetProfileUseCaseImpl(authTokenRepository: resolve(), userRepository: resolve()) as GetProfileUseCase }
+        register { GetProfileUseCaseImpl(userRepository: resolve(), getProfileIdUseCase: resolve()) as GetProfileUseCase }
         register { GetProfileIdUseCaseImpl(authTokenRepository: resolve()) as GetProfileIdUseCase }
-        register { RefreshProfileUseCaseImpl(authTokenRepository: resolve(), userRepository: resolve()) as RefreshProfileUseCase }
-        register { UpdateProfileCounterUseCaseImpl(authTokenRepository: resolve(), userRepository: resolve()) as UpdateProfileCounterUseCase }
+        register { UpdateProfileCounterUseCaseImpl(userRepository: resolve(), getProfileIdUseCase: resolve()) as UpdateProfileCounterUseCase }
         
         // PushNotification
         register { HandlePushNotificationUseCaseImpl(pushNotificationsRepository: resolve()) as HandlePushNotificationUseCase }
@@ -36,11 +36,9 @@ public extension Resolver {
         
         // User
         register { GetUserUseCaseImpl(userRepository: resolve()) as GetUserUseCase }
-        register { RefreshUserUseCaseImpl(userRepository: resolve()) as RefreshUserUseCase }
         register { UpdateUserUseCaseImpl(userRepository: resolve()) as UpdateUserUseCase }
         
         // Users
         register { GetUsersUseCaseImpl(userRepository: resolve()) as GetUsersUseCase }
-        register { RefreshUsersUseCaseImpl(userRepository: resolve()) as RefreshUsersUseCase }
     }
 }

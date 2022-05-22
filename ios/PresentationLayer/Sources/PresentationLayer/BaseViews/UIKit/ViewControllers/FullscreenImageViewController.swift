@@ -3,6 +3,7 @@
 //  Copyright © 2019 Matee. All rights reserved.
 //
 
+import AlamofireImage
 import UIKit
 
 class FullscreenImageViewController: BaseViewController {

@@ -6,7 +6,6 @@
 import DomainLayer
 import Firebase
 import FirebaseRemoteConfig
-import RxSwift
 
 public struct FirebaseRemoteConfigProvider {
     
@@ -27,10 +26,8 @@ public struct FirebaseRemoteConfigProvider {
 
 extension FirebaseRemoteConfigProvider: RemoteConfigProvider {
     
-    public func read(_ key: RemoteConfigCoding) -> Observable<Bool> {
-        return RemoteConfig.remoteConfig().rx.fetch().flatMap { _ -> Observable<Bool> in
-            let boolValue = RemoteConfig.remoteConfig().configValue(forKey: key.rawValue).boolValue
-            return Observable.just(boolValue)
-        }
+    public func read(_ key: RemoteConfigCoding) async throws -> Bool {
+        try await RemoteConfig.remoteConfig().fetch()
+        return RemoteConfig.remoteConfig().configValue(forKey: key.rawValue).boolValue
     }
 }

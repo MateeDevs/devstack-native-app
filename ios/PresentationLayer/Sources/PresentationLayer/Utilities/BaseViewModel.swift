@@ -33,6 +33,7 @@ public class BaseViewModel {
         tasks.forEach { $0.cancel() }
     }
     
+    @discardableResult
     func executeTask(_ task: Task<Void, Never>) -> Task<Void, Never> {
         tasks.append(task)
         return Task {

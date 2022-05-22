@@ -5,8 +5,6 @@
 
 import DomainLayer
 import OSLog
-import RxCocoa
-import RxSwift
 import UIKit
 
 @MainActor
@@ -43,6 +41,11 @@ public class FlowController: NSObject {
         })
     }
     
+    /// Default for poping a current view controller. Override in a subclass if you want a custom behavior.
+    func pop() {
+        navigationController.popViewController(animated: true)
+    }
+    
     /// Starts child flow controller and returns initial ViewController.
     func startChildFlow(_ flowController: FlowController) -> UIViewController {
         childControllers.append(flowController)
@@ -77,15 +80,5 @@ extension FlowController: UINavigationControllerDelegate {
             !navigationController.viewControllers.contains(fromViewController),
             fromViewController == rootViewController else { return }
         stopFlow()
-    }
-}
-
-@MainActor
-extension Reactive where Base: FlowController {
-    /// Bindable sink for `handleFlow` method
-    var handleFlow: Binder<Flow> {
-        Binder(self.base) { base, flow in
-            base.handleFlow(flow)
-        }
     }
 }

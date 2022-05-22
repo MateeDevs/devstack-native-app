@@ -8,6 +8,7 @@ import SwiftUI
 struct SecondaryButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
+            .font(Font(AppTheme.Fonts.secondaryButton as CTFont))
             .foregroundColor(Color(AppTheme.Colors.secondaryButtonTitle))
             .padding()
     }

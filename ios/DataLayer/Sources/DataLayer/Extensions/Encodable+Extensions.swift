@@ -6,15 +6,6 @@
 import Foundation
 
 extension Encodable {
-    private var data: Data? {
-        try? JSONEncoder().encode(self)
-    }
-    
-    var encoded: [String: Any]? {
-        guard let data = data else { return nil }
-        return (try? JSONSerialization.jsonObject(with: data)) as? [String: Any]
-    }
-    
     func encode() throws -> [String: Any] {
         let data = try JSONEncoder().encode(self)
         guard let json = try JSONSerialization.jsonObject(with: data) as? [String: Any] else {

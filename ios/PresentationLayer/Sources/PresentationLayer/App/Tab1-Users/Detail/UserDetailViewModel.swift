@@ -1,85 +1,56 @@
 //
-//  Created by Petr Chmelar on 28/02/2019.
-//  Copyright © 2019 Matee. All rights reserved.
+//  Created by Petr Chmelar on 21.05.2022
+//  Copyright © 2022 Matee. All rights reserved.
 //
 
 import DomainLayer
 import Resolver
-import RxCocoa
-import RxSwift
+import SwiftUI
 
-final class UserDetailViewModel: BaseViewModel, ViewModelUIKit {
+final class UserDetailViewModel: BaseViewModel, ViewModel, ObservableObject {
     
-    let input: Input
-    let output: Output
+    // MARK: Dependencies
+    private var userId: String
+    private weak var flowController: FlowController?
     
-    struct Input {
-        let refreshTrigger: AnyObserver<Void>
+    @Injected private(set) var getUserUseCase: GetUserUseCase
+    @Injected private(set) var trackAnalyticsEventUseCase: TrackAnalyticsEventUseCase
+
+    init(userId: String, flowController: FlowController?) {
+        self.userId = userId
+        self.flowController = flowController
+        super.init()
     }
     
-    struct Output {
-        let user: OutputUser
-        let isRefreshing: Driver<Bool>
-    }
-
-    struct OutputUser {
-        let fullName: Driver<String>
-        let initials: Driver<String>
-        let imageURL: Driver<String?>
+    // MARK: Lifecycle
+    
+    override func onAppear() {
+        super.onAppear()
+        executeTask(Task { await loadUser() })
+        trackAnalyticsEventUseCase.execute(UserEvent.userDetail(id: userId).analyticsEvent)
     }
     
-    convenience init(userId: String) {
-        self.init(
-            userId: userId,
-            getUserUseCase: Resolver.resolve(),
-            refreshUserUseCase: Resolver.resolve(),
-            trackAnalyticsEventUseCase: Resolver.resolve()
-        )
+    // MARK: State
+    
+    @Published private(set) var state: State = State()
+
+    struct State {
+        var user: User?
     }
     
-    init(
-        userId: String,
-        getUserUseCase: GetUserUseCase,
-        refreshUserUseCase: RefreshUserUseCase,
-        trackAnalyticsEventUseCase: TrackAnalyticsEventUseCase
-    ) {
-        
-        // MARK: Setup inputs
-        
-        let refreshTrigger = PublishSubject<Void>()
-        
-        self.input = Input(
-            refreshTrigger: refreshTrigger.asObserver()
-        )
+    // MARK: Intent
+    enum Intent {
+    }
 
-        // MARK: Transformations
-        
-        let user = getUserUseCase.execute(id: userId).ignoreErrors().share(replay: 1)
-        
-        let activity = ActivityIndicator()
-        
-        let refreshUser = refreshTrigger.flatMap { _ -> Observable<Void> in
-            refreshUserUseCase.execute(id: userId).trackActivity(activity).ignoreErrors()
-        }.share()
-        
-        let isRefreshing = Observable<Bool>.merge(
-            activity.asObservable(),
-            refreshUser.map { _ in false }
-        )
-
-        // MARK: Setup outputs
-        
-        self.output = Output(
-            user: OutputUser(
-                fullName: user.map { $0.fullName }.asDriver(),
-                initials: user.map { $0.fullName.initials }.asDriver(),
-                imageURL: user.map { $0.pictureUrl }.asDriver()
-            ),
-            isRefreshing: isRefreshing.asDriver()
-        )
-        
-        super.init(
-            trackScreenAppear: { trackAnalyticsEventUseCase.execute(UserEvent.userDetail(id: userId).analyticsEvent) }
-        )
+    @discardableResult
+    func onIntent(_ intent: Intent) -> Task<Void, Never> {}
+    
+    // MARK: Private
+    
+    private func loadUser() async {
+        do {
+            state.user = try await getUserUseCase.execute(.local, id: userId)
+            state.user = try await getUserUseCase.execute(.remote, id: userId)
+        } catch {}
     }
 }

@@ -15,8 +15,8 @@ public extension Resolver {
     ) {
         register { FirebaseAnalyticsProvider() as AnalyticsProvider }
         register { RealmDatabaseProvider() as DatabaseProvider }
-        register { NewRealmDatabaseProvider() as NewDatabaseProvider }
         register { SystemKeychainProvider(userDefaultsProvider: resolve()) as KeychainProvider }
+        register { SystemLocationProvider() as LocationProvider }
         register { SystemNetworkProvider(keychainProvider: resolve(), delegate: networkProviderDelegate) as NetworkProvider }
         register { FirebasePushNotificationsProvider(application: application, appDelegate: appDelegate) as PushNotificationsProvider }
         register { FirebaseRemoteConfigProvider() as RemoteConfigProvider }

@@ -19,7 +19,6 @@ let package = Package(
         // .package(url: /* package url */, from: "1.0.0"),
         .package(name: "DomainLayer", path: "../DomainLayer"),
         .package(url: "https://github.com/Alamofire/AlamofireImage.git", .upToNextMajor(from: "4.0.0")),
-        .package(url: "https://github.com/ReactiveX/RxSwift.git", .upToNextMajor(from: "6.0.0")),
         .package(url: "https://github.com/Juanpe/SkeletonView.git", .upToNextMajor(from: "1.0.0")),
         .package(url: "https://github.com/MakeAWishFoundation/SwiftyMocky", .upToNextMajor(from: "4.0.0")),
         .package(url: "https://github.com/hmlongco/Resolver.git", .upToNextMajor(from: "1.0.0"))
@@ -32,21 +31,19 @@ let package = Package(
             dependencies: [
                 .product(name: "DomainLayer", package: "DomainLayer"),
                 .product(name: "AlamofireImage", package: "AlamofireImage"),
-                .product(name: "RxSwift", package: "RxSwift"),
-                .product(name: "RxCocoa", package: "RxSwift"),
                 .product(name: "SkeletonView", package: "SkeletonView"),
                 .product(name: "Resolver", package: "Resolver")
             ]
-        ),
-        .testTarget(
-            name: "PresentationLayerTests",
-            dependencies: [
-                "PresentationLayer",
-                .product(name: "DomainStubs", package: "DomainLayer"),
-                .product(name: "UseCaseMocks", package: "DomainLayer"),
-                .product(name: "RxTest", package: "RxSwift"),
-                .product(name: "SwiftyMocky", package: "SwiftyMocky")
-            ]
         )
+//        .testTarget(
+//            name: "PresentationLayerTests",
+//            dependencies: [
+//                "PresentationLayer",
+//                .product(name: "DomainStubs", package: "DomainLayer"),
+//                .product(name: "UseCaseMocks", package: "DomainLayer"),
+//                .product(name: "RxTest", package: "RxSwift"),
+//                .product(name: "SwiftyMocky", package: "SwiftyMocky")
+//            ]
+//        )
     ]
 )

@@ -16,16 +16,11 @@ public struct PushNotificationsRepositoryImpl: PushNotificationsRepository {
         pushNotifications = pushNotificationsProvider
     }
     
-    public func decode(_ notificationData: [AnyHashable: Any]) -> PushNotification? {
-        do {
-            let jsonData = try JSONSerialization.data(withJSONObject: notificationData)
-            let notification = try JSONDecoder().decode(NETPushNotification.self, from: jsonData)
-            Logger.networking.info("PushNotificationsRepository: Notification received:\n\(jsonData)")
-            return notification.domainModel
-        } catch let error {
-            Logger.networking.error("PushNotificationsRepository: Error during notification decoding:\n\(error.localizedDescription)")
-            return nil
-        }
+    public func decode(_ notificationData: [AnyHashable: Any]) throws -> PushNotification {
+        let jsonData = try JSONSerialization.data(withJSONObject: notificationData)
+        let notification = try JSONDecoder().decode(NETPushNotification.self, from: jsonData)
+        Logger.networking.info("PushNotificationsRepository: Notification received:\n\(jsonData)")
+        return notification.domainModel
     }
     
     public func register(options: UNAuthorizationOptions, completionHandler: @escaping (Bool, Error?) -> Void) {

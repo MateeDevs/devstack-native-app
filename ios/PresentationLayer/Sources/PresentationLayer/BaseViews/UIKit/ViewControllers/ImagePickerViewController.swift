@@ -9,7 +9,7 @@ import UIKit
     @objc optional func photoSelected(image: UIImage?)
 }
 
-class ImagePickerViewController: InputViewController {
+class ImagePickerViewController: BaseViewController {
 
     // MARK: Stored properties
     var imagePickerTitle: String = L10n.image_picker_title

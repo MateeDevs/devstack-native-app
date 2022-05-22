@@ -19,7 +19,7 @@ public extension Resolver {
             ) as AuthTokenRepository
         }
         
-        register { LocationRepositoryImpl() as LocationRepository }
+        register { LocationRepositoryImpl(locationProvider: resolve()) as LocationRepository }
         
         register { PushNotificationsRepositoryImpl(pushNotificationsProvider: resolve()) as PushNotificationsRepository }
         
@@ -27,7 +27,6 @@ public extension Resolver {
         
         register {
             UserRepositoryImpl(
-                newDatabaseProvider: resolve(),
                 databaseProvider: resolve(),
                 networkProvider: resolve()
             ) as UserRepository

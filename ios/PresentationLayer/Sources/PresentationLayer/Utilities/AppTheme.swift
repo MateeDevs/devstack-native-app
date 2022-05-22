@@ -65,6 +65,7 @@ enum AppTheme {
         
         // Buttons
         static let primaryButton = UIFont.systemFont(ofSize: 20.0, weight: .regular)
+        static let secondaryButton = UIFont.systemFont(ofSize: 20.0, weight: .regular)
         
         // Alerts
         static let alertMessage = UIFont.systemFont(ofSize: 13.0, weight: .medium)

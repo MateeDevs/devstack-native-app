@@ -4,7 +4,6 @@
 //
 
 import DomainLayer
-import RxSwift
 
 public struct AuthTokenRepositoryImpl: AuthTokenRepository {
     
@@ -29,25 +28,16 @@ public struct AuthTokenRepositoryImpl: AuthTokenRepository {
             keychain.update(.authToken, value: authToken.token)
             keychain.update(.userId, value: authToken.userId)
             return authToken
-        } catch { throw AuthError(error) }
+        } catch { throw AuthError.Login(error) }
     }
     
-    public func createRx(_ data: LoginData) -> Observable<AuthToken> {
-        guard let data = data.networkModel.encoded else { return .error(CommonError.encoding) }
-        let endpoint = AuthAPI.login(data)
-        return network.observableRequest(endpoint, withInterceptor: false).map(NETAuthToken.self).mapToDomain().do { authToken in
-            self.keychain.update(.authToken, value: authToken.token)
-            self.keychain.update(.userId, value: authToken.userId)
-        }
-    }
-    
-    public func read() -> AuthToken? {
-        guard let userId = keychain.read(.userId), let token = keychain.read(.authToken) else { return nil }
+    public func read() throws -> AuthToken {
+        guard let userId = keychain.read(.userId), let token = keychain.read(.authToken) else { throw AuthError.notLogged }
         return AuthToken(userId: userId, token: token)
     }
     
-    public func delete() {
+    public func delete() throws {
         keychain.deleteAll()
-        database.deleteAll()
+        try database.deleteAll()
     }
 }

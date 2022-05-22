@@ -16,17 +16,19 @@ struct LoginView: View {
     
     var body: some View {
         return VStack {
-            LoginViewFields(
+            EmailAndPasswordFields(
                 email: viewModel.state.email,
                 password: viewModel.state.password,
                 onEmailChange: { email in viewModel.onIntent(.changeEmail(email)) },
                 onPasswordChange: { password in viewModel.onIntent(.changePassword(password)) }
             )
             Spacer()
-            LoginViewButtons(
-                loginButtonLoading: viewModel.state.loginButtonLoading,
-                onLoginButtonTap: { viewModel.onIntent(.login) },
-                onRegisterButtonTap: { viewModel.onIntent(.register) }
+            PrimaryAndSecondaryButtons(
+                primaryButtonTitle: L10n.login_view_login_button_title,
+                primaryButtonLoading: viewModel.state.loginButtonLoading,
+                onPrimaryButtonTap: { viewModel.onIntent(.login) },
+                secondaryButtonTitle: L10n.login_view_register_button_title,
+                onSecondaryButtonTap: { viewModel.onIntent(.register) }
             )
         }
         .alert(item: Binding<AlertData?>(

@@ -3,11 +3,8 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-import RxSwift
-
 public protocol AuthTokenRepository: AutoMockable {
     func create(_ data: LoginData) async throws -> AuthToken
-    func createRx(_ data: LoginData) -> Observable<AuthToken>
-    func read() -> AuthToken?
-    func delete()
+    func read() throws -> AuthToken
+    func delete() throws
 }

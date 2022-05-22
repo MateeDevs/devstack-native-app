@@ -4,10 +4,9 @@
 //
 
 import CoreLocation
-import RxSwift
 
 public protocol GetCurrentLocationUseCase: AutoMockable {
-    func execute() -> Observable<CLLocation>
+    func execute() -> AsyncStream<CLLocation>
 }
 
 public struct GetCurrentLocationUseCaseImpl: GetCurrentLocationUseCase {
@@ -18,7 +17,7 @@ public struct GetCurrentLocationUseCaseImpl: GetCurrentLocationUseCase {
         self.locationRepository = locationRepository
     }
     
-    public func execute() -> Observable<CLLocation> {
-        locationRepository.getCurrentLocation(withAccuracy: kCLLocationAccuracyThreeKilometers)
+    public func execute() -> AsyncStream<CLLocation> {
+        locationRepository.readCurrentLocation(withAccuracy: kCLLocationAccuracyThreeKilometers)
     }
 }

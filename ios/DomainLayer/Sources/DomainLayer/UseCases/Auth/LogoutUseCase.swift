@@ -4,7 +4,7 @@
 //
 
 public protocol LogoutUseCase: AutoMockable {
-    func execute()
+    func execute() throws
 }
 
 public struct LogoutUseCaseImpl: LogoutUseCase {
@@ -15,7 +15,7 @@ public struct LogoutUseCaseImpl: LogoutUseCase {
         self.authTokenRepository = authTokenRepository
     }
     
-    public func execute() {
-        authTokenRepository.delete()
+    public func execute() throws {
+        try authTokenRepository.delete()
     }
 }

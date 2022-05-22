@@ -3,11 +3,8 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-import RxSwift
-
 public protocol LoginUseCase: AutoMockable {
     func execute(_ data: LoginData) async throws
-    func executeRx(_ data: LoginData) -> Observable<Void>
 }
 
 public struct LoginUseCaseImpl: LoginUseCase {
@@ -20,15 +17,11 @@ public struct LoginUseCaseImpl: LoginUseCase {
     
     public func execute(_ data: LoginData) async throws {
         if data.email.isEmpty {
-            throw AuthError.invalidEmail
+            throw ValidationError.email(.isEmpty)
         } else if data.password.isEmpty {
-            throw AuthError.invalidPassword
+            throw ValidationError.password(.isEmpty)
         } else {
             _ = try await authTokenRepository.create(data)
         }
-    }
-    
-    public func executeRx(_ data: LoginData) -> Observable<Void> {
-        authTokenRepository.createRx(data).mapToVoid()
     }
 }

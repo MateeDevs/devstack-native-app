@@ -15,13 +15,11 @@ class UserRepositoryTests: BaseTestCase {
     
     // MARK: Dependencies
     
-    private let newDatabaseProvider = NewDatabaseProviderMock()
     private let databaseProvider = DatabaseProviderMock()
     private let networkProvider = NetworkProviderMock()
     
     private func createRepository() -> UserRepository {
         UserRepositoryImpl(
-            newDatabaseProvider: newDatabaseProvider,
             databaseProvider: databaseProvider,
             networkProvider: networkProvider
         )

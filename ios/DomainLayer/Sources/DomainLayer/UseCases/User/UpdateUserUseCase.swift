@@ -3,10 +3,8 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-import RxSwift
-
 public protocol UpdateUserUseCase: AutoMockable {
-    func execute(user: User) -> Observable<Void>
+    func execute(_ sourceType: SourceType, user: User) async throws
 }
 
 public struct UpdateUserUseCaseImpl: UpdateUserUseCase {
@@ -17,7 +15,7 @@ public struct UpdateUserUseCaseImpl: UpdateUserUseCase {
         self.userRepository = userRepository
     }
     
-    public func execute(user: User) -> Observable<Void> {
-        userRepository.updateRx(.remote, user: user).mapToVoid()
+    public func execute(_ sourceType: SourceType, user: User) async throws {
+        _ = try await userRepository.update(sourceType, user: user)
     }
 }

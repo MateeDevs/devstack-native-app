@@ -5,7 +5,6 @@
 
 import DomainLayer
 import OSLog
-import RxSwift
 import UIKit
 
 public struct SystemNetworkProvider {
@@ -89,23 +88,5 @@ extension SystemNetworkProvider: NetworkProvider {
         }
         
         return data
-    }
-    
-    public func observableRequest(_ endpoint: NetworkEndpoint, withInterceptor: Bool) -> Observable<Data> {
-        return Observable<Data>.create { observer in
-            Task {
-                do {
-                    let data = try await self.request(endpoint, withInterceptor: withInterceptor)
-                    observer.onNext(data)
-                    observer.onCompleted()
-                } catch let NetworkProviderError.requestFailed(statusCode, message) {
-                    observer.onError(RepositoryError(
-                        statusCode: StatusCode(rawValue: statusCode.rawValue) ?? .unknown,
-                        message: message)
-                    )
-                }
-            }
-            return Disposables.create()
-        }
     }
 }

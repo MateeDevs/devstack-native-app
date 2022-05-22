@@ -3,10 +3,8 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-import RxSwift
-
 public protocol GetRemoteConfigValueUseCase: AutoMockable {
-    func execute(_ key: RemoteConfigCoding) -> Observable<Bool>
+    func execute(_ key: RemoteConfigCoding) async throws -> Bool
 }
 
 public struct GetRemoteConfigValueUseCaseImpl: GetRemoteConfigValueUseCase {
@@ -17,7 +15,7 @@ public struct GetRemoteConfigValueUseCaseImpl: GetRemoteConfigValueUseCase {
         self.remoteConfigRepository = remoteConfigRepository
     }
     
-    public func execute(_ key: RemoteConfigCoding) -> Observable<Bool> {
-        remoteConfigRepository.read(key)
+    public func execute(_ key: RemoteConfigCoding) async throws -> Bool {
+        try await remoteConfigRepository.read(key)
     }
 }

@@ -3,10 +3,8 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-import RxSwift
-
 public protocol RegistrationUseCase: AutoMockable {
-    func execute(_ data: RegistrationData) -> Observable<Void>
+    func execute(_ data: RegistrationData) async throws
 }
 
 public struct RegistrationUseCaseImpl: RegistrationUseCase {
@@ -17,7 +15,13 @@ public struct RegistrationUseCaseImpl: RegistrationUseCase {
         self.userRepository = userRepository
     }
     
-    public func execute(_ data: RegistrationData) -> Observable<Void> {
-        userRepository.createRx(data).mapToVoid()
+    public func execute(_ data: RegistrationData) async throws {
+        if data.email.isEmpty {
+            throw ValidationError.email(.isEmpty)
+        } else if data.password.isEmpty {
+            throw ValidationError.password(.isEmpty)
+        } else {
+            _ = try await userRepository.create(data)
+        }
     }
 }

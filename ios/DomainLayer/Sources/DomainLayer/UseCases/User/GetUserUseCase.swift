@@ -3,10 +3,8 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-import RxSwift
-
 public protocol GetUserUseCase: AutoMockable {
-    func execute(id: String) -> Observable<User>
+    func execute(_ sourceType: SourceType, id: String) async throws -> User
 }
 
 public struct GetUserUseCaseImpl: GetUserUseCase {
@@ -17,7 +15,7 @@ public struct GetUserUseCaseImpl: GetUserUseCase {
         self.userRepository = userRepository
     }
     
-    public func execute(id: String) -> Observable<User> {
-        userRepository.readRx(.local, id: id)
+    public func execute(_ sourceType: SourceType, id: String) async throws -> User {
+        try await userRepository.read(sourceType, id: id)
     }
 }

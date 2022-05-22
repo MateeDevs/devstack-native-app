@@ -24,7 +24,6 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-        .package(url: "https://github.com/ReactiveX/RxSwift.git", .upToNextMajor(from: "6.0.0")),
         .package(url: "https://github.com/MakeAWishFoundation/SwiftyMocky", .upToNextMajor(from: "4.0.0"))
     ],
     targets: [
@@ -37,7 +36,6 @@ let package = Package(
         .target(
             name: "DomainLayer",
             dependencies: [
-                .product(name: "RxSwift", package: "RxSwift"),
                 "DevstackKmpShared"
             ]
         ),
@@ -60,16 +58,14 @@ let package = Package(
                 "DomainLayer",
                 .product(name: "SwiftyMocky", package: "SwiftyMocky")
             ]
-        ),
-        .testTarget(
-            name: "DomainLayerTests",
-            dependencies: [
-                "DomainStubs",
-                "RepositoryMocks",
-                .product(name: "RxCocoa", package: "RxSwift"),
-                .product(name: "RxTest", package: "RxSwift"),
-                .product(name: "SwiftyMocky", package: "SwiftyMocky")
-            ]
         )
+//        .testTarget(
+//            name: "DomainLayerTests",
+//            dependencies: [
+//                "DomainStubs",
+//                "RepositoryMocks",
+//                .product(name: "SwiftyMocky", package: "SwiftyMocky")
+//            ]
+//        )
     ]
 )

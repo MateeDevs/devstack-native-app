@@ -4,8 +4,17 @@
 //
 
 public enum AuthError: Error {
-    case invalidEmail
-    case invalidPassword
-    case invalidCredentials
-    case failed
+    case notLogged
+    case login(Login)
+    case registration(Registration)
+    
+    public enum Login: Error {
+        case invalidCredentials
+        case failed
+    }
+    
+    public enum Registration: Error {
+        case userAlreadyExists
+        case failed
+    }
 }

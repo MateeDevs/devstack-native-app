@@ -5,14 +5,9 @@
 
 import DomainLayer
 import OSLog
-import RxSwift
 import UIKit
 
 class BaseViewController: UIViewController {
-    
-    // MARK: Stored properties
-    private(set) var disposeBag = DisposeBag()
-    var trackScreenAppear: (() -> Void)?
     
     // MARK: Inits
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -35,34 +30,7 @@ class BaseViewController: UIViewController {
         setupUI()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        // Track that screen appears if required
-        if let trackScreenAppear = trackScreenAppear {
-            trackScreenAppear()
-        }
-        
-        // As long as viewWillAppear make sure to setup your reactive bindings
-        setupBindings()
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        // Remove the current reference to the disposeBag so all current subscriptions are disposed
-        disposeBag = DisposeBag()
-        
-        // Ensure that any presented WhisperView is removed
-        hideWhisper()
-    }
-    
     // MARK: Default methods
-    
-    /// Override this method in a subclass and setup the reactive bindings
-    func setupBindings() {
-        // Fresh initializaton of DisposeBag whenever subscriptions are about to initialize
-        disposeBag = DisposeBag()
-    }
     
     /// Override this method in a subclass and setup the view appearance
     func setupUI() {

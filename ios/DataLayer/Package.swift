@@ -20,8 +20,6 @@ let package = Package(
         .package(url: "https://github.com/firebase/firebase-ios-sdk.git", .upToNextMajor(from: "8.0.0")),
         .package(url: "https://github.com/kishikawakatsumi/KeychainAccess.git", .upToNextMajor(from: "4.0.0")),
         .package(url: "https://github.com/realm/realm-cocoa.git", .upToNextMajor(from: "10.0.0")),
-        .package(url: "https://github.com/RxSwiftCommunity/RxRealm.git", .upToNextMajor(from: "5.0.0")),
-        .package(url: "https://github.com/ReactiveX/RxSwift.git", .upToNextMajor(from: "6.0.0")),
         .package(url: "https://github.com/MakeAWishFoundation/SwiftyMocky", .upToNextMajor(from: "4.0.0"))
     ],
     targets: [
@@ -37,9 +35,7 @@ let package = Package(
                 .product(name: "FirebaseRemoteConfig", package: "firebase-ios-sdk"),
                 .product(name: "KeychainAccess", package: "KeychainAccess"),
                 .product(name: "Realm", package: "realm-cocoa"),
-                .product(name: "RealmSwift", package: "realm-cocoa"),
-                .product(name: "RxRealm", package: "RxRealm"),
-                .product(name: "RxSwift", package: "RxSwift")
+                .product(name: "RealmSwift", package: "realm-cocoa")
             ],
             resources: [
               .process("NetworkStubs")
@@ -51,16 +47,14 @@ let package = Package(
                 "DataLayer",
                 .product(name: "SwiftyMocky", package: "SwiftyMocky")
             ]
-        ),
-        .testTarget(
-            name: "DataLayerTests",
-            dependencies: [
-                "ProviderMocks",
-                .product(name: "DomainStubs", package: "DomainLayer"),
-                .product(name: "RxCocoa", package: "RxSwift"),
-                .product(name: "RxTest", package: "RxSwift"),
-                .product(name: "SwiftyMocky", package: "SwiftyMocky")
-            ]
         )
+//        .testTarget(
+//            name: "DataLayerTests",
+//            dependencies: [
+//                "ProviderMocks",
+//                .product(name: "DomainStubs", package: "DomainLayer"),
+//                .product(name: "SwiftyMocky", package: "SwiftyMocky")
+//            ]
+//        )
     ]
 )

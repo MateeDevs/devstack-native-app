@@ -4,7 +4,7 @@
 //
 
 public protocol GetProfileIdUseCase: AutoMockable {
-    func execute() -> String?
+    func execute() throws -> String
 }
 
 public struct GetProfileIdUseCaseImpl: GetProfileIdUseCase {
@@ -15,7 +15,7 @@ public struct GetProfileIdUseCaseImpl: GetProfileIdUseCase {
         self.authTokenRepository = authTokenRepository
     }
     
-    public func execute() -> String? {
-        authTokenRepository.read()?.userId
+    public func execute() throws -> String {
+        try authTokenRepository.read().userId
     }
 }
