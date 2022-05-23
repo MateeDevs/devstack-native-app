@@ -15,8 +15,8 @@ struct HeadlineText: View {
     
     var body: some View {
         Text(content)
-            .font(Font(AppTheme.Fonts.headlineLabel as CTFont))
-            .foregroundColor(Color(AppTheme.Colors.headlineLabel))
+            .font(AppTheme.Fonts.headlineText)
+            .foregroundColor(AppTheme.Colors.headlineText)
     }
 }
 

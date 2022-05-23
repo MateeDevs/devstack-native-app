@@ -35,7 +35,7 @@ class BaseViewController: UIViewController {
     /// Override this method in a subclass and setup the view appearance
     func setupUI() {
         // Setup background color and back button title
-        view.backgroundColor = AppTheme.Colors.background
+        view.backgroundColor = UIColor(AppTheme.Colors.background)
         navigationItem.backBarButtonItem = UIBarButtonItem(title: L10n.back, style: .plain, target: nil, action: nil)
     }
 }

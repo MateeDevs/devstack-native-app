@@ -4,7 +4,7 @@
 //
 
 import Foundation
-import UIKit
+import SwiftUI
 
 struct WhisperData {
     let message: String
@@ -33,11 +33,11 @@ struct WhisperData {
 enum WhisperStyle {
     case info, success, error
     
-    var color: UIColor {
+    var color: Color {
         switch self {
-        case .info: return AppTheme.Colors.alertBackgroundInfo
-        case .success: return AppTheme.Colors.alertBackgroundSuccess
-        case .error: return AppTheme.Colors.alertBackgroundError
+        case .info: return AppTheme.Colors.whisperBackgroundInfo
+        case .success: return AppTheme.Colors.whisperBackgroundSuccess
+        case .error: return AppTheme.Colors.whisperBackgroundError
         }
     }
 }

@@ -36,8 +36,8 @@ class WhisperView: UIView {
     // MARK: Additional methods
     private func setupMessageLabel() {
         messageLabel.textAlignment = .center
-        messageLabel.textColor = AppTheme.Colors.alertMessage
-        messageLabel.font = AppTheme.Fonts.alertMessage
+        messageLabel.textColor = UIColor(AppTheme.Colors.whisperMessage)
+        messageLabel.font = AppTheme.Fonts.whisperMessageUIKit
 
         addSubview(messageLabel)
         messageLabel.translatesAutoresizingMaskIntoConstraints = false

@@ -24,8 +24,8 @@ struct PrimaryTextField: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text(titleKey)
-                .font(Font(AppTheme.Fonts.textFieldTitle as CTFont))
-                .foregroundColor(Color(AppTheme.Colors.textFieldTitle))
+                .font(AppTheme.Fonts.textFieldTitle)
+                .foregroundColor(AppTheme.Colors.textFieldTitle)
             if secure {
                 SecureField(titleKey, text: text)
                     .textFieldStyle(PrimaryTextFieldStyle())

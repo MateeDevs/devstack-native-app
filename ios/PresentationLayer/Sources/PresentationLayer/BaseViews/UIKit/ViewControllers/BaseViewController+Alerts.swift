@@ -45,7 +45,7 @@ extension BaseViewController {
             height: view.safeAreaInsets.top + 25
         ))
         whisperView.message = whisper.message
-        whisperView.backgroundColor = whisper.style.color
+        whisperView.backgroundColor = UIColor(whisper.style.color)
         
         hideWhisper()
         view.addSubview(whisperView)

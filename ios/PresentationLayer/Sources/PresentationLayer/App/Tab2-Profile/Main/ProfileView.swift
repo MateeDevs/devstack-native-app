@@ -18,7 +18,7 @@ struct ProfileView: View {
             ZStack {
                 Circle()
                     .frame(width: 100, height: 100)
-                    .foregroundColor(Color(AppTheme.Colors.primaryColor))
+                    .foregroundColor(AppTheme.Colors.primaryColor)
                 Text(viewModel.state.profile?.fullName.initials ?? "")
                     .font(.system(size: 28, weight: .bold))
                     .foregroundColor(.white)

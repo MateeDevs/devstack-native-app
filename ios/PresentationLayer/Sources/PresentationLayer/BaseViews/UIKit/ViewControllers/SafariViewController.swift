@@ -19,7 +19,7 @@ class SafariViewController: SFSafariViewController {
     // MARK: Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        preferredControlTintColor = AppTheme.Colors.primaryColor
+        preferredControlTintColor = UIColor(AppTheme.Colors.primaryColor)
     }
     
     ///

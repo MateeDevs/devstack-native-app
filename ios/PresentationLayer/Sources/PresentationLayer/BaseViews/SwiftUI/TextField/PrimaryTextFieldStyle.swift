@@ -8,13 +8,13 @@ import SwiftUI
 struct PrimaryTextFieldStyle: TextFieldStyle {
     func _body(configuration: TextField<Self._Label>) -> some View {
         configuration
-            .font(Font(AppTheme.Fonts.textFieldText as CTFont))
-            .accentColor(Color(AppTheme.Colors.primaryColor))
+            .font(AppTheme.Fonts.textFieldText)
+            .accentColor(AppTheme.Colors.primaryColor)
             .disableAutocorrection(true)
             .padding(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16))
             .overlay(
                 RoundedRectangle(cornerRadius: 8)
-                    .stroke(Color(AppTheme.Colors.textFieldBorder), lineWidth: 2)
+                    .stroke(AppTheme.Colors.textFieldBorder, lineWidth: 2)
             )
     }
 }
