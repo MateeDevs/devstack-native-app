@@ -32,6 +32,7 @@ final class BooksViewModel: BaseViewModel, ViewModel, ObservableObject {
     @Published private(set) var state: State = State()
 
     struct State {
+        var isLoading: Bool = false
         var books: [Book] = []
     }
     
@@ -46,7 +47,10 @@ final class BooksViewModel: BaseViewModel, ViewModel, ObservableObject {
     
     private func loadBooks() async {
         do {
+            state.isLoading = true
             // state.books = try await getBooksUseCase.execute()
+            // state.books = try await refreshBooksUseCase.execute()
+            state.isLoading = false
         } catch {}
     }
 }

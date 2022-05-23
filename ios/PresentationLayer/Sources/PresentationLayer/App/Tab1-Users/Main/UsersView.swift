@@ -15,19 +15,23 @@ struct UsersView: View {
     
     var body: some View {
         return VStack {
-            List {
-                ForEach(viewModel.state.users, id: \.self) { user in
-                    HStack {
-                        Text(user.fullName)
-                        Spacer()
-                    }
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-                        viewModel.onIntent(.openUserDetail(id: user.id))
+            if viewModel.state.isLoading {
+                PrimaryProgressView()
+            } else {
+                List {
+                    ForEach(viewModel.state.users, id: \.self) { user in
+                        HStack {
+                            Text(user.fullName)
+                            Spacer()
+                        }
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            viewModel.onIntent(.openUserDetail(id: user.id))
+                        }
                     }
                 }
+                .listStyle(PlainListStyle())
             }
-            .listStyle(PlainListStyle())
         }
         .lifecycle(viewModel)
         .navigationTitle(L10n.users_view_toolbar_title)

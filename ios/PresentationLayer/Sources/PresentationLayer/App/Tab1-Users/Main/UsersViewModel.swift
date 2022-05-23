@@ -31,6 +31,7 @@ final class UsersViewModel: BaseViewModel, ViewModel, ObservableObject {
     @Published private(set) var state: State = State()
 
     struct State {
+        var isLoading: Bool = false
         var users: [User] = []
     }
     
@@ -52,8 +53,10 @@ final class UsersViewModel: BaseViewModel, ViewModel, ObservableObject {
     
     private func loadUsers() async {
         do {
+            state.isLoading = true
             state.users = try await getUsersUseCase.execute(.local, page: 0)
             state.users = try await getUsersUseCase.execute(.remote, page: 0)
+            state.isLoading = false
         } catch {}
     }
     

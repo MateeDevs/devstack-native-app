@@ -39,6 +39,10 @@ extension SystemLocationProvider: LocationProvider {
                 continuation.yield(location)
             }
             locationManager.startUpdatingLocation()
+            
+            continuation.onTermination = { @Sendable [weak self] _ in
+                self?.locationManager.stopUpdatingLocation()
+            }
         }
     }
 }

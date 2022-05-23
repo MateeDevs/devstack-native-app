@@ -15,16 +15,20 @@ struct BooksView: View {
     
     var body: some View {
         return VStack {
-            List {
-                ForEach(viewModel.state.books, id: \.self) { book in
-                    HStack {
-                        Text(book.name)
-                        Spacer()
+            if viewModel.state.isLoading {
+                PrimaryProgressView()
+            } else {
+                List {
+                    ForEach(viewModel.state.books, id: \.self) { book in
+                        HStack {
+                            Text(book.name)
+                            Spacer()
+                        }
+                        .contentShape(Rectangle())
                     }
-                    .contentShape(Rectangle())
                 }
+                .listStyle(PlainListStyle())
             }
-            .listStyle(PlainListStyle())
         }
         .lifecycle(viewModel)
         .navigationTitle(L10n.books_view_toolbar_title)

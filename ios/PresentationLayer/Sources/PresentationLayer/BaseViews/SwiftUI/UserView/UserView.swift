@@ -35,9 +35,7 @@ struct UserView: View {
 #if DEBUG
 struct UserView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            UserView("Petr Chmelar")
-        }
+        UserView("Petr Chmelar")
     }
 }
 #endif

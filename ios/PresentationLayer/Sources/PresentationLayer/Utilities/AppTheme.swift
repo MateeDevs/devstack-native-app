@@ -36,8 +36,8 @@ enum AppTheme {
         static let secondaryButtonBackground = Color.clear
         static let secondaryButtonTitle = Color(Asset.Colors.mateeYellow.color)
         
-        // Indicators
-        static let activityIndicator = Color(Asset.Colors.mateeYellow.color)
+        // ProgressView
+        static let progressView = Color(Asset.Colors.mateeYellow.color)
         
         // Whisper
         static let whisperBackgroundInfo = Color.gray
