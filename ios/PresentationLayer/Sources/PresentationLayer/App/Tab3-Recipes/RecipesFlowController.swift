@@ -17,7 +17,7 @@ class RecipesFlowController: FlowController {
 
     override func setup() -> UIViewController {
         let vm = RecipesViewModel(flowController: self)
-        return UIHostingController(rootView: RecipesView(viewModel: vm))
+        return BaseHostingController(rootView: RecipesView(viewModel: vm))
     }
     
     override func handleFlow(_ flow: Flow) {
@@ -39,13 +39,13 @@ extension RecipesFlowController {
     
     private func showCounter() {
         let vm = CounterViewModel(flowController: self)
-        let vc = UIHostingController(rootView: CounterView(viewModel: vm))
+        let vc = BaseHostingController(rootView: CounterView(viewModel: vm))
         navigationController.show(vc, sender: nil)
     }
     
     private func showBooks() {
         let vm = BooksViewModel(flowController: self)
-        let vc = UIHostingController(rootView: BooksView(viewModel: vm))
+        let vc = BaseHostingController(rootView: BooksView(viewModel: vm))
         navigationController.show(vc, sender: nil)
     }
 }

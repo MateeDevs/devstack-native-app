@@ -27,7 +27,7 @@ class OnboardingFlowController: FlowController {
     
     override func setup() -> UIViewController {
         let vm = LoginViewModel(flowController: self)
-        return UIHostingController(rootView: LoginView(viewModel: vm))
+        return BaseHostingController(rootView: LoginView(viewModel: vm))
     }
     
     override func handleFlow(_ flow: Flow) {
@@ -55,7 +55,7 @@ extension OnboardingFlowController {
     
     private func showRegistration() {
         let vm = RegistrationViewModel(flowController: self)
-        let vc = UIHostingController(rootView: RegistrationView(viewModel: vm))
+        let vc = BaseHostingController(rootView: RegistrationView(viewModel: vm))
         navigationController.show(vc, sender: nil)
     }
 }

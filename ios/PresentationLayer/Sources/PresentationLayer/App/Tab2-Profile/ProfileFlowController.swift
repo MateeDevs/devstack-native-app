@@ -22,7 +22,7 @@ class ProfileFlowController: FlowController {
     
     override func setup() -> UIViewController {
         let vm = ProfileViewModel(flowController: self)
-        return UIHostingController(rootView: ProfileView(viewModel: vm))
+        return BaseHostingController(rootView: ProfileView(viewModel: vm))
     }
     
     override func handleFlow(_ flow: Flow) {

@@ -16,7 +16,7 @@ class UsersFlowController: FlowController {
     
     override func setup() -> UIViewController {
         let vm = UsersViewModel(flowController: self)
-        return UIHostingController(rootView: UsersView(viewModel: vm))
+        return BaseHostingController(rootView: UsersView(viewModel: vm))
     }
     
     override func handleFlow(_ flow: Flow) {
@@ -37,7 +37,7 @@ extension UsersFlowController {
     
     private func showUserDetailForId(_ userId: String) {
         let vm = UserDetailViewModel(userId: userId, flowController: self)
-        let vc = UIHostingController(rootView: UserDetailView(viewModel: vm))
+        let vc = BaseHostingController(rootView: UserDetailView(viewModel: vm))
         navigationController.show(vc, sender: nil)
     }
 }
