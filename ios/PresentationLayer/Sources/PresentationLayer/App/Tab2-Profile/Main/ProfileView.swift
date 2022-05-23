@@ -15,18 +15,7 @@ struct ProfileView: View {
     
     var body: some View {
         return VStack {
-            ZStack {
-                Circle()
-                    .frame(width: 100, height: 100)
-                    .foregroundColor(AppTheme.Colors.primaryColor)
-                Text(viewModel.state.profile?.fullName.initials ?? "")
-                    .font(.system(size: 28, weight: .bold))
-                    .foregroundColor(.white)
-            }
-            .padding(.top, 64)
-            Text(viewModel.state.profile?.fullName ?? "")
-                .font(.system(size: 20))
-                .padding(.top, 16)
+            UserView(viewModel.state.profile?.fullName ?? "")
             Text(viewModel.state.currentLocation)
                 .font(.system(size: 20))
                 .padding(.top, 16)
