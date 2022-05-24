@@ -23,8 +23,7 @@ public struct UserRepositoryImpl: UserRepository {
             let data = try data.networkModel.encode()
             let endpoint = AuthAPI.registration(data)
             let user = try await network.request(endpoint).map(NETUser.self).domainModel
-            try database.update(user.databaseModel)
-            return user
+            return try database.update(user.databaseModel).domainModel
         } catch { throw AuthError.Registration(error) }
     }
     
@@ -35,8 +34,7 @@ public struct UserRepositoryImpl: UserRepository {
         case .remote:
             let endpoint = UserAPI.readUserById(id)
             let user = try await network.request(endpoint).map(NETUser.self).domainModel
-            try database.update(user.databaseModel)
-            return user
+            return try database.update(user.databaseModel).domainModel
         }
     }
     
@@ -48,7 +46,7 @@ public struct UserRepositoryImpl: UserRepository {
             let endpoint = UserAPI.readUsersForPage(page)
             let users = try await network.request(endpoint).map([NETUser].self, atKeyPath: "data").map { $0.domainModel }
             try database.update(users.map { $0.databaseModel })
-            return try database.read(DBUser.self, sortBy: sortBy).map { $0.domainModel }
+            return users
         }
     }
     
@@ -60,8 +58,7 @@ public struct UserRepositoryImpl: UserRepository {
             let data = try user.networkModel.encode()
             let endpoint = UserAPI.updateUserById(user.id, data: data)
             let user = try await network.request(endpoint).map(NETUser.self).domainModel
-            try database.update(user.databaseModel)
-            return user
+            return try database.update(user.databaseModel).domainModel
         }
     }
 }

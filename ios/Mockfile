@@ -36,5 +36,4 @@ Providers:
     - DataLayer
     - DomainLayer
     - Foundation
-    - RxSwift
     - UserNotifications

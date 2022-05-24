@@ -3,7 +3,7 @@
 //  Copyright © 2022 Matee. All rights reserved.
 //
 
-public enum AuthError: Error {
+public enum AuthError: Error, Equatable {
     case notLogged
     case login(Login)
     case registration(Registration)

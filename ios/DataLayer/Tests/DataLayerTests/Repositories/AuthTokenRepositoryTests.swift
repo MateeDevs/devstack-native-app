@@ -7,7 +7,6 @@ import DataLayer
 import DomainLayer
 import DomainStubs
 import ProviderMocks
-import RxSwift
 import SwiftyMocky
 import XCTest
 
@@ -47,65 +46,35 @@ class AuthTokenRepositoryTests: BaseTestCase {
         Verify(keychainProvider, 1, .update(.value(.userId), value: .value(AuthToken.stub.userId)))
     }
     
-    func testCreateRxValid() {
-        let repository = createRepository()
-        let output = scheduler.createObserver(AuthToken.self)
-        
-        repository.createRx(.stubValid).bind(to: output).disposed(by: disposeBag)
-        scheduler.start()
-        
-        XCTAssertEqual(output.events, [
-            .next(0, AuthToken.stub),
-            .completed(0)
-        ])
-        XCTAssertEqual(networkProvider.requestCallsCount, 1)
-        Verify(keychainProvider, 1, .update(.value(.authToken), value: .value(AuthToken.stub.token)))
-        Verify(keychainProvider, 1, .update(.value(.userId), value: .value(AuthToken.stub.userId)))
-    }
-    
     func testCreateInvalidPassword() async throws {
         let repository = createRepository()
         networkProvider.requestReturnError = NetworkProviderError.requestFailed(statusCode: .unathorized, message: "")
         
         do {
             _ = try await repository.create(.stubInvalidPassword)
+            
             XCTFail("Should throw")
         } catch {
-            XCTAssertEqual(error as? AuthError, AuthError.invalidCredentials)
+            XCTAssertEqual(error as? AuthError.Login, .invalidCredentials)
             XCTAssertEqual(networkProvider.requestCallsCount, 1)
             Verify(keychainProvider, 0, .update(.any, value: .any))
         }
     }
     
-    func testCreateRxInvalidPassword() {
-        let repository = createRepository()
-        networkProvider.requestReturnError = RepositoryError(statusCode: StatusCode.httpUnathorized, message: "")
-        let output = scheduler.createObserver(AuthToken.self)
-        
-        repository.createRx(.stubInvalidPassword).bind(to: output).disposed(by: disposeBag)
-        scheduler.start()
-        
-        XCTAssertEqual(output.events, [
-            .error(0, RepositoryError(statusCode: StatusCode.httpUnathorized, message: ""))
-        ])
-        XCTAssertEqual(networkProvider.requestCallsCount, 1)
-        Verify(keychainProvider, 0, .update(.any, value: .any))
-    }
-    
-    func testRead() {
+    func testRead() throws {
         let repository = createRepository()
         
-        let output = repository.read()
+        let authToken = try repository.read()
         
-        XCTAssertEqual(output, AuthToken.stub)
+        XCTAssertEqual(authToken, AuthToken.stub)
         Verify(keychainProvider, 1, .read(.value(.userId)))
         Verify(keychainProvider, 1, .read(.value(.authToken)))
     }
     
-    func testDelete() {
+    func testDelete() throws {
         let repository = createRepository()
         
-        repository.delete()
+        try repository.delete()
         
         XCTAssertEqual(databaseProvider.deleteAllCallsCount, 1)
         Verify(keychainProvider, 1, .deleteAll())

@@ -47,14 +47,14 @@ let package = Package(
                 "DataLayer",
                 .product(name: "SwiftyMocky", package: "SwiftyMocky")
             ]
+        ),
+        .testTarget(
+            name: "DataLayerTests",
+            dependencies: [
+                "ProviderMocks",
+                .product(name: "DomainStubs", package: "DomainLayer"),
+                .product(name: "SwiftyMocky", package: "SwiftyMocky")
+            ]
         )
-//        .testTarget(
-//            name: "DataLayerTests",
-//            dependencies: [
-//                "ProviderMocks",
-//                .product(name: "DomainStubs", package: "DomainLayer"),
-//                .product(name: "SwiftyMocky", package: "SwiftyMocky")
-//            ]
-//        )
     ]
 )

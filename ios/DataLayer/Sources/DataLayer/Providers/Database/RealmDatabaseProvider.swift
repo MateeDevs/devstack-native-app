@@ -71,33 +71,33 @@ extension RealmDatabaseProvider: DatabaseProvider {
     
     @discardableResult
     public func update<T>(_ object: T, model: UpdateModel) throws -> T {
-        guard let realmObject = object as? Object else { throw DatabaseProviderError.typeNotRepresentable }
-        let realm = try Realm()
-        try realm.write {
-            realm.create(type(of: realmObject).self, value: model.value(for: realmObject), update: .modified)
-        }
+        guard let object = try update([object], model: model).first else { throw DatabaseProviderError.objectNotFound }
         return object
     }
     
     @discardableResult
     public func update<T>(_ objects: [T], model: UpdateModel) throws -> [T] {
-        try objects.forEach { object in
-            try update(object, model: model)
+        let realm = try Realm()
+        try realm.write {
+            try objects.forEach { object in
+                guard let realmObject = object as? Object else { throw DatabaseProviderError.typeNotRepresentable }
+                realm.create(type(of: realmObject).self, value: model.value(for: realmObject), update: .modified)
+            }
         }
         return objects
     }
     
     public func delete<T>(_ object: T) throws {
-        guard let realmObject = object as? Object else { throw DatabaseProviderError.typeNotRepresentable }
-        let realm = try Realm()
-        try realm.write {
-            realm.delete(realmObject)
-        }
+        try delete([object])
     }
     
     public func delete<T>(_ objects: [T]) throws {
-        try objects.forEach { object in
-            try delete(object)
+        let realm = try Realm()
+        try realm.write {
+            try objects.forEach { object in
+                guard let realmObject = object as? Object else { throw DatabaseProviderError.typeNotRepresentable }
+                realm.delete(realmObject)
+            }
         }
     }
     

@@ -28,10 +28,8 @@ import RealmSwift
 }
 
 // Conversion from DatabaseModel to DomainModel
-extension DBUser: DomainRepresentable {
-    typealias DomainModel = DomainLayer.User
-    
-    var domainModel: DomainModel {
+extension DBUser {
+    var domainModel: DomainLayer.User {
         User(
             id: id,
             email: email,
@@ -46,10 +44,8 @@ extension DBUser: DomainRepresentable {
 }
 
 // Conversion from DomainModel to DatabaseModel
-extension DomainLayer.User: DatabaseRepresentable {
-    typealias DatabaseModel = DBUser
-    
-    var databaseModel: DatabaseModel {
+extension DomainLayer.User {
+    var databaseModel: DBUser {
         let model = DBUser()
         model.id = id
         model.email = email

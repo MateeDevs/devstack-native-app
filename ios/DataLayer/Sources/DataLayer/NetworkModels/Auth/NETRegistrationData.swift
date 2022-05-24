@@ -13,10 +13,8 @@ struct NETRegistrationData: Encodable {
 }
 
 // Conversion from DomainModel to NetworkModel
-extension RegistrationData: NetworkRepresentable {
-    typealias NetworkModel = NETRegistrationData
-    
-    var networkModel: NetworkModel {
+extension RegistrationData {
+    var networkModel: NETRegistrationData {
         NETRegistrationData(
             email: email,
             pass: password,

@@ -5,7 +5,6 @@
 
 import DataLayer
 import Foundation
-import RxSwift
 
 public class NetworkProviderMock {
     
@@ -34,14 +33,6 @@ extension NetworkProviderMock: NetworkProvider {
             throw error
         } else {
             return endpoint.sampleData
-        }
-    }
-    
-    public func observableRequest(_ endpoint: NetworkEndpoint, withInterceptor: Bool) -> Observable<Data> {
-        if let error = requestReturnError {
-            return Observable.error(error).do(onError: { _ in self.requestCallsCount += 1 })
-        } else {
-            return Observable.just(endpoint.sampleData).do(onNext: { _ in self.requestCallsCount += 1 })
         }
     }
 }

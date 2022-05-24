@@ -21,10 +21,8 @@ struct NETPushNotification: Decodable {
 }
 
 // Conversion from NetworkModel to DomainModel
-extension NETPushNotification: DomainRepresentable {
-    typealias DomainModel = PushNotification
-    
-    var domainModel: DomainModel {
+extension NETPushNotification {
+    var domainModel: PushNotification {
         PushNotification(
             title: aps.alert.title,
             body: aps.alert.body,
