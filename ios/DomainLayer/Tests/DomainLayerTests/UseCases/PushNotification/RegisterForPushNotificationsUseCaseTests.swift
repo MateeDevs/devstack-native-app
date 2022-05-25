@@ -5,7 +5,6 @@
 
 import DomainLayer
 import RepositoryMocks
-import RxSwift
 import SwiftyMocky
 import XCTest
 

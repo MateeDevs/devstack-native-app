@@ -26,39 +26,13 @@ class UserRepositoryTests: BaseTestCase {
     
     // MARK: Tests
     
-    func testCreateValid() async throws {
-        let repository = createRepository()
-        databaseProvider.updateObjectReturnValue = User.stub.databaseModel
-         
-        let user = try await repository.create(.stubValid)
-
-        XCTAssertEqual(user, User.stub)
-        XCTAssertEqual(networkProvider.requestCallsCount, 1)
-        XCTAssertEqual(databaseProvider.updateObjectCallsCount, 1)
-    }
-    
-    func testCreateExistingEmail() async throws {
-        let repository = createRepository()
-        networkProvider.requestReturnError = NetworkProviderError.requestFailed(statusCode: .conflict, message: "")
-        
-        do {
-            _ = try await repository.create(.stubExistingEmail)
-            
-            XCTFail("Should throw")
-        } catch {
-            XCTAssertEqual(error as? AuthError.Registration, .userAlreadyExists)
-            XCTAssertEqual(networkProvider.requestCallsCount, 1)
-            XCTAssertEqual(databaseProvider.updateObjectCallsCount, 0)
-        }
-    }
-    
     func testReadObjectLocal() async throws {
         let repository = createRepository()
         databaseProvider.readObjectReturnValue = User.stub.databaseModel
         
         let user = try await repository.read(.local, id: User.stub.id)
         
-        XCTAssertEqual(user, User.stub)
+        XCTAssertEqual(user, .stub)
         XCTAssertEqual(networkProvider.requestCallsCount, 0)
         XCTAssertEqual(databaseProvider.readObjectCallsCount, 1)
     }
@@ -69,29 +43,29 @@ class UserRepositoryTests: BaseTestCase {
         
         let user = try await repository.read(.remote, id: User.stub.id)
         
-        XCTAssertEqual(user, User.stub)
+        XCTAssertEqual(user, .stub)
         XCTAssertEqual(networkProvider.requestCallsCount, 1)
         XCTAssertEqual(databaseProvider.updateObjectCallsCount, 1)
     }
     
     func testReadCollectionLocal() async throws {
         let repository = createRepository()
-        databaseProvider.readCollectionReturnValue = User.stubList.map { $0.databaseModel }
+        databaseProvider.readCollectionReturnValue = [User].stub.map { $0.databaseModel }
         
         let users = try await repository.read(.local, page: 0, sortBy: nil)
         
-        XCTAssertEqual(users, User.stubList)
+        XCTAssertEqual(users, .stub)
         XCTAssertEqual(networkProvider.requestCallsCount, 0)
         XCTAssertEqual(databaseProvider.readCollectionCallsCount, 1)
     }
     
     func testReadCollectionRemote() async throws {
         let repository = createRepository()
-        databaseProvider.updateCollectionReturnValue = User.stubList.map { $0.databaseModel }
+        databaseProvider.updateCollectionReturnValue = [User].stub.map { $0.databaseModel }
         
         let users = try await repository.read(.remote, page: 0, sortBy: nil)
         
-        XCTAssertEqual(users, User.stubList)
+        XCTAssertEqual(users, .stub)
         XCTAssertEqual(networkProvider.requestCallsCount, 1)
         XCTAssertEqual(databaseProvider.updateCollectionCallsCount, 1)
     }
@@ -102,7 +76,7 @@ class UserRepositoryTests: BaseTestCase {
         
         let user = try await repository.update(.local, user: User.stub)
         
-        XCTAssertEqual(user, User.stub)
+        XCTAssertEqual(user, .stub)
         XCTAssertEqual(networkProvider.requestCallsCount, 0)
         XCTAssertEqual(databaseProvider.updateObjectCallsCount, 1)
     }
@@ -113,7 +87,7 @@ class UserRepositoryTests: BaseTestCase {
         
         let user = try await repository.update(.remote, user: User.stub)
         
-        XCTAssertEqual(user, User.stub)
+        XCTAssertEqual(user, .stub)
         XCTAssertEqual(networkProvider.requestCallsCount, 1)
         XCTAssertEqual(databaseProvider.updateObjectCallsCount, 1)
     }

@@ -9,21 +9,24 @@ public protocol UpdateProfileCounterUseCase: AutoMockable {
 
 public struct UpdateProfileCounterUseCaseImpl: UpdateProfileCounterUseCase {
     
-    private let userRepository: UserRepository
     private let getProfileIdUseCase: GetProfileIdUseCase
+    private let getUserUseCase: GetUserUseCase
+    private let updateUserUseCase: UpdateUserUseCase
     
     public init(
-        userRepository: UserRepository,
-        getProfileIdUseCase: GetProfileIdUseCase
+        getProfileIdUseCase: GetProfileIdUseCase,
+        getUserUseCase: GetUserUseCase,
+        updateUserUseCase: UpdateUserUseCase
     ) {
-        self.userRepository = userRepository
         self.getProfileIdUseCase = getProfileIdUseCase
+        self.getUserUseCase = getUserUseCase
+        self.updateUserUseCase = updateUserUseCase
     }
     
     public func execute(value: Int) async throws {
         let profileId = try getProfileIdUseCase.execute()
-        let profile = try await userRepository.read(.local, id: profileId)
+        let profile = try await getUserUseCase.execute(.local, id: profileId)
         let updatedProfile = User(copy: profile, counter: value)
-        _ = try await userRepository.update(.local, user: updatedProfile)
+        try await updateUserUseCase.execute(.local, user: updatedProfile)
     }
 }

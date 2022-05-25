@@ -9,19 +9,19 @@ public protocol GetProfileUseCase: AutoMockable {
 
 public struct GetProfileUseCaseImpl: GetProfileUseCase {
     
-    private let userRepository: UserRepository
     private let getProfileIdUseCase: GetProfileIdUseCase
+    private let getUserUseCase: GetUserUseCase
     
     public init(
-        userRepository: UserRepository,
-        getProfileIdUseCase: GetProfileIdUseCase
+        getProfileIdUseCase: GetProfileIdUseCase,
+        getUserUseCase: GetUserUseCase
     ) {
-        self.userRepository = userRepository
         self.getProfileIdUseCase = getProfileIdUseCase
+        self.getUserUseCase = getUserUseCase
     }
     
     public func execute(_ sourceType: SourceType) async throws -> User {
         let profileId = try getProfileIdUseCase.execute()
-        return try await userRepository.read(sourceType, id: profileId)
+        return try await getUserUseCase.execute(sourceType, id: profileId)
     }
 }

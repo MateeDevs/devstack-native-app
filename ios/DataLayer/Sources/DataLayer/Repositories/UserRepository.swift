@@ -18,15 +18,6 @@ public struct UserRepositoryImpl: UserRepository {
         network = networkProvider
     }
     
-    public func create(_ data: RegistrationData) async throws -> User {
-        do {
-            let data = try data.networkModel.encode()
-            let endpoint = AuthAPI.registration(data)
-            let user = try await network.request(endpoint).map(NETUser.self).domainModel
-            return try database.update(user.databaseModel).domainModel
-        } catch { throw AuthError.Registration(error) }
-    }
-    
     public func read(_ sourceType: SourceType, id: String) async throws -> User {
         switch sourceType {
         case .local:

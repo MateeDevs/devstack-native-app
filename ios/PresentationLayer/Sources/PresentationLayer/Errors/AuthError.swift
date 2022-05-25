@@ -6,20 +6,21 @@
 import DomainLayer
 import Foundation
 
-extension AuthError.Login: LocalizedError {
+extension AuthError: LocalizedError {
     public var errorDescription: String? {
         switch self {
-        case .invalidCredentials: return L10n.invalid_credentials
-        case .failed: return L10n.signing_failed
-        }
-    }
-}
-
-extension AuthError.Registration: LocalizedError {
-    public var errorDescription: String? {
-        switch self {
-        case .userAlreadyExists: return L10n.register_view_email_already_exists
-        case .failed: return L10n.signing_up_failed
+        case .login(let reason):
+            switch reason {
+            case .invalidCredentials: return L10n.invalid_credentials
+            case .failed: return L10n.signing_failed
+            }
+        case .registration(let reason):
+            switch reason {
+            case .userAlreadyExists: return L10n.register_view_email_already_exists
+            case .failed: return L10n.signing_up_failed
+            }
+        default:
+            return L10n.unknown_error
         }
     }
 }

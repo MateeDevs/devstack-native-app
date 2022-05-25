@@ -12,11 +12,11 @@ public extension Resolver {
         register { AnalyticsRepositoryImpl(analyticsProvider: resolve()) as AnalyticsRepository }
         
         register {
-            AuthTokenRepositoryImpl(
+            AuthRepositoryImpl(
                 databaseProvider: resolve(),
                 keychainProvider: resolve(),
                 networkProvider: resolve()
-            ) as AuthTokenRepository
+            ) as AuthRepository
         }
         
         register { LocationRepositoryImpl(locationProvider: resolve()) as LocationRepository }

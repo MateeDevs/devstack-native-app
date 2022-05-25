@@ -5,7 +5,6 @@
 
 import DomainLayer
 import RepositoryMocks
-import RxSwift
 import SwiftyMocky
 import XCTest
 
@@ -18,22 +17,17 @@ class GetRemoteConfigValueUseCaseTests: BaseTestCase {
     override func setupDependencies() {
         super.setupDependencies()
         
-        Given(remoteConfigRepository, .read(.value(.profileLabelIsVisible), willReturn: .just(true)))
+        Given(remoteConfigRepository, .read(.any, willReturn: true))
     }
     
     // MARK: Tests
 
-    func testExecute() {
+    func testExecute() async throws {
         let useCase = GetRemoteConfigValueUseCaseImpl(remoteConfigRepository: remoteConfigRepository)
-        let output = scheduler.createObserver(Bool.self)
         
-        useCase.execute(.profileLabelIsVisible).bind(to: output).disposed(by: disposeBag)
-        scheduler.start()
+        let value = try await useCase.execute(.profileLabelIsVisible)
         
-        XCTAssertEqual(output.events, [
-            .next(0, true),
-            .completed(0)
-        ])
+        XCTAssertEqual(value, true)
         Verify(remoteConfigRepository, 1, .read(.value(.profileLabelIsVisible)))
     }
 }

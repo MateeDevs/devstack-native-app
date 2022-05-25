@@ -8,12 +8,12 @@ public enum AuthError: Error, Equatable {
     case login(Login)
     case registration(Registration)
     
-    public enum Login: Error {
+    public enum Login {
         case invalidCredentials
         case failed
     }
     
-    public enum Registration: Error {
+    public enum Registration {
         case userAlreadyExists
         case failed
     }

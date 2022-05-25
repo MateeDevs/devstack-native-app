@@ -9,19 +9,23 @@ public protocol LoginUseCase: AutoMockable {
 
 public struct LoginUseCaseImpl: LoginUseCase {
     
-    private let authTokenRepository: AuthTokenRepository
+    private let authRepository: AuthRepository
+    private let validateEmailUseCase: ValidateEmailUseCase
+    private let validatePasswordUseCase: ValidatePasswordUseCase
     
-    public init(authTokenRepository: AuthTokenRepository) {
-        self.authTokenRepository = authTokenRepository
+    public init(
+        authRepository: AuthRepository,
+        validateEmailUseCase: ValidateEmailUseCase,
+        validatePasswordUseCase: ValidatePasswordUseCase
+    ) {
+        self.authRepository = authRepository
+        self.validateEmailUseCase = validateEmailUseCase
+        self.validatePasswordUseCase = validatePasswordUseCase
     }
     
     public func execute(_ data: LoginData) async throws {
-        if data.email.isEmpty {
-            throw ValidationError.email(.isEmpty)
-        } else if data.password.isEmpty {
-            throw ValidationError.password(.isEmpty)
-        } else {
-            _ = try await authTokenRepository.create(data)
-        }
+        try validateEmailUseCase.execute(data.email)
+        try validatePasswordUseCase.execute(data.password)
+        _ = try await authRepository.login(data)
     }
 }

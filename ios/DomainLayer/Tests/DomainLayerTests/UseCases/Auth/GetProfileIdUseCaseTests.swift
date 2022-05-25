@@ -6,7 +6,6 @@
 import DomainLayer
 import DomainStubs
 import RepositoryMocks
-import RxSwift
 import SwiftyMocky
 import XCTest
 
@@ -14,22 +13,22 @@ class GetProfileIdUseCaseTests: BaseTestCase {
     
     // MARK: Dependencies
     
-    private let authTokenRepository = AuthTokenRepositoryMock()
+    private let authRepository = AuthRepositoryMock()
     
     override func setupDependencies() {
         super.setupDependencies()
         
-        Given(authTokenRepository, .read(willReturn: AuthToken.stub))
+        Given(authRepository, .readProfileId(willReturn: AuthToken.stub.userId))
     }
     
     // MARK: Tests
 
-    func testExecute() {
-        let useCase = GetProfileIdUseCaseImpl(authTokenRepository: authTokenRepository)
+    func testExecute() throws {
+        let useCase = GetProfileIdUseCaseImpl(authRepository: authRepository)
         
-        let output = useCase.execute()
+        let profileId = try useCase.execute()
         
-        XCTAssertEqual(output, AuthToken.stub.userId)
-        Verify(authTokenRepository, 1, .read())
+        XCTAssertEqual(profileId, AuthToken.stub.userId)
+        Verify(authRepository, 1, .readProfileId())
     }
 }

@@ -58,14 +58,15 @@ let package = Package(
                 "DomainLayer",
                 .product(name: "SwiftyMocky", package: "SwiftyMocky")
             ]
+        ),
+        .testTarget(
+            name: "DomainLayerTests",
+            dependencies: [
+                "DomainStubs",
+                "RepositoryMocks",
+                "UseCaseMocks",
+                .product(name: "SwiftyMocky", package: "SwiftyMocky")
+            ]
         )
-//        .testTarget(
-//            name: "DomainLayerTests",
-//            dependencies: [
-//                "DomainStubs",
-//                "RepositoryMocks",
-//                .product(name: "SwiftyMocky", package: "SwiftyMocky")
-//            ]
-//        )
     ]
 )

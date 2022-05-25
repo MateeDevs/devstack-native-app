@@ -16,8 +16,10 @@ public extension User {
         pictureUrl: "",
         counter: 0
     )
-    
-    static let stubList = [
+}
+
+public extension Array where Element == User {
+    static let stub = [
         User(
             id: "5c1a3d7b4a74580016faadf8",
             email: "petr.chmelar@matee.cz",

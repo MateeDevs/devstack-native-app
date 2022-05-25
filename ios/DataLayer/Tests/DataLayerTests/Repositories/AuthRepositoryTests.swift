@@ -10,7 +10,7 @@ import ProviderMocks
 import SwiftyMocky
 import XCTest
 
-class AuthTokenRepositoryTests: BaseTestCase {
+class AuthRepositoryTests: BaseTestCase {
     
     // MARK: Dependencies
     
@@ -25,8 +25,8 @@ class AuthTokenRepositoryTests: BaseTestCase {
         Given(keychainProvider, .read(.value(.userId), willReturn: AuthToken.stub.userId))
     }
     
-    private func createRepository() -> AuthTokenRepository {
-        AuthTokenRepositoryImpl(
+    private func createRepository() -> AuthRepository {
+        AuthRepositoryImpl(
             databaseProvider: databaseProvider,
             keychainProvider: keychainProvider,
             networkProvider: networkProvider
@@ -35,46 +35,64 @@ class AuthTokenRepositoryTests: BaseTestCase {
     
     // MARK: Tests
     
-    func testCreateValid() async throws {
+    func testLoginValid() async throws {
         let repository = createRepository()
         
-        let authToken = try await repository.create(.stubValid)
+        try await repository.login(.stubValid)
         
-        XCTAssertEqual(authToken, AuthToken.stub)
         XCTAssertEqual(networkProvider.requestCallsCount, 1)
         Verify(keychainProvider, 1, .update(.value(.authToken), value: .value(AuthToken.stub.token)))
         Verify(keychainProvider, 1, .update(.value(.userId), value: .value(AuthToken.stub.userId)))
     }
     
-    func testCreateInvalidPassword() async throws {
+    func testLoginInvalidPassword() async throws {
         let repository = createRepository()
         networkProvider.requestReturnError = NetworkProviderError.requestFailed(statusCode: .unathorized, message: "")
         
         do {
-            _ = try await repository.create(.stubInvalidPassword)
-            
+            _ = try await repository.login(.stubInvalidPassword)
             XCTFail("Should throw")
         } catch {
-            XCTAssertEqual(error as? AuthError.Login, .invalidCredentials)
+            XCTAssertEqual(error as? AuthError, .login(.invalidCredentials))
             XCTAssertEqual(networkProvider.requestCallsCount, 1)
             Verify(keychainProvider, 0, .update(.any, value: .any))
         }
     }
     
-    func testRead() throws {
+    func testRegistrationValid() async throws {
         let repository = createRepository()
-        
-        let authToken = try repository.read()
-        
-        XCTAssertEqual(authToken, AuthToken.stub)
-        Verify(keychainProvider, 1, .read(.value(.userId)))
-        Verify(keychainProvider, 1, .read(.value(.authToken)))
+         
+        try await repository.registration(.stubValid)
+
+        XCTAssertEqual(networkProvider.requestCallsCount, 1)
     }
     
-    func testDelete() throws {
+    func testRegistrationExistingEmail() async throws {
+        let repository = createRepository()
+        networkProvider.requestReturnError = NetworkProviderError.requestFailed(statusCode: .conflict, message: "")
+        
+        do {
+            _ = try await repository.registration(.stubExistingEmail)
+            XCTFail("Should throw")
+        } catch {
+            XCTAssertEqual(error as? AuthError, .registration(.userAlreadyExists))
+            XCTAssertEqual(networkProvider.requestCallsCount, 1)
+        }
+    }
+    
+    func testReadProfileId() throws {
         let repository = createRepository()
         
-        try repository.delete()
+        let profileId = try repository.readProfileId()
+        
+        XCTAssertEqual(profileId, AuthToken.stub.userId)
+        Verify(keychainProvider, 1, .read(.value(.userId)))
+    }
+    
+    func testLogout() throws {
+        let repository = createRepository()
+        
+        try repository.logout()
         
         XCTAssertEqual(databaseProvider.deleteAllCallsCount, 1)
         Verify(keychainProvider, 1, .deleteAll())

@@ -6,7 +6,6 @@
 import DomainLayer
 import DomainStubs
 import RepositoryMocks
-import RxSwift
 import SwiftyMocky
 import XCTest
 
@@ -19,22 +18,17 @@ class GetUserUseCaseTests: BaseTestCase {
     override func setupDependencies() {
         super.setupDependencies()
         
-        Given(userRepository, .readRx(.value(.local), id: .value(User.stub.id), willReturn: .just(User.stub)))
+        Given(userRepository, .read(.any, id: .any, willReturn: User.stub))
     }
     
     // MARK: Tests
 
-    func testExecute() {
+    func testExecute() async throws {
         let useCase = GetUserUseCaseImpl(userRepository: userRepository)
-        let output = scheduler.createObserver(User.self)
         
-        useCase.execute(id: User.stub.id).bind(to: output).disposed(by: disposeBag)
-        scheduler.start()
+        let user = try await useCase.execute(.local, id: User.stub.id)
         
-        XCTAssertEqual(output.events, [
-            .next(0, User.stub),
-            .completed(0)
-        ])
-        Verify(userRepository, 1, .readRx(.value(.local), id: .value(User.stub.id)))
+        XCTAssertEqual(user, User.stub)
+        Verify(userRepository, 1, .read(.value(.local), id: .value(User.stub.id)))
     }
 }

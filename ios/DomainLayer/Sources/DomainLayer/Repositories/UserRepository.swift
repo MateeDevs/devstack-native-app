@@ -4,7 +4,6 @@
 //
 
 public protocol UserRepository: AutoMockable {
-    func create(_ data: RegistrationData) async throws -> User
     func read(_ sourceType: SourceType, id: String) async throws -> User
     func read(_ sourceType: SourceType, page: Int, sortBy: String?) async throws -> [User]
     func update(_ sourceType: SourceType, user: User) async throws -> User

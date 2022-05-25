@@ -9,13 +9,13 @@ public protocol GetProfileIdUseCase: AutoMockable {
 
 public struct GetProfileIdUseCaseImpl: GetProfileIdUseCase {
     
-    private let authTokenRepository: AuthTokenRepository
+    private let authRepository: AuthRepository
     
-    public init(authTokenRepository: AuthTokenRepository) {
-        self.authTokenRepository = authTokenRepository
+    public init(authRepository: AuthRepository) {
+        self.authRepository = authRepository
     }
     
     public func execute() throws -> String {
-        try authTokenRepository.read().userId
+        try authRepository.readProfileId()
     }
 }

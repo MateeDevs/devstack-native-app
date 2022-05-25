@@ -6,35 +6,31 @@
 import DomainLayer
 import DomainStubs
 import RepositoryMocks
-import RxSwift
 import SwiftyMocky
+import UseCaseMocks
 import XCTest
 
 class RegistrationUseCaseTests: BaseTestCase {
     
     // MARK: Dependencies
     
-    private let userRepository = UserRepositoryMock()
-    
-    override func setupDependencies() {
-        super.setupDependencies()
-        
-        Given(userRepository, .createRx(.any, willReturn: .just(User.stub)))
-    }
+    private let authRepository = AuthRepositoryMock()
+    private let validateEmailUseCase = ValidateEmailUseCaseMock()
+    private let validatePasswordUseCase = ValidatePasswordUseCaseMock()
     
     // MARK: Tests
-
-    func testExecute() {
-        let useCase = RegistrationUseCaseImpl(userRepository: userRepository)
-        let output = scheduler.createObserver(Bool.self)
+    
+    func testExecute() async throws {
+        let useCase = RegistrationUseCaseImpl(
+            authRepository: authRepository,
+            validateEmailUseCase: validateEmailUseCase,
+            validatePasswordUseCase: validatePasswordUseCase
+        )
         
-        useCase.execute(.stubValid).map { _ in true }.bind(to: output).disposed(by: disposeBag)
-        scheduler.start()
+        try await useCase.execute(.stubValid)
         
-        XCTAssertEqual(output.events, [
-            .next(0, true),
-            .completed(0)
-        ])
-        Verify(userRepository, 1, .createRx(.value(.stubValid)))
+        Verify(validateEmailUseCase, 1, .execute(.value(RegistrationData.stubValid.email)))
+        Verify(validatePasswordUseCase, 1, .execute(.value(RegistrationData.stubValid.password)))
+        Verify(authRepository, 1, .registration(.value(.stubValid)))
     }
 }

@@ -3,7 +3,7 @@
 //  Copyright © 2022 Matee. All rights reserved.
 //
 
-public enum ValidationError: Error {
+public enum ValidationError: Error, Equatable {
     case email(Email)
     case password(Password)
     

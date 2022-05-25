@@ -35,7 +35,7 @@ class LocationRepositoryTests: BaseTestCase {
     
     // MARK: Tests
     
-    func testIsLocationEnabled() {
+    func testReadIsLocationEnabled() {
         let repository = createRepository()
         
         let isLocationEnabled = repository.readIsLocationEnabled()
@@ -44,7 +44,7 @@ class LocationRepositoryTests: BaseTestCase {
         Verify(locationProvider, 1, .isLocationEnabled())
     }
     
-    func testGetCurrentLocation() async {
+    func testReadCurrentLocation() async {
         let repository = createRepository()
         
         let currentLocationStream = repository.readCurrentLocation(withAccuracy: kCLLocationAccuracyThreeKilometers)
