@@ -23,6 +23,7 @@ class LocationRepositoryTests: BaseTestCase {
         
         let locationStream = AsyncStream(CLLocation.self) { continuation in
             continuation.yield(location)
+            continuation.finish()
         }
 
         Given(locationProvider, .isLocationEnabled(willReturn: true))
@@ -51,7 +52,6 @@ class LocationRepositoryTests: BaseTestCase {
         
         for try await currentLocation in currentLocationStream {
             XCTAssertEqual(currentLocation, location)
-            break
         }
         Verify(locationProvider, 1, .getCurrentLocation(withAccuracy: .any))
     }

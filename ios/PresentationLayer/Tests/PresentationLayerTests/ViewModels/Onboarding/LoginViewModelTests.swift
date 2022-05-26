@@ -24,8 +24,9 @@ class LoginViewModelTests: BaseTestCase {
         Resolver.register { self.loginUseCase as LoginUseCase }
         Resolver.register { self.trackAnalyticsEventUseCase as TrackAnalyticsEventUseCase }
         
-        Given(loginUseCase, .execute(.value(.stubEmpty), willThrow: AuthError.invalidEmail))
-        Given(loginUseCase, .execute(.value(.stubInvalidPassword), willThrow: AuthError.invalidCredentials))
+        Given(loginUseCase, .execute(.value(.stubEmptyEmail), willThrow: ValidationError.email(.isEmpty)))
+        Given(loginUseCase, .execute(.value(.stubEmptyPassword), willThrow: ValidationError.password(.isEmpty)))
+        Given(loginUseCase, .execute(.value(.stubInvalidPassword), willThrow: AuthError.login(.invalidCredentials)))
     }
 
     // MARK: Tests
@@ -39,18 +40,33 @@ class LoginViewModelTests: BaseTestCase {
         Verify(trackAnalyticsEventUseCase, 1, .execute(.value(LoginEvent.screenAppear.analyticsEvent)))
     }
 
-    func testLoginEmpty() async {
+    func testLoginEmptyEmail() async {
         let fc = FlowControllerMock(navigationController: UINavigationController())
         let vm = LoginViewModel(flowController: fc)
         
-        vm.onIntent(.changeEmail(LoginData.stubEmpty.email))
-        vm.onIntent(.changePassword(LoginData.stubEmpty.password))
+        vm.onIntent(.changeEmail(LoginData.stubEmptyEmail.email))
+        vm.onIntent(.changePassword(LoginData.stubEmptyEmail.password))
         await vm.onIntent(.login).value
         
         XCTAssert(!vm.state.loginButtonLoading)
         XCTAssertEqual(vm.state.alert, AlertData(title: L10n.invalid_email))
         XCTAssertEqual(fc.handleFlowValue, nil)
-        Verify(loginUseCase, 1, .execute(.value(.stubEmpty)))
+        Verify(loginUseCase, 1, .execute(.value(.stubEmptyEmail)))
+        Verify(trackAnalyticsEventUseCase, 0, .execute(.any))
+    }
+    
+    func testLoginEmptyPassword() async {
+        let fc = FlowControllerMock(navigationController: UINavigationController())
+        let vm = LoginViewModel(flowController: fc)
+        
+        vm.onIntent(.changeEmail(LoginData.stubEmptyPassword.email))
+        vm.onIntent(.changePassword(LoginData.stubEmptyPassword.password))
+        await vm.onIntent(.login).value
+        
+        XCTAssert(!vm.state.loginButtonLoading)
+        XCTAssertEqual(vm.state.alert, AlertData(title: L10n.invalid_password))
+        XCTAssertEqual(fc.handleFlowValue, nil)
+        Verify(loginUseCase, 1, .execute(.value(.stubEmptyPassword)))
         Verify(trackAnalyticsEventUseCase, 0, .execute(.any))
     }
     

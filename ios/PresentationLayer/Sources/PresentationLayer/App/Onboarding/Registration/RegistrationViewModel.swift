@@ -67,7 +67,7 @@ final class RegistrationViewModel: BaseViewModel, ViewModel, ObservableObject {
             state.registerButtonLoading = true
             let data = RegistrationData(email: state.email, password: state.password, firstName: "Anonymous", lastName: "")
             try await registrationUseCase.execute(data)
-            flowController?.handleFlow(.login(.dismiss))
+            flowController?.handleFlow(.registration(.dismiss))
         } catch {
             state.registerButtonLoading = false
             state.alert = .init(title: error.localizedDescription)

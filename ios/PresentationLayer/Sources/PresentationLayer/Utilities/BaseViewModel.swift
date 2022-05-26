@@ -13,7 +13,7 @@ public class BaseViewModel {
     let trackScreenAppear: () -> Void
     
     /// All tasks that are currently executed
-    private var tasks: [Task<Void, Never>] = []
+    private(set) var tasks: [Task<Void, Never>] = []
 
     init(trackScreenAppear: @escaping () -> Void = {}) {
         self.trackScreenAppear = trackScreenAppear

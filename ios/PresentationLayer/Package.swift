@@ -34,16 +34,15 @@ let package = Package(
                 .product(name: "SkeletonView", package: "SkeletonView"),
                 .product(name: "Resolver", package: "Resolver")
             ]
+        ),
+        .testTarget(
+            name: "PresentationLayerTests",
+            dependencies: [
+                "PresentationLayer",
+                .product(name: "DomainStubs", package: "DomainLayer"),
+                .product(name: "UseCaseMocks", package: "DomainLayer"),
+                .product(name: "SwiftyMocky", package: "SwiftyMocky")
+            ]
         )
-//        .testTarget(
-//            name: "PresentationLayerTests",
-//            dependencies: [
-//                "PresentationLayer",
-//                .product(name: "DomainStubs", package: "DomainLayer"),
-//                .product(name: "UseCaseMocks", package: "DomainLayer"),
-//                .product(name: "RxTest", package: "RxSwift"),
-//                .product(name: "SwiftyMocky", package: "SwiftyMocky")
-//            ]
-//        )
     ]
 )

@@ -20,12 +20,6 @@ final class RecipesViewModel: BaseViewModel, ViewModel, ObservableObject {
         super.init()
     }
     
-    // MARK: Lifecycle
-    
-    override func onAppear() {
-        super.onAppear()
-    }
-    
     // MARK: State
     
     @Published private(set) var state: State = State()

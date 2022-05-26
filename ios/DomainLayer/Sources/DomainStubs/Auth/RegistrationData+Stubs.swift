@@ -6,30 +6,30 @@
 import DomainLayer
 
 public extension RegistrationData {
-    static let stubEmpty = RegistrationData(
-        email: "",
-        password: "",
-        firstName: "",
-        lastName: ""
-    )
-    
     static let stubValid = RegistrationData(
         email: "email@email.com",
-        password: "validPassword",
+        password: "password",
         firstName: "Anonymous",
         lastName: ""
     )
     
-    static let stubInvalidEmail = RegistrationData(
-        email: "invalidEmail",
-        password: "validPassword",
+    static let stubEmptyEmail = RegistrationData(
+        email: "",
+        password: "password",
+        firstName: "Anonymous",
+        lastName: ""
+    )
+    
+    static let stubEmptyPassword = RegistrationData(
+        email: "email@email.com",
+        password: "",
         firstName: "Anonymous",
         lastName: ""
     )
     
     static let stubExistingEmail = RegistrationData(
         email: "existing@email.com",
-        password: "validPassword",
+        password: "password",
         firstName: "Anonymous",
         lastName: ""
     )

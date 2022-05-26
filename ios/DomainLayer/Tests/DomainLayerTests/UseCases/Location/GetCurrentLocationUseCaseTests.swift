@@ -22,6 +22,7 @@ class GetCurrentLocationUseCaseTests: BaseTestCase {
         
         let locationStream = AsyncStream(CLLocation.self) { continuation in
             continuation.yield(locationStub)
+            continuation.finish()
         }
         
         Given(locationRepository, .readCurrentLocation(withAccuracy: .any, willReturn: locationStream))
@@ -36,7 +37,6 @@ class GetCurrentLocationUseCaseTests: BaseTestCase {
         
         for try await currentLocation in currentLocationStream {
             XCTAssertEqual(currentLocation, locationStub)
-            break
         }
         Verify(locationRepository, 1, .readCurrentLocation(withAccuracy: .value(kCLLocationAccuracyThreeKilometers)))
     }
