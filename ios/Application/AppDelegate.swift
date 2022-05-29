@@ -7,13 +7,17 @@
 import Atlantis
 #endif
 
-import DataLayer
-import DomainLayer
+import KeychainProvider
+import NetworkProvider
 import OSLog
 import PresentationLayer
 import Resolver
+import SharedDomain
 import UIKit
+import UIToolkit
+import UserDefaultsProvider
 import UserNotifications
+import Utilities
 import WidgetKit
 
 @UIApplicationMain
@@ -33,7 +37,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Resolver.registerProviders(application: application, appDelegate: self, networkProviderDelegate: self)
         Resolver.registerRepositories()
         Resolver.registerUseCases()
-        Resolver.registerKMPUseCases(kmp: KMPKoinDependency())
+        // Resolver.registerKMPUseCases(kmp: KMPKoinDependency())
+        
+        // Clear keychain on first run
+        clearKeychain()
         
         // Init main window with navigation controller
         let nc = BaseNavigationController(statusBarStyle: .lightContent)
@@ -93,6 +100,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #else
         Environment.flavor = .release
         #endif
+    }
+    
+    // MARK: Clear keychain
+    private func clearKeychain() {
+        let keychainProvider: KeychainProvider = Resolver.resolve()
+        let userDefaultsProvider: UserDefaultsProvider = Resolver.resolve()
+        
+        do {
+            let hasRunBefore: Bool = try userDefaultsProvider.read(.hasRunBefore)
+            if !hasRunBefore {
+                try keychainProvider.deleteAll()
+                try userDefaultsProvider.update(.hasRunBefore, value: true)
+            }
+        } catch {}
     }
 }
 

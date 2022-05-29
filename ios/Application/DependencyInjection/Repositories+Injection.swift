@@ -3,9 +3,14 @@
 //  Copyright © 2018 Matee. All rights reserved.
 //
 
-import DataLayer
-import DomainLayer
+import AnalyticsToolkit
+import AuthToolkit
+import LocationToolkit
+import PushNotificationsToolkit
+import RemoteConfigToolkit
 import Resolver
+import SharedDomain
+import UserToolkit
 
 public extension Resolver {
     static func registerRepositories() {

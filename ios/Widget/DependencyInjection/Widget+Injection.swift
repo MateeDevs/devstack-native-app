@@ -3,9 +3,13 @@
 //  Copyright © 2022 Matee. All rights reserved.
 //
 
-import DataLayer
-import DomainLayer
+import AuthToolkit
+import DatabaseProvider
+import KeychainProvider
+import NetworkProvider
 import Resolver
+import SharedDomain
+import UserDefaultsProvider
 
 public extension Resolver {
     static func registerDependencies() {
@@ -24,8 +28,17 @@ public extension Resolver {
         
         // Providers
         register { RealmDatabaseProvider() as DatabaseProvider }
-        register { SystemKeychainProvider(userDefaultsProvider: resolve()) as KeychainProvider }
-        register { SystemNetworkProvider(keychainProvider: resolve(), delegate: nil) as NetworkProvider }
+        register { SystemKeychainProvider() as KeychainProvider }
+        
+        register { SystemNetworkProvider(
+            readAuthToken: {
+                let keychainProvider: KeychainProvider = Resolver.resolve()
+                return try keychainProvider.read(.authToken)
+            },
+            delegate: nil
+        ) as NetworkProvider
+        }
+        
         register { SystemUserDefaultsProvider() as UserDefaultsProvider }
     }
 }

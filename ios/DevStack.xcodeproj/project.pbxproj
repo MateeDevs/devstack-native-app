@@ -7,15 +7,41 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4524472527A41483004853C8 /* DataLayer in Frameworks */ = {isa = PBXBuildFile; productRef = 4524472427A41483004853C8 /* DataLayer */; };
+		4506A7092842E01300F299B4 /* AuthToolkit in Frameworks */ = {isa = PBXBuildFile; productRef = 4506A7082842E01300F299B4 /* AuthToolkit */; };
+		4506A70B2842E01300F299B4 /* DatabaseProvider in Frameworks */ = {isa = PBXBuildFile; productRef = 4506A70A2842E01300F299B4 /* DatabaseProvider */; };
+		4506A70D2842E01300F299B4 /* KeychainProvider in Frameworks */ = {isa = PBXBuildFile; productRef = 4506A70C2842E01300F299B4 /* KeychainProvider */; };
+		4506A71B2842E01300F299B4 /* UserDefaultsProvider in Frameworks */ = {isa = PBXBuildFile; productRef = 4506A71A2842E01300F299B4 /* UserDefaultsProvider */; };
+		4506A71F2842E01300F299B4 /* Utilities in Frameworks */ = {isa = PBXBuildFile; productRef = 4506A71E2842E01300F299B4 /* Utilities */; };
+		4508331028435E7800BC9460 /* AnalyticsProvider in Frameworks */ = {isa = PBXBuildFile; productRef = 4508330F28435E7800BC9460 /* AnalyticsProvider */; };
+		4508331228435E7800BC9460 /* AnalyticsToolkit in Frameworks */ = {isa = PBXBuildFile; productRef = 4508331128435E7800BC9460 /* AnalyticsToolkit */; };
+		4508331428435E7800BC9460 /* AuthToolkit in Frameworks */ = {isa = PBXBuildFile; productRef = 4508331328435E7800BC9460 /* AuthToolkit */; };
+		4508331628435E7800BC9460 /* DatabaseProvider in Frameworks */ = {isa = PBXBuildFile; productRef = 4508331528435E7800BC9460 /* DatabaseProvider */; };
+		4508331828435E7800BC9460 /* KeychainProvider in Frameworks */ = {isa = PBXBuildFile; productRef = 4508331728435E7800BC9460 /* KeychainProvider */; };
+		4508331A28435E7800BC9460 /* LocationProvider in Frameworks */ = {isa = PBXBuildFile; productRef = 4508331928435E7800BC9460 /* LocationProvider */; };
+		4508331C28435E7800BC9460 /* LocationToolkit in Frameworks */ = {isa = PBXBuildFile; productRef = 4508331B28435E7800BC9460 /* LocationToolkit */; };
+		4508331E28435E7800BC9460 /* NetworkProvider in Frameworks */ = {isa = PBXBuildFile; productRef = 4508331D28435E7800BC9460 /* NetworkProvider */; };
+		4508332028435E7800BC9460 /* PresentationLayer in Frameworks */ = {isa = PBXBuildFile; productRef = 4508331F28435E7800BC9460 /* PresentationLayer */; };
+		4508332228435E7800BC9460 /* PushNotificationsProvider in Frameworks */ = {isa = PBXBuildFile; productRef = 4508332128435E7800BC9460 /* PushNotificationsProvider */; };
+		4508332428435E7800BC9460 /* PushNotificationsToolkit in Frameworks */ = {isa = PBXBuildFile; productRef = 4508332328435E7800BC9460 /* PushNotificationsToolkit */; };
+		4508332628435E7800BC9460 /* RemoteConfigProvider in Frameworks */ = {isa = PBXBuildFile; productRef = 4508332528435E7800BC9460 /* RemoteConfigProvider */; };
+		4508332828435E7800BC9460 /* RemoteConfigToolkit in Frameworks */ = {isa = PBXBuildFile; productRef = 4508332728435E7800BC9460 /* RemoteConfigToolkit */; };
+		4508332A28435E7800BC9460 /* SharedDomain in Frameworks */ = {isa = PBXBuildFile; productRef = 4508332928435E7800BC9460 /* SharedDomain */; };
+		4508332C28435E7900BC9460 /* UserDefaultsProvider in Frameworks */ = {isa = PBXBuildFile; productRef = 4508332B28435E7900BC9460 /* UserDefaultsProvider */; };
+		4508332E28435E7900BC9460 /* UserToolkit in Frameworks */ = {isa = PBXBuildFile; productRef = 4508332D28435E7900BC9460 /* UserToolkit */; };
+		4508333028435E7900BC9460 /* Utilities in Frameworks */ = {isa = PBXBuildFile; productRef = 4508332F28435E7900BC9460 /* Utilities */; };
+		4508333428437BA500BC9460 /* MainFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4508333328437BA500BC9460 /* MainFlowController.swift */; };
+		4508333528437BA500BC9460 /* AppFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4508333228437BA500BC9460 /* AppFlowController.swift */; };
+		4508333728437BB700BC9460 /* UIToolkit in Frameworks */ = {isa = PBXBuildFile; productRef = 4508333628437BB700BC9460 /* UIToolkit */; };
+		4508333D2843833900BC9460 /* Onboarding in Frameworks */ = {isa = PBXBuildFile; productRef = 4508333C2843833900BC9460 /* Onboarding */; };
+		4508333F2843833C00BC9460 /* Users in Frameworks */ = {isa = PBXBuildFile; productRef = 4508333E2843833C00BC9460 /* Users */; };
+		450833412843834300BC9460 /* Recipes in Frameworks */ = {isa = PBXBuildFile; productRef = 450833402843834300BC9460 /* Recipes */; };
+		450833432843834700BC9460 /* Profile in Frameworks */ = {isa = PBXBuildFile; productRef = 450833422843834700BC9460 /* Profile */; };
 		4524472727A417B1004853C8 /* WidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4524472627A417B1004853C8 /* WidgetView.swift */; };
-		453614D427A42D4700348CF1 /* DomainLayer in Frameworks */ = {isa = PBXBuildFile; productRef = 453614D327A42D4700348CF1 /* DomainLayer */; };
 		454F6EC426CE8B3900C386B8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 454F6EC226CE8B3500C386B8 /* InfoPlist.strings */; };
 		4558D30B20FCC8FF005BC325 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4558D30A20FCC8FF005BC325 /* AppDelegate.swift */; };
+		45702E60284226CA008D5487 /* SharedDomain in Frameworks */ = {isa = PBXBuildFile; productRef = 45702E5F284226CA008D5487 /* SharedDomain */; };
+		45702E6228422A2A008D5487 /* NetworkProvider in Frameworks */ = {isa = PBXBuildFile; productRef = 45702E6128422A2A008D5487 /* NetworkProvider */; };
 		4575E65625F6FA7600CCC003 /* AppIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4575E65525F6FA7600CCC003 /* AppIcon.xcassets */; };
-		4583E84A272F47C6002D1E1C /* DataLayer in Frameworks */ = {isa = PBXBuildFile; productRef = 4583E849272F47C6002D1E1C /* DataLayer */; };
-		4583E84E272F47D1002D1E1C /* DomainLayer in Frameworks */ = {isa = PBXBuildFile; productRef = 4583E84D272F47D1002D1E1C /* DomainLayer */; };
-		4583E850272F47D7002D1E1C /* PresentationLayer in Frameworks */ = {isa = PBXBuildFile; productRef = 4583E84F272F47D7002D1E1C /* PresentationLayer */; };
 		4597626F20FDF0810034DE29 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4597626E20FDF0810034DE29 /* LaunchScreen.storyboard */; };
 		459C3707274B001B00536110 /* Atlantis in Frameworks */ = {isa = PBXBuildFile; productRef = 459C3706274B001B00536110 /* Atlantis */; };
 		45A0EBA227ADDE620005A01E /* UseCase+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0EB9F27ADDE620005A01E /* UseCase+Injection.swift */; };
@@ -60,10 +86,17 @@
 		450392842256B29D0037BF42 /* GoogleService-Info-Alpha.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Alpha.plist"; sourceTree = "<group>"; };
 		450392862256B35E0037BF42 /* GoogleService-Info-Beta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Beta.plist"; sourceTree = "<group>"; };
 		450392882256B3C60037BF42 /* GoogleService-Info-Prod.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Prod.plist"; sourceTree = "<group>"; };
-		45140F8E272F40D200960413 /* DataLayer */ = {isa = PBXFileReference; lastKnownFileType = folder; path = DataLayer; sourceTree = "<group>"; };
-		4523E33D272F3E4C00D9F749 /* PresentationLayer */ = {isa = PBXFileReference; lastKnownFileType = folder; path = PresentationLayer; sourceTree = "<group>"; };
+		4508333128436EFB00BC9460 /* UIToolkit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UIToolkit; sourceTree = "<group>"; };
+		4508333228437BA500BC9460 /* AppFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowController.swift; sourceTree = "<group>"; };
+		4508333328437BA500BC9460 /* MainFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowController.swift; sourceTree = "<group>"; };
+		4508333828437BED00BC9460 /* Onboarding */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Onboarding; sourceTree = "<group>"; };
+		4508333928437FC600BC9460 /* Users */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Users; sourceTree = "<group>"; };
+		4508333A28437FD600BC9460 /* Profile */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Profile; sourceTree = "<group>"; };
+		4508333B28437FE200BC9460 /* Recipes */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Recipes; sourceTree = "<group>"; };
 		4524472627A417B1004853C8 /* WidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetView.swift; sourceTree = "<group>"; };
 		4534C1C42603D6AD0022ACF4 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		453C8807283FAB4C0027BDFB /* SharedDomain */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SharedDomain; sourceTree = "<group>"; };
+		453C880C283FB33D0027BDFB /* DevstackKmpShared.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = DevstackKmpShared.xcframework; sourceTree = "<group>"; };
 		454F6EC326CE8B3500C386B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		454F6EC526CE8B4100C386B8 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		454F6EC626CE8B4600C386B8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -71,7 +104,14 @@
 		4558D30720FCC8FF005BC325 /* DevStack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DevStack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4558D30A20FCC8FF005BC325 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		456E73DD25F817FA007D9A6D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		456F8B042842CB2800F74A61 /* LocationToolkit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = LocationToolkit; sourceTree = "<group>"; };
+		456F8B052842CC7800F74A61 /* PushNotificationsToolkit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = PushNotificationsToolkit; sourceTree = "<group>"; };
+		456F8B062842CDFF00F74A61 /* RemoteConfigToolkit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RemoteConfigToolkit; sourceTree = "<group>"; };
+		456F8B072842CF1000F74A61 /* UserToolkit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UserToolkit; sourceTree = "<group>"; };
+		45702E5A28421EED008D5487 /* NetworkProvider */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = NetworkProvider; sourceTree = "<group>"; };
 		4575E65525F6FA7600CCC003 /* AppIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIcon.xcassets; sourceTree = "<group>"; };
+		45825BC32842961C003926B4 /* AnalyticsProvider */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = AnalyticsProvider; sourceTree = "<group>"; };
+		45825BC628429D48003926B4 /* KeychainProvider */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = KeychainProvider; sourceTree = "<group>"; };
 		4597626E20FDF0810034DE29 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		459896B026129CB300C852E0 /* Info+Proxyman.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info+Proxyman.plist"; sourceTree = "<group>"; };
 		459B777827737AFB00EAA694 /* DevstackKmpShared.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = DevstackKmpShared.xcframework; path = DomainLayer/DevstackKmpShared.xcframework; sourceTree = "<group>"; };
@@ -80,7 +120,9 @@
 		45A0EBA127ADDE620005A01E /* Providers+Injection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Providers+Injection.swift"; sourceTree = "<group>"; };
 		45A0EBA727ADF2610005A01E /* KMPUseCase+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KMPUseCase+Injection.swift"; sourceTree = "<group>"; };
 		45A0EBAA27ADF5900005A01E /* Widget+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Widget+Injection.swift"; sourceTree = "<group>"; };
-		45CC76B6275F6FE200D45D76 /* DomainLayer */ = {isa = PBXFileReference; lastKnownFileType = folder; path = DomainLayer; sourceTree = "<group>"; };
+		45B5A7942842A4E30055447B /* LocationProvider */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = LocationProvider; sourceTree = "<group>"; };
+		45B5A7952842A64D0055447B /* PushNotificationsProvider */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = PushNotificationsProvider; sourceTree = "<group>"; };
+		45C120A1284292690065E6BA /* DatabaseProvider */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = DatabaseProvider; sourceTree = "<group>"; };
 		45DEBE1827A153A10075C7E2 /* DevStack Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "DevStack Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		45DEBE1927A153A10075C7E2 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		45DEBE1B27A153A10075C7E2 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -93,6 +135,11 @@
 		45DEBE3627A401A40075C7E2 /* Prod.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Prod.entitlements; sourceTree = "<group>"; };
 		45DEBE3727A401A40075C7E2 /* Beta.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Beta.entitlements; sourceTree = "<group>"; };
 		45DEBE3827A401A40075C7E2 /* Alpha.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Alpha.entitlements; sourceTree = "<group>"; };
+		45FF99D32842A8CB00E32D9A /* RemoteConfigProvider */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RemoteConfigProvider; sourceTree = "<group>"; };
+		45FF99D52842AAFB00E32D9A /* UserDefaultsProvider */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UserDefaultsProvider; sourceTree = "<group>"; };
+		45FF99D72842B0A600E32D9A /* AnalyticsToolkit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = AnalyticsToolkit; sourceTree = "<group>"; };
+		45FF99D82842B38B00E32D9A /* AuthToolkit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = AuthToolkit; sourceTree = "<group>"; };
+		45FF99D92842B51800E32D9A /* Utilities */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Utilities; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,11 +147,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4583E84E272F47D1002D1E1C /* DomainLayer in Frameworks */,
+				450833432843834700BC9460 /* Profile in Frameworks */,
+				4508332828435E7800BC9460 /* RemoteConfigToolkit in Frameworks */,
+				4508333728437BB700BC9460 /* UIToolkit in Frameworks */,
+				4508331028435E7800BC9460 /* AnalyticsProvider in Frameworks */,
+				4508332628435E7800BC9460 /* RemoteConfigProvider in Frameworks */,
 				459C3707274B001B00536110 /* Atlantis in Frameworks */,
-				4583E84A272F47C6002D1E1C /* DataLayer in Frameworks */,
+				450833412843834300BC9460 /* Recipes in Frameworks */,
+				4508331628435E7800BC9460 /* DatabaseProvider in Frameworks */,
+				4508331228435E7800BC9460 /* AnalyticsToolkit in Frameworks */,
+				4508331C28435E7800BC9460 /* LocationToolkit in Frameworks */,
+				4508331A28435E7800BC9460 /* LocationProvider in Frameworks */,
+				4508333028435E7900BC9460 /* Utilities in Frameworks */,
+				4508332E28435E7900BC9460 /* UserToolkit in Frameworks */,
+				4508333F2843833C00BC9460 /* Users in Frameworks */,
+				4508333D2843833900BC9460 /* Onboarding in Frameworks */,
+				4508331E28435E7800BC9460 /* NetworkProvider in Frameworks */,
+				4508331428435E7800BC9460 /* AuthToolkit in Frameworks */,
+				4508332028435E7800BC9460 /* PresentationLayer in Frameworks */,
+				4508332A28435E7800BC9460 /* SharedDomain in Frameworks */,
+				4508331828435E7800BC9460 /* KeychainProvider in Frameworks */,
+				4508332228435E7800BC9460 /* PushNotificationsProvider in Frameworks */,
+				4508332428435E7800BC9460 /* PushNotificationsToolkit in Frameworks */,
 				45A0EBB227ADFA210005A01E /* Resolver in Frameworks */,
-				4583E850272F47D7002D1E1C /* PresentationLayer in Frameworks */,
+				4508332C28435E7900BC9460 /* UserDefaultsProvider in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,25 +178,61 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				453614D427A42D4700348CF1 /* DomainLayer in Frameworks */,
+				4506A70D2842E01300F299B4 /* KeychainProvider in Frameworks */,
+				45702E6228422A2A008D5487 /* NetworkProvider in Frameworks */,
+				4506A70B2842E01300F299B4 /* DatabaseProvider in Frameworks */,
 				45DEBE1C27A153A10075C7E2 /* SwiftUI.framework in Frameworks */,
+				4506A71F2842E01300F299B4 /* Utilities in Frameworks */,
+				4506A7092842E01300F299B4 /* AuthToolkit in Frameworks */,
+				45702E60284226CA008D5487 /* SharedDomain in Frameworks */,
 				45DEBE1A27A153A10075C7E2 /* WidgetKit.framework in Frameworks */,
 				45A0EBB427ADFA290005A01E /* Resolver in Frameworks */,
-				4524472527A41483004853C8 /* DataLayer in Frameworks */,
+				4506A71B2842E01300F299B4 /* UserDefaultsProvider in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		453C8801283FA9CA0027BDFB /* PresentationLayer */ = {
+			isa = PBXGroup;
+			children = (
+				4508333828437BED00BC9460 /* Onboarding */,
+				4508333928437FC600BC9460 /* Users */,
+				4508333A28437FD600BC9460 /* Profile */,
+				4508333B28437FE200BC9460 /* Recipes */,
+				4508333128436EFB00BC9460 /* UIToolkit */,
+			);
+			path = PresentationLayer;
+			sourceTree = "<group>";
+		};
+		453C8802283FA9D10027BDFB /* DomainLayer */ = {
+			isa = PBXGroup;
+			children = (
+				453C8807283FAB4C0027BDFB /* SharedDomain */,
+				45FF99D92842B51800E32D9A /* Utilities */,
+				453C880C283FB33D0027BDFB /* DevstackKmpShared.xcframework */,
+			);
+			path = DomainLayer;
+			sourceTree = "<group>";
+		};
+		453C8803283FA9D70027BDFB /* DataLayer */ = {
+			isa = PBXGroup;
+			children = (
+				45FF99D62842B05700E32D9A /* Toolkits */,
+				45702E5928421D7F008D5487 /* Providers */,
+			);
+			path = DataLayer;
+			sourceTree = "<group>";
+		};
 		4558D2FE20FCC8FF005BC325 = {
 			isa = PBXGroup;
 			children = (
 				4558D30920FCC8FF005BC325 /* Application */,
 				45DEBE1D27A153A10075C7E2 /* Widget */,
-				4523E33D272F3E4C00D9F749 /* PresentationLayer */,
-				45CC76B6275F6FE200D45D76 /* DomainLayer */,
-				45140F8E272F40D200960413 /* DataLayer */,
+				453C8801283FA9CA0027BDFB /* PresentationLayer */,
+				453C8802283FA9D10027BDFB /* DomainLayer */,
+				453C8803283FA9D70027BDFB /* DataLayer */,
 				4558D30820FCC8FF005BC325 /* Products */,
 				4576CEDF25ACF54F00218229 /* Frameworks */,
 			);
@@ -153,6 +255,8 @@
 				456E73DC25F817CF007D9A6D /* Info */,
 				4575E61325F6F83600CCC003 /* GoogleService */,
 				4558D30A20FCC8FF005BC325 /* AppDelegate.swift */,
+				4508333228437BA500BC9460 /* AppFlowController.swift */,
+				4508333328437BA500BC9460 /* MainFlowController.swift */,
 				4575E65525F6FA7600CCC003 /* AppIcon.xcassets */,
 				4597626E20FDF0810034DE29 /* LaunchScreen.storyboard */,
 			);
@@ -167,6 +271,21 @@
 				454F6EC226CE8B3500C386B8 /* InfoPlist.strings */,
 			);
 			path = Info;
+			sourceTree = "<group>";
+		};
+		45702E5928421D7F008D5487 /* Providers */ = {
+			isa = PBXGroup;
+			children = (
+				45825BC32842961C003926B4 /* AnalyticsProvider */,
+				45C120A1284292690065E6BA /* DatabaseProvider */,
+				45825BC628429D48003926B4 /* KeychainProvider */,
+				45B5A7942842A4E30055447B /* LocationProvider */,
+				45702E5A28421EED008D5487 /* NetworkProvider */,
+				45B5A7952842A64D0055447B /* PushNotificationsProvider */,
+				45FF99D32842A8CB00E32D9A /* RemoteConfigProvider */,
+				45FF99D52842AAFB00E32D9A /* UserDefaultsProvider */,
+			);
+			path = Providers;
 			sourceTree = "<group>";
 		};
 		4575E61225F6F82C00CCC003 /* Entitlements */ = {
@@ -242,6 +361,19 @@
 			path = Entitlements;
 			sourceTree = "<group>";
 		};
+		45FF99D62842B05700E32D9A /* Toolkits */ = {
+			isa = PBXGroup;
+			children = (
+				45FF99D72842B0A600E32D9A /* AnalyticsToolkit */,
+				45FF99D82842B38B00E32D9A /* AuthToolkit */,
+				456F8B042842CB2800F74A61 /* LocationToolkit */,
+				456F8B052842CC7800F74A61 /* PushNotificationsToolkit */,
+				456F8B062842CDFF00F74A61 /* RemoteConfigToolkit */,
+				456F8B072842CF1000F74A61 /* UserToolkit */,
+			);
+			path = Toolkits;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -263,11 +395,30 @@
 			);
 			name = DevStack;
 			packageProductDependencies = (
-				4583E849272F47C6002D1E1C /* DataLayer */,
-				4583E84D272F47D1002D1E1C /* DomainLayer */,
-				4583E84F272F47D7002D1E1C /* PresentationLayer */,
 				459C3706274B001B00536110 /* Atlantis */,
 				45A0EBB127ADFA210005A01E /* Resolver */,
+				4508330F28435E7800BC9460 /* AnalyticsProvider */,
+				4508331128435E7800BC9460 /* AnalyticsToolkit */,
+				4508331328435E7800BC9460 /* AuthToolkit */,
+				4508331528435E7800BC9460 /* DatabaseProvider */,
+				4508331728435E7800BC9460 /* KeychainProvider */,
+				4508331928435E7800BC9460 /* LocationProvider */,
+				4508331B28435E7800BC9460 /* LocationToolkit */,
+				4508331D28435E7800BC9460 /* NetworkProvider */,
+				4508331F28435E7800BC9460 /* PresentationLayer */,
+				4508332128435E7800BC9460 /* PushNotificationsProvider */,
+				4508332328435E7800BC9460 /* PushNotificationsToolkit */,
+				4508332528435E7800BC9460 /* RemoteConfigProvider */,
+				4508332728435E7800BC9460 /* RemoteConfigToolkit */,
+				4508332928435E7800BC9460 /* SharedDomain */,
+				4508332B28435E7900BC9460 /* UserDefaultsProvider */,
+				4508332D28435E7900BC9460 /* UserToolkit */,
+				4508332F28435E7900BC9460 /* Utilities */,
+				4508333628437BB700BC9460 /* UIToolkit */,
+				4508333C2843833900BC9460 /* Onboarding */,
+				4508333E2843833C00BC9460 /* Users */,
+				450833402843834300BC9460 /* Recipes */,
+				450833422843834700BC9460 /* Profile */,
 			);
 			productName = DevStack;
 			productReference = 4558D30720FCC8FF005BC325 /* DevStack.app */;
@@ -287,9 +438,14 @@
 			);
 			name = "DevStack Widget";
 			packageProductDependencies = (
-				4524472427A41483004853C8 /* DataLayer */,
-				453614D327A42D4700348CF1 /* DomainLayer */,
 				45A0EBB327ADFA290005A01E /* Resolver */,
+				45702E5F284226CA008D5487 /* SharedDomain */,
+				45702E6128422A2A008D5487 /* NetworkProvider */,
+				4506A7082842E01300F299B4 /* AuthToolkit */,
+				4506A70A2842E01300F299B4 /* DatabaseProvider */,
+				4506A70C2842E01300F299B4 /* KeychainProvider */,
+				4506A71A2842E01300F299B4 /* UserDefaultsProvider */,
+				4506A71E2842E01300F299B4 /* Utilities */,
 			);
 			productName = "DevStack WidgetExtension";
 			productReference = 45DEBE1827A153A10075C7E2 /* DevStack Widget.appex */;
@@ -403,8 +559,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4508333428437BA500BC9460 /* MainFlowController.swift in Sources */,
 				45A0EBA427ADDE620005A01E /* Providers+Injection.swift in Sources */,
 				4558D30B20FCC8FF005BC325 /* AppDelegate.swift in Sources */,
+				4508333528437BA500BC9460 /* AppFlowController.swift in Sources */,
 				45A0EBA327ADDE620005A01E /* Repositories+Injection.swift in Sources */,
 				45A0EBA227ADDE620005A01E /* UseCase+Injection.swift in Sources */,
 				45A0EBA827ADF2610005A01E /* KMPUseCase+Injection.swift in Sources */,
@@ -1264,25 +1422,121 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		4524472427A41483004853C8 /* DataLayer */ = {
+		4506A7082842E01300F299B4 /* AuthToolkit */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = DataLayer;
+			productName = AuthToolkit;
 		};
-		453614D327A42D4700348CF1 /* DomainLayer */ = {
+		4506A70A2842E01300F299B4 /* DatabaseProvider */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = DomainLayer;
+			productName = DatabaseProvider;
 		};
-		4583E849272F47C6002D1E1C /* DataLayer */ = {
+		4506A70C2842E01300F299B4 /* KeychainProvider */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = DataLayer;
+			productName = KeychainProvider;
 		};
-		4583E84D272F47D1002D1E1C /* DomainLayer */ = {
+		4506A71A2842E01300F299B4 /* UserDefaultsProvider */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = DomainLayer;
+			productName = UserDefaultsProvider;
 		};
-		4583E84F272F47D7002D1E1C /* PresentationLayer */ = {
+		4506A71E2842E01300F299B4 /* Utilities */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Utilities;
+		};
+		4508330F28435E7800BC9460 /* AnalyticsProvider */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AnalyticsProvider;
+		};
+		4508331128435E7800BC9460 /* AnalyticsToolkit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AnalyticsToolkit;
+		};
+		4508331328435E7800BC9460 /* AuthToolkit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AuthToolkit;
+		};
+		4508331528435E7800BC9460 /* DatabaseProvider */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DatabaseProvider;
+		};
+		4508331728435E7800BC9460 /* KeychainProvider */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = KeychainProvider;
+		};
+		4508331928435E7800BC9460 /* LocationProvider */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LocationProvider;
+		};
+		4508331B28435E7800BC9460 /* LocationToolkit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LocationToolkit;
+		};
+		4508331D28435E7800BC9460 /* NetworkProvider */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NetworkProvider;
+		};
+		4508331F28435E7800BC9460 /* PresentationLayer */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = PresentationLayer;
+		};
+		4508332128435E7800BC9460 /* PushNotificationsProvider */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PushNotificationsProvider;
+		};
+		4508332328435E7800BC9460 /* PushNotificationsToolkit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PushNotificationsToolkit;
+		};
+		4508332528435E7800BC9460 /* RemoteConfigProvider */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = RemoteConfigProvider;
+		};
+		4508332728435E7800BC9460 /* RemoteConfigToolkit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = RemoteConfigToolkit;
+		};
+		4508332928435E7800BC9460 /* SharedDomain */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SharedDomain;
+		};
+		4508332B28435E7900BC9460 /* UserDefaultsProvider */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = UserDefaultsProvider;
+		};
+		4508332D28435E7900BC9460 /* UserToolkit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = UserToolkit;
+		};
+		4508332F28435E7900BC9460 /* Utilities */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Utilities;
+		};
+		4508333628437BB700BC9460 /* UIToolkit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = UIToolkit;
+		};
+		4508333C2843833900BC9460 /* Onboarding */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Onboarding;
+		};
+		4508333E2843833C00BC9460 /* Users */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Users;
+		};
+		450833402843834300BC9460 /* Recipes */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Recipes;
+		};
+		450833422843834700BC9460 /* Profile */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Profile;
+		};
+		45702E5F284226CA008D5487 /* SharedDomain */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SharedDomain;
+		};
+		45702E6128422A2A008D5487 /* NetworkProvider */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NetworkProvider;
 		};
 		459C3706274B001B00536110 /* Atlantis */ = {
 			isa = XCSwiftPackageProductDependency;
