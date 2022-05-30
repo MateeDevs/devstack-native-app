@@ -18,6 +18,7 @@ struct LoginView: View {
     var body: some View {
         return VStack {
             EmailAndPasswordFields(
+                title: L10n.login_view_headline_title,
                 email: viewModel.state.email,
                 password: viewModel.state.password,
                 onEmailChange: { email in viewModel.onIntent(.changeEmail(email)) },
@@ -40,19 +41,20 @@ struct LoginView: View {
     }
 }
 
-// #if DEBUG
-// import Resolver
-// import Utilities
-//
-// struct LoginView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        Environment.locale = .init(identifier: "cs")
-//        Resolver.registerUseCasesForPreviews()
-//
-//        let vm = LoginViewModel(flowController: nil)
-//        return PreviewGroup {
-//            LoginView(viewModel: vm)
-//        }
-//    }
-// }
-// #endif
+#if DEBUG
+import Resolver
+import SharedDomainMocks
+import Utilities
+
+struct LoginView_Previews: PreviewProvider {
+    static var previews: some View {
+        Environment.locale = .init(identifier: "cs")
+        Resolver.registerUseCaseMocks()
+        
+        let vm = LoginViewModel(flowController: nil)
+        return PreviewGroup {
+            LoginView(viewModel: vm)
+        }
+    }
+}
+#endif

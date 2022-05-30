@@ -17,6 +17,7 @@ struct RegistrationView: View {
     var body: some View {
         return VStack {
             EmailAndPasswordFields(
+                title: L10n.registration_view_headline_title,
                 email: viewModel.state.email,
                 password: viewModel.state.password,
                 onEmailChange: { email in viewModel.onIntent(.changeEmail(email)) },
@@ -39,17 +40,18 @@ struct RegistrationView: View {
     }
 }
 
-// #if DEBUG
-// import Resolver
-//
-// struct RegistrationView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        Resolver.registerUseCasesForPreviews()
-//
-//        let vm = RegistrationViewModel(flowController: nil)
-//        return PreviewGroup {
-//            RegistrationView(viewModel: vm)
-//        }
-//    }
-// }
-// #endif
+#if DEBUG
+import Resolver
+import SharedDomainMocks
+
+struct RegistrationView_Previews: PreviewProvider {
+    static var previews: some View {
+        Resolver.registerUseCaseMocks()
+        
+        let vm = RegistrationViewModel(flowController: nil)
+        return PreviewGroup {
+            RegistrationView(viewModel: vm)
+        }
+    }
+}
+#endif

@@ -41,17 +41,18 @@ struct ProfileView: View {
     }
 }
 
-// #if DEBUG
-// import Resolver
-//
-// struct ProfileView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        Resolver.registerUseCasesForPreviews()
-//
-//        let vm = ProfileViewModel(flowController: nil)
-//        return PreviewGroup {
-//            ProfileView(viewModel: vm)
-//        }
-//    }
-// }
-// #endif
+#if DEBUG
+import Resolver
+import SharedDomainMocks
+
+struct ProfileView_Previews: PreviewProvider {
+    static var previews: some View {
+        Resolver.registerUseCaseMocks()
+        
+        let vm = ProfileViewModel(flowController: nil)
+        return PreviewGroup {
+            ProfileView(viewModel: vm)
+        }
+    }
+}
+#endif

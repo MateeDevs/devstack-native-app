@@ -8,17 +8,20 @@ import UIToolkit
 
 struct EmailAndPasswordFields: View {
     
+    private let title: String
     private let email: String
     private let password: String
     private let onEmailChange: (String) -> Void
     private let onPasswordChange: (String) -> Void
     
     init(
+        title: String,
         email: String,
         password: String,
         onEmailChange: @escaping (String) -> Void,
         onPasswordChange: @escaping (String) -> Void
     ) {
+        self.title = title
         self.email = email
         self.password = password
         self.onEmailChange = onEmailChange
@@ -27,7 +30,7 @@ struct EmailAndPasswordFields: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            HeadlineText(L10n.login_view_headline_title)
+            HeadlineText(title)
                 .padding(.top, 32)
             
             PrimaryTextField(
@@ -55,6 +58,7 @@ struct EmailAndPasswordFields: View {
 struct EmailAndPasswordFields_Previews: PreviewProvider {
     static var previews: some View {
         EmailAndPasswordFields(
+            title: "Sign in",
             email: "abc@abc.cz",
             password: "1111",
             onEmailChange: { _ in },

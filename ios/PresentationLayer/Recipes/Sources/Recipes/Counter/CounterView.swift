@@ -34,17 +34,18 @@ struct CounterView: View {
     }
 }
 
-// #if DEBUG
-// import Resolver
-//
-// struct CounterView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        Resolver.registerUseCasesForPreviews()
-//
-//        let vm = CounterViewModel(flowController: nil)
-//        return PreviewGroup {
-//            CounterView(viewModel: vm)
-//        }
-//    }
-// }
-// #endif
+#if DEBUG
+import Resolver
+import SharedDomainMocks
+
+struct CounterView_Previews: PreviewProvider {
+    static var previews: some View {
+        Resolver.registerUseCaseMocks()
+        
+        let vm = CounterViewModel(flowController: nil)
+        return PreviewGroup {
+            CounterView(viewModel: vm)
+        }
+    }
+}
+#endif

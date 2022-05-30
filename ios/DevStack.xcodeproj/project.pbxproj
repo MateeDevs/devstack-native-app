@@ -36,6 +36,7 @@
 		450833412843834300BC9460 /* Recipes in Frameworks */ = {isa = PBXBuildFile; productRef = 450833402843834300BC9460 /* Recipes */; };
 		450833432843834700BC9460 /* Profile in Frameworks */ = {isa = PBXBuildFile; productRef = 450833422843834700BC9460 /* Profile */; };
 		4508334528454DA900BC9460 /* KMPDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4508334428454DA900BC9460 /* KMPDependency.swift */; };
+		4508334D2845556C00BC9460 /* SharedDomainMocks in Frameworks */ = {isa = PBXBuildFile; productRef = 4508334C2845556C00BC9460 /* SharedDomainMocks */; };
 		4524472727A417B1004853C8 /* WidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4524472627A417B1004853C8 /* WidgetView.swift */; };
 		454F6EC426CE8B3900C386B8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 454F6EC226CE8B3500C386B8 /* InfoPlist.strings */; };
 		4558D30B20FCC8FF005BC325 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4558D30A20FCC8FF005BC325 /* AppDelegate.swift */; };
@@ -169,6 +170,7 @@
 				4508331828435E7800BC9460 /* KeychainProvider in Frameworks */,
 				4508332228435E7800BC9460 /* PushNotificationsProvider in Frameworks */,
 				4508332428435E7800BC9460 /* PushNotificationsToolkit in Frameworks */,
+				4508334D2845556C00BC9460 /* SharedDomainMocks in Frameworks */,
 				45A0EBB227ADFA210005A01E /* Resolver in Frameworks */,
 				4508332C28435E7900BC9460 /* UserDefaultsProvider in Frameworks */,
 			);
@@ -419,6 +421,7 @@
 				4508333E2843833C00BC9460 /* Users */,
 				450833402843834300BC9460 /* Recipes */,
 				450833422843834700BC9460 /* Profile */,
+				4508334C2845556C00BC9460 /* SharedDomainMocks */,
 			);
 			productName = DevStack;
 			productReference = 4558D30720FCC8FF005BC325 /* DevStack.app */;
@@ -1526,6 +1529,10 @@
 		450833422843834700BC9460 /* Profile */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Profile;
+		};
+		4508334C2845556C00BC9460 /* SharedDomainMocks */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SharedDomainMocks;
 		};
 		45702E5F284226CA008D5487 /* SharedDomain */ = {
 			isa = XCSwiftPackageProductDependency;

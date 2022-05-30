@@ -24,17 +24,18 @@ struct UserDetailView: View {
     }
 }
 
-// #if DEBUG
-// import Resolver
-//
-// struct UserDetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        Resolver.registerUseCasesForPreviews()
-//
-//        let vm = UserDetailViewModel(userId: "userId", flowController: nil)
-//        return PreviewGroup {
-//            UserDetailView(viewModel: vm)
-//        }
-//    }
-// }
-// #endif
+#if DEBUG
+import Resolver
+import SharedDomainMocks
+
+struct UserDetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        Resolver.registerUseCaseMocks()
+        
+        let vm = UserDetailViewModel(userId: "userId", flowController: nil)
+        return PreviewGroup {
+            UserDetailView(viewModel: vm)
+        }
+    }
+}
+#endif

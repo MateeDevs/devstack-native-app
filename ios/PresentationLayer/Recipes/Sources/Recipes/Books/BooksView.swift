@@ -35,18 +35,3 @@ struct BooksView: View {
         .navigationTitle(L10n.books_view_toolbar_title)
     }
 }
-
-// #if DEBUG
-// import Resolver
-//
-// struct BooksView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        Resolver.registerUseCasesForPreviews()
-//
-//        let vm = BooksViewModel(flowController: nil)
-//        return PreviewGroup {
-//            BooksView(viewModel: vm)
-//        }
-//    }
-// }
-// #endif
