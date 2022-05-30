@@ -42,8 +42,7 @@ final class CounterViewModel: BaseViewModel, ViewModel, ObservableObject {
         case decrease
     }
 
-    @discardableResult
-    func onIntent(_ intent: Intent) -> Task<Void, Never> {
+    func onIntent(_ intent: Intent) {
         executeTask(Task {
             switch intent {
             case .increase: await updateValue(state.value + 1)

@@ -49,8 +49,7 @@ final class ProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
         case logout
     }
 
-    @discardableResult
-    func onIntent(_ intent: Intent) -> Task<Void, Never> {
+    func onIntent(_ intent: Intent) {
         executeTask(Task {
             switch intent {
             case .registerForPushNotifications: registerForPushNotifications()

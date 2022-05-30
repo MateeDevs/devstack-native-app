@@ -33,7 +33,8 @@ class RegistrationViewModelTests: XCTestCase {
         
         vm.onIntent(.changeEmail(RegistrationData.stubEmptyEmail.email))
         vm.onIntent(.changePassword(RegistrationData.stubEmptyEmail.password))
-        await vm.onIntent(.register).value
+        vm.onIntent(.register)
+        await vm.awaitAllTasks()
         
         XCTAssert(!vm.state.registerButtonLoading)
         XCTAssertEqual(vm.state.alert, AlertData(title: L10n.invalid_email))
@@ -47,7 +48,8 @@ class RegistrationViewModelTests: XCTestCase {
         
         vm.onIntent(.changeEmail(RegistrationData.stubEmptyPassword.email))
         vm.onIntent(.changePassword(RegistrationData.stubEmptyPassword.password))
-        await vm.onIntent(.register).value
+        vm.onIntent(.register)
+        await vm.awaitAllTasks()
         
         XCTAssert(!vm.state.registerButtonLoading)
         XCTAssertEqual(vm.state.alert, AlertData(title: L10n.invalid_password))
@@ -60,7 +62,8 @@ class RegistrationViewModelTests: XCTestCase {
         
         vm.onIntent(.changeEmail(RegistrationData.stubValid.email))
         vm.onIntent(.changePassword(RegistrationData.stubValid.password))
-        await vm.onIntent(.register).value
+        vm.onIntent(.register)
+        await vm.awaitAllTasks()
         
         XCTAssert(vm.state.registerButtonLoading)
         XCTAssertEqual(vm.state.alert, nil)
@@ -74,7 +77,8 @@ class RegistrationViewModelTests: XCTestCase {
         
         vm.onIntent(.changeEmail(RegistrationData.stubValid.email))
         vm.onIntent(.changePassword(RegistrationData.stubValid.password))
-        await vm.onIntent(.register).value
+        vm.onIntent(.register)
+        await vm.awaitAllTasks()
         
         XCTAssert(!vm.state.registerButtonLoading)
         XCTAssertEqual(vm.state.alert, AlertData(title: L10n.register_view_email_already_exists))
@@ -85,7 +89,8 @@ class RegistrationViewModelTests: XCTestCase {
     func testLogin() async {
         let vm = createViewModel()
         
-        await vm.onIntent(.login).value
+        vm.onIntent(.login)
+        await vm.awaitAllTasks()
         
         XCTAssert(!vm.state.registerButtonLoading)
         XCTAssertEqual(vm.state.alert, nil)

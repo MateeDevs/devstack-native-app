@@ -16,7 +16,7 @@ struct UsersView: View {
     
     var body: some View {
         return VStack {
-            if viewModel.state.isLoading {
+            if viewModel.state.users.isEmpty && viewModel.state.isLoading {
                 PrimaryProgressView()
             } else {
                 List {

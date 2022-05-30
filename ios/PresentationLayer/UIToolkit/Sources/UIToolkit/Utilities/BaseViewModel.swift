@@ -10,13 +10,10 @@ import Utilities
 @MainActor
 open class BaseViewModel {
     
-    let trackScreenAppear: () -> Void
-    
     /// All tasks that are currently executed
     public private(set) var tasks: [Task<Void, Never>] = []
 
-    public init(trackScreenAppear: @escaping () -> Void = {}) {
-        self.trackScreenAppear = trackScreenAppear
+    public init() {
         Logger.lifecycle.info("\(type(of: self)) initialized")
     }
     
@@ -33,10 +30,9 @@ open class BaseViewModel {
         tasks.forEach { $0.cancel() }
     }
     
-    @discardableResult
-    public func executeTask(_ task: Task<Void, Never>) -> Task<Void, Never> {
+    public func executeTask(_ task: Task<Void, Never>) {
         tasks.append(task)
-        return Task {
+        Task {
             await task.value
             
             // Remove task when done
@@ -44,5 +40,9 @@ open class BaseViewModel {
             tasks = tasks.filter { $0 != task }
             objc_sync_exit(tasks)
         }
+    }
+    
+    public func awaitAllTasks() async {
+        for task in tasks { await task.value }
     }
 }

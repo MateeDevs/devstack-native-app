@@ -47,7 +47,7 @@ class ProfileViewModelTests: XCTestCase {
         }
         
         vm.onAppear()
-        for task in vm.tasks { await task.value }
+        await vm.awaitAllTasks()
         
         XCTAssertEqual(vm.state.profile, User.stub)
         XCTAssertEqual(vm.state.currentLocation, location.coordinate.toString())
@@ -60,7 +60,8 @@ class ProfileViewModelTests: XCTestCase {
     func testRegisterForPushNotifications() async {
         let vm = createViewModel()
         
-        await vm.onIntent(.registerForPushNotifications).value
+        vm.onIntent(.registerForPushNotifications)
+        await vm.awaitAllTasks()
         
         XCTAssertEqual(registerForPushNotificationsUseCase.executeOptionsCompletionHandlerCallsCount, 1)
     }
@@ -68,7 +69,8 @@ class ProfileViewModelTests: XCTestCase {
     func testLogout() async {
         let vm = createViewModel()
         
-        await vm.onIntent(.logout).value
+        vm.onIntent(.logout)
+        await vm.awaitAllTasks()
         
         XCTAssertEqual(fc.handleFlowValue, .profile(.presentOnboarding))
         XCTAssertEqual(logoutUseCase.executeCallsCount, 1)

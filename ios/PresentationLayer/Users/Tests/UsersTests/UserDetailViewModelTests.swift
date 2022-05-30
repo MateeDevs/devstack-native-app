@@ -35,7 +35,7 @@ class UserDetailViewModelTests: XCTestCase {
         getUserUseCase.executeIdReturnValue = User.stub
         
         vm.onAppear()
-        for task in vm.tasks { await task.value }
+        await vm.awaitAllTasks()
         
         XCTAssertEqual(vm.state.user, User.stub)
         XCTAssert(getUserUseCase.executeIdReceivedInvocations == [

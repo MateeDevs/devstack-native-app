@@ -26,7 +26,8 @@ public extension Resolver {
         register { GetCurrentLocationUseCaseMock(executeReturnValue: AsyncStream(CLLocation.self) { continuation in
             continuation.yield(CLLocation(latitude: 50.0, longitude: 50.0))
             continuation.finish()
-        }) as GetCurrentLocationUseCase }
+        }) as GetCurrentLocationUseCase
+        }
         
         // Profile
         register { GetProfileUseCaseMock(executeReturnValue: User.stub) as GetProfileUseCase }
@@ -37,7 +38,7 @@ public extension Resolver {
         register { RegisterForPushNotificationsUseCaseMock() as RegisterForPushNotificationsUseCase }
         
         // RemoteConfig
-        register { GetRemoteConfigValueUseCaseMock(executeReturnValue: true) as GetRemoteConfigValueUseCase}
+        register { GetRemoteConfigValueUseCaseMock(executeReturnValue: true) as GetRemoteConfigValueUseCase }
         
         // User
         register { GetUsersUseCaseMock(executePageReturnValue: [User].stub) as GetUsersUseCase }

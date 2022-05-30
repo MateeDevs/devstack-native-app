@@ -34,8 +34,7 @@ final class RecipesViewModel: BaseViewModel, ViewModel, ObservableObject {
         case openRecipe(_ recipe: Recipe)
     }
 
-    @discardableResult
-    func onIntent(_ intent: Intent) -> Task<Void, Never> {
+    func onIntent(_ intent: Intent) {
         executeTask(Task {
             switch intent {
             case .openRecipe(let recipe): openRecipe(recipe)

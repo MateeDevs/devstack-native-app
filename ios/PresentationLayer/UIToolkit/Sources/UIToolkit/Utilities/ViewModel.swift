@@ -15,5 +15,5 @@ public protocol ViewModel {
     
     // Intent
     associatedtype Intent
-    @discardableResult func onIntent(_ intent: Intent) -> Task<Void, Never>
+    func onIntent(_ intent: Intent)
 }

@@ -33,7 +33,7 @@ class UsersViewModelTests: XCTestCase {
         getUsersUseCase.executePageReturnValue = [User].stub
         
         vm.onAppear()
-        for task in vm.tasks { await task.value }
+        await vm.awaitAllTasks()
         
         XCTAssertEqual(vm.state.users, [User].stub)
         XCTAssertEqual(vm.state.isLoading, false)
@@ -46,7 +46,8 @@ class UsersViewModelTests: XCTestCase {
     func testOpenUserDetail() async {
         let vm = createViewModel()
         
-        await vm.onIntent(.openUserDetail(id: User.stub.id)).value
+        vm.onIntent(.openUserDetail(id: User.stub.id))
+        await vm.awaitAllTasks()
         
         XCTAssertEqual(fc.handleFlowValue, .users(.showUserDetailForId(User.stub.id)))
     }

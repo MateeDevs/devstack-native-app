@@ -41,8 +41,7 @@ final class UsersViewModel: BaseViewModel, ViewModel, ObservableObject {
         case openUserDetail(id: String)
     }
 
-    @discardableResult
-    func onIntent(_ intent: Intent) -> Task<Void, Never> {
+    func onIntent(_ intent: Intent) {
         executeTask(Task {
             switch intent {
             case .openUserDetail(let id): openUserDetail(id)

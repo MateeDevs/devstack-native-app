@@ -34,7 +34,7 @@ class CounterViewModelTests: XCTestCase {
         getProfileUseCase.executeReturnValue = User.stub
         
         vm.onAppear()
-        for task in vm.tasks { await task.value }
+        await vm.awaitAllTasks()
         
         XCTAssertEqual(vm.state.value, 0)
         XCTAssert(getProfileUseCase.executeReceivedInvocations == [.local])
@@ -43,7 +43,8 @@ class CounterViewModelTests: XCTestCase {
     func testIncrease() async {
         let vm = createViewModel()
         
-        await vm.onIntent(.increase).value
+        vm.onIntent(.increase)
+        await vm.awaitAllTasks()
         
         XCTAssertEqual(vm.state.value, 1)
         XCTAssert(updateProfileCounterUseCase.executeValueReceivedInvocations == [1])
@@ -52,7 +53,8 @@ class CounterViewModelTests: XCTestCase {
     func testDecrease() async {
         let vm = createViewModel()
         
-        await vm.onIntent(.decrease).value
+        vm.onIntent(.decrease)
+        await vm.awaitAllTasks()
         
         XCTAssertEqual(vm.state.value, -1)
         XCTAssert(updateProfileCounterUseCase.executeValueReceivedInvocations == [-1])

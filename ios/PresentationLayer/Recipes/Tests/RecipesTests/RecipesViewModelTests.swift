@@ -24,7 +24,8 @@ class RecipesViewModelTests: XCTestCase {
     func testOpenCounter() async {
         let vm = createViewModel()
         
-        await vm.onIntent(.openRecipe(.counter)).value
+        vm.onIntent(.openRecipe(.counter))
+        await vm.awaitAllTasks()
         
         XCTAssertEqual(fc.handleFlowValue, .recipes(.showCounter))
     }
@@ -32,7 +33,8 @@ class RecipesViewModelTests: XCTestCase {
     func testOpenBooks() async {
         let vm = createViewModel()
         
-        await vm.onIntent(.openRecipe(.books)).value
+        vm.onIntent(.openRecipe(.books))
+        await vm.awaitAllTasks()
         
         XCTAssertEqual(fc.handleFlowValue, .recipes(.showBooks))
     }

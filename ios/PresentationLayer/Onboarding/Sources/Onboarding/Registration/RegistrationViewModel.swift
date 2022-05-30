@@ -40,8 +40,7 @@ final class RegistrationViewModel: BaseViewModel, ViewModel, ObservableObject {
         case dismissAlert
     }
 
-    @discardableResult
-    func onIntent(_ intent: Intent) -> Task<Void, Never> {
+    func onIntent(_ intent: Intent) {
         executeTask(Task {
             switch intent {
             case .changeEmail(let email): changeEmail(email)

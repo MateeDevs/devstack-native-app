@@ -42,8 +42,7 @@ final class BooksViewModel: BaseViewModel, ViewModel, ObservableObject {
     enum Intent {
     }
 
-    @discardableResult
-    func onIntent(_ intent: Intent) -> Task<Void, Never> {}
+    func onIntent(_ intent: Intent) {}
     
     // MARK: Private
     

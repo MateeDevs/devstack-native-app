@@ -43,7 +43,8 @@ class LoginViewModelTests: XCTestCase {
         
         vm.onIntent(.changeEmail(LoginData.stubEmptyEmail.email))
         vm.onIntent(.changePassword(LoginData.stubEmptyEmail.password))
-        await vm.onIntent(.login).value
+        vm.onIntent(.login)
+        await vm.awaitAllTasks()
         
         XCTAssert(!vm.state.loginButtonLoading)
         XCTAssertEqual(vm.state.alert, AlertData(title: L10n.invalid_email))
@@ -58,7 +59,8 @@ class LoginViewModelTests: XCTestCase {
         
         vm.onIntent(.changeEmail(LoginData.stubEmptyPassword.email))
         vm.onIntent(.changePassword(LoginData.stubEmptyPassword.password))
-        await vm.onIntent(.login).value
+        vm.onIntent(.login)
+        await vm.awaitAllTasks()
         
         XCTAssert(!vm.state.loginButtonLoading)
         XCTAssertEqual(vm.state.alert, AlertData(title: L10n.invalid_password))
@@ -72,7 +74,8 @@ class LoginViewModelTests: XCTestCase {
         
         vm.onIntent(.changeEmail(LoginData.stubValid.email))
         vm.onIntent(.changePassword(LoginData.stubValid.password))
-        await vm.onIntent(.login).value
+        vm.onIntent(.login)
+        await vm.awaitAllTasks()
         
         XCTAssert(vm.state.loginButtonLoading)
         XCTAssertEqual(vm.state.alert, nil)
@@ -87,7 +90,8 @@ class LoginViewModelTests: XCTestCase {
         
         vm.onIntent(.changeEmail(LoginData.stubValid.email))
         vm.onIntent(.changePassword(LoginData.stubValid.password))
-        await vm.onIntent(.login).value
+        vm.onIntent(.login)
+        await vm.awaitAllTasks()
         
         XCTAssert(!vm.state.loginButtonLoading)
         XCTAssertEqual(vm.state.alert, AlertData(title: L10n.invalid_credentials))
@@ -99,7 +103,8 @@ class LoginViewModelTests: XCTestCase {
     func testRegister() async {
         let vm = createViewModel()
         
-        await vm.onIntent(.register).value
+        vm.onIntent(.register)
+        await vm.awaitAllTasks()
         
         XCTAssert(!vm.state.loginButtonLoading)
         XCTAssertEqual(vm.state.alert, nil)

@@ -21,7 +21,7 @@ extension Bundle {
             Bundle.main.bundleURL,
             /* Bundle should be present here when running previews from a different package (this is the path to "…/Debug-iphonesimulator/"). */
             Bundle(for: BundleToken.self).resourceURL?.deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent(),
-            Bundle(for: BundleToken.self).resourceURL?.deletingLastPathComponent().deletingLastPathComponent(),
+            Bundle(for: BundleToken.self).resourceURL?.deletingLastPathComponent().deletingLastPathComponent()
         ]
         
         for candidate in candidates {
