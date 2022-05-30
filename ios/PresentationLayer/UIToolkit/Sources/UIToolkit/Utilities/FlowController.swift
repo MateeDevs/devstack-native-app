@@ -6,6 +6,8 @@
 import OSLog
 import UIKit
 
+public protocol Flow {}
+
 @MainActor
 open class FlowController: NSObject {
     
@@ -29,6 +31,9 @@ open class FlowController: NSObject {
     open func setup() -> UIViewController {
         UIViewController()
     }
+    
+    /// Override this method in a subclass and setup handlings for all flow cases.
+    open func handleFlow(_ flow: Flow) {}
     
     /// Default implementation for dismissing a modal flow. Override in a subclass if you want a custom behavior.
     open func dismiss() {

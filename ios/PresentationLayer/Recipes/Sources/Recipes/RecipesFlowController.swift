@@ -7,26 +7,25 @@ import SwiftUI
 import UIKit
 import UIToolkit
 
+enum RecipesFlow: Flow, Equatable {
+    case recipes(Recipes)
+    
+    enum Recipes: Equatable {
+        case showCounter
+        case showBooks
+    }
+}
+
 public class RecipesFlowController: FlowController {
 
     override public func setup() -> UIViewController {
         let vm = RecipesViewModel(flowController: self)
         return BaseHostingController(rootView: RecipesView(viewModel: vm))
     }
-}
-
-extension RecipesFlowController: FlowHandler {
-    public enum Flow: Equatable {
-        case recipes(Recipes)
-        
-        public enum Recipes: Equatable {
-            case showCounter
-            case showBooks
-        }
-    }
     
-    public func handleFlow(_ flow: Flow) {
-        switch flow {
+    override public func handleFlow(_ flow: Flow) {
+        guard let recipesFlow = flow as? RecipesFlow else { return }
+        switch recipesFlow {
         case .recipes(let recipesFlow): handleRecipesFlow(recipesFlow)
         }
     }
@@ -34,7 +33,7 @@ extension RecipesFlowController: FlowHandler {
 
 // MARK: Recipes flow
 extension RecipesFlowController {
-    func handleRecipesFlow(_ flow: Flow.Recipes) {
+    func handleRecipesFlow(_ flow: RecipesFlow.Recipes) {
         switch flow {
         case .showCounter: showCounter()
         case .showBooks: showBooks()

@@ -11,7 +11,7 @@ import UIToolkit
 final class ProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
     
     // MARK: Dependencies
-    private weak var flowController: ProfileFlowController?
+    private weak var flowController: FlowController?
     
     @Injected private(set) var getProfileUseCase: GetProfileUseCase
     @Injected private(set) var getCurrentLocationUseCase: GetCurrentLocationUseCase
@@ -19,7 +19,7 @@ final class ProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
     @Injected private(set) var registerForPushNotificationsUseCase: RegisterForPushNotificationsUseCase
     @Injected private(set) var logoutUseCase: LogoutUseCase
 
-    init(flowController: ProfileFlowController?) {
+    init(flowController: FlowController?) {
         self.flowController = flowController
         super.init()
     }
@@ -92,6 +92,6 @@ final class ProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
         do {
             try logoutUseCase.execute()
         } catch {}
-        flowController?.handleFlow(.profile(.presentOnboarding))
+        flowController?.handleFlow(ProfileFlow.profile(.presentOnboarding))
     }
 }

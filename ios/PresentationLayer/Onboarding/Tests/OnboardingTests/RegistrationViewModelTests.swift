@@ -15,7 +15,7 @@ class RegistrationViewModelTests: XCTestCase {
     
     // MARK: Dependencies
     
-    private let fc = OnboardingFlowController(navigationController: UINavigationController())
+    private let fc = FlowControllerMock<OnboardingFlow>(navigationController: UINavigationController())
     
     private let registrationUseCase = RegistrationUseCaseMock()
     
@@ -37,7 +37,7 @@ class RegistrationViewModelTests: XCTestCase {
         
         XCTAssert(!vm.state.registerButtonLoading)
         XCTAssertEqual(vm.state.alert, AlertData(title: L10n.invalid_email))
-        // XCTAssertEqual(fc.handleFlowValue, nil)
+        XCTAssertEqual(fc.handleFlowValue, nil)
         XCTAssert(registrationUseCase.executeReceivedInvocations == [.stubEmptyEmail])
     }
     
@@ -51,7 +51,7 @@ class RegistrationViewModelTests: XCTestCase {
         
         XCTAssert(!vm.state.registerButtonLoading)
         XCTAssertEqual(vm.state.alert, AlertData(title: L10n.invalid_password))
-        // XCTAssertEqual(fc.handleFlowValue, nil)
+        XCTAssertEqual(fc.handleFlowValue, nil)
         XCTAssert(registrationUseCase.executeReceivedInvocations == [.stubEmptyPassword])
     }
     
@@ -64,7 +64,7 @@ class RegistrationViewModelTests: XCTestCase {
         
         XCTAssert(vm.state.registerButtonLoading)
         XCTAssertEqual(vm.state.alert, nil)
-        // XCTAssertEqual(fc.handleFlowValue, .registration(.dismiss))
+        XCTAssertEqual(fc.handleFlowValue, .registration(.dismiss))
         XCTAssert(registrationUseCase.executeReceivedInvocations == [.stubValid])
     }
     
@@ -78,7 +78,7 @@ class RegistrationViewModelTests: XCTestCase {
         
         XCTAssert(!vm.state.registerButtonLoading)
         XCTAssertEqual(vm.state.alert, AlertData(title: L10n.register_view_email_already_exists))
-        // XCTAssertEqual(fc.handleFlowValue, nil)
+        XCTAssertEqual(fc.handleFlowValue, nil)
         XCTAssert(registrationUseCase.executeReceivedInvocations == [.stubValid])
     }
 
@@ -89,7 +89,7 @@ class RegistrationViewModelTests: XCTestCase {
         
         XCTAssert(!vm.state.registerButtonLoading)
         XCTAssertEqual(vm.state.alert, nil)
-        // XCTAssertEqual(fc.handleFlowValue, .registration(.pop))
+        XCTAssertEqual(fc.handleFlowValue, .registration(.pop))
         XCTAssertEqual(registrationUseCase.executeCallsCount, 0)
     }
 }

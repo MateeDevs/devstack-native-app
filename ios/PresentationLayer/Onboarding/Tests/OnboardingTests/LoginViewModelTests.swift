@@ -15,7 +15,7 @@ class LoginViewModelTests: XCTestCase {
     
     // MARK: Dependencies
     
-    private let fc = OnboardingFlowController(navigationController: UINavigationController())
+    private let fc = FlowControllerMock<OnboardingFlow>(navigationController: UINavigationController())
     
     private let loginUseCase = LoginUseCaseMock()
     private let trackAnalyticsEventUseCase = TrackAnalyticsEventUseCaseMock()
@@ -47,7 +47,7 @@ class LoginViewModelTests: XCTestCase {
         
         XCTAssert(!vm.state.loginButtonLoading)
         XCTAssertEqual(vm.state.alert, AlertData(title: L10n.invalid_email))
-        // XCTAssertEqual(fc.handleFlowValue, nil)
+        XCTAssertEqual(fc.handleFlowValue, nil)
         XCTAssert(loginUseCase.executeReceivedInvocations == [.stubEmptyEmail])
         XCTAssertEqual(trackAnalyticsEventUseCase.executeCallsCount, 0)
     }
@@ -62,7 +62,7 @@ class LoginViewModelTests: XCTestCase {
         
         XCTAssert(!vm.state.loginButtonLoading)
         XCTAssertEqual(vm.state.alert, AlertData(title: L10n.invalid_password))
-        // XCTAssertEqual(fc.handleFlowValue, nil)
+        XCTAssertEqual(fc.handleFlowValue, nil)
         XCTAssert(loginUseCase.executeReceivedInvocations == [.stubEmptyPassword])
         XCTAssertEqual(trackAnalyticsEventUseCase.executeCallsCount, 0)
     }
@@ -76,7 +76,7 @@ class LoginViewModelTests: XCTestCase {
         
         XCTAssert(vm.state.loginButtonLoading)
         XCTAssertEqual(vm.state.alert, nil)
-        // XCTAssertEqual(fc.handleFlowValue, .login(.dismiss))
+        XCTAssertEqual(fc.handleFlowValue, .login(.dismiss))
         XCTAssert(loginUseCase.executeReceivedInvocations == [.stubValid])
         XCTAssert(trackAnalyticsEventUseCase.executeReceivedInvocations == [LoginEvent.loginButtonTap.analyticsEvent])
     }
@@ -91,7 +91,7 @@ class LoginViewModelTests: XCTestCase {
         
         XCTAssert(!vm.state.loginButtonLoading)
         XCTAssertEqual(vm.state.alert, AlertData(title: L10n.invalid_credentials))
-        // XCTAssertEqual(fc.handleFlowValue, nil)
+        XCTAssertEqual(fc.handleFlowValue, nil)
         XCTAssert(loginUseCase.executeReceivedInvocations == [.stubValid])
         XCTAssertEqual(trackAnalyticsEventUseCase.executeCallsCount, 0)
     }
@@ -103,7 +103,7 @@ class LoginViewModelTests: XCTestCase {
         
         XCTAssert(!vm.state.loginButtonLoading)
         XCTAssertEqual(vm.state.alert, nil)
-        // XCTAssertEqual(fc.handleFlowValue, .login(.showRegistration))
+        XCTAssertEqual(fc.handleFlowValue, .login(.showRegistration))
         XCTAssertEqual(loginUseCase.executeCallsCount, 0)
         XCTAssert(trackAnalyticsEventUseCase.executeReceivedInvocations == [LoginEvent.registerButtonTap.analyticsEvent])
     }

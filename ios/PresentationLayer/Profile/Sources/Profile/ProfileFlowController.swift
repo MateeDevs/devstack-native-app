@@ -7,6 +7,14 @@ import SwiftUI
 import UIKit
 import UIToolkit
 
+enum ProfileFlow: Flow, Equatable {
+    case profile(Profile)
+    
+    enum Profile: Equatable {
+        case presentOnboarding
+    }
+}
+
 public protocol ProfileFlowControllerDelegate: AnyObject {
     func presentOnboarding()
 }
@@ -19,19 +27,10 @@ public class ProfileFlowController: FlowController {
         let vm = ProfileViewModel(flowController: self)
         return BaseHostingController(rootView: ProfileView(viewModel: vm))
     }
-}
-
-extension ProfileFlowController: FlowHandler {
-    public enum Flow: Equatable {
-        case profile(Profile)
-        
-        public enum Profile: Equatable {
-            case presentOnboarding
-        }
-    }
     
-    public func handleFlow(_ flow: Flow) {
-        switch flow {
+    override public func handleFlow(_ flow: Flow) {
+        guard let profileFlow = flow as? ProfileFlow else { return }
+        switch profileFlow {
         case .profile(let profileFlow): handleProfileFlow(profileFlow)
         }
     }
@@ -39,7 +38,7 @@ extension ProfileFlowController: FlowHandler {
 
 // MARK: Profile flow
 extension ProfileFlowController {
-    func handleProfileFlow(_ flow: Flow.Profile) {
+    func handleProfileFlow(_ flow: ProfileFlow.Profile) {
         switch flow {
         case .presentOnboarding: presentOnboarding()
         }

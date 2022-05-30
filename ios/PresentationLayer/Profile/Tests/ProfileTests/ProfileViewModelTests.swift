@@ -8,6 +8,7 @@ import CoreLocation
 import Resolver
 import SharedDomain
 import SharedDomainMocks
+import UIToolkit
 import XCTest
 
 @MainActor
@@ -15,7 +16,7 @@ class ProfileViewModelTests: XCTestCase {
 
     // MARK: Dependencies
     
-    private let fc = ProfileFlowController(navigationController: UINavigationController())
+    private let fc = FlowControllerMock<ProfileFlow>(navigationController: UINavigationController())
     
     private let getProfileUseCase = GetProfileUseCaseMock()
     private let getCurrentLocationUseCase = GetCurrentLocationUseCaseMock()
@@ -69,7 +70,7 @@ class ProfileViewModelTests: XCTestCase {
         
         await vm.onIntent(.logout).value
         
-        // XCTAssertEqual(fc.handleFlowValue, .profile(.presentOnboarding))
+        XCTAssertEqual(fc.handleFlowValue, .profile(.presentOnboarding))
         XCTAssertEqual(logoutUseCase.executeCallsCount, 1)
     }
 }

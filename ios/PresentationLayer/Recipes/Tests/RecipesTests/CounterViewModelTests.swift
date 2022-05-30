@@ -7,6 +7,7 @@
 import Resolver
 import SharedDomain
 import SharedDomainMocks
+import UIToolkit
 import XCTest
 
 @MainActor
@@ -14,7 +15,7 @@ class CounterViewModelTests: XCTestCase {
     
     // MARK: Dependencies
     
-    private let fc = RecipesFlowController(navigationController: UINavigationController())
+    private let fc = FlowControllerMock<RecipesFlow>(navigationController: UINavigationController())
     
     private let getProfileUseCase = GetProfileUseCaseMock()
     private let updateProfileCounterUseCase = UpdateProfileCounterUseCaseMock()

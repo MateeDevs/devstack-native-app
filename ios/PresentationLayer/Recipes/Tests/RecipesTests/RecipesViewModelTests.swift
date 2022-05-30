@@ -7,12 +7,13 @@
 import Resolver
 import SharedDomain
 import SharedDomainMocks
+import UIToolkit
 import XCTest
 
 @MainActor
 class RecipesViewModelTests: XCTestCase {
     
-    let fc = RecipesFlowController(navigationController: UINavigationController())
+    let fc = FlowControllerMock<RecipesFlow>(navigationController: UINavigationController())
     
     private func createViewModel() -> RecipesViewModel {
         return RecipesViewModel(flowController: fc)
@@ -25,7 +26,7 @@ class RecipesViewModelTests: XCTestCase {
         
         await vm.onIntent(.openRecipe(.counter)).value
         
-        // XCTAssertEqual(fc.handleFlowValue, .recipes(.showCounter))
+        XCTAssertEqual(fc.handleFlowValue, .recipes(.showCounter))
     }
     
     func testOpenBooks() async {
@@ -33,6 +34,6 @@ class RecipesViewModelTests: XCTestCase {
         
         await vm.onIntent(.openRecipe(.books)).value
         
-        // XCTAssertEqual(fc.handleFlowValue, .recipes(.showBooks))
+        XCTAssertEqual(fc.handleFlowValue, .recipes(.showBooks))
     }
 }

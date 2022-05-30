@@ -7,6 +7,21 @@ import SwiftUI
 import UIKit
 import UIToolkit
 
+enum OnboardingFlow: Flow, Equatable {
+    case login(Login)
+    case registration(Registration)
+    
+    enum Login: Equatable {
+        case dismiss
+        case showRegistration
+    }
+    
+    enum Registration: Equatable {
+        case dismiss
+        case pop
+    }
+}
+
 public protocol OnboardingFlowControllerDelegate: AnyObject {
     func setupMain()
 }
@@ -24,26 +39,10 @@ public class OnboardingFlowController: FlowController {
         super.dismiss()
         delegate?.setupMain()
     }
-}
-
-extension OnboardingFlowController: FlowHandler {
-    public enum Flow: Equatable {
-        case login(Login)
-        case registration(Registration)
-        
-        public enum Login: Equatable {
-            case dismiss
-            case showRegistration
-        }
-        
-        public enum Registration: Equatable {
-            case dismiss
-            case pop
-        }
-    }
     
-    public func handleFlow(_ flow: Flow) {
-        switch flow {
+    override public func handleFlow(_ flow: Flow) {
+        guard let onboardingFlow = flow as? OnboardingFlow else { return }
+        switch onboardingFlow {
         case .login(let loginFlow): handleLoginFlow(loginFlow)
         case .registration(let registrationFlow): handleRegistrationFlow(registrationFlow)
         }
@@ -52,7 +51,7 @@ extension OnboardingFlowController: FlowHandler {
 
 // MARK: Login flow
 extension OnboardingFlowController {
-    func handleLoginFlow(_ flow: Flow.Login) {
+    func handleLoginFlow(_ flow: OnboardingFlow.Login) {
         switch flow {
         case .dismiss: dismiss()
         case .showRegistration: showRegistration()
@@ -68,7 +67,7 @@ extension OnboardingFlowController {
 
 // MARK: Registration flow
 extension OnboardingFlowController {
-    func handleRegistrationFlow(_ flow: Flow.Registration) {
+    func handleRegistrationFlow(_ flow: OnboardingFlow.Registration) {
         switch flow {
         case .dismiss: dismiss()
         case .pop: pop()

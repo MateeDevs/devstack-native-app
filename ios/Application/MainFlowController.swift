@@ -95,6 +95,6 @@ class MainFlowController: FlowController, ProfileFlowControllerDelegate {
     
     private func handleUserDetailDeeplink(userId: String) {
         guard let usersFlowController = switchTab(.users) as? UsersFlowController else { return }
-        usersFlowController.handleFlow(.users(.showUserDetailForId(userId)))
+        usersFlowController.handleUserDetailDeeplink(userId: userId)
     }
 }

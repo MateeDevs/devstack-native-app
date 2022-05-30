@@ -11,12 +11,12 @@ import UIToolkit
 final class CounterViewModel: BaseViewModel, ViewModel, ObservableObject {
     
     // MARK: Dependencies
-    private weak var flowController: RecipesFlowController?
+    private weak var flowController: FlowController?
     
     @Injected private(set) var getProfileUseCase: GetProfileUseCase
     @Injected private(set) var updateProfileCounterUseCase: UpdateProfileCounterUseCase
 
-    init(flowController: RecipesFlowController?) {
+    init(flowController: FlowController?) {
         self.flowController = flowController
         super.init()
     }

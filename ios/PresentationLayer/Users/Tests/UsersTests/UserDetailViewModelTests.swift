@@ -6,6 +6,7 @@
 import Resolver
 import SharedDomain
 import SharedDomainMocks
+import UIToolkit
 @testable import Users
 import Utilities
 import XCTest
@@ -15,7 +16,7 @@ class UserDetailViewModelTests: XCTestCase {
     
     // MARK: Dependencies
     
-    private let fc = UsersFlowController(navigationController: UINavigationController())
+    private let fc = FlowControllerMock<UsersFlow>(navigationController: UINavigationController())
     
     private let getUserUseCase = GetUserUseCaseMock()
     private let trackAnalyticsEventUseCase = TrackAnalyticsEventUseCaseMock()

@@ -12,11 +12,11 @@ import UIToolkit
 final class BooksViewModel: BaseViewModel, ViewModel, ObservableObject {
     
     // MARK: Dependencies
-    private weak var flowController: RecipesFlowController?
+    private weak var flowController: FlowController?
     
     // @Injected private(set) var getBooksUseCase: GetBooksUseCase
 
-    init(flowController: RecipesFlowController?) {
+    init(flowController: FlowController?) {
         self.flowController = flowController
         super.init()
     }

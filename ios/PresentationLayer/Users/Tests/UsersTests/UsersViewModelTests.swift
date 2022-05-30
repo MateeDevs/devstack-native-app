@@ -6,6 +6,7 @@
 import Resolver
 import SharedDomain
 import SharedDomainMocks
+import UIToolkit
 @testable import Users
 import Utilities
 import XCTest
@@ -15,7 +16,7 @@ class UsersViewModelTests: XCTestCase {
     
     // MARK: Dependencies
     
-    private let fc = UsersFlowController(navigationController: UINavigationController())
+    private let fc = FlowControllerMock<UsersFlow>(navigationController: UINavigationController())
     
     private let getUsersUseCase = GetUsersUseCaseMock()
     
@@ -47,6 +48,6 @@ class UsersViewModelTests: XCTestCase {
         
         await vm.onIntent(.openUserDetail(id: User.stub.id)).value
         
-        // XCTAssertEqual(fc.handleFlowValue, .users(.showUserDetailForId(User.stub.id)))
+        XCTAssertEqual(fc.handleFlowValue, .users(.showUserDetailForId(User.stub.id)))
     }
 }

@@ -20,7 +20,6 @@
 		4508331A28435E7800BC9460 /* LocationProvider in Frameworks */ = {isa = PBXBuildFile; productRef = 4508331928435E7800BC9460 /* LocationProvider */; };
 		4508331C28435E7800BC9460 /* LocationToolkit in Frameworks */ = {isa = PBXBuildFile; productRef = 4508331B28435E7800BC9460 /* LocationToolkit */; };
 		4508331E28435E7800BC9460 /* NetworkProvider in Frameworks */ = {isa = PBXBuildFile; productRef = 4508331D28435E7800BC9460 /* NetworkProvider */; };
-		4508332028435E7800BC9460 /* PresentationLayer in Frameworks */ = {isa = PBXBuildFile; productRef = 4508331F28435E7800BC9460 /* PresentationLayer */; };
 		4508332228435E7800BC9460 /* PushNotificationsProvider in Frameworks */ = {isa = PBXBuildFile; productRef = 4508332128435E7800BC9460 /* PushNotificationsProvider */; };
 		4508332428435E7800BC9460 /* PushNotificationsToolkit in Frameworks */ = {isa = PBXBuildFile; productRef = 4508332328435E7800BC9460 /* PushNotificationsToolkit */; };
 		4508332628435E7800BC9460 /* RemoteConfigProvider in Frameworks */ = {isa = PBXBuildFile; productRef = 4508332528435E7800BC9460 /* RemoteConfigProvider */; };
@@ -164,7 +163,6 @@
 				4508333D2843833900BC9460 /* Onboarding in Frameworks */,
 				4508331E28435E7800BC9460 /* NetworkProvider in Frameworks */,
 				4508331428435E7800BC9460 /* AuthToolkit in Frameworks */,
-				4508332028435E7800BC9460 /* PresentationLayer in Frameworks */,
 				4508332A28435E7800BC9460 /* SharedDomain in Frameworks */,
 				4508331828435E7800BC9460 /* KeychainProvider in Frameworks */,
 				4508332228435E7800BC9460 /* PushNotificationsProvider in Frameworks */,
@@ -405,7 +403,6 @@
 				4508331928435E7800BC9460 /* LocationProvider */,
 				4508331B28435E7800BC9460 /* LocationToolkit */,
 				4508331D28435E7800BC9460 /* NetworkProvider */,
-				4508331F28435E7800BC9460 /* PresentationLayer */,
 				4508332128435E7800BC9460 /* PushNotificationsProvider */,
 				4508332328435E7800BC9460 /* PushNotificationsToolkit */,
 				4508332528435E7800BC9460 /* RemoteConfigProvider */,
@@ -1473,10 +1470,6 @@
 		4508331D28435E7800BC9460 /* NetworkProvider */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = NetworkProvider;
-		};
-		4508331F28435E7800BC9460 /* PresentationLayer */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = PresentationLayer;
 		};
 		4508332128435E7800BC9460 /* PushNotificationsProvider */ = {
 			isa = XCSwiftPackageProductDependency;

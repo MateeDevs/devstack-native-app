@@ -5,7 +5,6 @@
 
 import SwiftUI
 import UIToolkit
-import UIToolkit
 
 enum Recipe: String {
     case counter = "Counter"
@@ -15,9 +14,9 @@ enum Recipe: String {
 final class RecipesViewModel: BaseViewModel, ViewModel, ObservableObject {
     
     // MARK: Dependencies
-    private weak var flowController: RecipesFlowController?
+    private weak var flowController: FlowController?
 
-    init(flowController: RecipesFlowController?) {
+    init(flowController: FlowController?) {
         self.flowController = flowController
         super.init()
     }
@@ -49,9 +48,9 @@ final class RecipesViewModel: BaseViewModel, ViewModel, ObservableObject {
     private func openRecipe(_ recipe: Recipe) {
         switch recipe {
         case .counter:
-            flowController?.handleFlow(.recipes(.showCounter))
+            flowController?.handleFlow(RecipesFlow.recipes(.showCounter))
         case .books:
-            flowController?.handleFlow(.recipes(.showBooks))
+            flowController?.handleFlow(RecipesFlow.recipes(.showBooks))
         }
     }
 }

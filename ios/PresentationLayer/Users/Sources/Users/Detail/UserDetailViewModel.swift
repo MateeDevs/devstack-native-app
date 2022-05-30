@@ -12,12 +12,12 @@ final class UserDetailViewModel: BaseViewModel, ViewModel, ObservableObject {
     
     // MARK: Dependencies
     private var userId: String
-    private weak var flowController: UsersFlowController?
+    private weak var flowController: FlowController?
     
     @Injected private(set) var getUserUseCase: GetUserUseCase
     @Injected private(set) var trackAnalyticsEventUseCase: TrackAnalyticsEventUseCase
 
-    init(userId: String, flowController: UsersFlowController?) {
+    init(userId: String, flowController: FlowController?) {
         self.userId = userId
         self.flowController = flowController
         super.init()

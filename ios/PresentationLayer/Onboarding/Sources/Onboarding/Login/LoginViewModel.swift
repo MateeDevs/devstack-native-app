@@ -12,12 +12,12 @@ import Utilities
 final class LoginViewModel: BaseViewModel, ViewModel, ObservableObject {
     
     // MARK: Dependencies
-    private weak var flowController: OnboardingFlowController?
+    private weak var flowController: FlowController?
     
     @Injected private(set) var loginUseCase: LoginUseCase
     @Injected private(set) var trackAnalyticsEventUseCase: TrackAnalyticsEventUseCase
 
-    init(flowController: OnboardingFlowController?) {
+    init(flowController: FlowController?) {
         self.flowController = flowController
         super.init()
         
@@ -83,7 +83,7 @@ final class LoginViewModel: BaseViewModel, ViewModel, ObservableObject {
             let data = LoginData(email: state.email, password: state.password)
             try await loginUseCase.execute(data)
             trackAnalyticsEventUseCase.execute(LoginEvent.loginButtonTap.analyticsEvent)
-            flowController?.handleFlow(.login(.dismiss))
+            flowController?.handleFlow(OnboardingFlow.login(.dismiss))
         } catch {
             state.loginButtonLoading = false
             state.alert = .init(title: error.localizedDescription)
@@ -92,7 +92,7 @@ final class LoginViewModel: BaseViewModel, ViewModel, ObservableObject {
 
     private func register() {
         trackAnalyticsEventUseCase.execute(LoginEvent.registerButtonTap.analyticsEvent)
-        flowController?.handleFlow(.login(.showRegistration))
+        flowController?.handleFlow(OnboardingFlow.login(.showRegistration))
     }
     
     private func dismissAlert() {

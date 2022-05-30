@@ -11,11 +11,11 @@ import UIToolkit
 final class UsersViewModel: BaseViewModel, ViewModel, ObservableObject {
     
     // MARK: Dependencies
-    private weak var flowController: UsersFlowController?
+    private weak var flowController: FlowController?
     
     @Injected private(set) var getUsersUseCase: GetUsersUseCase
 
-    init(flowController: UsersFlowController?) {
+    init(flowController: FlowController?) {
         self.flowController = flowController
         super.init()
     }
@@ -62,6 +62,6 @@ final class UsersViewModel: BaseViewModel, ViewModel, ObservableObject {
     }
     
     private func openUserDetail(_ id: String) {
-        flowController?.handleFlow(.users(.showUserDetailForId(id)))
+        flowController?.handleFlow(UsersFlow.users(.showUserDetailForId(id)))
     }
 }

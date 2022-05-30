@@ -7,33 +7,36 @@ import SwiftUI
 import UIKit
 import UIToolkit
 
+enum UsersFlow: Flow, Equatable {
+    case users(Users)
+    
+    enum Users: Equatable {
+        case showUserDetailForId(_ userId: String)
+    }
+}
+
 public class UsersFlowController: FlowController {
     
     override public func setup() -> UIViewController {
         let vm = UsersViewModel(flowController: self)
         return BaseHostingController(rootView: UsersView(viewModel: vm))
     }
-}
-
-extension UsersFlowController: FlowHandler {
-    public enum Flow: Equatable {
-        case users(Users)
-        
-        public enum Users: Equatable {
-            case showUserDetailForId(_ userId: String)
+    
+    override public func handleFlow(_ flow: Flow) {
+        guard let usersFlow = flow as? UsersFlow else { return }
+        switch usersFlow {
+        case .users(let usersFlow): handleUsersFlow(usersFlow)
         }
     }
     
-    public func handleFlow(_ flow: Flow) {
-        switch flow {
-        case .users(let usersFlow): handleUsersFlow(usersFlow)
-        }
+    public func handleUserDetailDeeplink(userId: String) {
+        showUserDetailForId(userId)
     }
 }
 
 // MARK: Users flow
 extension UsersFlowController {
-    func handleUsersFlow(_ flow: Flow.Users) {
+    func handleUsersFlow(_ flow: UsersFlow.Users) {
         switch flow {
         case .showUserDetailForId(let userId): showUserDetailForId(userId)
         }

@@ -11,11 +11,11 @@ import UIToolkit
 final class RegistrationViewModel: BaseViewModel, ViewModel, ObservableObject {
     
     // MARK: Dependencies
-    private weak var flowController: OnboardingFlowController?
+    private weak var flowController: FlowController?
     
     @Injected private(set) var registrationUseCase: RegistrationUseCase
 
-    init(flowController: OnboardingFlowController?) {
+    init(flowController: FlowController?) {
         self.flowController = flowController
         super.init()
     }
@@ -68,7 +68,7 @@ final class RegistrationViewModel: BaseViewModel, ViewModel, ObservableObject {
             state.registerButtonLoading = true
             let data = RegistrationData(email: state.email, password: state.password, firstName: "Anonymous", lastName: "")
             try await registrationUseCase.execute(data)
-            flowController?.handleFlow(.registration(.dismiss))
+            flowController?.handleFlow(OnboardingFlow.registration(.dismiss))
         } catch {
             state.registerButtonLoading = false
             state.alert = .init(title: error.localizedDescription)
@@ -76,7 +76,7 @@ final class RegistrationViewModel: BaseViewModel, ViewModel, ObservableObject {
     }
 
     private func login() {
-        flowController?.handleFlow(.registration(.pop))
+        flowController?.handleFlow(OnboardingFlow.registration(.pop))
     }
     
     private func dismissAlert() {
