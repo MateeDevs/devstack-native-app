@@ -5,6 +5,7 @@
 
 import OSLog
 import SwiftUI
+import Utilities
 
 public class BaseHostingController<Content>: UIHostingController<Content> where Content: View {
     

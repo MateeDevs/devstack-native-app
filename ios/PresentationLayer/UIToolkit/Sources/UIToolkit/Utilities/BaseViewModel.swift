@@ -5,6 +5,7 @@
 
 import Foundation
 import OSLog
+import Utilities
 
 @MainActor
 open class BaseViewModel {

@@ -5,8 +5,9 @@
 
 import DevstackKmpShared
 
-// public extension RefreshBooksUseCase {
-//    func execute(params: Int) -> Observable<Event<Void>> {
-//        return createObservable(self, params)
-//    }
-// }
+#warning("TODO: Proper implementation")
+
+public extension RefreshBooksUseCase {
+    func execute(page: Int) async throws {
+    }
+}

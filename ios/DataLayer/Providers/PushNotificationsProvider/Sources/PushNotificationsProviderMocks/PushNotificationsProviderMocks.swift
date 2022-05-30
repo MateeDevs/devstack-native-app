@@ -17,8 +17,14 @@ public final class PushNotificationsProviderMock: PushNotificationsProvider {
     public var requestAuthorizationOptionsCompletionHandlerCalled: Bool {
         return requestAuthorizationOptionsCompletionHandlerCallsCount > 0
     }
-    public var requestAuthorizationOptionsCompletionHandlerReceivedArguments: (options: UNAuthorizationOptions, completionHandler: (Bool, Error?) -> Void)?
-    public var requestAuthorizationOptionsCompletionHandlerReceivedInvocations: [(options: UNAuthorizationOptions, completionHandler: (Bool, Error?) -> Void)] = []
+    public var requestAuthorizationOptionsCompletionHandlerReceivedArguments: (
+        options: UNAuthorizationOptions,
+        completionHandler: (Bool, Error?) -> Void
+    )?
+    public var requestAuthorizationOptionsCompletionHandlerReceivedInvocations: [(
+        options: UNAuthorizationOptions,
+        completionHandler: (Bool, Error?) -> Void
+    )] = []
     public var requestAuthorizationOptionsCompletionHandlerClosure: ((UNAuthorizationOptions, @escaping (Bool, Error?) -> Void) -> Void)?
 
     public func requestAuthorization(options: UNAuthorizationOptions, completionHandler: @escaping (Bool, Error?) -> Void) {

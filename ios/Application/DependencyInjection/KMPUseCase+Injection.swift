@@ -7,10 +7,10 @@ import DevstackKmpShared
 import Resolver
 import SharedDomain
 
-// public extension Resolver {
-//    static func registerKMPUseCases(kmp: KMPDependency) {
-//        // Books
-//        register { kmp.getProtocol(GetBooksUseCase.self) as GetBooksUseCase }
-//        register { kmp.getProtocol(RefreshBooksUseCase.self) as RefreshBooksUseCase }
-//    }
-// }
+ public extension Resolver {
+    static func registerKMPUseCases(kmp: KMPDependency) {
+        // Books
+        register { kmp.getProtocol(GetBooksUseCase.self) as GetBooksUseCase }
+        register { kmp.getProtocol(RefreshBooksUseCase.self) as RefreshBooksUseCase }
+    }
+ }

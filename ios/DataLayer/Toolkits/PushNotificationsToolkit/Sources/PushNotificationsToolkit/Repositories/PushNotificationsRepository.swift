@@ -20,7 +20,8 @@ public struct PushNotificationsRepositoryImpl: PushNotificationsRepository {
     public func decode(_ notificationData: [AnyHashable: Any]) throws -> PushNotification {
         let jsonData = try JSONSerialization.data(withJSONObject: notificationData)
         let notification = try JSONDecoder().decode(NETPushNotification.self, from: jsonData)
-        Logger(subsystem: Bundle.main.bundleIdentifier ?? "-", category: "PushNotificationsRepository").info("Notification received:\n\(jsonData)")
+        Logger(subsystem: Bundle.main.bundleIdentifier ?? "-", category: "PushNotificationsRepository")
+            .info("Notification received:\n\(jsonData)")
         return notification.domainModel
     }
     

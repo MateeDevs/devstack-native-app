@@ -17,7 +17,7 @@ public final class LocationProviderMock: LocationProvider {
     public var isLocationEnabledCalled: Bool {
         return isLocationEnabledCallsCount > 0
     }
-    public var isLocationEnabledReturnValue: Bool!
+    public var isLocationEnabledReturnValue: Bool! // swiftlint:disable:this implicitly_unwrapped_optional
     public var isLocationEnabledClosure: (() -> Bool)?
 
     public func isLocationEnabled() -> Bool {
@@ -37,7 +37,7 @@ public final class LocationProviderMock: LocationProvider {
     }
     public var getCurrentLocationWithAccuracyReceivedAccuracy: CLLocationAccuracy?
     public var getCurrentLocationWithAccuracyReceivedInvocations: [CLLocationAccuracy] = []
-    public var getCurrentLocationWithAccuracyReturnValue: AsyncStream<CLLocation>!
+    public var getCurrentLocationWithAccuracyReturnValue: AsyncStream<CLLocation>! // swiftlint:disable:this implicitly_unwrapped_optional
     public var getCurrentLocationWithAccuracyClosure: ((CLLocationAccuracy) -> AsyncStream<CLLocation>)?
 
     public func getCurrentLocation(withAccuracy accuracy: CLLocationAccuracy) -> AsyncStream<CLLocation> {

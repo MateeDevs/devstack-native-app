@@ -14,7 +14,8 @@ final class BooksViewModel: BaseViewModel, ViewModel, ObservableObject {
     // MARK: Dependencies
     private weak var flowController: FlowController?
     
-    // @Injected private(set) var getBooksUseCase: GetBooksUseCase
+    @Injected private(set) var getBooksUseCase: GetBooksUseCase
+    @Injected private(set) var refreshBooksUseCase: RefreshBooksUseCase
 
     init(flowController: FlowController?) {
         self.flowController = flowController
@@ -49,9 +50,9 @@ final class BooksViewModel: BaseViewModel, ViewModel, ObservableObject {
     private func loadBooks() async {
         do {
             state.isLoading = true
-            // state.books = try await getBooksUseCase.execute()
-            // state.books = try await refreshBooksUseCase.execute()
+            state.books = try await getBooksUseCase.execute()
             state.isLoading = false
+            try await refreshBooksUseCase.execute(page: 0)
         } catch {}
     }
 }

@@ -19,7 +19,7 @@ public final class KeychainProviderMock: KeychainProvider {
     }
     public var readReceivedKey: KeychainCoding?
     public var readReceivedInvocations: [KeychainCoding] = []
-    public var readReturnValue: String!
+    public var readReturnValue: String! // swiftlint:disable:this implicitly_unwrapped_optional
     public var readClosure: ((KeychainCoding) throws -> String)?
 
     public func read(_ key: KeychainCoding) throws -> String {

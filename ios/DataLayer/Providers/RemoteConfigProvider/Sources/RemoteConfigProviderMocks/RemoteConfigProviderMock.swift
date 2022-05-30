@@ -19,7 +19,7 @@ public final class RemoteConfigProviderMock: RemoteConfigProvider {
     }
     public var readReceivedKey: String?
     public var readReceivedInvocations: [String] = []
-    public var readReturnValue: Bool!
+    public var readReturnValue: Bool! // swiftlint:disable:this implicitly_unwrapped_optional
     public var readClosure: ((String) async throws -> Bool)?
 
     public func read(_ key: String) async throws -> Bool {

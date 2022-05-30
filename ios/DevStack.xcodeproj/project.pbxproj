@@ -35,6 +35,7 @@
 		4508333F2843833C00BC9460 /* Users in Frameworks */ = {isa = PBXBuildFile; productRef = 4508333E2843833C00BC9460 /* Users */; };
 		450833412843834300BC9460 /* Recipes in Frameworks */ = {isa = PBXBuildFile; productRef = 450833402843834300BC9460 /* Recipes */; };
 		450833432843834700BC9460 /* Profile in Frameworks */ = {isa = PBXBuildFile; productRef = 450833422843834700BC9460 /* Profile */; };
+		4508334528454DA900BC9460 /* KMPDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4508334428454DA900BC9460 /* KMPDependency.swift */; };
 		4524472727A417B1004853C8 /* WidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4524472627A417B1004853C8 /* WidgetView.swift */; };
 		454F6EC426CE8B3900C386B8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 454F6EC226CE8B3500C386B8 /* InfoPlist.strings */; };
 		4558D30B20FCC8FF005BC325 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4558D30A20FCC8FF005BC325 /* AppDelegate.swift */; };
@@ -92,6 +93,7 @@
 		4508333928437FC600BC9460 /* Users */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Users; sourceTree = "<group>"; };
 		4508333A28437FD600BC9460 /* Profile */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Profile; sourceTree = "<group>"; };
 		4508333B28437FE200BC9460 /* Recipes */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Recipes; sourceTree = "<group>"; };
+		4508334428454DA900BC9460 /* KMPDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMPDependency.swift; sourceTree = "<group>"; };
 		4524472627A417B1004853C8 /* WidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetView.swift; sourceTree = "<group>"; };
 		4534C1C42603D6AD0022ACF4 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		453C8807283FAB4C0027BDFB /* SharedDomain */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SharedDomain; sourceTree = "<group>"; };
@@ -324,6 +326,7 @@
 				45A0EBA027ADDE620005A01E /* Repositories+Injection.swift */,
 				45A0EB9F27ADDE620005A01E /* UseCase+Injection.swift */,
 				45A0EBA727ADF2610005A01E /* KMPUseCase+Injection.swift */,
+				4508334428454DA900BC9460 /* KMPDependency.swift */,
 			);
 			path = DependencyInjection;
 			sourceTree = "<group>";
@@ -561,6 +564,7 @@
 				4558D30B20FCC8FF005BC325 /* AppDelegate.swift in Sources */,
 				4508333528437BA500BC9460 /* AppFlowController.swift in Sources */,
 				45A0EBA327ADDE620005A01E /* Repositories+Injection.swift in Sources */,
+				4508334528454DA900BC9460 /* KMPDependency.swift in Sources */,
 				45A0EBA227ADDE620005A01E /* UseCase+Injection.swift in Sources */,
 				45A0EBA827ADF2610005A01E /* KMPUseCase+Injection.swift in Sources */,
 			);

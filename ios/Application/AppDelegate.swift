@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Resolver.registerProviders(application: application, appDelegate: self, networkProviderDelegate: self)
         Resolver.registerRepositories()
         Resolver.registerUseCases()
-        // Resolver.registerKMPUseCases(kmp: KMPKoinDependency())
+        Resolver.registerKMPUseCases(kmp: KMPKoinDependency())
         
         // Clear keychain on first run
         clearKeychain()

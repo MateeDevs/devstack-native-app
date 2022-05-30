@@ -3,6 +3,10 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
+// swiftlint:disable all
+
+#warning("TODO: Proper implementation for async/await")
+
 // import DevstackKmpShared
 // import Foundation
 //

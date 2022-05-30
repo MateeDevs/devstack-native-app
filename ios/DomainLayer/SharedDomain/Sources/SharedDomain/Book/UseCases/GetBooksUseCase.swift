@@ -5,10 +5,10 @@
 
 import DevstackKmpShared
 
-// public extension GetBooksUseCase {
-//    func execute() -> Observable<[Book]> {
-//        return createObservable(self).map { (nsArray: NSArray) -> [Book] in
-//            nsArray as! [Book] // swiftlint:disable:this force_cast
-//        }
-//    }
-// }
+#warning("TODO: Proper implementation")
+
+public extension GetBooksUseCase {
+    func execute() async throws -> [Book] {
+        return []
+    }
+}
