@@ -5,7 +5,6 @@
 
 import DataLayer
 import ProviderMocks
-import RxSwift
 import SwiftyMocky
 import XCTest
 
@@ -18,22 +17,17 @@ class RemoteConfigRepositoryTests: BaseTestCase {
     override func setupDependencies() {
         super.setupDependencies()
         
-        Given(remoteConfigProvider, .read(.any, willReturn: .just(true)))
+        Given(remoteConfigProvider, .read(.any, willReturn: true))
     }
     
     // MARK: Tests
     
-    func testRead() {
+    func testRead() async throws {
         let repository = RemoteConfigRepositoryImpl(remoteConfigProvider: remoteConfigProvider)
-        let output = scheduler.createObserver(Bool.self)
         
-        repository.read(.profileLabelIsVisible).bind(to: output).disposed(by: disposeBag)
-        scheduler.start()
+        let value = try await repository.read(.profileLabelIsVisible)
         
-        XCTAssertEqual(output.events, [
-            .next(0, true),
-            .completed(0)
-        ])
+        XCTAssertEqual(value, true)
         Verify(remoteConfigProvider, 1, .read(.any))
     }
 }

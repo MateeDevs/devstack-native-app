@@ -3,8 +3,6 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-import RxSwift
-
 public protocol RemoteConfigRepository: AutoMockable {
-    func read(_ key: RemoteConfigCoding) -> Observable<Bool>
+    func read(_ key: RemoteConfigCoding) async throws -> Bool
 }

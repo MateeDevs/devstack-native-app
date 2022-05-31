@@ -10,7 +10,6 @@ import SwiftUI
 final class LoginViewModel: BaseViewModel, ViewModel, ObservableObject {
     
     // MARK: Dependencies
-
     private weak var flowController: FlowController?
     
     @Injected private(set) var loginUseCase: LoginUseCase
@@ -45,7 +44,6 @@ final class LoginViewModel: BaseViewModel, ViewModel, ObservableObject {
     }
     
     // MARK: Intent
-
     enum Intent {
         case changeEmail(String)
         case changePassword(String)

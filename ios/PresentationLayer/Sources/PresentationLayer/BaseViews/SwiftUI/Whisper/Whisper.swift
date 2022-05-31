@@ -17,8 +17,8 @@ struct Whisper: View {
         GeometryReader { geometry in
             VStack {
                 Text(data.message)
-                    .font(Font(AppTheme.Fonts.alertMessage as CTFont))
-                    .foregroundColor(Color(AppTheme.Colors.alertMessage))
+                    .font(AppTheme.Fonts.whisperMessage)
+                    .foregroundColor(AppTheme.Colors.whisperMessage)
                     .padding(.bottom, 5)
             }
             .frame(
@@ -26,7 +26,7 @@ struct Whisper: View {
                 maxHeight: geometry.safeAreaInsets.top + 25,
                 alignment: .bottom
             )
-            .background(Color(data.style.color))
+            .background(data.style.color)
             .ignoresSafeArea()
         }
     }

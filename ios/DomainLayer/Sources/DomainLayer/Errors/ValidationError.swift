@@ -1,19 +1,17 @@
 //
-//  Created by Petr Chmelar on 18/03/2019.
-//  Copyright © 2019 Matee. All rights reserved.
+//  Created by Petr Chmelar on 20.05.2022
+//  Copyright © 2022 Matee. All rights reserved.
 //
 
-import Foundation
-
-public struct ValidationError: LocalizedError {
+public enum ValidationError: Error, Equatable {
+    case email(Email)
+    case password(Password)
     
-    private let message: String
-    
-    public init(_ message: String) {
-        self.message = message
+    public enum Email {
+        case isEmpty
     }
     
-    public var errorDescription: String? {
-        message
+    public enum Password {
+        case isEmpty
     }
 }

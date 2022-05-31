@@ -9,14 +9,14 @@ import UIKit
 
 public class AppFlowController: FlowController, MainFlowControllerDelegate, OnboardingFlowControllerDelegate {
     
-    @Injected private var getProfileIdUseCase: GetProfileIdUseCase
+    @Injected private var isUserLoggedUseCase: IsUserLoggedUseCase
     @Injected private var handlePushNotificationUseCase: HandlePushNotificationUseCase
     @Injected private var logoutUseCase: LogoutUseCase
     
     public func start() {
         setupAppearance()
         
-        if getProfileIdUseCase.execute() != nil {
+        if isUserLoggedUseCase.execute() {
             setupMain()
         } else {
             presentOnboarding(animated: false, completion: nil)
@@ -42,18 +42,22 @@ public class AppFlowController: FlowController, MainFlowControllerDelegate, Onbo
     }
     
     public func handlePushNotification(_ notification: [AnyHashable: Any]) {
-        guard let notification = handlePushNotificationUseCase.execute(notification),
-              let main = childControllers.first(where: { $0 is MainFlowController }) as? MainFlowController else { return }
-        main.handleDeeplink(for: notification)
+        guard let main = childControllers.first(where: { $0 is MainFlowController }) as? MainFlowController else { return }
+        do {
+            let notification = try handlePushNotificationUseCase.execute(notification)
+            main.handleDeeplink(for: notification)
+        } catch {}
     }
     
     public func handleLogout() {
         guard let vc = navigationController.topViewController as? BaseViewController else { return }
 
         let action = AlertData.Action(title: L10n.dialog_interceptor_button_title, style: .default, handler: {
-            // Perform logout and present login screen
-            self.logoutUseCase.execute()
-            self.presentOnboarding(animated: true, completion: nil)
+            do {
+                // Perform logout and present login screen
+                try self.logoutUseCase.execute()
+                self.presentOnboarding(animated: true, completion: nil)
+            } catch {}
         })
 
         let alert = AlertData(title: L10n.dialog_interceptor_title, message: L10n.dialog_interceptor_text, primaryAction: action)
@@ -63,16 +67,16 @@ public class AppFlowController: FlowController, MainFlowControllerDelegate, Onbo
     private func setupAppearance() {
         // Navigation bar
         let appearance = UINavigationBarAppearance()
-        appearance.backgroundColor = AppTheme.Colors.navBarBackground
-        appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: AppTheme.Colors.navBarTitle]
+        appearance.backgroundColor = UIColor(AppTheme.Colors.navBarBackground)
+        appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(AppTheme.Colors.navBarTitle)]
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
-        UINavigationBar.appearance().tintColor = AppTheme.Colors.navBarTitle
+        UINavigationBar.appearance().tintColor = UIColor(AppTheme.Colors.navBarTitle)
 
         // Tab bar
-        UITabBar.appearance().tintColor = AppTheme.Colors.primaryColor
+        UITabBar.appearance().tintColor = UIColor(AppTheme.Colors.primaryColor)
 
         // UITextField
-        UITextField.appearance().tintColor = AppTheme.Colors.primaryColor
+        UITextField.appearance().tintColor = UIColor(AppTheme.Colors.primaryColor)
     }
 }

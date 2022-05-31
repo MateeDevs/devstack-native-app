@@ -4,7 +4,6 @@
 //
 
 import DomainLayer
-import RxSwift
 
 public struct RemoteConfigRepositoryImpl: RemoteConfigRepository {
     
@@ -14,7 +13,7 @@ public struct RemoteConfigRepositoryImpl: RemoteConfigRepository {
         remoteConfig = remoteConfigProvider
     }
     
-    public func read(_ key: RemoteConfigCoding) -> Observable<Bool> {
-        remoteConfig.read(key)
+    public func read(_ key: RemoteConfigCoding) async throws -> Bool {
+        try await remoteConfig.read(key)
     }
 }

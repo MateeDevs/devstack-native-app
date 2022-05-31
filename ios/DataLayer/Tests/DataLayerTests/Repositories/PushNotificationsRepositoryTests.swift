@@ -5,7 +5,6 @@
 
 import DataLayer
 import ProviderMocks
-import RxSwift
 import SwiftyMocky
 import XCTest
 

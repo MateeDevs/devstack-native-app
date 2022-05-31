@@ -3,13 +3,20 @@
 //  Copyright © 2019 Matee. All rights reserved.
 //
 
+import SwiftUI
 import UIKit
+
+extension Flow {
+    enum Users: Equatable {
+        case showUserDetailForId(_ userId: String)
+    }
+}
 
 class UsersFlowController: FlowController {
     
     override func setup() -> UIViewController {
-        let vm = UsersViewModel()
-        return UsersViewController.instantiate(fc: self, vm: vm)
+        let vm = UsersViewModel(flowController: self)
+        return BaseHostingController(rootView: UsersView(viewModel: vm))
     }
     
     override func handleFlow(_ flow: Flow) {
@@ -29,8 +36,8 @@ extension UsersFlowController {
     }
     
     private func showUserDetailForId(_ userId: String) {
-        let vm = UserDetailViewModel(userId: userId)
-        let vc = UserDetailViewController.instantiate(fc: self, vm: vm)
+        let vm = UserDetailViewModel(userId: userId, flowController: self)
+        let vc = BaseHostingController(rootView: UserDetailView(viewModel: vm))
         navigationController.show(vc, sender: nil)
     }
 }

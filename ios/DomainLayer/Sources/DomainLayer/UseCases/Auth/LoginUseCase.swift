@@ -3,32 +3,29 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-import RxSwift
-
 public protocol LoginUseCase: AutoMockable {
     func execute(_ data: LoginData) async throws
-    func executeRx(_ data: LoginData) -> Observable<Void>
 }
 
 public struct LoginUseCaseImpl: LoginUseCase {
     
-    private let authTokenRepository: AuthTokenRepository
+    private let authRepository: AuthRepository
+    private let validateEmailUseCase: ValidateEmailUseCase
+    private let validatePasswordUseCase: ValidatePasswordUseCase
     
-    public init(authTokenRepository: AuthTokenRepository) {
-        self.authTokenRepository = authTokenRepository
+    public init(
+        authRepository: AuthRepository,
+        validateEmailUseCase: ValidateEmailUseCase,
+        validatePasswordUseCase: ValidatePasswordUseCase
+    ) {
+        self.authRepository = authRepository
+        self.validateEmailUseCase = validateEmailUseCase
+        self.validatePasswordUseCase = validatePasswordUseCase
     }
     
     public func execute(_ data: LoginData) async throws {
-        if data.email.isEmpty {
-            throw AuthError.invalidEmail
-        } else if data.password.isEmpty {
-            throw AuthError.invalidPassword
-        } else {
-            _ = try await authTokenRepository.create(data)
-        }
-    }
-    
-    public func executeRx(_ data: LoginData) -> Observable<Void> {
-        authTokenRepository.createRx(data).mapToVoid()
+        try validateEmailUseCase.execute(data.email)
+        try validatePasswordUseCase.execute(data.password)
+        _ = try await authRepository.login(data)
     }
 }

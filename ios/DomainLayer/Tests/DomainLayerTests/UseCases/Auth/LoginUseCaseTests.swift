@@ -6,44 +6,31 @@
 import DomainLayer
 import DomainStubs
 import RepositoryMocks
-import RxSwift
 import SwiftyMocky
+import UseCaseMocks
 import XCTest
 
 class LoginUseCaseTests: BaseTestCase {
     
     // MARK: Dependencies
     
-    private let authTokenRepository = AuthTokenRepositoryMock()
-    
-    override func setupDependencies() {
-        super.setupDependencies()
-        
-        Given(authTokenRepository, .create(.any, willReturn: AuthToken.stub))
-        Given(authTokenRepository, .createRx(.any, willReturn: .just(AuthToken.stub)))
-    }
+    private let authRepository = AuthRepositoryMock()
+    private let validateEmailUseCase = ValidateEmailUseCaseMock()
+    private let validatePasswordUseCase = ValidatePasswordUseCaseMock()
     
     // MARK: Tests
     
     func testExecute() async throws {
-        let useCase = LoginUseCaseImpl(authTokenRepository: authTokenRepository)
+        let useCase = LoginUseCaseImpl(
+            authRepository: authRepository,
+            validateEmailUseCase: validateEmailUseCase,
+            validatePasswordUseCase: validatePasswordUseCase
+        )
         
         try await useCase.execute(.stubValid)
         
-        Verify(authTokenRepository, 1, .create(.value(.stubValid)))
-    }
-
-    func testExecuteRx() {
-        let useCase = LoginUseCaseImpl(authTokenRepository: authTokenRepository)
-        let output = scheduler.createObserver(Bool.self)
-        
-        useCase.executeRx(.stubValid).map { _ in true }.bind(to: output).disposed(by: disposeBag)
-        scheduler.start()
-        
-        XCTAssertEqual(output.events, [
-            .next(0, true),
-            .completed(0)
-        ])
-        Verify(authTokenRepository, 1, .createRx(.value(.stubValid)))
+        Verify(validateEmailUseCase, 1, .execute(.value(LoginData.stubValid.email)))
+        Verify(validatePasswordUseCase, 1, .execute(.value(LoginData.stubValid.password)))
+        Verify(authRepository, 1, .login(.value(.stubValid)))
     }
 }

@@ -7,7 +7,6 @@
 import DomainLayer
 import DomainStubs
 import ProviderMocks
-import RxSwift
 import SwiftyMocky
 import XCTest
 
@@ -15,13 +14,11 @@ class UserRepositoryTests: BaseTestCase {
     
     // MARK: Dependencies
     
-    private let newDatabaseProvider = NewDatabaseProviderMock()
-    private let databaseProvider = DatabaseProviderMock()
+    private var databaseProvider = DatabaseProviderMock()
     private let networkProvider = NetworkProviderMock()
     
     private func createRepository() -> UserRepository {
         UserRepositoryImpl(
-            newDatabaseProvider: newDatabaseProvider,
             databaseProvider: databaseProvider,
             networkProvider: networkProvider
         )
@@ -29,129 +26,69 @@ class UserRepositoryTests: BaseTestCase {
     
     // MARK: Tests
     
-    func testCreateRxValid() {
+    func testReadObjectLocal() async throws {
         let repository = createRepository()
-        let output = scheduler.createObserver(User.self)
+        databaseProvider.readObjectReturnValue = User.stub.databaseModel
         
-        repository.createRx(.stubValid).bind(to: output).disposed(by: disposeBag)
-        scheduler.start()
+        let user = try await repository.read(.local, id: User.stub.id)
         
-        XCTAssertEqual(output.events, [
-            .next(0, User.stub),
-            .completed(0)
-        ])
-        XCTAssertEqual(networkProvider.requestCallsCount, 1)
-        XCTAssertEqual(databaseProvider.saveObjectCallsCount, 1)
-    }
-    
-    func testCreateRxExistingEmail() {
-        let repository = createRepository()
-        networkProvider.requestReturnError = RepositoryError(statusCode: StatusCode.httpConflict, message: "")
-        let output = scheduler.createObserver(User.self)
-
-        repository.createRx(.stubExistingEmail).bind(to: output).disposed(by: disposeBag)
-        scheduler.start()
-
-        XCTAssertEqual(output.events, [
-            .error(0, RepositoryError(statusCode: StatusCode.httpConflict, message: ""))
-        ])
-        XCTAssertEqual(networkProvider.requestCallsCount, 1)
-        XCTAssertEqual(databaseProvider.saveObjectCallsCount, 0)
-    }
-    
-    func testReadRxLocal() {
-        let repository = createRepository()
-        databaseProvider.observableObjectReturnValue = User.stub.databaseModel
-        let output = scheduler.createObserver(User.self)
-
-        repository.readRx(.local, id: User.stub.id).bind(to: output).disposed(by: disposeBag)
-        scheduler.start()
-        
-        XCTAssertEqual(output.events, [
-            .next(0, User.stub),
-            .completed(0)
-        ])
-        XCTAssertEqual(databaseProvider.observableObjectCallsCount, 1)
+        XCTAssertEqual(user, .stub)
         XCTAssertEqual(networkProvider.requestCallsCount, 0)
-        XCTAssertEqual(databaseProvider.saveObjectCallsCount, 0)
+        XCTAssertEqual(databaseProvider.readObjectCallsCount, 1)
     }
     
-    func testReadRxRemote() {
+    func testReadObjectRemote() async throws {
         let repository = createRepository()
-        let output = scheduler.createObserver(User.self)
-
-        repository.readRx(.remote, id: User.stub.id).bind(to: output).disposed(by: disposeBag)
-        scheduler.start()
+        databaseProvider.updateObjectReturnValue = User.stub.databaseModel
         
-        XCTAssertEqual(output.events, [
-            .next(0, User.stub),
-            .completed(0)
-        ])
-        XCTAssertEqual(databaseProvider.observableObjectCallsCount, 0)
+        let user = try await repository.read(.remote, id: User.stub.id)
+        
+        XCTAssertEqual(user, .stub)
         XCTAssertEqual(networkProvider.requestCallsCount, 1)
-        XCTAssertEqual(databaseProvider.saveObjectCallsCount, 1)
+        XCTAssertEqual(databaseProvider.updateObjectCallsCount, 1)
     }
     
-    func testListRxLocal() {
+    func testReadCollectionLocal() async throws {
         let repository = createRepository()
-        databaseProvider.observableCollectionReturnValue = User.stubList.map { $0.databaseModel }
-        let output = scheduler.createObserver([User].self)
-
-        repository.readRx(.local, page: 0, sortBy: "id").bind(to: output).disposed(by: disposeBag)
-        scheduler.start()
+        databaseProvider.readCollectionReturnValue = [User].stub.map { $0.databaseModel }
         
-        XCTAssertEqual(output.events, [
-            .next(0, User.stubList),
-            .completed(0)
-        ])
-        XCTAssertEqual(databaseProvider.observableCollectionCallsCount, 1)
+        let users = try await repository.read(.local, page: 0, sortBy: nil)
+        
+        XCTAssertEqual(users, .stub)
         XCTAssertEqual(networkProvider.requestCallsCount, 0)
-        XCTAssertEqual(databaseProvider.saveCollectionCallsCount, 0)
+        XCTAssertEqual(databaseProvider.readCollectionCallsCount, 1)
     }
     
-    func testListRxRemote() {
+    func testReadCollectionRemote() async throws {
         let repository = createRepository()
-        let output = scheduler.createObserver([User].self)
-
-        repository.readRx(.remote, page: 0, sortBy: "id").bind(to: output).disposed(by: disposeBag)
-        scheduler.start()
+        databaseProvider.updateCollectionReturnValue = [User].stub.map { $0.databaseModel }
         
-        XCTAssertEqual(output.events, [
-            .next(0, User.stubList),
-            .completed(0)
-        ])
-        XCTAssertEqual(databaseProvider.observableCollectionCallsCount, 0)
+        let users = try await repository.read(.remote, page: 0, sortBy: nil)
+        
+        XCTAssertEqual(users, .stub)
         XCTAssertEqual(networkProvider.requestCallsCount, 1)
-        XCTAssertEqual(databaseProvider.saveCollectionCallsCount, 1)
+        XCTAssertEqual(databaseProvider.updateCollectionCallsCount, 1)
     }
     
-    func testUpdateRxLocal() {
+    func testUpdateObjectLocal() async throws {
         let repository = createRepository()
-        let output = scheduler.createObserver(User.self)
-
-        repository.updateRx(.local, user: .stub).bind(to: output).disposed(by: disposeBag)
-        scheduler.start()
+        databaseProvider.updateObjectReturnValue = User.stub.databaseModel
         
-        XCTAssertEqual(output.events, [
-            .next(0, User.stub),
-            .completed(0)
-        ])
+        let user = try await repository.update(.local, user: User.stub)
+        
+        XCTAssertEqual(user, .stub)
         XCTAssertEqual(networkProvider.requestCallsCount, 0)
-        XCTAssertEqual(databaseProvider.saveObjectCallsCount, 1)
+        XCTAssertEqual(databaseProvider.updateObjectCallsCount, 1)
     }
     
-    func testUpdateRxRemote() {
+    func testUpdateObjectRemote() async throws {
         let repository = createRepository()
-        let output = scheduler.createObserver(User.self)
-
-        repository.updateRx(.remote, user: .stub).bind(to: output).disposed(by: disposeBag)
-        scheduler.start()
+        databaseProvider.updateObjectReturnValue = User.stub.databaseModel
         
-        XCTAssertEqual(output.events, [
-            .next(0, User.stub),
-            .completed(0)
-        ])
+        let user = try await repository.update(.remote, user: User.stub)
+        
+        XCTAssertEqual(user, .stub)
         XCTAssertEqual(networkProvider.requestCallsCount, 1)
-        XCTAssertEqual(databaseProvider.saveObjectCallsCount, 1)
+        XCTAssertEqual(databaseProvider.updateObjectCallsCount, 1)
     }
 }

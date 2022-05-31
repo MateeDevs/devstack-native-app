@@ -12,14 +12,14 @@ public extension Resolver {
         register { AnalyticsRepositoryImpl(analyticsProvider: resolve()) as AnalyticsRepository }
         
         register {
-            AuthTokenRepositoryImpl(
+            AuthRepositoryImpl(
                 databaseProvider: resolve(),
                 keychainProvider: resolve(),
                 networkProvider: resolve()
-            ) as AuthTokenRepository
+            ) as AuthRepository
         }
         
-        register { LocationRepositoryImpl() as LocationRepository }
+        register { LocationRepositoryImpl(locationProvider: resolve()) as LocationRepository }
         
         register { PushNotificationsRepositoryImpl(pushNotificationsProvider: resolve()) as PushNotificationsRepository }
         
@@ -27,7 +27,6 @@ public extension Resolver {
         
         register {
             UserRepositoryImpl(
-                newDatabaseProvider: resolve(),
                 databaseProvider: resolve(),
                 networkProvider: resolve()
             ) as UserRepository

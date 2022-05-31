@@ -6,41 +6,36 @@
 import DomainLayer
 import DomainStubs
 import RepositoryMocks
-import RxSwift
 import SwiftyMocky
+import UseCaseMocks
 import XCTest
 
 class GetProfileUseCaseTests: BaseTestCase {
     
     // MARK: Dependencies
     
-    private let authTokenRepository = AuthTokenRepositoryMock()
-    private let userRepository = UserRepositoryMock()
+    private let getProfileIdUseCase = GetProfileIdUseCaseMock()
+    private let getUserUseCase = GetUserUseCaseMock()
     
     override func setupDependencies() {
         super.setupDependencies()
         
-        Given(authTokenRepository, .read(willReturn: AuthToken.stub))
-        Given(userRepository, .readRx(.value(.local), id: .value(User.stub.id), willReturn: .just(User.stub)))
+        Given(getProfileIdUseCase, .execute(willReturn: AuthToken.stub.userId))
+        Given(getUserUseCase, .execute(.any, id: .any, willReturn: User.stub))
     }
     
     // MARK: Tests
 
-    func testExecute() {
+    func testExecute() async throws {
         let useCase = GetProfileUseCaseImpl(
-            authTokenRepository: authTokenRepository,
-            userRepository: userRepository
+            getProfileIdUseCase: getProfileIdUseCase,
+            getUserUseCase: getUserUseCase
         )
-        let output = scheduler.createObserver(User.self)
         
-        useCase.execute().bind(to: output).disposed(by: disposeBag)
-        scheduler.start()
+        let profile = try await useCase.execute(.local)
         
-        XCTAssertEqual(output.events, [
-            .next(0, User.stub),
-            .completed(0)
-        ])
-        Verify(authTokenRepository, 1, .read())
-        Verify(userRepository, 1, .readRx(.value(.local), id: .value(User.stub.id)))
+        XCTAssertEqual(profile, User.stub)
+        Verify(getProfileIdUseCase, 1, .execute())
+        Verify(getUserUseCase, 1, .execute(.value(.local), id: .value(AuthToken.stub.userId)))
     }
 }

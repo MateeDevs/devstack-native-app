@@ -3,31 +3,30 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-import RxSwift
-
 public protocol UpdateProfileCounterUseCase: AutoMockable {
-    func execute(value: Int) -> Observable<Void>
+    func execute(value: Int) async throws
 }
 
 public struct UpdateProfileCounterUseCaseImpl: UpdateProfileCounterUseCase {
     
-    private let authTokenRepository: AuthTokenRepository
-    private let userRepository: UserRepository
+    private let getProfileIdUseCase: GetProfileIdUseCase
+    private let getUserUseCase: GetUserUseCase
+    private let updateUserUseCase: UpdateUserUseCase
     
     public init(
-        authTokenRepository: AuthTokenRepository,
-        userRepository: UserRepository
+        getProfileIdUseCase: GetProfileIdUseCase,
+        getUserUseCase: GetUserUseCase,
+        updateUserUseCase: UpdateUserUseCase
     ) {
-        self.authTokenRepository = authTokenRepository
-        self.userRepository = userRepository
+        self.getProfileIdUseCase = getProfileIdUseCase
+        self.getUserUseCase = getUserUseCase
+        self.updateUserUseCase = updateUserUseCase
     }
     
-    public func execute(value: Int) -> Observable<Void> {
-        guard let authToken = authTokenRepository.read() else { return .error(CommonError.noAuthToken) }
-        return userRepository.readRx(.local, id: authToken.userId).take(1)
-            .flatMap { profile -> Observable<User> in
-                let updatedProfile = User(copy: profile, counter: profile.counter + value)
-                return userRepository.updateRx(.local, user: updatedProfile)
-            }.mapToVoid()
+    public func execute(value: Int) async throws {
+        let profileId = try getProfileIdUseCase.execute()
+        let profile = try await getUserUseCase.execute(.local, id: profileId)
+        let updatedProfile = User(copy: profile, counter: value)
+        try await updateUserUseCase.execute(.local, user: updatedProfile)
     }
 }

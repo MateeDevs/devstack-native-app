@@ -6,8 +6,7 @@
 import DomainLayer
 import DomainStubs
 @testable import PresentationLayer
-import RxSwift
-import RxTest
+import Resolver
 import SwiftyMocky
 import UseCaseMocks
 import XCTest
@@ -21,137 +20,80 @@ class RegistrationViewModelTests: BaseTestCase {
     override func setupDependencies() {
         super.setupDependencies()
         
-        Given(registrationUseCase, .execute(
-            .value(.stubExistingEmail),
-            willReturn: .error(RepositoryError(statusCode: StatusCode.httpConflict, message: ""))
-        ))
-        Given(registrationUseCase, .execute(.any, willReturn: .just(())))
+        Resolver.register { self.registrationUseCase as RegistrationUseCase }
+        
+        Given(registrationUseCase, .execute(.value(.stubEmptyEmail), willThrow: ValidationError.email(.isEmpty)))
+        Given(registrationUseCase, .execute(.value(.stubEmptyPassword), willThrow: ValidationError.password(.isEmpty)))
+        Given(registrationUseCase, .execute(.value(.stubExistingEmail), willThrow: AuthError.registration(.userAlreadyExists)))
     }
-    
-    // MARK: Inputs and outputs
-    
-    private struct Input {
-        var registrationData: RegistrationData = .stubEmpty
-        var registerButtonTaps: [(time: TestTime, element: Void)] = []
-        var loginButtonTaps: [(time: TestTime, element: Void)] = []
-        
-        static let registerEmpty = Input(registerButtonTaps: [(0, ())])
-        static let registerValid = Input(registrationData: .stubValid, registerButtonTaps: [(0, ())])
-        static let registerInvalidEmail = Input(registrationData: .stubInvalidEmail, registerButtonTaps: [(0, ())])
-        static let registerExistingEmail = Input(registrationData: .stubExistingEmail, registerButtonTaps: [(0, ())])
-        static let login = Input(loginButtonTaps: [(0, ())])
-    }
-    
-    private struct Output {
-        let flow: TestableObserver<Flow.Registration>
-        let alertAction: TestableObserver<AlertAction>
-        let registerButtonEnabled: TestableObserver<Bool>
-    }
-    
-    private func generateOutput(for input: Input) -> Output {
-        let viewModel = RegistrationViewModel(registrationUseCase: registrationUseCase)
-        
-        scheduler.createColdObservable([.next(0, input.registrationData.email)])
-            .bind(to: viewModel.input.email).disposed(by: disposeBag)
-        
-        scheduler.createColdObservable([.next(0, input.registrationData.password)])
-            .bind(to: viewModel.input.password).disposed(by: disposeBag)
-        
-        scheduler.createColdObservable(input.registerButtonTaps.map { .next($0.time, $0.element) })
-            .bind(to: viewModel.input.registerButtonTaps).disposed(by: disposeBag)
-        
-        scheduler.createColdObservable(input.loginButtonTaps.map { .next($0.time, $0.element) })
-            .bind(to: viewModel.input.loginButtonTaps).disposed(by: disposeBag)
-        
-        return Output(
-            flow: testableOutput(from: viewModel.output.flow),
-            alertAction: testableOutput(from: viewModel.output.alertAction),
-            registerButtonEnabled: testableOutput(from: viewModel.output.registerButtonEnabled)
-        )
-    }
-    
+
     // MARK: Tests
-    
-    func testRegisterEmpty() {
-        let output = generateOutput(for: .registerEmpty)
+
+    func testRegisterEmptyEmail() async {
+        let fc = FlowControllerMock(navigationController: UINavigationController())
+        let vm = RegistrationViewModel(flowController: fc)
         
-        scheduler.start()
+        vm.onIntent(.changeEmail(RegistrationData.stubEmptyEmail.email))
+        vm.onIntent(.changePassword(RegistrationData.stubEmptyEmail.password))
+        await vm.onIntent(.register).value
         
-        XCTAssertEqual(output.flow.events, [])
-        XCTAssertEqual(output.alertAction.events, [
-            .next(0, .showWhisper(WhisperData(error: L10n.invalid_credentials)))
-        ])
-        XCTAssertEqual(output.registerButtonEnabled.events, [
-            .next(0, true)
-        ])
-        Verify(registrationUseCase, 0, .execute(.any))
+        XCTAssert(!vm.state.registerButtonLoading)
+        XCTAssertEqual(vm.state.alert, AlertData(title: L10n.invalid_email))
+        XCTAssertEqual(fc.handleFlowValue, nil)
+        Verify(registrationUseCase, 1, .execute(.value(.stubEmptyEmail)))
     }
     
-    func testRegisterValid() {
-        let output = generateOutput(for: .registerValid)
+    func testRegisterEmptyPassword() async {
+        let fc = FlowControllerMock(navigationController: UINavigationController())
+        let vm = RegistrationViewModel(flowController: fc)
         
-        scheduler.start()
+        vm.onIntent(.changeEmail(RegistrationData.stubEmptyPassword.email))
+        vm.onIntent(.changePassword(RegistrationData.stubEmptyPassword.password))
+        await vm.onIntent(.register).value
         
-        XCTAssertEqual(output.flow.events, [
-            .next(0, .popRegistration)
-        ])
-        XCTAssertEqual(output.alertAction.events, [
-            .next(0, .showWhisper(WhisperData(L10n.signing_up))),
-            .next(0, .hideWhisper)
-        ])
-        XCTAssertEqual(output.registerButtonEnabled.events, [
-            .next(0, true),
-            .next(0, false),
-            .next(0, true)
-        ])
+        XCTAssert(!vm.state.registerButtonLoading)
+        XCTAssertEqual(vm.state.alert, AlertData(title: L10n.invalid_password))
+        XCTAssertEqual(fc.handleFlowValue, nil)
+        Verify(registrationUseCase, 1, .execute(.value(.stubEmptyPassword)))
+    }
+    
+    func testRegisterValid() async {
+        let fc = FlowControllerMock(navigationController: UINavigationController())
+        let vm = RegistrationViewModel(flowController: fc)
+        
+        vm.onIntent(.changeEmail(RegistrationData.stubValid.email))
+        vm.onIntent(.changePassword(RegistrationData.stubValid.password))
+        await vm.onIntent(.register).value
+        
+        XCTAssert(vm.state.registerButtonLoading)
+        XCTAssertEqual(vm.state.alert, nil)
+        XCTAssertEqual(fc.handleFlowValue, .registration(.dismiss))
         Verify(registrationUseCase, 1, .execute(.value(.stubValid)))
     }
     
-    func testRegisterInvalidEmail() {
-        let output = generateOutput(for: .registerInvalidEmail)
+    func testRegisterExistingEmail() async {
+        let fc = FlowControllerMock(navigationController: UINavigationController())
+        let vm = RegistrationViewModel(flowController: fc)
         
-        scheduler.start()
+        vm.onIntent(.changeEmail(RegistrationData.stubExistingEmail.email))
+        vm.onIntent(.changePassword(RegistrationData.stubExistingEmail.password))
+        await vm.onIntent(.register).value
         
-        XCTAssertEqual(output.flow.events, [])
-        XCTAssertEqual(output.alertAction.events, [
-            .next(0, .showWhisper(WhisperData(error: L10n.invalid_email)))
-        ])
-        XCTAssertEqual(output.registerButtonEnabled.events, [
-            .next(0, true)
-        ])
-        Verify(registrationUseCase, 0, .execute(.value(.stubInvalidEmail)))
-    }
-    
-    func testRegisterExistingEmail() {
-        let output = generateOutput(for: .registerExistingEmail)
-        
-        scheduler.start()
-        
-        XCTAssertEqual(output.flow.events, [])
-        XCTAssertEqual(output.alertAction.events, [
-            .next(0, .showWhisper(WhisperData(L10n.signing_up))),
-            .next(0, .showWhisper(WhisperData(error: L10n.register_view_email_already_exists)))
-        ])
-        XCTAssertEqual(output.registerButtonEnabled.events, [
-            .next(0, true),
-            .next(0, false),
-            .next(0, true)
-        ])
+        XCTAssert(!vm.state.registerButtonLoading)
+        XCTAssertEqual(vm.state.alert, AlertData(title: L10n.register_view_email_already_exists))
+        XCTAssertEqual(fc.handleFlowValue, nil)
         Verify(registrationUseCase, 1, .execute(.value(.stubExistingEmail)))
     }
-    
-    func testLogin() {
-        let output = generateOutput(for: .login)
+
+    func testLogin() async {
+        let fc = FlowControllerMock(navigationController: UINavigationController())
+        let vm = RegistrationViewModel(flowController: fc)
         
-        scheduler.start()
+        await vm.onIntent(.login).value
         
-        XCTAssertEqual(output.flow.events, [
-            .next(0, .popRegistration)
-        ])
-        XCTAssertEqual(output.alertAction.events, [])
-        XCTAssertEqual(output.registerButtonEnabled.events, [
-            .next(0, true)
-        ])
+        XCTAssert(!vm.state.registerButtonLoading)
+        XCTAssertEqual(vm.state.alert, nil)
+        XCTAssertEqual(fc.handleFlowValue, .registration(.pop))
         Verify(registrationUseCase, 0, .execute(.any))
     }
 }

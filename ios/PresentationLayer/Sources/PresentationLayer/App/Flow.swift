@@ -10,4 +10,5 @@ enum Flow: Equatable {
     case registration(Registration)
     case users(Users)
     case profile(Profile)
+    case recipes(Recipes)
 }

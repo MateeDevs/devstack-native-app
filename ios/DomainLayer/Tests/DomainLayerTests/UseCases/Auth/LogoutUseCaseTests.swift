@@ -5,7 +5,6 @@
 
 import DomainLayer
 import RepositoryMocks
-import RxSwift
 import SwiftyMocky
 import XCTest
 
@@ -13,15 +12,15 @@ class LogoutUseCaseTests: BaseTestCase {
     
     // MARK: Dependencies
     
-    private let authTokenRepository = AuthTokenRepositoryMock()
+    private let authRepository = AuthRepositoryMock()
     
     // MARK: Tests
 
-    func testExecute() {
-        let useCase = LogoutUseCaseImpl(authTokenRepository: authTokenRepository)
+    func testExecute() throws {
+        let useCase = LogoutUseCaseImpl(authRepository: authRepository)
         
-        useCase.execute()
+        try useCase.execute()
         
-        Verify(authTokenRepository, 1, .delete())
+        Verify(authRepository, 1, .logout())
     }
 }

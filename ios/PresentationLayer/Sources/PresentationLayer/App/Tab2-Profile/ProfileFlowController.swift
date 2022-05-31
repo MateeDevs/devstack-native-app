@@ -3,7 +3,14 @@
 //  Copyright © 2019 Matee. All rights reserved.
 //
 
+import SwiftUI
 import UIKit
+
+extension Flow {
+    enum Profile: Equatable {
+        case presentOnboarding
+    }
+}
 
 protocol ProfileFlowControllerDelegate: AnyObject {
     func presentOnboarding()
@@ -14,11 +21,8 @@ class ProfileFlowController: FlowController {
     weak var delegate: ProfileFlowControllerDelegate?
     
     override func setup() -> UIViewController {
-        let profileVM = ProfileViewModel()
-        let profileVC = ProfileViewController.instantiate(fc: self, vm: profileVM)
-        let settingsVM = SettingsViewModel()
-        let settingsVC = SettingsViewController.instantiate(fc: self, vm: settingsVM)
-        return ProfileWrapperViewController.instantiate(viewControllers: [profileVC, settingsVC])
+        let vm = ProfileViewModel(flowController: self)
+        return BaseHostingController(rootView: ProfileView(viewModel: vm))
     }
     
     override func handleFlow(_ flow: Flow) {

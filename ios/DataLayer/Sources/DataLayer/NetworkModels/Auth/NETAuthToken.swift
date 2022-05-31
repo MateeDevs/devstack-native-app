@@ -12,10 +12,8 @@ struct NETAuthToken: Decodable {
 }
 
 // Conversion from NetworkModel to DomainModel
-extension NETAuthToken: DomainRepresentable {
-    typealias DomainModel = AuthToken
-    
-    var domainModel: DomainModel {
+extension NETAuthToken {
+    var domainModel: AuthToken {
         AuthToken(
             userId: userId,
             token: token

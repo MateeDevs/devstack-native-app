@@ -16,10 +16,8 @@ struct NETUser: Codable {
 }
 
 // Conversion from NetworkModel to DomainModel
-extension NETUser: DomainRepresentable {
-    typealias DomainModel = User
-    
-    var domainModel: DomainModel {
+extension NETUser {
+    var domainModel: User {
         User(
             id: id,
             email: email,
@@ -34,10 +32,8 @@ extension NETUser: DomainRepresentable {
 }
 
 // Conversion from DomainModel to NetworkModel
-extension User: NetworkRepresentable {
-    typealias NetworkModel = NETUser
-    
-    var networkModel: NetworkModel {
+extension User {
+    var networkModel: NETUser {
         NETUser(
             id: id,
             email: email,

@@ -13,5 +13,12 @@ public extension Resolver {
         
         // Auth
         register { LoginUseCasePreviewMock() as LoginUseCase }
+        
+        // User
+        register { GetUsersUseCasePreviewMock() as GetUsersUseCase }
+        register { GetUserUseCasePreviewMock() as GetUserUseCase }
+        
+        // Profile
+        register { GetProfileUseCasePreviewMock() as GetProfileUseCase }
     }
 }

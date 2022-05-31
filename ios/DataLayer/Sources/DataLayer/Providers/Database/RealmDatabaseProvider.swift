@@ -1,14 +1,11 @@
 //
-//  Created by Petr Chmelar on 14/02/2019.
-//  Copyright © 2019 Matee. All rights reserved.
+//  Created by Petr Chmelar on 25.04.2022
+//  Copyright © 2022 Matee. All rights reserved.
 //
 
 import DomainLayer
 import Foundation
-import OSLog
 import RealmSwift
-import RxRealm
-import RxSwift
 
 public struct RealmDatabaseProvider {
     
@@ -41,86 +38,85 @@ public struct RealmDatabaseProvider {
 }
 
 extension RealmDatabaseProvider: DatabaseProvider {
-    
-    public func observableObject<T>(
-        _ type: T.Type,
-        id: String,
-        primaryKeyName: String
-    ) -> Observable<T> where T: Object {
-        guard let realm = Realm.safeInit() else { return .error(CommonError.realmNotAvailable) }
-        let dbObjects = realm.objects(T.self).filter(NSPredicate(format: "\(primaryKeyName) == %@", id))
-        
-        return Observable.collection(from: dbObjects).flatMap { objects -> Observable<T> in
-            guard let object = objects.first else { return .empty() }
-            return .just(object)
+    public func read<T>(_ type: T.Type, id: String) throws -> T {
+        guard let realmType = T.self as? Object.Type else { throw DatabaseProviderError.typeNotRepresentable }
+        let realm = try Realm()
+        if let object = realm.object(ofType: realmType.self, forPrimaryKey: id) as? T {
+            return object
+        } else {
+            throw DatabaseProviderError.objectNotFound
         }
     }
     
-    public func observableCollection<T>(
-        _ type: T.Type,
-        predicate: NSPredicate?,
-        sortBy: String?,
-        ascending: Bool
-    ) -> Observable<[T]> where T: Object {
-        guard let realm = Realm.safeInit() else { return .error(CommonError.realmNotAvailable) }
-        var dbObjects = realm.objects(T.self)
+    public func read<T>(_ type: T.Type, predicate: NSPredicate?, sortBy: String?, ascending: Bool) throws -> [T] {
+        guard let realmType = T.self as? Object.Type else { throw DatabaseProviderError.typeNotRepresentable }
+        
+        let realm = try Realm()
+        var realmObjects = realm.objects(realmType.self)
         
         if let predicate = predicate {
-            dbObjects = dbObjects.filter(predicate)
+            realmObjects = realmObjects.filter(predicate)
         }
         
         if let sortBy = sortBy {
-            dbObjects = dbObjects.sorted(byKeyPath: sortBy, ascending: ascending)
+            realmObjects = realmObjects.sorted(byKeyPath: sortBy, ascending: ascending)
         }
         
-        return Observable.array(from: dbObjects).flatMap { objects -> Observable<[T]> in
-            guard !objects.isEmpty else { return .just([]) }
-            return .just(objects)
+        if let objects = Array(realmObjects) as? [T] {
+            return objects
+        } else {
+            return []
         }
     }
     
-    public func save<T>(_ object: T, model: UpdateModel) -> Observable<T> where T: Object {
-        guard let realm = Realm.safeInit() else { return .error(CommonError.realmNotAvailable) }
-        return .create { observer in
-            do {
-                try realm.write {
-                    realm.create(T.self, value: model.value(for: object), update: .modified)
+    @discardableResult
+    public func update<T>(_ object: T, model: UpdateModel) throws -> T {
+        guard let object = try update([object], model: model).first else { throw DatabaseProviderError.objectNotFound }
+        return object
+    }
+    
+    @discardableResult
+    public func update<T>(_ objects: [T], model: UpdateModel) throws -> [T] {
+        let realm = try Realm()
+        try realm.write {
+            try objects.forEach { object in
+                guard let realmObject = object as? Object else { throw DatabaseProviderError.typeNotRepresentable }
+                realm.create(type(of: realmObject).self, value: model.value(for: realmObject), update: .modified)
+            }
+        }
+        return objects
+    }
+    
+    public func delete<T>(_ object: T) throws {
+        try delete([object])
+    }
+    
+    public func delete<T>(_ objects: [T]) throws {
+        let realm = try Realm()
+        try realm.write {
+            try objects.forEach { object in
+                guard let realmObject = object as? Object else { throw DatabaseProviderError.typeNotRepresentable }
+                realm.delete(realmObject)
+            }
+        }
+    }
+    
+    public func deleteAll() throws {
+        let realm = try Realm()
+        try realm.write {
+            realm.deleteAll()
+        }
+    }
+    
+    public func deleteAll(except types: [Any.Type]) throws {
+        let realm = try Realm()
+        try realm.write {
+            realm.configuration.objectTypes?
+                .filter { type in types.contains { $0 == type } == false }
+                .forEach { objectType in
+                    guard let type = objectType as? Object.Type else { return }
+                    realm.delete(realm.objects(type))
                 }
-                observer.onNext(object)
-                observer.onCompleted()
-            } catch {
-                observer.onError(error)
-            }
-            return Disposables.create()
-        }
-    }
-    
-    public func save<T>(_ objects: [T], model: UpdateModel) -> Observable<[T]> where T: Object {
-        guard let realm = Realm.safeInit() else { return .error(CommonError.realmNotAvailable) }
-        return .create { observer in
-            do {
-                try realm.write {
-                    for object in objects {
-                        realm.create(T.self, value: model.value(for: object), update: .modified)
-                    }
-                }
-                observer.onNext(objects)
-                observer.onCompleted()
-            } catch {
-                observer.onError(error)
-            }
-            return Disposables.create()
-        }
-    }
-    
-    public func deleteAll() {
-        guard let realm = Realm.safeInit() else { return }
-        do {
-            try realm.write {
-                realm.deleteAll()
-            }
-        } catch let error as NSError {
-            Logger.app.error("Error during Realm deleteAll operation:\n\(error)")
         }
     }
 }

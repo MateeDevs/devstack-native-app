@@ -4,13 +4,8 @@
 //
 
 import CoreLocation
-import RxSwift
 
 public protocol LocationRepository: AutoMockable {
-    
-    /// Check whether the location services are enabled and authorized
-    func isLocationEnabled() -> Bool
-    
-    /// Observe current location
-    func getCurrentLocation(withAccuracy accuracy: CLLocationAccuracy) -> Observable<CLLocation>
+    func readIsLocationEnabled() -> Bool
+    func readCurrentLocation(withAccuracy accuracy: CLLocationAccuracy) -> AsyncStream<CLLocation>
 }

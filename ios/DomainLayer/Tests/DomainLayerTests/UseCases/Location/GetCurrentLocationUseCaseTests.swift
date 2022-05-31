@@ -6,13 +6,12 @@
 import CoreLocation
 import DomainLayer
 import RepositoryMocks
-import RxSwift
 import SwiftyMocky
 import XCTest
 
 class GetCurrentLocationUseCaseTests: BaseTestCase {
     
-    private let location = CLLocation(latitude: 50.0, longitude: 50.0)
+    private let locationStub = CLLocation(latitude: 50.0, longitude: 50.0)
     
     // MARK: Dependencies
     
@@ -21,25 +20,24 @@ class GetCurrentLocationUseCaseTests: BaseTestCase {
     override func setupDependencies() {
         super.setupDependencies()
         
-        Given(locationRepository, .getCurrentLocation(
-            withAccuracy: .value(kCLLocationAccuracyThreeKilometers),
-            willReturn: .just(location)
-        ))
+        let locationStream = AsyncStream(CLLocation.self) { continuation in
+            continuation.yield(locationStub)
+            continuation.finish()
+        }
+        
+        Given(locationRepository, .readCurrentLocation(withAccuracy: .any, willReturn: locationStream))
     }
     
     // MARK: Tests
 
-    func testExecute() {
+    func testExecute() async {
         let useCase = GetCurrentLocationUseCaseImpl(locationRepository: locationRepository)
-        let output = scheduler.createObserver(CLLocation.self)
         
-        useCase.execute().bind(to: output).disposed(by: disposeBag)
-        scheduler.start()
+        let currentLocationStream = useCase.execute()
         
-        XCTAssertEqual(output.events, [
-            .next(0, location),
-            .completed(0)
-        ])
-        Verify(locationRepository, 1, .getCurrentLocation(withAccuracy: .value(kCLLocationAccuracyThreeKilometers)))
+        for try await currentLocation in currentLocationStream {
+            XCTAssertEqual(currentLocation, locationStub)
+        }
+        Verify(locationRepository, 1, .readCurrentLocation(withAccuracy: .value(kCLLocationAccuracyThreeKilometers)))
     }
 }

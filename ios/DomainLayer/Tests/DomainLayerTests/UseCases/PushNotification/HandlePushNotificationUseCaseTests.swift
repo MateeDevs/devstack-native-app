@@ -6,7 +6,6 @@
 import DomainLayer
 import DomainStubs
 import RepositoryMocks
-import RxSwift
 import SwiftyMocky
 import XCTest
 
@@ -25,12 +24,12 @@ class HandlePushNotificationUseCaseTests: BaseTestCase {
     
     // MARK: Tests
 
-    func testExecute() {
+    func testExecute() throws {
         let useCase = HandlePushNotificationUseCaseImpl(pushNotificationsRepository: pushNotificationsRepository)
         
-        let output = useCase.execute([:])
+        let pushNotification = try useCase.execute([:])
         
-        XCTAssertEqual(output, PushNotification.stub)
+        XCTAssertEqual(pushNotification, PushNotification.stub)
         Verify(pushNotificationsRepository, 1, .decode(.any))
     }
 }

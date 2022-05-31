@@ -60,11 +60,6 @@ FIXME
 - ViewModel has its state and intents which are then used in a relevant SwiftUI View
 - Asynchronous work is represented via native async/await
 
-## Legacy presentation layer (UIKit + MVVM + RxSwift)
-- PresentationLayer is represented by ViewModels + ViewControllers and FlowControllers
-- ViewModel has its inputs and outputs which are then binded or observed in a relevant ViewController
-- Asynchronous work is represented as Observable from the [RxSwift](https://github.com/ReactiveX/RxSwift) framework
-
 ## Style Guide
 - [Swift Style Guide](https://github.com/raywenderlich/swift-style-guide)
 - Swiftlint is enabled for the whole codebase, you can find its configuration inside the `.swiftlint.yml`

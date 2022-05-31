@@ -6,7 +6,8 @@
 import DomainLayer
 
 public extension LoginData {
-    static let stubEmpty = LoginData(email: "", password: "")
-    static let stubValid = LoginData(email: "email@email.com", password: "validPassword")
+    static let stubValid = LoginData(email: "email@email.com", password: "password")
+    static let stubEmptyEmail = LoginData(email: "", password: "password")
+    static let stubEmptyPassword = LoginData(email: "email@email.com", password: "")
     static let stubInvalidPassword = LoginData(email: "email@email.com", password: "invalidPassword")
 }

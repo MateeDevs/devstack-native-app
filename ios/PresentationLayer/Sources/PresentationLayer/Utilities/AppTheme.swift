@@ -3,6 +3,7 @@
 //  Copyright © 2019 Matee. All rights reserved.
 //
 
+import SwiftUI
 import UIKit
 
 enum AppTheme {
@@ -11,62 +12,56 @@ enum AppTheme {
     enum Colors {
         
         // Main colors
-        static let primaryColor = Asset.Colors.mateeYellow.color
-        static let secondaryColor = Asset.Colors.mateeBlue.color
+        static let primaryColor = Color(Asset.Colors.mateeYellow.color)
+        static let secondaryColor = Color(Asset.Colors.mateeBlue.color)
         
         // Navigation bar
-        static let navBarBackground = Asset.Colors.mateeYellow.color
-        static let navBarTitle = UIColor.white
+        static let navBarBackground = Color(Asset.Colors.mateeYellow.color)
+        static let navBarTitle = Color.white
         
         // Backgrounds
-        static let background = UIColor.systemBackground
+        static let background = Color(UIColor.systemBackground)
         
-        // Separators
-        static let separator = UIColor.separator
-        
-        // Labels
-        static let label = UIColor.label
-        static let headlineLabel = Asset.Colors.mateeYellow.color
+        // Texts
+        static let text = Color(UIColor.label)
+        static let headlineText = Color(Asset.Colors.mateeYellow.color)
         
         // Text fields
-        static let textFieldTitle = UIColor.systemGray
-        static let textFieldBorder = UIColor.systemGray4
-        
-        // Placeholders
-        static let placeholder = UIColor.placeholderText
+        static let textFieldTitle = Color(UIColor.systemGray)
+        static let textFieldBorder = Color(UIColor.systemGray4)
         
         // Buttons
-        static let primaryButtonBackground = Asset.Colors.mateeYellow.color
-        static let primaryButtonTitle = UIColor.white
+        static let primaryButtonBackground = Color(Asset.Colors.mateeYellow.color)
+        static let primaryButtonTitle = Color.white
+        static let secondaryButtonBackground = Color.clear
+        static let secondaryButtonTitle = Color(Asset.Colors.mateeYellow.color)
         
-        static let secondaryButtonBackground = UIColor.clear
-        static let secondaryButtonTitle = Asset.Colors.mateeYellow.color
+        // ProgressView
+        static let progressView = Color(Asset.Colors.mateeYellow.color)
         
-        // Indicators
-        static let activityIndicator = Asset.Colors.mateeYellow.color
-        
-        // Alerts
-        static let alertBackgroundInfo = UIColor.systemGray
-        static let alertBackgroundSuccess = UIColor.systemGreen
-        static let alertBackgroundError = UIColor.systemRed
-        static let alertMessage = UIColor.white
+        // Whisper
+        static let whisperBackgroundInfo = Color.gray
+        static let whisperBackgroundSuccess = Color.green
+        static let whisperBackgroundError = Color.red
+        static let whisperMessage = Color.white
     }
     
     /// Defines all the fonts used in the app in a semantic way
     enum Fonts {
         
-        // Labels
-        static let headlineLabel = UIFont.systemFont(ofSize: 28.0, weight: .medium)
+        // Text
+        static let headlineText = Font.system(size: 28.0, weight: .medium)
         
         // Text fields
-        static let textFieldText = UIFont.systemFont(ofSize: 17.0, weight: .regular)
-        static let textFieldTitle = UIFont.systemFont(ofSize: 14.0, weight: .regular)
-        static let textFieldHint = UIFont.systemFont(ofSize: 10.0, weight: .regular)
+        static let textFieldText = Font.system(size: 17.0, weight: .medium)
+        static let textFieldTitle = Font.system(size: 14.0, weight: .regular)
         
         // Buttons
-        static let primaryButton = UIFont.systemFont(ofSize: 20.0, weight: .regular)
+        static let primaryButton = Font.system(size: 20.0, weight: .regular)
+        static let secondaryButton = Font.system(size: 20.0, weight: .regular)
         
-        // Alerts
-        static let alertMessage = UIFont.systemFont(ofSize: 13.0, weight: .medium)
+        // Whisper
+        static let whisperMessage = Font.system(size: 13.0, weight: .medium)
+        static let whisperMessageUIKit = UIFont.systemFont(ofSize: 13.0, weight: .medium)
     }
 }

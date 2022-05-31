@@ -6,80 +6,46 @@
 import DomainLayer
 import DomainStubs
 @testable import PresentationLayer
-import RxSwift
-import RxTest
+import Resolver
 import SwiftyMocky
 import UseCaseMocks
 import XCTest
 
 class UsersViewModelTests: BaseTestCase {
     
-    private let dbStream = BehaviorSubject<[User]>(value: User.stubList)
-    
     // MARK: Dependencies
     
     private let getUsersUseCase = GetUsersUseCaseMock()
-    private let refreshUsersUseCase = RefreshUsersUseCaseMock()
     
     override func setupDependencies() {
         super.setupDependencies()
         
-        Given(getUsersUseCase, .execute(willReturn: dbStream.asObservable()))
-        Given(refreshUsersUseCase, .execute(page: .any, willReturn: .just(Constants.paginationCount)))
-    }
-    
-    // MARK: Inputs and outputs
-    
-    private struct Input {
-        var page: [(time: TestTime, element: Int)] = []
+        Resolver.register { self.getUsersUseCase as GetUsersUseCase }
         
-        static let initialLoad = Input(page: [(0, 0)])
+        Given(getUsersUseCase, .execute(.any, page: .any, willReturn: [User].stub))
     }
-    
-    private struct Output {
-        let users: TestableObserver<[User]>
-        let loadedCount: TestableObserver<Int>
-        let isRefreshing: TestableObserver<Bool>
-    }
-    
-    private func generateOutput(for input: Input) -> Output {
-        let viewModel = UsersViewModel(
-            getUsersUseCase: getUsersUseCase,
-            refreshUsersUseCase: refreshUsersUseCase
-        )
-        
-        scheduler.createColdObservable(input.page.map { .next($0.time, $0.element) })
-            .do { [weak self] _ in self?.dbStream.onNext(User.stubList) }
-            .bind(to: viewModel.input.page).disposed(by: disposeBag)
-        
-        return Output(
-            users: testableOutput(from: viewModel.output.users),
-            loadedCount: testableOutput(from: viewModel.output.loadedCount),
-            isRefreshing: testableOutput(from: viewModel.output.isRefreshing)
-        )
-    }
-    
+
     // MARK: Tests
     
-    func testInitialLoad() {
-        let output = generateOutput(for: .initialLoad)
+    func testAppear() async {
+        let fc = FlowControllerMock(navigationController: UINavigationController())
+        let vm = UsersViewModel(flowController: fc)
         
-        scheduler.start()
+        vm.onAppear()
+        for task in vm.tasks { await task.value }
         
-        XCTAssertEqual(output.users.events, [
-            .next(0, User.stubList),
-            .next(0, User.stubList)
-        ])
-        XCTAssertEqual(output.loadedCount.events, [
-            .next(0, Constants.paginationCount)
-        ])
-        XCTAssertEqual(output.isRefreshing.events, [
-            .next(0, false),
-            .next(0, true),
-            .next(0, false),
-            .next(0, false)
-        ])
-        Verify(getUsersUseCase, 1, .execute())
-        Verify(refreshUsersUseCase, 1, .execute(page: 0))
+        XCTAssertEqual(vm.state.users, [User].stub)
+        XCTAssertEqual(vm.state.isLoading, false)
+        Verify(getUsersUseCase, 1, .execute(.value(.local), page: .any))
+        Verify(getUsersUseCase, 1, .execute(.value(.remote), page: .any))
+    }
+    
+    func testOpenUserDetail() async {
+        let fc = FlowControllerMock(navigationController: UINavigationController())
+        let vm = UsersViewModel(flowController: fc)
+        
+        await vm.onIntent(.openUserDetail(id: User.stub.id)).value
+        
+        XCTAssertEqual(fc.handleFlowValue, .users(.showUserDetailForId(User.stub.id)))
     }
 }

@@ -10,15 +10,16 @@ import Resolver
 public extension Resolver {
     static func registerDependencies() {
         // UseCases
-        register { GetProfileIdUseCaseImpl(authTokenRepository: resolve()) as GetProfileIdUseCase }
+        register { IsUserLoggedUseCaseImpl(getProfileIdUseCase: resolve()) as IsUserLoggedUseCase }
+        register { GetProfileIdUseCaseImpl(authRepository: resolve()) as GetProfileIdUseCase }
         
         // Repositories
         register {
-            AuthTokenRepositoryImpl(
+            AuthRepositoryImpl(
                 databaseProvider: resolve(),
                 keychainProvider: resolve(),
                 networkProvider: resolve()
-            ) as AuthTokenRepository
+            ) as AuthRepository
         }
         
         // Providers

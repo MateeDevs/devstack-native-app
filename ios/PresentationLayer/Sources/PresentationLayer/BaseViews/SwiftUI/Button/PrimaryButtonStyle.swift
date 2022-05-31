@@ -25,13 +25,13 @@ struct PrimaryButtonStyle: ButtonStyle {
                     .progressViewStyle(CircularProgressViewStyle(tint: .white))
             } else {
                 configuration.label
-                    .font(Font(AppTheme.Fonts.primaryButton as CTFont))
-                    .foregroundColor(Color(AppTheme.Colors.primaryButtonTitle))
+                    .font(AppTheme.Fonts.primaryButton)
+                    .foregroundColor(AppTheme.Colors.primaryButtonTitle)
             }
         }
         .frame(maxWidth: isLarge ? .infinity : nil, minHeight: 24)
         .padding()
-        .background(Color(AppTheme.Colors.primaryButtonBackground))
+        .background(AppTheme.Colors.primaryButtonBackground)
         .cornerRadius(5)
     }
 }

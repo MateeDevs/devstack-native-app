@@ -3,8 +3,6 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-import RxSwift
-
 public protocol TrackAnalyticsEventUseCase: AutoMockable {
     func execute(_ event: AnalyticsEvent)
 }

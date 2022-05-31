@@ -14,18 +14,18 @@ public extension Resolver {
         register { TrackAnalyticsEventUseCaseImpl(analyticsRepository: resolve()) as TrackAnalyticsEventUseCase }
         
         // Auth
-        register { LoginUseCaseImpl(authTokenRepository: resolve()) as LoginUseCase }
-        register { LogoutUseCaseImpl(authTokenRepository: resolve()) as LogoutUseCase }
-        register { RegistrationUseCaseImpl(userRepository: resolve()) as RegistrationUseCase }
+        register { GetProfileIdUseCaseImpl(authRepository: resolve()) as GetProfileIdUseCase }
+        register { IsUserLoggedUseCaseImpl(getProfileIdUseCase: resolve()) as IsUserLoggedUseCase }
+        register { LoginUseCaseImpl(authRepository: resolve(), validateEmailUseCase: resolve(), validatePasswordUseCase: resolve()) as LoginUseCase }
+        register { LogoutUseCaseImpl(authRepository: resolve()) as LogoutUseCase }
+        register { RegistrationUseCaseImpl(authRepository: resolve(), validateEmailUseCase: resolve(), validatePasswordUseCase: resolve()) as RegistrationUseCase }
         
         // Location
         register { GetCurrentLocationUseCaseImpl(locationRepository: resolve()) as GetCurrentLocationUseCase }
         
         // Profile
-        register { GetProfileUseCaseImpl(authTokenRepository: resolve(), userRepository: resolve()) as GetProfileUseCase }
-        register { GetProfileIdUseCaseImpl(authTokenRepository: resolve()) as GetProfileIdUseCase }
-        register { RefreshProfileUseCaseImpl(authTokenRepository: resolve(), userRepository: resolve()) as RefreshProfileUseCase }
-        register { UpdateProfileCounterUseCaseImpl(authTokenRepository: resolve(), userRepository: resolve()) as UpdateProfileCounterUseCase }
+        register { GetProfileUseCaseImpl(getProfileIdUseCase: resolve(), getUserUseCase: resolve()) as GetProfileUseCase }
+        register { UpdateProfileCounterUseCaseImpl(getProfileIdUseCase: resolve(), getUserUseCase: resolve(), updateUserUseCase: resolve()) as UpdateProfileCounterUseCase }
         
         // PushNotification
         register { HandlePushNotificationUseCaseImpl(pushNotificationsRepository: resolve()) as HandlePushNotificationUseCase }
@@ -35,12 +35,12 @@ public extension Resolver {
         register { GetRemoteConfigValueUseCaseImpl(remoteConfigRepository: resolve()) as GetRemoteConfigValueUseCase }
         
         // User
+        register { GetUsersUseCaseImpl(userRepository: resolve()) as GetUsersUseCase }
         register { GetUserUseCaseImpl(userRepository: resolve()) as GetUserUseCase }
-        register { RefreshUserUseCaseImpl(userRepository: resolve()) as RefreshUserUseCase }
         register { UpdateUserUseCaseImpl(userRepository: resolve()) as UpdateUserUseCase }
         
-        // Users
-        register { GetUsersUseCaseImpl(userRepository: resolve()) as GetUsersUseCase }
-        register { RefreshUsersUseCaseImpl(userRepository: resolve()) as RefreshUsersUseCase }
+        // Validation
+        register { ValidateEmailUseCaseImpl() as ValidateEmailUseCase }
+        register { ValidatePasswordUseCaseImpl() as ValidatePasswordUseCase }
     }
 }

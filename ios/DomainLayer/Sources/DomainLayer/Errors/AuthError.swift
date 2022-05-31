@@ -3,9 +3,18 @@
 //  Copyright © 2022 Matee. All rights reserved.
 //
 
-public enum AuthError: Error {
-    case invalidEmail
-    case invalidPassword
-    case invalidCredentials
-    case failed
+public enum AuthError: Error, Equatable {
+    case notLogged
+    case login(Login)
+    case registration(Registration)
+    
+    public enum Login {
+        case invalidCredentials
+        case failed
+    }
+    
+    public enum Registration {
+        case userAlreadyExists
+        case failed
+    }
 }

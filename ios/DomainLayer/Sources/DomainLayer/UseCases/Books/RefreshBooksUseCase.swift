@@ -4,11 +4,9 @@
 //
 
 import DevstackKmpShared
-import Foundation
-import RxSwift
 
-public extension RefreshBooksUseCase {
-    func execute(params: Int) -> Observable<Event<Void>> {
-        return createObservable(self, params)
-    }
-}
+// public extension RefreshBooksUseCase {
+//    func execute(params: Int) -> Observable<Event<Void>> {
+//        return createObservable(self, params)
+//    }
+// }
