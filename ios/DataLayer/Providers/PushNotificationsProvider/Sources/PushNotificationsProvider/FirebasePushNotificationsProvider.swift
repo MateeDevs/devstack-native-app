@@ -9,7 +9,7 @@ import OSLog
 import UIKit
 import UserNotifications
 
-public class FirebasePushNotificationsProvider: NSObject {
+public final class FirebasePushNotificationsProvider: NSObject {
     
     private let application: UIApplication
     

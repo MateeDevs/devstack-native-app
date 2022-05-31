@@ -12,7 +12,7 @@ import Utilities
 import XCTest
 
 @MainActor
-class UsersViewModelTests: XCTestCase {
+final class UsersViewModelTests: XCTestCase {
     
     // MARK: Dependencies
     

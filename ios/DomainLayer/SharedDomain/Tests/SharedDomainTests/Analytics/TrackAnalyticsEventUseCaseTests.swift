@@ -7,7 +7,7 @@ import SharedDomain
 import SharedDomainMocks
 import XCTest
 
-class TrackAnalyticsEventUseCaseTests: XCTestCase {
+final class TrackAnalyticsEventUseCaseTests: XCTestCase {
     
     // MARK: Dependencies
     

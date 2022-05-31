@@ -13,7 +13,7 @@ public protocol KMPDependency {
     func getProtocol<T: AnyObject>(_ proto: Protocol) -> T
 }
 
-public class KMPKoinDependency: KMPDependency {
+public final class KMPKoinDependency: KMPDependency {
     
     private var _koin: Koin_coreKoin?
     

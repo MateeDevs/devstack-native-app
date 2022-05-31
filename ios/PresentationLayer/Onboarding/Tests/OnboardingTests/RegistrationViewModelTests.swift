@@ -11,7 +11,7 @@ import UIToolkit
 import XCTest
 
 @MainActor
-class RegistrationViewModelTests: XCTestCase {
+final class RegistrationViewModelTests: XCTestCase {
     
     // MARK: Dependencies
     

@@ -5,7 +5,7 @@
 
 import UIKit
 
-class WhisperView: UIView {
+final class WhisperView: UIView {
 
     // MARK: UI components
     private let messageLabel = UILabel()

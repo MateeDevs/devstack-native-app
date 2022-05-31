@@ -7,7 +7,7 @@ import SharedDomain
 import SharedDomainMocks
 import XCTest
 
-class IsUserLoggedUseCaseTests: XCTestCase {
+final class IsUserLoggedUseCaseTests: XCTestCase {
     
     // MARK: Dependencies
     

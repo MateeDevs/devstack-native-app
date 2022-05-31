@@ -15,7 +15,7 @@ enum UsersFlow: Flow, Equatable {
     }
 }
 
-public class UsersFlowController: FlowController {
+public final class UsersFlowController: FlowController {
     
     override public func setup() -> UIViewController {
         let vm = UsersViewModel(flowController: self)

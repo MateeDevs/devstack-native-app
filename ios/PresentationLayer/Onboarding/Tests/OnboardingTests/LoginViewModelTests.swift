@@ -11,7 +11,7 @@ import UIToolkit
 import XCTest
 
 @MainActor
-class LoginViewModelTests: XCTestCase {
+final class LoginViewModelTests: XCTestCase {
     
     // MARK: Dependencies
     

@@ -9,7 +9,7 @@ import SharedDomain
 import UIKit
 import UIToolkit
 
-class AppFlowController: FlowController, MainFlowControllerDelegate, OnboardingFlowControllerDelegate {
+final class AppFlowController: FlowController, MainFlowControllerDelegate, OnboardingFlowControllerDelegate {
     
     @Injected private var isUserLoggedUseCase: IsUserLoggedUseCase
     @Injected private var handlePushNotificationUseCase: HandlePushNotificationUseCase

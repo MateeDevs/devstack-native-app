@@ -19,7 +19,7 @@ public protocol ProfileFlowControllerDelegate: AnyObject {
     func presentOnboarding()
 }
 
-public class ProfileFlowController: FlowController {
+public final class ProfileFlowController: FlowController {
     
     public weak var delegate: ProfileFlowControllerDelegate?
     

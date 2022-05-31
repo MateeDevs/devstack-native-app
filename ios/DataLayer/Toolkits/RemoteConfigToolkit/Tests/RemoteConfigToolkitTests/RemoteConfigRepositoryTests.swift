@@ -9,7 +9,7 @@ import RemoteConfigToolkit
 import SharedDomain
 import XCTest
 
-class RemoteConfigRepositoryTests: XCTestCase {
+final class RemoteConfigRepositoryTests: XCTestCase {
     
     // MARK: Dependencies
     

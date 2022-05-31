@@ -9,7 +9,7 @@ import PushNotificationsToolkit
 import SharedDomain
 import XCTest
 
-class PushNotificationsRepositoryTests: XCTestCase {
+final class PushNotificationsRepositoryTests: XCTestCase {
     
     // MARK: Dependencies
     

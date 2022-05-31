@@ -12,7 +12,7 @@ import UIToolkit
 import XCTest
 
 @MainActor
-class ProfileViewModelTests: XCTestCase {
+final class ProfileViewModelTests: XCTestCase {
 
     // MARK: Dependencies
     

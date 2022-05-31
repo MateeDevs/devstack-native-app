@@ -5,7 +5,7 @@
 
 import UIKit
 
-class FullscreenImageViewController: BaseViewController {
+final class FullscreenImageViewController: BaseViewController {
     
     // MARK: UI components
     private var scrollView = UIScrollView()

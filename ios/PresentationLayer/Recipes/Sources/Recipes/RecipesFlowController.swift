@@ -16,7 +16,7 @@ enum RecipesFlow: Flow, Equatable {
     }
 }
 
-public class RecipesFlowController: FlowController {
+public final class RecipesFlowController: FlowController {
 
     override public func setup() -> UIViewController {
         let vm = RecipesViewModel(flowController: self)

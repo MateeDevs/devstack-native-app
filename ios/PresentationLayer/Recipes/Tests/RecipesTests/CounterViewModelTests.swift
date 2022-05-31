@@ -11,7 +11,7 @@ import UIToolkit
 import XCTest
 
 @MainActor
-class CounterViewModelTests: XCTestCase {
+final class CounterViewModelTests: XCTestCase {
     
     // MARK: Dependencies
     

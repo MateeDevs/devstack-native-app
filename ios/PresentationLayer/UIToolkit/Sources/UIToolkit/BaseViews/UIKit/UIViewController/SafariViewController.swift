@@ -5,7 +5,7 @@
 
 import SafariServices
 
-class SafariViewController: SFSafariViewController {
+final class SafariViewController: SFSafariViewController {
     
     // MARK: Stored properties
     private let url: URL

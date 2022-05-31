@@ -6,7 +6,7 @@
 import RealmSwift
 import SharedDomain
 
-@objcMembers class DBUser: Object {
+@objcMembers final class DBUser: Object {
     dynamic var id: String = ""
     dynamic var email: String = ""
     dynamic var firstName: String = ""

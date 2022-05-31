@@ -3,8 +3,6 @@
 //  Copyright © 2022 Matee. All rights reserved.
 //
 
-// swiftlint:disable line_length
-
 #if DEBUG
 import CoreLocation
 import Resolver
@@ -23,10 +21,11 @@ public extension Resolver {
         register { RegistrationUseCaseMock() as RegistrationUseCase }
         
         // Location
-        register { GetCurrentLocationUseCaseMock(executeReturnValue: AsyncStream(CLLocation.self) { continuation in
-            continuation.yield(CLLocation(latitude: 50.0, longitude: 50.0))
-            continuation.finish()
-        }) as GetCurrentLocationUseCase
+        register {
+            GetCurrentLocationUseCaseMock(executeReturnValue: AsyncStream(CLLocation.self) { continuation in
+                continuation.yield(CLLocation(latitude: 50.0, longitude: 50.0))
+                continuation.finish()
+            }) as GetCurrentLocationUseCase
         }
         
         // Profile

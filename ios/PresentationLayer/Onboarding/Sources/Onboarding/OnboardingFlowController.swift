@@ -26,7 +26,7 @@ public protocol OnboardingFlowControllerDelegate: AnyObject {
     func setupMain()
 }
 
-public class OnboardingFlowController: FlowController {
+public final class OnboardingFlowController: FlowController {
     
     public weak var delegate: OnboardingFlowControllerDelegate?
     
