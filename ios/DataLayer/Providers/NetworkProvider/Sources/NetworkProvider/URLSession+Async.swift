@@ -5,7 +5,7 @@
 
 import Foundation
 
-// Extension which enables async/await for URLSession prior iOS 15.0
+// Extension which adds async/await support to URLSession prior iOS 15.0
 // Taken from: https://github.com/JohnSundell/AsyncCompatibilityKit
 
 @available(iOS, deprecated: 15.0, message: "Use the built-in API instead")

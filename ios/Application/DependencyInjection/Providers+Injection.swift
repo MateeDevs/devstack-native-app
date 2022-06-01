@@ -5,6 +5,7 @@
 
 import AnalyticsProvider
 import DatabaseProvider
+import GraphQLProvider
 import KeychainProvider
 import LocationProvider
 import NetworkProvider
@@ -24,6 +25,7 @@ public extension Resolver {
     ) {
         register { FirebaseAnalyticsProvider(debugMode: Environment.type != .production) as AnalyticsProvider }
         register { RealmDatabaseProvider() as DatabaseProvider }
+        register { ApolloGraphQLProvider(baseURL: NetworkingConstants.rocketsURL) as GraphQLProvider }
         register { SystemKeychainProvider() as KeychainProvider }
         register { SystemLocationProvider() as LocationProvider }
         

@@ -1,0 +1,10 @@
+query RocketLaunchList {
+	launches {
+		cursor
+		hasMore
+		launches {
+			id
+			site
+		}
+	}
+}

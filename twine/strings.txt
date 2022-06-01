@@ -739,6 +739,12 @@
 		cs = Knihy
 		en = Books
 		sk = Knicnice
+  
+[[Rocket Launches View]]
+    [rocket_launches_view_toolbar_title]
+        cs = Starty raket
+        en = Rocket launches
+        sk = Štarty rakiet
 
 [[User Detail View]]
 	[user_detail_view_toolbar_title]
@@ -841,7 +847,6 @@
 		cs = More in-depth usage of the Canvas (arcs, line styles) and concurrent work using LaunchedEffect
 		en = More in-depth usage of the Canvas (arcs, line styles) and concurrent work using LaunchedEffect
 		sk = More in-depth usage of the Canvas (arcs, line styles) and concurrent work using LaunchedEffect
-	
 	[recipes_view_list_name]
 		cs = Pokročilý přechod a nested scrolling 
 		en = Advanced transition and nested scrolling
@@ -855,4 +860,4 @@
 	[recipes_clock_view_tutorial]
 		cs = Tažením svisle upravte čas 
 		en = Drag vertically to adjust the time
-		sk = Čas upravíte presunutím zvisle 
+		sk = Čas upravíte presunutím zvisle

@@ -1,21 +1,19 @@
 //
-//  Created by Petr Chmelar on 22.05.2022
+//  Created by Petr Chmelar on 01.06.2022
 //  Copyright © 2022 Matee. All rights reserved.
 //
 
-import DevstackKmpShared
 import Resolver
 import SharedDomain
 import SwiftUI
 import UIToolkit
 
-final class BooksViewModel: BaseViewModel, ViewModel, ObservableObject {
+final class RocketLaunchesViewModel: BaseViewModel, ViewModel, ObservableObject {
     
     // MARK: Dependencies
     private weak var flowController: FlowController?
     
-    @Injected private(set) var getBooksUseCase: GetBooksUseCase
-    @Injected private(set) var refreshBooksUseCase: RefreshBooksUseCase
+    @Injected private(set) var getRocketLaunchesUseCase: GetRocketLaunchesUseCase
 
     init(flowController: FlowController?) {
         self.flowController = flowController
@@ -26,7 +24,7 @@ final class BooksViewModel: BaseViewModel, ViewModel, ObservableObject {
     
     override func onAppear() {
         super.onAppear()
-        executeTask(Task { await loadBooks() })
+        executeTask(Task { await loadRocketLaunches() })
     }
     
     // MARK: State
@@ -35,7 +33,7 @@ final class BooksViewModel: BaseViewModel, ViewModel, ObservableObject {
 
     struct State {
         var isLoading: Bool = false
-        var books: [Book] = []
+        var rocketLaunches: [RocketLaunch] = []
     }
     
     // MARK: Intent
@@ -46,12 +44,13 @@ final class BooksViewModel: BaseViewModel, ViewModel, ObservableObject {
     
     // MARK: Private
     
-    private func loadBooks() async {
+    private func loadRocketLaunches() async {
         do {
             state.isLoading = true
-            state.books = try await getBooksUseCase.execute()
-            try await refreshBooksUseCase.execute(page: 0)
-            state.isLoading = false
+            for try await rocketLaunches in getRocketLaunchesUseCase.execute() {
+                state.rocketLaunches = rocketLaunches
+                state.isLoading = false
+            }
         } catch {}
     }
 }

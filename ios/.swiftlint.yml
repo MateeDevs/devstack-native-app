@@ -2,7 +2,7 @@ excluded:
   - Carthage
   - Pods
   - vendor
-  - DomainLayer/SharedDomain/Sources/SharedDomainMocks/Mocks/Mocks.swift
+  - DataLayer/Toolkits/RocketToolkit/Sources/RocketToolkit/NetworkModels/NETModels.generated.swift
 
 indentation: 2
 cyclomatic_complexity: 10

@@ -9,6 +9,7 @@ import LocationToolkit
 import PushNotificationsToolkit
 import RemoteConfigToolkit
 import Resolver
+import RocketToolkit
 import SharedDomain
 import UserToolkit
 
@@ -29,6 +30,8 @@ public extension Resolver {
         register { PushNotificationsRepositoryImpl(pushNotificationsProvider: resolve()) as PushNotificationsRepository }
         
         register { RemoteConfigRepositoryImpl(remoteConfigProvider: resolve()) as RemoteConfigRepository }
+        
+        register { RocketLaunchRepositoryImpl(graphQLProvider: resolve()) as RocketLaunchRepository }
         
         register {
             UserRepositoryImpl(
