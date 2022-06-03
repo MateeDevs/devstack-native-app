@@ -3,9 +3,18 @@
 //  Copyright © 2020 Matee. All rights reserved.
 //
 
-import DataLayer
+import AnalyticsProvider
+import DatabaseProvider
+import KeychainProvider
+import LocationProvider
+import NetworkProvider
+import PushNotificationsProvider
+import RemoteConfigProvider
 import Resolver
+import SharedDomain
 import UIKit
+import UserDefaultsProvider
+import Utilities
 
 public extension Resolver {
     static func registerProviders(
@@ -13,13 +22,23 @@ public extension Resolver {
         appDelegate: (UIApplicationDelegate & UNUserNotificationCenterDelegate),
         networkProviderDelegate: NetworkProviderDelegate
     ) {
-        register { FirebaseAnalyticsProvider() as AnalyticsProvider }
+        register { FirebaseAnalyticsProvider(debugMode: Environment.type != .production) as AnalyticsProvider }
         register { RealmDatabaseProvider() as DatabaseProvider }
-        register { SystemKeychainProvider(userDefaultsProvider: resolve()) as KeychainProvider }
+        register { SystemKeychainProvider() as KeychainProvider }
         register { SystemLocationProvider() as LocationProvider }
-        register { SystemNetworkProvider(keychainProvider: resolve(), delegate: networkProviderDelegate) as NetworkProvider }
+        
+        register {
+            SystemNetworkProvider(
+                readAuthToken: {
+                    let keychainProvider: KeychainProvider = Resolver.resolve()
+                    return try keychainProvider.read(.authToken)
+                },
+                delegate: networkProviderDelegate
+            ) as NetworkProvider
+        }
+        
         register { FirebasePushNotificationsProvider(application: application, appDelegate: appDelegate) as PushNotificationsProvider }
-        register { FirebaseRemoteConfigProvider() as RemoteConfigProvider }
+        register { FirebaseRemoteConfigProvider(debugMode: Environment.type != .production) as RemoteConfigProvider }
         register { SystemUserDefaultsProvider() as UserDefaultsProvider }
     }
 }

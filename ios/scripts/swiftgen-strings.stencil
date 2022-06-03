@@ -8,8 +8,8 @@
 
 {% if tables.count > 0 %}
 {% set accessModifier %}{% if param.publicAccess %}public{% else %}internal{% endif %}{% endset %}
-import DomainLayer
 import Foundation
+import Utilities
 
 // swiftlint:disable superfluous_disable_command file_length implicit_return
 
@@ -98,7 +98,7 @@ extension {{enumName}} {
 private final class BundleToken {
   static let bundle: Bundle = {
     #if SWIFT_PACKAGE
-    return Bundle.module
+    return Bundle.myModule
     #else
     return Bundle(for: BundleToken.self)
     #endif

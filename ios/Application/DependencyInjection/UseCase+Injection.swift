@@ -5,8 +5,8 @@
 
 // swiftlint:disable line_length
 
-import DomainLayer
 import Resolver
+import SharedDomain
 
 public extension Resolver {
     static func registerUseCases() {

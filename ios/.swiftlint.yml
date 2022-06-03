@@ -2,9 +2,7 @@ excluded:
   - Carthage
   - Pods
   - vendor
-  - DomainLayer/Sources/UseCaseMocks/Mocks.swift
-  - DomainLayer/Sources/RepositoryMocks/Mocks.swift
-  - DataLayer/Sources/ProviderMocks/Mocks.swift
+  - DomainLayer/SharedDomain/Sources/SharedDomainMocks/Mocks/Mocks.swift
 
 indentation: 2
 cyclomatic_complexity: 10

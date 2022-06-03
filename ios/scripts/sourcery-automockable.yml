@@ -1,0 +1,19 @@
+configurations:
+  - sources:
+      - ../DomainLayer/SharedDomain/Sources/SharedDomain/.
+    templates:
+      - ./sourcery-automockable.stencil
+    args:
+      autoMockableImports: [
+        "CoreLocation",
+        "SharedDomain"
+      ]
+    output:
+      ../DomainLayer/SharedDomain/Sources/SharedDomainMocks/Mocks/Mocks.swift
+
+  # - sources:
+  #     - ../DataLayer/Providers/.
+  #   templates:
+  #     - ./sourcery-automockable.stencil
+  #   output:
+  #     ../DataLayer/Providers/Mocks.swift

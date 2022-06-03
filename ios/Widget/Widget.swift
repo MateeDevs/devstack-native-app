@@ -3,10 +3,10 @@
 //  Copyright © 2022 Matee. All rights reserved.
 //
 
-import DataLayer
-import DomainLayer
 import Resolver
+import SharedDomain
 import SwiftUI
+import Utilities
 import WidgetKit
 
 struct Provider: TimelineProvider {

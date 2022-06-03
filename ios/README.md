@@ -53,21 +53,18 @@ FIXME
 - DataLayer provides required data via Repositories and Providers from database / network / etc.
 - Network communication is based on URLSession and native Decodable is used for mapping from JSON
 - Database models are represented via [Realm](https://github.com/realm/realm-cocoa) object models
-- Providers/Repositories/UseCases are "injected" during the init via [Resolver](https://github.com/hmlongco/Resolver)
+- Providers/Repositories/UseCases are injected via [Resolver](https://github.com/hmlongco/Resolver)
 
-## Presentation layer (SwiftUI + MVI + async/await)
-- Presentation layer is represented by ViewModels + Views and FlowControllers
+## PresentationLayer (SwiftUI + MVI + async/await)
+- PresentationLayer is represented by ViewModels + Views and FlowControllers
 - ViewModel has its state and intents which are then used in a relevant SwiftUI View
 - Asynchronous work is represented via native async/await
 
 ## Style Guide
 - [Swift Style Guide](https://github.com/raywenderlich/swift-style-guide)
 - Swiftlint is enabled for the whole codebase, you can find its configuration inside the `.swiftlint.yml`
-- To ensure a uniform style, it is advised to use the ready-made templates for ViewController / ViewModel / FlowController etc.
-- The templates are available from a separate repository [ios-templates](https://github.com/MateeDevs/devstack-ios-templates)
-- When using storyboards, strictly go with the rule `one view = one storyboard`!
 - Unfinished or broken code should be marked with `#warning("TODO:")` or `#warning("FIXME:")`
-- Identifiers for storyboard, assets, colors and localized strings are generated with [SwiftGen](https://github.com/SwiftGen/SwiftGen)
+- Identifiers for assets, colors and localized strings are generated with [SwiftGen](https://github.com/SwiftGen/SwiftGen)
 
 ## Localization
 - All strings in the application are localized and shared with the Android team via [Twine](https://github.com/scelis/twine)
@@ -99,7 +96,7 @@ FIXME
 
 ## Tests
 - All newly created ViewModels / UseCases / Repositories should have at least a basic set of tests
-- [SwiftyMocky](https://github.com/MakeAWishFoundation/SwiftyMocky) is used for automatic mock generation
+- [Sourcery](https://github.com/krzysztofzablocki/Sourcery) is used for automatic mock generation
 
 ## TODO
-- Replace Mint with SPM Extensible Build Tools once it is available (should be in Swift 5.6)
+- Replace Mint with SPM Extensible Build Tools when all tools are ready
