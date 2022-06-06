@@ -10,7 +10,7 @@ import LocationToolkit
 import SharedDomain
 import XCTest
 
-class LocationRepositoryTests: XCTestCase {
+final class LocationRepositoryTests: XCTestCase {
     
     private let location = CLLocation(latitude: 50.0, longitude: 50.0)
     

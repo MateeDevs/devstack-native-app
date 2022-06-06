@@ -7,7 +7,7 @@ import SharedDomain
 import SharedDomainMocks
 import XCTest
 
-class HandlePushNotificationUseCaseTests: XCTestCase {
+final class HandlePushNotificationUseCaseTests: XCTestCase {
     
     // MARK: Dependencies
     

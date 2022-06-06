@@ -20,7 +20,7 @@ protocol MainFlowControllerDelegate: AnyObject {
     func presentOnboarding(animated: Bool, completion: (() -> Void)?)
 }
 
-class MainFlowController: FlowController, ProfileFlowControllerDelegate {
+final class MainFlowController: FlowController, ProfileFlowControllerDelegate {
     
     weak var delegate: MainFlowControllerDelegate?
     

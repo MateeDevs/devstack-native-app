@@ -7,7 +7,7 @@ import SharedDomain
 import SharedDomainMocks
 import XCTest
 
-class UpdateProfileCounterUseCaseTests: XCTestCase {
+final class UpdateProfileCounterUseCaseTests: XCTestCase {
     
     // MARK: Dependencies
     

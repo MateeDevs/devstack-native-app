@@ -5,7 +5,7 @@
 
 import CoreLocation
 
-public class SystemLocationProvider: NSObject {
+public final class SystemLocationProvider: NSObject {
     
     private let locationManager = CLLocationManager()
     private var locationHandler: ([CLLocation]) -> Void = { _ in }

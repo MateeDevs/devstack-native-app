@@ -7,7 +7,7 @@ import SharedDomain
 import SharedDomainMocks
 import XCTest
 
-class RegisterForPushNotificationsUseCaseTests: XCTestCase {
+final class RegisterForPushNotificationsUseCaseTests: XCTestCase {
     
     // MARK: Dependencies
     

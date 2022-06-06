@@ -8,7 +8,7 @@ import SharedDomain
 import SharedDomainMocks
 import XCTest
 
-class GetCurrentLocationUseCaseTests: XCTestCase {
+final class GetCurrentLocationUseCaseTests: XCTestCase {
     
     // MARK: Dependencies
     

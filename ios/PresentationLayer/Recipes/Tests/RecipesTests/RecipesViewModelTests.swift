@@ -11,7 +11,7 @@ import UIToolkit
 import XCTest
 
 @MainActor
-class RecipesViewModelTests: XCTestCase {
+final class RecipesViewModelTests: XCTestCase {
     
     let fc = FlowControllerMock<RecipesFlow>(navigationController: UINavigationController())
     

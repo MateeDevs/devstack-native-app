@@ -6,7 +6,7 @@
 import SharedDomain
 import XCTest
 
-class ValidatePasswordUseCaseTests: XCTestCase {
+final class ValidatePasswordUseCaseTests: XCTestCase {
     
     // MARK: Tests
     

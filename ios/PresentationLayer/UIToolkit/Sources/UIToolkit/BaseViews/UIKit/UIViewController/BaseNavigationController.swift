@@ -5,7 +5,7 @@
 
 import UIKit
 
-public class BaseNavigationController: UINavigationController {
+public final class BaseNavigationController: UINavigationController {
     
     private var statusBarStyle: UIStatusBarStyle = .default
     

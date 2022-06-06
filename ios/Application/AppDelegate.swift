@@ -20,7 +20,7 @@ import Utilities
 import WidgetKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+final class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     private var flowController: AppFlowController?

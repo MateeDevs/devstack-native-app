@@ -7,7 +7,7 @@ import SharedDomain
 import SharedDomainMocks
 import XCTest
 
-class GetRemoteConfigValueUseCaseTests: XCTestCase {
+final class GetRemoteConfigValueUseCaseTests: XCTestCase {
     
     // MARK: Dependencies
     

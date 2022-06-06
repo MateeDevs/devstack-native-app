@@ -7,7 +7,7 @@ import CoreLocation
 import LocationProvider
 import SharedDomain
 
-public class LocationRepositoryImpl: LocationRepository {
+public final class LocationRepositoryImpl: LocationRepository {
     
     private let location: LocationProvider
     

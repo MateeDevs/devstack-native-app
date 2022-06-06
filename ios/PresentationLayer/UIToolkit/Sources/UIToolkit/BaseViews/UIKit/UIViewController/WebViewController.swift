@@ -6,7 +6,7 @@
 import UIKit
 import WebKit
 
-class WebViewController: BaseViewController {
+final class WebViewController: BaseViewController {
     
     // MARK: Stored properties
     private var url: URL

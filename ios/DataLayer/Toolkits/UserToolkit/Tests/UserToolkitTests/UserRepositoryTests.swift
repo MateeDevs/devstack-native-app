@@ -12,7 +12,7 @@ import SharedDomainMocks
 @testable import UserToolkit
 import XCTest
 
-class UserRepositoryTests: XCTestCase {
+final class UserRepositoryTests: XCTestCase {
     
     // MARK: Dependencies
     
