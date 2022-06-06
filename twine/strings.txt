@@ -745,6 +745,12 @@
         cs = Starty raket
         en = Rocket launches
         sk = Štarty rakiet
+        
+[[Skeleton View]]
+    [skeleton_view_toolbar_title]
+        cs = Skeleton
+        en = Skeleton
+        sk = Skeleton
 
 [[User Detail View]]
 	[user_detail_view_toolbar_title]

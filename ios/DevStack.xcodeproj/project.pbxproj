@@ -101,7 +101,6 @@
 		4508334428454DA900BC9460 /* KMPDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMPDependency.swift; sourceTree = "<group>"; };
 		4524472627A417B1004853C8 /* WidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetView.swift; sourceTree = "<group>"; };
 		4534C1C42603D6AD0022ACF4 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		453580E428478CE3007AEC9E /* RocketToolkit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RocketToolkit; sourceTree = "<group>"; };
 		453580E52847E814007AEC9E /* GraphQLProvider */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = GraphQLProvider; sourceTree = "<group>"; };
 		453580EC284806D1007AEC9E /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		453580EE284806FE007AEC9E /* strings.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = strings.txt; path = ../../twine/strings.txt; sourceTree = "<group>"; };
@@ -132,6 +131,7 @@
 		45A0EBAA27ADF5900005A01E /* Widget+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Widget+Injection.swift"; sourceTree = "<group>"; };
 		45B5A7942842A4E30055447B /* LocationProvider */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = LocationProvider; sourceTree = "<group>"; };
 		45B5A7952842A64D0055447B /* PushNotificationsProvider */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = PushNotificationsProvider; sourceTree = "<group>"; };
+		45BA62EE284EA7EA0060253A /* RocketToolkit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RocketToolkit; sourceTree = "<group>"; };
 		45C120A1284292690065E6BA /* DatabaseProvider */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = DatabaseProvider; sourceTree = "<group>"; };
 		45DEBE1827A153A10075C7E2 /* DevStack Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "DevStack Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		45DEBE1927A153A10075C7E2 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -385,7 +385,7 @@
 				456F8B042842CB2800F74A61 /* LocationToolkit */,
 				456F8B052842CC7800F74A61 /* PushNotificationsToolkit */,
 				456F8B062842CDFF00F74A61 /* RemoteConfigToolkit */,
-				453580E428478CE3007AEC9E /* RocketToolkit */,
+				45BA62EE284EA7EA0060253A /* RocketToolkit */,
 				456F8B072842CF1000F74A61 /* UserToolkit */,
 			);
 			path = Toolkits;
