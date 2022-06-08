@@ -14,3 +14,13 @@ extension RocketLaunchListQuery.Data.Launch.Launch {
         )
     }
 }
+
+// Conversion from DomainModel to NetworkModel
+extension RocketLaunch {
+    var networkModel: RocketLaunchListQuery.Data.Launch.Launch {
+        .init(
+            id: id,
+            site: site
+        )
+    }
+}

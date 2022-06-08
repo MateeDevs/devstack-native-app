@@ -194,6 +194,18 @@
                ReferencedContainer = "container:DataLayer/Toolkits/UserToolkit">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "RocketToolkitTests"
+               BuildableName = "RocketToolkitTests"
+               BlueprintName = "RocketToolkitTests"
+               ReferencedContainer = "container:DataLayer/Toolkits/RocketToolkit">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

@@ -11,6 +11,10 @@ let package = Package(
         .library(
             name: "GraphQLProvider",
             targets: ["GraphQLProvider"]
+        ),
+        .library(
+            name: "GraphQLProviderMocks",
+            targets: ["GraphQLProviderMocks"]
         )
     ],
     dependencies: [
@@ -24,6 +28,13 @@ let package = Package(
         .target(
             name: "GraphQLProvider",
             dependencies: [
+                .product(name: "Apollo", package: "apollo-ios")
+            ]
+        ),
+        .target(
+            name: "GraphQLProviderMocks",
+            dependencies: [
+                "GraphQLProvider",
                 .product(name: "Apollo", package: "apollo-ios")
             ]
         )

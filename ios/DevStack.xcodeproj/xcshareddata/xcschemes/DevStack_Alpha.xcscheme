@@ -54,6 +54,20 @@
                ReferencedContainer = "container:DevStack.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "RocketToolkitTests"
+               BuildableName = "RocketToolkitTests"
+               BlueprintName = "RocketToolkitTests"
+               ReferencedContainer = "container:DataLayer/Toolkits/RocketToolkit">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -192,6 +206,18 @@
                BuildableName = "UserToolkitTests"
                BlueprintName = "UserToolkitTests"
                ReferencedContainer = "container:DataLayer/Toolkits/UserToolkit">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "RocketToolkitTests"
+               BuildableName = "RocketToolkitTests"
+               BlueprintName = "RocketToolkitTests"
+               ReferencedContainer = "container:DataLayer/Toolkits/RocketToolkit">
             </BuildableReference>
          </TestableReference>
       </Testables>

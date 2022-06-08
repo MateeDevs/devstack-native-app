@@ -33,6 +33,16 @@ let package = Package(
             resources: [
               .process("NetworkQueries")
             ]
+        ),
+        .testTarget(
+            name: "RocketToolkitTests",
+            dependencies: [
+                "RocketToolkit",
+                .product(name: "SharedDomain", package: "SharedDomain"),
+                .product(name: "SharedDomainMocks", package: "SharedDomain"),
+                .product(name: "GraphQLProvider", package: "GraphQLProvider"),
+                .product(name: "GraphQLProviderMocks", package: "GraphQLProvider")
+            ]
         )
     ]
 )
