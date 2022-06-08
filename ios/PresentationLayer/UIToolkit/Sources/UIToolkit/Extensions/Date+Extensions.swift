@@ -6,7 +6,7 @@
 import Foundation
 import Utilities
 
-extension Date {
+public extension Date {
     
     /// Conversion from Date to String using a given formatter.
     func toString(formatter: DateFormatter = Formatter.Date.default) -> String {

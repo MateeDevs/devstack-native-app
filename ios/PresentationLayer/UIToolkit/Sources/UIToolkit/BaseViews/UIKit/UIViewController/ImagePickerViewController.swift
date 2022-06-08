@@ -5,20 +5,20 @@
 
 import UIKit
 
-@objc protocol ImagePickerViewControllerDelegate: AnyObject {
+@objc public protocol ImagePickerViewControllerDelegate: AnyObject {
     @objc optional func photoSelected(image: UIImage?)
 }
 
-final class ImagePickerViewController: BaseViewController {
+public final class ImagePickerViewController: BaseViewController {
 
     // MARK: Stored properties
-    var imagePickerTitle: String = L10n.image_picker_title
-    var imagePickerSubtitle: String = L10n.image_picker_subtitle
+    public var imagePickerTitle: String = L10n.image_picker_title
+    public var imagePickerSubtitle: String = L10n.image_picker_subtitle
 
-    weak var delegate: ImagePickerViewControllerDelegate?
+    public weak var delegate: ImagePickerViewControllerDelegate?
 
     // MARK: Lifecycle methods
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
     }
 
@@ -63,7 +63,7 @@ final class ImagePickerViewController: BaseViewController {
 }
 
 extension ImagePickerViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(
+    public func imagePickerController(
         _ picker: UIImagePickerController,
         didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
     ) {

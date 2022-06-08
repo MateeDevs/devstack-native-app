@@ -6,7 +6,7 @@
 import Foundation
 import Utilities
 
-extension Int {
+public extension Int {
     
     /// Conversion from Int to String using a given formatter.
     func toString(formatter: NumberFormatter = Formatter.Number.default) -> String {

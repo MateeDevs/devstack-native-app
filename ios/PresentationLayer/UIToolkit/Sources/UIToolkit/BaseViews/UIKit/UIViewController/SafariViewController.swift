@@ -5,19 +5,19 @@
 
 import SafariServices
 
-final class SafariViewController: SFSafariViewController {
+public final class SafariViewController: SFSafariViewController {
     
     // MARK: Stored properties
     private let url: URL
     
     // MARK: Inits
-    override init(url URL: URL, configuration: SFSafariViewController.Configuration = SFSafariViewController.Configuration()) {
+    override public init(url URL: URL, configuration: SFSafariViewController.Configuration = SFSafariViewController.Configuration()) {
         self.url = URL
         super.init(url: URL, configuration: configuration)
     }
     
     // MARK: Lifecycle methods
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         preferredControlTintColor = UIColor(AppTheme.Colors.primaryColor)
     }
@@ -27,7 +27,7 @@ final class SafariViewController: SFSafariViewController {
     ///
     /// - parameter completionHandler: Returns false for non universal link or when app is not installed
     ///
-    func openUniversalLink(completionHandler completion: ((Bool) -> Void)? = nil) {
+    public func openUniversalLink(completionHandler completion: ((Bool) -> Void)? = nil) {
         UIApplication.shared.open(url, options: [.universalLinksOnly: true], completionHandler: completion)
     }
 }

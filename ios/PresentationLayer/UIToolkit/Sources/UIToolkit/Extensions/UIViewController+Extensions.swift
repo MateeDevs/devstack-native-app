@@ -5,7 +5,7 @@
 
 import UIKit
 
-extension UIViewController {
+public extension UIViewController {
 
     func add(_ child: UIViewController) {
         addChild(child)

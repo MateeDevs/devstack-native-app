@@ -5,7 +5,7 @@
 
 import Foundation
 
-extension Measurement where UnitType == Dimension {
+public extension Measurement where UnitType == Dimension {
     
     /// Predefined default unit for selected dimensions
     var defaultUnit: Measurement {

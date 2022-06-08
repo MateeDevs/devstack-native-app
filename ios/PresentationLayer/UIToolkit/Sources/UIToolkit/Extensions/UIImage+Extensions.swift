@@ -5,7 +5,7 @@
 
 import UIKit
 
-extension UIImage {
+public extension UIImage {
     
     ///
     /// Scale the image to fit inside a given CGRect. Useful when you need to combine .scaleAspectFit with .left/.right/.top/.bottom

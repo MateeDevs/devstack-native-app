@@ -5,7 +5,7 @@
 
 import Foundation
 
-enum Plurals: String {
+public enum Plurals: String {
 
     // swiftlint:disable identifier_name
     case days

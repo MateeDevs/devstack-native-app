@@ -5,25 +5,25 @@
 
 import UIKit
 
-final class WhisperView: UIView {
+public final class WhisperView: UIView {
 
     // MARK: UI components
     private let messageLabel = UILabel()
 
     // MARK: Stored properties
-    var message: String = "" {
+    public var message: String = "" {
         didSet {
             messageLabel.text = message
         }
     }
 
     // MARK: Inits
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         setup()
     }
     
-    required init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         super.init(coder: coder)
         setup()
     }
