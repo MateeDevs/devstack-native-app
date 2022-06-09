@@ -34,6 +34,9 @@ public extension Resolver {
         // RemoteConfig
         register { GetRemoteConfigValueUseCaseImpl(remoteConfigRepository: resolve()) as GetRemoteConfigValueUseCase }
         
+        // Rocket
+        register { GetRocketLaunchesUseCaseImpl(rocketLaunchRepository: resolve()) as GetRocketLaunchesUseCase }
+        
         // User
         register { GetUsersUseCaseImpl(userRepository: resolve()) as GetUsersUseCase }
         register { GetUserUseCaseImpl(userRepository: resolve()) as GetUserUseCase }

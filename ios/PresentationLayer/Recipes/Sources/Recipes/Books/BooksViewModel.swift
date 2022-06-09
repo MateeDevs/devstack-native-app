@@ -50,8 +50,8 @@ final class BooksViewModel: BaseViewModel, ViewModel, ObservableObject {
         do {
             state.isLoading = true
             state.books = try await getBooksUseCase.execute()
-            state.isLoading = false
             try await refreshBooksUseCase.execute(page: 0)
+            state.isLoading = false
         } catch {}
     }
 }

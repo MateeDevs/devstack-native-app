@@ -5,7 +5,7 @@
 
 import Foundation
 
-extension NSObject {
+public extension NSObject {
 
     /// Class name literal
     class var nameOfClass: String {

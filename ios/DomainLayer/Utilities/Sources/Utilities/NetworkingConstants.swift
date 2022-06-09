@@ -11,4 +11,12 @@ public struct NetworkingConstants {
         case .production: return "https://matee-devstack.herokuapp.com"
         }
     }
+    
+    public static var rocketsURL: String {
+        switch Environment.type {
+        case .alpha: return "https://apollo-fullstack-tutorial.herokuapp.com/graphql"
+        case .beta: return "https://apollo-fullstack-tutorial.herokuapp.com/graphql"
+        case .production: return "https://apollo-fullstack-tutorial.herokuapp.com/graphql"
+        }
+    }
 }

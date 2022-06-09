@@ -6,9 +6,11 @@
 import SwiftUI
 import UIToolkit
 
-enum Recipe: String {
+enum Recipe: String, CaseIterable {
     case counter = "Counter"
     case books = "Books"
+    case rocketLaunches = "RocketLaunches"
+    case skeleton = "Skeleton"
 }
 
 final class RecipesViewModel: BaseViewModel, ViewModel, ObservableObject {
@@ -26,7 +28,7 @@ final class RecipesViewModel: BaseViewModel, ViewModel, ObservableObject {
     @Published private(set) var state: State = State()
 
     struct State {
-        var recipes: [Recipe] = [.counter, .books]
+        var recipes: [Recipe] = Recipe.allCases
     }
     
     // MARK: Intent
@@ -50,6 +52,10 @@ final class RecipesViewModel: BaseViewModel, ViewModel, ObservableObject {
             flowController?.handleFlow(RecipesFlow.recipes(.showCounter))
         case .books:
             flowController?.handleFlow(RecipesFlow.recipes(.showBooks))
+        case .rocketLaunches:
+            flowController?.handleFlow(RecipesFlow.recipes(.showRocketLaunches))
+        case .skeleton:
+            flowController?.handleFlow(RecipesFlow.recipes(.showSkeleton))
         }
     }
 }

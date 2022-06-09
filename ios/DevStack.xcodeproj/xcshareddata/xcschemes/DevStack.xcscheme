@@ -25,8 +25,8 @@
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
-               title = "Generate resources and mocks"
-               scriptText = "cd &quot;${PROJECT_DIR}&quot;&#10;exec &gt; prebuild.log 2&gt;&amp;1 # For debugging&#10;scripts/twine.sh&#10;scripts/swiftgen.sh&#10;scripts/sourcery.sh&#10;">
+               title = "Generate code"
+               scriptText = "cd &quot;${PROJECT_DIR}&quot;&#10;exec &gt; prebuild.log 2&gt;&amp;1 # For debugging&#10;scripts/twine.sh&#10;scripts/swiftgen.sh&#10;scripts/sourcery.sh&#10;scripts/apollo.sh&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
@@ -193,6 +193,18 @@
                BuildableName = "UserToolkitTests"
                BlueprintName = "UserToolkitTests"
                ReferencedContainer = "container:DataLayer/Toolkits/UserToolkit">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "RocketToolkitTests"
+               BuildableName = "RocketToolkitTests"
+               BlueprintName = "RocketToolkitTests"
+               ReferencedContainer = "container:DataLayer/Toolkits/RocketToolkit">
             </BuildableReference>
          </TestableReference>
       </Testables>

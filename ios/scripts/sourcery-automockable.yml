@@ -9,7 +9,7 @@ configurations:
         "SharedDomain"
       ]
     output:
-      ../DomainLayer/SharedDomain/Sources/SharedDomainMocks/Mocks/Mocks.swift
+      ../DomainLayer/SharedDomain/Sources/SharedDomainMocks/Mocks/Mocks.generated.swift
 
   # - sources:
   #     - ../DataLayer/Providers/.

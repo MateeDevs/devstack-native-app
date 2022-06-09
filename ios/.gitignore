@@ -16,13 +16,8 @@ DomainLayer/DevstackKmpShared.xcframework
 ## Twine generated
 Localizable.strings
 
-## SwiftGen generated
-Assets.swift
-Localizable.swift
-Storyboards.swift
-
-## Sourcery generated
-Mocks.swift
+## Generated code
+*.generated.swift
 
 ## Various settings
 *.pbxuser

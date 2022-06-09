@@ -6,26 +6,26 @@
 import UIKit
 import WebKit
 
-final class WebViewController: BaseViewController {
+public final class WebViewController: BaseViewController {
     
     // MARK: Stored properties
     private var url: URL
     private var shouldAddCookies: Bool = false
     
     // MARK: Inits
-    init(url: URL, shouldAddCookies: Bool = false) {
+    public init(url: URL, shouldAddCookies: Bool = false) {
         self.url = url
         self.shouldAddCookies = shouldAddCookies
         super.init(nibName: nil, bundle: nil)
     }
     
     @available(*, unavailable)
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: Lifecycle methods
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
 
         // Setup web view

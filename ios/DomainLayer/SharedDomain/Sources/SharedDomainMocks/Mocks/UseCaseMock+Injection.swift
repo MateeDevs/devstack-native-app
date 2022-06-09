@@ -39,6 +39,14 @@ public extension Resolver {
         // RemoteConfig
         register { GetRemoteConfigValueUseCaseMock(executeReturnValue: true) as GetRemoteConfigValueUseCase }
         
+        // Rocket
+        register {
+            GetRocketLaunchesUseCaseMock(executeReturnValue: AsyncThrowingStream<[RocketLaunch], Error> { continuation in
+                continuation.yield([RocketLaunch].stub)
+                continuation.finish()
+            }) as GetRocketLaunchesUseCase
+        }
+        
         // User
         register { GetUsersUseCaseMock(executePageReturnValue: [User].stub) as GetUsersUseCase }
         register { GetUserUseCaseMock(executeIdReturnValue: User.stub) as GetUserUseCase }

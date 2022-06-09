@@ -5,7 +5,7 @@
 
 import UIKit
 
-final class FullscreenImageViewController: BaseViewController {
+public final class FullscreenImageViewController: BaseViewController {
     
     // MARK: UI components
     private var scrollView = UIScrollView()
@@ -13,24 +13,24 @@ final class FullscreenImageViewController: BaseViewController {
     private var activityIndicator = UIActivityIndicatorView()
     
     // MARK: Inits
-    init(_ image: UIImage) {
+    public init(_ image: UIImage) {
         imageView.image = image
         super.init(nibName: nil, bundle: nil)
     }
     
     @available(*, unavailable)
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: Lifecycle methods
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         scrollView.delegate = self
     }
     
     // MARK: Default methods
-    override func setupUI() {
+    override public func setupUI() {
         super.setupUI()
         
         view.backgroundColor = UIColor(AppTheme.Colors.background)
@@ -61,11 +61,11 @@ final class FullscreenImageViewController: BaseViewController {
 }
 
 extension FullscreenImageViewController: UIScrollViewDelegate {
-    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+    public func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         imageView
     }
     
-    func scrollViewDidZoom(_ scrollView: UIScrollView) {
+    public func scrollViewDidZoom(_ scrollView: UIScrollView) {
         // Center content of scrollView
         // Idea taken from: https://stackoverflow.com/a/36170800
         let offsetX = max((scrollView.bounds.width - scrollView.contentSize.width) * 0.5, 0)
