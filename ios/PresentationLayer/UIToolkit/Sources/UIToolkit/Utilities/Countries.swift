@@ -5,7 +5,7 @@
 
 import Foundation
 
-struct Countries {
+public struct Countries {
     
     ///
     /// Countries and ISO codes from system
