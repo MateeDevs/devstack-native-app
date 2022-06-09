@@ -5,7 +5,7 @@
 
 import Foundation
 
-extension String {
+public extension String {
     
     var secured: String {
         String(map { _ in "*" })
@@ -16,6 +16,10 @@ extension String {
         let initials = words.map { String($0.first ?? Character("")) }
         let userInitials = initials.joined()
         return userInitials
+    }
+    
+    static func placeholder(length: Int) -> String {
+        String(Array(repeating: "X", count: length))
     }
     
     ///
