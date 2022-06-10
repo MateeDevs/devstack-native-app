@@ -14,7 +14,7 @@ DerivedData/
 DomainLayer/DevstackKmpShared.xcframework
 
 ## Twine generated
-Localizable.strings
+#Localizable.strings
 
 ## Generated code
 *.generated.swift
