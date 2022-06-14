@@ -12,7 +12,6 @@ enum RecipesFlow: Flow, Equatable {
     
     enum Recipes: Equatable {
         case showCounter
-        case showBooks
         case showRocketLaunches
         case showSkeleton
     }
@@ -38,7 +37,6 @@ extension RecipesFlowController {
     func handleRecipesFlow(_ flow: RecipesFlow.Recipes) {
         switch flow {
         case .showCounter: showCounter()
-        case .showBooks: showBooks()
         case .showRocketLaunches: showRocketLaunches()
         case .showSkeleton: showSkeleton()
         }
@@ -47,12 +45,6 @@ extension RecipesFlowController {
     private func showCounter() {
         let vm = CounterViewModel(flowController: self)
         let vc = BaseHostingController(rootView: CounterView(viewModel: vm))
-        navigationController.show(vc, sender: nil)
-    }
-    
-    private func showBooks() {
-        let vm = BooksViewModel(flowController: self)
-        let vc = BaseHostingController(rootView: BooksView(viewModel: vm))
         navigationController.show(vc, sender: nil)
     }
     

@@ -8,7 +8,6 @@ import UIToolkit
 
 enum Recipe: String, CaseIterable {
     case counter = "Counter"
-    case books = "Books"
     case rocketLaunches = "RocketLaunches"
     case skeleton = "Skeleton"
 }
@@ -50,8 +49,6 @@ final class RecipesViewModel: BaseViewModel, ViewModel, ObservableObject {
         switch recipe {
         case .counter:
             flowController?.handleFlow(RecipesFlow.recipes(.showCounter))
-        case .books:
-            flowController?.handleFlow(RecipesFlow.recipes(.showBooks))
         case .rocketLaunches:
             flowController?.handleFlow(RecipesFlow.recipes(.showRocketLaunches))
         case .skeleton:
