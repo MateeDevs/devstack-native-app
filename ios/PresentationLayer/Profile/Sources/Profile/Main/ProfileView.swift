@@ -31,7 +31,7 @@ struct ProfileView: View {
             .buttonStyle(SecondaryButtonStyle())
             Spacer()
             //TODO: secondaryButtonLoading and onSecondaryButtonTap
-            SecondaryAndPrimaryButtons(secondaryButtonTitle: L10n.profile_edit_view_title, secondaryButtonLoading: false, onSecondaryButtonTap: { viewModel.onIntent(.logout) }, primaryButtonTitle: L10n.profile_view_logout_button, onPrimaryButtonTap: { viewModel.onIntent(.logout) }
+            SecondaryAndPrimaryButtons(secondaryButtonTitle: L10n.profile_edit_view_title, secondaryButtonLoading: false, onSecondaryButtonTap: { viewModel.onIntent(.updateUser) }, primaryButtonTitle: L10n.profile_view_logout_button, onPrimaryButtonTap: { viewModel.onIntent(.logout) }
             )
         }
         .padding()

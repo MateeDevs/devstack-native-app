@@ -17,6 +17,7 @@ final class ProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
     @Injected private(set) var getCurrentLocationUseCase: GetCurrentLocationUseCase
     @Injected private(set) var getRemoteConfigValueUseCase: GetRemoteConfigValueUseCase
     @Injected private(set) var registerForPushNotificationsUseCase: RegisterForPushNotificationsUseCase
+    @Injected private(set) var updateUserUseCase: UpdateUserUseCase
     @Injected private(set) var logoutUseCase: LogoutUseCase
 
     init(flowController: FlowController?) {
@@ -46,6 +47,7 @@ final class ProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
     // MARK: Intent
     enum Intent {
         case registerForPushNotifications
+        case updateUser
         case logout
     }
 
@@ -53,6 +55,7 @@ final class ProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
         executeTask(Task {
             switch intent {
             case .registerForPushNotifications: registerForPushNotifications()
+            case .updateUser: updateUser()
             case .logout: logout()
             }
         })
@@ -85,6 +88,12 @@ final class ProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
             options: [.alert, .badge, .sound],
             completionHandler: { _, _ in }
         )
+    }
+    
+    private func updateUser() {
+        do {
+            try updateUserUseCase.execute(.local, user: state.profile)
+        } catch {}
     }
     
     private func logout() {
