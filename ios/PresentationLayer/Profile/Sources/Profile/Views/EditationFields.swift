@@ -47,8 +47,6 @@ struct EditationFields: View {
                 )
             )
             
-            Spacer()
-            
             PrimaryTextField(
                 "Email",
                 text: Binding<String>(
@@ -56,8 +54,6 @@ struct EditationFields: View {
                     set: { email in onEmailChange(email) }
                 )
             )
-            
-            Spacer()
             
             PrimaryTextField(
                 "Password",
@@ -67,8 +63,6 @@ struct EditationFields: View {
                 ),
                 secure: true
             )
-            
-            Spacer()
             
             PrimaryTextField(
                 "Bio",

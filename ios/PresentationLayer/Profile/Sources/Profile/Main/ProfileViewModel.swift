@@ -55,7 +55,7 @@ final class ProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
         executeTask(Task {
             switch intent {
             case .registerForPushNotifications: registerForPushNotifications()
-            case .updateUser: updateUser()
+            case .updateUser: await updateUser()
             case .logout: logout()
             }
         })
@@ -90,9 +90,9 @@ final class ProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
         )
     }
     
-    private func updateUser() {
+    private func updateUser() async {
         do {
-            try updateUserUseCase.execute(.local, user: state.profile)
+            try await updateUserUseCase.execute(.local, user: state.profile!)
         } catch {}
     }
     

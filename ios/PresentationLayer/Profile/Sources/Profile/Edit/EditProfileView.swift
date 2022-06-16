@@ -37,5 +37,23 @@ struct EditProfileView: View {
         }
         .lifecycle(viewModel)
         .navigationTitle(L10n.profile_edit_view_title)
+        .padding()
     }
 }
+
+#if DEBUG
+import Resolver
+import SharedDomainMocks
+import Utilities
+
+struct EditProfileView_Previews: PreviewProvider {
+    static var previews: some View {
+        Resolver.registerUseCaseMocks()
+        
+        let vm = EditProfileViewModel(flowController: nil)
+        return PreviewGroup {
+            EditProfileView(viewModel: vm)
+        }
+    }
+}
+#endif

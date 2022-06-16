@@ -42,7 +42,6 @@ struct PrimaryAndSecondaryButtons: View {
             }
             .buttonStyle(SecondaryButtonStyle())
         }
-        .padding()
     }
 }
 

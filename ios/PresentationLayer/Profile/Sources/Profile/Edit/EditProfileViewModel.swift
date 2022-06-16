@@ -56,7 +56,7 @@ final class EditProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
             case .changeEmail(let email): changeEmail(email)
             case .changePassword(let password): changePassword(password)
             case .changeBio(let bio): changeBio(bio)
-            case .updateUser: updateUser()
+            case .updateUser: await updateUser()
             }
         })
     }
@@ -86,10 +86,10 @@ final class EditProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
         state.bio = bio
     }
     
-    private func updateUser() {
+    private func updateUser() async {
         do {
             state.saveButtonLoading = true
-            try await updateUserUseCase.execute(.local, user: state.profile)
+            try await updateUserUseCase.execute(.local, user: state.profile!)
         } catch {}
     }
 }
