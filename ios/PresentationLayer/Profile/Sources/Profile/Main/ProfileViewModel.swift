@@ -47,7 +47,7 @@ final class ProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
     // MARK: Intent
     enum Intent {
         case registerForPushNotifications
-        case updateUser
+        case presentEdit
         case logout
     }
 
@@ -55,7 +55,7 @@ final class ProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
         executeTask(Task {
             switch intent {
             case .registerForPushNotifications: registerForPushNotifications()
-            case .updateUser: await updateUser()
+            case .presentEdit: presentEdit()
             case .logout: logout()
             }
         })
@@ -90,10 +90,8 @@ final class ProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
         )
     }
     
-    private func updateUser() async {
-        do {
-            try await updateUserUseCase.execute(.local, user: state.profile!)
-        } catch {}
+    private func presentEdit() {
+        flowController?.handleFlow(ProfileFlow.editProfile(.pop))
     }
     
     private func logout() {

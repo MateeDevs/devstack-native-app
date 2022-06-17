@@ -9,9 +9,16 @@ import UIToolkit
 
 enum ProfileFlow: Flow, Equatable {
     case profile(Profile)
+    case editProfile(EditProfile)
     
     enum Profile: Equatable {
         case presentOnboarding
+        case showEdit
+    }
+    
+    enum EditProfile: Equatable {
+        case dismiss
+        case pop
     }
 }
 
@@ -32,6 +39,7 @@ public final class ProfileFlowController: FlowController {
         guard let profileFlow = flow as? ProfileFlow else { return }
         switch profileFlow {
         case .profile(let profileFlow): handleProfileFlow(profileFlow)
+        case .editProfile(let editProfileFlow): handleEditProfileFlow(editProfileFlow)
         }
     }
 }
@@ -41,10 +49,27 @@ extension ProfileFlowController {
     func handleProfileFlow(_ flow: ProfileFlow.Profile) {
         switch flow {
         case .presentOnboarding: presentOnboarding()
+        case .showEdit: showEdit()
         }
     }
     
     private func presentOnboarding() {
         delegate?.presentOnboarding()
+    }
+    
+    private func showEdit() {
+        let vm = EditProfileViewModel(flowController: self)
+        let vc = BaseHostingController(rootView: EditProfileView(viewModel: vm))
+        navigationController.show(vc, sender: nil)
+    }
+}
+
+// MARK: EditProfile flow
+extension ProfileFlowController {
+    func handleEditProfileFlow(_ flow: ProfileFlow.EditProfile) {
+        switch flow {
+        case .dismiss: dismiss()
+        case .pop: pop()
+        }
     }
 }
