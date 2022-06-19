@@ -9,7 +9,6 @@ import UIToolkit
 struct SecondaryAndPrimaryButtons: View {
     
     private let secondaryButtonTitle: String
-    private let secondaryButtonLoading: Bool
     private let onSecondaryButtonTap: () -> Void
     
     private let primaryButtonTitle: String
@@ -17,13 +16,11 @@ struct SecondaryAndPrimaryButtons: View {
     
     init(
         secondaryButtonTitle: String,
-        secondaryButtonLoading: Bool,
         onSecondaryButtonTap: @escaping () -> Void,
         primaryButtonTitle: String,
         onPrimaryButtonTap: @escaping () -> Void
     ) {
         self.secondaryButtonTitle = secondaryButtonTitle
-        self.secondaryButtonLoading = secondaryButtonLoading
         self.onSecondaryButtonTap = onSecondaryButtonTap
         self.primaryButtonTitle = primaryButtonTitle
         self.onPrimaryButtonTap = onPrimaryButtonTap
@@ -34,8 +31,7 @@ struct SecondaryAndPrimaryButtons: View {
             Button(secondaryButtonTitle) {
                 onSecondaryButtonTap()
             }
-            .buttonStyle(SecondaryButtonStyle(isLoading: secondaryButtonLoading))
-            .disabled(secondaryButtonLoading)
+            .buttonStyle(SecondaryButtonStyle())
             
             Button(primaryButtonTitle) {
                 onPrimaryButtonTap()
@@ -50,7 +46,6 @@ struct PrimaryAndSecondaryButtons_Previews: PreviewProvider {
     static var previews: some View {
         SecondaryAndPrimaryButtons(
             secondaryButtonTitle: "Edit profile",
-            secondaryButtonLoading: false,
             onSecondaryButtonTap: {},
             primaryButtonTitle: "Logout",
             onPrimaryButtonTap: {}

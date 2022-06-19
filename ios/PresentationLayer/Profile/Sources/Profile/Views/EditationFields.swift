@@ -83,10 +83,10 @@ struct EditationFields_Previews: PreviewProvider {
                         email: "ds@gmail.com",
                         password: "password",
                         bio: "BIO",
-                        onNameChange: {_ in},
-                        onEmailChange: {_ in},
-                        onPasswordChange: {_ in},
-                        onBioChange: {_ in}
+                        onNameChange: { _ in },
+                        onEmailChange: { _ in },
+                        onPasswordChange: { _ in },
+                        onBioChange: { _ in }
         )
     }
 }

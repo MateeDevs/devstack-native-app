@@ -17,7 +17,6 @@ final class ProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
     @Injected private(set) var getCurrentLocationUseCase: GetCurrentLocationUseCase
     @Injected private(set) var getRemoteConfigValueUseCase: GetRemoteConfigValueUseCase
     @Injected private(set) var registerForPushNotificationsUseCase: RegisterForPushNotificationsUseCase
-    @Injected private(set) var updateUserUseCase: UpdateUserUseCase
     @Injected private(set) var logoutUseCase: LogoutUseCase
 
     init(flowController: FlowController?) {
@@ -91,7 +90,7 @@ final class ProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
     }
     
     private func presentEdit() {
-        flowController?.handleFlow(ProfileFlow.editProfile(.pop))
+        flowController?.handleFlow(ProfileFlow.profile(.showEdit))
     }
     
     private func logout() {
