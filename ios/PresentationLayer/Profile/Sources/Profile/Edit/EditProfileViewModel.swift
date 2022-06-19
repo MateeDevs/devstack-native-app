@@ -70,6 +70,11 @@ final class EditProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
         do {
             state.profile = try await getProfileUseCase.execute(.local)
             state.profile = try await getProfileUseCase.execute(.remote)
+            state.newFirstName = state.profile?.firstName ?? ""
+            state.newLastName = state.profile?.lastName ?? ""
+            state.newEmail = state.profile?.email ?? ""
+            state.newPhone = state.profile?.phone ?? ""
+            state.newBio = state.profile?.bio ?? ""
         } catch {}
     }
     
@@ -96,7 +101,18 @@ final class EditProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
     private func updateUser() async {
         do {
             state.saveButtonLoading = true
-            try await updateUserUseCase.execute(.local, user: state.profile!)
+            let newUser = User(id: state.profile?.id ?? "",
+                               email: state.newEmail,
+                               firstName: state.newFirstName,
+                               lastName: state.newLastName,
+                               phone: state.newPhone,
+                               bio: state.newBio,
+                               pictureUrl: state.profile?.pictureUrl ?? "",
+                               counter: state.profile?.counter ?? 0)
+            try await updateUserUseCase.execute(.local, user: newUser)
+            // try await updateUserUseCase.execute(.remote, user: newUser)
+            state.saveButtonLoading = false
+            // TODO: dismiss edit screen after save
         } catch {}
     }
 }
