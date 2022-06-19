@@ -15,16 +15,19 @@ struct EditProfileView: View {
     
     var body: some View {
         return VStack {
-            EditationFields(name: viewModel.state.name,
-                            email: viewModel.state.email,
-                            password: viewModel.state.password,
-                            bio: viewModel.state.bio,
-                            onNameChange: { name in
-                                viewModel.onIntent(.changeName(name)) },
+            EditationFields(firstName: viewModel.state.profile?.firstName ?? "",
+                            lastName: viewModel.state.profile?.lastName ?? "",
+                            email: viewModel.state.profile?.email ?? "",
+                            phone: viewModel.state.profile?.phone ?? "",
+                            bio: viewModel.state.profile?.bio ?? "",
+                            onFirstNameChange: { firstName in
+                                viewModel.onIntent(.changeFirstName(firstName)) },
+                            onLastNameChange: { lastName in
+                                viewModel.onIntent(.changeLastName(lastName)) },
                             onEmailChange: { email in
                                 viewModel.onIntent(.changeEmail(email)) },
-                            onPasswordChange: { password in
-                                viewModel.onIntent(.changePassword(password)) },
+                            onPhoneChange: { phone in
+                                viewModel.onIntent(.changePhone(phone)) },
                             onBioChange: { bio in
                                 viewModel.onIntent(.changeBio(bio)) }
             )
@@ -32,8 +35,8 @@ struct EditProfileView: View {
             Button(L10n.save_label) {
                 viewModel.onIntent(.updateUser)
             }
-            .buttonStyle(PrimaryButtonStyle(isLoading: false))
-            .disabled(false)
+            .buttonStyle(PrimaryButtonStyle(isLoading: viewModel.state.saveButtonLoading))
+            .disabled(viewModel.state.saveButtonLoading)
         }
         .lifecycle(viewModel)
         .navigationTitle(L10n.profile_edit_view_title)

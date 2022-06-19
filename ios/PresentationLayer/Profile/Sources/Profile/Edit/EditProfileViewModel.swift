@@ -33,18 +33,20 @@ final class EditProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
 
     struct State {
         var profile: User?
-        var name: String = ""
-        var email: String = ""
-        var password: String = ""
-        var bio: String = ""
         var saveButtonLoading: Bool = false
+        var newFirstName: String = ""
+        var newLastName: String = ""
+        var newEmail: String = ""
+        var newPhone: String = ""
+        var newBio: String = ""
     }
     
     // MARK: Intent
     enum Intent {
-        case changeName(String)
+        case changeFirstName(String)
+        case changeLastName(String)
         case changeEmail(String)
-        case changePassword(String)
+        case changePhone(String)
         case changeBio(String)
         case updateUser
     }
@@ -52,9 +54,10 @@ final class EditProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
     func onIntent(_ intent: Intent) {
         executeTask(Task {
             switch intent {
-            case .changeName(let name): changeName(name)
+            case .changeFirstName(let firstName): changeFirstName(firstName)
+            case .changeLastName(let lastName): changeLastName(lastName)
             case .changeEmail(let email): changeEmail(email)
-            case .changePassword(let password): changePassword(password)
+            case .changePhone(let phone): changePhone(phone)
             case .changeBio(let bio): changeBio(bio)
             case .updateUser: await updateUser()
             }
@@ -70,20 +73,24 @@ final class EditProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
         } catch {}
     }
     
-    private func changeName(_ name: String) {
-        state.name = name
+    private func changeFirstName(_ firstName: String) {
+        state.newFirstName = firstName
+    }
+    
+    private func changeLastName(_ lastName: String) {
+        state.newLastName = lastName
     }
     
     private func changeEmail(_ email: String) {
-        state.email = email
+        state.newEmail = email
     }
     
-    private func changePassword(_ password: String) {
-        state.password = password
+    private func changePhone(_ phone: String) {
+        state.newPhone = phone
     }
     
     private func changeBio(_ bio: String) {
-        state.bio = bio
+        state.newBio = bio
     }
     
     private func updateUser() async {
