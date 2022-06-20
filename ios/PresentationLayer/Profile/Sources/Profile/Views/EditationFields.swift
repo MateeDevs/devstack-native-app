@@ -45,21 +45,24 @@ struct EditationFields: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            PrimaryTextField(
-                "First Name",
-                text: Binding<String>(
-                    get: { firstName },
-                    set: { firstName in onFirstNameChange(firstName) }
-                )
-            ).keyboardType(.namePhonePad)
             
-            PrimaryTextField(
-                "Last Name",
-                text: Binding<String>(
-                    get: { lastName },
-                    set: { lastName in onLastNameChange(lastName) }
-                )
-            ).keyboardType(.namePhonePad)
+            HStack {
+                PrimaryTextField(
+                    "First Name",
+                    text: Binding<String>(
+                        get: { firstName },
+                        set: { firstName in onFirstNameChange(firstName) }
+                    )
+                ).keyboardType(.namePhonePad)
+                
+                PrimaryTextField(
+                    "Last Name",
+                    text: Binding<String>(
+                        get: { lastName },
+                        set: { lastName in onLastNameChange(lastName) }
+                    )
+                ).keyboardType(.namePhonePad)
+            }
             
             PrimaryTextField(
                 "Email",
