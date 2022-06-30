@@ -8,7 +8,10 @@ import FirebaseAnalytics
 
 public struct FirebaseAnalyticsProvider {
     
-    public init(debugMode: Bool) {
+    public init(
+        debugMode: Bool,
+        processInfo: ProcessInfo
+    ) {
         // Start Firebase if not yet started
         if FirebaseApp.app() == nil {
             FirebaseApp.configure()
@@ -17,9 +20,9 @@ public struct FirebaseAnalyticsProvider {
         // Enable Firebase Analytics debug mode for non production environments
         // Idea taken from: https://stackoverflow.com/a/47594030/6947225
         if debugMode {
-            var args = ProcessInfo.processInfo.arguments
+            var args = processInfo.arguments
             args.append("-FIRAnalyticsDebugEnabled")
-            ProcessInfo.processInfo.setValue(args, forKey: "arguments")
+            processInfo.setValue(args, forKey: "arguments")
         }
     }
 }

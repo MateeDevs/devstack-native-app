@@ -23,7 +23,12 @@ public extension Resolver {
         appDelegate: (UIApplicationDelegate & UNUserNotificationCenterDelegate),
         networkProviderDelegate: NetworkProviderDelegate
     ) {
-        register { FirebaseAnalyticsProvider(debugMode: Environment.type != .production) as AnalyticsProvider }
+        register {
+            FirebaseAnalyticsProvider(
+                debugMode: Environment.type != .production,
+                processInfo: ProcessInfo.processInfo
+            ) as AnalyticsProvider
+        }
         register { RealmDatabaseProvider() as DatabaseProvider }
         register { ApolloGraphQLProvider(baseURL: NetworkingConstants.rocketsURL) as GraphQLProvider }
         register { SystemKeychainProvider() as KeychainProvider }
