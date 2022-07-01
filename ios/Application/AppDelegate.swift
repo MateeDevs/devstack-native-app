@@ -41,6 +41,9 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         // Clear keychain on first run
         clearKeychain()
         
+        // Setup firebase for debug
+        firebaseDebugSetup()
+        
         // Init main window with navigation controller
         let nc = BaseNavigationController(statusBarStyle: .lightContent)
         nc.navigationBar.isHidden = true
@@ -113,6 +116,17 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
                 try userDefaultsProvider.update(.hasRunBefore, value: true)
             }
         } catch {}
+    }
+    
+    // MARK: Firebase debug setup
+    private func firebaseDebugSetup() {
+        // Enable Firebase Analytics debug mode for non production environments
+        // Idea taken from: https://stackoverflow.com/a/47594030/6947225
+        if Environment.type != .production {
+            var args = ProcessInfo.processInfo.arguments
+            args.append("-FIRAnalyticsDebugEnabled")
+            ProcessInfo.processInfo.setValue(args, forKey: "arguments")
+        }
     }
 }
 
