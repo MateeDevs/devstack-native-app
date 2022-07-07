@@ -15,7 +15,7 @@ jobs:
           clean: false
       - name: Get path of Crashlytics upload-symbols
         working-directory: ios
-        run: echo "UPLOAD_SYMBOLS_PATH=`xcodebuild -project *.xcodeproj -showBuildSettings | grep -m 1 "BUILD_DIR" | grep -oEi "\/.*" | sed 's:Build/Products:SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/upload-symbols:' | tr -d '\n'`" >> $GITHUB_ENV
+        run: echo "UPLOAD_SYMBOLS_PATH=`xcodebuild -workspace DevStack.xcworkspace -scheme DevStack -showBuildSettings | grep -m 1 "BUILD_DIR" | grep -oEi "\/.*" | sed 's:Build/Products:SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/upload-symbols:' | tr -d '\n'`" >> $GITHUB_ENV
       - name: Sync Alpha dSYMs
         env:
           APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_MATEE }}
