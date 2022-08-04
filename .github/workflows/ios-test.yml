@@ -21,7 +21,7 @@ jobs:
         run: ./scripts/setup.sh
       - name: Build KMP
         working-directory: ios
-        run: ./scripts/build-kmp.sh
+        run: ./scripts/build-kmp.sh debug false
       - name: Run tests
         working-directory: ios
         run: fastlane test_alpha

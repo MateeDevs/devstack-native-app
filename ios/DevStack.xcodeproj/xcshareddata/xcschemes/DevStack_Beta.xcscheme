@@ -10,7 +10,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Build KMP"
-               scriptText = "if [ -z &quot;$CI&quot; ]; then&#10;    cd &quot;${PROJECT_DIR}&quot;&#10;    exec &gt; prebuild-kmp.log 2&gt;&amp;1 # For debugging&#10;    scripts/build-kmp.sh&#10;fi&#10;">
+               scriptText = "if [ -z &quot;$CI&quot; ]; then&#10;    cd &quot;${PROJECT_DIR}&quot;&#10;    exec &gt; prebuild-kmp.log 2&gt;&amp;1 # For debugging&#10;    scripts/build-kmp.sh &quot;${CONFIGURATION}&quot; false&#10;fi&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"

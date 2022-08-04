@@ -18,7 +18,7 @@ jobs:
         run: ./scripts/setup.sh
       - name: Build KMP
         working-directory: ios
-        run: ./scripts/build-kmp.sh
+        run: ./scripts/build-kmp.sh release true
       - name: Generate build number
         run: echo "BUILD_NUMBER=$(echo `date +"%y%m%d%H%M"`)" >> $GITHUB_ENV
       - name: Prepare App Store Connect API key file
