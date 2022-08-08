@@ -16,7 +16,6 @@ alpha = {
   app_identifier: "cz.matee.devstack.alpha",
   scheme: "DevStack_Alpha",
   info_plist_path: "./Application/Info/Info+Proxyman.plist",
-  gsp_path: "./Application/GoogleService/GoogleService-Info-Alpha.plist",
   testflight_groups: ['App Store Connect Users', 'Public'],
   testflight_link: "NOT AVAILABLE"
 }
@@ -26,7 +25,6 @@ beta = {
   app_identifier: "cz.matee.devstack.beta",
   scheme: "DevStack_Beta",
   info_plist_path: "./Application/Info/Info+Proxyman.plist",
-  gsp_path: "./Application/GoogleService/GoogleService-Info-Beta.plist",
   testflight_groups: ['App Store Connect Users', 'Public'],
   testflight_link: "https://testflight.apple.com/join/aff9SFVc"
 }
@@ -36,7 +34,6 @@ production = {
   app_identifier: "cz.matee.devstack",
   scheme: "DevStack",
   info_plist_path: "./Application/Info/Info.plist",
-  gsp_path: "./Application/GoogleService/GoogleService-Info-Prod.plist",
   testflight_groups: ['App Store Connect Users', 'Public'],
   testflight_link: "https://testflight.apple.com/join/lP4bFs1a"
 }
@@ -46,9 +43,6 @@ production = {
 # Variables shared among all projects (do not change unless necessary)
 
 matee = {
-  team_id_dev: "WNB34WBN42",
-  team_id_connect: "120470944",
-  match_branch: "matee",
   api_key_id: "CQT3ZM53U8",
   api_key_issuer_id: "e85e5ea1-4316-4e79-a474-858ab98197e0"
 }
@@ -60,17 +54,11 @@ testflight_contact = {
   phone: "+420724229167"
 }
 
-match_url = "git@github.com:MateeDevs/match.git"
-
 #####
 
 # Variables to specify developer for production release
 
 client = {
-  team_id_dev: matee[:team_id_dev],
-  team_id_connect: matee[:team_id_connect],
-  match_branch: matee[:match_branch],
-  certificate: matee[:certificate],
   api_key_id: matee[:api_key_id],
   api_key_issuer_id: matee[:api_key_issuer_id]
 }
@@ -121,22 +109,9 @@ platform :ios do
       key_content: ENV["APP_STORE_CONNECT_API_KEY_CONTENT"],
       in_house: false
     )
-    sync_code_signing(
-      team_id: config[:team_id_dev],
-      app_identifier: config[:app_identifier],
-      git_url: match_url,
-      git_branch: config[:match_branch],
-      type: "appstore",
-      keychain_name: "fastlane",
-      keychain_password: keychain_password
-    )
-    sync_code_signing(
-      team_id: config[:team_id_dev],
-      app_identifier: "#{config[:app_identifier]}.widget",
-      git_url: match_url,
-      git_branch: config[:match_branch],
-      type: "appstore",
-      keychain_name: "fastlane",
+    get_certificates(
+      development: true,
+      keychain_path: "~/Library/Keychains/fastlane-db",
       keychain_password: keychain_password
     )
     build_ios_app(
@@ -146,7 +121,8 @@ platform :ios do
       export_method: "app-store",
       archive_path: "#{config[:output_name]}.xcarchive",
       output_directory: "./ipa",
-      output_name: config[:output_name]
+      output_name: config[:output_name],
+      xcargs: "-allowProvisioningUpdates -authenticationKeyID #{config[:api_key_id]} -authenticationKeyIssuerID #{config[:api_key_issuer_id]} -authenticationKeyPath #{File.expand_path('../AuthKey.p8')}"
     )
   end
 
@@ -224,43 +200,6 @@ platform :ios do
   run_tests(
     scheme: config[:scheme]
   )
-  end
-
-  # SYNC DSYM FILES
-
-  desc "Sync Alpha dSYM files"
-  lane :dsym_alpha do
-    dsym(alpha.merge(matee))
-  end
-
-  desc "Sync Beta dSYM files"
-  lane :dsym_beta do
-    dsym(beta.merge(matee))
-  end
-
-  desc "Sync Production dSYM files"
-  lane :dsym_production do
-    dsym(production.merge(client))
-  end
-
-  desc "Sync dSYM files"
-  private_lane :dsym do |config|
-    app_store_connect_api_key(
-      key_id: config[:api_key_id],
-      issuer_id: config[:api_key_issuer_id],
-      key_content: ENV["APP_STORE_CONNECT_API_KEY_CONTENT"],
-      in_house: false
-    )
-    download_dsyms(
-      team_id: config[:team_id_connect],
-      app_identifier: config[:app_identifier],
-      version: 'latest'
-    )
-    upload_symbols_to_crashlytics(
-      gsp_path: config[:gsp_path],
-      binary_path: ENV["UPLOAD_SYMBOLS_PATH"]
-    )
-    clean_build_artifacts
   end
 
   # GIT TAG
