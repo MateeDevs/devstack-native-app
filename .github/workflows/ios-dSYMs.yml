@@ -1,3 +1,5 @@
+# This workflow is no longer needed with disabled bitcode
+
 name: iOS - Sync dSYM files
 
 on: workflow_dispatch
