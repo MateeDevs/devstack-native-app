@@ -46,9 +46,7 @@ production = {
 # Variables shared among all projects (do not change unless necessary)
 
 matee = {
-  team_id_dev: "WNB34WBN42",
   team_id_connect: "120470944",
-  match_branch: "matee",
   api_key_id: "CQT3ZM53U8",
   api_key_issuer_id: "e85e5ea1-4316-4e79-a474-858ab98197e0"
 }
@@ -60,17 +58,12 @@ testflight_contact = {
   phone: "+420724229167"
 }
 
-match_url = "git@github.com:MateeDevs/match.git"
-
 #####
 
 # Variables to specify developer for production release
 
 client = {
-  team_id_dev: matee[:team_id_dev],
   team_id_connect: matee[:team_id_connect],
-  match_branch: matee[:match_branch],
-  certificate: matee[:certificate],
   api_key_id: matee[:api_key_id],
   api_key_issuer_id: matee[:api_key_issuer_id]
 }
@@ -121,22 +114,9 @@ platform :ios do
       key_content: ENV["APP_STORE_CONNECT_API_KEY_CONTENT"],
       in_house: false
     )
-    sync_code_signing(
-      team_id: config[:team_id_dev],
-      app_identifier: config[:app_identifier],
-      git_url: match_url,
-      git_branch: config[:match_branch],
-      type: "appstore",
-      keychain_name: "fastlane",
-      keychain_password: keychain_password
-    )
-    sync_code_signing(
-      team_id: config[:team_id_dev],
-      app_identifier: "#{config[:app_identifier]}.widget",
-      git_url: match_url,
-      git_branch: config[:match_branch],
-      type: "appstore",
-      keychain_name: "fastlane",
+    get_certificates(
+      development: true,
+      keychain_path: "~/Library/Keychains/fastlane-db",
       keychain_password: keychain_password
     )
     build_ios_app(
@@ -146,7 +126,8 @@ platform :ios do
       export_method: "app-store",
       archive_path: "#{config[:output_name]}.xcarchive",
       output_directory: "./ipa",
-      output_name: config[:output_name]
+      output_name: config[:output_name],
+      xcargs: "-allowProvisioningUpdates -authenticationKeyID #{config[:api_key_id]} -authenticationKeyIssuerID #{config[:api_key_issuer_id]} -authenticationKeyPath #{File.expand_path('../AuthKey.p8')}"
     )
   end
 
@@ -277,11 +258,9 @@ platform :ios do
 
   after_all do |lane|
     # This block is called, only if the executed lane was successful
-    delete_keychain(name: "fastlane") if File.exist?(File.expand_path("~/Library/Keychains/fastlane-db"))
   end
 
   error do |lane, exception|
     # This block is called, only if there was an error in the executed lane
-    delete_keychain(name: "fastlane") if File.exist?(File.expand_path("~/Library/Keychains/fastlane-db"))
   end
 end
