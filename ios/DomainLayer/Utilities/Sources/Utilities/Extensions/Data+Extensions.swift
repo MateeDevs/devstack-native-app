@@ -10,8 +10,14 @@ public extension Data {
         if let keyPath = keyPath {
             let toplevel = try JSONSerialization.jsonObject(with: self)
             if let nestedJson = (toplevel as AnyObject).value(forKeyPath: keyPath) {
-                let nestedJsonData = try JSONSerialization.data(withJSONObject: nestedJson)
-                return try JSONDecoder().decode(D.self, from: nestedJsonData)
+                if JSONSerialization.isValidJSONObject(nestedJson) {
+                    let nestedJsonData = try JSONSerialization.data(withJSONObject: nestedJson)
+                    return try JSONDecoder().decode(D.self, from: nestedJsonData)
+                } else {
+                    let wrappedJsonObject = ["value": nestedJson]
+                    let nestedJsonData = try JSONSerialization.data(withJSONObject: wrappedJsonObject)
+                    return try JSONDecoder().decode(DecodableWrapper<D>.self, from: nestedJsonData).value
+                }
             } else {
                 throw DecodingError.dataCorrupted(.init(
                     codingPath: [],
@@ -21,5 +27,9 @@ public extension Data {
         } else {
             return try JSONDecoder().decode(D.self, from: self)
         }
+    }
+    
+    private struct DecodableWrapper<T: Decodable>: Decodable {
+        let value: T
     }
 }
