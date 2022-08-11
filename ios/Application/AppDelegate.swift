@@ -10,12 +10,12 @@ import Atlantis
 import KeychainProvider
 import NetworkProvider
 import OSLog
+import PushNotificationsProvider
 import Resolver
 import SharedDomain
 import UIKit
 import UIToolkit
 import UserDefaultsProvider
-import UserNotifications
 import Utilities
 import WidgetKit
 
@@ -33,7 +33,11 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         setupEnvironment()
         
         // Register all dependencies
-        Resolver.registerProviders(application: application, appDelegate: self, networkProviderDelegate: self)
+        Resolver.registerProviders(
+            application: application,
+            networkProviderDelegate: self,
+            pushNotificationsProviderDelegate: self
+        )
         Resolver.registerRepositories()
         Resolver.registerUseCases()
         Resolver.registerKMPUseCases(kmp: KMPKoinDependency())
@@ -130,30 +134,14 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
-extension AppDelegate: UNUserNotificationCenterDelegate {
-    func userNotificationCenter(
-        _ center: UNUserNotificationCenter,
-        willPresent notification: UNNotification,
-        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
-    ) {
-        // Show system notification
-        completionHandler([.list, .banner, .badge, .sound])
-    }
-    
-    func userNotificationCenter(
-        _ center: UNUserNotificationCenter,
-        didReceive response: UNNotificationResponse,
-        withCompletionHandler completionHandler: @escaping () -> Void
-    ) {
-        let notification = response.notification.request.content.userInfo
-        DispatchQueue.main.async {
-            self.flowController?.handlePushNotification(notification)
-        }
-    }
-}
-
 extension AppDelegate: NetworkProviderDelegate {
     func didReceiveHttpUnauthorized() {
         self.flowController?.handleLogout()
+    }
+}
+
+extension AppDelegate: PushNotificationsProviderDelegate {
+    func didReceive(_ notification: [AnyHashable: Any]) {
+        self.flowController?.handlePushNotification(notification)
     }
 }

@@ -5,6 +5,7 @@
 
 import AnalyticsToolkit
 import AuthToolkit
+import Factory
 import LocationToolkit
 import PushNotificationsToolkit
 import RemoteConfigToolkit
@@ -39,5 +40,38 @@ public extension Resolver {
                 networkProvider: resolve()
             ) as UserRepository
         }
+    }
+}
+
+public class RepositoryContainer: SharedContainer {
+    static let analyticsRepository = Factory {
+        AnalyticsRepositoryImpl(analyticsProvider: ProviderContainer.analyticsProvider()) as AnalyticsRepository
+    }
+    static let authRepository = Factory {
+        AuthRepositoryImpl(
+            databaseProvider: ProviderContainer.databaseProvider(),
+            keychainProvider: ProviderContainer.keychainProvider(),
+            networkProvider: ProviderContainer.networkProvider()
+        ) as AuthRepository
+    }
+    static let locationRepository = Factory {
+        LocationRepositoryImpl(locationProvider: ProviderContainer.locationProvider()) as LocationRepository
+    }
+    static let pushNotificationsRepository = Factory {
+        PushNotificationsRepositoryImpl(
+            pushNotificationsProvider: ProviderContainer.pushNotificationsProvider()
+        ) as PushNotificationsRepository
+    }
+    static let remoteConfigRepository = Factory {
+        RemoteConfigRepositoryImpl(remoteConfigProvider: ProviderContainer.remoteConfigProvider()) as RemoteConfigRepository
+    }
+    static let rocketLaunchRepository = Factory {
+        RocketLaunchRepositoryImpl(graphQLProvider: ProviderContainer.graphQLProvider()) as RocketLaunchRepository
+    }
+    static let userRepository = Factory {
+        UserRepositoryImpl(
+            databaseProvider: ProviderContainer.databaseProvider(),
+            networkProvider: ProviderContainer.networkProvider()
+        ) as UserRepository
     }
 }

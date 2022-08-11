@@ -5,6 +5,7 @@
 
 // swiftlint:disable line_length
 
+import Factory
 import Resolver
 import SharedDomain
 
@@ -46,4 +47,8 @@ public extension Resolver {
         register { ValidateEmailUseCaseImpl() as ValidateEmailUseCase }
         register { ValidatePasswordUseCaseImpl() as ValidatePasswordUseCase }
     }
+}
+
+public class UseCaseContainer: SharedContainer {
+    
 }
