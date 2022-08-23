@@ -1,7 +1,10 @@
 // Template is based on the default strings/flat-swift5.stencil
-// It is modified to use snake_case instead of camelCase in order to make it more handy in a combination with twine
-// This is done by changing `swiftIdentifier:"pretty"` to `swiftIdentifier`
 // https://github.com/SwiftGen/SwiftGen/blob/stable/Sources/SwiftGenCLI/templates/strings/flat-swift5.stencil
+
+// Modifications:
+// - Use `.myModule` [workaround](https://developer.apple.com/forums/thread/664295) to address SwiftUI Previews crashes
+// - Use snake_case instead of camelCase, this is done by changing `swiftIdentifier:"pretty"` to `swiftIdentifier`
+// - Ability to change localization via Environment.localization
 
 // swiftlint:disable all
 // Generated using SwiftGen — https://github.com/SwiftGen/SwiftGen

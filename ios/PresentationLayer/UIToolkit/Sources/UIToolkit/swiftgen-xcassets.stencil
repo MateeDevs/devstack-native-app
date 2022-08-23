@@ -1,5 +1,8 @@
-// Template is just a clone of the default xcassets/swift5.stencil (to make it work with Mint)
+// Template is based on the default xcassets/swift5.stencil
 // https://github.com/SwiftGen/SwiftGen/blob/stable/Sources/SwiftGenCLI/templates/xcassets/swift5.stencil
+
+// Modifications:
+// - Use `.myModule` [workaround](https://developer.apple.com/forums/thread/664295) to address SwiftUI Previews crashes
 
 // swiftlint:disable all
 // Generated using SwiftGen — https://github.com/SwiftGen/SwiftGen
