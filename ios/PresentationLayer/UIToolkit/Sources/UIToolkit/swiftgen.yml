@@ -1,0 +1,21 @@
+input_dir: Resources
+output_dir: ${DERIVED_SOURCES_DIR}
+
+strings:
+  inputs:
+    - Localizable/Base.lproj/Localizable.strings
+  outputs:
+    - templatePath: swiftgen-strings.stencil
+      output: Localizable.generated.swift
+      params:
+        publicAccess: true
+
+xcassets:
+  inputs:
+    - Colors.xcassets
+    - Images.xcassets
+  outputs:
+    - templatePath: swiftgen-xcassets.stencil
+      output: Assets.generated.swift
+      params:
+        publicAccess: true
