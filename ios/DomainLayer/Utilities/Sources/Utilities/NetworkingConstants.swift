@@ -6,9 +6,9 @@
 public struct NetworkingConstants {
     public static var baseURL: String {
         switch Environment.type {
-        case .alpha: return "https://matee-devstack.herokuapp.com"
-        case .beta: return "https://matee-devstack.herokuapp.com"
-        case .production: return "https://matee-devstack.herokuapp.com"
+        case .alpha: return "https://devstack-server-production.up.railway.app"
+        case .beta: return "https://devstack-server-production.up.railway.app"
+        case .production: return "https://devstack-server-production.up.railway.app"
         }
     }
     

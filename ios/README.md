@@ -2,7 +2,7 @@
 - Historical development prior monorepo can be seen in the [devstack-ios-app](https://github.com/MateeDevs/devstack-ios-app) repo
 
 ## Documents
-- **API Doc:** [Postmanerator](https://matee-devstack.herokuapp.com/apidoc.html)
+- **API Doc:** [Postmanerator](https://devstack-server-production.up.railway.app/apidoc.html)
 - **Specification:** FIXME
 - **Graphics:** FIXME
 - **Assets**: FIXME
