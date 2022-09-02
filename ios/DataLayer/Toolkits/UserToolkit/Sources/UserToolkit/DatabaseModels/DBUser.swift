@@ -6,19 +6,15 @@
 import RealmSwift
 import SharedDomain
 
-@objcMembers final class DBUser: Object {
-    dynamic var id: String = ""
-    dynamic var email: String = ""
-    dynamic var firstName: String = ""
-    dynamic var lastName: String = ""
-    dynamic var phone: String = ""
-    dynamic var bio: String = ""
-    dynamic var pictureUrl: String = ""
-    dynamic var counter: Int = 0
-
-    override static func primaryKey() -> String? {
-        "id"
-    }
+final class DBUser: Object {
+    @Persisted(primaryKey: true) var id: String = ""
+    @Persisted var email: String = ""
+    @Persisted var firstName: String = ""
+    @Persisted var lastName: String = ""
+    @Persisted var phone: String = ""
+    @Persisted var bio: String = ""
+    @Persisted var pictureUrl: String = ""
+    @Persisted var counter: Int = 0
     
     override var apiModel: [String: Any] {
         var model = super.apiModel
