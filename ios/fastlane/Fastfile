@@ -44,7 +44,8 @@ production = {
 
 matee = {
   api_key_id: "CQT3ZM53U8",
-  api_key_issuer_id: "e85e5ea1-4316-4e79-a474-858ab98197e0"
+  api_key_issuer_id: "e85e5ea1-4316-4e79-a474-858ab98197e0",
+  certificate_path: "signing/Development_Matee.p12"
 }
 
 testflight_contact = {
@@ -60,7 +61,8 @@ testflight_contact = {
 
 client = {
   api_key_id: matee[:api_key_id],
-  api_key_issuer_id: matee[:api_key_issuer_id]
+  api_key_issuer_id: matee[:api_key_issuer_id],
+  certificate_path: matee[:certificate_path]
 }
 
 #####
@@ -103,15 +105,9 @@ platform :ios do
       lock_when_sleeps: true,
       password: keychain_password
     )
-    app_store_connect_api_key(
-      key_id: config[:api_key_id],
-      issuer_id: config[:api_key_issuer_id],
-      key_content: ENV["APP_STORE_CONNECT_API_KEY_CONTENT"],
-      in_house: false
-    )
-    get_certificates(
-      development: true,
-      keychain_path: "~/Library/Keychains/fastlane-db",
+    import_certificate(
+      certificate_path: config[:certificate_path],
+      keychain_name: "fastlane",
       keychain_password: keychain_password
     )
     build_ios_app(
