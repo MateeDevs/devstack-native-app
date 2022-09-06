@@ -29,8 +29,6 @@ jobs:
         working-directory: ios
         run: echo "$APP_STORE_CONNECT_API_KEY_CONTENT" > AuthKey.p8
       - name: Create builds
-        env:
-          APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_MATEE }}
         working-directory: ios
         run: |
           fastlane build_alpha
