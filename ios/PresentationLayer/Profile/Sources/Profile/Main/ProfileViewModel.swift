@@ -46,6 +46,7 @@ final class ProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
     // MARK: Intent
     enum Intent {
         case registerForPushNotifications
+        case editProfile
         case logout
     }
 
@@ -53,6 +54,7 @@ final class ProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
         executeTask(Task {
             switch intent {
             case .registerForPushNotifications: registerForPushNotifications()
+            case .editProfile: editProfile()
             case .logout: logout()
             }
         })
@@ -85,6 +87,10 @@ final class ProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
             options: [.alert, .badge, .sound],
             completionHandler: { _, _ in }
         )
+    }
+    
+    private func editProfile() {
+        // flow
     }
     
     private func logout() {

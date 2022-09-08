@@ -29,6 +29,10 @@ struct ProfileView: View {
                 viewModel.onIntent(.registerForPushNotifications)
             }
             .buttonStyle(SecondaryButtonStyle())
+            Button("Edit profile") {
+                viewModel.onIntent(.editProfile)
+            }
+            .buttonStyle(SecondaryButtonStyle())
             Spacer()
             Button(L10n.profile_view_logout_button) {
                 viewModel.onIntent(.logout)

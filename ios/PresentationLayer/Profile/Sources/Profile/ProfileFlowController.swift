@@ -12,6 +12,7 @@ enum ProfileFlow: Flow, Equatable {
     
     enum Profile: Equatable {
         case presentOnboarding
+        case showEditProfile
     }
 }
 
@@ -41,10 +42,15 @@ extension ProfileFlowController {
     func handleProfileFlow(_ flow: ProfileFlow.Profile) {
         switch flow {
         case .presentOnboarding: presentOnboarding()
+        case .showEditProfile: showEditProfile()
         }
     }
     
     private func presentOnboarding() {
         delegate?.presentOnboarding()
+    }
+    
+    private func showEditProfile() {
+        
     }
 }
