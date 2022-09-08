@@ -17,8 +17,7 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-        .package(name: "Utilities", path: "../DomainLayer/Utilities"),
-        .package(url: "https://github.com/SwiftGen/SwiftGenPlugin", .upToNextMajor(from: "6.6.0"))
+        .package(name: "Utilities", path: "../DomainLayer/Utilities")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -34,8 +33,20 @@ let package = Package(
                 "swiftgen.yml"
             ],
             plugins: [
-              .plugin(name: "SwiftGenPlugin", package: "SwiftGenPlugin")
+                .plugin(name: "SwiftGenPlugin")
             ]
+        ),
+        .plugin(
+            name: "SwiftGenPlugin",
+            capability: .buildTool(),
+            dependencies: [
+                .target(name: "swiftgen")
+            ]
+        ),
+        .binaryTarget(
+            name: "swiftgen",
+            url: "https://github.com/SwiftGen/SwiftGen/releases/download/6.6.2/swiftgen-6.6.2.artifactbundle.zip",
+            checksum: "7586363e24edcf18c2da3ef90f379e9559c1453f48ef5e8fbc0b818fbbc3a045"
         )
     ]
 )
