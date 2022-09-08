@@ -90,7 +90,7 @@ final class ProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
     }
     
     private func editProfile() {
-        // flow
+        flowController?.handleFlow(ProfileFlow.profile(.showEditProfile))
     }
     
     private func logout() {

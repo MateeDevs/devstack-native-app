@@ -51,6 +51,8 @@ extension ProfileFlowController {
     }
     
     private func showEditProfile() {
-        
+        let vm = EditProfileViewModel(flowController: self)
+        let view = EditProfileView(viewModel: vm)
+        navigationController.show(BaseHostingController(rootView: view), sender: nil)
     }
 }
