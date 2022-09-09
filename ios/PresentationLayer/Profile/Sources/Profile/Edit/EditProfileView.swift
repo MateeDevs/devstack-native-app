@@ -28,7 +28,11 @@ struct EditProfileView: View {
                 onBioChange: { bio in viewModel.onIntent(.changeBio(bio)) }
             )
             Spacer()
-            
+            UserEditProfileSaveButton(
+                buttonTitle: L10n.profile_edit_view_save_button,
+                buttonLoading: viewModel.state.saveButtonLoading,
+                onButtonTap: { viewModel.onIntent(.save) }
+            )
         }
         .padding()
         .lifecycle(viewModel)

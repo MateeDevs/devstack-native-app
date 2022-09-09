@@ -57,7 +57,7 @@ struct UserEditProfileFields: View {
                 "Last Name",
                 text: Binding<String>(
                     get: { lastName },
-                    set: { lastName in onFirstNameChange(lastName) }
+                    set: { lastName in onLastNameChange(lastName) }
                 )
             )
             

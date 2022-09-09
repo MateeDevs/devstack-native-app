@@ -14,6 +14,7 @@ final class EditProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
     private weak var flowController: FlowController?
     
     @Injected private(set) var getProfileUseCase: GetProfileUseCase
+    @Injected private(set) var updateUserUseCase: UpdateUserUseCase
 
     init(flowController: FlowController?) {
         self.flowController = flowController
@@ -33,6 +34,7 @@ final class EditProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
 
     struct State {
         var user: User?
+        var saveButtonLoading: Bool = false
     }
     
     // MARK: Intent
@@ -42,6 +44,7 @@ final class EditProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
         case changeLastName(String)
         case changePhone(String)
         case changeBio(String)
+        case save
     }
 
     func onIntent(_ intent: Intent) {
@@ -51,6 +54,7 @@ final class EditProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
             case .changeLastName(let lastName): changeLastName(lastName)
             case .changePhone(let phone): changePhone(phone)
             case .changeBio(let bio): changeBio(bio)
+            case .save: await save()
             }
         })
     }
@@ -82,5 +86,16 @@ final class EditProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
             state.user = try await getProfileUseCase.execute(.local)
             state.user = try await getProfileUseCase.execute(.remote)
         } catch {}
+    }
+    
+    private func save() async {
+        do {
+            state.saveButtonLoading = true
+            guard let user = state.user else { return }
+            try await updateUserUseCase.execute(.remote, user: user)
+            flowController?.handleFlow(ProfileFlow.edit(.pop))
+        } catch {
+            state.saveButtonLoading = false
+        }
     }
 }
