@@ -15,7 +15,6 @@ alpha = {
   output_name: "A-DevStack",
   app_identifier: "cz.matee.devstack.alpha",
   scheme: "DevStack_Alpha",
-  info_plist_path: "./Application/Info/Info+Proxyman.plist",
   testflight_groups: ['App Store Connect Users', 'Public'],
   testflight_link: "NOT AVAILABLE"
 }
@@ -24,7 +23,6 @@ beta = {
   output_name: "B-DevStack",
   app_identifier: "cz.matee.devstack.beta",
   scheme: "DevStack_Beta",
-  info_plist_path: "./Application/Info/Info+Proxyman.plist",
   testflight_groups: ['App Store Connect Users', 'Public'],
   testflight_link: "https://testflight.apple.com/join/aff9SFVc"
 }
@@ -33,7 +31,6 @@ production = {
   output_name: "DevStack",
   app_identifier: "cz.matee.devstack",
   scheme: "DevStack",
-  info_plist_path: "./Application/Info/Info.plist",
   testflight_groups: ['App Store Connect Users', 'Public'],
   testflight_link: "https://testflight.apple.com/join/lP4bFs1a"
 }
@@ -45,6 +42,7 @@ production = {
 matee = {
   api_key_id: "CQT3ZM53U8",
   api_key_issuer_id: "e85e5ea1-4316-4e79-a474-858ab98197e0",
+  api_key_path: File.expand_path('../AuthKey_Matee.p8'),
   certificate_path: "signing/Development_Matee.p12"
 }
 
@@ -62,6 +60,7 @@ testflight_contact = {
 client = {
   api_key_id: matee[:api_key_id],
   api_key_issuer_id: matee[:api_key_issuer_id],
+  api_key_path: matee[:api_key_path],
   certificate_path: matee[:certificate_path]
 }
 
@@ -94,7 +93,7 @@ platform :ios do
     unless ENV["BUILD_NUMBER"] =~ /^\d{1,18}$/
       UI.user_error!("Invalid build number: \"#{ENV["BUILD_NUMBER"]}\". Expect 1-18 digits")
     end
-    set_info_plist_value(path: config[:info_plist_path], key: "CFBundleVersion", value: ENV["BUILD_NUMBER"])
+    increment_build_number(build_number: ENV["BUILD_NUMBER"])
 
     keychain_password = SecureRandom.base64
     delete_keychain(name: "fastlane") if File.exist?(File.expand_path("~/Library/Keychains/fastlane-db"))
@@ -118,7 +117,7 @@ platform :ios do
       archive_path: "#{config[:output_name]}.xcarchive",
       output_directory: "./ipa",
       output_name: config[:output_name],
-      xcargs: "-allowProvisioningUpdates -authenticationKeyID #{config[:api_key_id]} -authenticationKeyIssuerID #{config[:api_key_issuer_id]} -authenticationKeyPath #{File.expand_path('../AuthKey.p8')}"
+      xcargs: "-allowProvisioningUpdates -authenticationKeyID #{config[:api_key_id]} -authenticationKeyIssuerID #{config[:api_key_issuer_id]} -authenticationKeyPath #{config[:api_key_path]}"
     )
   end
 

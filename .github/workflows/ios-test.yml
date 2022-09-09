@@ -16,8 +16,6 @@ jobs:
         continue-on-error: true
         with:
           clean: false
-      - name: Pull Twine repo
-        run: git -C $TWINE_FOLDER pull origin master
       - name: Setup tools
         working-directory: ios
         run: ./scripts/setup.sh
@@ -25,7 +23,5 @@ jobs:
         working-directory: ios
         run: ./scripts/build-kmp.sh
       - name: Run tests
-        env:
-          CI: ${{ true }}
         working-directory: ios
         run: fastlane test_alpha
