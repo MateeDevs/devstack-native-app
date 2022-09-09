@@ -16,7 +16,17 @@ struct EditProfileView: View {
     
     var body: some View {
         return VStack {
-            Text("Editing")
+            UserEditProfileFields(
+                title: "Edit",
+                firstName: viewModel.state.user?.firstName ?? "",
+                lastName: viewModel.state.user?.lastName ?? "",
+                phone: viewModel.state.user?.phone ?? "",
+                bio: viewModel.state.user?.bio ?? "",
+                onFirstNameChange: { firstName in viewModel.onIntent(.changeFisrtName(firstName)) },
+                onLastNameChange: { lastName in viewModel.onIntent(.changeLastName(lastName)) },
+                onPhoneChange: { phone in viewModel.onIntent(.changePhone(phone)) },
+                onBioChange: { bio in viewModel.onIntent(.changeBio(bio)) }
+            )
         }
         .padding()
         .lifecycle(viewModel)

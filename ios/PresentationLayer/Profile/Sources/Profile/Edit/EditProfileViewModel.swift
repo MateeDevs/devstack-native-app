@@ -14,10 +14,6 @@ final class EditProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
     private weak var flowController: FlowController?
     
     @Injected private(set) var getProfileUseCase: GetProfileUseCase
-    @Injected private(set) var getCurrentLocationUseCase: GetCurrentLocationUseCase
-    @Injected private(set) var getRemoteConfigValueUseCase: GetRemoteConfigValueUseCase
-    @Injected private(set) var registerForPushNotificationsUseCase: RegisterForPushNotificationsUseCase
-    @Injected private(set) var logoutUseCase: LogoutUseCase
 
     init(flowController: FlowController?) {
         self.flowController = flowController
@@ -27,7 +23,8 @@ final class EditProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
     // MARK: Lifecycle
     
     override func onAppear() {
-        
+        super.onAppear()
+        executeTask(Task { await loadUser() })
     }
     
     // MARK: State
@@ -35,18 +32,59 @@ final class EditProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
     @Published private(set) var state: State = State()
 
     struct State {
-        
+        var user: User?
     }
     
     // MARK: Intent
+    
     enum Intent {
-        
+        case changeFisrtName(String)
+        case changeLastName(String)
+        case changePhone(String)
+        case changeBio(String)
     }
 
     func onIntent(_ intent: Intent) {
-        
+        executeTask(Task {
+            switch intent {
+            case .changeFisrtName(let fisrtName): changeFirstName(fisrtName)
+            case .changeLastName(let lastName): changeLastName(lastName)
+            case .changePhone(let phone): changePhone(phone)
+            case .changeBio(let bio): changeBio(bio)
+            }
+        })
     }
     
     // MARK: Private
     
+    private func changeFirstName(_ firstName: String) {
+        if let user = state.user {
+            state.user = User(copy: user, firstName: firstName)
+        }
+    }
+    
+    private func changeLastName(_ lastName: String) {
+        if let user = state.user {
+            state.user = User(copy: user, lastName: lastName)
+        }
+    }
+    
+    private func changePhone(_ phone: String) {
+        if let user = state.user {
+            state.user = User(copy: user, phone: phone)
+        }
+    }
+    
+    private func changeBio(_ bio: String) {
+        if let user = state.user {
+            state.user = User(copy: user, bio: bio)
+        }
+    }
+    
+    private func loadUser() async {
+        do {
+            state.user = try await getProfileUseCase.execute(.local)
+            state.user = try await getProfileUseCase.execute(.remote)
+        } catch {}
+    }
 }
