@@ -27,6 +27,7 @@ struct EditProfileView: View {
                 onPhoneChange: { phone in viewModel.onIntent(.changePhone(phone)) },
                 onBioChange: { bio in viewModel.onIntent(.changeBio(bio)) }
             )
+            Spacer()
         }
         .padding()
         .lifecycle(viewModel)
