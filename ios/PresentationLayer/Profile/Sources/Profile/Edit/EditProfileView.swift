@@ -17,7 +17,7 @@ struct EditProfileView: View {
     var body: some View {
         return VStack {
             UserEditProfileFields(
-                title: "Edit",
+                title: L10n.profile_edit_view_title,
                 firstName: viewModel.state.user?.firstName ?? "",
                 lastName: viewModel.state.user?.lastName ?? "",
                 phone: viewModel.state.user?.phone ?? "",
@@ -28,10 +28,11 @@ struct EditProfileView: View {
                 onBioChange: { bio in viewModel.onIntent(.changeBio(bio)) }
             )
             Spacer()
+            
         }
         .padding()
         .lifecycle(viewModel)
-        .navigationTitle("Edit")
+        .navigationTitle(L10n.profile_view_toolbar_title)
     }
 }
 

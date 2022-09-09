@@ -29,7 +29,7 @@ struct ProfileView: View {
                 viewModel.onIntent(.registerForPushNotifications)
             }
             .buttonStyle(SecondaryButtonStyle())
-            Button("Edit profile") {
+            Button(L10n.profile_edit_view_title) {
                 viewModel.onIntent(.editProfile)
             }
             .buttonStyle(SecondaryButtonStyle())

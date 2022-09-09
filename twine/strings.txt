@@ -804,7 +804,11 @@
 	[profile_edit_view_title]
 		cs = Úprava profilu 
 		en = Edit profile 
-		sk = Úprava profilu 
+		sk = Úprava profilu
+    [profile_edit_view_save_button]
+        cs = Uložit
+        en = Save
+        sk = Ulozit
 
 [[Counter view]]
 	[counter_view_toolbar_title]

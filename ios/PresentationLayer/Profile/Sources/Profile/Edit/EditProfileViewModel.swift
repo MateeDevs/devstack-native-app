@@ -58,27 +58,23 @@ final class EditProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
     // MARK: Private
     
     private func changeFirstName(_ firstName: String) {
-        if let user = state.user {
-            state.user = User(copy: user, firstName: firstName)
-        }
+        guard let user = state.user else { return }
+        state.user = User(copy: user, firstName: firstName)
     }
     
     private func changeLastName(_ lastName: String) {
-        if let user = state.user {
-            state.user = User(copy: user, lastName: lastName)
-        }
+        guard let user = state.user else { return }
+        state.user = User(copy: user, lastName: lastName)
     }
     
     private func changePhone(_ phone: String) {
-        if let user = state.user {
-            state.user = User(copy: user, phone: phone)
-        }
+        guard let user = state.user else { return }
+        state.user = User(copy: user, phone: phone)
     }
     
     private func changeBio(_ bio: String) {
-        if let user = state.user {
-            state.user = User(copy: user, bio: bio)
-        }
+        guard let user = state.user else { return }
+        state.user = User(copy: user, bio: bio)
     }
     
     private func loadUser() async {
