@@ -96,7 +96,7 @@ final class EditProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
             state.saveButtonLoading = true
             guard let user = state.user else { return }
             try await updateUserUseCase.execute(.remote, user: user)
-            throw ValidationError.email(.isEmpty)
+//            throw ValidationError.email(.isEmpty)
             flowController?.handleFlow(ProfileFlow.edit(.pop))
         } catch {
             state.saveButtonLoading = false
