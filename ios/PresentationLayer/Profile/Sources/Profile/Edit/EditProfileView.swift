@@ -37,6 +37,11 @@ struct EditProfileView: View {
         .padding()
         .lifecycle(viewModel)
         .navigationTitle(L10n.profile_view_toolbar_title)
+        .alert(item: Binding<AlertData?>(
+            get: { viewModel.state.alert },
+            set: { _ in viewModel.onIntent(.dismissAlert) }
+        )) { alert in .init(alert) }
+        .lifecycle(viewModel)
     }
 }
 

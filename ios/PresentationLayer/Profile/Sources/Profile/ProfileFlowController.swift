@@ -18,6 +18,7 @@ enum ProfileFlow: Flow, Equatable {
     
     enum Edit: Equatable {
         case pop
+        case dismiss
     }
 }
 
@@ -32,6 +33,11 @@ public final class ProfileFlowController: FlowController {
     override public func setup() -> UIViewController {
         let vm = ProfileViewModel(flowController: self)
         return BaseHostingController(rootView: ProfileView(viewModel: vm))
+    }
+    
+    override public func dismiss() {
+        super.dismiss()
+        delegate?.presentOnboarding()
     }
     
     override public func handleFlow(_ flow: Flow) {
@@ -68,6 +74,7 @@ extension ProfileFlowController {
     func handleEditFlow(_ flow: ProfileFlow.Edit) {
         switch flow {
         case .pop: pop()
+        case .dismiss: dismiss()
         }
     }
 }

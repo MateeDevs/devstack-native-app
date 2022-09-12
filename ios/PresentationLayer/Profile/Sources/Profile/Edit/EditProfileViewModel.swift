@@ -34,6 +34,7 @@ final class EditProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
 
     struct State {
         var user: User?
+        var alert: AlertData?
         var saveButtonLoading: Bool = false
     }
     
@@ -45,6 +46,7 @@ final class EditProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
         case changePhone(String)
         case changeBio(String)
         case save
+        case dismissAlert
     }
 
     func onIntent(_ intent: Intent) {
@@ -55,6 +57,7 @@ final class EditProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
             case .changePhone(let phone): changePhone(phone)
             case .changeBio(let bio): changeBio(bio)
             case .save: await save()
+            case .dismissAlert: dismissAlert()
             }
         })
     }
@@ -93,9 +96,15 @@ final class EditProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
             state.saveButtonLoading = true
             guard let user = state.user else { return }
             try await updateUserUseCase.execute(.remote, user: user)
+            throw ValidationError.email(.isEmpty)
             flowController?.handleFlow(ProfileFlow.edit(.pop))
         } catch {
             state.saveButtonLoading = false
+            state.alert = .init(title: error.localizedDescription)
         }
+    }
+    
+    private func dismissAlert() {
+        state.alert = nil
     }
 }
