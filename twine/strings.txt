@@ -809,6 +809,22 @@
         cs = Uložit
         en = Save
         sk = Ulozit
+    [profile_edit_view_text_field_title_first_name]
+        cs = Jméno
+        en = First Name
+        sk = Meno
+    [profile_edit_view_text_field_title_last_name]
+        cs = Příjmení
+        en = Last Name
+        sk = Priezvisko
+    [profile_edit_view_text_field_title_phone]
+        cs = Telefon
+        en = Phone
+        sk = Telefón
+    [profile_edit_view_text_field_title_bio]
+        cs = Biografie
+        en = Biography
+        sk = Biografia
 
 [[Counter view]]
 	[counter_view_toolbar_title]

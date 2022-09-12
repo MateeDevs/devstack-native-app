@@ -46,7 +46,7 @@ struct UserEditProfileFields: View {
                 .padding(.top, 32)
             
             PrimaryTextField(
-                "First Name",
+                L10n.profile_edit_view_text_field_title_first_name,
                 text: Binding<String>(
                     get: { firstName },
                     set: { firstName in onFirstNameChange(firstName) }
@@ -54,7 +54,7 @@ struct UserEditProfileFields: View {
             )
             
             PrimaryTextField(
-                "Last Name",
+                L10n.profile_edit_view_text_field_title_last_name,
                 text: Binding<String>(
                     get: { lastName },
                     set: { lastName in onLastNameChange(lastName) }
@@ -62,12 +62,20 @@ struct UserEditProfileFields: View {
             )
             
             PrimaryTextField(
-                "Phone",
+                L10n.profile_edit_view_text_field_title_phone,
                 text: Binding<String>(
                     get: { phone },
                     set: { phone in onPhoneChange(phone) }
                 )
-            ).keyboardType(.phonePad)
+            )
+            .keyboardType(.phonePad)
+            PrimaryTextEditor(
+                L10n.profile_edit_view_text_field_title_bio,
+                text: Binding<String>(
+                    get: { bio },
+                    set: { bio in onBioChange(bio) }
+                )
+            )
         }
         .padding()
     }
