@@ -3,6 +3,14 @@
 //  Copyright © 2022 Matee. All rights reserved.
 //
 
+
+/**
+ 1: srool view
+ padding
+ validace
+ textField zvyraznei
+ regex phone validate
+ */
 import SwiftUI
 import UIToolkit
 
@@ -41,7 +49,6 @@ struct EditProfileView: View {
             get: { viewModel.state.alert },
             set: { _ in viewModel.onIntent(.dismissAlert) }
         )) { alert in .init(alert) }
-        .lifecycle(viewModel)
     }
 }
 
