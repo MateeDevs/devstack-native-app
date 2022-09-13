@@ -43,8 +43,7 @@ struct UserEditProfileFields: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             HeadlineText(title)
-                .padding(.top, 32)
-            
+                .padding(.vertical, 16)
             PrimaryTextField(
                 L10n.profile_edit_view_text_field_title_first_name,
                 text: Binding<String>(

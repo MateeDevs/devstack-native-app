@@ -3,8 +3,10 @@
 //  Copyright © 2022 Matee. All rights reserved.
 //
 
-
 /**
+ .frame(alignment: .bottom)
+ fixed textEditor frame size
+ 
  1: srool view
  padding
  validace
@@ -24,25 +26,25 @@ struct EditProfileView: View {
     
     var body: some View {
         return VStack {
-            UserEditProfileFields(
-                title: L10n.profile_edit_view_title,
-                firstName: viewModel.state.user?.firstName ?? "",
-                lastName: viewModel.state.user?.lastName ?? "",
-                phone: viewModel.state.user?.phone ?? "",
-                bio: viewModel.state.user?.bio ?? "",
-                onFirstNameChange: { firstName in viewModel.onIntent(.changeFisrtName(firstName)) },
-                onLastNameChange: { lastName in viewModel.onIntent(.changeLastName(lastName)) },
-                onPhoneChange: { phone in viewModel.onIntent(.changePhone(phone)) },
-                onBioChange: { bio in viewModel.onIntent(.changeBio(bio)) }
-            )
-            Spacer()
+            ScrollView(.vertical) {
+                UserEditProfileFields(
+                    title: L10n.profile_edit_view_title,
+                    firstName: viewModel.state.user?.firstName ?? "",
+                    lastName: viewModel.state.user?.lastName ?? "",
+                    phone: viewModel.state.user?.phone ?? "",
+                    bio: viewModel.state.user?.bio ?? "",
+                    onFirstNameChange: { firstName in viewModel.onIntent(.changeFisrtName(firstName)) },
+                    onLastNameChange: { lastName in viewModel.onIntent(.changeLastName(lastName)) },
+                    onPhoneChange: { phone in viewModel.onIntent(.changePhone(phone)) },
+                    onBioChange: { bio in viewModel.onIntent(.changeBio(bio)) }
+                )
+            }
             UserEditProfileSaveButton(
                 buttonTitle: L10n.profile_edit_view_save_button,
                 buttonLoading: viewModel.state.saveButtonLoading,
                 onButtonTap: { viewModel.onIntent(.save) }
             )
         }
-        .padding()
         .lifecycle(viewModel)
         .navigationTitle(L10n.profile_view_toolbar_title)
         .alert(item: Binding<AlertData?>(

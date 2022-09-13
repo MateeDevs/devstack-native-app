@@ -29,6 +29,7 @@ public struct PrimaryTextEditor: View {
                 .disableAutocorrection(true)
                 .padding(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16))
                 .lineSpacing(5)
+                .frame(height: 150)
                 .overlay(
                     RoundedRectangle(cornerRadius: 8)
                         .stroke(AppTheme.Colors.textFieldBorder, lineWidth: 2)
