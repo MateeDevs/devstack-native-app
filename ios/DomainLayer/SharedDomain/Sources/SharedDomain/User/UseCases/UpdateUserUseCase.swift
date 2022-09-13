@@ -11,12 +11,26 @@ public protocol UpdateUserUseCase {
 public struct UpdateUserUseCaseImpl: UpdateUserUseCase {
     
     private let userRepository: UserRepository
+    private let validateFirstNameUseCase: ValidateFirstNameUseCase
+    private let validateLastNameUseCase: ValidateLastNameUseCase
+    private let validatePhoneUseCase: ValidatePhoneUseCase
     
-    public init(userRepository: UserRepository) {
+    public init(
+        userRepository: UserRepository,
+        validateFirstNameUseCase: ValidateFirstNameUseCase,
+        validateLastNameUseCase: ValidateLastNameUseCase,
+        validatePhoneUseCase: ValidatePhoneUseCase
+    ) {
         self.userRepository = userRepository
+        self.validateFirstNameUseCase = validateFirstNameUseCase
+        self.validateLastNameUseCase = validateLastNameUseCase
+        self.validatePhoneUseCase = validatePhoneUseCase
     }
     
     public func execute(_ sourceType: SourceType, user: User) async throws {
+        try validateFirstNameUseCase.execute(user.firstName)
+        try validateLastNameUseCase.execute(user.lastName)
+        try validatePhoneUseCase.execute(user.phone)
         _ = try await userRepository.update(sourceType, user: user)
     }
 }

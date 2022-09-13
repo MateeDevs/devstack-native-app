@@ -7,8 +7,6 @@
  .frame(alignment: .bottom)
  fixed textEditor frame size
  
- 1: srool view
- padding
  validace
  textField zvyraznei
  regex phone validate
@@ -33,7 +31,7 @@ struct EditProfileView: View {
                     lastName: viewModel.state.user?.lastName ?? "",
                     phone: viewModel.state.user?.phone ?? "",
                     bio: viewModel.state.user?.bio ?? "",
-                    onFirstNameChange: { firstName in viewModel.onIntent(.changeFisrtName(firstName)) },
+                    onFirstNameChange: { firstName in viewModel.onIntent(.changeFirstName(firstName)) },
                     onLastNameChange: { lastName in viewModel.onIntent(.changeLastName(lastName)) },
                     onPhoneChange: { phone in viewModel.onIntent(.changePhone(phone)) },
                     onBioChange: { bio in viewModel.onIntent(.changeBio(bio)) }

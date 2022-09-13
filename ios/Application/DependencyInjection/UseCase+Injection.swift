@@ -40,10 +40,13 @@ public extension Resolver {
         // User
         register { GetUsersUseCaseImpl(userRepository: resolve()) as GetUsersUseCase }
         register { GetUserUseCaseImpl(userRepository: resolve()) as GetUserUseCase }
-        register { UpdateUserUseCaseImpl(userRepository: resolve()) as UpdateUserUseCase }
+        register { UpdateUserUseCaseImpl(userRepository: resolve(), validateFirstNameUseCase: resolve(), validateLastNameUseCase: resolve(), validatePhoneUseCase: resolve()) as UpdateUserUseCase }
         
         // Validation
         register { ValidateEmailUseCaseImpl() as ValidateEmailUseCase }
         register { ValidatePasswordUseCaseImpl() as ValidatePasswordUseCase }
+        register { ValidateFirstNameUseCaseImpl() as ValidateFirstNameUseCase }
+        register { ValidateLastNameUseCaseImpl() as ValidateLastNameUseCase }
+        register { ValidatePhoneUseCaseImpl() as ValidatePhoneUseCase }
     }
 }

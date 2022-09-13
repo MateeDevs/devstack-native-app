@@ -41,7 +41,7 @@ final class EditProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
     // MARK: Intent
     
     enum Intent {
-        case changeFisrtName(String)
+        case changeFirstName(String)
         case changeLastName(String)
         case changePhone(String)
         case changeBio(String)
@@ -52,7 +52,7 @@ final class EditProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
     func onIntent(_ intent: Intent) {
         executeTask(Task {
             switch intent {
-            case .changeFisrtName(let fisrtName): changeFirstName(fisrtName)
+            case .changeFirstName(let fisrtName): changeFirstName(fisrtName)
             case .changeLastName(let lastName): changeLastName(lastName)
             case .changePhone(let phone): changePhone(phone)
             case .changeBio(let bio): changeBio(bio)
@@ -96,7 +96,6 @@ final class EditProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
             state.saveButtonLoading = true
             guard let user = state.user else { return }
             try await updateUserUseCase.execute(.remote, user: user)
-//            throw ValidationError.email(.isEmpty)
             flowController?.handleFlow(ProfileFlow.edit(.pop))
         } catch {
             state.saveButtonLoading = false

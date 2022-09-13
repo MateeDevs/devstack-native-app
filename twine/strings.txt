@@ -15,6 +15,30 @@
 		cs = Hesla se neshodují
 		en = Passwords do not match
 		sk = Heslá sa nezhodujú
+    [empty_first_name_fail]
+        cs = Jméno nemůže být prázdné
+        en = First name can not be empty
+        sk = Meno nemôže byť prázdne
+    [invalid_first_name]
+        cs = Neplatné jméno
+        en = Invalid first name
+        sk = Neplatné meno
+    [empty_last_name_fail]
+        cs = Příjmení nemůže být prázdné
+        en = Last name can not be empty
+        sk = Priezvisko nemôže byť prázdne
+    [invalid_last_name]
+        cs = Neplatné příjmení
+        en = Invalid last name
+        sk = Neplatné priezvisko
+    [empty_phone_fail]
+        cs = Telefon nemůže být prázdný
+        en = Phone can not be empty
+        sk = Telefón nemôže byť prázdny
+    [invalid_phone]
+        cs = Neplatný telefon
+        en = Invalid phone
+        sk = Neplatný telefón
 	[loading]
 		cs = Načítání…
 		en = Loading…
