@@ -3,6 +3,7 @@
 //  Copyright © 2022 Matee. All rights reserved.
 //
 
+import Foundation
 import PackagePlugin
 
 @main
