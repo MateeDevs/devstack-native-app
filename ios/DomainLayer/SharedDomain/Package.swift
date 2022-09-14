@@ -33,6 +33,9 @@ let package = Package(
             name: "SharedDomain",
             dependencies: [
                 "DevstackKmpShared"
+            ],
+            linkerSettings: [
+                .unsafeFlags(["-Xlinker", "-no_application_extension"])
             ]
         ),
         .target(
