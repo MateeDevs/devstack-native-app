@@ -31,6 +31,8 @@ public struct UpdateUserUseCaseImpl: UpdateUserUseCase {
         try validateFirstNameUseCase.execute(user.firstName)
         try validateLastNameUseCase.execute(user.lastName)
         try validatePhoneUseCase.execute(user.phone)
-        _ = try await userRepository.update(sourceType, user: user)
+        let clearedPhone = user.phone.components(separatedBy: .whitespacesAndNewlines).joined()
+        let userToSave = User(copy: user, phone: clearedPhone)
+        _ = try await userRepository.update(sourceType, user: userToSave)
     }
 }

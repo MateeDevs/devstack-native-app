@@ -6,6 +6,8 @@
 /**
  .frame(alignment: .bottom)
  fixed textEditor frame size
+ 3rd party
+ Where to edit data
  
  validace
  textField zvyraznei

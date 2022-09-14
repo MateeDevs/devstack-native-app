@@ -76,7 +76,8 @@ final class EditProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
     
     private func changePhone(_ phone: String) {
         guard let user = state.user else { return }
-        state.user = User(copy: user, phone: phone)
+        let formatedPhone = formatPhone(phone)
+        state.user = User(copy: user, phone: formatedPhone)
     }
     
     private func changeBio(_ bio: String) {
@@ -105,5 +106,28 @@ final class EditProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
     
     private func dismissAlert() {
         state.alert = nil
+    }
+    
+    private func formatPhone(_ phone: String) -> String {
+        var numbers = phone.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
+        let mask = isLongerFormat(phone, numbers) ? "+XXX XXX XXX XXX" : "XXX XXX XXX"
+        var result = ""
+        
+        // iterate over the mask characters until the numbers are left
+        for ch in mask where !numbers.isEmpty {
+            if ch == "X" {
+                // mask requires a number in this place, so take the next one
+                result.append(numbers.removeFirst())
+                
+            } else {
+                result.append(ch) // just append a mask character
+            }
+        }
+        result = "\(result)\(numbers)"
+        return result
+    }
+    
+    private func isLongerFormat(_ phone: String, _ numbers: String) -> Bool {
+        return phone.first == "+" || numbers.count > 9
     }
 }
