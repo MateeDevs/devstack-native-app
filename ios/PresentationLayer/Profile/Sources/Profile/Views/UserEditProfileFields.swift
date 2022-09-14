@@ -17,6 +17,9 @@ struct UserEditProfileFields: View {
     private let onLastNameChange: (String) -> Void
     private let onPhoneChange: (String) -> Void
     private let onBioChange: (String) -> Void
+    private let firstNameError: Bool
+    private let lastNameError: Bool
+    private let phoneError: Bool
     
     init(
         title: String,
@@ -27,7 +30,10 @@ struct UserEditProfileFields: View {
         onFirstNameChange: @escaping (String) -> Void,
         onLastNameChange: @escaping (String) -> Void,
         onPhoneChange: @escaping (String) -> Void,
-        onBioChange: @escaping (String) -> Void
+        onBioChange: @escaping (String) -> Void,
+        firstNameError: Bool = false,
+        lastNameError: Bool = false,
+        phoneError: Bool = false
     ) {
         self.title = title
         self.firstName = firstName
@@ -38,34 +44,40 @@ struct UserEditProfileFields: View {
         self.onLastNameChange = onLastNameChange
         self.onPhoneChange = onPhoneChange
         self.onBioChange = onBioChange
+        self.firstNameError = firstNameError
+        self.lastNameError = lastNameError
+        self.phoneError = phoneError
     }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             HeadlineText(title)
                 .padding(.vertical, 16)
-            PrimaryTextField(
+            PrimaryTextFieldWithError(
                 L10n.profile_edit_view_text_field_title_first_name,
                 text: Binding<String>(
                     get: { firstName },
                     set: { firstName in onFirstNameChange(firstName) }
-                )
+                ),
+                error: firstNameError
             )
             
-            PrimaryTextField(
+            PrimaryTextFieldWithError(
                 L10n.profile_edit_view_text_field_title_last_name,
                 text: Binding<String>(
                     get: { lastName },
                     set: { lastName in onLastNameChange(lastName) }
-                )
+                ),
+                error: lastNameError
             )
             
-            PrimaryTextField(
+            PrimaryTextFieldWithError(
                 L10n.profile_edit_view_text_field_title_phone,
                 text: Binding<String>(
                     get: { phone },
                     set: { phone in onPhoneChange(phone) }
-                )
+                ),
+                error: phoneError
             )
             .keyboardType(.phonePad)
             PrimaryTextEditor(

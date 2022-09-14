@@ -9,9 +9,6 @@
  3rd party
  Where to edit data
  
- validace
- textField zvyraznei
- regex phone validate
  */
 import SwiftUI
 import UIToolkit
@@ -36,7 +33,10 @@ struct EditProfileView: View {
                     onFirstNameChange: { firstName in viewModel.onIntent(.changeFirstName(firstName)) },
                     onLastNameChange: { lastName in viewModel.onIntent(.changeLastName(lastName)) },
                     onPhoneChange: { phone in viewModel.onIntent(.changePhone(phone)) },
-                    onBioChange: { bio in viewModel.onIntent(.changeBio(bio)) }
+                    onBioChange: { bio in viewModel.onIntent(.changeBio(bio)) },
+                    firstNameError: viewModel.state.error.firstName,
+                    lastNameError: viewModel.state.error.lastName,
+                    phoneError: viewModel.state.error.phone
                 )
             }
             UserEditProfileSaveButton(

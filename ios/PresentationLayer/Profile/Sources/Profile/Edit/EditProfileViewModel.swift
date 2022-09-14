@@ -36,6 +36,13 @@ final class EditProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
         var user: User?
         var alert: AlertData?
         var saveButtonLoading: Bool = false
+        var error: ErrorFields = ErrorFields()
+    }
+    
+    struct ErrorFields {
+        var firstName: Bool = false
+        var lastName: Bool = false
+        var phone: Bool = false
     }
     
     // MARK: Intent
@@ -95,12 +102,15 @@ final class EditProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
     private func save() async {
         do {
             state.saveButtonLoading = true
+            state.error = ErrorFields()
             guard let user = state.user else { return }
             try await updateUserUseCase.execute(.remote, user: user)
             flowController?.handleFlow(ProfileFlow.edit(.pop))
         } catch {
             state.saveButtonLoading = false
             state.alert = .init(title: error.localizedDescription)
+            guard let validationEditError = error as? ValidationEditError else { return }
+            validateFields(validationEditError)
         }
     }
     
@@ -129,5 +139,13 @@ final class EditProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
     
     private func isLongerFormat(_ phone: String, _ numbers: String) -> Bool {
         return phone.first == "+" || numbers.count > 9
+    }
+    
+    private func validateFields(_ error: ValidationEditError) {
+        switch error {
+        case .firstName: state.error.firstName = true
+        case .lastName: state.error.lastName = true
+        case .phone: state.error.phone = true
+        }
     }
 }
