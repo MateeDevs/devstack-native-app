@@ -3,13 +3,6 @@
 //  Copyright © 2022 Matee. All rights reserved.
 //
 
-/**
- .frame(alignment: .bottom)
- fixed textEditor frame size
- 3rd party
- Where to edit data
- 
- */
 import SwiftUI
 import UIToolkit
 
