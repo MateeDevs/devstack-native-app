@@ -54,7 +54,7 @@ public extension User {
         counter: Int? = nil
     ) {
         self.id = id ?? copy.id
-        self.email = email ?? copy.id
+        self.email = email ?? copy.email
         self.firstName = firstName ?? copy.firstName
         self.lastName = lastName ?? copy.lastName
         self.phone = phone ?? copy.phone

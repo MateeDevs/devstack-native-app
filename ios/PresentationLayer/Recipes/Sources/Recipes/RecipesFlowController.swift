@@ -16,6 +16,10 @@ enum RecipesFlow: Flow, Equatable {
         case showRocketLaunches
         case showSkeleton
     }
+    
+    enum Weather: Equatable {
+        case showWeather
+    }
 }
 
 public final class RecipesFlowController: FlowController {
