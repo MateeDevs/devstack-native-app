@@ -48,5 +48,8 @@ public extension Resolver {
         register { ValidateFirstNameUseCaseImpl() as ValidateFirstNameUseCase }
         register { ValidateLastNameUseCaseImpl() as ValidateLastNameUseCase }
         register { ValidatePhoneUseCaseImpl() as ValidatePhoneUseCase }
+        
+        // Weather
+        register { GetWeatherUseCaseImpl(weatherRepository: resolve()) as GetWeatherUseCase }
     }
 }

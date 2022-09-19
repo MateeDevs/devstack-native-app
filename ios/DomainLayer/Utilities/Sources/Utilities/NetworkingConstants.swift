@@ -19,4 +19,12 @@ public struct NetworkingConstants {
         case .production: return "https://apollo-fullstack-tutorial.herokuapp.com/graphql"
         }
     }
+    
+    public static var weatherURL: String {
+        switch Environment.type {
+        case .alpha: return "https://api.openweathermap.org/data/2.5/weather"
+        case .beta: return "https://api.openweathermap.org/data/2.5/weather"
+        case .production: return "https://api.openweathermap.org/data/2.5/weather"
+        }
+    }
 }

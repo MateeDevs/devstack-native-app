@@ -32,7 +32,7 @@ struct WeatherView: View {
             .listStyle(PlainListStyle())
         }
         .lifecycle(viewModel)
-        .navigationTitle(L10n.recipes_view_toolbar_title)
+        .navigationTitle(L10n.weather_view_toolbar_title)
     }
 }
 

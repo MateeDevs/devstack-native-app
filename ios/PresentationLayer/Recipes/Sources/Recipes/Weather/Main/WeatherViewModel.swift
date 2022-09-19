@@ -53,6 +53,6 @@ final class WeatherViewModel: BaseViewModel, ViewModel, ObservableObject {
     // MARK: Private
     
     private func openCityDetail(_ cityName: String) {
-        
+        flowController?.handleFlow(RecipesFlow.weather(.showWeatherDetail(cityName)))
     }
 }

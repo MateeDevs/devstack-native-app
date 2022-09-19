@@ -150,6 +150,7 @@
 		45FF99D72842B0A600E32D9A /* AnalyticsToolkit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = AnalyticsToolkit; sourceTree = "<group>"; };
 		45FF99D82842B38B00E32D9A /* AuthToolkit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = AuthToolkit; sourceTree = "<group>"; };
 		45FF99D92842B51800E32D9A /* Utilities */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Utilities; sourceTree = "<group>"; };
+		C4F2CE2228D7D5DD006793C1 /* WeatherToolkit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = WeatherToolkit; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +165,7 @@
 				4508332628435E7800BC9460 /* RemoteConfigProvider in Frameworks */,
 				459C3707274B001B00536110 /* Atlantis in Frameworks */,
 				450833412843834300BC9460 /* Recipes in Frameworks */,
+				C4A8DECD28D7E0B600E50861 /* WeatherToolkit in Frameworks */,
 				4508331628435E7800BC9460 /* DatabaseProvider in Frameworks */,
 				4508331228435E7800BC9460 /* AnalyticsToolkit in Frameworks */,
 				4508331C28435E7800BC9460 /* LocationToolkit in Frameworks */,
@@ -380,6 +382,7 @@
 		45FF99D62842B05700E32D9A /* Toolkits */ = {
 			isa = PBXGroup;
 			children = (
+				C4F2CE2228D7D5DD006793C1 /* WeatherToolkit */,
 				45FF99D72842B0A600E32D9A /* AnalyticsToolkit */,
 				45FF99D82842B38B00E32D9A /* AuthToolkit */,
 				456F8B042842CB2800F74A61 /* LocationToolkit */,
@@ -439,6 +442,7 @@
 				4508334C2845556C00BC9460 /* SharedDomainMocks */,
 				453580E6284801D8007AEC9E /* GraphQLProvider */,
 				453580E8284801DE007AEC9E /* RocketToolkit */,
+				C4A8DECC28D7E0B600E50861 /* WeatherToolkit */,
 			);
 			productName = DevStack;
 			productReference = 4558D30720FCC8FF005BC325 /* DevStack.app */;
@@ -1609,6 +1613,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 45A0EBB027ADFA210005A01E /* XCRemoteSwiftPackageReference "Resolver" */;
 			productName = Resolver;
+		};
+		C4A8DECC28D7E0B600E50861 /* WeatherToolkit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = WeatherToolkit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

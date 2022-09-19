@@ -1,5 +1,5 @@
-import XCTest
 @testable import WeatherToolkit
+import XCTest
 
 final class WeatherToolkitTests: XCTestCase {
     func testExample() throws {

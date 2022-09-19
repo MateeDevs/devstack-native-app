@@ -775,6 +775,12 @@
         cs = Skeleton
         en = Skeleton
         sk = Skeleton
+        
+[[Weather View]]
+    [weather_view_toolbar_title]
+        cs = Počasí
+        en = Weather
+        sk = Počasie
 
 [[User Detail View]]
 	[user_detail_view_toolbar_title]

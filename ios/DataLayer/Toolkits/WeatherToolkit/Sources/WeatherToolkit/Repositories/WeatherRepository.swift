@@ -3,8 +3,8 @@
 //  Copyright © 2022 Matee. All rights reserved.
 //
 
-import SharedDomain
 import NetworkProvider
+import SharedDomain
 
 public struct WeatherRepositoryImpl: WeatherRepository {
     

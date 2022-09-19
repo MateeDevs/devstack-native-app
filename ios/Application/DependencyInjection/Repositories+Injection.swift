@@ -12,6 +12,7 @@ import Resolver
 import RocketToolkit
 import SharedDomain
 import UserToolkit
+import WeatherToolkit
 
 public extension Resolver {
     static func registerRepositories() {
@@ -39,5 +40,7 @@ public extension Resolver {
                 networkProvider: resolve()
             ) as UserRepository
         }
+        
+        register { WeatherRepositoryImpl(networkProvider: resolve()) as WeatherRepository }
     }
 }

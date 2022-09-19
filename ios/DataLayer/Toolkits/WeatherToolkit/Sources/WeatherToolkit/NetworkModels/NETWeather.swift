@@ -19,7 +19,6 @@ struct NETWeatherIcon: Codable {
     let id: Int
 }
 
-
 // Conversion from NetworkModel to DomainModel
 extension NETWeather {
     var domainModel: Weather {

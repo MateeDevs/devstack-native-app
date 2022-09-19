@@ -58,7 +58,7 @@ final class RecipesViewModel: BaseViewModel, ViewModel, ObservableObject {
         case .skeleton:
             flowController?.handleFlow(RecipesFlow.recipes(.showSkeleton))
         case .weather:
-            _ = ()
+            flowController?.handleFlow(RecipesFlow.recipes(.showWeather))
         }
     }
 }

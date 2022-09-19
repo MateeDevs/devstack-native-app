@@ -9,16 +9,18 @@ import UIToolkit
 
 enum RecipesFlow: Flow, Equatable {
     case recipes(Recipes)
+    case weather(Weather)
     
     enum Recipes: Equatable {
         case showCounter
         case showBooks
         case showRocketLaunches
         case showSkeleton
+        case showWeather
     }
     
     enum Weather: Equatable {
-        case showWeather
+        case showWeatherDetail(_ cityName: String)
     }
 }
 
@@ -33,6 +35,7 @@ public final class RecipesFlowController: FlowController {
         guard let recipesFlow = flow as? RecipesFlow else { return }
         switch recipesFlow {
         case .recipes(let recipesFlow): handleRecipesFlow(recipesFlow)
+        case .weather(let recipesFlow): handleWeatherFlow(recipesFlow)
         }
     }
 }
@@ -45,6 +48,7 @@ extension RecipesFlowController {
         case .showBooks: showBooks()
         case .showRocketLaunches: showRocketLaunches()
         case .showSkeleton: showSkeleton()
+        case .showWeather: showWeather()
         }
     }
     
@@ -69,6 +73,27 @@ extension RecipesFlowController {
     private func showSkeleton() {
         let vm = SkeletonViewModel(flowController: self)
         let vc = BaseHostingController(rootView: SkeletonView(viewModel: vm))
+        navigationController.show(vc, sender: nil)
+    }
+    
+    private func showWeather() {
+        let vm = WeatherViewModel(flowController: self)
+        let vc = BaseHostingController(rootView: WeatherView(viewModel: vm))
+        navigationController.show(vc, sender: nil)
+    }
+}
+
+// MARK: Weather flow
+extension RecipesFlowController {
+    func handleWeatherFlow(_ flow: RecipesFlow.Weather) {
+        switch flow {
+        case .showWeatherDetail(let cityName): showWeatherDetail(cityName)
+        }
+    }
+    
+    private func showWeatherDetail(_ cityName: String) {
+        let vm = WeatherDetailViewModel(cityName: cityName, flowController: self)
+        let vc = BaseHostingController(rootView: WeatherDetailView(viewModel: vm))
         navigationController.show(vc, sender: nil)
     }
 }
