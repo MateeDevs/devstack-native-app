@@ -19,13 +19,30 @@ struct NETWeatherIcon: Codable {
     let id: Int
 }
 
+// Units for API
+enum NETWeatherUnitsAPI: String {
+    case celsius = "metric"
+    case fahrenheit = "imperial"
+}
+
 // Conversion from NetworkModel to DomainModel
 extension NETWeather {
-    var domainModel: Weather {
+    func domainModel(units: WeatherUnits) -> Weather {
         Weather(
             conditionID: weather[0].id,
             cityName: name,
-            temperature: main.temp
+            temperature: main.temp,
+            units: units
         )
+    }
+}
+
+// Conversion from DomainModelUnits to NetworkModelUnits
+extension WeatherUnits {
+    var networkModel: NETWeatherUnitsAPI {
+        switch self {
+        case .celsius: return .celsius
+        case .fahrenheit: return .fahrenheit
+        }
     }
 }

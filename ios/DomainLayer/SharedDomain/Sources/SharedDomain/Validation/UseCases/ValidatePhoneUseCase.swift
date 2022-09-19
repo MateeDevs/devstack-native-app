@@ -5,6 +5,7 @@
 
 import Foundation
 
+// sourcery: AutoMockable
 public protocol ValidatePhoneUseCase {
     func execute(_ phone: String) throws
 }

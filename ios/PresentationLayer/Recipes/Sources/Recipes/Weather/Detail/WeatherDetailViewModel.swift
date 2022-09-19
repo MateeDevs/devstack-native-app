@@ -57,7 +57,8 @@ final class WeatherDetailViewModel: BaseViewModel, ViewModel, ObservableObject {
     private func loadWeather() async {
         do {
             state.isLoading = true
-            state.weather = try await getWeatherUseCase.execute(cityName: cityName)
+            let units = UnitTemperature.current
+            state.weather = try await getWeatherUseCase.execute(cityName: cityName, units: units)
             state.isLoading = false
         } catch {
             state.alert = .init(title: error.localizedDescription)

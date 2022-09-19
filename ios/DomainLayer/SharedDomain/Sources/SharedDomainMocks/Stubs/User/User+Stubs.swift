@@ -11,7 +11,7 @@ public extension User {
         email: "petr.chmelar@matee.cz",
         firstName: "Petr",
         lastName: "Chmelar",
-        phone: "112567",
+        phone: "736111222",
         bio: "iOS dev",
         pictureUrl: "",
         counter: 0

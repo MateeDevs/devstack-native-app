@@ -55,6 +55,13 @@ public extension Resolver {
         // Validation
         register { ValidateEmailUseCaseMock() as ValidateEmailUseCase }
         register { ValidatePasswordUseCaseMock() as ValidatePasswordUseCase }
+        register { ValidateFirstNameUseCaseMock() as ValidateFirstNameUseCase }
+        register { ValidateLastNameUseCaseMock() as ValidateLastNameUseCase }
+        register { ValidatePhoneUseCaseMock() as ValidatePhoneUseCase }
+        
+        // Weather
+        register { GetWeatherUseCaseMock(executeCityNameUnitsReturnValue: Weather.stub) as GetWeatherUseCase }
+        
     }
 }
 #endif

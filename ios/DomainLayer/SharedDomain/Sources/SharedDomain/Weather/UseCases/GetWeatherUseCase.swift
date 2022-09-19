@@ -3,8 +3,9 @@
 //  Copyright © 2022 Matee. All rights reserved.
 //
 
+// sourcery: AutoMockable
 public protocol GetWeatherUseCase {
-    func execute(cityName: String) async throws -> Weather
+    func execute(cityName: String, units: WeatherUnits) async throws -> Weather
 }
 
 public struct GetWeatherUseCaseImpl: GetWeatherUseCase {
@@ -15,7 +16,7 @@ public struct GetWeatherUseCaseImpl: GetWeatherUseCase {
         self.weatherRepository = weatherRepository
     }
     
-    public func execute(cityName: String) async throws -> Weather {
-        try await weatherRepository.read(cityName: cityName)
+    public func execute(cityName: String, units: WeatherUnits) async throws -> Weather {
+        try await weatherRepository.read(cityName: cityName, units: units)
     }
 }

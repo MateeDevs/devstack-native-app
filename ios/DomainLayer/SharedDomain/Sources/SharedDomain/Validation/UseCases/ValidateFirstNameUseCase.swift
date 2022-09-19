@@ -3,6 +3,7 @@
 //  Copyright © 2022 Matee. All rights reserved.
 //
 
+// sourcery: AutoMockable
 public protocol ValidateFirstNameUseCase {
     func execute(_ name: String) throws
 }

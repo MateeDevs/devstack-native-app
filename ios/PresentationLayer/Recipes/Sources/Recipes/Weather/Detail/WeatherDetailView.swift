@@ -19,11 +19,11 @@ struct WeatherDetailView: View {
             if viewModel.state.isLoading {
                 PrimaryProgressView()
             } else {
-                Text("\(viewModel.state.weather?.temperatureString ?? "")°C")
+                Text(viewModel.state.weather?.temperatureString ?? "")
                     .font(.system(size: 50))
                     .padding(.top, 16)
                 Image(systemName: viewModel.state.weather?.conditionName ?? "cloud")
-                    .font(.system(size: 86.0))
+                    .font(.system(size: 100.0))
                 Text(viewModel.state.weather?.cityName ?? "")
                     .font(.system(size: 25))
             }
@@ -42,6 +42,7 @@ import SharedDomainMocks
 
 struct UserDetailView_Previews: PreviewProvider {
     static var previews: some View {
+        Resolver.registerUseCaseMocks()
         
         let vm = WeatherDetailViewModel(cityName: "Prague", flowController: nil)
         return PreviewGroup {

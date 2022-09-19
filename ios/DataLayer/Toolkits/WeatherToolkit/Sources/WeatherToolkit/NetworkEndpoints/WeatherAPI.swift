@@ -8,13 +8,7 @@ import NetworkProvider
 import Utilities
 
 enum WeatherAPI {
-    case read(_ cityName: String, _ units: WeatherUnitsAPI = .celsius )
-}
-
-enum WeatherUnitsAPI: String {
-    case kelvin = "standard"
-    case celsius = "metric"
-    case fahrenheit = "imperial"
+    case read(_ cityName: String, _ units: NETWeatherUnitsAPI )
 }
 
 extension WeatherAPI: NetworkEndpoint {

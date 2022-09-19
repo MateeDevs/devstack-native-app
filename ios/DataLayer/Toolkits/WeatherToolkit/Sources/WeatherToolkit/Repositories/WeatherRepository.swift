@@ -16,9 +16,9 @@ public struct WeatherRepositoryImpl: WeatherRepository {
         network = networkProvider
     }
 
-    public func read(cityName: String) async throws -> Weather {
-        let endpoint = WeatherAPI.read(cityName)
-        let weather = try await network.request(endpoint).map(NETWeather.self).domainModel
+    public func read(cityName: String, units: WeatherUnits) async throws -> Weather {
+        let endpoint = WeatherAPI.read(cityName, units.networkModel)
+        let weather = try await network.request(endpoint).map(NETWeather.self).domainModel(units: units)
         return weather
     }
 }

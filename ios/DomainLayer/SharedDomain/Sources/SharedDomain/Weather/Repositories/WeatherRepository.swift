@@ -4,5 +4,5 @@
 //
 
 public protocol WeatherRepository {
-    func read(cityName: String) async throws -> Weather
+    func read(cityName: String, units: WeatherUnits) async throws -> Weather
 }
