@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -60,7 +60,7 @@
 		45DEBE1C27A153A10075C7E2 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45DEBE1B27A153A10075C7E2 /* SwiftUI.framework */; };
 		45DEBE1F27A153A10075C7E2 /* Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DEBE1E27A153A10075C7E2 /* Widget.swift */; };
 		45DEBE2127A153A20075C7E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45DEBE2027A153A20075C7E2 /* Assets.xcassets */; };
-		45DEBE2527A153A20075C7E2 /* DevStack Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 45DEBE1827A153A10075C7E2 /* DevStack Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		45DEBE2527A153A20075C7E2 /* DevStack Widget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 45DEBE1827A153A10075C7E2 /* DevStack Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,15 +74,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		45DEBE2627A153A20075C7E2 /* Embed App Extensions */ = {
+		45DEBE2627A153A20075C7E2 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				45DEBE2527A153A20075C7E2 /* DevStack Widget.appex in Embed App Extensions */,
+				45DEBE2527A153A20075C7E2 /* DevStack Widget.appex in Embed Foundation Extensions */,
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -403,7 +403,7 @@
 				4558D30420FCC8FF005BC325 /* Frameworks */,
 				4558D30520FCC8FF005BC325 /* Resources */,
 				453D3FCD25ED976A0094ADD7 /* Copy GoogleService-Info.plist */,
-				45DEBE2627A153A20075C7E2 /* Embed App Extensions */,
+				45DEBE2627A153A20075C7E2 /* Embed Foundation Extensions */,
 				4564A9F7289CFF3D00A0FEF0 /* Upload dSYMs to Crashlytics */,
 			);
 			buildRules = (
@@ -478,7 +478,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1320;
-				LastUpgradeCheck = 1310;
+				LastUpgradeCheck = 1400;
 				ORGANIZATIONNAME = Matee;
 				TargetAttributes = {
 					4558D30620FCC8FF005BC325 = {
@@ -540,6 +540,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		0C3E096223F6B3950051287D /* Script for SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -558,6 +559,7 @@
 		};
 		453D3FCD25ED976A0094ADD7 /* Copy GoogleService-Info.plist */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -576,6 +578,7 @@
 		};
 		4564A9F7289CFF3D00A0FEF0 /* Upload dSYMs to Crashlytics */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
