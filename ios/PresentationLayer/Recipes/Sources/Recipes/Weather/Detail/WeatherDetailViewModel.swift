@@ -34,20 +34,38 @@ final class WeatherDetailViewModel: BaseViewModel, ViewModel, ObservableObject {
     @Published private(set) var state: State = State()
 
     struct State {
+        var isLoading: Bool = true
+        var alert: AlertData?
         var weather: Weather?
     }
     
     // MARK: Intent
     enum Intent {
+        case dismissAlertAndPop
     }
 
-    func onIntent(_ intent: Intent) {}
+    func onIntent(_ intent: Intent) {
+        executeTask(Task {
+            switch intent {
+            case .dismissAlertAndPop: dismissAlertAndPop()
+            }
+        })
+    }
     
     // MARK: Private
     
     private func loadWeather() async {
         do {
+            state.isLoading = true
             state.weather = try await getWeatherUseCase.execute(cityName: cityName)
-        } catch {}
+            state.isLoading = false
+        } catch {
+            state.alert = .init(title: error.localizedDescription)
+        }
+    }
+    
+    private func dismissAlertAndPop() {
+        state.alert = nil
+        flowController?.handleFlow(RecipesFlow.weather(.pop))
     }
 }

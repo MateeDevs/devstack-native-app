@@ -16,15 +16,23 @@ struct WeatherDetailView: View {
     
     var body: some View {
         return VStack {
-            Text("\(viewModel.state.weather?.temperatureString ?? "")°C")
-                .font(.system(size: 50))
-                .padding(.top, 16)
-            Image(systemName: viewModel.state.weather?.conditionName ?? "cloud")
-                .font(.system(size: 86.0))
-            Text(viewModel.state.weather?.cityName ?? "")
-                .font(.system(size: 25))
+            if viewModel.state.isLoading {
+                PrimaryProgressView()
+            } else {
+                Text("\(viewModel.state.weather?.temperatureString ?? "")°C")
+                    .font(.system(size: 50))
+                    .padding(.top, 16)
+                Image(systemName: viewModel.state.weather?.conditionName ?? "cloud")
+                    .font(.system(size: 86.0))
+                Text(viewModel.state.weather?.cityName ?? "")
+                    .font(.system(size: 25))
+            }
         }
         .lifecycle(viewModel)
+        .alert(item: Binding<AlertData?>(
+            get: { viewModel.state.alert },
+            set: { _ in viewModel.onIntent(.dismissAlertAndPop) }
+        )) { alert in .init(alert) }
     }
 }
 
@@ -34,6 +42,7 @@ import SharedDomainMocks
 
 struct UserDetailView_Previews: PreviewProvider {
     static var previews: some View {
+        
         let vm = WeatherDetailViewModel(cityName: "Prague", flowController: nil)
         return PreviewGroup {
             WeatherDetailView(viewModel: vm)

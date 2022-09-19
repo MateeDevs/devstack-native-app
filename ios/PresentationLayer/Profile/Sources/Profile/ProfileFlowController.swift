@@ -18,7 +18,6 @@ enum ProfileFlow: Flow, Equatable {
     
     enum Edit: Equatable {
         case pop
-        case dismiss
     }
 }
 
@@ -74,7 +73,6 @@ extension ProfileFlowController {
     func handleEditFlow(_ flow: ProfileFlow.Edit) {
         switch flow {
         case .pop: pop()
-        case .dismiss: dismiss()
         }
     }
 }

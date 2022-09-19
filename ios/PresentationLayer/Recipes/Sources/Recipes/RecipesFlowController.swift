@@ -21,6 +21,7 @@ enum RecipesFlow: Flow, Equatable {
     
     enum Weather: Equatable {
         case showWeatherDetail(_ cityName: String)
+        case pop
     }
 }
 
@@ -88,6 +89,7 @@ extension RecipesFlowController {
     func handleWeatherFlow(_ flow: RecipesFlow.Weather) {
         switch flow {
         case .showWeatherDetail(let cityName): showWeatherDetail(cityName)
+        case .pop: pop()
         }
     }
     

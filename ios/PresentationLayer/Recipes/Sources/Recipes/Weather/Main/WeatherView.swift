@@ -44,9 +44,9 @@ struct WeatherView_Previews: PreviewProvider {
     static var previews: some View {
         Resolver.registerUseCaseMocks()
         
-        let vm = RecipesViewModel(flowController: nil)
+        let vm = WeatherViewModel(flowController: nil)
         return PreviewGroup {
-            RecipesView(viewModel: vm)
+            WeatherView(viewModel: vm)
         }
     }
 }
