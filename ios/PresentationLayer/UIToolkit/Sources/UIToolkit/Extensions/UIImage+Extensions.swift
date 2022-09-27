@@ -34,7 +34,7 @@ public extension UIImage {
     /// Fix orientation of an UIImage without EXIF
     func fixOrientation() -> UIImage { // swiftlint:disable:this cyclomatic_complexity
         
-        guard let cgImage = cgImage else { return self }
+        guard let cgImage else { return self }
         
         if imageOrientation == .up {
             return self

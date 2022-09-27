@@ -16,7 +16,7 @@ extension Object {
     @objc open var fullModel: [String: Any] {
         var model: [String: Any] = [:]
         let schema = RLMSchema.partialShared().schema(forClassName: String(describing: type(of: self).self))
-        if let schema = schema {
+        if let schema {
             for property in schema.properties {
                 model[property.name] = value(forKey: property.name)
             }

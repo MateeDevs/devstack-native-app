@@ -35,7 +35,7 @@ public extension URLSession {
             operation: {
                 try await withCheckedThrowingContinuation { continuation in
                     dataTask = self.dataTask(with: request) { data, response, error in
-                        guard let data = data, let response = response else {
+                        guard let data, let response else {
                             let error = error ?? URLError(.badServerResponse)
                             return continuation.resume(throwing: error)
                         }

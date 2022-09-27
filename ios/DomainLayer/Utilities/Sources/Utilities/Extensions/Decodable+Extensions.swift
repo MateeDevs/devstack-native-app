@@ -15,7 +15,7 @@ public extension Decodable {
     }
     
     private static func stub(for url: URL?) -> Data {
-        guard let url = url, let data = try? Data(contentsOf: url) else { return Data() }
+        guard let url, let data = try? Data(contentsOf: url) else { return Data() }
         return data
     }
 }
