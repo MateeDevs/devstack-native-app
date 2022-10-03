@@ -22,7 +22,7 @@ public final class LocationProviderMock: LocationProvider {
 
     public func isLocationEnabled() -> Bool {
         isLocationEnabledCallsCount += 1
-        if let isLocationEnabledClosure = isLocationEnabledClosure {
+        if let isLocationEnabledClosure {
             return isLocationEnabledClosure()
         } else {
             return isLocationEnabledReturnValue
@@ -44,7 +44,7 @@ public final class LocationProviderMock: LocationProvider {
         getCurrentLocationWithAccuracyCallsCount += 1
         getCurrentLocationWithAccuracyReceivedAccuracy = accuracy
         getCurrentLocationWithAccuracyReceivedInvocations.append(accuracy)
-        if let getCurrentLocationWithAccuracyClosure = getCurrentLocationWithAccuracyClosure {
+        if let getCurrentLocationWithAccuracyClosure {
             return getCurrentLocationWithAccuracyClosure(accuracy)
         } else {
             return getCurrentLocationWithAccuracyReturnValue

@@ -96,7 +96,7 @@ import {{ import }}
         {% if method.returnTypeName.isVoid %}
         {% if method.throws %}try {% endif %}{% if method.isAsync %}await {% endif %}{% call methodClosureName method %}?({% call methodClosureCallParameters method %})
         {% else %}
-        if let {% call methodClosureName method %} = {% call methodClosureName method %} {
+        if let {% call methodClosureName method %} {
             return {{ 'try ' if method.throws }}{{ 'await ' if method.isAsync }}{% call methodClosureName method %}({% call methodClosureCallParameters method %})
         } else {
             return {% call swiftifyMethodName method.selectorName %}ReturnValue

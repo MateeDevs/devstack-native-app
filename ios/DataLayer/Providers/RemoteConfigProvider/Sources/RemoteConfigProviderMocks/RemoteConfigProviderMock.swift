@@ -29,7 +29,7 @@ public final class RemoteConfigProviderMock: RemoteConfigProvider {
         readCallsCount += 1
         readReceivedKey = key
         readReceivedInvocations.append(key)
-        if let readClosure = readClosure {
+        if let readClosure {
             return try await readClosure(key)
         } else {
             return readReturnValue

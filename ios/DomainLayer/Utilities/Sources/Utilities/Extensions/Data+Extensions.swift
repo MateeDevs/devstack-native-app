@@ -7,7 +7,7 @@ import Foundation
 
 public extension Data {
     func map<D: Decodable>(_ type: D.Type, atKeyPath keyPath: String? = nil) throws -> D {
-        if let keyPath = keyPath {
+        if let keyPath {
             let toplevel = try JSONSerialization.jsonObject(with: self)
             if let nestedJson = (toplevel as AnyObject).value(forKeyPath: keyPath) {
                 if JSONSerialization.isValidJSONObject(nestedJson) {

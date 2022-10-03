@@ -29,7 +29,7 @@ public final class KeychainProviderMock: KeychainProvider {
         readCallsCount += 1
         readReceivedKey = key
         readReceivedInvocations.append(key)
-        if let readClosure = readClosure {
+        if let readClosure {
             return try readClosure(key)
         } else {
             return readReturnValue

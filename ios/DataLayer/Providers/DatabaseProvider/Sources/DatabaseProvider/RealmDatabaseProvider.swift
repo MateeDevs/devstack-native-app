@@ -53,11 +53,11 @@ extension RealmDatabaseProvider: DatabaseProvider {
         let realm = try Realm()
         var realmObjects = realm.objects(realmType.self)
         
-        if let predicate = predicate {
+        if let predicate {
             realmObjects = realmObjects.filter(predicate)
         }
         
-        if let sortBy = sortBy {
+        if let sortBy {
             realmObjects = realmObjects.sorted(byKeyPath: sortBy, ascending: ascending)
         }
         
