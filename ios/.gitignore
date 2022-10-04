@@ -18,6 +18,8 @@ Localizable.strings
 
 ## Generated code
 *.generated.swift
+*.graphql.swift
+*.graphqls
 
 ## Various settings
 *.pbxuser

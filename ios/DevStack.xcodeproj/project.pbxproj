@@ -40,7 +40,6 @@
 		4524472727A417B1004853C8 /* WidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4524472627A417B1004853C8 /* WidgetView.swift */; };
 		453580E7284801D8007AEC9E /* GraphQLProvider in Frameworks */ = {isa = PBXBuildFile; productRef = 453580E6284801D8007AEC9E /* GraphQLProvider */; };
 		453580E9284801DE007AEC9E /* RocketToolkit in Frameworks */ = {isa = PBXBuildFile; productRef = 453580E8284801DE007AEC9E /* RocketToolkit */; };
-		453580ED284806D1007AEC9E /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 453580EC284806D1007AEC9E /* schema.json */; };
 		453580EF284806FE007AEC9E /* strings.txt in Resources */ = {isa = PBXBuildFile; fileRef = 453580EE284806FE007AEC9E /* strings.txt */; };
 		454F6EC426CE8B3900C386B8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 454F6EC226CE8B3500C386B8 /* InfoPlist.strings */; };
 		4558D30B20FCC8FF005BC325 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4558D30A20FCC8FF005BC325 /* AppDelegate.swift */; };
@@ -102,7 +101,6 @@
 		4524472627A417B1004853C8 /* WidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetView.swift; sourceTree = "<group>"; };
 		4534C1C42603D6AD0022ACF4 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		453580E52847E814007AEC9E /* GraphQLProvider */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = GraphQLProvider; sourceTree = "<group>"; };
-		453580EC284806D1007AEC9E /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		453580EE284806FE007AEC9E /* strings.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = strings.txt; path = ../../twine/strings.txt; sourceTree = "<group>"; };
 		453C8807283FAB4C0027BDFB /* SharedDomain */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SharedDomain; sourceTree = "<group>"; };
 		453C880C283FB33D0027BDFB /* DevstackKmpShared.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = DevstackKmpShared.xcframework; sourceTree = "<group>"; };
@@ -234,7 +232,6 @@
 			children = (
 				45FF99D62842B05700E32D9A /* Toolkits */,
 				45702E5928421D7F008D5487 /* Providers */,
-				453580EC284806D1007AEC9E /* schema.json */,
 			);
 			path = DataLayer;
 			sourceTree = "<group>";
@@ -521,7 +518,6 @@
 			files = (
 				4575E65625F6FA7600CCC003 /* AppIcon.xcassets in Resources */,
 				453580EF284806FE007AEC9E /* strings.txt in Resources */,
-				453580ED284806D1007AEC9E /* schema.json in Resources */,
 				454F6EC426CE8B3900C386B8 /* InfoPlist.strings in Resources */,
 				4597626F20FDF0810034DE29 /* LaunchScreen.storyboard in Resources */,
 			);
