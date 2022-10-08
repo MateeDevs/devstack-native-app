@@ -17,7 +17,7 @@ final class GetRocketLaunchesUseCaseTests: XCTestCase {
 
     func testExecute() async throws {
         let useCase = GetRocketLaunchesUseCaseImpl(rocketLaunchRepository: rocketLaunchRepository)
-        rocketLaunchRepository.readReturnValue = AsyncThrowingStream([RocketLaunch].self) { continuation in
+        rocketLaunchRepository.listReturnValue = AsyncThrowingStream([RocketLaunch].self) { continuation in
             continuation.yield([RocketLaunch].stub)
             continuation.finish()
         }
@@ -27,6 +27,6 @@ final class GetRocketLaunchesUseCaseTests: XCTestCase {
         for try await rocketLaunches in rocketLaunchesStream {
             XCTAssertEqual(rocketLaunches, [RocketLaunch].stub)
         }
-        XCTAssertEqual(rocketLaunchRepository.readCallsCount, 1)
+        XCTAssertEqual(rocketLaunchRepository.listCallsCount, 1)
     }
 }

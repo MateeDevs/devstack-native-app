@@ -14,11 +14,11 @@ public struct RocketLaunchRepositoryImpl: RocketLaunchRepository {
         self.graphQL = graphQLProvider
     }
     
-    public func read() -> AsyncThrowingStream<[RocketLaunch], Error> {
+    public func list() -> AsyncThrowingStream<[RocketLaunch], Error> {
         AsyncThrowingStream { continuation in
             Task {
                 do {
-                    for try await result in graphQL.fetch(query: RocketLaunchListQuery()) {
+                    for try await result in graphQL.fetch(query: Rocket.RocketLaunchListQuery()) {
                         guard let data = result.data else { return }
                         continuation.yield(data.launches.launches.compactMap { $0?.domainModel })
                     }

@@ -7,7 +7,7 @@ import Foundation
 import PackagePlugin
 
 @main
-struct SwiftGenPlugins: BuildToolPlugin {
+struct SwiftGenPlugin: BuildToolPlugin {
     func createBuildCommands(context: PluginContext, target: Target) async throws -> [Command] {
         let configurations: [Path] = [context.package.directory, target.directory]
             .map { $0.appending("swiftgen.yml") }

@@ -3,24 +3,15 @@
 //  Copyright © 2022 Matee. All rights reserved.
 //
 
+import ApolloAPI
 import SharedDomain
 
 // Conversion from NetworkModel to DomainModel
-extension RocketLaunchListQuery.Data.Launch.Launch {
+extension Rocket.RocketLaunchListQuery.Data.Launches.Launch {
     var domainModel: RocketLaunch {
-        RocketLaunch(
-            id: id,
-            site: site ?? ""
-        )
-    }
-}
-
-// Conversion from DomainModel to NetworkModel
-extension RocketLaunch {
-    var networkModel: RocketLaunchListQuery.Data.Launch.Launch {
         .init(
             id: id,
-            site: site
+            site: site ?? ""
         )
     }
 }

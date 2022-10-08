@@ -4,6 +4,7 @@
 //
 
 import Apollo
+import ApolloAPI
 import Foundation
 
 public struct ApolloGraphQLProvider {

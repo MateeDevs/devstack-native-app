@@ -4,9 +4,12 @@
 //
 
 import Apollo
+import ApolloAPI
+import ApolloTestSupport
 import GraphQLProvider
 import GraphQLProviderMocks
 @testable import RocketToolkit
+import RocketToolkitMocks
 import SharedDomain
 import SharedDomainMocks
 import XCTest
@@ -15,7 +18,7 @@ final class RocketLaunchRepositoryTests: XCTestCase {
     
     // MARK: Dependencies
     
-    private let graphQLProvider = GraphQLProviderMock<RocketLaunchListQuery>()
+    private let graphQLProvider = GraphQLProviderMock<Rocket.RocketLaunchListQuery>()
 
     private func createRepository() -> RocketLaunchRepository {
         RocketLaunchRepositoryImpl(graphQLProvider: graphQLProvider)
@@ -23,14 +26,17 @@ final class RocketLaunchRepositoryTests: XCTestCase {
     
     // MARK: Tests
     
-    func testRead() async throws {
+    func testList() async throws {
         let repository = createRepository()
-        let rocketLaunches = [RocketLaunch].stub.map { $0.networkModel }
-        let queryData = RocketLaunchListQuery.Data(launches: .init(cursor: "0", hasMore: true, launches: rocketLaunches))
+        let queryData = Rocket.RocketLaunchListQuery.Data.from(Mock<Query>(
+            launches: Mock<LaunchConnection>(
+                launches: [RocketLaunch].stub.map { Mock<Launch>(id: $0.id, site: $0.site) }
+            )
+        ))
         let queryResult = GraphQLResult(data: queryData, extensions: nil, errors: nil, source: .server, dependentKeys: nil)
         graphQLProvider.fetchReturnValues = [queryResult]
 
-        let rocketLaunchesStream = repository.read()
+        let rocketLaunchesStream = repository.list()
 
         for try await rocketLaunches in rocketLaunchesStream {
             XCTAssertEqual(rocketLaunches, [RocketLaunch].stub)

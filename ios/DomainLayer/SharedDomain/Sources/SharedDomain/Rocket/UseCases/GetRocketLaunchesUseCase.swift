@@ -17,6 +17,6 @@ public struct GetRocketLaunchesUseCaseImpl: GetRocketLaunchesUseCase {
     }
     
     public func execute() -> AsyncThrowingStream<[RocketLaunch], Error> {
-        rocketLaunchRepository.read()
+        rocketLaunchRepository.list()
     }
 }

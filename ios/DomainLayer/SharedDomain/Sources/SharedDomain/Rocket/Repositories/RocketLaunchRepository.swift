@@ -5,5 +5,5 @@
 
 // sourcery: AutoMockable
 public protocol RocketLaunchRepository {
-    func read() -> AsyncThrowingStream<[RocketLaunch], Error>
+    func list() -> AsyncThrowingStream<[RocketLaunch], Error>
 }

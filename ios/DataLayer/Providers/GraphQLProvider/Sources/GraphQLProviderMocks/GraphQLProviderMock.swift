@@ -6,6 +6,7 @@
 // swiftlint:disable all
 
 import Apollo
+import ApolloAPI
 import Foundation
 import GraphQLProvider
 

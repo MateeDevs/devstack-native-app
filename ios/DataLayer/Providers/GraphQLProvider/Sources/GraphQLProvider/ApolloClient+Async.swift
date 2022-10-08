@@ -4,6 +4,7 @@
 //
 
 import Apollo
+import ApolloAPI
 import Foundation
 
 // Extension which adds async/await support to Apollo
