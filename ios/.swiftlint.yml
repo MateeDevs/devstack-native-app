@@ -2,7 +2,7 @@ excluded:
   - Carthage
   - Pods
   - vendor
-  - DataLayer/Providers/GraphQLProvider/.build
+  - DataLayer/Toolkits/RocketToolkit/.build
   - DataLayer/Toolkits/RocketToolkit/Sources/RocketToolkit/NetworkModels/Apollo
   - DataLayer/Toolkits/RocketToolkit/Sources/RocketToolkitMocks
   

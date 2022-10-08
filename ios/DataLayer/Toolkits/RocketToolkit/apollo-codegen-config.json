@@ -13,7 +13,7 @@
     },
     "downloadTimeout": 60,
     "headers": [],
-    "outputPath": "../../Toolkits/RocketToolkit/schema.graphqls"
+    "outputPath": "./schema.graphqls"
   },
   "input": {
     "operationSearchPaths": [

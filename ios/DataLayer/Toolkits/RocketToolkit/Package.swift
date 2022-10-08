@@ -5,7 +5,10 @@ import PackageDescription
 
 let package = Package(
     name: "RocketToolkit",
-    platforms: [.iOS(.v14)],
+    platforms: [
+        .iOS(.v14),
+        .macOS(.v10_14)
+    ],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
@@ -16,8 +19,8 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-        .package(name: "SharedDomain", path: "../../DomainLayer/SharedDomain"),
-        .package(name: "GraphQLProvider", path: "../Providers/GraphQLProvider"),
+        .package(name: "SharedDomain", path: "../../../DomainLayer/SharedDomain"),
+        .package(name: "GraphQLProvider", path: "../../Providers/GraphQLProvider"),
         .package(url: "https://github.com/apollographql/apollo-ios", .upToNextMajor(from: "1.0.0"))
     ],
     targets: [
