@@ -2,7 +2,7 @@
 
 cd "$(dirname "$0")"
 
-echo "Checking file header"
+echo "⚙️  Checking file header"
 if [ ! -f ../DevStack.xcworkspace/xcuserdata/`whoami`.xcuserdatad/IDETemplateMacros.plist ]; then
   echo "❌ File header is not set - setting now"
   echo -n "Enter your full name: "
@@ -14,10 +14,13 @@ else
   echo "✅ File header is properly set"
 fi
 
-echo "Downloading GraphQL schemas and generating code from queries"
+echo "⚙️  Downloading GraphQL schemas and generating code from queries"
 ./apollo.sh
 
-echo "Checking whether Homebrew is installed"
+echo "⚙️  Generating mocks for UseCases and Repositories"
+./sourcery.sh
+
+echo "⚙️  Checking whether Homebrew is installed"
 if command -v brew &> /dev/null; then
   echo "✅ Homebrew is installed"
 else
@@ -26,7 +29,7 @@ else
   exit
 fi
 
-echo "Checking whether Twine is installed"
+echo "⚙️  Checking whether Twine is installed"
 if command -v twine &> /dev/null; then
   echo "✅ Twine is installed"
 else
@@ -34,7 +37,7 @@ else
   gem install twine
 fi
 
-echo "Checking whether Mint is installed"
+echo "⚙️  Checking whether Mint is installed"
 if command -v mint &> /dev/null; then
   echo "✅ Mint is installed"
 else
@@ -42,6 +45,6 @@ else
   brew install mint
 fi
 
-echo "Bootstraping Mint dependencies"
+echo "⚙️  Bootstraping Mint dependencies"
 cd ..
 mint bootstrap
