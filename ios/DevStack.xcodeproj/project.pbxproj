@@ -395,7 +395,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4558D31920FCC900005BC325 /* Build configuration list for PBXNativeTarget "DevStack" */;
 			buildPhases = (
-				0C3E096223F6B3950051287D /* Script for SwiftLint */,
 				4558D30320FCC8FF005BC325 /* Sources */,
 				4558D30420FCC8FF005BC325 /* Frameworks */,
 				4558D30520FCC8FF005BC325 /* Resources */,
@@ -406,6 +405,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				457CD0E42991606B00F491F9 /* PBXTargetDependency */,
 				45DEBE2427A153A20075C7E2 /* PBXTargetDependency */,
 			);
 			name = DevStack;
@@ -500,6 +500,7 @@
 			packageReferences = (
 				459EF41025BF6EEF00C9DAC0 /* XCRemoteSwiftPackageReference "atlantis" */,
 				45A0EBB027ADFA210005A01E /* XCRemoteSwiftPackageReference "Resolver" */,
+				457CD0E22991603400F491F9 /* XCRemoteSwiftPackageReference "SwiftLint" */,
 			);
 			productRefGroup = 4558D30820FCC8FF005BC325 /* Products */;
 			projectDirPath = "";
@@ -534,25 +535,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0C3E096223F6B3950051287D /* Script for SwiftLint */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Script for SwiftLint";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [ $ENABLE_PREVIEWS == \"NO\" ]\nthen\n    scripts/swiftlint.sh\nfi\n";
-		};
 		453D3FCD25ED976A0094ADD7 /* Copy GoogleService-Info.plist */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -624,6 +606,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		457CD0E42991606B00F491F9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 457CD0E32991606B00F491F9 /* SwiftLintPlugin */;
+		};
 		45DEBE2427A153A20075C7E2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 45DEBE1727A153A10075C7E2 /* DevStack Widget */;
@@ -1448,6 +1434,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		457CD0E22991603400F491F9 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/SwiftLint";
+			requirement = {
+				kind = revision;
+				revision = aba0f63704a666317c2456f7be93aa90d2f14113;
+			};
+		};
 		459EF41025BF6EEF00C9DAC0 /* XCRemoteSwiftPackageReference "atlantis" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ProxymanApp/atlantis";
@@ -1590,6 +1584,11 @@
 		45702E6128422A2A008D5487 /* NetworkProvider */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = NetworkProvider;
+		};
+		457CD0E32991606B00F491F9 /* SwiftLintPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 457CD0E22991603400F491F9 /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintPlugin";
 		};
 		459C3706274B001B00536110 /* Atlantis */ = {
 			isa = XCSwiftPackageProductDependency;
