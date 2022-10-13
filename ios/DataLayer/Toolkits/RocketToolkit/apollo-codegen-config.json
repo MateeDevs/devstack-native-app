@@ -1,5 +1,5 @@
 {
-  "schemaName": "rocket",
+  "schemaName": "Rocket",
   "schemaDownloadConfiguration": {
     "downloadMethod": {
       "introspection": {
@@ -40,5 +40,8 @@
         "path": "./Sources/RocketToolkitMocks"
       }
     }
+  },
+  "options": {
+      "pruneGeneratedFiles": false
   }
 }
