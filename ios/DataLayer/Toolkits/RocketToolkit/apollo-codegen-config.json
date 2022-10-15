@@ -1,5 +1,5 @@
 {
-  "schemaName": "rocket",
+  "schemaName": "Rocket",
   "schemaDownloadConfiguration": {
     "downloadMethod": {
       "introspection": {
@@ -13,7 +13,7 @@
     },
     "downloadTimeout": 60,
     "headers": [],
-    "outputPath": "./schema.graphqls"
+    "outputPath": "../../Toolkits/RocketToolkit/schema.graphqls"
   },
   "input": {
     "operationSearchPaths": [
@@ -40,5 +40,8 @@
         "path": "./Sources/RocketToolkitMocks"
       }
     }
+  },
+  "options": {
+      "pruneGeneratedFiles": false
   }
 }
