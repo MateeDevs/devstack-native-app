@@ -6,7 +6,7 @@ object Dependency {
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
 
         object Coroutines {
-            const val version = "1.6.0-RC3"
+            const val version = "1.6.0"
 
             const val common = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
             const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
@@ -22,7 +22,7 @@ object Dependency {
     }
 
     object AndroidX {
-        const val core = "androidx.core:core-ktx:1.7.0"
+        const val core = "androidx.core:core-ktx:1.9.0"
         const val testRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         object Material {
@@ -46,8 +46,8 @@ object Dependency {
     }
 
     object Compose {
-        const val version = "1.1.1"
-        const val compilerExtensionVersion = "1.2.0-alpha01"
+        const val version = "1.3.0-rc01"
+        const val compilerExtensionVersion = version
 
         const val ui = "androidx.compose.ui:ui:$version"
         const val uiTooling = "androidx.compose.ui:ui-tooling:$version"
@@ -89,14 +89,15 @@ object Dependency {
 
 
     object Ktor {
-        private const val version = "1.6.7" // do not change until compose will has a newer kotlin version - current is 1.5.31
+        private const val version = "2.1.2"
 
         const val core = "io.ktor:ktor-client-core:$version"
         const val android = "io.ktor:ktor-client-android:$version"
         const val ios = "io.ktor:ktor-client-ios:$version"
 
         // Features https://ktor.io/docs/http-client-features.html
-        const val serialization = "io.ktor:ktor-client-serialization:$version"
+        const val serialization = "io.ktor:ktor-serialization-kotlinx-json:$version"
+        const val contentNegotiation = "io.ktor:ktor-client-content-negotiation:$version"
     }
 
     object Matee {

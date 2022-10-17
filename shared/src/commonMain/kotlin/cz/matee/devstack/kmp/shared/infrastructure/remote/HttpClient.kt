@@ -5,30 +5,26 @@ import cz.matee.devstack.kmp.shared.infrastructure.model.LoginDto
 import cz.matee.devstack.kmp.shared.system.Config
 import io.ktor.client.*
 import io.ktor.client.call.*
-import io.ktor.client.features.*
-import io.ktor.client.features.json.*
-import io.ktor.client.features.json.serializer.*
+import io.ktor.client.plugins.*
+import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
+import io.ktor.serialization.kotlinx.json.*
 import io.ktor.util.pipeline.*
+import kotlin.native.concurrent.ThreadLocal
 import kotlinx.serialization.json.Json as JsonConfig
 
 internal object HttpClient {
     private val unauthorizedEndpoints = listOf("/auth/login", "/auth/registration")
 
     fun init(authDao: AuthDao, config: Config) = HttpClient {
-
+        expectSuccess = true
         developmentMode = !config.isRelease
         followRedirects = false
 
-        install(JsonFeature) {
-            serializer = KotlinxSerializer(
-                JsonConfig {
-                    ignoreUnknownKeys = true
-                    coerceInputValues = true
-                }
-            )
+        install(ContentNegotiation) {
+            json(globalJson)
         }
 
 
@@ -87,6 +83,13 @@ internal object HttpClient {
             }
         }
     }
+}
+
+@ThreadLocal
+val globalJson = JsonConfig {
+    ignoreUnknownKeys = true
+    coerceInputValues = true
+    useAlternativeNames = false
 }
 
 class NoTokenException(url: Url) : Exception("No token provided for route ${url.fullPath}")

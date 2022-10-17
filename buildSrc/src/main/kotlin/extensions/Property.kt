@@ -10,6 +10,9 @@ fun getStringProperty(project: Project, propertyArg: String, defaultValue: Strin
 fun getIntegerProperty(project: Project, propertyArg: String, defaultValue: Int) =
     project.getPropertyValue(propertyArg, defaultValue).toInt()
 
+fun getBooleanProperty(project: Project, propertyArg: String, defaultValue: Boolean) =
+    project.getPropertyValue(propertyArg, defaultValue).toBoolean()
+
 private fun <T> Project.getPropertyValue(propertyArg: String, defaultValue: T): String {
     var value: String? = null
 

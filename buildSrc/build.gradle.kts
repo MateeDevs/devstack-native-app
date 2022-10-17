@@ -1,11 +1,21 @@
+val kotlinVersion = "1.7.10"
+val androidGradleVersion = "7.2.0"
+
+kotlinDslPluginOptions {
+    jvmTarget.set(JavaVersion.VERSION_1_8.toString())
+}
+
 plugins {
     `kotlin-dsl`
 }
+
 repositories {
-    jcenter()
+    gradlePluginPortal()
+    mavenCentral()
+    google()
 }
 
 dependencies {
-    "implementation"("org.jetbrains.kotlin:kotlin-gradle-plugin-api:1.5.31")
+    implementation("com.android.tools.build:gradle:$androidGradleVersion")
+    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
 }
-        
