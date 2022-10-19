@@ -19,16 +19,16 @@ android {
 kotlin {
     android()
 
-
     val xcf = XCFramework(Project.iosShared)
-    listOf(iosX64(), iosArm64(), iosSimulatorArm64())
-        .forEach {
-            it.binaries.framework {
+    KmmConfig.getSupportedPlatforms(this, project).forEach {
+        it.binaries.framework {
+            if (this.buildType == KmmConfig.getCurrentNativeBuildType(project)) {
                 baseName = Project.iosShared
                 isStatic = false
                 xcf.add(this)
             }
         }
+    }
 
     sourceSets {
         val commonMain by getting {
@@ -46,6 +46,10 @@ kotlin {
 
                 implementation(Dependency.Ktor.core)
                 implementation(Dependency.Ktor.serialization)
+                implementation(Dependency.Ktor.contentNegotiation)
+                implementation(Dependency.Ktor.logging)
+
+                implementation(Dependency.Kermit.core)
             }
         }
 
@@ -99,9 +103,11 @@ sqldelight {
     }
 }
 
+tasks.register("buildXCFramework") {
+    dependsOn("assemble${Project.iosShared}XCFramework")
+}
 
-tasks.create("buildXCFramework") {
-    dependsOn("assembleDevstackKmpSharedXCFramework")
+tasks.register("copyXCFramework") {
     copyXCFramework(Project.iosShared)
 }
 

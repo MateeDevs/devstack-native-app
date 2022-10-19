@@ -2,9 +2,9 @@ object Application {
     const val id = "cz.matee.devstack.kmp.android"
 
     object Sdk {
-        const val min = 21
-        const val target = 31
-        const val compile = 31
+        const val min = 23
+        const val target = 33
+        const val compile = 33
     }
 
     object Version {

@@ -5,37 +5,45 @@ import cz.matee.devstack.kmp.shared.infrastructure.model.LoginDto
 import cz.matee.devstack.kmp.shared.system.Config
 import io.ktor.client.*
 import io.ktor.client.call.*
-import io.ktor.client.features.*
-import io.ktor.client.features.json.*
-import io.ktor.client.features.json.serializer.*
+import io.ktor.client.plugins.*
+import io.ktor.client.plugins.contentnegotiation.*
+import io.ktor.client.plugins.logging.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
+import io.ktor.serialization.kotlinx.json.*
 import io.ktor.util.pipeline.*
+import kotlin.native.concurrent.ThreadLocal
 import kotlinx.serialization.json.Json as JsonConfig
+import co.touchlab.kermit.Logger as KermitLogger
 
 internal object HttpClient {
-    private val unauthorizedEndpoints = listOf("/auth/login", "/auth/registration")
+    private val unauthorizedEndpoints = listOf("/api/auth/login", "/api/auth/registration")
 
     fun init(authDao: AuthDao, config: Config) = HttpClient {
-
+        expectSuccess = true
         developmentMode = !config.isRelease
         followRedirects = false
 
-        install(JsonFeature) {
-            serializer = KotlinxSerializer(
-                JsonConfig {
-                    ignoreUnknownKeys = true
-                    coerceInputValues = true
-                }
-            )
+        install(ContentNegotiation) {
+            json(globalJson)
         }
 
+        if (!config.isRelease) {
+            install(Logging) {
+                logger = object : Logger {
+                    override fun log(message: String) {
+                        KermitLogger.d { message }
+                    }
+                }
+                level = LogLevel.ALL
+            }
+        }
 
         defaultRequest {
             url {
                 protocol = URLProtocol.HTTPS
-                host = "matee-devstack.herokuapp.com/api"
+                host = "devstack-server-production.up.railway.app"
             }
             contentType(ContentType.Application.Json)
         }
@@ -87,6 +95,13 @@ internal object HttpClient {
             }
         }
     }
+}
+
+@ThreadLocal
+val globalJson = JsonConfig {
+    ignoreUnknownKeys = true
+    coerceInputValues = true
+    useAlternativeNames = false
 }
 
 class NoTokenException(url: Url) : Exception("No token provided for route ${url.fullPath}")

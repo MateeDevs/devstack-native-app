@@ -12,7 +12,7 @@ import io.ktor.client.HttpClient
 import io.ktor.client.request.*
 
 internal object AuthPaths {
-    private const val root = "/auth"
+    private const val root = "/api/auth"
     const val login = "$root/login"
     const val registration = "$root/registration"
 }
@@ -22,18 +22,16 @@ internal class AuthService(private val client: HttpClient) {
 
     suspend fun login(body: LoginRequest): Result<LoginDto> =
         runCatchingAuthNetworkExceptions {
-            client.post<LoginDto>(
-                path = AuthPaths.login,
-                body = body
-            ) resultsTo Success
+            client.post(AuthPaths.login) {
+                setBody(body)
+            } resultsTo Success
         }
 
 
     suspend fun register(body: RegistrationRequest): Result<RegistrationDto> =
         runCatchingAuthNetworkExceptions {
-            client.post<RegistrationDto>(
-                path = AuthPaths.registration,
-                body = body
-            ) resultsTo Success
+            client.post(AuthPaths.registration) {
+                setBody(body)
+            } resultsTo Success
         }
 }

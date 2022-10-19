@@ -1,9 +1,16 @@
+import extensions.getStringProperty
+import extensions.getBooleanProperty
+import org.gradle.api.Project
+import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
+import org.jetbrains.kotlin.gradle.plugin.mpp.NativeBuildType
+
 const val TWINE_HOME_FOLDER_ARG = "twineLocalizationFolder"
 const val WINDOWS_PROJECT_HOME_FOLDER_ARG = "projectHomeFolder"
 const val GITHUB_USER = "githubUser"
 const val GITHUB_PAT = "githubPAT"
 
-const val kotlinVersion = "1.6.10"
+const val kotlinVersion = "1.7.10"
 
 object Project {
     const val shared = ":shared"
@@ -28,4 +35,34 @@ object GradlePlugins {
     const val kotlinSerialization = "org.jetbrains.kotlin:kotlin-serialization:1.3.1"
     const val safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:${safeArgsVersion}"
     const val sqlDelight = "com.squareup.sqldelight:gradle-plugin:$sqlDelightVersion"
+}
+
+object KmmConfig {
+    private fun getXCodeConfiguration(project: Project): String =
+        getStringProperty(project, "XCODE_CONFIGURATION", "release")
+
+    private fun isCIBuild(project: Project): Boolean = getBooleanProperty(project, "CI", false)
+
+    fun getCurrentNativeBuildType(project: Project): NativeBuildType {
+        val xCodeConfiguration = getXCodeConfiguration(project)
+        println("XCODE_CONFIGURATION: $xCodeConfiguration")
+        return when (getXCodeConfiguration(project)) {
+            "Release" -> NativeBuildType.RELEASE
+            "Debug" -> NativeBuildType.DEBUG
+            else -> NativeBuildType.RELEASE
+        }
+    }
+
+
+    val KotlinNativeTarget.asMainSourceSetName: String
+        get() = "${this.name}Main"
+
+    fun getSupportedPlatforms(extensions: KotlinMultiplatformExtension, project: Project) =
+        with(extensions) {
+            println("isCIBuild ${isCIBuild(project)}")
+            if (isCIBuild(project))
+                listOf(iosArm64())
+            else
+                listOf(iosX64(), iosArm64(), iosSimulatorArm64())
+        }
 }

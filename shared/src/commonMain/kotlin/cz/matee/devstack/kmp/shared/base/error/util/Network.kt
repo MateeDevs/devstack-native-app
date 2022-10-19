@@ -5,7 +5,7 @@ import cz.matee.devstack.kmp.shared.base.error.domain.AuthError
 import cz.matee.devstack.kmp.shared.base.error.domain.BackendError
 import cz.matee.devstack.kmp.shared.base.error.domain.CommonError
 import cz.matee.devstack.kmp.shared.infrastructure.remote.AuthPaths
-import io.ktor.client.features.*
+import io.ktor.client.plugins.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
 
