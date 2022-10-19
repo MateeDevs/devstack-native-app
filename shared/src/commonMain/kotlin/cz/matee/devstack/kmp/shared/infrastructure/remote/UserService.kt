@@ -11,7 +11,7 @@ import io.ktor.client.HttpClient
 import io.ktor.client.request.*
 
 internal object UserPaths {
-    private const val root = "/user"
+    private const val root = "/api/user"
     const val users = root
     fun user(id: String) = "$root/$id"
 }

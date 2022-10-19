@@ -98,6 +98,12 @@ object Dependency {
         // Features https://ktor.io/docs/http-client-features.html
         const val serialization = "io.ktor:ktor-serialization-kotlinx-json:$version"
         const val contentNegotiation = "io.ktor:ktor-client-content-negotiation:$version"
+        const val logging = "io.ktor:ktor-client-logging:$version"
+    }
+
+    object Kermit {
+        private const val version = "1.1.2"
+        const val core = "co.touchlab:kermit:$version"
     }
 
     object Matee {

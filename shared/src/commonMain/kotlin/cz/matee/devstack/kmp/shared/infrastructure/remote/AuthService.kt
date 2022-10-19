@@ -12,7 +12,7 @@ import io.ktor.client.HttpClient
 import io.ktor.client.request.*
 
 internal object AuthPaths {
-    private const val root = "/auth"
+    private const val root = "/api/auth"
     const val login = "$root/login"
     const val registration = "$root/registration"
 }

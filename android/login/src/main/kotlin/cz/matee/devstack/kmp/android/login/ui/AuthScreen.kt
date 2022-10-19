@@ -39,7 +39,13 @@ fun AuthScreen(navHostController: NavHostController) {
     val authVm = getViewModel<AuthViewModel>()
     val scope = rememberCoroutineScope()
     val snackBarState = remember { SnackbarHostState() }
-    val loginState = remember { AuthState() }
+    val loginState =
+        remember {
+            AuthState().apply {
+                emailValue = TextFieldValue("petr.chmelar@matee.cz")
+                passwordValue = TextFieldValue("11111111")
+            }
+        }
     val registerState = remember { AuthState() }
     var authScreen by remember { mutableStateOf(AuthScreen.Login) }
     val isLoading by authVm[LoginViewModelState::loading].collectAsState(initial = false)

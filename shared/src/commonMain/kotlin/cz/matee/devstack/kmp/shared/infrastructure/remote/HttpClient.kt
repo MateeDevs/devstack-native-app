@@ -7,6 +7,7 @@ import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.contentnegotiation.*
+import io.ktor.client.plugins.logging.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
@@ -14,9 +15,10 @@ import io.ktor.serialization.kotlinx.json.*
 import io.ktor.util.pipeline.*
 import kotlin.native.concurrent.ThreadLocal
 import kotlinx.serialization.json.Json as JsonConfig
+import co.touchlab.kermit.Logger as KermitLogger
 
 internal object HttpClient {
-    private val unauthorizedEndpoints = listOf("/auth/login", "/auth/registration")
+    private val unauthorizedEndpoints = listOf("/api/auth/login", "/api/auth/registration")
 
     fun init(authDao: AuthDao, config: Config) = HttpClient {
         expectSuccess = true
@@ -27,11 +29,21 @@ internal object HttpClient {
             json(globalJson)
         }
 
+        if (!config.isRelease) {
+            install(Logging) {
+                logger = object : Logger {
+                    override fun log(message: String) {
+                        KermitLogger.d { message }
+                    }
+                }
+                level = LogLevel.ALL
+            }
+        }
 
         defaultRequest {
             url {
                 protocol = URLProtocol.HTTPS
-                host = "matee-devstack.herokuapp.com/api"
+                host = "devstack-server-production.up.railway.app"
             }
             contentType(ContentType.Application.Json)
         }

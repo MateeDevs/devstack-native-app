@@ -47,6 +47,9 @@ kotlin {
                 implementation(Dependency.Ktor.core)
                 implementation(Dependency.Ktor.serialization)
                 implementation(Dependency.Ktor.contentNegotiation)
+                implementation(Dependency.Ktor.logging)
+
+                implementation(Dependency.Kermit.core)
             }
         }
 
