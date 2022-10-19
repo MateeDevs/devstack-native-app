@@ -41,7 +41,7 @@ object KmmConfig {
     private fun getXCodeConfiguration(project: Project): String =
         getStringProperty(project, "XCODE_CONFIGURATION", "release")
 
-    private fun isCIBuild(project: Project): Boolean = getBooleanProperty(project, "CI", false)
+    private fun isArm64Only(project: Project): Boolean = getBooleanProperty(project, "ARM64_ONLY", false)
 
     fun getCurrentNativeBuildType(project: Project): NativeBuildType {
         val xCodeConfiguration = getXCodeConfiguration(project)
@@ -59,8 +59,8 @@ object KmmConfig {
 
     fun getSupportedPlatforms(extensions: KotlinMultiplatformExtension, project: Project) =
         with(extensions) {
-            println("isCIBuild ${isCIBuild(project)}")
-            if (isCIBuild(project))
+            println("isArm64Only ${isArm64Only(project)}")
+            if (isArm64Only(project))
                 listOf(iosArm64())
             else
                 listOf(iosX64(), iosArm64(), iosSimulatorArm64())
