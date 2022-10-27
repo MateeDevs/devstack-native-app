@@ -11,6 +11,16 @@ object Dependency {
             const val common = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
             const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
         }
+
+        object DateTime {
+            const val version = "0.4.0"
+            const val core = "org.jetbrains.kotlinx:kotlinx-datetime:$version"
+        }
+
+        object AtomicFU {
+            private const val version = "0.18.3"
+            const val core = "org.jetbrains.kotlinx:atomicfu:$version"
+        }
     }
 
     object Koin {

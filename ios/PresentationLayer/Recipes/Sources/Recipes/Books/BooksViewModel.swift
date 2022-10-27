@@ -10,48 +10,75 @@ import SwiftUI
 import UIToolkit
 
 final class BooksViewModel: BaseViewModel, ViewModel, ObservableObject {
-    
+
     // MARK: Dependencies
     private weak var flowController: FlowController?
-    
+
     @Injected private(set) var getBooksUseCase: GetBooksUseCase
     @Injected private(set) var refreshBooksUseCase: RefreshBooksUseCase
 
     init(flowController: FlowController?) {
         self.flowController = flowController
         super.init()
+
+        // start book observing
+        onIntent(Intent.startBookObserving)
     }
-    
+
     // MARK: Lifecycle
-    
+
     override func onAppear() {
         super.onAppear()
-        executeTask(Task { await loadBooks() })
+        onIntent(Intent.refreshBooks)
     }
-    
+
     // MARK: State
-    
+
     @Published private(set) var state: State = State()
 
     struct State {
-        var isLoading: Bool = false
+        var isLoading: Bool = true
         var books: [Book] = []
     }
-    
+
     // MARK: Intent
+
     enum Intent {
+        case startBookObserving
+        case refreshBooks
     }
 
-    func onIntent(_ intent: Intent) {}
-    
+    func onIntent(_ intent: Intent) {
+        executeTask(Task {
+            switch intent {
+            case .startBookObserving: await observeBooks()
+            case .refreshBooks: await refreshBooks()
+            }
+        })
+    }
+
     // MARK: Private
-    
-    private func loadBooks() async {
+
+    private func observeBooks() async {
         do {
-            state.isLoading = true
-            state.books = try await getBooksUseCase.execute()
-            try await refreshBooksUseCase.execute(page: 0)
-            state.isLoading = false
-        } catch {}
+            for try await books: [Book] in getBooksUseCase.execute() {
+                if !books.isEmpty {
+                    // Just for demo purpose:
+                    // We have only simple stream and first value is empty db..
+                    // therefore I'll wait until we receive non empty list
+                    state.isLoading = false
+                }
+                state.books = books
+            }
+        } catch {
+
+        }
+    }
+
+    private func refreshBooks() async {
+        do {
+            try await refreshBooksUseCase.execute(params: 0)
+        } catch {
+        }
     }
 }

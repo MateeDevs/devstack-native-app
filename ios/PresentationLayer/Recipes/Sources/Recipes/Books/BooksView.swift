@@ -7,13 +7,13 @@ import SwiftUI
 import UIToolkit
 
 struct BooksView: View {
-    
+
     @ObservedObject private var viewModel: BooksViewModel
-    
+
     init(viewModel: BooksViewModel) {
         self.viewModel = viewModel
     }
-    
+
     var body: some View {
         return VStack {
             if viewModel.state.books.isEmpty && viewModel.state.isLoading {
