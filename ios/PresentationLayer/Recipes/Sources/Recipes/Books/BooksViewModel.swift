@@ -22,14 +22,16 @@ final class BooksViewModel: BaseViewModel, ViewModel, ObservableObject {
         super.init()
 
         // start book observing
-        onIntent(Intent.startBookObserving)
+        executeTask(Task {
+            await observeBooks()
+        })
     }
 
     // MARK: Lifecycle
 
     override func onAppear() {
         super.onAppear()
-        onIntent(Intent.refreshBooks)
+        onIntent(.refreshBooks)
     }
 
     // MARK: State
@@ -44,14 +46,12 @@ final class BooksViewModel: BaseViewModel, ViewModel, ObservableObject {
     // MARK: Intent
 
     enum Intent {
-        case startBookObserving
         case refreshBooks
     }
 
     func onIntent(_ intent: Intent) {
         executeTask(Task {
             switch intent {
-            case .startBookObserving: await observeBooks()
             case .refreshBooks: await refreshBooks()
             }
         })
@@ -60,18 +60,14 @@ final class BooksViewModel: BaseViewModel, ViewModel, ObservableObject {
     // MARK: Private
 
     private func observeBooks() async {
-        do {
-            for try await books: [Book] in getBooksUseCase.execute() {
-                if !books.isEmpty {
-                    // Just for demo purpose:
-                    // We have only simple stream and first value is empty db..
-                    // therefore I'll wait until we receive non empty list
-                    state.isLoading = false
-                }
-                state.books = books
+        for try await books: [Book] in getBooksUseCase.execute() {
+            if !books.isEmpty {
+                // Just for demo purpose:
+                // We have only simple stream and first value is empty db..
+                // therefore I'll wait until we receive non empty list
+                state.isLoading = false
             }
-        } catch {
-
+            state.books = books
         }
     }
 
