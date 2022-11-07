@@ -7,6 +7,7 @@ import cz.matee.devstack.kmp.shared.domain.repository.BookRepository
 import cz.matee.devstack.kmp.shared.infrastructure.local.BookEntity
 import cz.matee.devstack.kmp.shared.util.extension.asDomain
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import kotlin.random.Random
 import kotlin.random.nextInt

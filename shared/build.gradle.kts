@@ -34,6 +34,9 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(Dependency.Kotlin.Coroutines.common)
+                implementation(Dependency.Kotlin.AtomicFU.core)
+                implementation(Dependency.Kotlin.DateTime.core)
+
                 implementation(Dependency.Koin.core)
 
                 implementation(Dependency.Settings.core)

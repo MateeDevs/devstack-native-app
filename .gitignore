@@ -27,3 +27,4 @@ thumbs.db
 **/src/debug/res/**/ic_launcher_round.png
 **/src/uat/res/**/ic_launcher.png
 **/src/uat/res/**/ic_launcher_round.png
+ios/.idea
