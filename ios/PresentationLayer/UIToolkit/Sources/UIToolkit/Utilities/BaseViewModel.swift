@@ -12,7 +12,7 @@ open class BaseViewModel {
     
     /// All tasks that are currently executed
     public private(set) var tasks: [Task<Void, Never>] = []
-
+    
     public init() {
         Logger.lifecycle.info("\(type(of: self)) initialized")
     }
