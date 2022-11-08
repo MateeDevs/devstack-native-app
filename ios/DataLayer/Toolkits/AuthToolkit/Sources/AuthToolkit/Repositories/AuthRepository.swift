@@ -7,21 +7,25 @@ import DatabaseProvider
 import KeychainProvider
 import NetworkProvider
 import SharedDomain
+import UserDefaultsProvider
 
 public struct AuthRepositoryImpl: AuthRepository {
     
     private let database: DatabaseProvider
     private let keychain: KeychainProvider
     private let network: NetworkProvider
+    private let userDefaults: UserDefaultsProvider
     
     public init(
         databaseProvider: DatabaseProvider,
         keychainProvider: KeychainProvider,
-        networkProvider: NetworkProvider
+        networkProvider: NetworkProvider,
+        userDefaultsProvider: UserDefaultsProvider
     ) {
         database = databaseProvider
         keychain = keychainProvider
         network = networkProvider
+        userDefaults = userDefaultsProvider
     }
     
     public func login(_ data: LoginData) async throws {
@@ -30,6 +34,7 @@ public struct AuthRepositoryImpl: AuthRepository {
             let authToken = try await network.request(AuthAPI.login(data), withInterceptor: false).map(NETAuthToken.self).domainModel
             try keychain.update(.authToken, value: authToken.token)
             try keychain.update(.userId, value: authToken.userId)
+            try userDefaults.update(.userId, value: authToken.userId)
         } catch let NetworkProviderError.requestFailed(statusCode, _) where statusCode == .unathorized {
             throw AuthError.login(.invalidCredentials)
         } catch {

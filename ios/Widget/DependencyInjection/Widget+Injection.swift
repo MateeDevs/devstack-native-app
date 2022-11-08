@@ -10,33 +10,44 @@ import NetworkProvider
 import Resolver
 import SharedDomain
 import UserDefaultsProvider
+import UserToolkit
 
 public extension Resolver {
     static func registerDependencies() {
         // UseCases
-        register { IsUserLoggedUseCaseImpl(getProfileIdUseCase: resolve()) as IsUserLoggedUseCase }
         register { GetProfileIdUseCaseImpl(authRepository: resolve()) as GetProfileIdUseCase }
+        register { GetUserUseCaseImpl(userRepository: resolve()) as GetUserUseCase }
+        register { GetProfileUseCaseImpl(getProfileIdUseCase: resolve(), getUserUseCase: resolve()) as GetProfileUseCase }
         
         // Repositories
         register {
             AuthRepositoryImpl(
                 databaseProvider: resolve(),
                 keychainProvider: resolve(),
-                networkProvider: resolve()
+                networkProvider: resolve(),
+                userDefaultsProvider: resolve()
             ) as AuthRepository
+        }
+        
+        register {
+            UserRepositoryImpl(
+                databaseProvider: resolve(),
+                networkProvider: resolve()
+            ) as UserRepository
         }
         
         // Providers
         register { RealmDatabaseProvider() as DatabaseProvider }
         register { SystemKeychainProvider() as KeychainProvider }
         
-        register { SystemNetworkProvider(
-            readAuthToken: {
-                let keychainProvider: KeychainProvider = Resolver.resolve()
-                return try keychainProvider.read(.authToken)
-            },
-            delegate: nil
-        ) as NetworkProvider
+        register {
+            SystemNetworkProvider(
+                readAuthToken: {
+                    let keychainProvider: KeychainProvider = Resolver.resolve()
+                    return try keychainProvider.read(.authToken)
+                },
+                delegate: nil
+            ) as NetworkProvider
         }
         
         register { SystemUserDefaultsProvider() as UserDefaultsProvider }

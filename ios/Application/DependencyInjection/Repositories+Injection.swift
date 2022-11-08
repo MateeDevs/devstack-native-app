@@ -21,7 +21,8 @@ public extension Resolver {
             AuthRepositoryImpl(
                 databaseProvider: resolve(),
                 keychainProvider: resolve(),
-                networkProvider: resolve()
+                networkProvider: resolve(),
+                userDefaultsProvider: resolve()
             ) as AuthRepository
         }
         
