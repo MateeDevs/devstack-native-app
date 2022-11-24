@@ -7,16 +7,20 @@ import SwiftUI
 
 struct ToastView: View {
     
-    var type: ToastStyle
-    var title: String
+    private let data: ToastData
+    
+    init(_ data: ToastData) {
+        self.data = data
+    }
     
     var body: some View {
         VStack(alignment: .center) {
             HStack(alignment: .top) {
-                type.image
-                    .foregroundColor(type.color)
+                data.style.image
+                    .foregroundColor(data.style.color)
                 
-                Text(title)
+                Text(data.title)
+                    .foregroundColor(AppTheme.Colors.text)
                     .font(.system(size: 14, weight: .semibold))
             }
             .padding()
@@ -24,7 +28,6 @@ struct ToastView: View {
         .background(
             Capsule()
                 .fill(.white)
-                .frame(width: .infinity)
                 .clipped()
         )
         .frame(minWidth: 0, maxWidth: .infinity)
@@ -32,3 +35,15 @@ struct ToastView: View {
         .padding(.horizontal, 16)
     }
 }
+
+#if DEBUG
+struct ToastView_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            ToastView(ToastData("Info", style: .info, hideAfter: 1))
+            ToastView(ToastData("Success", style: .success, hideAfter: 1))
+            ToastView(ToastData("Error", style: .error, hideAfter: 1))
+        }
+    }
+}
+#endif

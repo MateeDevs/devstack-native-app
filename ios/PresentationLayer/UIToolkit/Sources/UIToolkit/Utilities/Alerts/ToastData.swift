@@ -6,24 +6,24 @@
 import Foundation
 import SwiftUI
 
-public struct ToastData {
+public struct ToastData: Equatable {
     let style: ToastStyle
     let title: String
     let hideAfter: TimeInterval
     
-    init(_ title: String, style: ToastStyle = .info, hideAfter: TimeInterval = 0.0) {
+    public init(_ title: String, style: ToastStyle = .info, hideAfter: TimeInterval = 0.0) {
         self.title = title
         self.style = style
         self.hideAfter = hideAfter
     }
     
-    init(error: String, style: ToastStyle = .error, hideAfter: TimeInterval = 2.5) {
+    public init(error: String, style: ToastStyle = .error, hideAfter: TimeInterval = 2.5) {
         self.title = error
         self.style = style
         self.hideAfter = hideAfter
     }
     
-    static func == (lhs: ToastData, rhs: ToastData) -> Bool {
+    public static func == (lhs: ToastData, rhs: ToastData) -> Bool {
         lhs.title == rhs.title &&
         lhs.style == rhs.style &&
         lhs.hideAfter == rhs.hideAfter

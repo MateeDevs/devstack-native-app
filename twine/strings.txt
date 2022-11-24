@@ -831,6 +831,19 @@
 		cs = Zobrazit
 		en = Show
 		sk = Zobraziť
+    [counter_view_load_toast_message]
+        cs = Počítadlo zobrazeno
+        en = Counter displayed
+        sk = Počítadlo zobrazeno
+    [counter_view_increased_toast_message]
+        cs = Zvýšeno
+        en = Increased
+        sk = Zvýšeno
+    [counter_view_decreased_toast_message]
+        cs = Sníženo
+        en = Decreased
+        sk = Sníženo
+
 
 [[Recipes view]]
 	[recipes_view_toolbar_title]
