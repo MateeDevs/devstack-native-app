@@ -34,7 +34,7 @@ final class MainFlowController: FlowController, ProfileFlowControllerDelegate {
         let usersNC = BaseNavigationController()
         usersNC.tabBarItem = UITabBarItem(
             title: L10n.bottom_bar_item_1,
-            image: Asset.Images.usersTabBar.image,
+            image: Asset.Images.usersTabBar.uiImage,
             tag: MainTab.users.rawValue
         )
         let usersFC = UsersFlowController(navigationController: usersNC)
@@ -47,7 +47,7 @@ final class MainFlowController: FlowController, ProfileFlowControllerDelegate {
         let profileNC = BaseNavigationController()
         profileNC.tabBarItem = UITabBarItem(
             title: L10n.bottom_bar_item_2,
-            image: Asset.Images.profileTabBar.image,
+            image: Asset.Images.profileTabBar.uiImage,
             tag: MainTab.profile.rawValue
         )
         let profileFC = ProfileFlowController(navigationController: profileNC)
@@ -61,7 +61,7 @@ final class MainFlowController: FlowController, ProfileFlowControllerDelegate {
         let recipesNC = BaseNavigationController()
         recipesNC.tabBarItem = UITabBarItem(
             title: L10n.bottom_bar_item_3,
-            image: Asset.Images.recipesTabBar.image,
+            image: Asset.Images.recipesTabBar.uiImage,
             tag: MainTab.recipes.rawValue
         )
         let recipesFC = RecipesFlowController(navigationController: recipesNC)

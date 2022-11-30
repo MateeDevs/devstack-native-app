@@ -12,11 +12,11 @@ public enum AppTheme {
     public enum Colors {
         
         // Main colors
-        public static let primaryColor = Color(Asset.Colors.mateeYellow.color)
-        public static let secondaryColor = Color(Asset.Colors.mateeBlue.color)
+        public static let primaryColor = Asset.Colors.mateeYellow.color
+        public static let secondaryColor = Asset.Colors.mateeBlue.color
         
         // Navigation bar
-        public static let navBarBackground = Color(Asset.Colors.mateeYellow.color)
+        public static let navBarBackground = Asset.Colors.mateeYellow.color
         public static let navBarTitle = Color.white
         
         // Backgrounds
@@ -24,20 +24,20 @@ public enum AppTheme {
         
         // Texts
         public static let text = Color(UIColor.label)
-        public static let headlineText = Color(Asset.Colors.mateeYellow.color)
+        public static let headlineText = Asset.Colors.mateeYellow.color
         
         // Text fields
         public static let textFieldTitle = Color(UIColor.systemGray)
         public static let textFieldBorder = Color(UIColor.systemGray4)
         
         // Buttons
-        public static let primaryButtonBackground = Color(Asset.Colors.mateeYellow.color)
+        public static let primaryButtonBackground = Asset.Colors.mateeYellow.color
         public static let primaryButtonTitle = Color.white
         public static let secondaryButtonBackground = Color.clear
-        public static let secondaryButtonTitle = Color(Asset.Colors.mateeYellow.color)
+        public static let secondaryButtonTitle = Asset.Colors.mateeYellow.color
         
         // ProgressView
-        public static let progressView = Color(Asset.Colors.mateeYellow.color)
+        public static let progressView = Asset.Colors.mateeYellow.color
         
         // Whisper
         public static let whisperBackgroundInfo = Color.gray
