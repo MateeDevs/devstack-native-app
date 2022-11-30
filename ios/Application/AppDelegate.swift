@@ -110,11 +110,12 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         let userDefaultsProvider: UserDefaultsProvider = Resolver.resolve()
         
         do {
-            let hasRunBefore: Bool = try userDefaultsProvider.read(.hasRunBefore)
-            if !hasRunBefore {
+            let _: Bool = try userDefaultsProvider.read(.hasRunBefore)
+        } catch UserDefaultsProviderError.valueForKeyNotFound {
+            do {
                 try keychainProvider.deleteAll()
                 try userDefaultsProvider.update(.hasRunBefore, value: true)
-            }
+            } catch {}
         } catch {}
     }
     

@@ -117,7 +117,7 @@ platform :ios do
       archive_path: "#{config[:output_name]}.xcarchive",
       output_directory: "./ipa",
       output_name: config[:output_name],
-      xcargs: "-allowProvisioningUpdates -authenticationKeyID #{config[:api_key_id]} -authenticationKeyIssuerID #{config[:api_key_issuer_id]} -authenticationKeyPath #{config[:api_key_path]}"
+      xcargs: "-skipPackagePluginValidation -allowProvisioningUpdates -authenticationKeyID #{config[:api_key_id]} -authenticationKeyIssuerID #{config[:api_key_issuer_id]} -authenticationKeyPath #{config[:api_key_path]}"
     )
   end
 
@@ -193,7 +193,8 @@ platform :ios do
   desc "Run tests"
   private_lane :tests do |config|
   run_tests(
-    scheme: config[:scheme]
+    scheme: config[:scheme],
+    xcargs: "-skipPackagePluginValidation"
   )
   end
 
