@@ -1,7 +1,7 @@
 package cz.matee.devstack.kmp.android.login.vm
 
-import cz.matee.and.core.system.BaseStateViewModel
-import cz.matee.and.core.system.State
+import cz.matee.devstack.kmp.android.shared.core.system.BaseStateViewModel
+import cz.matee.devstack.kmp.android.shared.core.system.State
 import cz.matee.devstack.kmp.shared.base.ErrorResult
 import cz.matee.devstack.kmp.shared.base.Result
 import cz.matee.devstack.kmp.shared.domain.usecase.LoginUseCase

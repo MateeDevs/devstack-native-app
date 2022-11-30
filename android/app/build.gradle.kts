@@ -103,8 +103,6 @@ dependencies {
     implementation(Dependency.Kotlin.stdlib)
     implementation(Dependency.AndroidX.core)
 
-    implementation(Dependency.Matee.Core.compose)
-
     implementation(Dependency.Compose.ui)
     implementation(Dependency.Compose.foundation)
     implementation(Dependency.Compose.material)
