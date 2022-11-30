@@ -1,4 +1,3 @@
-import extensions.getStringProperty
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import tools.Twine
 
@@ -21,14 +20,6 @@ allprojects {
         google()
         mavenCentral()
         jcenter() // TODO remove as soon as ve get rid of all of the dependencies
-        maven {
-            name = "Core"
-            url = uri("https://maven.pkg.github.com/MateeDevs/core-and-lib")
-            credentials {
-                username = getStringProperty(project, GITHUB_USER, "unknown")
-                password = getStringProperty(project, GITHUB_PAT, "unknown")
-            }
-        }
     }
 
     tasks.withType<KotlinCompile> {

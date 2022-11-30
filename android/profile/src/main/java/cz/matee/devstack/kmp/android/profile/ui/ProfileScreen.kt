@@ -13,8 +13,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.navigation.NavHostController
 import com.example.profile.R
-import cz.matee.and.core.ui.util.LocalLocationPermissionHandler
-import cz.matee.and.core.util.get
+import cz.matee.devstack.kmp.android.shared.core.ui.util.LocalLocationPermissionHandler
+import cz.matee.devstack.kmp.android.shared.core.util.get
 import cz.matee.devstack.kmp.android.profile.vm.ProfileViewModel
 import cz.matee.devstack.kmp.android.shared.style.Values
 import cz.matee.devstack.kmp.android.shared.ui.ScreenTitle
@@ -22,7 +22,6 @@ import cz.matee.devstack.kmp.android.shared.util.composition.LocalScaffoldPaddin
 import cz.matee.devstack.kmp.android.shared.util.extension.getViewModel
 import cz.matee.devstack.kmp.android.shared.util.extension.showIn
 import cz.matee.devstack.kmp.shared.domain.model.User
-import kotlinx.coroutines.flow.collect
 import cz.matee.devstack.kmp.android.profile.vm.ProfileViewModel.ViewState as State
 
 @OptIn(ExperimentalMaterialApi::class)

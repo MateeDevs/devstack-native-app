@@ -1,9 +1,9 @@
 package cz.matee.devstack.kmp.android.profile.vm
 
 import androidx.navigation.NavHostController
-import cz.matee.and.core.system.BaseStateViewModel
-import cz.matee.and.core.system.State
-import cz.matee.and.core.util.launchOnMain
+import cz.matee.devstack.kmp.android.shared.core.system.BaseStateViewModel
+import cz.matee.devstack.kmp.android.shared.core.system.State
+import cz.matee.devstack.kmp.android.shared.core.util.launchOnMain
 import cz.matee.devstack.kmp.android.shared.domain.usecase.GetLocationFlowUseCase
 import cz.matee.devstack.kmp.android.shared.navigation.Feature
 import cz.matee.devstack.kmp.shared.base.ErrorResult
@@ -18,7 +18,6 @@ import cz.matee.devstack.kmp.shared.domain.usecase.user.GetLoggedInUserUseCase
 import cz.matee.devstack.kmp.shared.domain.usecase.user.UpdateUserUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.collect
 
 class ProfileViewModel(
     private val getLoggedInUser: GetLoggedInUserUseCase,

@@ -121,7 +121,7 @@ object Dependency {
             private const val version = "1.0.0-rc8"
 
             //            const val core = "cz.matee.and:core-compose:$version"
-            const val compose = "cz.matee.and:core-compose:$version"
+//            const val compose = "cz.matee.and:core-compose:$version"
         }
     }
 

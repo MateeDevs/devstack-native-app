@@ -7,9 +7,9 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.core.view.WindowCompat
 import com.google.accompanist.insets.ExperimentalAnimatedInsets
 import com.google.accompanist.insets.ProvideWindowInsets
-import cz.matee.and.core.system.BaseActivity
-import cz.matee.and.core.ui.util.LocalLocationPermissionHandler
-import cz.matee.and.core.ui.util.rememberLocationPermissionRequest
+import cz.matee.devstack.kmp.android.shared.core.system.BaseActivity
+import cz.matee.devstack.kmp.android.shared.core.ui.util.LocalLocationPermissionHandler
+import cz.matee.devstack.kmp.android.shared.core.ui.util.rememberLocationPermissionRequest
 import cz.matee.devstack.kmp.android.di.initDependencyInjection
 import cz.matee.devstack.kmp.android.shared.style.AppTheme
 import cz.matee.devstack.kmp.android.ui.Root

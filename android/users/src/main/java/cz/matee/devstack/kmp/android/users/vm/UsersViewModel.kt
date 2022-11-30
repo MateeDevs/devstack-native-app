@@ -2,8 +2,8 @@ package cz.matee.devstack.kmp.android.users.vm
 
 import androidx.lifecycle.viewModelScope
 import androidx.paging.*
-import cz.matee.and.core.system.BaseStateViewModel
-import cz.matee.and.core.system.State
+import cz.matee.devstack.kmp.android.shared.core.system.BaseStateViewModel
+import cz.matee.devstack.kmp.android.shared.core.system.State
 import cz.matee.devstack.kmp.android.users.data.UserPagingMediator
 import cz.matee.devstack.kmp.android.users.data.UsersPagingSource
 import cz.matee.devstack.kmp.shared.base.ErrorResult
