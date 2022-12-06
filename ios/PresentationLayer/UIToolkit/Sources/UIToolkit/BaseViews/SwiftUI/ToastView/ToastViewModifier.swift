@@ -7,7 +7,7 @@ import SwiftUI
 
 struct ToastViewModifier: ViewModifier {
     
-    @Binding var toastData: ToastData?
+    @Binding private(set) var toastData: ToastData?
     @State private var workItem: DispatchWorkItem?
     
     func body(content: Content) -> some View {
@@ -24,7 +24,7 @@ struct ToastViewModifier: ViewModifier {
             }
     }
     
-    @ViewBuilder func mainToastView() -> some View {
+    @ViewBuilder private func mainToastView() -> some View {
         if let toastData = toastData {
             VStack {
                 Spacer()

@@ -35,9 +35,9 @@ public enum ToastStyle {
     
     var color: Color {
         switch self {
-        case .info: return AppTheme.Colors.whisperBackgroundInfo
-        case .success: return AppTheme.Colors.whisperBackgroundSuccess
-        case .error: return AppTheme.Colors.whisperBackgroundError
+        case .info: return AppTheme.Colors.toastInfoColor
+        case .success: return AppTheme.Colors.toastSuccessColor
+        case .error: return AppTheme.Colors.toastErrorColor
         }
     }
     

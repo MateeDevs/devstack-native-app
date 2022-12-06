@@ -33,7 +33,7 @@ public extension View {
 }
 
 public extension View {
-    func toastView(toastData: Binding<ToastData?>) -> some View {
-        self.modifier(ToastViewModifier(toastData: toastData))
+    func toastView(_ toastData: Binding<ToastData?>) -> some View {
+        modifier(ToastViewModifier(toastData: toastData))
     }
 }
