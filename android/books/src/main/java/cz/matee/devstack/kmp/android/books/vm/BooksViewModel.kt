@@ -23,6 +23,7 @@ class BooksViewModel(
 
     override suspend fun applyIntent(intent: BooksIntent) {
         TODO("Not yet implemented")
+        Timber.d("going to change A")
     }
 }
 
