@@ -19,6 +19,8 @@ class BooksViewModel(
     private val refreshBooks: RefreshBooksUseCase
 ) : BaseIntentViewModel<BooksState, BooksIntent>(BooksState()) {
 
+    val coolVar = "cool"
+
     private val _errorFlow = MutableSharedFlow<ErrorResult>()
     val errorFlow: Flow<ErrorResult> get() = _errorFlow
 
