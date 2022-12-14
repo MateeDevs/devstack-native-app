@@ -6,6 +6,7 @@ import cz.matee.devstack.kmp.android.shared.vm.VmState
 import cz.matee.devstack.kmp.shared.base.ErrorResult
 import cz.matee.devstack.kmp.shared.domain.usecase.book.GetBooksUseCase
 import cz.matee.devstack.kmp.shared.domain.usecase.book.RefreshBooksUseCase
+import cz.matee.devstack.kmp.shared.system.Log
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 
@@ -23,6 +24,7 @@ class BooksViewModel(
 
     override suspend fun applyIntent(intent: BooksIntent) {
         TODO("Not yet implemented")
+        Log.d("test", "going to change A")
     }
 }
 
