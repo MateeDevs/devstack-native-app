@@ -14,24 +14,24 @@ struct ToastViewModifier: ViewModifier {
         content
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .overlay(
-                mainToastView()
+                mainToastView
                     .offset(y: -30)
                     .animation(.spring(), value: toastData)
             )
-            .onChange(of: toastData) { _ in
-                showToast()
-            }
+        .onChange(of: toastData) { _ in
+            showToast()
+        }
+            
     }
     
-    @ViewBuilder
-    private func mainToastView() -> some View {
-        if let toastData = toastData {
-            VStack {
-                Spacer()
+    private var mainToastView: some View {
+        VStack {
+            Spacer()
+            if let toastData = toastData {
                 ToastView(ToastData(toastData.title, style: toastData.style))
             }
-            .transition(.move(edge: .bottom))
         }
+        .transition(.opacity)
     }
     
     private func showToast() {
