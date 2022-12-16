@@ -44,6 +44,11 @@ public enum AppTheme {
         public static let whisperBackgroundSuccess = Color.green
         public static let whisperBackgroundError = Color.red
         public static let whisperMessage = Color.white
+        
+        // Toast
+        public static let toastSuccessColor = Asset.Colors.success.color
+        public static let toastErrorColor = Asset.Colors.error.color
+        public static let toastInfoColor = Asset.Colors.info.color
     }
     
     /// Defines all the fonts used in the app in a semantic way

@@ -31,3 +31,9 @@ public extension View {
             .shimmering(active: condition(), duration: duration, bounce: bounce)
     }
 }
+
+public extension View {
+    func toastView(_ toastData: Binding<ToastData?>) -> some View {
+        modifier(ToastViewModifier(toastData: toastData))
+    }
+}

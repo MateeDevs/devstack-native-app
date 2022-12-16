@@ -31,6 +31,10 @@ struct CounterView: View {
         }
         .lifecycle(viewModel)
         .navigationTitle(L10n.counter_view_toolbar_title)
+        .toastView(Binding<ToastData?>(
+            get: { viewModel.state.toastData },
+            set: { _ in viewModel.onIntent(.dismissToast) }
+        ))
     }
 }
 

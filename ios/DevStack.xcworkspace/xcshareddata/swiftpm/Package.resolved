@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apollographql/apollo-ios",
       "state" : {
-        "revision" : "33065d3b3c97fc35ac42bf28f826cac6c61c779e",
-        "version" : "1.0.0"
+        "revision" : "4b13a927b581c40d06f2c65f593f672a52c0c812",
+        "version" : "1.0.3"
       }
     },
     {
@@ -68,8 +68,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/GoogleUtilities.git",
       "state" : {
-        "revision" : "f4abe56ce62a779e64b525eb133c8fc2a84bbc1f",
-        "version" : "7.7.1"
+        "revision" : "68ea347bdb1a69e2d2ae2e25cd085b6ef92f64cb",
+        "version" : "7.9.0"
       }
     },
     {
@@ -140,8 +140,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/realm/realm-cocoa.git",
       "state" : {
-        "revision" : "5629961d905387b40fb2e1e9d8594c87a2ab8811",
-        "version" : "10.28.6"
+        "revision" : "1f5d97d7c3d4d9696a423542b0819b245fcc3339",
+        "version" : "10.32.2"
       }
     },
     {
@@ -149,8 +149,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/realm/realm-core",
       "state" : {
-        "revision" : "6f6a0f415bd33cf2ced4467e36a47f7c84f0a1d7",
-        "version" : "12.5.1"
+        "revision" : "3c4b86da569368c4ee5ccca2a112d511cc6fa936",
+        "version" : "12.11.0"
       }
     },
     {
@@ -194,8 +194,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-protobuf.git",
       "state" : {
-        "revision" : "b8230909dedc640294d7324d37f4c91ad3dcf177",
-        "version" : "1.20.1"
+        "revision" : "88c7d15e1242fdb6ecbafbc7926426a19be1e98a",
+        "version" : "1.20.2"
       }
     },
     {
