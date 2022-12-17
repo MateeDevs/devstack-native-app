@@ -44,6 +44,9 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         // Setup firebase for debug
         firebaseDebugSetup()
         
+        // Register for remote notifications
+        application.registerForRemoteNotifications()
+        
         // Init main window with navigation controller
         let nc = BaseNavigationController(statusBarStyle: .lightContent)
         nc.navigationBar.isHidden = true
