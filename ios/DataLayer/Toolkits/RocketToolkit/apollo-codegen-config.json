@@ -40,8 +40,5 @@
         "path": "./Sources/RocketToolkitMocks"
       }
     }
-  },
-  "options": {
-      "pruneGeneratedFiles": false
   }
 }
