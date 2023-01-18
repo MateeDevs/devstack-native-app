@@ -18,7 +18,7 @@ object Dependency {
         }
 
         object AtomicFU {
-            private const val version = "0.18.3"
+            private const val version = "0.19.0"
             const val core = "org.jetbrains.kotlinx:atomicfu:$version"
         }
     }
@@ -99,7 +99,7 @@ object Dependency {
 
 
     object Ktor {
-        private const val version = "2.1.2"
+        private const val version = "2.2.2"
 
         const val core = "io.ktor:ktor-client-core:$version"
         const val android = "io.ktor:ktor-client-android:$version"
@@ -112,7 +112,7 @@ object Dependency {
     }
 
     object Kermit {
-        private const val version = "1.1.2"
+        private const val version = "1.2.2"
         const val core = "co.touchlab:kermit:$version"
     }
 
@@ -127,7 +127,7 @@ object Dependency {
 
     // https://github.com/russhwolf/multiplatform-settings
     object Settings {
-        private const val version = "1.0.0"
+        private const val version = "0.8.1"
 
         const val core = "com.russhwolf:multiplatform-settings:$version"
         const val noArg = "com.russhwolf:multiplatform-settings-no-arg:$version"
@@ -136,7 +136,7 @@ object Dependency {
 
     // https://github.com/cashapp/sqldelight
     object SqlDelight {
-        const val version = "1.5.3"
+        const val version = "1.5.4"
 
         const val runtime = "com.squareup.sqldelight:runtime:$version"
         const val coroutinesExtension = "com.squareup.sqldelight:coroutines-extensions:$version"
