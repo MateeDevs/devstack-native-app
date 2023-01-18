@@ -18,7 +18,7 @@ object Dependency {
         }
 
         object AtomicFU {
-            private const val version = "0.19.0"
+            private const val version = "0.18.3"
             const val core = "org.jetbrains.kotlinx:atomicfu:$version"
         }
     }
@@ -112,7 +112,7 @@ object Dependency {
     }
 
     object Kermit {
-        private const val version = "1.2.2"
+        private const val version = "1.1.2"
         const val core = "co.touchlab:kermit:$version"
     }
 
