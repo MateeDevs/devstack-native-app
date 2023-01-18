@@ -1,7 +1,7 @@
 const val TWINE_HOME_FOLDER_ARG = "twineLocalizationFolder"
 const val WINDOWS_PROJECT_HOME_FOLDER_ARG = "projectHomeFolder"
 
-const val kotlinVersion = "1.7.10"
+const val kotlinVersion = "1.8.0"
 
 object Project {
     const val shared = ":shared"

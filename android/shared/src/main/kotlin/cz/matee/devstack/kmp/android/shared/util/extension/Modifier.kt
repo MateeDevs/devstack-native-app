@@ -1,5 +1,7 @@
 package cz.matee.devstack.kmp.android.shared.util.extension
 
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.ime
 import androidx.compose.foundation.layout.offset
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -14,15 +16,14 @@ import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
-import com.google.accompanist.insets.LocalWindowInsets
 import kotlin.math.roundToInt
 
 fun Modifier.pushedByIme(additionalSpace: Int = 0) = composed {
     var bottomPosition by remember { mutableStateOf(0) }
     val spaceFromBottom = LocalView.current.height - bottomPosition
-    val insets = LocalWindowInsets.current.ime
+    val insets = WindowInsets.ime
 
-    val bottomOffset = (insets.bottom - spaceFromBottom + additionalSpace)
+    val bottomOffset = (insets.getBottom(LocalDensity.current) - spaceFromBottom + additionalSpace)
         .coerceAtLeast(0)
 
     onGloballyPositioned {

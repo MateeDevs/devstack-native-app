@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    compileSdkVersion(Application.Sdk.compile)
+    compileSdk = Application.Sdk.compile
 
     defaultConfig {
-        minSdkVersion(Application.Sdk.min)
-        targetSdkVersion(Application.Sdk.target)
+        minSdk = Application.Sdk.min
+        targetSdk = Application.Sdk.target
 
         testInstrumentationRunner = Dependency.AndroidX.testRunner
     }
@@ -22,7 +22,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Dependency.Compose.version
+        kotlinCompilerExtensionVersion = Dependency.Compose.compilerExtensionVersion
     }
 
     sourceSets {
@@ -37,17 +37,16 @@ dependencies {
     implementation(project(Project.shared))
     implementation(project(Project.Android.shared))
 
-    implementation(Dependency.Kotlin.stdlib)
+    implementation(platform(Dependency.Kotlin.stdlib))
     implementation(Dependency.AndroidX.core)
 
     implementation(Dependency.Compose.ui)
     implementation(Dependency.Compose.uiTooling)
     implementation(Dependency.Compose.foundation)
     implementation(Dependency.Compose.material)
-    implementation(Dependency.Compose.materialIconsCore)
+       implementation(Dependency.Compose.materialIconsCore)
 
     implementation(Dependency.Compose.Navigation.core)
-    implementation(Dependency.Compose.Accompanist.insets)
 
     implementation(Dependency.AndroidX.Paging.runtime)
     implementation(Dependency.AndroidX.Paging.compose)

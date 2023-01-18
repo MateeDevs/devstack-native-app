@@ -9,6 +9,7 @@ import cz.matee.devstack.kmp.shared.base.error.ErrorMessageProvider
 import cz.matee.devstack.kmp.shared.base.error.getMessage
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
+import org.koin.androidx.compose.get
 
 @SuppressLint("ComposableNaming")
 @Composable

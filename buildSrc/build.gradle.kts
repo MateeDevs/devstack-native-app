@@ -1,4 +1,4 @@
-val kotlinVersion = "1.7.10"
+val kotlinVersion = "1.7.20"
 val androidGradleVersion = "7.2.0"
 
 kotlinDslPluginOptions {

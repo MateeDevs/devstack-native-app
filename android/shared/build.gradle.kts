@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    compileSdkVersion(Application.Sdk.compile)
+    compileSdk = Application.Sdk.compile
 
     defaultConfig {
-        minSdkVersion(Application.Sdk.min)
-        targetSdkVersion(Application.Sdk.target)
+        minSdk = Application.Sdk.min
+        targetSdk = Application.Sdk.target
 
         testInstrumentationRunner = Dependency.AndroidX.testRunner
     }
@@ -23,7 +23,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Dependency.Compose.version
+        kotlinCompilerExtensionVersion = Dependency.Compose.compilerExtensionVersion
     }
 
     sourceSets {
@@ -37,7 +37,7 @@ android {
 dependencies {
     implementation(project(Project.shared))
 
-    implementation(Dependency.Kotlin.stdlib)
+    implementation(platform(Dependency.Kotlin.stdlib))
     implementation(Dependency.AndroidX.core)
     implementation(Dependency.AndroidX.Material.core)
 
@@ -53,7 +53,6 @@ dependencies {
     implementation(Dependency.Compose.materialIconsCore)
 
     implementation(Dependency.Compose.Navigation.core)
-    implementation(Dependency.Compose.Accompanist.insets)
 
     implementation(Dependency.Koin.android)
     implementation(Dependency.Koin.compose)
