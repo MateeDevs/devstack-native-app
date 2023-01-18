@@ -127,7 +127,7 @@ object Dependency {
 
     // https://github.com/russhwolf/multiplatform-settings
     object Settings {
-        private const val version = "0.8.1"
+        private const val version = "1.0.0"
 
         const val core = "com.russhwolf:multiplatform-settings:$version"
         const val noArg = "com.russhwolf:multiplatform-settings-no-arg:$version"
