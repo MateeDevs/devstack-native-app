@@ -99,7 +99,7 @@ object Dependency {
 
 
     object Ktor {
-        private const val version = "2.2.2"
+        private const val version = "2.1.2"
 
         const val core = "io.ktor:ktor-client-core:$version"
         const val android = "io.ktor:ktor-client-android:$version"
