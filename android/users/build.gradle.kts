@@ -37,7 +37,7 @@ dependencies {
     implementation(project(Project.shared))
     implementation(project(Project.Android.shared))
 
-    implementation(platform(Dependency.Kotlin.stdlib))
+    implementation(project.dependencies.platform(Dependency.Kotlin.stdlib))
     implementation(Dependency.AndroidX.core)
 
     implementation(Dependency.Compose.ui)

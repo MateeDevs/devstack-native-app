@@ -37,7 +37,7 @@ android {
 dependencies {
     implementation(project(Project.shared))
 
-    implementation(platform(Dependency.Kotlin.stdlib))
+    implementation(project.dependencies.platform(Dependency.Kotlin.stdlib))
     implementation(Dependency.AndroidX.core)
     implementation(Dependency.AndroidX.Material.core)
 

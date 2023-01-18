@@ -100,7 +100,7 @@ dependencies {
     implementation(project(Project.Android.recipes))
     implementation(project(Project.Android.books))
 
-    implementation(platform(Dependency.Kotlin.stdlib))
+    implementation(project.dependencies.platform(Dependency.Kotlin.stdlib))
     implementation(Dependency.AndroidX.core)
 
     implementation(Dependency.Compose.ui)
