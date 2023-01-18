@@ -44,7 +44,7 @@ dependencies {
     implementation(Dependency.Compose.uiTooling)
     implementation(Dependency.Compose.foundation)
     implementation(Dependency.Compose.material)
-       implementation(Dependency.Compose.materialIconsCore)
+    implementation(Dependency.Compose.materialIconsCore)
 
     implementation(Dependency.Compose.Navigation.core)
 
