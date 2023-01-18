@@ -127,7 +127,7 @@ object Dependency {
 
     // https://github.com/russhwolf/multiplatform-settings
     object Settings {
-        private const val version = "1.0.0"
+        private const val version = "0.8.1"
 
         const val core = "com.russhwolf:multiplatform-settings:$version"
         const val noArg = "com.russhwolf:multiplatform-settings-no-arg:$version"
@@ -136,7 +136,7 @@ object Dependency {
 
     // https://github.com/cashapp/sqldelight
     object SqlDelight {
-        const val version = "1.5.4"
+        const val version = "1.5.3"
 
         const val runtime = "com.squareup.sqldelight:runtime:$version"
         const val coroutinesExtension = "com.squareup.sqldelight:coroutines-extensions:$version"
