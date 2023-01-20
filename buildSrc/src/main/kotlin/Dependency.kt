@@ -3,7 +3,8 @@
 object Dependency {
 
     object Kotlin {
-        const val stdlib = "org.jetbrains.kotlin:kotlin-bom:$kotlinVersion"
+        const val version = "1.8.0"
+        const val stdlib = "org.jetbrains.kotlin:kotlin-bom:$version"
 
         object Coroutines {
             const val version = "1.6.4"
