@@ -7,10 +7,7 @@ import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Looper
 import androidx.core.app.ActivityCompat
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationRequest
-import com.google.android.gms.location.LocationResult
+import com.google.android.gms.location.*
 import cz.matee.devstack.kmp.android.shared.device.LocationControllerImpl.LocationUpdateCallback
 import cz.matee.devstack.kmp.android.shared.domain.controller.LocationController
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -66,14 +63,12 @@ class LocationControllerImpl(
                 }
             }
 
-            val request = LocationRequest.create().apply {
-                interval = UPDATE_INTERVAL
-                priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-            }
+            val request = LocationRequest.Builder(UPDATE_INTERVAL)
+                .setPriority(Priority.PRIORITY_HIGH_ACCURACY).build()
 
             val callback = object : LocationCallback() {
-                override fun onLocationResult(result: LocationResult?) {
-                    lastLocation = result?.lastLocation
+                override fun onLocationResult(result: LocationResult) {
+                    lastLocation = result.lastLocation
                     lastLocation?.let { location ->
                         locationListeners.forEach { it.onLocationUpdate(location) }
                     }

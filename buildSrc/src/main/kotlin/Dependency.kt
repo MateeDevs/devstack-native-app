@@ -3,8 +3,7 @@
 object Dependency {
 
     object Kotlin {
-        const val version = "1.8.0"
-        const val stdlib = "org.jetbrains.kotlin:kotlin-bom:$version"
+        const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
 
         object Coroutines {
             const val version = "1.6.4"
@@ -19,7 +18,7 @@ object Dependency {
         }
 
         object AtomicFU {
-            private const val version = "0.19.0"
+            private const val version = "0.18.5"
             const val core = "org.jetbrains.kotlinx:atomicfu:$version"
         }
     }
@@ -59,7 +58,7 @@ object Dependency {
 
     object Compose {
         const val version = "1.3.3"
-        const val compilerExtensionVersion = "1.3.2"
+        const val compilerExtensionVersion = "1.4.0"
 
         const val ui = "androidx.compose.ui:ui:$version"
         const val uiTooling = "androidx.compose.ui:ui-tooling:$version"
@@ -137,7 +136,7 @@ object Dependency {
 
     // https://github.com/cashapp/sqldelight
     object SqlDelight {
-        const val version = "1.5.4"
+        const val version = "1.5.5"
 
         const val runtime = "com.squareup.sqldelight:runtime:$version"
         const val coroutinesExtension = "com.squareup.sqldelight:coroutines-extensions:$version"
@@ -149,6 +148,6 @@ object Dependency {
     object Play {
         private const val version = "21.0.1"
 
-        const val location = "com.google.android.gms:play-services-location:18.0.0"
+        const val location = "com.google.android.gms:play-services-location:$version"
     }
 }
