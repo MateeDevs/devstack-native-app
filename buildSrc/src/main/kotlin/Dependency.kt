@@ -18,7 +18,7 @@ object Dependency {
         }
 
         object AtomicFU {
-            private const val version = "0.18.5"
+            private const val version = "0.19.0"
             const val core = "org.jetbrains.kotlinx:atomicfu:$version"
         }
     }
