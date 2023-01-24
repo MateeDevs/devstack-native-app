@@ -8,9 +8,7 @@
 import Foundation
 import SwiftUI
 
-/**
- Container for displaying snackbars.
- */
+/// Container for displaying snackbars.
 public struct SnackHost<Visuals: SnackVisuals, Snackbar: View>: View {
     @ObservedObject var snackState: SnackState<Visuals>
     @State private var snackTask: Task<(), Error>?

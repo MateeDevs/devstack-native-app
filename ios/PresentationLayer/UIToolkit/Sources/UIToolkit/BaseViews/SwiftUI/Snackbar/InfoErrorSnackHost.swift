@@ -14,8 +14,8 @@ public enum InfoErrorSnackVisuals: SnackVisuals {
     
     public var message: String {
         switch self {
-        case .info(message: let message, duration: _): return message
-        case .error(message: let message, actionLabel: _, duration: _): return message
+        case .info(message: let message, _): return message
+        case .error(message: let message, _, _): return message
         }
     }
     

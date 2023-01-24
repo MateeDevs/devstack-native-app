@@ -85,12 +85,12 @@ final class LoginViewModel: BaseViewModel, ViewModel, ObservableObject {
             trackAnalyticsEventUseCase.execute(LoginEvent.loginButtonTap.analyticsEvent)
             
             snackState.currentData?.dismiss()
-            _ = await snackState.showSnack(.info(message: "Success", duration: 1))
+            await snackState.showSnack(.info(message: "Success", duration: 1))
             flowController?.handleFlow(OnboardingFlow.login(.dismiss))
         } catch {
             state.loginButtonLoading = false
             snackState.currentData?.dismiss()
-            _ = await snackState.showSnack(
+            await snackState.showSnack(
                 .error(
                     message: error.localizedDescription,
                     actionLabel: nil
