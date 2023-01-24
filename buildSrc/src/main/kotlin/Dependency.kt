@@ -6,7 +6,7 @@ object Dependency {
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
 
         object Coroutines {
-            const val version = "1.6.0"
+            const val version = "1.6.4"
 
             const val common = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
             const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
@@ -18,17 +18,18 @@ object Dependency {
         }
 
         object AtomicFU {
-            private const val version = "0.18.3"
+            private const val version = "0.19.0"
             const val core = "org.jetbrains.kotlinx:atomicfu:$version"
         }
     }
 
     object Koin {
-        private const val version = "3.1.4"
+        private const val version = "3.3.2"
+        private const val composeVersion = "3.4.1"
 
         const val core = "io.insert-koin:koin-core:$version"
         const val android = "io.insert-koin:koin-android:$version"
-        const val compose = "io.insert-koin:koin-androidx-compose:$version"
+        const val compose = "io.insert-koin:koin-androidx-compose:$composeVersion"
     }
 
     object AndroidX {
@@ -36,19 +37,19 @@ object Dependency {
         const val testRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         object Material {
-            private const val version = "1.4.0"
+            private const val version = "1.8.0-rc01"
             const val core = "com.google.android.material:material:$version"
         }
 
         object Lifecycle {
-            private const val version = "2.4.0"
+            private const val version = "2.5.1"
             const val runtime = "androidx.lifecycle:lifecycle-runtime-ktx:$version"
             const val core = "androidx.lifecycle:lifecycle-common-java8:$version"
         }
 
         object Paging {
-            private const val version = "3.1.0"
-            private const val composeVersion = "1.0.0-alpha14"
+            private const val version = "3.1.1"
+            private const val composeVersion = "1.0.0-alpha17"
 
             const val runtime = "androidx.paging:paging-runtime:$version"
             const val compose = "androidx.paging:paging-compose:$composeVersion"
@@ -56,40 +57,39 @@ object Dependency {
     }
 
     object Compose {
-        const val version = "1.3.0-rc01"
-        const val compilerExtensionVersion = version
+        const val version = "1.3.3"
+        const val compilerExtensionVersion = "1.4.0"
 
         const val ui = "androidx.compose.ui:ui:$version"
         const val uiTooling = "androidx.compose.ui:ui-tooling:$version"
-        const val foundation = "androidx.compose.foundation:foundation:$version"
+        const val foundation = "androidx.compose.foundation:foundation:1.3.1"
 
-        const val material = "androidx.compose.material:material:$version"
-        const val materialIconsCore = "androidx.compose.material:material-icons-core:$version"
+        const val material = "androidx.compose.material:material:1.3.1"
+        const val materialIconsCore = "androidx.compose.material:material-icons-core:1.3.1"
         const val materialIconsExtended =
-            "androidx.compose.material:material-icons-extended:$version"
+            "androidx.compose.material:material-icons-extended:1.3.1"
 
         const val uiTest = "androidx.compose.ui:ui-test-junit4:$version"
 
         object Activity {
-            private const val version = "1.4.0"
+            private const val version = "1.6.1"
             const val core = "androidx.activity:activity-compose:$version"
         }
 
         object Navigation {
-            private const val version = "2.4.0-beta02"
+            private const val version = "2.5.3"
             const val core = "androidx.navigation:navigation-compose:$version"
         }
 
         object ConstraintLayout {
-            private const val version = "1.0.0-rc02"
+            private const val version = "1.0.1"
             const val core = "androidx.constraintlayout:constraintlayout-compose:$version"
         }
 
         // https://google.github.io/accompanist/
         object Accompanist {
-            private const val version = "0.20.3"
+            private const val version = "0.28.0"
 
-            const val insets = "com.google.accompanist:accompanist-insets:$version"
             const val pager = "com.google.accompanist:accompanist-pager:$version"
             const val pagerIndiactors =
                 "com.google.accompanist:accompanist-pager-indicators:$version"
@@ -99,7 +99,7 @@ object Dependency {
 
 
     object Ktor {
-        private const val version = "2.1.2"
+        private const val version = "2.2.2"
 
         const val core = "io.ktor:ktor-client-core:$version"
         const val android = "io.ktor:ktor-client-android:$version"
@@ -112,7 +112,7 @@ object Dependency {
     }
 
     object Kermit {
-        private const val version = "1.1.2"
+        private const val version = "1.2.2"
         const val core = "co.touchlab:kermit:$version"
     }
 
@@ -136,7 +136,7 @@ object Dependency {
 
     // https://github.com/cashapp/sqldelight
     object SqlDelight {
-        const val version = "1.5.3"
+        const val version = "1.5.5"
 
         const val runtime = "com.squareup.sqldelight:runtime:$version"
         const val coroutinesExtension = "com.squareup.sqldelight:coroutines-extensions:$version"
@@ -146,7 +146,7 @@ object Dependency {
     }
 
     object Play {
-        private const val version = "18.0.0"
+        private const val version = "21.0.1"
 
         const val location = "com.google.android.gms:play-services-location:$version"
     }

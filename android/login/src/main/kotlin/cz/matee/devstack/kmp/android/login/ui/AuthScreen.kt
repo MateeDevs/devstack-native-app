@@ -19,18 +19,16 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.google.accompanist.insets.navigationBarsPadding
-import com.google.accompanist.insets.statusBarsPadding
 import cz.matee.devstack.kmp.android.shared.core.ui.util.BackPressOverride
 import cz.matee.devstack.kmp.android.shared.core.util.get
 import cz.matee.devstack.kmp.android.login.R
 import cz.matee.devstack.kmp.android.login.vm.AuthViewModel
 import cz.matee.devstack.kmp.android.shared.navigation.Feature
 import cz.matee.devstack.kmp.android.shared.style.Values
-import cz.matee.devstack.kmp.android.shared.util.extension.getViewModel
 import cz.matee.devstack.kmp.android.shared.util.extension.pushedByIme
 import cz.matee.devstack.kmp.android.shared.util.extension.showIn
 import kotlinx.coroutines.launch
+import org.koin.androidx.compose.getViewModel
 import cz.matee.devstack.kmp.android.login.vm.AuthViewModel.ViewState as LoginViewModelState
 
 @Composable
@@ -132,8 +130,7 @@ private fun AuthForm(
 
     Column(
         modifier = Modifier
-            .fillMaxWidth()
-            .statusBarsPadding()
+            .fillMaxWidth().statusBarsPadding()
             .padding(horizontal = Values.Space.xlarge)
     ) {
         val passwordFocusRequester = FocusRequester()

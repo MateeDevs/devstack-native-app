@@ -17,8 +17,6 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.round
-import com.google.accompanist.insets.navigationBarsPadding
-import com.google.accompanist.insets.statusBarsPadding
 import cz.matee.devstack.kmp.android.shared.style.Values
 import kotlin.math.roundToInt
 
@@ -58,7 +56,7 @@ fun RopeRecipe() {
             .pointerInput(Unit) {
 
                 detectDragGestures { change, dragAmount ->
-                    change.consumeAllChanges()
+                    change.consume()
                     ball1 += dragAmount
                 }
             }

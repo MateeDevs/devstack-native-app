@@ -1,6 +1,7 @@
 package cz.matee.devstack.kmp.android.ui
 
 import androidx.compose.animation.*
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Build
@@ -14,17 +15,16 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.google.accompanist.insets.navigationBarsPadding
 import cz.matee.devstack.kmp.android.login.LoginRoot
 import cz.matee.devstack.kmp.android.profile.ProfileRoot
 import cz.matee.devstack.kmp.android.recipes.RecipesRoot
 import cz.matee.devstack.kmp.android.shared.navigation.Feature
 import cz.matee.devstack.kmp.android.shared.style.Values
 import cz.matee.devstack.kmp.android.shared.util.composition.LocalScaffoldPadding
-import cz.matee.devstack.kmp.android.shared.util.extension.get
 import cz.matee.devstack.kmp.android.books.BooksRoot
 import cz.matee.devstack.kmp.android.users.UsersRoot
 import cz.matee.devstack.kmp.shared.domain.usecase.user.IsUserLoggedInUseCase
+import org.koin.androidx.compose.get
 
 val navBarFeatures = listOf(
     Feature.Users, Feature.Profile, Feature.Recipes, Feature.Books

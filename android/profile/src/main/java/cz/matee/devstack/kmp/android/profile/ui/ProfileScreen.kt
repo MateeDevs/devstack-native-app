@@ -19,9 +19,9 @@ import cz.matee.devstack.kmp.android.profile.vm.ProfileViewModel
 import cz.matee.devstack.kmp.android.shared.style.Values
 import cz.matee.devstack.kmp.android.shared.ui.ScreenTitle
 import cz.matee.devstack.kmp.android.shared.util.composition.LocalScaffoldPadding
-import cz.matee.devstack.kmp.android.shared.util.extension.getViewModel
 import cz.matee.devstack.kmp.android.shared.util.extension.showIn
 import cz.matee.devstack.kmp.shared.domain.model.User
+import org.koin.androidx.compose.getViewModel
 import cz.matee.devstack.kmp.android.profile.vm.ProfileViewModel.ViewState as State
 
 @OptIn(ExperimentalMaterialApi::class)

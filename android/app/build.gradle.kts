@@ -6,13 +6,13 @@ plugins {
 val appName = "MateeCoreApp"
 
 android {
-    compileSdkVersion(Application.Sdk.compile)
+    compileSdk = Application.Sdk.compile
 
     defaultConfig {
         applicationId = Application.id
 
-        minSdkVersion(Application.Sdk.min)
-        targetSdkVersion(Application.Sdk.target)
+        minSdk = Application.Sdk.min
+        targetSdk = Application.Sdk.target
 
         versionCode = Application.Version.code
         versionName = Application.Version.name
@@ -100,7 +100,7 @@ dependencies {
     implementation(project(Project.Android.recipes))
     implementation(project(Project.Android.books))
 
-    implementation(Dependency.Kotlin.stdlib)
+    implementation(project.dependencies.platform(Dependency.Kotlin.stdlib))
     implementation(Dependency.AndroidX.core)
 
     implementation(Dependency.Compose.ui)
@@ -109,7 +109,6 @@ dependencies {
     implementation(Dependency.Compose.Activity.core)
     implementation(Dependency.Compose.Navigation.core)
 
-    implementation(Dependency.Compose.Accompanist.insets)
 
     implementation(Dependency.Koin.android)
     implementation(Dependency.Koin.compose)

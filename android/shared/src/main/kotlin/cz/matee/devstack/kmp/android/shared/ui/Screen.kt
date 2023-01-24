@@ -15,7 +15,6 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.zIndex
-import com.google.accompanist.insets.statusBarsPadding
 import cz.matee.devstack.kmp.android.shared.style.Values
 
 @Composable
