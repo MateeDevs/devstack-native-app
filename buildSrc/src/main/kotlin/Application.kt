@@ -1,5 +1,5 @@
 object Application {
-    const val id = "cz.matee.devstack.kmp.android"
+    const val id = "cz.runczech"
 
     object Sdk {
         const val min = 23

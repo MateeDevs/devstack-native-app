@@ -10,11 +10,12 @@ object Project {
     object Android {
         private const val root = ":android"
         const val shared = "$root:shared"
-        const val login = "$root:login"
-        const val profile = "$root:profile"
-        const val users = "$root:users"
-        const val recipes = "$root:recipes"
-        const val books = "$root:books"
+        const val home = "$root:feature:home"
+        const val map = "$root:feature:map"
+        const val livetracking = "$root:feature:livetracking"
+        const val profile = "$root:feature:profile"
+        const val pulse = "$root:feature:pulse"
+        const val settings = "$root:feature:settings"
     }
 }
 

@@ -3,7 +3,9 @@ plugins {
     kotlin("android")
 }
 
-val appName = "MateeCoreApp"
+val appName = "Runczech"
+
+apply<plugin.AndroidLibraryPlugin>()
 
 android {
     compileSdk = Application.Sdk.compile
@@ -94,11 +96,16 @@ android {
 dependencies {
     implementation(project(Project.shared))
     implementation(project(Project.Android.shared))
-    implementation(project(Project.Android.login))
-    implementation(project(Project.Android.users))
+
+    implementation(project(Project.Android.settings))
+    implementation(project(Project.Android.home))
     implementation(project(Project.Android.profile))
-    implementation(project(Project.Android.recipes))
-    implementation(project(Project.Android.books))
+    implementation(project(Project.Android.map))
+    implementation(project(Project.Android.livetracking))
+    implementation(project(Project.Android.pulse))
+
+
+
 
     implementation(project.dependencies.platform(Dependency.Kotlin.stdlib))
     implementation(Dependency.AndroidX.core)

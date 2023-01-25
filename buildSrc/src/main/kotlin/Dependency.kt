@@ -56,6 +56,10 @@ object Dependency {
         }
     }
 
+    object AndroidTools {
+        private const val version = "1.2.0"
+        const val desugarJdkLibs = "com.android.tools:desugar_jdk_libs:$version"
+    }
     object Compose {
         const val version = "1.3.3"
         const val compilerExtensionVersion = "1.4.0"
