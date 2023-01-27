@@ -3,13 +3,13 @@
 cd "$(dirname "$0")"
 
 echo "Checking file header"
-if [ ! -f ../DevStack.xcworkspace/xcuserdata/`whoami`.xcuserdatad/IDETemplateMacros.plist ]; then
+if [ ! -f ../RunCzech.xcworkspace/xcuserdata/`whoami`.xcuserdatad/IDETemplateMacros.plist ]; then
   echo "❌ File header is not set - setting now"
   echo -n "Enter your full name: "
   read fullname
-  mkdir -p ../DevStack.xcworkspace/xcuserdata/`whoami`.xcuserdatad
-  cp IDETemplateMacros.plist ../DevStack.xcworkspace/xcuserdata/`whoami`.xcuserdatad/
-  sed -i "" -e "s/___FULLNAME___/$fullname/g" ../DevStack.xcworkspace/xcuserdata/`whoami`.xcuserdatad/IDETemplateMacros.plist
+  mkdir -p ../RunCzech.xcworkspace/xcuserdata/`whoami`.xcuserdatad
+  cp IDETemplateMacros.plist ../RunCzech.xcworkspace/xcuserdata/`whoami`.xcuserdatad/
+  sed -i "" -e "s/___FULLNAME___/$fullname/g" ../RunCzech.xcworkspace/xcuserdata/`whoami`.xcuserdatad/IDETemplateMacros.plist
 else
   echo "✅ File header is properly set"
 fi

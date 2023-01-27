@@ -8,29 +8,29 @@
 
 # Project specific variables
 
-workspace = "DevStack.xcworkspace"
+workspace = "RunCzech.xcworkspace"
 slack_channel = "#ci"
 
 alpha = {
-  output_name: "A-DevStack",
-  app_identifier: "cz.matee.devstack.alpha",
-  scheme: "DevStack_Alpha",
+  output_name: "A-RunCzech",
+  app_identifier: "cz.matee.runczech.alpha",
+  scheme: "RunCzech_Alpha",
   testflight_groups: ['App Store Connect Users', 'Public'],
   testflight_link: "NOT AVAILABLE"
 }
 
 beta = {
-  output_name: "B-DevStack",
-  app_identifier: "cz.matee.devstack.beta",
-  scheme: "DevStack_Beta",
+  output_name: "B-RunCzech",
+  app_identifier: "cz.matee.runczech.beta",
+  scheme: "RunCzech_Beta",
   testflight_groups: ['App Store Connect Users', 'Public'],
   testflight_link: "https://testflight.apple.com/join/aff9SFVc"
 }
 
 production = {
-  output_name: "DevStack",
-  app_identifier: "cz.matee.devstack",
-  scheme: "DevStack",
+  output_name: "RunCzech",
+  app_identifier: "cz.matee.runczech",
+  scheme: "RunCzech",
   testflight_groups: ['App Store Connect Users', 'Public'],
   testflight_link: "https://testflight.apple.com/join/lP4bFs1a"
 }

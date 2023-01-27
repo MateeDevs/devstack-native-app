@@ -415,6 +415,6 @@
       </Group>
    </Group>
    <FileRef
-      location = "group:DevStack.xcodeproj">
+      location = "group:RunCzech.xcodeproj">
    </FileRef>
 </Workspace>

@@ -61,7 +61,7 @@
 		454F6EC526CE8B4100C386B8 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		454F6EC626CE8B4600C386B8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		454F6EC726CE8B4A00C386B8 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		4558D30720FCC8FF005BC325 /* DevStack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DevStack.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4558D30720FCC8FF005BC325 /* RunCzech.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunCzech.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4558D30A20FCC8FF005BC325 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		456E73DD25F817FA007D9A6D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		456F8B052842CC7800F74A61 /* PushNotificationsToolkit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = PushNotificationsToolkit; sourceTree = "<group>"; };
@@ -151,7 +151,7 @@
 		4558D30820FCC8FF005BC325 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4558D30720FCC8FF005BC325 /* DevStack.app */,
+				4558D30720FCC8FF005BC325 /* RunCzech.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -248,9 +248,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4558D30620FCC8FF005BC325 /* DevStack */ = {
+		4558D30620FCC8FF005BC325 /* RunCzech */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4558D31920FCC900005BC325 /* Build configuration list for PBXNativeTarget "DevStack" */;
+			buildConfigurationList = 4558D31920FCC900005BC325 /* Build configuration list for PBXNativeTarget "RunCzech" */;
 			buildPhases = (
 				0C3E096223F6B3950051287D /* Script for SwiftLint */,
 				4558D30320FCC8FF005BC325 /* Sources */,
@@ -264,7 +264,7 @@
 			);
 			dependencies = (
 			);
-			name = DevStack;
+			name = RunCzech;
 			packageProductDependencies = (
 				459C3706274B001B00536110 /* Atlantis */,
 				45A0EBB127ADFA210005A01E /* Resolver */,
@@ -278,8 +278,8 @@
 				4508332F28435E7900BC9460 /* Utilities */,
 				4508333628437BB700BC9460 /* UIToolkit */,
 			);
-			productName = DevStack;
-			productReference = 4558D30720FCC8FF005BC325 /* DevStack.app */;
+			productName = RunCzech;
+			productReference = 4558D30720FCC8FF005BC325 /* RunCzech.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -297,7 +297,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4558D30220FCC8FF005BC325 /* Build configuration list for PBXProject "DevStack" */;
+			buildConfigurationList = 4558D30220FCC8FF005BC325 /* Build configuration list for PBXProject "RunCzech" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -316,7 +316,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4558D30620FCC8FF005BC325 /* DevStack */,
+				4558D30620FCC8FF005BC325 /* RunCzech */,
 			);
 		};
 /* End PBXProject section */
@@ -495,7 +495,7 @@
 		453D3F5925ED2AD70094ADD7 /* Alpha Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_DISPLAY_NAME = "A-DevStack";
+				APP_DISPLAY_NAME = "A-RunCzech";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Alpha";
 				CODE_SIGN_ENTITLEMENTS = Application/Entitlements/Alpha.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -515,8 +515,8 @@
 				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = "-ObjC";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-DALPHA\"";
-				PRODUCT_BUNDLE_IDENTIFIER = cz.matee.devstack.alpha;
-				PRODUCT_NAME = DevStack;
+				PRODUCT_BUNDLE_IDENTIFIER = cz.matee.runczech.alpha;
+				PRODUCT_NAME = RunCzech;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -589,7 +589,7 @@
 		453D3F5E25ED2AE60094ADD7 /* Beta Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_DISPLAY_NAME = "B-DevStack";
+				APP_DISPLAY_NAME = "B-RunCzech";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Beta";
 				CODE_SIGN_ENTITLEMENTS = Application/Entitlements/Beta.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -609,8 +609,8 @@
 				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = "-ObjC";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-DBETA\"";
-				PRODUCT_BUNDLE_IDENTIFIER = cz.matee.devstack.beta;
-				PRODUCT_NAME = DevStack;
+				PRODUCT_BUNDLE_IDENTIFIER = cz.matee.runczech.beta;
+				PRODUCT_NAME = RunCzech;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -677,7 +677,7 @@
 		453D3F6325ED2AF10094ADD7 /* Alpha Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_DISPLAY_NAME = "A-DevStack";
+				APP_DISPLAY_NAME = "A-RunCzech";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Alpha";
 				CODE_SIGN_ENTITLEMENTS = Application/Entitlements/Alpha.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -698,8 +698,8 @@
 				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = "-ObjC";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-DALPHA\"";
-				PRODUCT_BUNDLE_IDENTIFIER = cz.matee.devstack.alpha;
-				PRODUCT_NAME = DevStack;
+				PRODUCT_BUNDLE_IDENTIFIER = cz.matee.runczech.alpha;
+				PRODUCT_NAME = RunCzech;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -766,7 +766,7 @@
 		453D3F6825ED2AFB0094ADD7 /* Beta Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_DISPLAY_NAME = "B-DevStack";
+				APP_DISPLAY_NAME = "B-RunCzech";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Beta";
 				CODE_SIGN_ENTITLEMENTS = Application/Entitlements/Beta.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -787,8 +787,8 @@
 				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = "-ObjC";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-DBETA\"";
-				PRODUCT_BUNDLE_IDENTIFIER = cz.matee.devstack.beta;
-				PRODUCT_NAME = DevStack;
+				PRODUCT_BUNDLE_IDENTIFIER = cz.matee.runczech.beta;
+				PRODUCT_NAME = RunCzech;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -917,7 +917,7 @@
 		4558D31A20FCC900005BC325 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_DISPLAY_NAME = DevStack;
+				APP_DISPLAY_NAME = RunCzech;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Application/Entitlements/Prod.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -937,8 +937,8 @@
 				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = "-ObjC";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-DPRODUCTION\"";
-				PRODUCT_BUNDLE_IDENTIFIER = cz.matee.devstack;
-				PRODUCT_NAME = DevStack;
+				PRODUCT_BUNDLE_IDENTIFIER = cz.matee.runczech;
+				PRODUCT_NAME = RunCzech;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -949,7 +949,7 @@
 		4558D31B20FCC900005BC325 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_DISPLAY_NAME = DevStack;
+				APP_DISPLAY_NAME = RunCzech;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Application/Entitlements/Prod.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -970,8 +970,8 @@
 				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = "-ObjC";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-DPRODUCTION\"";
-				PRODUCT_BUNDLE_IDENTIFIER = cz.matee.devstack;
-				PRODUCT_NAME = DevStack;
+				PRODUCT_BUNDLE_IDENTIFIER = cz.matee.runczech;
+				PRODUCT_NAME = RunCzech;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -982,7 +982,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4558D30220FCC8FF005BC325 /* Build configuration list for PBXProject "DevStack" */ = {
+		4558D30220FCC8FF005BC325 /* Build configuration list for PBXProject "RunCzech" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4558D31720FCC900005BC325 /* Debug */,
@@ -995,7 +995,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4558D31920FCC900005BC325 /* Build configuration list for PBXNativeTarget "DevStack" */ = {
+		4558D31920FCC900005BC325 /* Build configuration list for PBXNativeTarget "RunCzech" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4558D31A20FCC900005BC325 /* Debug */,
