@@ -14,10 +14,8 @@ import Resolver
 import SharedDomain
 import UIKit
 import UIToolkit
-import UserDefaultsProvider
 import UserNotifications
 import Utilities
-import WidgetKit
 
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -69,8 +67,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-        
-        WidgetCenter.shared.reloadAllTimelines()
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -109,17 +105,17 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: Clear keychain
     private func clearKeychain() {
-        let keychainProvider: KeychainProvider = Resolver.resolve()
-        let userDefaultsProvider: UserDefaultsProvider = Resolver.resolve()
-        
-        do {
-            let _: Bool = try userDefaultsProvider.read(.hasRunBefore)
-        } catch UserDefaultsProviderError.valueForKeyNotFound {
-            do {
-                try keychainProvider.deleteAll()
-                try userDefaultsProvider.update(.hasRunBefore, value: true)
-            } catch {}
-        } catch {}
+//        let keychainProvider: KeychainProvider = Resolver.resolve()
+//        let userDefaultsProvider: UserDefaultsProvider = Resolver.resolve()
+//
+//        do {
+//            let _: Bool = try userDefaultsProvider.read(.hasRunBefore)
+//        } catch UserDefaultsProviderError.valueForKeyNotFound {
+//            do {
+//                try keychainProvider.deleteAll()
+//                try userDefaultsProvider.update(.hasRunBefore, value: true)
+//            } catch {}
+//        } catch {}
     }
     
     // MARK: Firebase debug setup
@@ -142,17 +138,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     ) {
         // Show system notification
         completionHandler([.list, .banner, .badge, .sound])
-    }
-    
-    func userNotificationCenter(
-        _ center: UNUserNotificationCenter,
-        didReceive response: UNNotificationResponse,
-        withCompletionHandler completionHandler: @escaping () -> Void
-    ) {
-        let notification = response.notification.request.content.userInfo
-        DispatchQueue.main.async {
-            self.flowController?.handlePushNotification(notification)
-        }
     }
 }
 

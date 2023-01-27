@@ -14,9 +14,6 @@ else
   echo "✅ File header is properly set"
 fi
 
-echo "Downloading GraphQL schemas and generating code from queries"
-./apollo.sh
-
 echo "Checking whether Homebrew is installed"
 if command -v brew &> /dev/null; then
   echo "✅ Homebrew is installed"

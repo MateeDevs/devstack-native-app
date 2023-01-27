@@ -3,12 +3,9 @@
 //  Copyright © 2019 Matee. All rights reserved.
 //
 
-import Profile
-import Recipes
 import SharedDomain
 import UIKit
 import UIToolkit
-import Users
 
 enum MainTab: Int {
     case users = 0
@@ -20,7 +17,7 @@ protocol MainFlowControllerDelegate: AnyObject {
     func presentOnboarding(animated: Bool, completion: (() -> Void)?)
 }
 
-final class MainFlowController: FlowController, ProfileFlowControllerDelegate {
+final class MainFlowController: FlowController {
     
     weak var delegate: MainFlowControllerDelegate?
     
@@ -37,9 +34,9 @@ final class MainFlowController: FlowController, ProfileFlowControllerDelegate {
             image: Asset.Images.usersTabBar.uiImage,
             tag: MainTab.users.rawValue
         )
-        let usersFC = UsersFlowController(navigationController: usersNC)
-        let usersRootVC = startChildFlow(usersFC)
-        usersNC.viewControllers = [usersRootVC]
+//        let usersFC = UsersFlowController(navigationController: usersNC)
+//        let usersRootVC = startChildFlow(usersFC)
+//        usersNC.viewControllers = [usersRootVC]
         return usersNC
     }
     
@@ -50,10 +47,10 @@ final class MainFlowController: FlowController, ProfileFlowControllerDelegate {
             image: Asset.Images.profileTabBar.uiImage,
             tag: MainTab.profile.rawValue
         )
-        let profileFC = ProfileFlowController(navigationController: profileNC)
-        profileFC.delegate = self
-        let profileRootVC = startChildFlow(profileFC)
-        profileNC.viewControllers = [profileRootVC]
+//        let profileFC = ProfileFlowController(navigationController: profileNC)
+//        profileFC.delegate = self
+//        let profileRootVC = startChildFlow(profileFC)
+//        profileNC.viewControllers = [profileRootVC]
         return profileNC
     }
     
@@ -64,9 +61,9 @@ final class MainFlowController: FlowController, ProfileFlowControllerDelegate {
             image: Asset.Images.recipesTabBar.uiImage,
             tag: MainTab.recipes.rawValue
         )
-        let recipesFC = RecipesFlowController(navigationController: recipesNC)
-        let recipesRootVC = startChildFlow(recipesFC)
-        recipesNC.viewControllers = [recipesRootVC]
+//        let recipesFC = RecipesFlowController(navigationController: recipesNC)
+//        let recipesRootVC = startChildFlow(recipesFC)
+//        recipesNC.viewControllers = [recipesRootVC]
         return recipesNC
     }
     
@@ -94,7 +91,7 @@ final class MainFlowController: FlowController, ProfileFlowControllerDelegate {
     }
     
     private func handleUserDetailDeeplink(userId: String) {
-        guard let usersFlowController = switchTab(.users) as? UsersFlowController else { return }
-        usersFlowController.handleUserDetailDeeplink(userId: userId)
+//        guard let usersFlowController = switchTab(.users) as? UsersFlowController else { return }
+//        usersFlowController.handleUserDetailDeeplink(userId: userId)
     }
 }

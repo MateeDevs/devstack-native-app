@@ -11,10 +11,6 @@ let package = Package(
         .library(
             name: "SharedDomain",
             targets: ["SharedDomain"]
-        ),
-        .library(
-            name: "SharedDomainMocks",
-            targets: ["SharedDomainMocks"]
         )
     ],
     dependencies: [
@@ -38,19 +34,9 @@ let package = Package(
                 .unsafeFlags(["-Xlinker", "-no_application_extension"])
             ]
         ),
-        .target(
-            name: "SharedDomainMocks",
-            dependencies: [
-                "SharedDomain",
-                .product(name: "Resolver", package: "Resolver")
-            ]
-        ),
         .testTarget(
             name: "SharedDomainTests",
-            dependencies: [
-                "SharedDomain",
-                "SharedDomainMocks"
-            ]
+            dependencies: []
         )
     ]
 )

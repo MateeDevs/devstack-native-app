@@ -33,11 +33,12 @@ public struct WhisperData {
 public enum WhisperStyle {
     case info, success, error
     
-    var color: Color {
-        switch self {
-        case .info: return AppTheme.Colors.whisperBackgroundInfo
-        case .success: return AppTheme.Colors.whisperBackgroundSuccess
-        case .error: return AppTheme.Colors.whisperBackgroundError
-        }
-    }
+    #warning("TODO: colors for whispers are not specified yet")
+//    var color: Color {
+//        switch self {
+//        case .info: return AppTheme.Colors.whisperBackgroundInfo
+//        case .success: return AppTheme.Colors.whisperBackgroundSuccess
+//        case .error: return AppTheme.Colors.whisperBackgroundError
+//        }
+//    }
 }

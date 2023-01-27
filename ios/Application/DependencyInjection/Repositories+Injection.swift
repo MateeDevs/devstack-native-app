@@ -4,40 +4,14 @@
 //
 
 import AnalyticsToolkit
-import AuthToolkit
-import LocationToolkit
 import PushNotificationsToolkit
-import RemoteConfigToolkit
 import Resolver
-import RocketToolkit
 import SharedDomain
-import UserToolkit
 
 public extension Resolver {
     static func registerRepositories() {
         register { AnalyticsRepositoryImpl(analyticsProvider: resolve()) as AnalyticsRepository }
         
-        register {
-            AuthRepositoryImpl(
-                databaseProvider: resolve(),
-                keychainProvider: resolve(),
-                networkProvider: resolve()
-            ) as AuthRepository
-        }
-        
-        register { LocationRepositoryImpl(locationProvider: resolve()) as LocationRepository }
-        
         register { PushNotificationsRepositoryImpl(pushNotificationsProvider: resolve()) as PushNotificationsRepository }
-        
-        register { RemoteConfigRepositoryImpl(remoteConfigProvider: resolve()) as RemoteConfigRepository }
-        
-        register { RocketLaunchRepositoryImpl(graphQLProvider: resolve()) as RocketLaunchRepository }
-        
-        register {
-            UserRepositoryImpl(
-                databaseProvider: resolve(),
-                networkProvider: resolve()
-            ) as UserRepository
-        }
     }
 }

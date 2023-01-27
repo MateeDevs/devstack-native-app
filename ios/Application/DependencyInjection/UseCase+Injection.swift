@@ -13,37 +13,8 @@ public extension Resolver {
         // Analytics
         register { TrackAnalyticsEventUseCaseImpl(analyticsRepository: resolve()) as TrackAnalyticsEventUseCase }
         
-        // Auth
-        register { GetProfileIdUseCaseImpl(authRepository: resolve()) as GetProfileIdUseCase }
-        register { IsUserLoggedUseCaseImpl(getProfileIdUseCase: resolve()) as IsUserLoggedUseCase }
-        register { LoginUseCaseImpl(authRepository: resolve(), validateEmailUseCase: resolve(), validatePasswordUseCase: resolve()) as LoginUseCase }
-        register { LogoutUseCaseImpl(authRepository: resolve()) as LogoutUseCase }
-        register { RegistrationUseCaseImpl(authRepository: resolve(), validateEmailUseCase: resolve(), validatePasswordUseCase: resolve()) as RegistrationUseCase }
-        
-        // Location
-        register { GetCurrentLocationUseCaseImpl(locationRepository: resolve()) as GetCurrentLocationUseCase }
-        
-        // Profile
-        register { GetProfileUseCaseImpl(getProfileIdUseCase: resolve(), getUserUseCase: resolve()) as GetProfileUseCase }
-        register { UpdateProfileCounterUseCaseImpl(getProfileIdUseCase: resolve(), getUserUseCase: resolve(), updateUserUseCase: resolve()) as UpdateProfileCounterUseCase }
-        
         // PushNotification
         register { HandlePushNotificationUseCaseImpl(pushNotificationsRepository: resolve()) as HandlePushNotificationUseCase }
         register { RegisterForPushNotificationsUseCaseImpl(pushNotificationsRepository: resolve()) as RegisterForPushNotificationsUseCase }
-        
-        // RemoteConfig
-        register { GetRemoteConfigValueUseCaseImpl(remoteConfigRepository: resolve()) as GetRemoteConfigValueUseCase }
-        
-        // Rocket
-        register { GetRocketLaunchesUseCaseImpl(rocketLaunchRepository: resolve()) as GetRocketLaunchesUseCase }
-        
-        // User
-        register { GetUsersUseCaseImpl(userRepository: resolve()) as GetUsersUseCase }
-        register { GetUserUseCaseImpl(userRepository: resolve()) as GetUserUseCase }
-        register { UpdateUserUseCaseImpl(userRepository: resolve()) as UpdateUserUseCase }
-        
-        // Validation
-        register { ValidateEmailUseCaseImpl() as ValidateEmailUseCase }
-        register { ValidatePasswordUseCaseImpl() as ValidatePasswordUseCase }
     }
 }

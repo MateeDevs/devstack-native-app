@@ -39,12 +39,6 @@ public enum AppTheme {
         // ProgressView
         public static let progressView = Asset.Colors.mateeYellow.color
         
-        // Whisper
-        public static let whisperBackgroundInfo = Color.gray
-        public static let whisperBackgroundSuccess = Color.green
-        public static let whisperBackgroundError = Color.red
-        public static let whisperMessage = Color.white
-        
         // Toast
         public static let toastSuccessColor = Asset.Colors.success.color
         public static let toastErrorColor = Asset.Colors.error.color

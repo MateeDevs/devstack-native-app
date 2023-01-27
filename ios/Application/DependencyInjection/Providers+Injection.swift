@@ -4,17 +4,13 @@
 //
 
 import AnalyticsProvider
-import DatabaseProvider
 import GraphQLProvider
 import KeychainProvider
-import LocationProvider
 import NetworkProvider
 import PushNotificationsProvider
-import RemoteConfigProvider
 import Resolver
 import SharedDomain
 import UIKit
-import UserDefaultsProvider
 import Utilities
 
 public extension Resolver {
@@ -24,10 +20,8 @@ public extension Resolver {
         networkProviderDelegate: NetworkProviderDelegate
     ) {
         register { FirebaseAnalyticsProvider() as AnalyticsProvider }
-        register { RealmDatabaseProvider() as DatabaseProvider }
         register { ApolloGraphQLProvider(baseURL: NetworkingConstants.rocketsURL) as GraphQLProvider }
         register { SystemKeychainProvider() as KeychainProvider }
-        register { SystemLocationProvider() as LocationProvider }
         
         register {
             SystemNetworkProvider(
@@ -40,7 +34,5 @@ public extension Resolver {
         }
         
         register { FirebasePushNotificationsProvider(application: application, appDelegate: appDelegate) as PushNotificationsProvider }
-        register { FirebaseRemoteConfigProvider(debugMode: Environment.type != .production) as RemoteConfigProvider }
-        register { SystemUserDefaultsProvider() as UserDefaultsProvider }
     }
 }
