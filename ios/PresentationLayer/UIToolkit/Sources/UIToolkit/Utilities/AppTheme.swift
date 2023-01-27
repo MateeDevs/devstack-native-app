@@ -12,32 +12,31 @@ public enum AppTheme {
     public enum Colors {
         
         // Main colors
-        public static let primaryColor = Asset.Colors.mateeYellow.color
-        public static let secondaryColor = Asset.Colors.mateeBlue.color
+        public static let primaryColor = Asset.Colors.mainYellow.color
         
         // Navigation bar
-        public static let navBarBackground = Asset.Colors.mateeYellow.color
-        public static let navBarTitle = Color.white
+        public static let navBarBackground = Color.white
+        public static let navBarTitle = primaryColor
         
         // Backgrounds
-        public static let background = Color(UIColor.systemBackground)
+        public static let background = Asset.Colors.grayBackground.color
         
         // Texts
         public static let text = Color(UIColor.label)
-        public static let headlineText = Asset.Colors.mateeYellow.color
+        public static let headlineText = Asset.Colors.mainYellow.color
         
         // Text fields
         public static let textFieldTitle = Color(UIColor.systemGray)
         public static let textFieldBorder = Color(UIColor.systemGray4)
         
         // Buttons
-        public static let primaryButtonBackground = Asset.Colors.mateeYellow.color
+        public static let primaryButtonBackground = Asset.Colors.mainYellow.color
         public static let primaryButtonTitle = Color.white
         public static let secondaryButtonBackground = Color.clear
-        public static let secondaryButtonTitle = Asset.Colors.mateeYellow.color
+        public static let secondaryButtonTitle = Asset.Colors.mainYellow.color
         
         // ProgressView
-        public static let progressView = Asset.Colors.mateeYellow.color
+        public static let progressView = Asset.Colors.mainYellow.color
         
         // Toast
         public static let toastSuccessColor = Asset.Colors.success.color
@@ -62,5 +61,19 @@ public enum AppTheme {
         // Whisper
         public static let whisperMessage = Font.system(size: 13.0, weight: .medium)
         public static let whisperMessageUIKit = UIFont.systemFont(ofSize: 13.0, weight: .medium)
+    }
+    
+    /// Defines all the images used in the app in a semantic way
+    public enum Images {
+        
+        // Tab bar
+        public static let homeTab = "house.fill"
+        public static let freerunTab = "leaf.fill"
+        public static let profileTab = "person.crop.circle.fill"
+        
+        // Toast
+        public static let toastInfo = "info.circle"
+        public static let toastError = "xmark.circle"
+        public static let toastSuccess = "checkmark.circle"
     }
 }

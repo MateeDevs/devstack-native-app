@@ -43,9 +43,9 @@ public enum ToastStyle {
     
     var image: Image {
         switch self {
-        case .info: return Image(systemName: "info.circle")
-        case .success: return Image(systemName: "checkmark.circle")
-        case .error: return Image(systemName: "xmark.circle")
+        case .info: return Image(systemName: AppTheme.Images.toastInfo)
+        case .success: return Image(systemName: AppTheme.Images.toastSuccess)
+        case .error: return Image(systemName: AppTheme.Images.toastError)
         }
     }
 }

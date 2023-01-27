@@ -306,25 +306,17 @@
 
 [[Bottom bar view]]
 	[bottom_bar_item_1]
-		cs = Uživatelé
-		en = Users
-		sk = Užívatelia
+		cs = Úvod
+		en = Home
+		sk = Domov
 	[bottom_bar_item_2]
+		cs = Volný běh
+		en = Freerun
+		sk = Voľný beh
+	[bottom_bar_item_3]
 		cs = Profil
 		en = Profile
 		sk = Profil
-	[bottom_bar_item_3]
-		cs = Recepty
-		en = Recipes
-		sk = Recepty
-	[bottom_bar_item_4]
-		cs = Knihy
-		en = Books
-		sk = Kniznice
-	[bottom_bar_item_5]
-		cs = Tab5
-		en = Tab5
-		sk = Tab5
 
 [[Permissions]]
 	[permission_external_storage_msg]

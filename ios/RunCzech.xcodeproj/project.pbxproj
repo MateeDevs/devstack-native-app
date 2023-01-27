@@ -30,6 +30,9 @@
 		45A0EBA427ADDE620005A01E /* Providers+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0EBA127ADDE620005A01E /* Providers+Injection.swift */; };
 		45A0EBA827ADF2610005A01E /* KMPUseCase+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0EBA727ADF2610005A01E /* KMPUseCase+Injection.swift */; };
 		45A0EBB227ADFA210005A01E /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = 45A0EBB127ADFA210005A01E /* Resolver */; };
+		C46F731129843FB3006AA41D /* Home in Frameworks */ = {isa = PBXBuildFile; productRef = C46F731029843FB3006AA41D /* Home */; };
+		C46F731329843FBA006AA41D /* Freerun in Frameworks */ = {isa = PBXBuildFile; productRef = C46F731229843FBA006AA41D /* Freerun */; };
+		C46F731529843FC3006AA41D /* Profile in Frameworks */ = {isa = PBXBuildFile; productRef = C46F731429843FC3006AA41D /* Profile */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -84,6 +87,10 @@
 		45DEBE3427A400410075C7E2 /* Alpha.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Alpha.entitlements; sourceTree = "<group>"; };
 		45FF99D72842B0A600E32D9A /* AnalyticsToolkit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = AnalyticsToolkit; sourceTree = "<group>"; };
 		45FF99D92842B51800E32D9A /* Utilities */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Utilities; sourceTree = "<group>"; };
+		C48094CD29842967004CEA14 /* Home */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Home; sourceTree = "<group>"; };
+		C49D2EEA29842E3D00BB427B /* Freerun */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Freerun; sourceTree = "<group>"; };
+		C49D2EEB29842EE500BB427B /* Profile */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Profile; sourceTree = "<group>"; };
+		C49D2EEC29842F3100BB427B /* RaceDetail */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RaceDetail; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,11 +98,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C46F731529843FC3006AA41D /* Profile in Frameworks */,
 				4508333728437BB700BC9460 /* UIToolkit in Frameworks */,
 				4508331028435E7800BC9460 /* AnalyticsProvider in Frameworks */,
 				459C3707274B001B00536110 /* Atlantis in Frameworks */,
 				4508331228435E7800BC9460 /* AnalyticsToolkit in Frameworks */,
 				4508333028435E7900BC9460 /* Utilities in Frameworks */,
+				C46F731329843FBA006AA41D /* Freerun in Frameworks */,
+				C46F731129843FB3006AA41D /* Home in Frameworks */,
 				4508331E28435E7800BC9460 /* NetworkProvider in Frameworks */,
 				4508332A28435E7800BC9460 /* SharedDomain in Frameworks */,
 				4508331828435E7800BC9460 /* KeychainProvider in Frameworks */,
@@ -111,6 +121,10 @@
 		453C8801283FA9CA0027BDFB /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
+				C49D2EEC29842F3100BB427B /* RaceDetail */,
+				C49D2EEB29842EE500BB427B /* Profile */,
+				C49D2EEA29842E3D00BB427B /* Freerun */,
+				C48094CD29842967004CEA14 /* Home */,
 				4508333128436EFB00BC9460 /* UIToolkit */,
 				453580EE284806FE007AEC9E /* strings.txt */,
 			);
@@ -277,6 +291,9 @@
 				4508332928435E7800BC9460 /* SharedDomain */,
 				4508332F28435E7900BC9460 /* Utilities */,
 				4508333628437BB700BC9460 /* UIToolkit */,
+				C46F731029843FB3006AA41D /* Home */,
+				C46F731229843FBA006AA41D /* Freerun */,
+				C46F731429843FC3006AA41D /* Profile */,
 			);
 			productName = RunCzech;
 			productReference = 4558D30720FCC8FF005BC325 /* RunCzech.app */;
@@ -1075,6 +1092,18 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 45A0EBB027ADFA210005A01E /* XCRemoteSwiftPackageReference "Resolver" */;
 			productName = Resolver;
+		};
+		C46F731029843FB3006AA41D /* Home */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Home;
+		};
+		C46F731229843FBA006AA41D /* Freerun */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Freerun;
+		};
+		C46F731429843FC3006AA41D /* Profile */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Profile;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

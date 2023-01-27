@@ -10,15 +10,6 @@
       }
     },
     {
-      "identity" : "apollo-ios",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apollographql/apollo-ios",
-      "state" : {
-        "revision" : "e123b5fdbaaf926d98a6833f25cbdff51e22200b",
-        "version" : "1.0.6"
-      }
-    },
-    {
       "identity" : "atlantis",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ProxymanApp/atlantis",
@@ -91,15 +82,6 @@
       }
     },
     {
-      "identity" : "inflectorkit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/mattt/InflectorKit",
-      "state" : {
-        "revision" : "d8cbcc04972690aaa5fc760a2b9ddb3e9f0decd7",
-        "version" : "1.0.0"
-      }
-    },
-    {
       "identity" : "keychainaccess",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/kishikawakatsumi/KeychainAccess.git",
@@ -142,33 +124,6 @@
       "state" : {
         "revision" : "97de0b0320036607564af4a60025b48f8d041221",
         "version" : "1.5.0"
-      }
-    },
-    {
-      "identity" : "sqlite.swift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/stephencelis/SQLite.swift.git",
-      "state" : {
-        "revision" : "7a2e3cd27de56f6d396e84f63beefd0267b55ccb",
-        "version" : "0.14.1"
-      }
-    },
-    {
-      "identity" : "swift-argument-parser",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-argument-parser.git",
-      "state" : {
-        "revision" : "4ad606ba5d7673ea60679a61ff867cc1ff8c8e86",
-        "version" : "1.2.1"
-      }
-    },
-    {
-      "identity" : "swift-collections",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-collections",
-      "state" : {
-        "revision" : "937e904258d22af6e447a0b72c0bc67583ef64a2",
-        "version" : "1.0.4"
       }
     },
     {

@@ -14,30 +14,19 @@ final class AppFlowController: FlowController, MainFlowControllerDelegate {
     
     func start() {
         setupAppearance()
-        
-//        if isUserLoggedUseCase.execute() {
-//            setupMain()
-//        } else {
-//            presentOnboarding(animated: false, completion: nil)
-//        }
+        setupMain()
     }
     
     func setupMain() {
         let fc = MainFlowController(navigationController: navigationController)
         fc.delegate = self
         let rootVC = startChildFlow(fc)
+        navigationController.navigationBar.isHidden = true
         navigationController.viewControllers = [rootVC]
     }
     
     func presentOnboarding(animated: Bool, completion: (() -> Void)?) {
-//        let nc = BaseNavigationController()
-//        let fc = OnboardingFlowController(navigationController: nc)
-//        fc.delegate = self
-//        let rootVC = startChildFlow(fc)
-//        nc.viewControllers = [rootVC]
-//        nc.modalPresentationStyle = .fullScreen
-//        nc.navigationBar.isHidden = true
-//        navigationController.present(nc, animated: animated, completion: completion)
+        #warning("TODO: present onboarding (MainFlowControllerDelegate)")
     }
     
     public func handlePushNotification(_ notification: [AnyHashable: Any]) {
@@ -49,6 +38,7 @@ final class AppFlowController: FlowController, MainFlowControllerDelegate {
     }
     
     public func handleLogout() {
+        #warning("TODO: handleLogout for AppDelegate")
 //        guard let vc = navigationController.topViewController as? BaseViewController else { return }
 //
 //        let action = AlertData.Action(title: L10n.dialog_interceptor_button_title, style: .default, handler: {
@@ -64,18 +54,25 @@ final class AppFlowController: FlowController, MainFlowControllerDelegate {
     }
     
     private func setupAppearance() {
-//        // Navigation bar
-//        let appearance = UINavigationBarAppearance()
-//        appearance.backgroundColor = UIColor(AppTheme.Colors.navBarBackground)
-//        appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(AppTheme.Colors.navBarTitle)]
-//        UINavigationBar.appearance().standardAppearance = appearance
-//        UINavigationBar.appearance().scrollEdgeAppearance = appearance
-//        UINavigationBar.appearance().tintColor = UIColor(AppTheme.Colors.navBarTitle)
-//
-//        // Tab bar
-//        UITabBar.appearance().tintColor = UIColor(AppTheme.Colors.primaryColor)
-//
-//        // UITextField
-//        UITextField.appearance().tintColor = UIColor(AppTheme.Colors.primaryColor)
+        // Navigation bar
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = UIColor(AppTheme.Colors.navBarBackground)
+        appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(AppTheme.Colors.navBarTitle)]
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        UINavigationBar.appearance().tintColor = UIColor(AppTheme.Colors.navBarTitle)
+
+        // Tab bar
+        let tabBarAppearance = UITabBarAppearance()
+        tabBarAppearance.backgroundColor = .white
+        tabBarAppearance.stackedLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor(AppTheme.Colors.primaryColor)]
+        tabBarAppearance.stackedLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor(AppTheme.Colors.primaryColor.opacity(0.5))]
+        tabBarAppearance.stackedLayoutAppearance.selected.iconColor = UIColor(AppTheme.Colors.primaryColor)
+        tabBarAppearance.stackedLayoutAppearance.normal.iconColor = UIColor(AppTheme.Colors.primaryColor.opacity(0.5))
+        UITabBar.appearance().standardAppearance = tabBarAppearance
+        UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+
+        // UITextField
+        UITextField.appearance().tintColor = UIColor(AppTheme.Colors.primaryColor)
     }
 }

@@ -3,14 +3,17 @@
 //  Copyright © 2019 Matee. All rights reserved.
 //
 
+import Freerun
+import Home
+import Profile
 import SharedDomain
 import UIKit
 import UIToolkit
 
 enum MainTab: Int {
-    case users = 0
-    case profile = 1
-    case recipes = 2
+    case home = 0
+    case freerun = 1
+    case profile = 2
 }
 
 protocol MainFlowControllerDelegate: AnyObject {
@@ -23,48 +26,50 @@ final class MainFlowController: FlowController {
     
     override func setup() -> UIViewController {
         let main = UITabBarController()
-        main.viewControllers = [setupUsersTab(), setupProfileTab(), setupRecipesTab()]
+        main.viewControllers = [setupHomeTab(), setupFreerunTab(), setupProfileTab()]
         return main
     }
     
-    private func setupUsersTab() -> UINavigationController {
-        let usersNC = BaseNavigationController()
-        usersNC.tabBarItem = UITabBarItem(
+    private func setupHomeTab() -> UINavigationController {
+        let homeNC = BaseNavigationController()
+        homeNC.tabBarItem = UITabBarItem(
             title: L10n.bottom_bar_item_1,
-            image: Asset.Images.usersTabBar.uiImage,
-            tag: MainTab.users.rawValue
+            image: UIImage(systemName: AppTheme.Images.homeTab),
+            tag: MainTab.home.rawValue
         )
-//        let usersFC = UsersFlowController(navigationController: usersNC)
-//        let usersRootVC = startChildFlow(usersFC)
-//        usersNC.viewControllers = [usersRootVC]
-        return usersNC
+        let homeFC = HomeFlowController(navigationController: homeNC)
+        let homeRootVC = startChildFlow(homeFC)
+        homeNC.navigationBar.isHidden = true
+        homeNC.viewControllers = [homeRootVC]
+        return homeNC
+    }
+    
+    private func setupFreerunTab() -> UINavigationController {
+        let freerunNC = BaseNavigationController()
+        freerunNC.tabBarItem = UITabBarItem(
+            title: L10n.bottom_bar_item_2,
+            image: UIImage(systemName: AppTheme.Images.freerunTab),
+            tag: MainTab.freerun.rawValue
+        )
+        let freerunFC = FreerunFlowController(navigationController: freerunNC)
+        let freerunRootVC = startChildFlow(freerunFC)
+        freerunNC.navigationBar.isHidden = true
+        freerunNC.viewControllers = [freerunRootVC]
+        return freerunNC
     }
     
     private func setupProfileTab() -> UINavigationController {
         let profileNC = BaseNavigationController()
         profileNC.tabBarItem = UITabBarItem(
-            title: L10n.bottom_bar_item_2,
-            image: Asset.Images.profileTabBar.uiImage,
+            title: L10n.bottom_bar_item_3,
+            image: UIImage(systemName: AppTheme.Images.profileTab),
             tag: MainTab.profile.rawValue
         )
-//        let profileFC = ProfileFlowController(navigationController: profileNC)
-//        profileFC.delegate = self
-//        let profileRootVC = startChildFlow(profileFC)
-//        profileNC.viewControllers = [profileRootVC]
+        let profileFC = ProfileFlowController(navigationController: profileNC)
+        let profileRootVC = startChildFlow(profileFC)
+        profileNC.navigationBar.isHidden = true
+        profileNC.viewControllers = [profileRootVC]
         return profileNC
-    }
-    
-    private func setupRecipesTab() -> UINavigationController {
-        let recipesNC = BaseNavigationController()
-        recipesNC.tabBarItem = UITabBarItem(
-            title: L10n.bottom_bar_item_3,
-            image: Asset.Images.recipesTabBar.uiImage,
-            tag: MainTab.recipes.rawValue
-        )
-//        let recipesFC = RecipesFlowController(navigationController: recipesNC)
-//        let recipesRootVC = startChildFlow(recipesFC)
-//        recipesNC.viewControllers = [recipesRootVC]
-        return recipesNC
     }
     
     func presentOnboarding() {
