@@ -5,7 +5,6 @@
 
 import UserNotifications
 
-// sourcery: AutoMockable
 public protocol RegisterForPushNotificationsUseCase {
     func execute(options: UNAuthorizationOptions, completionHandler: @escaping (Bool, Error?) -> Void)
 }

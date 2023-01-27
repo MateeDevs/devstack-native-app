@@ -19,7 +19,6 @@
 		4508333528437BA500BC9460 /* AppFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4508333228437BA500BC9460 /* AppFlowController.swift */; };
 		4508333728437BB700BC9460 /* UIToolkit in Frameworks */ = {isa = PBXBuildFile; productRef = 4508333628437BB700BC9460 /* UIToolkit */; };
 		4508334528454DA900BC9460 /* KMPDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4508334428454DA900BC9460 /* KMPDependency.swift */; };
-		453580E7284801D8007AEC9E /* GraphQLProvider in Frameworks */ = {isa = PBXBuildFile; productRef = 453580E6284801D8007AEC9E /* GraphQLProvider */; };
 		453580EF284806FE007AEC9E /* strings.txt in Resources */ = {isa = PBXBuildFile; fileRef = 453580EE284806FE007AEC9E /* strings.txt */; };
 		454F6EC426CE8B3900C386B8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 454F6EC226CE8B3500C386B8 /* InfoPlist.strings */; };
 		4558D30B20FCC8FF005BC325 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4558D30A20FCC8FF005BC325 /* AppDelegate.swift */; };
@@ -55,7 +54,6 @@
 		4508333328437BA500BC9460 /* MainFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowController.swift; sourceTree = "<group>"; };
 		4508334428454DA900BC9460 /* KMPDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMPDependency.swift; sourceTree = "<group>"; };
 		4534C1C42603D6AD0022ACF4 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		453580E52847E814007AEC9E /* GraphQLProvider */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = GraphQLProvider; sourceTree = "<group>"; };
 		453580EE284806FE007AEC9E /* strings.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = strings.txt; path = ../../twine/strings.txt; sourceTree = "<group>"; };
 		453C8807283FAB4C0027BDFB /* SharedDomain */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SharedDomain; sourceTree = "<group>"; };
 		453C880C283FB33D0027BDFB /* DevstackKmpShared.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = DevstackKmpShared.xcframework; sourceTree = "<group>"; };
@@ -102,7 +100,6 @@
 				4508332A28435E7800BC9460 /* SharedDomain in Frameworks */,
 				4508331828435E7800BC9460 /* KeychainProvider in Frameworks */,
 				4508332228435E7800BC9460 /* PushNotificationsProvider in Frameworks */,
-				453580E7284801D8007AEC9E /* GraphQLProvider in Frameworks */,
 				4508332428435E7800BC9460 /* PushNotificationsToolkit in Frameworks */,
 				45A0EBB227ADFA210005A01E /* Resolver in Frameworks */,
 			);
@@ -189,7 +186,6 @@
 			isa = PBXGroup;
 			children = (
 				45825BC32842961C003926B4 /* AnalyticsProvider */,
-				453580E52847E814007AEC9E /* GraphQLProvider */,
 				45825BC628429D48003926B4 /* KeychainProvider */,
 				45702E5A28421EED008D5487 /* NetworkProvider */,
 				45B5A7952842A64D0055447B /* PushNotificationsProvider */,
@@ -281,7 +277,6 @@
 				4508332928435E7800BC9460 /* SharedDomain */,
 				4508332F28435E7900BC9460 /* Utilities */,
 				4508333628437BB700BC9460 /* UIToolkit */,
-				453580E6284801D8007AEC9E /* GraphQLProvider */,
 			);
 			productName = DevStack;
 			productReference = 4558D30720FCC8FF005BC325 /* DevStack.app */;
@@ -1070,10 +1065,6 @@
 		4508333628437BB700BC9460 /* UIToolkit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = UIToolkit;
-		};
-		453580E6284801D8007AEC9E /* GraphQLProvider */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = GraphQLProvider;
 		};
 		459C3706274B001B00536110 /* Atlantis */ = {
 			isa = XCSwiftPackageProductDependency;

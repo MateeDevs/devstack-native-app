@@ -3,7 +3,6 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-// sourcery: AutoMockable
 public protocol HandlePushNotificationUseCase {
     func execute(_ notificationData: [AnyHashable: Any]) throws -> PushNotification
 }

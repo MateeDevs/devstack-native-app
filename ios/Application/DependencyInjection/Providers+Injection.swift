@@ -4,7 +4,6 @@
 //
 
 import AnalyticsProvider
-import GraphQLProvider
 import KeychainProvider
 import NetworkProvider
 import PushNotificationsProvider
@@ -20,7 +19,6 @@ public extension Resolver {
         networkProviderDelegate: NetworkProviderDelegate
     ) {
         register { FirebaseAnalyticsProvider() as AnalyticsProvider }
-        register { ApolloGraphQLProvider(baseURL: NetworkingConstants.rocketsURL) as GraphQLProvider }
         register { SystemKeychainProvider() as KeychainProvider }
         
         register {

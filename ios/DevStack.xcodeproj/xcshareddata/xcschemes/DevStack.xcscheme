@@ -26,7 +26,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Generate code"
-               scriptText = "cd &quot;${PROJECT_DIR}&quot;&#10;exec &gt; prebuild.log 2&gt;&amp;1 # For debugging&#10;scripts/twine.sh&#10;scripts/sourcery.sh&#10;">
+               scriptText = "cd &quot;${PROJECT_DIR}&quot;&#10;exec &gt; prebuild.log 2&gt;&amp;1 # For debugging&#10;scripts/twine.sh&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
@@ -81,54 +81,6 @@
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AuthToolkitTests"
-               BuildableName = "AuthToolkitTests"
-               BlueprintName = "AuthToolkitTests"
-               ReferencedContainer = "container:DataLayer/Toolkits/AuthToolkit">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES"
-            testExecutionOrdering = "random">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "LocationToolkitTests"
-               BuildableName = "LocationToolkitTests"
-               BlueprintName = "LocationToolkitTests"
-               ReferencedContainer = "container:DataLayer/Toolkits/LocationToolkit">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES"
-            testExecutionOrdering = "random">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OnboardingTests"
-               BuildableName = "OnboardingTests"
-               BlueprintName = "OnboardingTests"
-               ReferencedContainer = "container:PresentationLayer/Onboarding">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES"
-            testExecutionOrdering = "random">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "ProfileTests"
-               BuildableName = "ProfileTests"
-               BlueprintName = "ProfileTests"
-               ReferencedContainer = "container:PresentationLayer/Profile">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES"
-            testExecutionOrdering = "random">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "PushNotificationsToolkitTests"
                BuildableName = "PushNotificationsToolkitTests"
                BlueprintName = "PushNotificationsToolkitTests"
@@ -141,70 +93,10 @@
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "RecipesTests"
-               BuildableName = "RecipesTests"
-               BlueprintName = "RecipesTests"
-               ReferencedContainer = "container:PresentationLayer/Recipes">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES"
-            testExecutionOrdering = "random">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "RemoteConfigToolkitTests"
-               BuildableName = "RemoteConfigToolkitTests"
-               BlueprintName = "RemoteConfigToolkitTests"
-               ReferencedContainer = "container:DataLayer/Toolkits/RemoteConfigToolkit">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES"
-            testExecutionOrdering = "random">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "SharedDomainTests"
                BuildableName = "SharedDomainTests"
                BlueprintName = "SharedDomainTests"
                ReferencedContainer = "container:DomainLayer/SharedDomain">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES"
-            testExecutionOrdering = "random">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "UsersTests"
-               BuildableName = "UsersTests"
-               BlueprintName = "UsersTests"
-               ReferencedContainer = "container:PresentationLayer/Users">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES"
-            testExecutionOrdering = "random">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "UserToolkitTests"
-               BuildableName = "UserToolkitTests"
-               BlueprintName = "UserToolkitTests"
-               ReferencedContainer = "container:DataLayer/Toolkits/UserToolkit">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES"
-            testExecutionOrdering = "random">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "RocketToolkitTests"
-               BuildableName = "RocketToolkitTests"
-               BlueprintName = "RocketToolkitTests"
-               ReferencedContainer = "container:DataLayer/Toolkits/RocketToolkit">
             </BuildableReference>
          </TestableReference>
       </Testables>

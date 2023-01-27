@@ -105,17 +105,9 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: Clear keychain
     private func clearKeychain() {
-//        let keychainProvider: KeychainProvider = Resolver.resolve()
-//        let userDefaultsProvider: UserDefaultsProvider = Resolver.resolve()
-//
-//        do {
-//            let _: Bool = try userDefaultsProvider.read(.hasRunBefore)
-//        } catch UserDefaultsProviderError.valueForKeyNotFound {
-//            do {
-//                try keychainProvider.deleteAll()
-//                try userDefaultsProvider.update(.hasRunBefore, value: true)
-//            } catch {}
-//        } catch {}
+        let keychainProvider: KeychainProvider = Resolver.resolve()
+        
+        try? keychainProvider.deleteAll()
     }
     
     // MARK: Firebase debug setup

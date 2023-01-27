@@ -3,7 +3,6 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-// sourcery: AutoMockable
 public protocol TrackAnalyticsEventUseCase {
     func execute(_ event: AnalyticsEvent)
 }
