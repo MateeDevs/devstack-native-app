@@ -5,6 +5,7 @@ excluded:
   - DataLayer/Providers/GraphQLProvider/.build
   - DataLayer/Toolkits/RocketToolkit/Sources/RocketToolkit/NetworkModels/Apollo
   - DataLayer/Toolkits/RocketToolkit/Sources/RocketToolkitMocks
+  - DomainLayer/SharedDomain/.build
   
 indentation: 2
 cyclomatic_complexity: 10

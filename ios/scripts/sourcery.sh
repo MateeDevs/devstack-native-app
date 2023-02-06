@@ -1,4 +1,8 @@
-#!/bin/zsh -l
+#!/bin/bash
 
-echo "Running Sourcery"
-mint run sourcery --config scripts/sourcery-automockable.yml
+cd "$(dirname "$0")"
+
+# SharedDomain
+cd ../DomainLayer/SharedDomain
+swift package --allow-writing-to-package-directory sourcery-command
+cd ../..
