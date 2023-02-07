@@ -5,6 +5,13 @@
       location = "group:README.md">
    </FileRef>
    <Group
+      location = "group:CI"
+      name = "CI">
+      <FileRef
+         location = "group:FastlaneRunner">
+      </FileRef>
+   </Group>
+   <Group
       location = "container:"
       name = "Kotlin">
       <Group

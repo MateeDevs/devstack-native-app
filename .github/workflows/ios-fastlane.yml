@@ -1,8 +1,70 @@
-name: iOS - Release
+name: iOS - Fastlane Swift
 
-on: workflow_dispatch
+on:
+  push:
+    branches:
+      - feature/fastlane-swift
 
 jobs:
+  # build:
+  #   name: Create new build
+  #   runs-on: [self-hosted, ios-build]
+  #   timeout-minutes: 15
+  #   steps:
+  #     - name: Checkout repo
+  #       uses: actions/checkout@v2
+  #       with:
+  #         clean: false
+  #     - name: Setup tools
+  #       working-directory: ios
+  #       run: ./scripts/setup.sh
+  #     - name: Build KMP
+  #       working-directory: ios
+  #       run: ./scripts/build-kmp.sh release true
+  #     - name: Prepare App Store Connect API key file
+  #       env:
+  #         APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_MATEE }}
+  #       working-directory: ios
+  #       run: echo "$APP_STORE_CONNECT_API_KEY_CONTENT" > AuthKey_Matee.p8
+  #     - name: Create a new Alpha build
+  #       env:
+  #         BUILD_NUMBER: $(echo `date +"%y%m%d%H%M"`)
+  #       working-directory: ios
+  #       run: swift run --package-path CI/FastlaneRunner fastlaneRunner lane buildAlphaLane
+
+  # deploy-alpha:
+  #   name: Deploy alpha
+  #   needs: build
+  #   runs-on: [self-hosted, ios-internal]
+  #   timeout-minutes: 15
+  #   steps:
+  #     - name: Upload the Alpha build to the TestFlight
+  #       env:
+  #         APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_MATEE }}
+  #         SLACK_URL: ${{ secrets.FASTLANE_SLACK_URL }}
+  #         DISTRIBUTE_EXTERNAL: false
+  #       working-directory: ios
+  #       run: swift run --package-path CI/FastlaneRunner fastlaneRunner lane uploadTestFlightAlphaLane
+
+  # test:
+  #   name: Run tests
+  #   runs-on: [self-hosted, ios-build]
+  #   timeout-minutes: 15
+  #   steps:
+  #     - name: Checkout repo
+  #       uses: actions/checkout@v2
+  #       with:
+  #         clean: false
+  #     - name: Setup tools
+  #       working-directory: ios
+  #       run: ./scripts/setup.sh
+  #     - name: Build KMP
+  #       working-directory: ios
+  #       run: ./scripts/build-kmp.sh debug false
+  #     - name: Run tests
+  #       working-directory: ios
+  #       run: swift run --package-path CI/FastlaneRunner fastlaneRunner lane testAlphaLane
+
   build:
     name: Create new builds
     runs-on: [self-hosted, ios-build]
