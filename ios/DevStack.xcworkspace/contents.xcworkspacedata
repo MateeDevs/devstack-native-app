@@ -5,6 +5,26 @@
       location = "group:README.md">
    </FileRef>
    <Group
+      location = "group:CI"
+      name = "CI">
+      <Group
+         location = "container:"
+         name = "Workflows">
+         <FileRef
+            location = "group:../.github/workflows/ios-develop.yml">
+         </FileRef>
+         <FileRef
+            location = "group:../.github/workflows/ios-release.yml">
+         </FileRef>
+         <FileRef
+            location = "group:../.github/workflows/ios-test.yml">
+         </FileRef>
+      </Group>
+      <FileRef
+         location = "group:FastlaneRunner">
+      </FileRef>
+   </Group>
+   <Group
       location = "container:"
       name = "Kotlin">
       <Group

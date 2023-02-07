@@ -85,7 +85,7 @@ FIXME
 ## Build + Release
 - CI/CD process is based on [GitHub Actions](https://github.com/features/actions) and [Fastlane](https://fastlane.tools/)
 - Configurations for GitHub Actions are in the `.github/workflows` folder
-- Configuration for Fastlane is in the `fastlane/Fastfile` file
+- Configuration for Fastlane is in the `FastlaneRunner` package
 - Version number is taken from the Xcode project (it should respect [Semantic Versioning](https://semver.org))
 - Build number is generated on the CI server, the value set in the Xcode project is ignored
 - For every merge to develop branch, a new alpha build is created and uploaded to the TestFlight for internal testers

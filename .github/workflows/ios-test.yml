@@ -12,8 +12,7 @@ jobs:
     timeout-minutes: 15
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
-        continue-on-error: true
+        uses: actions/checkout@v3
         with:
           clean: false
       - name: Setup tools
@@ -24,4 +23,4 @@ jobs:
         run: ./scripts/build-kmp.sh debug false
       - name: Run tests
         working-directory: ios
-        run: fastlane test_alpha
+        run: swift run --package-path CI/FastlaneRunner fastlaneRunner lane testAlphaLane

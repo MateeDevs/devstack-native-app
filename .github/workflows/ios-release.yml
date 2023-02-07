@@ -9,8 +9,7 @@ jobs:
     timeout-minutes: 60
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
-        continue-on-error: true
+        uses: actions/checkout@v3
         with:
           clean: false
       - name: Setup tools
@@ -27,12 +26,14 @@ jobs:
         working-directory: ios
         run: echo "$APP_STORE_CONNECT_API_KEY_CONTENT" > AuthKey_Matee.p8
       - name: Create builds
+        env:
+          BUILD_NUMBER: $(echo `date +"%y%m%d%H%M"`)
         working-directory: ios
         run: |
-          fastlane build_alpha
-          fastlane build_beta
-          fastlane build_production
-          fastlane tag
+          swift run --package-path CI/FastlaneRunner fastlaneRunner lane buildAlphaLane
+          swift run --package-path CI/FastlaneRunner fastlaneRunner lane buildBetaLane
+          swift run --package-path CI/FastlaneRunner fastlaneRunner lane buildProductionLane
+          swift run --package-path CI/FastlaneRunner fastlaneRunner lane tagProductionLane
 
   deploy-alpha:
     name: Deploy alpha
@@ -44,8 +45,9 @@ jobs:
         env:
           APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_MATEE }}
           SLACK_URL: ${{ secrets.FASTLANE_SLACK_URL }}
+          DISTRIBUTE_EXTERNAL: true
         working-directory: ios
-        run: fastlane upload_testflight_alpha distribute_external:true
+        run: swift run --package-path CI/FastlaneRunner fastlaneRunner lane uploadTestFlightAlphaLane swiftServerPort 2002
 
   deploy-beta:
     name: Deploy beta
@@ -57,8 +59,9 @@ jobs:
         env:
           APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_MATEE }}
           SLACK_URL: ${{ secrets.FASTLANE_SLACK_URL }}
+          DISTRIBUTE_EXTERNAL: true
         working-directory: ios
-        run: fastlane upload_testflight_beta distribute_external:true
+        run: swift run --package-path CI/FastlaneRunner fastlaneRunner lane uploadTestFlightBetaLane swiftServerPort 2003
 
   deploy-production:
     name: Deploy production
@@ -70,5 +73,6 @@ jobs:
         env:
           APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_MATEE }}
           SLACK_URL: ${{ secrets.FASTLANE_SLACK_URL }}
+          DISTRIBUTE_EXTERNAL: true
         working-directory: ios
-        run: fastlane upload_testflight_production distribute_external:true
+        run: swift run --package-path CI/FastlaneRunner fastlaneRunner lane uploadTestFlightProductionLane swiftServerPort 2004
