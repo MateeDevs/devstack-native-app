@@ -15,7 +15,6 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
-        continue-on-error: true
         with:
           clean: false
       - name: Setup tools
@@ -24,16 +23,16 @@ jobs:
       - name: Build KMP
         working-directory: ios
         run: ./scripts/build-kmp.sh release true
-      - name: Generate build number
-        run: echo "BUILD_NUMBER=$(echo `date +"%y%m%d%H%M"`)" >> $GITHUB_ENV
       - name: Prepare App Store Connect API key file
         env:
           APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_MATEE }}
         working-directory: ios
         run: echo "$APP_STORE_CONNECT_API_KEY_CONTENT" > AuthKey_Matee.p8
       - name: Create a new Alpha build
+        env:
+          BUILD_NUMBER: $(echo `date +"%y%m%d%H%M"`)
         working-directory: ios
-        run: fastlane build_alpha
+        run: swift run --package-path CI/FastlaneRunner fastlaneRunner lane buildAlphaLane
 
   deploy-alpha:
     name: Deploy alpha
@@ -46,8 +45,9 @@ jobs:
         env:
           APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_MATEE }}
           SLACK_URL: ${{ secrets.FASTLANE_SLACK_URL }}
+          DISTRIBUTE_EXTERNAL: false
         working-directory: ios
-        run: fastlane upload_testflight_alpha distribute_external:false
+        run: swift run --package-path CI/FastlaneRunner fastlaneRunner lane uploadTestFlightAlphaLane swiftServerPort 2001
 
       # - name: Login to Jira
       #   uses: atlassian/gajira-login@master
