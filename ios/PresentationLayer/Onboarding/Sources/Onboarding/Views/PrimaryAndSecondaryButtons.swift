@@ -8,8 +8,9 @@ import UIToolkit
 
 struct PrimaryAndSecondaryButtons: View {
     
+    @Environment(\.isLoading) private var isLoading
+    
     private let primaryButtonTitle: String
-    private let primaryButtonLoading: Bool
     private let onPrimaryButtonTap: () -> Void
     
     private let secondaryButtonTitle: String
@@ -17,13 +18,11 @@ struct PrimaryAndSecondaryButtons: View {
     
     init(
         primaryButtonTitle: String,
-        primaryButtonLoading: Bool,
         onPrimaryButtonTap: @escaping () -> Void,
         secondaryButtonTitle: String,
         onSecondaryButtonTap: @escaping () -> Void
     ) {
         self.primaryButtonTitle = primaryButtonTitle
-        self.primaryButtonLoading = primaryButtonLoading
         self.onPrimaryButtonTap = onPrimaryButtonTap
         self.secondaryButtonTitle = secondaryButtonTitle
         self.onSecondaryButtonTap = onSecondaryButtonTap
@@ -34,8 +33,8 @@ struct PrimaryAndSecondaryButtons: View {
             Button(primaryButtonTitle) {
                 onPrimaryButtonTap()
             }
-            .buttonStyle(PrimaryButtonStyle(isLoading: primaryButtonLoading))
-            .disabled(primaryButtonLoading)
+            .buttonStyle(PrimaryButtonStyle(isLoading: isLoading))
+            .disabled(isLoading)
             
             Button(secondaryButtonTitle) {
                 onSecondaryButtonTap()
@@ -51,7 +50,6 @@ struct PrimaryAndSecondaryButtons_Previews: PreviewProvider {
     static var previews: some View {
         PrimaryAndSecondaryButtons(
             primaryButtonTitle: "Login",
-            primaryButtonLoading: false,
             onPrimaryButtonTap: {},
             secondaryButtonTitle: "Register",
             onSecondaryButtonTap: {}
