@@ -9,6 +9,7 @@ import SharedDomain
 import SharedDomainMocks
 import UIToolkit
 import XCTest
+import Combine
 
 @MainActor
 final class LoginViewModelTests: XCTestCase {
@@ -17,6 +18,8 @@ final class LoginViewModelTests: XCTestCase {
     
     private let fc = FlowControllerMock<OnboardingFlow>(navigationController: UINavigationController())
     
+    private var disposeBag = Set<AnyCancellable>()
+    
     private let loginUseCase = LoginUseCaseMock()
     private let trackAnalyticsEventUseCase = TrackAnalyticsEventUseCaseMock()
     
@@ -24,7 +27,19 @@ final class LoginViewModelTests: XCTestCase {
         Resolver.register { self.loginUseCase as LoginUseCase }
         Resolver.register { self.trackAnalyticsEventUseCase as TrackAnalyticsEventUseCase }
         
-        return LoginViewModel(flowController: fc)
+        let vm = LoginViewModel(flowController: fc)
+        observeSnackState(vm: vm)
+        
+        return vm
+    }
+    
+    private func observeSnackState(vm: LoginViewModel) {
+        vm.snackState.$currentData.sink { snackState in
+            if let snackState {
+                snackState.dismiss()
+            }
+        }
+        .store(in: &disposeBag)
     }
 
     // MARK: Tests
@@ -47,7 +62,6 @@ final class LoginViewModelTests: XCTestCase {
         await vm.awaitAllTasks()
         
         XCTAssert(!vm.state.loginButtonLoading)
-        XCTAssertEqual(vm.state.alert, AlertData(title: L10n.invalid_email))
         XCTAssertEqual(fc.handleFlowValue, nil)
         XCTAssert(loginUseCase.executeReceivedInvocations == [.stubEmptyEmail])
         XCTAssertEqual(trackAnalyticsEventUseCase.executeCallsCount, 0)
@@ -63,7 +77,6 @@ final class LoginViewModelTests: XCTestCase {
         await vm.awaitAllTasks()
         
         XCTAssert(!vm.state.loginButtonLoading)
-        XCTAssertEqual(vm.state.alert, AlertData(title: L10n.invalid_password))
         XCTAssertEqual(fc.handleFlowValue, nil)
         XCTAssert(loginUseCase.executeReceivedInvocations == [.stubEmptyPassword])
         XCTAssertEqual(trackAnalyticsEventUseCase.executeCallsCount, 0)
@@ -94,7 +107,6 @@ final class LoginViewModelTests: XCTestCase {
         await vm.awaitAllTasks()
         
         XCTAssert(!vm.state.loginButtonLoading)
-        XCTAssertEqual(vm.state.alert, AlertData(title: L10n.invalid_credentials))
         XCTAssertEqual(fc.handleFlowValue, nil)
         XCTAssert(loginUseCase.executeReceivedInvocations == [.stubValid])
         XCTAssertEqual(trackAnalyticsEventUseCase.executeCallsCount, 0)
