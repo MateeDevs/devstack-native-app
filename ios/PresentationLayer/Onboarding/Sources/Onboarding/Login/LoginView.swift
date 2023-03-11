@@ -16,7 +16,7 @@ struct LoginView: View {
     }
     
     var body: some View {
-        return VStack {
+        VStack {
             EmailAndPasswordFields(
                 title: L10n.login_view_headline_title,
                 email: viewModel.state.email,
@@ -25,6 +25,7 @@ struct LoginView: View {
                 onPasswordChange: { password in viewModel.onIntent(.changePassword(password)) }
             )
             Spacer()
+            InfoErrorSnackHost(snackState: viewModel.snackState)
             PrimaryAndSecondaryButtons(
                 primaryButtonTitle: L10n.login_view_login_button_title,
                 primaryButtonLoading: viewModel.state.loginButtonLoading,
@@ -33,10 +34,7 @@ struct LoginView: View {
                 onSecondaryButtonTap: { viewModel.onIntent(.register) }
             )
         }
-        .alert(item: Binding<AlertData?>(
-            get: { viewModel.state.alert },
-            set: { _ in viewModel.onIntent(.dismissAlert) }
-        )) { alert in .init(alert) }
+        .animation(.default)
         .lifecycle(viewModel)
     }
 }

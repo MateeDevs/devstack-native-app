@@ -16,6 +16,7 @@ final class LoginViewModel: BaseViewModel, ViewModel, ObservableObject {
     
     @Injected private(set) var loginUseCase: LoginUseCase
     @Injected private(set) var trackAnalyticsEventUseCase: TrackAnalyticsEventUseCase
+    @Published private(set) var snackState = SnackState<InfoErrorSnackVisuals>()
 
     init(flowController: FlowController?) {
         self.flowController = flowController
@@ -82,10 +83,19 @@ final class LoginViewModel: BaseViewModel, ViewModel, ObservableObject {
             let data = LoginData(email: state.email, password: state.password)
             try await loginUseCase.execute(data)
             trackAnalyticsEventUseCase.execute(LoginEvent.loginButtonTap.analyticsEvent)
+            
+            snackState.currentData?.dismiss()
+            await snackState.showSnack(.info(message: "Success", duration: 1))
             flowController?.handleFlow(OnboardingFlow.login(.dismiss))
         } catch {
             state.loginButtonLoading = false
-            state.alert = .init(title: error.localizedDescription)
+            snackState.currentData?.dismiss()
+            await snackState.showSnack(
+                .error(
+                    message: error.localizedDescription,
+                    actionLabel: nil
+                )
+            )
         }
     }
 
