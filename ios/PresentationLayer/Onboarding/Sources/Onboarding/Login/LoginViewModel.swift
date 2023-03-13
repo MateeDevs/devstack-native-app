@@ -42,7 +42,7 @@ final class LoginViewModel: BaseViewModel, ViewModel, ObservableObject {
     struct State {
         var email: String = ""
         var password: String = ""
-        var loginButtonLoading: Bool = false
+        var isLoading: Bool = false
         var alert: AlertData?
     }
     
@@ -79,7 +79,7 @@ final class LoginViewModel: BaseViewModel, ViewModel, ObservableObject {
 
     private func login() async {
         do {
-            state.loginButtonLoading = true
+            state.isLoading = true
             let data = LoginData(email: state.email, password: state.password)
             try await loginUseCase.execute(data)
             trackAnalyticsEventUseCase.execute(LoginEvent.loginButtonTap.analyticsEvent)
@@ -88,7 +88,7 @@ final class LoginViewModel: BaseViewModel, ViewModel, ObservableObject {
             await snackState.showSnack(.info(message: "Success", duration: 1))
             flowController?.handleFlow(OnboardingFlow.login(.dismiss))
         } catch {
-            state.loginButtonLoading = false
+            state.isLoading = false
             snackState.currentData?.dismiss()
             await snackState.showSnack(
                 .error(

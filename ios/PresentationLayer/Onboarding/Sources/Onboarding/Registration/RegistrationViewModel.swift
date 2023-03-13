@@ -27,7 +27,7 @@ final class RegistrationViewModel: BaseViewModel, ViewModel, ObservableObject {
     struct State {
         var email: String = ""
         var password: String = ""
-        var registerButtonLoading: Bool = false
+        var isLoading: Bool = false
         var alert: AlertData?
     }
     
@@ -64,12 +64,12 @@ final class RegistrationViewModel: BaseViewModel, ViewModel, ObservableObject {
     
     private func register() async {
         do {
-            state.registerButtonLoading = true
+            state.isLoading = true
             let data = RegistrationData(email: state.email, password: state.password, firstName: "Anonymous", lastName: "")
             try await registrationUseCase.execute(data)
             flowController?.handleFlow(OnboardingFlow.registration(.dismiss))
         } catch {
-            state.registerButtonLoading = false
+            state.isLoading = false
             state.alert = .init(title: error.localizedDescription)
         }
     }

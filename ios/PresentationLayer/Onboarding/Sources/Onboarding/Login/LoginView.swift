@@ -34,7 +34,7 @@ struct LoginView: View {
             )
         }
         .animation(.default)
-        .environment(\.isLoading, viewModel.state.loginButtonLoading)
+        .environment(\.isLoading, viewModel.state.isLoading)
         .alert(item: Binding<AlertData?>(
             get: { viewModel.state.alert },
             set: { _ in viewModel.onIntent(.dismissAlert) }

@@ -31,7 +31,7 @@ struct RegistrationView: View {
                 onSecondaryButtonTap: { viewModel.onIntent(.login) }
             )
         }
-        .environment(\.isLoading, viewModel.state.registerButtonLoading)
+        .environment(\.isLoading, viewModel.state.isLoading)
         .alert(item: Binding<AlertData?>(
             get: { viewModel.state.alert },
             set: { _ in viewModel.onIntent(.dismissAlert) }
