@@ -26,12 +26,12 @@ struct RegistrationView: View {
             Spacer()
             PrimaryAndSecondaryButtons(
                 primaryButtonTitle: L10n.login_view_register_button_title,
-                primaryButtonLoading: viewModel.state.registerButtonLoading,
                 onPrimaryButtonTap: { viewModel.onIntent(.register) },
                 secondaryButtonTitle: L10n.login_view_login_button_title,
                 onSecondaryButtonTap: { viewModel.onIntent(.login) }
             )
         }
+        .environment(\.isLoading, viewModel.state.isLoading)
         .alert(item: Binding<AlertData?>(
             get: { viewModel.state.alert },
             set: { _ in viewModel.onIntent(.dismissAlert) }

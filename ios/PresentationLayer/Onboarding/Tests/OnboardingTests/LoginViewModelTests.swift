@@ -61,7 +61,7 @@ final class LoginViewModelTests: XCTestCase {
         vm.onIntent(.login)
         await vm.awaitAllTasks()
         
-        XCTAssert(!vm.state.loginButtonLoading)
+        XCTAssert(!vm.state.isLoading)
         XCTAssertEqual(fc.handleFlowValue, nil)
         XCTAssert(loginUseCase.executeReceivedInvocations == [.stubEmptyEmail])
         XCTAssertEqual(trackAnalyticsEventUseCase.executeCallsCount, 0)
@@ -76,7 +76,7 @@ final class LoginViewModelTests: XCTestCase {
         vm.onIntent(.login)
         await vm.awaitAllTasks()
         
-        XCTAssert(!vm.state.loginButtonLoading)
+        XCTAssert(!vm.state.isLoading)
         XCTAssertEqual(fc.handleFlowValue, nil)
         XCTAssert(loginUseCase.executeReceivedInvocations == [.stubEmptyPassword])
         XCTAssertEqual(trackAnalyticsEventUseCase.executeCallsCount, 0)
@@ -90,7 +90,7 @@ final class LoginViewModelTests: XCTestCase {
         vm.onIntent(.login)
         await vm.awaitAllTasks()
         
-        XCTAssert(vm.state.loginButtonLoading)
+        XCTAssert(vm.state.isLoading)
         XCTAssertEqual(vm.state.alert, nil)
         XCTAssertEqual(fc.handleFlowValue, .login(.dismiss))
         XCTAssert(loginUseCase.executeReceivedInvocations == [.stubValid])
@@ -106,7 +106,7 @@ final class LoginViewModelTests: XCTestCase {
         vm.onIntent(.login)
         await vm.awaitAllTasks()
         
-        XCTAssert(!vm.state.loginButtonLoading)
+        XCTAssert(!vm.state.isLoading)
         XCTAssertEqual(fc.handleFlowValue, nil)
         XCTAssert(loginUseCase.executeReceivedInvocations == [.stubValid])
         XCTAssertEqual(trackAnalyticsEventUseCase.executeCallsCount, 0)
@@ -118,7 +118,7 @@ final class LoginViewModelTests: XCTestCase {
         vm.onIntent(.register)
         await vm.awaitAllTasks()
         
-        XCTAssert(!vm.state.loginButtonLoading)
+        XCTAssert(!vm.state.isLoading)
         XCTAssertEqual(vm.state.alert, nil)
         XCTAssertEqual(fc.handleFlowValue, .login(.showRegistration))
         XCTAssertEqual(loginUseCase.executeCallsCount, 0)

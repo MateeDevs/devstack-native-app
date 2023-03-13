@@ -36,7 +36,7 @@ final class RegistrationViewModelTests: XCTestCase {
         vm.onIntent(.register)
         await vm.awaitAllTasks()
         
-        XCTAssert(!vm.state.registerButtonLoading)
+        XCTAssert(!vm.state.isLoading)
         XCTAssertEqual(vm.state.alert, AlertData(title: L10n.invalid_email))
         XCTAssertEqual(fc.handleFlowValue, nil)
         XCTAssert(registrationUseCase.executeReceivedInvocations == [.stubEmptyEmail])
@@ -51,7 +51,7 @@ final class RegistrationViewModelTests: XCTestCase {
         vm.onIntent(.register)
         await vm.awaitAllTasks()
         
-        XCTAssert(!vm.state.registerButtonLoading)
+        XCTAssert(!vm.state.isLoading)
         XCTAssertEqual(vm.state.alert, AlertData(title: L10n.invalid_password))
         XCTAssertEqual(fc.handleFlowValue, nil)
         XCTAssert(registrationUseCase.executeReceivedInvocations == [.stubEmptyPassword])
@@ -65,7 +65,7 @@ final class RegistrationViewModelTests: XCTestCase {
         vm.onIntent(.register)
         await vm.awaitAllTasks()
         
-        XCTAssert(vm.state.registerButtonLoading)
+        XCTAssert(vm.state.isLoading)
         XCTAssertEqual(vm.state.alert, nil)
         XCTAssertEqual(fc.handleFlowValue, .registration(.dismiss))
         XCTAssert(registrationUseCase.executeReceivedInvocations == [.stubValid])
@@ -80,7 +80,7 @@ final class RegistrationViewModelTests: XCTestCase {
         vm.onIntent(.register)
         await vm.awaitAllTasks()
         
-        XCTAssert(!vm.state.registerButtonLoading)
+        XCTAssert(!vm.state.isLoading)
         XCTAssertEqual(vm.state.alert, AlertData(title: L10n.register_view_email_already_exists))
         XCTAssertEqual(fc.handleFlowValue, nil)
         XCTAssert(registrationUseCase.executeReceivedInvocations == [.stubValid])
@@ -92,7 +92,7 @@ final class RegistrationViewModelTests: XCTestCase {
         vm.onIntent(.login)
         await vm.awaitAllTasks()
         
-        XCTAssert(!vm.state.registerButtonLoading)
+        XCTAssert(!vm.state.isLoading)
         XCTAssertEqual(vm.state.alert, nil)
         XCTAssertEqual(fc.handleFlowValue, .registration(.pop))
         XCTAssertEqual(registrationUseCase.executeCallsCount, 0)

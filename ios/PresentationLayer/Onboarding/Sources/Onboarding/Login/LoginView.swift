@@ -28,13 +28,17 @@ struct LoginView: View {
             InfoErrorSnackHost(snackState: viewModel.snackState)
             PrimaryAndSecondaryButtons(
                 primaryButtonTitle: L10n.login_view_login_button_title,
-                primaryButtonLoading: viewModel.state.loginButtonLoading,
                 onPrimaryButtonTap: { viewModel.onIntent(.login) },
                 secondaryButtonTitle: L10n.login_view_register_button_title,
                 onSecondaryButtonTap: { viewModel.onIntent(.register) }
             )
         }
         .animation(.default)
+        .environment(\.isLoading, viewModel.state.isLoading)
+        .alert(item: Binding<AlertData?>(
+            get: { viewModel.state.alert },
+            set: { _ in viewModel.onIntent(.dismissAlert) }
+        )) { alert in .init(alert) }
         .lifecycle(viewModel)
     }
 }
