@@ -7,7 +7,7 @@ let package = Package(
     name: "SharedDomain",
     platforms: [
         .iOS(.v14),
-        .macOS(.v10_14)
+        .macOS(.v10_15)
     ],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.

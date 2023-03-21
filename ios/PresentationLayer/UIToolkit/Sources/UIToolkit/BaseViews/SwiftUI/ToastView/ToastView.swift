@@ -29,9 +29,9 @@ struct ToastView: View {
             Capsule()
                 .fill(.white)
                 .clipped()
+                .shadow(color: Color.black.opacity(0.25), radius: 4, x: 0, y: 1)
         )
         .frame(minWidth: 0, maxWidth: .infinity)
-        .shadow(color: Color.black.opacity(0.25), radius: 4, x: 0, y: 1)
         .padding(.horizontal, 16)
     }
 }
