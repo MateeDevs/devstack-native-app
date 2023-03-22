@@ -14,7 +14,7 @@ struct ToastView: View {
     }
     
     var body: some View {
-        VStack(alignment: .center) {
+        VStack {
             HStack {
                 data.style.image
                     .foregroundColor(data.style.color)
