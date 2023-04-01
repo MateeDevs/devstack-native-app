@@ -1,29 +1,23 @@
 package cz.matee.devstack.kmp.android.books.vm
 
 import androidx.lifecycle.viewModelScope
-import cz.matee.devstack.kmp.android.shared.vm.VmIntent
-import cz.matee.devstack.kmp.android.shared.vm.VmState
-import cz.matee.devstack.kmp.android.shared.vm.IntentViewModel
-import cz.matee.devstack.kmp.android.shared.vm.intentFlow
+import cz.matee.devstack.kmp.android.shared.vm.*
 import cz.matee.devstack.kmp.shared.base.ErrorResult
 import cz.matee.devstack.kmp.shared.domain.model.Book
 import cz.matee.devstack.kmp.shared.domain.usecase.book.GetBooksUseCase
 import cz.matee.devstack.kmp.shared.domain.usecase.book.RefreshBooksUseCase
 import kotlinx.coroutines.launch
 
-data class BooksState(
-    val isLoading: Boolean = false,
-    val books: List<Book> = emptyList(),
-    val error: ErrorResult? = null,
-) : VmState
-
 class BooksViewModel(
     getBooks: GetBooksUseCase,
     private val refreshBooks: RefreshBooksUseCase
-) : IntentViewModel<BooksState, BooksIntent>(BooksState()) {
+) : IntentViewModel<BooksState, BooksModel, BooksIntent>(
+    initialState = BooksState(),
+    initialModel = BooksModel(),
+) {
 
     init {
-        intentFlow(getBooks, BooksIntent::OnDataLoaded)
+        intentFlow(producer = getBooks, intent = BooksIntent::OnDataLoaded)
     }
 
     override fun BooksState.applyIntent(intent: BooksIntent) = when (intent) {
@@ -32,11 +26,32 @@ class BooksViewModel(
         is BooksIntent.OnError -> this.copy(error = error)
     }
 
+    override fun mapToModel(state: BooksState): BooksModel {
+        return BooksModel(books = state.books, isLoading = false, error = null)
+//        when (state) {
+//            is BooksState.Loaded -> BooksModel(books = state.books, isLoading = false, error = null)
+//            is BooksState.Loading -> BooksModel(isLoading = true)
+//            is BooksState.Error -> BooksModel(error = state.error)
+//        }
+    }
+
     private fun BooksState.loadData(): BooksState {
         viewModelScope.launch { refreshBooks(0) }
-        return copy(isLoading = true)
+        return copy(isLoading = true, books = emptyList())
     }
 }
+
+data class BooksState(
+    val books: List<Book> = emptyList(),
+    val isLoading: Boolean = false,
+    val error: ErrorResult? = null,
+) : VmState
+
+data class BooksModel(
+    val books: List<Book> = emptyList(),
+    val isLoading: Boolean = false,
+    val error: ErrorResult? = null,
+) : VmModel
 
 sealed interface BooksIntent : VmIntent {
     object LoadData : BooksIntent

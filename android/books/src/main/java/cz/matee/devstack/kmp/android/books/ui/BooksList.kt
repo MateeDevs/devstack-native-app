@@ -23,9 +23,10 @@ fun BookListScreen(
     navHostController: NavHostController,
     viewModel: BooksViewModel = koinViewModel(),
 ) {
-    val state by viewModel.collectState()
+    val model by viewModel.collectModel()
+
     val pullRefreshState = rememberPullRefreshState(
-        refreshing = state.isLoading,
+        refreshing = model.isLoading,
         onRefresh = { viewModel.onIntent(BooksIntent.LoadData) })
 
     Box(
@@ -35,7 +36,7 @@ fun BookListScreen(
             )
             .pullRefresh(
                 state = pullRefreshState,
-                enabled = !state.isLoading,
+                enabled = !model.isLoading,
             )
     ) {
         LazyColumn(
@@ -46,7 +47,7 @@ fun BookListScreen(
                 .statusBarsPadding()
                 .fillMaxSize()
         ) {
-            items(state.books) { book ->
+            items(model.books) { book ->
                 Column {
                     Text(text = book.name)
                     Text(text = book.author)
@@ -56,7 +57,7 @@ fun BookListScreen(
         }
 
         PullRefreshIndicator(
-            refreshing = state.isLoading,
+            refreshing = model.isLoading,
             state = pullRefreshState,
             modifier = Modifier
                 .statusBarsPadding()

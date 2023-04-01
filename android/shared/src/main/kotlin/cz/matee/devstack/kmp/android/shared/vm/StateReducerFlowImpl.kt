@@ -4,30 +4,30 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.FlowCollector
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.flow.SharingStarted.Companion.Eagerly
-import kotlinx.coroutines.flow.receiveAsFlow
-import kotlinx.coroutines.flow.runningFold
-import kotlinx.coroutines.flow.stateIn
 
-private class StateReducerFlowImpl<State, Intent>(
+private class StateReducerFlowImpl<State, Model, Intent>(
     initialState: State,
+    initialModel: Model,
     reduceState: (State, Intent) -> State,
+    mapToModel: (State) -> Model,
     scope: CoroutineScope
-) : StateReducerFlow<State, Intent> {
+) : StateReducerFlow<Model, Intent> {
 
     private val intents = Channel<Intent>()
 
     private val stateFlow = intents
         .receiveAsFlow()
         .runningFold(initialState, reduceState)
-        .stateIn(scope, Eagerly, initialState)
+        .map { mapToModel(it) }
+        .stateIn(scope, Eagerly, initialModel)
 
     override val replayCache get() = stateFlow.replayCache
 
     override val value get() = stateFlow.value
 
-    override suspend fun collect(collector: FlowCollector<State>): Nothing {
+    override suspend fun collect(collector: FlowCollector<Model>): Nothing {
         stateFlow.collect(collector)
     }
 
@@ -36,8 +36,16 @@ private class StateReducerFlowImpl<State, Intent>(
     }
 }
 
-fun <State, Event> ViewModel.stateReducerFlowOf(
+fun <State, Model, Event> ViewModel.stateReducerFlowOf(
     initialState: State,
+    initialModel: Model,
     reduceState: (State, Event) -> State,
-): StateReducerFlow<State, Event> =
-    StateReducerFlowImpl(initialState, reduceState, viewModelScope)
+    mapToModel: (State) -> Model,
+): StateReducerFlow<Model, Event> =
+    StateReducerFlowImpl(
+        initialState = initialState,
+        initialModel = initialModel,
+        reduceState = reduceState,
+        mapToModel = mapToModel,
+        scope = viewModelScope,
+    )

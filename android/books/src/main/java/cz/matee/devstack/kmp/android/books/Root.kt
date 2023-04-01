@@ -10,7 +10,7 @@ import cz.matee.devstack.kmp.android.books.ui.BookListScreen
 
 @Suppress("FunctionName")
 fun NavGraphBuilder.BooksRoot(navHostController: NavHostController) {
-    navigation(startDestination = BooksDestinations.List.route, Feature.Books.route) {
+    navigation(startDestination = BooksDestinations.List.route, route = Feature.Books.route) {
 
         composable(BooksDestinations.List.route) { BookListScreen(navHostController) }
 
