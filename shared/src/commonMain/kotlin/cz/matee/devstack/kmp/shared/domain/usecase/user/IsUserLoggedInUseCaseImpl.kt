@@ -1,11 +1,15 @@
 package cz.matee.devstack.kmp.shared.domain.usecase.user
 
-import cz.matee.devstack.kmp.shared.base.usecase.UseCaseNoParams
+import cz.matee.devstack.kmp.shared.base.Result
+import cz.matee.devstack.kmp.shared.base.usecase.UseCaseResultNoParams
+import cz.matee.devstack.kmp.shared.base.util.helpers.Success
+import cz.matee.devstack.kmp.shared.base.util.helpers.resultsTo
 import cz.matee.devstack.kmp.shared.domain.repository.UserRepository
 
-interface IsUserLoggedInUseCase : UseCaseNoParams<Boolean>
+interface IsUserLoggedInUseCase : UseCaseResultNoParams<Boolean>
 class IsUserLoggedInUseCaseImpl internal constructor(
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
 ) : IsUserLoggedInUseCase {
-    override suspend fun invoke(): Boolean = userRepository.isUserLoggedIn
+    override suspend fun invoke(): Result<Boolean> =
+        userRepository.isUserLoggedIn.resultsTo(Success)
 }

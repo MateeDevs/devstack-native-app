@@ -1,5 +1,6 @@
 package cz.matee.devstack.kmp.android.profile.vm
 
+import android.location.Location
 import androidx.navigation.NavHostController
 import cz.matee.devstack.kmp.android.shared.core.system.BaseStateViewModel
 import cz.matee.devstack.kmp.android.shared.core.system.State
@@ -8,6 +9,8 @@ import cz.matee.devstack.kmp.android.shared.domain.usecase.GetLocationFlowUseCas
 import cz.matee.devstack.kmp.android.shared.navigation.Feature
 import cz.matee.devstack.kmp.shared.base.ErrorResult
 import cz.matee.devstack.kmp.shared.base.Result
+import cz.matee.devstack.kmp.shared.base.getOrNull
+import cz.matee.devstack.kmp.shared.base.util.helpers.Success
 import cz.matee.devstack.kmp.shared.domain.model.Book
 import cz.matee.devstack.kmp.shared.domain.model.User
 import cz.matee.devstack.kmp.shared.domain.repository.UserUpdateParameters
@@ -18,6 +21,7 @@ import cz.matee.devstack.kmp.shared.domain.usecase.user.GetLoggedInUserUseCase
 import cz.matee.devstack.kmp.shared.domain.usecase.user.UpdateUserUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.flowOf
 
 class ProfileViewModel(
     private val getLoggedInUser: GetLoggedInUserUseCase,
@@ -96,7 +100,8 @@ class ProfileViewModel(
         }
     }
 
-    suspend fun getLocationFlow() = locationFlow()
+    suspend fun getLocationFlow(): Flow<Location> =
+        locationFlow().getOrNull() ?: flowOf()
 
     private var loading
         get() = lastState().loading
