@@ -9,4 +9,4 @@ inline fun <T : Any, R : Any> Result<T>.map(transform: (T) -> R) =
         is Result.Error -> Result.Error(error, data?.let(transform))
     }
 
-inline fun <T : Any> Result<T>.toEmptyResult() = map { }
+fun <T : Any> Result<T>.toEmptyResult() = map { }
