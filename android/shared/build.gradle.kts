@@ -32,6 +32,7 @@ android {
         getByName("androidTest").java.srcDirs("src/androidTest/kotlin")
         getByName("release").java.srcDirs("src/release/kotlin")
     }
+    namespace = "cz.matee.devstack.kmp.android.shared"
 }
 
 dependencies {

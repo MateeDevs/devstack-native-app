@@ -80,6 +80,7 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = Dependency.Compose.compilerExtensionVersion
     }
+    namespace = "cz.matee.devstack.kmp"
 
     applicationVariants.all {
         if (buildType.name != "release") {

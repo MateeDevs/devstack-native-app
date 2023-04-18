@@ -88,6 +88,7 @@ android {
         targetSdkVersion(Application.Sdk.target)
     }
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+    namespace = "cz.matee.devstack.kmp.shared"
 }
 
 sqldelight {
