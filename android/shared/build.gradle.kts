@@ -1,16 +1,17 @@
+@Suppress("DSL_SCOPE_VIOLATION") // Remove after upgrading to gradle 8.1
 plugins {
-    id("com.android.library")
+    id(libs.plugins.android.library.get().pluginId)
     kotlin("android")
 }
 
 android {
-    compileSdk = Application.Sdk.compile
+    compileSdk = libs.versions.sdk.compile.get().toInt()
 
     defaultConfig {
-        minSdk = Application.Sdk.min
-        targetSdk = Application.Sdk.target
+        minSdk = libs.versions.sdk.min.get().toInt()
+        targetSdk = libs.versions.sdk.target.get().toInt()
 
-        testInstrumentationRunner = Dependency.AndroidX.testRunner
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildFeatures {
@@ -23,7 +24,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Dependency.Compose.compilerExtensionVersion
+        kotlinCompilerExtensionVersion = libs.versions.composeCompilerExtensionVersion.get()
     }
 
     sourceSets {
@@ -38,25 +39,18 @@ android {
 dependencies {
     implementation(project(Project.shared))
 
-    implementation(project.dependencies.platform(Dependency.Kotlin.stdlib))
-    implementation(Dependency.AndroidX.core)
-    implementation(Dependency.AndroidX.Material.core)
-
-    implementation(Dependency.AndroidX.Lifecycle.core)
-    implementation(Dependency.AndroidX.Lifecycle.runtime)
-
-    implementation(Dependency.Play.location)
-
-    implementation(Dependency.Compose.ui)
-    implementation(Dependency.Compose.uiTooling)
-    implementation(Dependency.Compose.foundation)
-    implementation(Dependency.Compose.material)
-    implementation(Dependency.Compose.materialIconsCore)
-
-    implementation(Dependency.Compose.Navigation.core)
-
-    implementation(Dependency.Koin.android)
-    implementation(Dependency.Koin.compose)
-
-    androidTestImplementation(Dependency.Compose.uiTest)
+    implementation(project.dependencies.platform(libs.kotlin.stdlib))
+    implementation(libs.androidX.core)
+    implementation(libs.compose.material)
+    implementation(libs.bundles.lifecycle)
+    implementation(libs.googlePlayServices.location)
+    implementation(libs.compose.ui)
+    implementation(libs.compose.uiTooling)
+    implementation(libs.compose.foundation)
+    implementation(libs.compose.material)
+    implementation(libs.compose.materialIconsCore)
+    implementation(libs.navigation.compose)
+    implementation(libs.koin.android)
+    implementation(libs.koin.compose)
+    androidTestImplementation(libs.compose.uiTest)
 }
