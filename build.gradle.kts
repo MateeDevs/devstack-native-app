@@ -5,7 +5,6 @@ buildscript {
     repositories {
         google()
         mavenCentral()
-        jcenter()
     }
 
     dependencies {
@@ -18,7 +17,6 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        jcenter() // TODO remove as soon as ve get rid of all of the dependencies
     }
 
     tasks.withType<KotlinCompile> {
