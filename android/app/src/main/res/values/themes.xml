@@ -1,6 +1,6 @@
 <resources>
 
-    <style name="Theme.Devstackkmpapp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.Devstackkmpapp" parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="android:statusBarColor">@color/system_ui_color</item>
         <item name="android:navigationBarColor">@color/system_ui_color</item>
     </style>

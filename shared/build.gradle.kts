@@ -84,6 +84,11 @@ android {
     }
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     namespace = "cz.matee.devstack.kmp.shared"
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
 }
 
 sqldelight {
