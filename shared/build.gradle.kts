@@ -1,10 +1,12 @@
-import KmmConfig.copyXCFramework
+import extensions.getStringProperty
+import org.jetbrains.kotlin.gradle.plugin.mpp.NativeBuildType
+import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 import Project as ProjectConst
 
 @Suppress("DSL_SCOPE_VIOLATION") // Remove after upgrading to gradle 8.1
 plugins {
-    id(libs.plugins.android.library.get().pluginId)
-    kotlin("multiplatform")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.serialization)
     alias(libs.plugins.sqlDelight)
 }
@@ -20,7 +22,24 @@ android {
 
 kotlin {
     android()
-    kmm(project, ProjectConst.iosShared)
+    with(project) {
+        val xcf = XCFramework(ProjectConst.iosShared)
+        listOf(iosX64(), iosArm64(), iosSimulatorArm64()).forEach {
+            it.binaries.framework {
+                val currentNativeBuildTypeString = getStringProperty(project, "XCODE_CONFIGURATION", "release").lowercase()
+                val currentNativeBuildType = if (currentNativeBuildTypeString.contains("debug")) {
+                    NativeBuildType.DEBUG
+                } else {
+                    NativeBuildType.RELEASE
+                }
+                if (this.buildType == currentNativeBuildType) {
+                    baseName = ProjectConst.iosShared
+                    isStatic = false
+                    xcf.add(this)
+                }
+            }
+        }
+    }
 
     sourceSets {
         val commonMain by getting {
@@ -51,10 +70,8 @@ kotlin {
                 implementation(libs.ktor.ios)
             }
         }
-        KmmConfig.getSupportedMobilePlatforms(this@kotlin, project).forEach {
-            with(KmmConfig) {
-                getByName(it.asMainSourceSetName).dependsOn(iosMain)
-            }
+        listOf(iosX64(), iosArm64(), iosSimulatorArm64()).forEach {
+            getByName("${it.name}Main").dependsOn(iosMain)
         }
     }
 }
@@ -80,5 +97,19 @@ tasks.register("buildXCFramework") {
 }
 
 tasks.register("copyXCFramework") {
-    copyXCFramework(ProjectConst.iosShared)
+    val currentNativeBuildTypeString = getStringProperty(project, "XCODE_CONFIGURATION", "release").lowercase()
+    val currentNativeBuildType = if (currentNativeBuildTypeString.contains("debug")) {
+        NativeBuildType.DEBUG
+    } else {
+        NativeBuildType.RELEASE
+    }
+    val buildPathRelease =
+        "build/XCFrameworks/${currentNativeBuildType.name.lowercase()}/${ProjectConst.iosShared}.xcframework"
+    val iosXCBinaryPath = "../ios/DomainLayer/${ProjectConst.iosShared}.xcframework"
+
+    project.delete(iosXCBinaryPath)
+    project.copy {
+        from(buildPathRelease)
+        into(iosXCBinaryPath)
+    }
 }

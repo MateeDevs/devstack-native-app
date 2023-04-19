@@ -6,11 +6,16 @@ buildscript {
         google()
         mavenCentral()
     }
+}
 
-    dependencies {
-        classpath(libs.kotlin.gradlePlugin)
-        classpath(libs.androidTools.gradle)
-    }
+@Suppress("DSL_SCOPE_VIOLATION") // Remove after upgrading to gradle 8.1
+plugins {
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.kotlin.android) apply false
+    alias(libs.plugins.kotlin.multiplatform) apply false
+    alias(libs.plugins.serialization) apply false
+    alias(libs.plugins.sqlDelight) apply false
 }
 
 allprojects {
