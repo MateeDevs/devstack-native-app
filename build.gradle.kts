@@ -23,7 +23,7 @@ allprojects {
 
     tasks.withType<KotlinCompile> {
         kotlinOptions {
-            jvmTarget = "1.8"
+            jvmTarget = "17"
             freeCompilerArgs = freeCompilerArgs + listOf(
                 "-Xallow-jvm-ir-dependencies",
                 "-opt-in=kotlin.RequiresOptIn"

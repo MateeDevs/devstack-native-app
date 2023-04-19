@@ -1,8 +1,8 @@
 val kotlinVersion = "1.8.0"
-val androidGradleVersion = "7.4.2"
+val androidGradleVersion = "8.0.0"
 
 kotlinDslPluginOptions {
-    jvmTarget.set(JavaVersion.VERSION_1_8.toString())
+    jvmTarget.set(JavaVersion.VERSION_17.toString())
 }
 
 plugins {
