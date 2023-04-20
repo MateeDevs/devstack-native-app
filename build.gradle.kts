@@ -17,7 +17,7 @@ plugins {
     alias(libs.plugins.kotlin.multiplatform) apply false
     alias(libs.plugins.serialization) apply false
     alias(libs.plugins.sqlDelight) apply false
-    alias(libs.plugins.ktlint)
+    alias(libs.plugins.ktlint) apply false
     alias(libs.plugins.versions)
     alias(libs.plugins.versionCatalogUpdate)
 }
@@ -73,11 +73,4 @@ versionCatalogUpdate {
 
 tasks.create<Delete>("clean") {
     delete(rootProject.buildDir)
-}
-
-ktlint {
-    filter {
-        exclude("**/generated/**")
-        include("**/kotlin/**")
-    }
 }

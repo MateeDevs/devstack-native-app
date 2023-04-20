@@ -130,3 +130,11 @@ tasks.register("copyXCFramework") {
         into(iosXCBinaryPath)
     }
 }
+
+ktlint {
+    filter {
+        exclude { entry ->
+            entry.file.toString().contains("generated")
+        }
+    }
+}
