@@ -22,16 +22,21 @@ android {
 
 kotlin {
     android()
+
+    // Native platforms the app will support
+    val supportedNativePlatforms = listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64(),
+        // tvosX64(),
+        // tvosArm64(),
+        // tvosSimulatorArm64(),
+    )
+    // Add supported native platforms to XCFramework
     with(project) {
         val xcf = XCFramework(ProjectConst.iosShared)
-        listOf(iosX64(), iosArm64(), iosSimulatorArm64()).forEach {
-            it.binaries.framework {
-                val currentNativeBuildTypeString = getStringProperty(project, "XCODE_CONFIGURATION", "release").lowercase()
-                val currentNativeBuildType = if (currentNativeBuildTypeString.contains("debug")) {
-                    NativeBuildType.DEBUG
-                } else {
-                    NativeBuildType.RELEASE
-                }
+        supportedNativePlatforms.forEach { target ->
+            target.binaries.framework {
                 if (this.buildType == currentNativeBuildType) {
                     baseName = ProjectConst.iosShared
                     isStatic = false
@@ -70,7 +75,8 @@ kotlin {
                 implementation(libs.ktor.ios)
             }
         }
-        listOf(iosX64(), iosArm64(), iosSimulatorArm64()).forEach {
+        // Register source sets for supported native platforms
+        supportedNativePlatforms.forEach {
             getByName("${it.name}Main").dependsOn(iosMain)
         }
     }
@@ -97,17 +103,22 @@ sqldelight {
     }
 }
 
+val currentNativeBuildType: NativeBuildType
+    get() {
+        val currentNativeBuildTypeString =
+            getStringProperty(project, "XCODE_CONFIGURATION", "release").lowercase()
+        return if (currentNativeBuildTypeString.contains("debug")) {
+            NativeBuildType.DEBUG
+        } else {
+            NativeBuildType.RELEASE
+        }
+    }
+
 tasks.register("buildXCFramework") {
     dependsOn("assemble${ProjectConst.iosShared}XCFramework")
 }
 
 tasks.register("copyXCFramework") {
-    val currentNativeBuildTypeString = getStringProperty(project, "XCODE_CONFIGURATION", "release").lowercase()
-    val currentNativeBuildType = if (currentNativeBuildTypeString.contains("debug")) {
-        NativeBuildType.DEBUG
-    } else {
-        NativeBuildType.RELEASE
-    }
     val buildPathRelease =
         "build/XCFrameworks/${currentNativeBuildType.name.lowercase()}/${ProjectConst.iosShared}.xcframework"
     val iosXCBinaryPath = "../ios/DomainLayer/${ProjectConst.iosShared}.xcframework"
