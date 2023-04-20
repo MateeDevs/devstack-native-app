@@ -2,6 +2,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.ktlint)
 }
 
 val appName = "MateeCoreApp"
@@ -109,5 +110,6 @@ dependencies {
     implementation(libs.navigation.compose)
     implementation(libs.koin.android)
     implementation(libs.koin.compose)
+    ktlintRuleset(libs.ktlint.composeRules)
     androidTestImplementation(libs.compose.uiTest)
 }

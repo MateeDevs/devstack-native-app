@@ -2,6 +2,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.ktlint)
 }
 
 android {
@@ -55,5 +56,6 @@ dependencies {
     implementation(libs.bundles.paging)
     implementation(libs.koin.android)
     implementation(libs.koin.compose)
+    ktlintRuleset(libs.ktlint.composeRules)
     androidTestImplementation(libs.compose.uiTest)
 }
