@@ -1,7 +1,14 @@
 package cz.matee.devstack.kmp.android.users.ui
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Divider
 import androidx.compose.material.Icon
@@ -16,28 +23,26 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import cz.matee.devstack.kmp.android.shared.style.Values
 import cz.matee.devstack.kmp.android.shared.ui.ScreenTitle
-import cz.matee.devstack.kmp.android.shared.util.composition.LocalScaffoldPadding
 import cz.matee.devstack.kmp.android.users.navigation.UsersDestination
 import cz.matee.devstack.kmp.android.users.vm.UsersViewModel
 import cz.matee.devstack.kmp.shared.domain.model.UserPagingData
 import org.koin.androidx.compose.getViewModel
 
 @Composable
-fun UserListScreen(navHostController: NavHostController) {
+fun UserListScreen(navHostController: NavHostController, modifier: Modifier = Modifier) {
     val userVm = getViewModel<UsersViewModel>()
     val users = userVm.users.collectAsLazyPagingItems()
-    val rootPadding = LocalScaffoldPadding.current
 
     fun onUserItemClick(user: UserPagingData) {
         navHostController.navigate(UsersDestination.Detail.withUser(user.id))
     }
 
-    Column {
+    Column(modifier = modifier) {
         ScreenTitle(UsersDestination.List.titleRes) {
             Row(Modifier.fillMaxWidth(), Arrangement.End) {
                 IconButton(
                     onClick = { users.refresh() },
-                    modifier = Modifier.padding(end = Values.Space.medium)
+                    modifier = Modifier.padding(end = Values.Space.medium),
                 ) {
                     Icon(Icons.Filled.Refresh, "refresh")
                 }
@@ -46,15 +51,14 @@ fun UserListScreen(navHostController: NavHostController) {
 
         LazyColumn {
             items(users) { userData ->
-                if (userData != null)
-                    UserItem(userData) { onUserItemClick(userData) }
+                if (userData != null) {
+                    UserItem(userData, onClick = { onUserItemClick(userData) })
+                }
             }
 
             item { // Space at bottom of the list
                 Spacer(
-                    Modifier.height(
-                        Values.Space.medium + rootPadding.calculateBottomPadding()
-                    )
+                    Modifier.height(Values.Space.medium),
                 )
             }
         }
@@ -62,11 +66,11 @@ fun UserListScreen(navHostController: NavHostController) {
 }
 
 @Composable
-fun UserItem(data: UserPagingData, onClick: () -> Unit) {
+fun UserItem(data: UserPagingData, onClick: () -> Unit, modifier: Modifier = Modifier) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable(onClick = onClick)
+            .clickable(onClick = onClick),
     ) {
         Divider()
         Text(data.email, Modifier.padding(Values.Space.medium))

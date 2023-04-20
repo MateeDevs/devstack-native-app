@@ -1,8 +1,26 @@
 package cz.matee.devstack.kmp.android.users.ui
 
-import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
-import androidx.compose.runtime.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Divider
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.SnackbarHost
+import androidx.compose.material.SnackbarHostState
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -11,21 +29,18 @@ import androidx.navigation.NavHostController
 import cz.matee.devstack.kmp.android.shared.style.Values
 import cz.matee.devstack.kmp.android.shared.ui.ScreenTitle
 import cz.matee.devstack.kmp.android.shared.ui.UserProfileImage
-import cz.matee.devstack.kmp.android.shared.util.composition.LocalScaffoldPadding
 import cz.matee.devstack.kmp.android.shared.util.extension.showIn
 import cz.matee.devstack.kmp.android.users.R
 import cz.matee.devstack.kmp.android.users.navigation.UsersDestination
 import cz.matee.devstack.kmp.android.users.vm.UsersViewModel
 import cz.matee.devstack.kmp.shared.domain.model.User
-import kotlinx.coroutines.flow.collect
 import org.koin.androidx.compose.getViewModel
 
 @Composable
-fun UserDetailScreen(userId: String, navHostController: NavHostController) {
+fun UserDetailScreen(userId: String, navHostController: NavHostController, modifier: Modifier = Modifier) {
     val userVm = getViewModel<UsersViewModel>()
     val snackHost = remember { SnackbarHostState() }
     var user by remember { mutableStateOf<User?>(null) }
-    val rootPadding = LocalScaffoldPadding.current
 
     userVm.errorFlow showIn snackHost
 
@@ -36,32 +51,29 @@ fun UserDetailScreen(userId: String, navHostController: NavHostController) {
     val userData = user
 
     Box(
-        Modifier
-            .fillMaxSize()
-            .padding(bottom = rootPadding.calculateBottomPadding())
+        modifier.fillMaxSize(),
     ) {
-
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             ScreenTitle(UsersDestination.Detail.titleRes)
 
             Spacer(Modifier.height(Values.Space.xxlarge))
 
-            if (userData != null)
+            if (userData != null) {
                 UserInformation(userData)
+            }
         }
 
-        if (userData == null)
+        if (userData == null) {
             CircularProgressIndicator(Modifier.align(Alignment.Center))
+        }
 
         SnackbarHost(snackHost, modifier = Modifier.align(Alignment.BottomCenter))
     }
-
 }
 
 @Composable
 private fun UserInformation(user: User) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-
         if (user.firstName.isNotBlank() && user.lastName.isNotBlank()) {
             UserProfileImage(user)
 
@@ -70,7 +82,7 @@ private fun UserInformation(user: User) {
             Text(
                 text = "${user.firstName} ${user.lastName}",
                 style = MaterialTheme.typography.h5,
-                modifier = Modifier.padding(horizontal = Values.Space.large)
+                modifier = Modifier.padding(horizontal = Values.Space.large),
             )
         }
 
@@ -84,7 +96,8 @@ private fun UserInformation(user: User) {
         Column(
             Modifier
                 .fillMaxWidth()
-                .padding(horizontal = Values.Space.medium)) {
+                .padding(horizontal = Values.Space.medium),
+        ) {
             Information(stringResource(cz.matee.devstack.kmp.android.shared.R.string.user_detail_view_label_email), user.email)
             user.phone?.also { phoneNum ->
                 Information(stringResource(cz.matee.devstack.kmp.android.shared.R.string.user_detail_view_label_phone), phoneNum)

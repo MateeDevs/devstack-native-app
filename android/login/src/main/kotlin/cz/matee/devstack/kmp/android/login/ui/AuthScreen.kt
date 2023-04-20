@@ -1,11 +1,33 @@
 package cz.matee.devstack.kmp.android.login.ui
 
 import androidx.compose.animation.Crossfade
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.*
-import androidx.compose.runtime.*
+import androidx.compose.material.Button
+import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.OutlinedTextField
+import androidx.compose.material.SnackbarHost
+import androidx.compose.material.SnackbarHostState
+import androidx.compose.material.Text
+import androidx.compose.material.TextButton
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -19,10 +41,10 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import cz.matee.devstack.kmp.android.shared.core.ui.util.BackPressOverride
-import cz.matee.devstack.kmp.android.shared.core.util.get
 import cz.matee.devstack.kmp.android.login.R
 import cz.matee.devstack.kmp.android.login.vm.AuthViewModel
+import cz.matee.devstack.kmp.android.shared.core.ui.util.BackPressOverride
+import cz.matee.devstack.kmp.android.shared.core.util.get
 import cz.matee.devstack.kmp.android.shared.navigation.Feature
 import cz.matee.devstack.kmp.android.shared.style.Values
 import cz.matee.devstack.kmp.android.shared.util.extension.pushedByIme
@@ -49,10 +71,11 @@ fun AuthScreen(navHostController: NavHostController) {
 
     authVm.errorFlow showIn snackBarState
 
-    if (authScreen == AuthScreen.Registration)
+    if (authScreen == AuthScreen.Registration) {
         BackPressOverride(navHostController) {
             authScreen = AuthScreen.Login
         }
+    }
 
     fun onAction() {
         val state = when (authScreen) {
@@ -66,13 +89,14 @@ fun AuthScreen(navHostController: NavHostController) {
         scope.launch {
             when (authScreen) {
                 AuthScreen.Login ->
-                    if (authVm.login(state.emailValue.text, state.passwordValue.text))
+                    if (authVm.login(state.emailValue.text, state.passwordValue.text)) {
                         navHostController.navigate(Feature.Users.route)
+                    }
 
                 AuthScreen.Registration ->
-                    if (authVm.register(state.emailValue.text, state.passwordValue.text))
+                    if (authVm.register(state.emailValue.text, state.passwordValue.text)) {
                         authScreen = AuthScreen.Login
-
+                    }
             }
         }
     }
@@ -91,10 +115,9 @@ fun AuthScreen(navHostController: NavHostController) {
             snackBarState = snackBarState,
             isLoading = isLoading,
             onAction = { onAction() },
-            onScreenSwitch = { onScreenSwitch() }
+            onScreenSwitch = { onScreenSwitch() },
         )
     }
-
 }
 
 @Composable
@@ -104,41 +127,55 @@ private fun AuthForm(
     snackBarState: SnackbarHostState,
     isLoading: Boolean,
     onAction: () -> Unit,
-    onScreenSwitch: () -> Unit
+    onScreenSwitch: () -> Unit,
 ) {
     val titleText = stringResource(
-        if (screen == AuthScreen.Login) cz.matee.devstack.kmp.android.shared.R.string.login_view_headline_title
-        else cz.matee.devstack.kmp.android.shared.R.string.registration_view_headline_title
+        if (screen == AuthScreen.Login) {
+            cz.matee.devstack.kmp.android.shared.R.string.login_view_headline_title
+        } else {
+            cz.matee.devstack.kmp.android.shared.R.string.registration_view_headline_title
+        },
     )
     val emailLabel = stringResource(
-        if (screen == AuthScreen.Login) cz.matee.devstack.kmp.android.shared.R.string.login_view_email_field_hint
-        else cz.matee.devstack.kmp.android.shared.R.string.registration_view_email_field_hint
+        if (screen == AuthScreen.Login) {
+            cz.matee.devstack.kmp.android.shared.R.string.login_view_email_field_hint
+        } else {
+            cz.matee.devstack.kmp.android.shared.R.string.registration_view_email_field_hint
+        },
     )
     val passwordLabel = stringResource(
-        if (screen == AuthScreen.Login) cz.matee.devstack.kmp.android.shared.R.string.login_view_password_field_hint
-        else cz.matee.devstack.kmp.android.shared.R.string.registration_view_password_field_hint
+        if (screen == AuthScreen.Login) {
+            cz.matee.devstack.kmp.android.shared.R.string.login_view_password_field_hint
+        } else {
+            cz.matee.devstack.kmp.android.shared.R.string.registration_view_password_field_hint
+        },
     )
     val actionBtnText = stringResource(
-        if (screen == AuthScreen.Login) cz.matee.devstack.kmp.android.shared.R.string.login_view_login_button_title
-        else cz.matee.devstack.kmp.android.shared.R.string.registration_view_register_button_title
+        if (screen == AuthScreen.Login) {
+            cz.matee.devstack.kmp.android.shared.R.string.login_view_login_button_title
+        } else {
+            cz.matee.devstack.kmp.android.shared.R.string.registration_view_register_button_title
+        },
     )
     val navigateBtn = stringResource(
-        if (screen == AuthScreen.Login) cz.matee.devstack.kmp.android.shared.R.string.login_view_register_button_title
-        else cz.matee.devstack.kmp.android.shared.R.string.registration_view_login_button_title
+        if (screen == AuthScreen.Login) {
+            cz.matee.devstack.kmp.android.shared.R.string.login_view_register_button_title
+        } else {
+            cz.matee.devstack.kmp.android.shared.R.string.registration_view_login_button_title
+        },
     )
-
 
     Column(
         modifier = Modifier
             .fillMaxWidth().statusBarsPadding()
-            .padding(horizontal = Values.Space.xlarge)
+            .padding(horizontal = Values.Space.xlarge),
     ) {
         val passwordFocusRequester = FocusRequester()
         Text(
             text = titleText,
             style = MaterialTheme.typography.h4,
             color = MaterialTheme.colors.primary,
-            modifier = Modifier.padding(top = Values.Space.large, bottom = Values.Space.xxlarge)
+            modifier = Modifier.padding(top = Values.Space.large, bottom = Values.Space.xxlarge),
         )
 
         OutlinedTextField(
@@ -148,7 +185,7 @@ private fun AuthForm(
             isError = state.emailError,
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Email,
-                imeAction = ImeAction.Next
+                imeAction = ImeAction.Next,
             ),
             keyboardActions = KeyboardActions(onNext = { passwordFocusRequester.requestFocus() }),
             modifier = Modifier
@@ -164,7 +201,7 @@ private fun AuthForm(
             visualTransformation = PasswordVisualTransformation(),
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Password,
-                imeAction = ImeAction.Done
+                imeAction = ImeAction.Done,
             ),
             keyboardActions = KeyboardActions(onDone = { onAction() }),
             modifier = Modifier
@@ -178,13 +215,12 @@ private fun AuthForm(
             modifier = Modifier
                 .fillMaxSize()
                 .navigationBarsPadding()
-                .padding(bottom = Values.Space.medium)
+                .padding(bottom = Values.Space.medium),
         ) {
-
             Column(
                 modifier = Modifier
                     .pushedByIme(Values.Space.medium)
-                    .padding(bottom = Values.Space.small)
+                    .padding(bottom = Values.Space.small),
             ) {
                 SnackbarHost(snackBarState, Modifier)
 
@@ -194,7 +230,7 @@ private fun AuthForm(
                         onClick = { onAction() },
                         modifier = Modifier
                             .fillMaxWidth()
-                            .alpha(if (isLoading) 0.3f else 1f)
+                            .alpha(if (isLoading) 0.3f else 1f),
                     ) {
                         Text(
                             actionBtnText,
@@ -203,10 +239,12 @@ private fun AuthForm(
                         )
                     }
 
-                    if (isLoading) CircularProgressIndicator(
-                        strokeWidth = Values.Border.mediumLarge,
-                        modifier = Modifier.size(30.dp)
-                    )
+                    if (isLoading) {
+                        CircularProgressIndicator(
+                            strokeWidth = Values.Border.mediumLarge,
+                            modifier = Modifier.size(30.dp),
+                        )
+                    }
                 }
             }
 
@@ -214,7 +252,7 @@ private fun AuthForm(
                 Text(
                     navigateBtn,
                     textAlign = TextAlign.Center,
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
                 )
             }
         }

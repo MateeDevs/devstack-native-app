@@ -19,5 +19,5 @@ internal data class RegistrationRequest(
     val email: String,
     val firstName: String,
     val lastName: String,
-    val pass: String
+    val pass: String,
 )

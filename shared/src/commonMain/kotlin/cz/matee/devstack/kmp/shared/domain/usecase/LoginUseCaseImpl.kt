@@ -9,7 +9,7 @@ interface LoginUseCase : UseCaseResult<LoginUseCase.Params, Unit> {
 }
 
 class LoginUseCaseImpl internal constructor(
-    private val authRepository: AuthRepository
+    private val authRepository: AuthRepository,
 ) : LoginUseCase {
 
     override suspend fun invoke(params: LoginUseCase.Params): Result<Unit> =

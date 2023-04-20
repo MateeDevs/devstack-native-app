@@ -20,13 +20,12 @@ class ErrorMessageProviderImpl(private val context: Context) : ErrorMessageProvi
             else -> defMessage
         }
 
-
     private val AuthError.errorMessage: String
         get() = context.getString(
             when (this) {
                 is AuthError.InvalidLoginCredentials -> R.string.login_view_error_invalid_credentials
                 is AuthError.EmailAlreadyExist -> R.string.register_view_email_already_exists
-            }
+            },
         )
 
     private val BackendError.errorMessage: String

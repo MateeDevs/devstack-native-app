@@ -11,9 +11,9 @@ import cz.matee.devstack.kmp.android.books.vm.BooksViewModel
 import org.koin.androidx.compose.getViewModel
 
 @Composable
-fun BookListScreen(navHostController: NavHostController) {
+fun BookListScreen(navHostController: NavHostController, modifier: Modifier = Modifier) {
     val vm = getViewModel<BooksViewModel>()
-    Column(modifier = Modifier.padding(top = 100.dp)) {
+    Column(modifier = modifier.padding(top = 100.dp)) {
         Text(text = "Books")
     }
 }

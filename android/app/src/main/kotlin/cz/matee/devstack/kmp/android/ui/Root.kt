@@ -1,13 +1,31 @@
 package cz.matee.devstack.kmp.android.ui
 
-import androidx.compose.animation.*
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkVertically
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.navigationBarsPadding
-import androidx.compose.material.*
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.BottomNavigation
+import androidx.compose.material.BottomNavigationItem
+import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Build
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Person
-import androidx.compose.runtime.*
+import androidx.compose.material.primarySurface
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -15,24 +33,26 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import cz.matee.devstack.kmp.android.books.BooksRoot
 import cz.matee.devstack.kmp.android.login.LoginRoot
 import cz.matee.devstack.kmp.android.profile.ProfileRoot
 import cz.matee.devstack.kmp.android.recipes.RecipesRoot
 import cz.matee.devstack.kmp.android.shared.navigation.Feature
 import cz.matee.devstack.kmp.android.shared.style.Values
-import cz.matee.devstack.kmp.android.shared.util.composition.LocalScaffoldPadding
-import cz.matee.devstack.kmp.android.books.BooksRoot
 import cz.matee.devstack.kmp.android.users.UsersRoot
 import cz.matee.devstack.kmp.shared.base.util.extension.getOrNull
 import cz.matee.devstack.kmp.shared.domain.usecase.user.IsUserLoggedInUseCase
 import org.koin.androidx.compose.get
 
 val navBarFeatures = listOf(
-    Feature.Users, Feature.Profile, Feature.Recipes, Feature.Books
+    Feature.Users,
+    Feature.Profile,
+    Feature.Recipes,
+    Feature.Books,
 )
 
 @Composable
-fun Root() {
+fun Root(modifier: Modifier = Modifier) {
     val navController = rememberNavController()
     val isUserLoggedInUseCase = get<IsUserLoggedInUseCase>()
     var isUserLoggedIn by remember { mutableStateOf<Boolean?>(null) }
@@ -44,13 +64,14 @@ fun Root() {
     val showLogin = isUserLoggedIn?.not()
 
     Scaffold(
+        modifier = modifier,
         bottomBar = { BottomBar(navController) },
-    ) {
-        if (showLogin != null)
-            CompositionLocalProvider(LocalScaffoldPadding provides it) {
+    ) { padding ->
+        Box(modifier = Modifier.padding(padding)) {
+            if (showLogin != null) {
                 NavHost(
                     navController,
-                    startDestination = if (showLogin) Feature.Login.route else Feature.Users.route
+                    startDestination = if (showLogin) Feature.Login.route else Feature.Users.route,
                 ) {
                     LoginRoot(navController)
                     UsersRoot(navController)
@@ -59,10 +80,10 @@ fun Root() {
                     BooksRoot(navController)
                 }
             }
+        }
     }
 }
 
-@OptIn(ExperimentalAnimationApi::class)
 @Composable
 private fun BottomBar(navController: NavHostController) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -74,15 +95,15 @@ private fun BottomBar(navController: NavHostController) {
     AnimatedVisibility(
         visible = !isInAuthRoute,
         enter = fadeIn() + expandVertically(),
-        exit = fadeOut() + shrinkVertically()
+        exit = fadeOut() + shrinkVertically(),
     ) {
         Surface(
             elevation = Values.Elevation.huge,
-            color = MaterialTheme.colors.primarySurface
+            color = MaterialTheme.colors.primarySurface,
         ) {
             BottomNavigation(
                 Modifier.navigationBarsPadding(),
-                elevation = 0.dp
+                elevation = 0.dp,
             ) {
                 navBarFeatures.forEach { screen ->
                     BottomNavigationItem(
@@ -102,7 +123,7 @@ private fun BottomBar(navController: NavHostController) {
                                 popUpTo(navController.graph.startDestinationId)
                                 launchSingleTop = true
                             }
-                        }
+                        },
                     )
                 }
             }

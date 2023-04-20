@@ -28,7 +28,7 @@ class ProfileViewModel(
     private val locationFlow: GetLocationFlowUseCase,
     private val updateUserUc: UpdateUserUseCase,
     private val getBooks: GetBooksUseCase,
-    private val refreshBooks: RefreshBooksUseCase
+    private val refreshBooks: RefreshBooksUseCase,
 ) : BaseStateViewModel<ProfileViewModel.ViewState>(ViewState()) {
 
     private val _errorFlow = MutableSharedFlow<ErrorResult>(replay = 1)
@@ -81,7 +81,7 @@ class ProfileViewModel(
                 bio = user.bio
                     .takeIf { user.bio != lastState().user?.bio },
                 phone = user.phone
-                    .takeIf { user.phone != lastState().user?.phone }
+                    .takeIf { user.phone != lastState().user?.phone },
             )
 
             when (val res = updateUserUc(params)) {
@@ -109,6 +109,6 @@ class ProfileViewModel(
     data class ViewState(
         val user: User? = null,
         val books: List<Book> = listOf(),
-        val loading: Boolean = false
+        val loading: Boolean = false,
     ) : State
 }

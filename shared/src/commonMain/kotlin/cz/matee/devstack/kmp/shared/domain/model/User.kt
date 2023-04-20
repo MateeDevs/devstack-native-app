@@ -6,5 +6,5 @@ data class User(
     val bio: String,
     val firstName: String,
     val lastName: String,
-    val phone: String?
+    val phone: String?,
 )

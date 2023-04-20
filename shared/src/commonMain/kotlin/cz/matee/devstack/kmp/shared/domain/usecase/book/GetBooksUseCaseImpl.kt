@@ -7,9 +7,8 @@ import cz.matee.devstack.kmp.shared.domain.repository.BookRepository
 interface GetBooksUseCase : UseCaseFlowNoParams<List<Book>>
 
 internal class GetBooksUseCaseImpl constructor(
-    private val repository: BookRepository
+    private val repository: BookRepository,
 ) : GetBooksUseCase {
 
     override suspend fun invoke() = repository.getAllBooks()
-
 }

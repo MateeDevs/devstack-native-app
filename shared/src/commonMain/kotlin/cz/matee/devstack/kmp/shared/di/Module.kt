@@ -12,12 +12,38 @@ import cz.matee.devstack.kmp.shared.data.source.UserRemoteSource
 import cz.matee.devstack.kmp.shared.domain.repository.AuthRepository
 import cz.matee.devstack.kmp.shared.domain.repository.BookRepository
 import cz.matee.devstack.kmp.shared.domain.repository.UserRepository
-import cz.matee.devstack.kmp.shared.domain.usecase.*
+import cz.matee.devstack.kmp.shared.domain.usecase.DeleteAuthDataUseCase
+import cz.matee.devstack.kmp.shared.domain.usecase.DeleteAuthDataUseCaseImpl
+import cz.matee.devstack.kmp.shared.domain.usecase.LoginUseCase
+import cz.matee.devstack.kmp.shared.domain.usecase.LoginUseCaseImpl
+import cz.matee.devstack.kmp.shared.domain.usecase.RegisterUseCase
+import cz.matee.devstack.kmp.shared.domain.usecase.RegisterUseCaseImpl
 import cz.matee.devstack.kmp.shared.domain.usecase.book.GetBooksUseCase
 import cz.matee.devstack.kmp.shared.domain.usecase.book.GetBooksUseCaseImpl
 import cz.matee.devstack.kmp.shared.domain.usecase.book.RefreshBooksUseCase
 import cz.matee.devstack.kmp.shared.domain.usecase.book.RefreshBooksUseCaseImpl
-import cz.matee.devstack.kmp.shared.domain.usecase.user.*
+import cz.matee.devstack.kmp.shared.domain.usecase.user.GetLocalUsersUseCase
+import cz.matee.devstack.kmp.shared.domain.usecase.user.GetLocalUsersUseCaseImpl
+import cz.matee.devstack.kmp.shared.domain.usecase.user.GetLoggedInUserUseCase
+import cz.matee.devstack.kmp.shared.domain.usecase.user.GetLoggedInUserUseCaseImpl
+import cz.matee.devstack.kmp.shared.domain.usecase.user.GetRemoteUsersUseCase
+import cz.matee.devstack.kmp.shared.domain.usecase.user.GetRemoteUsersUseCaseImpl
+import cz.matee.devstack.kmp.shared.domain.usecase.user.GetUserUseCase
+import cz.matee.devstack.kmp.shared.domain.usecase.user.GetUserUseCaseImpl
+import cz.matee.devstack.kmp.shared.domain.usecase.user.GetUsersUseCase
+import cz.matee.devstack.kmp.shared.domain.usecase.user.GetUsersUseCaseImpl
+import cz.matee.devstack.kmp.shared.domain.usecase.user.IsUserLoggedInUseCase
+import cz.matee.devstack.kmp.shared.domain.usecase.user.IsUserLoggedInUseCaseImpl
+import cz.matee.devstack.kmp.shared.domain.usecase.user.RefreshUsersUseCase
+import cz.matee.devstack.kmp.shared.domain.usecase.user.RefreshUsersUseCaseImpl
+import cz.matee.devstack.kmp.shared.domain.usecase.user.ReplaceUserCacheWithUseCase
+import cz.matee.devstack.kmp.shared.domain.usecase.user.ReplaceUserCacheWithUseCaseImpl
+import cz.matee.devstack.kmp.shared.domain.usecase.user.UpdateLocalUserCacheUseCase
+import cz.matee.devstack.kmp.shared.domain.usecase.user.UpdateLocalUserCacheUseCaseImpl
+import cz.matee.devstack.kmp.shared.domain.usecase.user.UpdateUserUseCase
+import cz.matee.devstack.kmp.shared.domain.usecase.user.UpdateUserUseCaseImpl
+import cz.matee.devstack.kmp.shared.domain.usecase.user.UserCacheChangeFlowUseCase
+import cz.matee.devstack.kmp.shared.domain.usecase.user.UserCacheChangeFlowUseCaseImpl
 import cz.matee.devstack.kmp.shared.infrastructure.local.AuthDao
 import cz.matee.devstack.kmp.shared.infrastructure.local.AuthDaoImpl
 import cz.matee.devstack.kmp.shared.infrastructure.local.createDatabase
@@ -72,7 +98,6 @@ private val commonModule = module {
     factory<ReplaceUserCacheWithUseCase> { ReplaceUserCacheWithUseCaseImpl(get()) }
     factory<GetBooksUseCase> { GetBooksUseCaseImpl(get()) }
     factory<RefreshBooksUseCase> { RefreshBooksUseCaseImpl(get()) }
-
 
     // Repositories
     single<AuthRepository> { AuthRepositoryImpl(get()) }

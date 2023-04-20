@@ -23,7 +23,7 @@ fun ComponentActivity.initDependencyInjection() {
             loginModule,
             profileModule,
             usersModule,
-            booksModule
+            booksModule,
         )
     }
 }

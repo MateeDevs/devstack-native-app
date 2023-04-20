@@ -16,7 +16,7 @@ internal class AuthRepositoryImpl(private val source: AuthSource) : AuthReposito
         email: String,
         firstName: String,
         lastName: String,
-        pass: String
+        pass: String,
     ): Result<Unit> = source
         .register(RegistrationRequest(email, firstName, lastName, pass))
         .toEmptyResult()

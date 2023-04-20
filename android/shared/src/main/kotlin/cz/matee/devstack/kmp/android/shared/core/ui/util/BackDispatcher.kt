@@ -16,7 +16,7 @@ import androidx.navigation.NavHostController
 @Composable
 public fun BackPressOverride(
     navHostController: NavHostController,
-    onBackPress: () -> Unit
+    onBackPress: () -> Unit,
 ) {
     val backDispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
 

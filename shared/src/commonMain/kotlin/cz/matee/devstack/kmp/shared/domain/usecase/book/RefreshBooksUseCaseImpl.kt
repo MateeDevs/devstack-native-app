@@ -9,7 +9,7 @@ import kotlinx.coroutines.withContext
 interface RefreshBooksUseCase : UseCaseResult<Int, Unit>
 
 internal class RefreshBooksUseCaseImpl constructor(
-    private val repository: BookRepository
+    private val repository: BookRepository,
 ) : RefreshBooksUseCase {
 
     override suspend fun invoke(params: Int) = withContext(Dispatchers.Default) {

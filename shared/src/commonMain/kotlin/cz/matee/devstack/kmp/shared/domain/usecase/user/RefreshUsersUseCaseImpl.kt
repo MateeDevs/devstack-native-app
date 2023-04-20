@@ -10,7 +10,7 @@ interface RefreshUsersUseCase : UseCaseResult<RefreshUsersUseCase.Params, Unit> 
 }
 
 class RefreshUsersUseCaseImpl internal constructor(
-    private val repository: UserRepository
+    private val repository: UserRepository,
 ) : RefreshUsersUseCase {
 
     override suspend fun invoke(params: RefreshUsersUseCase.Params): Result<Unit> {

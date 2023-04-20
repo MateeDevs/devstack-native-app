@@ -5,7 +5,14 @@ import androidx.compose.animation.core.animateIntOffset
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.requiredHeight
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.LazyListState
@@ -13,7 +20,11 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
@@ -23,22 +34,26 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.*
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.IntOffset
+import androidx.compose.ui.unit.IntSize
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.round
+import androidx.compose.ui.unit.sp
 import cz.matee.devstack.kmp.android.shared.style.Values
-import cz.matee.devstack.kmp.android.shared.util.composition.LocalScaffoldPadding
 
 private val headerMaxHeight by lazy { 128.dp }
 private val headerMinHeight by lazy { 64.dp }
 
 @Composable
-fun ListTransitionRecipe() {
-    LazyColumnWithCollapsingToolbar("Title") {
+fun ListTransitionRecipe(modifier: Modifier = Modifier) {
+    LazyColumnWithCollapsingToolbar(title = "Title", modifier = modifier) {
         repeat(51) {
             item {
                 Text(
                     "Item $it",
                     Modifier.fillMaxWidth(),
-                    style = MaterialTheme.typography.h5
+                    style = MaterialTheme.typography.h5,
                 )
                 Divider()
             }
@@ -46,14 +61,13 @@ fun ListTransitionRecipe() {
     }
 }
 
-
 @Composable
 private fun LazyColumnWithCollapsingToolbar(
     title: String,
-    content: LazyListScope.() -> Unit
+    modifier: Modifier = Modifier,
+    content: LazyListScope.() -> Unit,
 ) {
     val density = LocalDensity.current.density
-    val rootPadding = LocalScaffoldPadding.current
     val listState = rememberLazyListState()
 
     var headerHeight by remember { mutableStateOf(128.dp) }
@@ -71,10 +85,14 @@ private fun LazyColumnWithCollapsingToolbar(
     }
 
     val titleOffset by scrollTransition.animateIntOffset(
-        transitionSpec = { spring() }, label = "titleOffset"
+        transitionSpec = { spring() },
+        label = "titleOffset",
     ) {
-        if (it > 0f) Offset.Zero.round()
-        else IntOffset(-(titleParentSize.width / 2) + titleSize.width / 2, 0)
+        if (it > 0f) {
+            Offset.Zero.round()
+        } else {
+            IntOffset(-(titleParentSize.width / 2) + titleSize.width / 2, 0)
+        }
     }
 
     val nestedScrollConnection = remember {
@@ -82,8 +100,9 @@ private fun LazyColumnWithCollapsingToolbar(
             override fun onPreScroll(available: Offset, source: NestedScrollSource): Offset {
                 val scrollInDp = available.y / density
 
-                if (scrollInDp > 0 && !listState.isAtTop)
+                if (scrollInDp > 0 && !listState.isAtTop) {
                     return Offset.Zero
+                }
 
                 val newHeightDp = (headerHeight.value + scrollInDp)
                     .coerceIn(headerMinHeight.value..headerMaxHeight.value)
@@ -96,18 +115,17 @@ private fun LazyColumnWithCollapsingToolbar(
     }
 
     Column(
-        Modifier
+        modifier
             .fillMaxSize()
             .statusBarsPadding()
-            .padding(bottom = rootPadding.calculateBottomPadding())
-            .nestedScroll(nestedScrollConnection)
+            .nestedScroll(nestedScrollConnection),
     ) {
         Box(
             Modifier
                 .fillMaxWidth()
                 .requiredHeight(headerHeight)
                 .background(MaterialTheme.colors.surface)
-                .onSizeChanged { titleParentSize = it }
+                .onSizeChanged { titleParentSize = it },
         ) {
             Text(
                 title,
@@ -117,7 +135,7 @@ private fun LazyColumnWithCollapsingToolbar(
                     .align(Alignment.Center)
                     .padding(start = Values.Space.medium * (1 - headerTransitionProgress))
                     .offset { titleOffset }
-                    .onSizeChanged { titleSize = it }
+                    .onSizeChanged { titleSize = it },
             )
         }
 

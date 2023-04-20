@@ -56,6 +56,7 @@ dependencies {
     implementation(libs.constraintLayout.compose)
     implementation(libs.koin.android)
     implementation(libs.koin.compose)
+    implementation(libs.kotlinx.immutableCollections)
     ktlintRuleset(libs.ktlint.composeRules)
     androidTestImplementation(libs.compose.uiTest)
 }

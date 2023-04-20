@@ -8,7 +8,7 @@ internal data class UserPagingDto(
     val totalCount: Int,
     val lastPage: Int,
     val limit: Int,
-    val page: Int
+    val page: Int,
 )
 
 @Serializable
@@ -16,5 +16,5 @@ internal data class UserPagingDataDto(
     val email: String,
     val firstName: String,
     val id: String,
-    val lastName: String
+    val lastName: String,
 )

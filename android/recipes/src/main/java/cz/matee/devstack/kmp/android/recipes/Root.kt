@@ -13,7 +13,6 @@ import cz.matee.devstack.kmp.android.shared.navigation.Feature
 
 @Suppress("FunctionName")
 fun NavGraphBuilder.RecipesRoot(navHostController: NavHostController) {
-
     navigation(RecipesDestination.List.route, Feature.Recipes.route) {
         composable(RecipesDestination.List.route) {
             RecipesScreen(navHostController = navHostController)

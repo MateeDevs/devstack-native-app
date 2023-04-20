@@ -27,7 +27,7 @@ import kotlinx.coroutines.flow.map
 internal class UserRepositoryImpl(
     private val authDao: AuthDao,
     private val remoteSource: UserRemoteSource,
-    private val localSource: UserLocalSource
+    private val localSource: UserLocalSource,
 ) : UserRepository {
 
     override val isUserLoggedIn: Boolean
@@ -51,7 +51,9 @@ internal class UserRepositoryImpl(
                         id = userDto.id,
                         email = userDto.email,
                         firstName = userDto.firstName,
-                        lastName = userDto.lastName, bio = null, phone = null,
+                        lastName = userDto.lastName,
+                        bio = null,
+                        phone = null,
                     )
                 }
                 localSource.updateOrCreate(users)
@@ -66,15 +68,17 @@ internal class UserRepositoryImpl(
             ?.let(UserEntity::asDomain)
             ?.let { Result.Success(it) }
 
-        if (localResult != null)
+        if (localResult != null) {
             emit(localResult)
+        }
 
         val remoteResult = remoteSource.getUser(id).map(UserDto::asDomain)
 
         emit(remoteResult)
 
-        if (remoteResult is Result.Success)
+        if (remoteResult is Result.Success) {
             localSource.updateOrCreate(remoteResult.data.asEntity)
+        }
     }
 
     override suspend fun getUserPagingRemote(parameters: UserPagingParameters): Result<UserPagingResult> =
@@ -94,7 +98,7 @@ internal class UserRepositoryImpl(
                     userData,
                     userCount,
                     parameters.limit,
-                    parameters.offset
+                    parameters.offset,
                 )
             }
 
@@ -112,7 +116,8 @@ internal class UserRepositoryImpl(
         .updateUser(parameters.userId, parameters.asRequest)
         .map(UserDto::asDomain)
         .also { result -> // update local data
-            if (result is Result.Success)
+            if (result is Result.Success) {
                 localSource.updateOrCreate(result.data.asEntity)
+            }
         }
 }
