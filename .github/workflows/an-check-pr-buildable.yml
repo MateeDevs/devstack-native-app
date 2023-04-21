@@ -16,7 +16,6 @@ jobs:
 
       - name: Run lint
         run: |
-          export JAVA_HOME=$(/usr/libexec/java_home -v11.0.10)
           ./gradlew ktlintCheck
 
   build:
@@ -37,6 +36,5 @@ jobs:
           
           rm -rf "$TWINE_FOLDER"
           git clone "git@github.com:MateeDevs/twine-localization.git" "$TWINE_FOLDER"
-          export JAVA_HOME=$(/usr/libexec/java_home -v11.0.10)
           ./gradlew generateTwine -PtwineLocalizationFolder="$TWINE_FOLDER"
           ./gradlew :android:app:bundleDebug
