@@ -1,8 +1,18 @@
 pluginManagement {
+    includeBuild("build-logic")
     repositories {
         gradlePluginPortal()
         mavenCentral()
         google()
+    }
+}
+
+dependencyResolutionManagement {
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+        google()
+        maven("https://plugins.gradle.org/m2/")
     }
 }
 

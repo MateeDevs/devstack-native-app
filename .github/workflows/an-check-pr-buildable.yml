@@ -17,6 +17,7 @@ jobs:
       - name: Run lint
         run: |
           ./gradlew ktlintCheck
+          ./gradlew :build-logic:convention:ktlintCheck
 
   build:
     name: Build
