@@ -7,7 +7,7 @@ on:
 jobs:
   lint:
     name: Lint
-    runs-on: android-build
+    runs-on: android-global-build
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
@@ -21,7 +21,7 @@ jobs:
 
   build:
     name: Build
-    runs-on: android-build
+    runs-on: android-global-build
     needs: lint
     steps:
       - name: Checkout repo
