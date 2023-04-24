@@ -45,7 +45,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                 }
 
                 buildFeatures {
-                    buildConfig = true
+                    buildConfig = false
                 }
 
                 buildTypes {
