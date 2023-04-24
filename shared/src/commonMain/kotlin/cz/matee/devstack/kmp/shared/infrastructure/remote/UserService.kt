@@ -2,12 +2,11 @@ package cz.matee.devstack.kmp.shared.infrastructure.remote
 
 import cz.matee.devstack.kmp.shared.base.Result
 import cz.matee.devstack.kmp.shared.base.error.util.runCatchingCommonNetworkExceptions
-import cz.matee.devstack.kmp.shared.base.util.helpers.Success
-import cz.matee.devstack.kmp.shared.base.util.helpers.resultsTo
 import cz.matee.devstack.kmp.shared.data.source.UserUpdateRequest
 import cz.matee.devstack.kmp.shared.infrastructure.model.UserDto
 import cz.matee.devstack.kmp.shared.infrastructure.model.UserPagingDto
 import io.ktor.client.HttpClient
+import io.ktor.client.call.body
 import io.ktor.client.request.*
 
 internal object UserPaths {
@@ -29,13 +28,13 @@ internal class UserService(private val client: HttpClient) {
                     parameters["page"] = page.toString()
                     parameters["limit"] = limit.toString()
                 }
-            } resultsTo Success
+            }.body()
         }
     }
 
     suspend fun getUserById(userId: String): Result<UserDto> {
         return runCatchingCommonNetworkExceptions {
-            client.get(UserPaths.user(userId)) resultsTo Success
+            client.get(UserPaths.user(userId)).body()
         }
     }
 
@@ -49,7 +48,7 @@ internal class UserService(private val client: HttpClient) {
                     body.bio?.also { put(UserUpdateRequest::bio.name, it) }
                     body.phone?.also { put(UserUpdateRequest::phone.name, it) }
                 })
-            } resultsTo Success
+            }.body()
         }
     }
 }
