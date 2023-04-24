@@ -2,7 +2,7 @@
 
 ## Use Devstack as a base for a new project
 - Clone this repository
-- Rename the project (don't forget to change `rootProject.name` in `settings.gradle` and `id` and `AppName` in `Application.kt`)
+- Rename the project (don't forget to change `rootProject.name` in `settings.gradle`, `id` and `AppName` in `Application.kt` and `namespace` in `build.gradle.kts` for each module)
 - Rename iOS project - you can use prepared script, for more info see the [iOS readme](/ios) and name of the generated XCFramework as `iosShared` in `ProjectConstants.kt`
 
 ## Login credentials
