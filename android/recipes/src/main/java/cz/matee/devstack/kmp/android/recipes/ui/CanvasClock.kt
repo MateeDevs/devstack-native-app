@@ -64,7 +64,7 @@ fun CanvasRecipe() {
     ) {
 
         Text(
-            stringResource(R.string.recipes_clock_view_tutorial),
+            stringResource(cz.matee.devstack.kmp.android.shared.R.string.recipes_clock_view_tutorial),
             Modifier
                 .align(Alignment.TopCenter)
                 .statusBarsPadding()
@@ -96,7 +96,7 @@ private fun ClockCenter(
 ) {
     Column(modifier, horizontalAlignment = Alignment.CenterHorizontally) {
         Text(
-            stringResource(R.string.many_seconds, seconds),
+            stringResource(cz.matee.devstack.kmp.android.shared.R.string.many_seconds, seconds),
             style = MaterialTheme.typography.h6
         )
 

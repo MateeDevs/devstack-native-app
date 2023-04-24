@@ -85,9 +85,9 @@ private fun UserInformation(user: User) {
             Modifier
                 .fillMaxWidth()
                 .padding(horizontal = Values.Space.medium)) {
-            Information(stringResource(R.string.user_detail_view_label_email), user.email)
+            Information(stringResource(cz.matee.devstack.kmp.android.shared.R.string.user_detail_view_label_email), user.email)
             user.phone?.also { phoneNum ->
-                Information(stringResource(R.string.user_detail_view_label_phone), phoneNum)
+                Information(stringResource(cz.matee.devstack.kmp.android.shared.R.string.user_detail_view_label_phone), phoneNum)
             }
         }
     }

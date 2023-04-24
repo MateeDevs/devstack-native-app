@@ -28,7 +28,7 @@ import cz.matee.devstack.kmp.android.shared.ui.ScreenTitle
 @Composable
 fun RecipesScreen(navHostController: NavHostController) {
     Column {
-        ScreenTitle(R.string.recipes_view_toolbar_title)
+        ScreenTitle(cz.matee.devstack.kmp.android.shared.R.string.recipes_view_toolbar_title)
 
         val items = remember {
             listOf(
