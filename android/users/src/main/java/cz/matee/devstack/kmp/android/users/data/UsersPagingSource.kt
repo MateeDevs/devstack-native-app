@@ -2,7 +2,7 @@ package cz.matee.devstack.kmp.android.users.data
 
 import androidx.paging.*
 import cz.matee.devstack.kmp.shared.base.Result
-import cz.matee.devstack.kmp.shared.base.getOrNull
+import cz.matee.devstack.kmp.shared.base.util.extension.getOrNull
 import cz.matee.devstack.kmp.shared.domain.model.UserPagingData
 import cz.matee.devstack.kmp.shared.domain.repository.UserPagingParameters
 import cz.matee.devstack.kmp.shared.domain.usecase.user.*

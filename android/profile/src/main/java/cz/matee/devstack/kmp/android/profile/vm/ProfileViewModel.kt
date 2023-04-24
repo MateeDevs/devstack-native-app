@@ -9,7 +9,7 @@ import cz.matee.devstack.kmp.android.shared.domain.usecase.GetLocationFlowUseCas
 import cz.matee.devstack.kmp.android.shared.navigation.Feature
 import cz.matee.devstack.kmp.shared.base.ErrorResult
 import cz.matee.devstack.kmp.shared.base.Result
-import cz.matee.devstack.kmp.shared.base.getOrNull
+import cz.matee.devstack.kmp.shared.base.util.extension.getOrNull
 import cz.matee.devstack.kmp.shared.base.util.helpers.Success
 import cz.matee.devstack.kmp.shared.domain.model.Book
 import cz.matee.devstack.kmp.shared.domain.model.User

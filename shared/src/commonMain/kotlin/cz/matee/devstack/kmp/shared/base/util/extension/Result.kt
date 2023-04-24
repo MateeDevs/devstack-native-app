@@ -10,3 +10,6 @@ inline fun <T : Any, R : Any> Result<T>.map(transform: (T) -> R) =
     }
 
 fun <T : Any> Result<T>.toEmptyResult() = map { }
+
+fun <T : Any> Result<T>.getOrNull(): T? =
+    (this as? Result.Success)?.data

@@ -23,7 +23,7 @@ import cz.matee.devstack.kmp.android.shared.style.Values
 import cz.matee.devstack.kmp.android.shared.util.composition.LocalScaffoldPadding
 import cz.matee.devstack.kmp.android.books.BooksRoot
 import cz.matee.devstack.kmp.android.users.UsersRoot
-import cz.matee.devstack.kmp.shared.base.getOrNull
+import cz.matee.devstack.kmp.shared.base.util.extension.getOrNull
 import cz.matee.devstack.kmp.shared.domain.usecase.user.IsUserLoggedInUseCase
 import org.koin.androidx.compose.get
 
