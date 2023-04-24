@@ -3,7 +3,6 @@ package cz.matee.devstack.plugin
 import com.android.build.api.dsl.LibraryExtension
 import cz.matee.devstack.config.configureBuildVariants
 import cz.matee.devstack.config.configureKotlinAndroid
-import cz.matee.devstack.config.configureLint
 import cz.matee.devstack.extensions.apply
 import cz.matee.devstack.extensions.implementation
 import cz.matee.devstack.extensions.libs
@@ -29,7 +28,6 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
             extensions.configure<LibraryExtension> {
                 configureKotlinAndroid(this)
                 configureBuildVariants()
-                configureLint()
 
                 buildFeatures {
                     buildConfig = false

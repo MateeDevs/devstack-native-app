@@ -4,7 +4,6 @@ import com.android.build.api.dsl.LibraryExtension
 import cz.matee.devstack.config.KmmConfig
 import cz.matee.devstack.config.configureBuildVariants
 import cz.matee.devstack.config.configureKotlinAndroid
-import cz.matee.devstack.config.configureLint
 import cz.matee.devstack.config.kmm
 import cz.matee.devstack.constants.ProjectConstants
 import cz.matee.devstack.extensions.apply
@@ -45,7 +44,6 @@ class KmmLibraryConventionPlugin : Plugin<Project> {
                     targetCompatibility = ProjectConstants.javaVersion
                 }
                 configureBuildVariants()
-                configureLint()
 
                 buildFeatures {
                     buildConfig = true

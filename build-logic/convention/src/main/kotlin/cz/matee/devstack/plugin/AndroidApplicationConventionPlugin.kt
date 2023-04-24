@@ -4,7 +4,6 @@ import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
 import cz.matee.devstack.config.configureApplicationVariants
 import cz.matee.devstack.config.configureBuildVariants
 import cz.matee.devstack.config.configureKotlinAndroid
-import cz.matee.devstack.config.configureLint
 import cz.matee.devstack.config.configureSingingConfigs
 import cz.matee.devstack.config.configureTwine
 import cz.matee.devstack.constants.Application
@@ -56,7 +55,6 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                 configureBuildVariants()
                 configureSingingConfigs(this)
                 configureApplicationVariants()
-                configureLint()
             }
 
             configureTwine()
