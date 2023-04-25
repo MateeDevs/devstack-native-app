@@ -2,6 +2,7 @@ package cz.matee.devstack.plugin
 
 import com.android.build.api.dsl.LibraryExtension
 import cz.matee.devstack.config.KmmConfig
+import cz.matee.devstack.config.KmmConfig.copyXCFramework
 import cz.matee.devstack.config.configureBuildVariants
 import cz.matee.devstack.config.configureKotlinAndroid
 import cz.matee.devstack.config.kmm
@@ -96,6 +97,14 @@ class KmmLibraryConventionPlugin : Plugin<Project> {
 
             extensions.configure<LibraryExtension> {
                 configureKotlinAndroid(this)
+            }
+
+            tasks.register("buildXCFramework") {
+                dependsOn("assemble${ProjectConstants.iosShared}XCFramework")
+            }
+
+            tasks.register("copyXCFramework") {
+                copyXCFramework(ProjectConstants.iosShared)
             }
         }
     }
