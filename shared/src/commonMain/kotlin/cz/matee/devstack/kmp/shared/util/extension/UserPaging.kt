@@ -13,12 +13,11 @@ internal val UserPagingDto.asDomain
         `data`.map(UserPagingDataDto::asDomain),
         totalCount = totalCount,
         limit = limit,
-        offset = page * limit
+        offset = page * limit,
     )
 
 internal val UserPagingDataDto.asDomain
     get() = UserPagingData(id, email, firstName, lastName)
-
 
 // Domain -> Infrastructure
 

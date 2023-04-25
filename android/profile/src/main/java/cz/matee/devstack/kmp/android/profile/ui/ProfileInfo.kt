@@ -28,14 +28,16 @@ import cz.matee.devstack.kmp.android.shared.ui.UserProfileImage
 import cz.matee.devstack.kmp.shared.domain.model.Book
 import cz.matee.devstack.kmp.shared.domain.model.User
 import cz.matee.devstack.kmp.shared.util.extension.fullName
+import kotlinx.collections.immutable.ImmutableList
 
 @Composable
 fun ProfileContent(
     user: User,
-    books: List<Book>,
+    books: ImmutableList<Book>,
     locationValue: Location?,
     refreshBooks: suspend () -> Unit,
-    onLogOut: () -> Unit
+    onLogOut: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     /**
      *  In the View system, ConstraintLayout was the recommended way to create large and complex
@@ -47,16 +49,19 @@ fun ProfileContent(
      */
 
     ConstraintLayout(
-        Modifier
+        modifier
             .fillMaxSize()
-            .verticalScroll(rememberScrollState())
+            .verticalScroll(rememberScrollState()),
     ) {
         val (picture, name, email, phone, bio, location, booksList, logOutBtn) = createRefs()
 
-        UserProfileImage(user, Modifier.constrainAs(picture) {
-            top.linkTo(parent.top, Values.Space.medium)
-            start.linkTo(parent.start, Values.Space.medium)
-        })
+        UserProfileImage(
+            user,
+            Modifier.constrainAs(picture) {
+                top.linkTo(parent.top, Values.Space.medium)
+                start.linkTo(parent.start, Values.Space.medium)
+            },
+        )
 
         Text(
             if (user.fullName.isBlank()) "Undefined name" else user.fullName,
@@ -65,7 +70,7 @@ fun ProfileContent(
             modifier = Modifier.constrainAs(name) {
                 linkTo(picture.end, parent.end, Values.Space.medium, Values.Space.medium)
                 top.linkTo(picture.top, Values.Space.small)
-            }
+            },
         )
 
         Text(
@@ -81,10 +86,14 @@ fun ProfileContent(
                 .padding(Values.Space.medium),
         )
 
-        TextWithLabel(cz.matee.devstack.kmp.android.shared.R.string.profile_view_label_email, user.email, Modifier.constrainAs(email) {
-            start.linkTo(parent.start, Values.Space.medium)
-            top.linkTo(bio.bottom, Values.Space.large)
-        })
+        TextWithLabel(
+            cz.matee.devstack.kmp.android.shared.R.string.profile_view_label_email,
+            user.email,
+            Modifier.constrainAs(email) {
+                start.linkTo(parent.start, Values.Space.medium)
+                top.linkTo(bio.bottom, Values.Space.large)
+            },
+        )
 
         TextWithLabel(
             cz.matee.devstack.kmp.android.shared.R.string.profile_view_label_phone,
@@ -92,7 +101,7 @@ fun ProfileContent(
             Modifier.constrainAs(phone) {
                 start.linkTo(parent.start, Values.Space.medium)
                 top.linkTo(email.bottom, Values.Space.large)
-            }
+            },
         )
 
         Surface(
@@ -103,14 +112,15 @@ fun ProfileContent(
                     width = Dimension.fillToConstraints
                 }
                 .padding(Values.Space.large),
-            shape = RoundedCornerShape(Values.Radius.large)
+            shape = RoundedCornerShape(Values.Radius.large),
         ) {
             Box {
                 Text(
-                    if (locationValue != null)
+                    if (locationValue != null) {
                         "${locationValue.latitude}, ${locationValue.longitude}"
-                    else
-                        "Location permission not granted",
+                    } else {
+                        "Location permission not granted"
+                    },
                     Modifier
                         .padding(Values.Space.medium)
                         .align(Alignment.Center),
@@ -125,7 +135,7 @@ fun ProfileContent(
                 linkTo(parent.start, location.bottom, parent.end, logOutBtn.top)
                 width = Dimension.fillToConstraints
                 height = Dimension.fillToConstraints
-            }
+            },
         )
 
         Button(
@@ -137,11 +147,11 @@ fun ProfileContent(
                     linkTo(start = parent.start, end = parent.end)
                     bottom.linkTo(parent.bottom)
                     width = Dimension.fillToConstraints
-                }
+                },
         ) {
             Text(
                 stringResource(cz.matee.devstack.kmp.android.shared.R.string.profile_view_logout_button),
-                Modifier.padding(vertical = Values.Space.xsmall)
+                Modifier.padding(vertical = Values.Space.xsmall),
             )
         }
     }

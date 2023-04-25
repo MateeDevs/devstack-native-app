@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 internal data class LoginDto(
     val email: String,
     val token: String,
-    val userId: String
+    val userId: String,
 )

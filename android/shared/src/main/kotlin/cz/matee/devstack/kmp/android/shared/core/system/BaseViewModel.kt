@@ -2,13 +2,18 @@ package cz.matee.devstack.kmp.android.shared.core.system
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.CoroutineStart
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
 public abstract class BaseViewModel(
-    private val defaultDispatcher: CoroutineDispatcher = Dispatchers.IO
+    private val defaultDispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : ViewModel() {
 
     /**
@@ -20,16 +25,15 @@ public abstract class BaseViewModel(
     protected fun <T> collect(
         flow: Flow<T>,
         context: CoroutineContext = Dispatchers.Default,
-        collector: suspend (T) -> Unit
+        collector: suspend (T) -> Unit,
     ): Job = launch(context) {
         flow.collect(collector)
     }
 
     @Deprecated("Use launch instead", ReplaceWith("launch(block)"))
     protected fun launchOnIO(
-        block: suspend CoroutineScope.() -> Unit
+        block: suspend CoroutineScope.() -> Unit,
     ): Job = launch(defaultDispatcher) { block() }
-
 
     /**
      * Launch coroutine in [viewModelScope] with [context]
@@ -41,20 +45,18 @@ public abstract class BaseViewModel(
     protected fun launch(
         context: CoroutineContext = defaultDispatcher,
         start: CoroutineStart = CoroutineStart.DEFAULT,
-        block: suspend CoroutineScope.() -> Unit
+        block: suspend CoroutineScope.() -> Unit,
     ): Job = viewModelScope.launch(context, start, block)
 }
-
 
 /**
  * Holds state of UI component bound to [BaseStateViewModel]
  */
 public interface State
 
-
 public abstract class BaseStateViewModel<S : State>(
     initialState: S,
-    defaultDispatcher: CoroutineDispatcher = Dispatchers.IO
+    defaultDispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : BaseViewModel(defaultDispatcher) {
 
     private val stateFlow = MutableStateFlow(initialState)

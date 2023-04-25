@@ -1,8 +1,7 @@
 package extensions
 
-
 import org.gradle.api.Project
-import java.util.*
+import java.util.Properties
 
 fun getStringProperty(project: Project, propertyArg: String, defaultValue: String) =
     project.getPropertyValue(propertyArg, defaultValue)
@@ -23,7 +22,6 @@ private fun <T> Project.getPropertyValue(propertyArg: String, defaultValue: T): 
         }
     }
 
-
     // local.properties
     if (value == null && project.rootProject.file("local.properties").canRead()) {
         val properties = Properties()
@@ -39,5 +37,3 @@ private fun <T> Project.getPropertyValue(propertyArg: String, defaultValue: T): 
 
     return value ?: defaultValue.toString()
 }
-
-

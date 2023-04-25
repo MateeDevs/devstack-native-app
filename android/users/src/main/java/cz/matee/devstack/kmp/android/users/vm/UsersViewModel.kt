@@ -1,7 +1,11 @@
 package cz.matee.devstack.kmp.android.users.vm
 
 import androidx.lifecycle.viewModelScope
-import androidx.paging.*
+import androidx.paging.ExperimentalPagingApi
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import cz.matee.devstack.kmp.android.shared.core.system.BaseStateViewModel
 import cz.matee.devstack.kmp.android.shared.core.system.State
 import cz.matee.devstack.kmp.android.users.data.UserPagingMediator
@@ -20,7 +24,7 @@ private val pagingConfig = PagingConfig(15)
 class UsersViewModel(
     getUsersSource: () -> UsersPagingSource,
     mediator: UserPagingMediator,
-    private val getUserUseCase: GetUserUseCase
+    private val getUserUseCase: GetUserUseCase,
 ) : BaseStateViewModel<UsersViewModel.ViewState>(ViewState()) {
 
     @OptIn(ExperimentalPagingApi::class)
@@ -28,7 +32,7 @@ class UsersViewModel(
         pagingConfig,
         null,
         remoteMediator = mediator,
-        getUsersSource
+        getUsersSource,
     )
     val users: Flow<PagingData<UserPagingData>> get() = pager.flow.cachedIn(viewModelScope)
 
@@ -53,6 +57,6 @@ class UsersViewModel(
 
     data class ViewState(
 
-        val loading: Boolean = false
+        val loading: Boolean = false,
     ) : State
 }

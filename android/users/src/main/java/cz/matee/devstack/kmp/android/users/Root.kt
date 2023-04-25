@@ -12,7 +12,6 @@ import cz.matee.devstack.kmp.android.users.ui.UserListScreen
 @Suppress("FunctionName")
 fun NavGraphBuilder.UsersRoot(navHostController: NavHostController) {
     navigation(startDestination = UsersDestination.List.route, Feature.Users.route) {
-
         composable(UsersDestination.List.route) { UserListScreen(navHostController) }
 
         composable(UsersDestination.Detail.route) {

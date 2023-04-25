@@ -1,19 +1,31 @@
 package cz.matee.devstack.kmp.android.users.data
 
-import androidx.paging.*
+import androidx.paging.ExperimentalPagingApi
+import androidx.paging.LoadType
+import androidx.paging.PagingSource
+import androidx.paging.PagingState
+import androidx.paging.RemoteMediator
 import cz.matee.devstack.kmp.shared.base.Result
 import cz.matee.devstack.kmp.shared.base.util.extension.getOrNull
 import cz.matee.devstack.kmp.shared.domain.model.UserPagingData
 import cz.matee.devstack.kmp.shared.domain.repository.UserPagingParameters
-import cz.matee.devstack.kmp.shared.domain.usecase.user.*
-import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.collect
+import cz.matee.devstack.kmp.shared.domain.usecase.user.GetLocalUsersUseCase
+import cz.matee.devstack.kmp.shared.domain.usecase.user.GetRemoteUsersUseCase
+import cz.matee.devstack.kmp.shared.domain.usecase.user.ReplaceUserCacheWithUseCase
+import cz.matee.devstack.kmp.shared.domain.usecase.user.UpdateLocalUserCacheUseCase
+import cz.matee.devstack.kmp.shared.domain.usecase.user.UserCacheChangeFlowUseCase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.job
+import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
 class UsersPagingSource(
     private val getLocalUsers: GetLocalUsersUseCase,
-    private val userCacheChangeFlow: UserCacheChangeFlowUseCase
+    private val userCacheChangeFlow: UserCacheChangeFlowUseCase,
 ) : PagingSource<UserPagingParameters, UserPagingData>(), CoroutineScope {
     override val coroutineContext: CoroutineContext = Job() + Dispatchers.IO
 
@@ -36,7 +48,7 @@ class UsersPagingSource(
     }
 
     override suspend fun load(
-        params: LoadParams<UserPagingParameters>
+        params: LoadParams<UserPagingParameters>,
     ): LoadResult<UserPagingParameters, UserPagingData> {
         val loadParams = params.key ?: UserPagingParameters(0, params.loadSize)
 
@@ -57,7 +69,7 @@ class UsersPagingSource(
     }
 
     override fun getRefreshKey(
-        state: PagingState<UserPagingParameters, UserPagingData>
+        state: PagingState<UserPagingParameters, UserPagingData>,
     ): UserPagingParameters {
         var limit = state.anchorPosition ?: state.config.pageSize
         while (limit % state.config.pageSize != 0) limit += 1 // Expand limit to be a full page
@@ -71,19 +83,20 @@ class UsersPagingSource(
 class UserPagingMediator(
     private val getRemoteUsers: GetRemoteUsersUseCase,
     private val updateLocalCache: UpdateLocalUserCacheUseCase,
-    private val replaceUserCacheWith: ReplaceUserCacheWithUseCase
+    private val replaceUserCacheWith: ReplaceUserCacheWithUseCase,
 ) : RemoteMediator<UserPagingParameters, UserPagingData>() {
     private var loaded: IntRange? = null
 
     override suspend fun load(
         loadType: LoadType,
-        state: PagingState<UserPagingParameters, UserPagingData>
+        state: PagingState<UserPagingParameters, UserPagingData>,
     ): MediatorResult {
         val loadParams = when (loadType) {
             LoadType.REFRESH -> {
                 loaded = null
                 UserPagingParameters(0, state.config.initialLoadSize + state.config.pageSize)
             }
+
             LoadType.PREPEND -> {
                 val loadState = loaded
                     ?: error("Cannot prepend when not initialized (REFRESH load wasn't called)")
@@ -92,18 +105,21 @@ class UserPagingMediator(
                 val offset = (loadState.first - state.config.pageSize).coerceAtLeast(0)
                 UserPagingParameters(
                     offset = offset,
-                    limit = if (loadState.first < state.config.pageSize)
+                    limit = if (loadState.first < state.config.pageSize) {
                         loadState.first
-                    else state.config.pageSize
+                    } else {
+                        state.config.pageSize
+                    },
                 )
             }
+
             LoadType.APPEND -> {
                 val loadState = loaded
                     ?: error("Cannot append when not initialized (REFRESH load wasn't called)")
 
                 UserPagingParameters(
                     offset = loadState.last + 1,
-                    limit = state.config.pageSize
+                    limit = state.config.pageSize,
                 )
             }
         }
@@ -113,30 +129,33 @@ class UserPagingMediator(
                 val loadedRange = loaded
                 val min = res.data.offset
                 val max = res.data.offset + res.data.limit - 1
-                if (loadedRange == null)
+                if (loadedRange == null) {
                     loaded = min..max // set range from result on refresh
-                else {
-                    if (min < loadedRange.first)
+                } else {
+                    if (min < loadedRange.first) {
                         loaded = min..loadedRange.last
-                    if (max > loadedRange.last)
+                    }
+                    if (max > loadedRange.last) {
                         loaded = loadedRange.first..max
+                    }
                 }
 
-                if (loadType == LoadType.REFRESH)
+                if (loadType == LoadType.REFRESH) {
                     replaceUserCacheWith(res.data.users)
-                else
+                } else {
                     updateLocalCache(res.data.users)
+                }
 
                 MediatorResult.Success(
-                    (res.data.offset + res.data.limit) >= res.data.totalCount
+                    (res.data.offset + res.data.limit) >= res.data.totalCount,
                 )
             }
+
             is Result.Error -> MediatorResult.Error(
                 res.error.throwable ?: IllegalStateException(
-                    "User list loading failed but no error found"
-                )
+                    "User list loading failed but no error found",
+                ),
             )
         }
     }
-
 }

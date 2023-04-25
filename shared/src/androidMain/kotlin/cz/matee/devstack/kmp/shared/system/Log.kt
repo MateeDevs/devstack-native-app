@@ -1,20 +1,18 @@
 package cz.matee.devstack.kmp.shared.system
 
-import platform.Foundation.NSLog
+import android.util.Log as AndroidLog
 
 actual object Log : Logger {
 
     override fun d(tag: String, message: String) {
-        NSLog("${tag}: $message")
+        AndroidLog.d(tag, message)
     }
 
     override fun w(tag: String, message: String, throwable: Throwable?) {
-        NSLog("${tag}: $message - ${throwable.toString()}")
+        AndroidLog.w(tag, message, throwable)
     }
-
 
     override fun e(tag: String, message: String, throwable: Throwable) {
-        NSLog("${tag}: $message - $throwable")
+        AndroidLog.e(tag, message, throwable)
     }
-
 }

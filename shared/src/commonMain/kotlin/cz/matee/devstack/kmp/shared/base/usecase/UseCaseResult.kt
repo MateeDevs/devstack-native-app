@@ -12,7 +12,6 @@ import kotlinx.coroutines.flow.Flow
  *
  */
 
-
 interface UseCaseResult<in Params, out T : Any> {
     suspend operator fun invoke(params: Params): Result<T>
 }

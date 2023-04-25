@@ -1,7 +1,14 @@
 package cz.matee.devstack.kmp.android.profile.ui
 
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Icon
@@ -16,13 +23,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import cz.matee.devstack.kmp.android.shared.style.Values
 import cz.matee.devstack.kmp.shared.domain.model.Book
+import kotlinx.collections.immutable.ImmutableList
 import kotlinx.coroutines.launch
 
 @Composable
 fun BookList(
-    books: List<Book>,
+    books: ImmutableList<Book>,
     refreshBooks: suspend () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val scope = rememberCoroutineScope()
 
@@ -34,12 +42,12 @@ fun BookList(
                 modifier = Modifier
                     .fillMaxWidth()
                     .weight(0.1f)
-                    .padding(start = Values.Space.mediumLarge)
+                    .padding(start = Values.Space.mediumLarge),
             )
             IconButton(
                 onClick = { scope.launch { refreshBooks() } },
                 modifier = Modifier
-                    .padding(horizontal = Values.Space.medium, vertical = Values.Space.small)
+                    .padding(horizontal = Values.Space.medium, vertical = Values.Space.small),
             ) {
                 Icon(imageVector = Icons.Default.Refresh, contentDescription = "Refresh")
             }
@@ -58,7 +66,7 @@ private fun BookItem(book: Book) {
     Box(
         modifier = Modifier
             .padding(Values.Space.small)
-            .border(Values.Border.thin, MaterialTheme.colors.secondary, MaterialTheme.shapes.small)
+            .border(Values.Border.thin, MaterialTheme.colors.secondary, MaterialTheme.shapes.small),
     ) {
         Column(Modifier.padding(Values.Space.medium)) {
             Text(book.name, style = MaterialTheme.typography.h6)
@@ -69,7 +77,7 @@ private fun BookItem(book: Book) {
             Text(
                 book.pages.toString(),
                 style = MaterialTheme.typography.caption,
-                modifier = Modifier.align(Alignment.End)
+                modifier = Modifier.align(Alignment.End),
             )
         }
     }

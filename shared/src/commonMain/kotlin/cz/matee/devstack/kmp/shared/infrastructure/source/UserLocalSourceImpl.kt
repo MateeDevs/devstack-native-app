@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.map
 
 internal class UserLocalSourceImpl(
     private val userQueries: UserQueries,
-    private val userCacheQueries: UserCacheQueries
+    private val userCacheQueries: UserCacheQueries,
 ) : UserLocalSource {
 
     override fun getUsers(): Flow<List<UserEntity>> {
@@ -35,7 +35,6 @@ internal class UserLocalSourceImpl(
         userQueries.deleteAllUsers()
         entities.forEach(userQueries::insertOrReplace)
     }
-
 
     override suspend fun replaceCacheWith(users: List<UserCache>) = userCacheQueries.transaction {
         userCacheQueries.deleteCache()

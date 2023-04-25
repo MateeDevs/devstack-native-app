@@ -6,7 +6,7 @@ import cz.matee.devstack.kmp.shared.domain.repository.AuthRepository
 interface DeleteAuthDataUseCase : UseCaseResultNoParams<Unit>
 
 class DeleteAuthDataUseCaseImpl internal constructor(
-    private val authRepository: AuthRepository
+    private val authRepository: AuthRepository,
 ) : DeleteAuthDataUseCase {
 
     override suspend fun invoke() = authRepository.deleteUserData()

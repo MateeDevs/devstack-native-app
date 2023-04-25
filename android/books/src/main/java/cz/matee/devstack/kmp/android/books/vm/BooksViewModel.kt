@@ -10,12 +10,12 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 
 data class BooksState(
-    val loading: Boolean = false
+    val loading: Boolean = false,
 ) : VmState
 
 class BooksViewModel(
     private val getBooks: GetBooksUseCase,
-    private val refreshBooks: RefreshBooksUseCase
+    private val refreshBooks: RefreshBooksUseCase,
 ) : BaseIntentViewModel<BooksState, BooksIntent>(BooksState()) {
 
     private val _errorFlow = MutableSharedFlow<ErrorResult>()
@@ -29,4 +29,3 @@ class BooksViewModel(
 sealed interface BooksIntent : VmIntent {
     object LoadData : BooksIntent
 }
-

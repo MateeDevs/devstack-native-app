@@ -12,12 +12,10 @@ internal val UserEntity.asDomain
 internal val UserDto.asDomain
     get() = User(id, email, bio, firstName, lastName, phone)
 
-
 // Domain -> Infrastructure
 
 internal val User.asEntity
     get() = UserEntity(id, email, firstName, lastName, phone, bio)
-
 
 // Helpers
 

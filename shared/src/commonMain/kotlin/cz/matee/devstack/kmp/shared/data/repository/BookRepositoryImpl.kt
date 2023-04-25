@@ -7,14 +7,13 @@ import cz.matee.devstack.kmp.shared.domain.repository.BookRepository
 import cz.matee.devstack.kmp.shared.infrastructure.local.BookEntity
 import cz.matee.devstack.kmp.shared.util.extension.asDomain
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import kotlin.random.Random
 import kotlin.random.nextInt
 import kotlin.random.nextLong
 
 internal class BookRepositoryImpl(
-    private val source: BookLocalSource
+    private val source: BookLocalSource,
 ) : BookRepository {
     override fun getAllBooks(): Flow<List<Book>> {
         return source.getAll().map { it.map(BookEntity::asDomain) }
@@ -26,11 +25,11 @@ internal class BookRepositoryImpl(
                 Random.nextInt().toString(),
                 "Book ${Random.nextInt(1000..9000)}",
                 "Author ${Random.nextInt(1000..9000)}",
-                Random.nextLong(0..200L)
+                Random.nextLong(0..200L),
             )
         }
 
         source.updateOrInsert(items)
-        return Result.Success(Unit);
+        return Result.Success(Unit)
     }
 }

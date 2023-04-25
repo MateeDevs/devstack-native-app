@@ -9,5 +9,5 @@ internal data class UserDto(
     val firstName: String = "",
     val lastName: String = "",
     val bio: String = "",
-    val phone: String? = null
+    val phone: String? = null,
 )

@@ -29,7 +29,7 @@ internal interface UserLocalSource {
 
 internal data class UserPagingRequest(
     val offset: Int,
-    val limit: Int
+    val limit: Int,
 )
 
 @Serializable
@@ -38,5 +38,5 @@ internal data class UserUpdateRequest(
     val firstName: String?,
     val lastName: String?,
     val pass: String?,
-    val phone: String?
+    val phone: String?,
 )

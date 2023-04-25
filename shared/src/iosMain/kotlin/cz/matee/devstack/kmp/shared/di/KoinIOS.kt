@@ -17,10 +17,9 @@ fun initKoinIos(doOnStartup: () -> Unit) = initKoin {
     modules(
         module {
             single { doOnStartup }
-        }
+        },
     )
 }
-
 
 actual val platformModule = module {
     single<Config> { ConfigImpl() }

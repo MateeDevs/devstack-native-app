@@ -5,6 +5,7 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        maven("https://plugins.gradle.org/m2/")
     }
 }
 
@@ -16,6 +17,7 @@ plugins {
     alias(libs.plugins.kotlin.multiplatform) apply false
     alias(libs.plugins.serialization) apply false
     alias(libs.plugins.sqlDelight) apply false
+    alias(libs.plugins.ktlint) apply false
     alias(libs.plugins.versions)
     alias(libs.plugins.versionCatalogUpdate)
 }
@@ -31,7 +33,7 @@ allprojects {
             jvmTarget = "17"
             freeCompilerArgs = freeCompilerArgs + listOf(
                 "-Xallow-jvm-ir-dependencies",
-                "-opt-in=kotlin.RequiresOptIn"
+                "-opt-in=kotlin.RequiresOptIn",
             )
         }
     }
@@ -43,7 +45,7 @@ tasks.register("generateLocalizations") {
         twineFolderArg = TWINE_HOME_FOLDER_ARG,
         twineFileName = "devstack/strings.txt",
         moduleName = "android/shared",
-        windowsProjectFolderArg = WINDOWS_PROJECT_HOME_FOLDER_ARG
+        windowsProjectFolderArg = WINDOWS_PROJECT_HOME_FOLDER_ARG,
     ).generate()
 }
 

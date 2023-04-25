@@ -3,19 +3,31 @@ package cz.matee.devstack.kmp.shared.infrastructure.remote
 import cz.matee.devstack.kmp.shared.infrastructure.local.AuthDao
 import cz.matee.devstack.kmp.shared.infrastructure.model.LoginDto
 import cz.matee.devstack.kmp.shared.system.Config
-import io.ktor.client.*
-import io.ktor.client.call.*
-import io.ktor.client.plugins.*
-import io.ktor.client.plugins.contentnegotiation.*
-import io.ktor.client.plugins.logging.*
-import io.ktor.client.request.*
-import io.ktor.client.statement.*
-import io.ktor.http.*
-import io.ktor.serialization.kotlinx.json.*
-import io.ktor.util.pipeline.*
+import io.ktor.client.HttpClient
+import io.ktor.client.call.HttpClientCall
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.client.plugins.defaultRequest
+import io.ktor.client.plugins.logging.LogLevel
+import io.ktor.client.plugins.logging.Logger
+import io.ktor.client.plugins.logging.Logging
+import io.ktor.client.request.HttpRequestBuilder
+import io.ktor.client.request.HttpRequestPipeline
+import io.ktor.client.request.headers
+import io.ktor.client.statement.HttpResponseContainer
+import io.ktor.client.statement.HttpResponsePipeline
+import io.ktor.http.ContentType
+import io.ktor.http.HttpHeaders
+import io.ktor.http.HttpStatusCode
+import io.ktor.http.URLProtocol
+import io.ktor.http.Url
+import io.ktor.http.contentType
+import io.ktor.http.encodedPath
+import io.ktor.http.fullPath
+import io.ktor.serialization.kotlinx.json.json
+import io.ktor.util.pipeline.PipelineContext
 import kotlin.native.concurrent.ThreadLocal
-import kotlinx.serialization.json.Json as JsonConfig
 import co.touchlab.kermit.Logger as KermitLogger
+import kotlinx.serialization.json.Json as JsonConfig
 
 internal object HttpClient {
     private val unauthorizedEndpoints = listOf("/api/auth/login", "/api/auth/registration")
@@ -74,17 +86,16 @@ internal object HttpClient {
                 // (if token is null and destination needs authentication, throw [NoTokenException])
                 else -> throw NoTokenException(url.build())
             }
-
         }
     }
 
     private fun PipelineContext<HttpResponseContainer, HttpClientCall>.interceptTokenResponse(
-        authDao: AuthDao
+        authDao: AuthDao,
     ) {
         with(context) {
             val isSuccessfulLoginResponse =
-                request.url.encodedPath == AuthPaths.login
-                        && response.status == HttpStatusCode.OK
+                request.url.encodedPath == AuthPaths.login &&
+                    response.status == HttpStatusCode.OK
 
             if (isSuccessfulLoginResponse) {
                 val res = subject.response as? LoginDto
@@ -105,4 +116,3 @@ val globalJson = JsonConfig {
 }
 
 class NoTokenException(url: Url) : Exception("No token provided for route ${url.fullPath}")
-

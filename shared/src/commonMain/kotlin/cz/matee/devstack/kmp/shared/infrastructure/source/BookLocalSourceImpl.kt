@@ -8,7 +8,7 @@ import cz.matee.devstack.kmp.shared.infrastructure.local.BookQueries
 import kotlinx.coroutines.flow.Flow
 
 internal class BookLocalSourceImpl(
-    private val queries: BookQueries
+    private val queries: BookQueries,
 ) : BookLocalSource {
     override fun getAll(): Flow<List<BookEntity>> {
         return queries.getAllBooks().asFlow().mapToList()

@@ -6,7 +6,14 @@ import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.gestures.DraggableState
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.draggable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
@@ -14,13 +21,21 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Pause
 import androidx.compose.material.icons.filled.PlayArrow
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
-import androidx.compose.ui.graphics.*
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.PathEffect
+import androidx.compose.ui.graphics.StampedPathEffectStyle
+import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
@@ -31,7 +46,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 
 @Composable
-fun CanvasRecipe() {
+fun CanvasRecipe(modifier: Modifier = Modifier) {
     var usedTimer by remember { mutableStateOf(false) }
     var progress by remember { mutableStateOf(120f) }
     val helpAlpha by animateFloatAsState(if (usedTimer) 0f else 0.6f)
@@ -47,7 +62,6 @@ fun CanvasRecipe() {
         }
     }
 
-
     LaunchedEffect(clockResumed) {
         while (isActive && clockResumed) {
             delay(1000L)
@@ -58,11 +72,10 @@ fun CanvasRecipe() {
     }
 
     Box(
-        Modifier
+        modifier
             .fillMaxSize()
-            .draggable(dragState, Orientation.Vertical)
+            .draggable(dragState, Orientation.Vertical),
     ) {
-
         Text(
             stringResource(cz.matee.devstack.kmp.android.shared.R.string.recipes_clock_view_tutorial),
             Modifier
@@ -71,7 +84,7 @@ fun CanvasRecipe() {
                 .padding(Values.Space.medium)
                 .alpha(helpAlpha),
             style = MaterialTheme.typography.h4,
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center,
         )
 
         val animatedProgress by animateFloatAsState(progress)
@@ -81,9 +94,8 @@ fun CanvasRecipe() {
             seconds = (progress / 6).toInt(),
             clockResumed = clockResumed,
             changeClockResumed = { clockResumed = it },
-            Modifier.align(Alignment.Center)
+            Modifier.align(Alignment.Center),
         )
-
     }
 }
 
@@ -92,22 +104,23 @@ private fun ClockCenter(
     seconds: Int,
     clockResumed: Boolean,
     changeClockResumed: (Boolean) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Column(modifier, horizontalAlignment = Alignment.CenterHorizontally) {
         Text(
             stringResource(cz.matee.devstack.kmp.android.shared.R.string.many_seconds, seconds),
-            style = MaterialTheme.typography.h6
+            style = MaterialTheme.typography.h6,
         )
 
         Spacer(Modifier.height(Values.Space.mediumSmall))
 
         Crossfade(clockResumed) {
             IconButton(onClick = { changeClockResumed(!clockResumed) }) {
-                if (it)
+                if (it) {
                     Icon(Icons.Default.Pause, "Pause")
-                else
+                } else {
                     Icon(Icons.Default.PlayArrow, "Play")
+                }
             }
         }
     }
@@ -124,7 +137,7 @@ private fun Clock(progress: Float) {
     val clockStyle = remember {
         Stroke(
             12f * density,
-            cap = StrokeCap.Round
+            cap = StrokeCap.Round,
         )
     }
     val clockBackgroundStyle = remember { Stroke(14f * density) }
@@ -133,8 +146,8 @@ private fun Clock(progress: Float) {
         addRect(
             Rect(
                 Offset(-1f * density, -8f * density),
-                Offset(1f * density, 8f * density)
-            )
+                Offset(1f * density, 8f * density),
+            ),
         )
         close()
     }
@@ -143,8 +156,11 @@ private fun Clock(progress: Float) {
         Stroke(
             16f * density,
             pathEffect = PathEffect.stampedPathEffect(
-                line, clockCircumference / 60f, 0f, StampedPathEffectStyle.Rotate
-            )
+                line,
+                clockCircumference / 60f,
+                0f,
+                StampedPathEffectStyle.Rotate,
+            ),
         )
     }
 
@@ -152,7 +168,7 @@ private fun Clock(progress: Float) {
         Modifier
             .fillMaxSize()
             .padding(Values.Space.large)
-            .aspectRatio(1f)
+            .aspectRatio(1f),
     ) {
         clockCircumference = (Math.PI * size.width).toFloat()
         drawCircle(clockBackgroundColor, style = clockBackgroundStyle)
@@ -162,7 +178,7 @@ private fun Clock(progress: Float) {
             -90f,
             progress,
             false,
-            style = clockStyle
+            style = clockStyle,
         )
     }
 }

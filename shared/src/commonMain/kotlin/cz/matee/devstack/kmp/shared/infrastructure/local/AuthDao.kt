@@ -17,7 +17,6 @@ internal interface AuthDao {
 
 internal val AuthDao.isLoggedIn get() = retrieveToken() != null && retrieveUserId() != null
 
-
 internal class AuthDaoImpl(private val settings: Settings) : AuthDao {
     companion object {
         private const val TOKEN_KEY = "auth_token"
@@ -40,5 +39,4 @@ internal class AuthDaoImpl(private val settings: Settings) : AuthDao {
         settings.remove(USER_KEY)
         settings.remove(TOKEN_KEY)
     }
-
 }

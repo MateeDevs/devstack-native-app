@@ -27,8 +27,10 @@ fun Modifier.pushedByIme(additionalSpace: Int = 0) = composed {
         .coerceAtLeast(0)
 
     onGloballyPositioned {
-        if (bottomPosition == 0) // Get only first position
+        if (bottomPosition == 0) {
+            // Get only first position
             bottomPosition = (it.positionInWindow().y + it.size.height).roundToInt()
+        }
     }.offset { IntOffset(0, -bottomOffset) }
 }
 

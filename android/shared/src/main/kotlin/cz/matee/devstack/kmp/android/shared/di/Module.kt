@@ -15,7 +15,7 @@ val androidSharedModule = module {
     single<LocationController> {
         LocationControllerImpl(
             context = get(),
-            locationProvider = LocationServices.getFusedLocationProviderClient(get<Context>())
+            locationProvider = LocationServices.getFusedLocationProviderClient(get<Context>()),
         )
     }
 

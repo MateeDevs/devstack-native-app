@@ -8,7 +8,7 @@ internal interface AuthRepository {
         email: String,
         firstName: String,
         lastName: String,
-        pass: String
+        pass: String,
     ): Result<Unit>
 
     suspend fun deleteUserData(): Result<Unit>

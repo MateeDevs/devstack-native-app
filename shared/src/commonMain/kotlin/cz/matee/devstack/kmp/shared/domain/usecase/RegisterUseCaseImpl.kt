@@ -9,12 +9,12 @@ interface RegisterUseCase : UseCaseResult<RegisterUseCase.Params, Unit> {
         val email: String,
         val firstName: String,
         val lastName: String,
-        val password: String
+        val password: String,
     )
 }
 
 class RegisterUseCaseImpl internal constructor(
-    private val authRepository: AuthRepository
+    private val authRepository: AuthRepository,
 ) : RegisterUseCase {
 
     override suspend fun invoke(params: RegisterUseCase.Params): Result<Unit> =

@@ -18,24 +18,25 @@ import cz.matee.devstack.kmp.shared.domain.model.User
 fun UserProfileImage(
     user: User,
     modifier: Modifier = Modifier,
-    color: Color = MaterialTheme.colors.primary
+    color: Color = MaterialTheme.colors.primary,
 ) {
     Box(
         modifier
             .clip(CircleShape)
             .background(color)
-            .padding(Values.Space.medium)
+            .padding(Values.Space.medium),
     ) {
-        if (user.firstName.isNotBlank() && user.lastName.isNotBlank())
+        if (user.firstName.isNotBlank() && user.lastName.isNotBlank()) {
             Text(
                 "${user.firstName[0]}${user.lastName[0]}",
-                style = MaterialTheme.typography.h3
+                style = MaterialTheme.typography.h3,
             )
-        else
+        } else {
             Text( // Render something so Box ha size
                 "AA",
                 style = MaterialTheme.typography.h3,
-                modifier = Modifier.alpha(0f)
+                modifier = Modifier.alpha(0f),
             )
+        }
     }
 }

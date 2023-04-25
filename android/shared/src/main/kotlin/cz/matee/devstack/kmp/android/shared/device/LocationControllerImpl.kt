@@ -7,7 +7,11 @@ import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Looper
 import androidx.core.app.ActivityCompat
-import com.google.android.gms.location.*
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationResult
+import com.google.android.gms.location.Priority
 import cz.matee.devstack.kmp.android.shared.device.LocationControllerImpl.LocationUpdateCallback
 import cz.matee.devstack.kmp.android.shared.domain.controller.LocationController
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -15,12 +19,11 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.filterNotNull
 
-
 private const val UPDATE_INTERVAL = 1000L
 
 class LocationControllerImpl(
     private val context: Context,
-    private val locationProvider: FusedLocationProviderClient
+    private val locationProvider: FusedLocationProviderClient,
 ) : LocationController {
     fun interface LocationUpdateCallback {
         fun onLocationUpdate(location: Location)
@@ -33,11 +36,11 @@ class LocationControllerImpl(
     override var lastLocation: Location? = null
         private set
 
-
     @OptIn(ExperimentalCoroutinesApi::class)
     override val locationFlow = callbackFlow {
-        if (locationListeners.isEmpty() || (locationListeners.isNotEmpty() && !listening))
+        if (locationListeners.isEmpty() || (locationListeners.isNotEmpty() && !listening)) {
             startListening()
+        }
         this.trySend(lastLocation).isSuccess
 
         val callback = LocationUpdateCallback { location -> this.trySend(location).isSuccess }
@@ -87,9 +90,8 @@ class LocationControllerImpl(
     private val permissionGranted
         get() = ActivityCompat.checkSelfPermission(
             context,
-            Manifest.permission.ACCESS_FINE_LOCATION
+            Manifest.permission.ACCESS_FINE_LOCATION,
         ) == PackageManager.PERMISSION_GRANTED
-
 
     /**
      * Helper function to prevent ConcurrentModification by synchronizing access to listeners

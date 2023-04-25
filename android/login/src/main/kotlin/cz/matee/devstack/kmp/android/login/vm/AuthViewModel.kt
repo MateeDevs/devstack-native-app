@@ -38,7 +38,7 @@ class AuthViewModel(
 
     suspend fun register(
         email: String,
-        password: String
+        password: String,
     ): Boolean {
         loading = true
 
@@ -61,6 +61,6 @@ class AuthViewModel(
         set(value) = update { copy(loading = value) }
 
     data class ViewState(
-        val loading: Boolean = false
+        val loading: Boolean = false,
     ) : State
 }

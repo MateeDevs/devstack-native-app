@@ -9,11 +9,11 @@ import kotlinx.coroutines.flow.Flow
 interface GetLocalUsersUseCase : UseCaseFlow<UserPagingParameters, UserPagingResult>
 
 class GetLocalUsersUseCaseImpl internal constructor(
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
 ) : GetLocalUsersUseCase {
 
     override suspend fun invoke(params: UserPagingParameters): Flow<UserPagingResult> =
         userRepository.getUserPagingLocal(
-            UserPagingParameters(params.offset, params.limit)
+            UserPagingParameters(params.offset, params.limit),
         )
 }

@@ -25,11 +25,14 @@ kermit = "1.2.2"
 settings = "1.0.0"
 sqlDelight = "1.5.5"
 googlePlayServices = "21.0.1"
+ktLintRules = "0.1.5"
+kotlinxImmutableCollections = "0.3.5"
 
 [libraries]
 # Kotlin
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
 kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+kotlinx-immutableCollections = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "kotlinxImmutableCollections" }
 # Tools
 androidTools-gradle = { module = "com.android.tools.build:gradle", version.ref = "gradlePlugin" }
 # Coroutines
@@ -91,6 +94,8 @@ sqlDelight-androidDriver = { module = "com.squareup.sqldelight:android-driver", 
 sqlDelight-iosDriver = { module = "com.squareup.sqldelight:native-driver", version.ref = "sqlDelight" }
 # Google Play Services
 googlePlayServices-location = { module = "com.google.android.gms:play-services-location", version.ref = "googlePlayServices" }
+# KtLint rules
+ktlint-composeRules = { module = "io.nlopez.compose.rules:ktlint", version.ref = "ktLintRules" }
 
 [bundles]
 settings = [
@@ -126,3 +131,4 @@ serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref 
 sqlDelight = { id = "com.squareup.sqldelight", version.ref = "sqlDelight" }
 versionCatalogUpdate = "nl.littlerobots.version-catalog-update:0.8.0"
 versions = "com.github.ben-manes.versions:0.46.0"
+ktlint = "org.jlleitschuh.gradle.ktlint:11.3.1"

@@ -8,7 +8,7 @@ import cz.matee.devstack.kmp.shared.domain.repository.UserUpdateParameters
 
 interface UpdateUserUseCase : UseCaseResult<UserUpdateParameters, User>
 class UpdateUserUseCaseImpl internal constructor(
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
 ) : UpdateUserUseCase {
 
     override suspend fun invoke(params: UserUpdateParameters): Result<User> =

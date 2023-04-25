@@ -15,6 +15,8 @@ interface ErrorMessageProvider {
 }
 
 fun ErrorMessageProvider.getMessage(error: ErrorResult, defMessage: String? = null) =
-    if (defMessage != null)
+    if (defMessage != null) {
         error.getMessage(defMessage)
-    else error.getMessage()
+    } else {
+        error.getMessage()
+    }

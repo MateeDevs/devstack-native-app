@@ -20,12 +20,14 @@ internal inline fun <R : Any> runCatchingAuthNetworkExceptions(block: () -> R): 
                 } else {
                     throw e
                 }
+
             HttpStatusCode.Conflict ->
                 if (e.response.request.url.encodedPath == AuthPaths.registration) {
                     Result.Error(AuthError.EmailAlreadyExist(e))
                 } else {
                     throw e
                 }
+
             else -> throw e
         }
     } catch (e: Throwable) {
@@ -41,8 +43,9 @@ internal inline fun <R : Any> runCatchingCommonNetworkExceptions(block: () -> R)
     } catch (e: ClientRequestException) {
         when (e.response.status) {
             HttpStatusCode.Unauthorized -> Result.Error(
-                BackendError.NotAuthorized(e.response.toString(), e)
+                BackendError.NotAuthorized(e.response.toString(), e),
             )
+
             else -> throw e
         }
     } catch (e: Throwable) {

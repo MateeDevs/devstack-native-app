@@ -11,7 +11,7 @@ import cz.matee.devstack.kmp.shared.infrastructure.remote.AuthService
 
 internal class AuthSourceImpl(
     private val service: AuthService,
-    private val authDao: AuthDao
+    private val authDao: AuthDao,
 ) : AuthSource {
 
     override suspend fun login(request: LoginRequest): Result<LoginDto> =
@@ -22,5 +22,4 @@ internal class AuthSourceImpl(
 
     override suspend fun deleteUserData(): Result<Unit> =
         Result.Success(authDao.wipeData())
-
 }

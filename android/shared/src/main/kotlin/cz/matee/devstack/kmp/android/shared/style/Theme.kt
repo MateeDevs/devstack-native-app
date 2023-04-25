@@ -28,7 +28,7 @@ val lightColors = Colors(
     onSurface = Color(0xFF000000),
     onError = Color(0xFF000000),
 
-    isLight = true
+    isLight = true,
 )
 
 // https://coolors.co/f5ab00-b8a422-9aa133-7b9d44-d95700-1f1f1f-141414
@@ -50,7 +50,7 @@ val darkColors = Colors(
     onSurface = Color(0xFFFFFFFF),
     onError = Color(0xFFFFFFFF),
 
-    isLight = false
+    isLight = false,
 )
 
 val typography = Typography(
@@ -60,7 +60,7 @@ val typography = Typography(
 val shapes = Shapes(
     small = RoundedCornerShape(Values.Radius.large),
     medium = RoundedCornerShape(Values.Radius.medium),
-    large = RoundedCornerShape(Values.Radius.small)
+    large = RoundedCornerShape(Values.Radius.small),
 )
 
 @Composable
@@ -70,6 +70,6 @@ fun AppTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable ()
         colors = colors,
         typography = typography,
         shapes = shapes,
-        content = content
+        content = content,
     )
 }

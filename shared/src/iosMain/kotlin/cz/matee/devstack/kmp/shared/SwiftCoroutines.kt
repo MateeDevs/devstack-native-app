@@ -30,7 +30,7 @@ interface KMMViewModel {
     fun l(uc: RefreshBooksUseCase) {
         val a = execute(1, uc, onSuccess = {
         }, {
-        })
+        },)
     }
 
     fun <Params : Any, Out : Any> execute(

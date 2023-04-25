@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.serialization)
     alias(libs.plugins.sqlDelight)
+    alias(libs.plugins.ktlint)
 }
 
 // https://youtrack.jetbrains.com/issue/KT-43944
@@ -127,5 +128,13 @@ tasks.register("copyXCFramework") {
     project.copy {
         from(buildPathRelease)
         into(iosXCBinaryPath)
+    }
+}
+
+ktlint {
+    filter {
+        exclude { entry ->
+            entry.file.toString().contains("generated")
+        }
     }
 }

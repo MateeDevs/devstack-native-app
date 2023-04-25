@@ -1,0 +1,40 @@
+name: Android – PR Check
+
+on:
+  pull_request:
+    types: [ opened, synchronize ]
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: android-global-build
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Run lint
+        run: |
+          ./gradlew ktlintCheck
+
+  build:
+    name: Build
+    runs-on: android-global-build
+    needs: lint
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Build
+        env:
+          TWINE_FOLDER: twine
+        run: |
+          TWINE_FOLDER="$(pwd)/$TWINE_FOLDER/"
+          
+          rm -rf "$TWINE_FOLDER"
+          git clone "git@github.com:MateeDevs/twine-localization.git" "$TWINE_FOLDER"
+          ./gradlew generateTwine -PtwineLocalizationFolder="$TWINE_FOLDER"
+          ./gradlew :android:app:bundleDebug

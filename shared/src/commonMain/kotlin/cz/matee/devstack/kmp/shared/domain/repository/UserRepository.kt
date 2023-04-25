@@ -13,7 +13,7 @@ internal interface UserRepository {
     suspend fun getUser(): Flow<Result<User>>
     fun getUsers(): Flow<List<User>>
     suspend fun getUser(id: String): Flow<Result<User>>
-    suspend fun refreshUsers(pagingRequest: UserPagingRequest): Result<Unit>;
+    suspend fun refreshUsers(pagingRequest: UserPagingRequest): Result<Unit>
     suspend fun updateUser(parameters: UserUpdateParameters): Result<User>
 
     suspend fun getUserPagingRemote(parameters: UserPagingParameters): Result<UserPagingResult>
@@ -25,11 +25,12 @@ internal interface UserRepository {
 
 data class UserPagingParameters(
     val offset: Int,
-    val limit: Int
+    val limit: Int,
 ) {
     internal val asRequest
         get() = UserPagingRequest(
-            offset, limit
+            offset,
+            limit,
         )
 }
 
@@ -39,10 +40,14 @@ data class UserUpdateParameters(
     val firstName: String? = null,
     val lastName: String? = null,
     val pass: String? = null,
-    val phone: String? = null
+    val phone: String? = null,
 ) {
     internal val asRequest
         get() = UserUpdateRequest(
-            bio, firstName, lastName, pass, phone
+            bio,
+            firstName,
+            lastName,
+            pass,
+            phone,
         )
 }
