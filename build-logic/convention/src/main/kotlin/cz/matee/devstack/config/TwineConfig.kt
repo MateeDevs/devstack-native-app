@@ -1,10 +1,24 @@
-package tools
+package cz.matee.devstack.config
 
-import extensions.getStringProperty
+import cz.matee.devstack.constants.TWINE_HOME_FOLDER_ARG
+import cz.matee.devstack.constants.WINDOWS_PROJECT_HOME_FOLDER_ARG
+import cz.matee.devstack.extensions.getStringProperty
 import org.gradle.api.Project
 import org.gradle.internal.os.OperatingSystem
 
-class Twine(
+fun Project.configureTwine() {
+    tasks.register("generateTwine") {
+        Twine(
+            project = project,
+            twineFolderArg = TWINE_HOME_FOLDER_ARG,
+            twineFileName = "devstack/strings.txt",
+            moduleName = "android/shared",
+            windowsProjectFolderArg = WINDOWS_PROJECT_HOME_FOLDER_ARG,
+        ).generate()
+    }
+}
+
+private class Twine(
     private val project: Project,
     private val twineFolderArg: String,
     private val windowsProjectFolderArg: String,

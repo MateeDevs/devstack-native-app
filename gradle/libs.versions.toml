@@ -132,3 +132,10 @@ sqlDelight = { id = "com.squareup.sqldelight", version.ref = "sqlDelight" }
 versionCatalogUpdate = "nl.littlerobots.version-catalog-update:0.8.0"
 versions = "com.github.ben-manes.versions:0.46.0"
 ktlint = "org.jlleitschuh.gradle.ktlint:11.3.1"
+
+# Convention plugins
+devstack-android-application-compose = "android-application-compose:none"
+devstack-android-application-core = "android-application:none"
+devstack-android-library-compose = "android-library-compose:none"
+devstack-android-library-core = "android-library:none"
+devstack-kmm-library = "kmm-library:none"
