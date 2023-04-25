@@ -94,7 +94,7 @@ private fun ProfileLayout(
 ) {
     Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = modifier) {
 
-        ScreenTitle(R.string.profile_view_toolbar_title) {
+        ScreenTitle(cz.matee.devstack.kmp.android.shared.R.string.profile_view_toolbar_title) {
             Row(Modifier.fillMaxWidth(), Arrangement.End) {
                 IconButton(
                     onClick = onEditClick,
@@ -127,7 +127,7 @@ private fun EditUserScreen(
     Surface(modifier.padding(Values.Space.medium), shape = MaterialTheme.shapes.medium) {
         Column {
             ScreenTitle(
-                R.string.profile_edit_view_title,
+                cz.matee.devstack.kmp.android.shared.R.string.profile_edit_view_title,
                 background = MaterialTheme.colors.surface,
                 statusBarPadding = false,
                 showFade = false,

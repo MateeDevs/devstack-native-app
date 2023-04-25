@@ -1,11 +1,8 @@
 package cz.matee.devstack.kmp.shared.data.repository
 
 import cz.matee.devstack.kmp.shared.base.Result
-import cz.matee.devstack.kmp.shared.base.error.domain.BackendError
 import cz.matee.devstack.kmp.shared.base.error.domain.CommonError
 import cz.matee.devstack.kmp.shared.base.util.extension.map
-import cz.matee.devstack.kmp.shared.base.util.helpers.Success
-import cz.matee.devstack.kmp.shared.base.util.helpers.resultsTo
 import cz.matee.devstack.kmp.shared.data.source.UserLocalSource
 import cz.matee.devstack.kmp.shared.data.source.UserPagingRequest
 import cz.matee.devstack.kmp.shared.data.source.UserRemoteSource
@@ -67,7 +64,7 @@ internal class UserRepositoryImpl(
     override suspend fun getUser(id: String): Flow<Result<User>> = flow {
         val localResult = localSource.getUser(id)
             ?.let(UserEntity::asDomain)
-            ?.resultsTo(Success)
+            ?.let { Result.Success(it) }
 
         if (localResult != null)
             emit(localResult)

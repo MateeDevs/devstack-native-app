@@ -1,23 +1,24 @@
+@Suppress("DSL_SCOPE_VIOLATION") // Remove after upgrading to gradle 8.1
 plugins {
-    id("com.android.application")
-    kotlin("android")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
 }
 
 val appName = "MateeCoreApp"
 
 android {
-    compileSdk = Application.Sdk.compile
+    compileSdk = libs.versions.sdk.compile.get().toInt()
 
     defaultConfig {
         applicationId = Application.id
 
-        minSdk = Application.Sdk.min
-        targetSdk = Application.Sdk.target
+        minSdk = libs.versions.sdk.min.get().toInt()
+        targetSdk = libs.versions.sdk.target.get().toInt()
 
         versionCode = Application.Version.code
         versionName = Application.Version.name
 
-        testInstrumentationRunner = Dependency.AndroidX.testRunner
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     signingConfigs {
@@ -65,8 +66,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     buildFeatures {
@@ -78,8 +79,9 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Dependency.Compose.compilerExtensionVersion
+        kotlinCompilerExtensionVersion = libs.versions.composeCompilerExtensionVersion.get()
     }
+    namespace = "cz.matee.devstack.kmp"
 
     applicationVariants.all {
         if (buildType.name != "release") {
@@ -90,7 +92,6 @@ android {
     }
 }
 
-
 dependencies {
     implementation(project(Project.shared))
     implementation(project(Project.Android.shared))
@@ -99,19 +100,14 @@ dependencies {
     implementation(project(Project.Android.profile))
     implementation(project(Project.Android.recipes))
     implementation(project(Project.Android.books))
-
-    implementation(project.dependencies.platform(Dependency.Kotlin.stdlib))
-    implementation(Dependency.AndroidX.core)
-
-    implementation(Dependency.Compose.ui)
-    implementation(Dependency.Compose.foundation)
-    implementation(Dependency.Compose.material)
-    implementation(Dependency.Compose.Activity.core)
-    implementation(Dependency.Compose.Navigation.core)
-
-
-    implementation(Dependency.Koin.android)
-    implementation(Dependency.Koin.compose)
-
-    androidTestImplementation(Dependency.Compose.uiTest)
+    implementation(project.dependencies.platform(libs.kotlin.stdlib))
+    implementation(libs.androidX.core)
+    implementation(libs.compose.ui)
+    implementation(libs.compose.foundation)
+    implementation(libs.compose.material)
+    implementation(libs.activity.compose)
+    implementation(libs.navigation.compose)
+    implementation(libs.koin.android)
+    implementation(libs.koin.compose)
+    androidTestImplementation(libs.compose.uiTest)
 }

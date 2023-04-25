@@ -17,19 +17,19 @@ sealed class RecipesDestination(
 
     object Rope : RecipesDestination(
         "$root/rope",
-        R.string.recipes_view_rope_name,
-        R.string.recipes_view_rope_description
+        cz.matee.devstack.kmp.android.shared.R.string.recipes_view_rope_name,
+        cz.matee.devstack.kmp.android.shared.R.string.recipes_view_rope_description
     )
 
     object CanvasClock : RecipesDestination(
         "$root/clock",
-        R.string.recipes_view_clock_name,
-        R.string.recipes_view_clock_description
+        cz.matee.devstack.kmp.android.shared.R.string.recipes_view_clock_name,
+        cz.matee.devstack.kmp.android.shared.R.string.recipes_view_clock_description
     )
 
     object ListTransition : RecipesDestination(
         "$root/transition-list",
-        R.string.recipes_view_list_name,
-        R.string.recipes_view_list_description
+        cz.matee.devstack.kmp.android.shared.R.string.recipes_view_list_name,
+        cz.matee.devstack.kmp.android.shared.R.string.recipes_view_list_description
     )
 }

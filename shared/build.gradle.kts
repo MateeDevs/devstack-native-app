@@ -1,11 +1,14 @@
-import KmmConfig.copyXCFramework
+import extensions.getStringProperty
+import org.jetbrains.kotlin.gradle.plugin.mpp.NativeBuildType
+import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 import Project as ProjectConst
 
+@Suppress("DSL_SCOPE_VIOLATION") // Remove after upgrading to gradle 8.1
 plugins {
-    id("com.android.library")
-    kotlin("multiplatform")
-    kotlin("plugin.serialization") version kotlinVersion
-    id("com.squareup.sqldelight")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.serialization)
+    alias(libs.plugins.sqlDelight)
 }
 
 // https://youtrack.jetbrains.com/issue/KT-43944
@@ -19,75 +22,79 @@ android {
 
 kotlin {
     android()
-    kmm(project, ProjectConst.iosShared)
+
+    // Native platforms the app will support
+    val supportedNativePlatforms = listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64(),
+        // tvosX64(),
+        // tvosArm64(),
+        // tvosSimulatorArm64(),
+    )
+    // Add supported native platforms to XCFramework
+    with(project) {
+        val xcf = XCFramework(ProjectConst.iosShared)
+        supportedNativePlatforms.forEach { target ->
+            target.binaries.framework {
+                if (this.buildType == currentNativeBuildType) {
+                    baseName = ProjectConst.iosShared
+                    isStatic = false
+                    xcf.add(this)
+                }
+            }
+        }
+    }
 
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(Dependency.Kotlin.Coroutines.common)
-                implementation(Dependency.Kotlin.AtomicFU.core)
-                implementation(Dependency.Kotlin.DateTime.core)
-
-                implementation(Dependency.Koin.core)
-
-                implementation(Dependency.Settings.core)
-                implementation(Dependency.Settings.coroutines)
-                implementation(Dependency.Settings.noArg)
-
-
-                implementation(Dependency.SqlDelight.runtime)
-                implementation(Dependency.SqlDelight.coroutinesExtension)
-
-                implementation(Dependency.Ktor.core)
-                implementation(Dependency.Ktor.serialization)
-                implementation(Dependency.Ktor.contentNegotiation)
-                implementation(Dependency.Ktor.logging)
-
-                implementation(Dependency.Kermit.core)
+                implementation(libs.coroutines.core)
+                implementation(libs.atomicFu)
+                implementation(libs.dateTime)
+                implementation(libs.koin.core)
+                implementation(libs.bundles.settings)
+                implementation(libs.bundles.sqlDelight.common)
+                implementation(libs.bundles.ktor.common)
+                implementation(libs.kermit)
             }
         }
 
         val androidMain by getting {
             dependsOn(commonMain)
             dependencies {
-                implementation(Dependency.Ktor.android)
-                implementation(Dependency.SqlDelight.androidDriver)
+                implementation(libs.ktor.android)
+                implementation(libs.sqlDelight.androidDriver)
             }
         }
 
         val iosMain by creating {
             dependsOn(commonMain)
             dependencies {
-                implementation(Dependency.SqlDelight.iosDriver)
-                implementation(Dependency.Ktor.ios)
+                implementation(libs.sqlDelight.iosDriver)
+                implementation(libs.ktor.ios)
             }
         }
-        KmmConfig.getSupportedMobilePlatforms(this@kotlin, project).forEach {
-            with(KmmConfig) {
-                getByName(it.asMainSourceSetName).dependsOn(iosMain)
-            }
-        }
-
-        // New memory model - https://github.com/JetBrains/kotlin/blob/master/kotlin-native/NEW_MM.md
-        targets.withType(org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget::class.java) {
-            binaries.all {
-                freeCompilerArgs = freeCompilerArgs + "-Xruntime-logs=gc=info"
-                binaryOptions["memoryModel"] = "experimental"
-                binaryOptions["freezing"] = "disabled"
-            }
+        // Register source sets for supported native platforms
+        supportedNativePlatforms.forEach {
+            getByName("${it.name}Main").dependsOn(iosMain)
         }
     }
 }
 
-
-
 android {
-    compileSdkVersion(Application.Sdk.compile)
+    compileSdk = libs.versions.sdk.compile.get().toInt()
     defaultConfig {
-        minSdkVersion(Application.Sdk.min)
-        targetSdkVersion(Application.Sdk.target)
+        minSdk = libs.versions.sdk.min.get().toInt()
+        targetSdk = libs.versions.sdk.target.get().toInt()
     }
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+    namespace = "cz.matee.devstack.kmp.shared"
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
 }
 
 sqldelight {
@@ -96,10 +103,29 @@ sqldelight {
     }
 }
 
+val currentNativeBuildType: NativeBuildType
+    get() {
+        val currentNativeBuildTypeString =
+            getStringProperty(project, "XCODE_CONFIGURATION", "release").lowercase()
+        return if (currentNativeBuildTypeString.contains("debug")) {
+            NativeBuildType.DEBUG
+        } else {
+            NativeBuildType.RELEASE
+        }
+    }
+
 tasks.register("buildXCFramework") {
     dependsOn("assemble${ProjectConst.iosShared}XCFramework")
 }
 
 tasks.register("copyXCFramework") {
-    copyXCFramework(ProjectConst.iosShared)
+    val buildPathRelease =
+        "build/XCFrameworks/${currentNativeBuildType.name.lowercase()}/${ProjectConst.iosShared}.xcframework"
+    val iosXCBinaryPath = "../ios/DomainLayer/${ProjectConst.iosShared}.xcframework"
+
+    project.delete(iosXCBinaryPath)
+    project.copy {
+        from(buildPathRelease)
+        into(iosXCBinaryPath)
+    }
 }

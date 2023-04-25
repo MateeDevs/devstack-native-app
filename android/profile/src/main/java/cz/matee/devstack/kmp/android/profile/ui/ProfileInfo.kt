@@ -81,13 +81,13 @@ fun ProfileContent(
                 .padding(Values.Space.medium),
         )
 
-        TextWithLabel(R.string.profile_view_label_email, user.email, Modifier.constrainAs(email) {
+        TextWithLabel(cz.matee.devstack.kmp.android.shared.R.string.profile_view_label_email, user.email, Modifier.constrainAs(email) {
             start.linkTo(parent.start, Values.Space.medium)
             top.linkTo(bio.bottom, Values.Space.large)
         })
 
         TextWithLabel(
-            R.string.profile_view_label_phone,
+            cz.matee.devstack.kmp.android.shared.R.string.profile_view_label_phone,
             user.phone ?: "",
             Modifier.constrainAs(phone) {
                 start.linkTo(parent.start, Values.Space.medium)
@@ -140,7 +140,7 @@ fun ProfileContent(
                 }
         ) {
             Text(
-                stringResource(R.string.profile_view_logout_button),
+                stringResource(cz.matee.devstack.kmp.android.shared.R.string.profile_view_logout_button),
                 Modifier.padding(vertical = Values.Space.xsmall)
             )
         }

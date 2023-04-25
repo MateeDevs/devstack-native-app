@@ -5,29 +5,33 @@ buildscript {
     repositories {
         google()
         mavenCentral()
-        jcenter()
     }
+}
 
-    dependencies {
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
-        classpath("com.android.tools.build:gradle:7.2.2")
-        classpath(GradlePlugins.sqlDelight)
-    }
+@Suppress("DSL_SCOPE_VIOLATION") // Remove after upgrading to gradle 8.1
+plugins {
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.kotlin.android) apply false
+    alias(libs.plugins.kotlin.multiplatform) apply false
+    alias(libs.plugins.serialization) apply false
+    alias(libs.plugins.sqlDelight) apply false
+    alias(libs.plugins.versions)
+    alias(libs.plugins.versionCatalogUpdate)
 }
 
 allprojects {
     repositories {
         google()
         mavenCentral()
-        jcenter() // TODO remove as soon as ve get rid of all of the dependencies
     }
 
     tasks.withType<KotlinCompile> {
         kotlinOptions {
-            jvmTarget = "1.8"
+            jvmTarget = "17"
             freeCompilerArgs = freeCompilerArgs + listOf(
                 "-Xallow-jvm-ir-dependencies",
-                "-Xopt-in=kotlin.RequiresOptIn"
+                "-opt-in=kotlin.RequiresOptIn"
             )
         }
     }
@@ -43,8 +47,28 @@ tasks.register("generateLocalizations") {
     ).generate()
 }
 
+fun String.isNonStable(): Boolean {
+    val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { toUpperCase().contains(it) }
+    val regex = "^[0-9,.v-]+(-r)?$".toRegex()
+    val isStable = stableKeyword || regex.matches(this)
+    return isStable.not()
+}
+
+tasks.withType<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask> {
+    rejectVersionIf {
+        candidate.version.isNonStable()
+    }
+}
+
+versionCatalogUpdate {
+    sortByKey.set(false)
+    keep {
+        keepUnusedVersions.set(true)
+        keepUnusedLibraries.set(true)
+        keepUnusedPlugins.set(true)
+    }
+}
 
 tasks.create<Delete>("clean") {
     delete(rootProject.buildDir)
 }
-

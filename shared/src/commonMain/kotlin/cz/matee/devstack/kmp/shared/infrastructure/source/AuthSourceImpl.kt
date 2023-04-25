@@ -1,8 +1,6 @@
 package cz.matee.devstack.kmp.shared.infrastructure.source
 
 import cz.matee.devstack.kmp.shared.base.Result
-import cz.matee.devstack.kmp.shared.base.util.helpers.Success
-import cz.matee.devstack.kmp.shared.base.util.helpers.resultsTo
 import cz.matee.devstack.kmp.shared.data.source.AuthSource
 import cz.matee.devstack.kmp.shared.data.source.LoginRequest
 import cz.matee.devstack.kmp.shared.data.source.RegistrationRequest
@@ -23,6 +21,6 @@ internal class AuthSourceImpl(
         service.register(request)
 
     override suspend fun deleteUserData(): Result<Unit> =
-        authDao.wipeData() resultsTo Success
+        Result.Success(authDao.wipeData())
 
 }
