@@ -19,6 +19,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Build
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.primarySurface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -50,6 +51,7 @@ val navBarFeatures = listOf(
     Feature.Profile,
     Feature.Recipes,
     Feature.Books,
+    Feature.Videos,
 )
 
 @Composable
@@ -115,6 +117,7 @@ private fun BottomBar(navController: NavHostController) {
                                 Feature.Profile -> Icon(Icons.Filled.Person, "")
                                 Feature.Recipes -> Icon(Icons.Filled.Build, "")
                                 Feature.Books -> Icon(Icons.Filled.Build, "")
+                                Feature.Videos -> Icon(Icons.Filled.PlayArrow, "")
                                 else -> error("Icon not handled for ${screen.route}")
                             }
                         },
