@@ -12,7 +12,6 @@ import cz.matee.devstack.kmp.shared.domain.model.VideoCompressOptions
 import cz.matee.devstack.kmp.shared.domain.model.VideoCompressResult
 import cz.matee.devstack.kmp.shared.domain.model.default
 import cz.matee.devstack.kmp.shared.domain.usecase.video.CompressVideoUseCase
-import cz.matee.devstack.kmp.shared.system.Log
 import kotlinx.coroutines.launch
 import java.util.UUID
 import kotlin.time.Duration
