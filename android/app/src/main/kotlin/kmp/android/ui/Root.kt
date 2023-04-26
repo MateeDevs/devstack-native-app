@@ -19,6 +19,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Build
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.primarySurface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -115,6 +116,7 @@ private fun BottomBar(navController: NavHostController) {
                                 NavBarFeature.Profile -> Icon(Icons.Filled.Person, "")
                                 NavBarFeature.Recipes -> Icon(Icons.Filled.Build, "")
                                 NavBarFeature.Books -> Icon(Icons.Filled.Build, "")
+                                NavBarFeature.Videos -> Icon(Icons.Filled.PlayArrow, "")
                             }
                         },
                         label = { Text(stringResource(screen.titleRes)) },
