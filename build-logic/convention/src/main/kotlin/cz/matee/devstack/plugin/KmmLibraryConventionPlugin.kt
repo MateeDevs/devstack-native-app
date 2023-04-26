@@ -12,6 +12,7 @@ import cz.matee.devstack.extensions.libs
 import cz.matee.devstack.extensions.pluginManager
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.attributes.Attribute
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.creating
 import org.gradle.kotlin.dsl.getValue
@@ -92,6 +93,20 @@ class KmmLibraryConventionPlugin : Plugin<Project> {
                             getByName(it.asMainSourceSetName).dependsOn(iosMain)
                         }
                     }
+                }
+            }
+
+            // Fix for Gradle 8.0 bug "Consumable configurations must have unique attributes"
+            // See https://youtrack.jetbrains.com/issue/KT-55751
+            val uniqueAttribute = Attribute.of("uniqueAttribute", String::class.java)
+            configurations.named("releaseFrameworkIosFat").configure {
+                attributes {
+                    attribute(uniqueAttribute, "release-all")
+                }
+            }
+            configurations.named("debugFrameworkIosArm64").configure {
+                attributes {
+                    attribute(uniqueAttribute, "debug-all")
                 }
             }
 
