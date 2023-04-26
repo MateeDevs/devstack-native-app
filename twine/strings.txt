@@ -282,9 +282,9 @@
 		en = Books
 		sk = Kniznice
 	[bottom_bar_item_5]
-		cs = Tab5
-		en = Tab5
-		sk = Tab5
+		cs = Videos
+		en = Videos
+		sk = Videos
 
 [[Permissions]]
 	[permission_external_storage_msg]
@@ -814,3 +814,9 @@
 		cs = Tažením svisle upravte čas 
 		en = Drag vertically to adjust the time
 		sk = Čas upravíte presunutím zvisle
+
+[[Videos screen]]
+    [title_videos]
+        cs = Videa
+        en = Videos
+        sk = Videa
