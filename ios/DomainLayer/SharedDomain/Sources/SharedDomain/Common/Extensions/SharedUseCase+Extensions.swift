@@ -50,55 +50,6 @@ public extension UseCaseFlowResult {
     }
 }
 
-public extension UseCase {
-    func execute<In: Any, Out>(params: In) async throws -> Out {
-        let jobWrapper: JobWrapper = JobWrapper()
-        return try await withTaskCancellationHandler(
-            operation: {
-                try await withCheckedThrowingContinuation { continuation in
-                    let coroutineJob = SwiftCoroutinesKt.subscribe(
-                        self,
-                        params: params,
-                        onSuccess: { data in
-                            let value: Out = data as! Out
-                            continuation.resume(returning: value)
-                            return
-                        }) { kotlinThrowable in
-                            continuation.resume(throwing: kotlinThrowable.asError())
-                    }
-                    jobWrapper.setJob(coroutineJob)
-                }
-            },
-            onCancel: {[jobWrapper] in
-                jobWrapper.job?.cancel(cause: nil)
-            }
-        )
-    }
-    
-    func execute<In: Any>(params: In) async throws {
-        let jobWrapper: JobWrapper = JobWrapper()
-        return try await withTaskCancellationHandler(
-            operation: {
-                try await withCheckedThrowingContinuation { continuation in
-                    let coroutineJob = SwiftCoroutinesKt.subscribe(
-                        self,
-                        params: params,
-                        onSuccess: { _ in
-                            continuation.resume()
-                            return
-                        }) { kotlinThrowable in
-                            continuation.resume(throwing: kotlinThrowable.asError())
-                    }
-                    jobWrapper.setJob(coroutineJob)
-                }
-            },
-            onCancel: {[jobWrapper] in
-                jobWrapper.job?.cancel(cause: nil)
-            }
-        )
-    }
-}
-
 public extension UseCaseResult {
     func execute<In: Any, Out>(params: In) async throws -> Out {
         let jobWrapper: JobWrapper = JobWrapper()
@@ -119,7 +70,7 @@ public extension UseCaseResult {
                             continuation.resume(returning: value)
                             return
                         },
-                        onThrow_: { kotlinThrowable in
+                        onThrow: { kotlinThrowable in
                             continuation.resume(throwing: kotlinThrowable.asError())
                         })
                     jobWrapper.setJob(coroutineJob)
@@ -149,57 +100,9 @@ public extension UseCaseResult {
                             continuation.resume()
                             return
                         },
-                        onThrow_: { kotlinThrowable in
+                        onThrow: { kotlinThrowable in
                             continuation.resume(throwing: kotlinThrowable.asError())
                         })
-                    jobWrapper.setJob(coroutineJob)
-                }
-            },
-            onCancel: {[jobWrapper] in
-                jobWrapper.job?.cancel(cause: nil)
-            }
-        )
-    }
-}
-
-public extension UseCaseNoParams {
-    func execute<Out>() async throws -> Out {
-        let jobWrapper: JobWrapper = JobWrapper()
-        return try await withTaskCancellationHandler(
-            operation: {
-                try await withCheckedThrowingContinuation { continuation in
-                    
-                    let coroutineJob = SwiftCoroutinesKt.subscribe(self) { data in
-                        let value: Out = data as! Out
-                        continuation.resume(returning: value)
-                        return
-                    } onThrow: { kotlinThrowable in
-                        continuation.resume(throwing: kotlinThrowable.asError())
-                    }
-                    
-                    jobWrapper.setJob(coroutineJob)
-                }
-            },
-            onCancel: {[jobWrapper] in
-                jobWrapper.job?.cancel(cause: nil)
-            }
-        )
-    }
-    
-    // Void returning UC
-    func execute() async throws {
-        let jobWrapper: JobWrapper = JobWrapper()
-        return try await withTaskCancellationHandler(
-            operation: {
-                try await withCheckedThrowingContinuation { continuation in
-                    
-                    let coroutineJob = SwiftCoroutinesKt.subscribe(self) { _ in
-                        continuation.resume()
-                        return
-                    }
-                onThrow: { kotlinThrowable in
-                    continuation.resume(throwing: kotlinThrowable.asError())
-                    }
                     jobWrapper.setJob(coroutineJob)
                 }
             },
@@ -229,7 +132,7 @@ public extension UseCaseResultNoParams {
                             continuation.resume(returning: value)
                             return
                         },
-                        onThrow_: { kotlinThrowable in
+                        onThrow: { kotlinThrowable in
                             continuation.resume(throwing: kotlinThrowable.asError())
                         })
                     jobWrapper.setJob(coroutineJob)
@@ -259,7 +162,7 @@ public extension UseCaseResultNoParams {
                             continuation.resume()
                             return
                         },
-                        onThrow_: { kotlinThrowable in
+                        onThrow: { kotlinThrowable in
                             continuation.resume(throwing: kotlinThrowable.asError())
                         })
                     jobWrapper.setJob(coroutineJob)
