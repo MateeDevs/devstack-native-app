@@ -235,7 +235,7 @@
 	<string name="counter_view_counter_increase_button">Zvýšiť</string>
 	<string name="counter_view_counter_decrease_button">Znížiť</string>
 	<string name="counter_view_counter_hide_button">Skryť</string>
-	<string name="counter_view_counter_show_button">Zobraziť</string>
+	<string name="counter_view_counter_show_button">Videa</string>
 
 	<!-- SECTION: Recipes view -->
 	<string name="recipes_view_toolbar_title">Recepty</string>
@@ -248,4 +248,5 @@
 
 	<!-- SECTION: Recipe - Clock -->
 	<string name="recipes_clock_view_tutorial">Čas upravíte presunutím zvisle</string>
+    <string name="title_videos">Videa</string>
 </resources>

@@ -5,6 +5,7 @@ import cz.matee.devstack.kmp.Database
 import cz.matee.devstack.kmp.shared.data.repository.AuthRepositoryImpl
 import cz.matee.devstack.kmp.shared.data.repository.BookRepositoryImpl
 import cz.matee.devstack.kmp.shared.data.repository.UserRepositoryImpl
+import cz.matee.devstack.kmp.shared.data.repository.VideoRepositoryImpl
 import cz.matee.devstack.kmp.shared.data.source.AuthSource
 import cz.matee.devstack.kmp.shared.data.source.BookLocalSource
 import cz.matee.devstack.kmp.shared.data.source.UserLocalSource
@@ -12,6 +13,7 @@ import cz.matee.devstack.kmp.shared.data.source.UserRemoteSource
 import cz.matee.devstack.kmp.shared.domain.repository.AuthRepository
 import cz.matee.devstack.kmp.shared.domain.repository.BookRepository
 import cz.matee.devstack.kmp.shared.domain.repository.UserRepository
+import cz.matee.devstack.kmp.shared.domain.repository.VideoRepository
 import cz.matee.devstack.kmp.shared.domain.usecase.DeleteAuthDataUseCase
 import cz.matee.devstack.kmp.shared.domain.usecase.DeleteAuthDataUseCaseImpl
 import cz.matee.devstack.kmp.shared.domain.usecase.LoginUseCase
@@ -44,6 +46,8 @@ import cz.matee.devstack.kmp.shared.domain.usecase.user.UpdateUserUseCase
 import cz.matee.devstack.kmp.shared.domain.usecase.user.UpdateUserUseCaseImpl
 import cz.matee.devstack.kmp.shared.domain.usecase.user.UserCacheChangeFlowUseCase
 import cz.matee.devstack.kmp.shared.domain.usecase.user.UserCacheChangeFlowUseCaseImpl
+import cz.matee.devstack.kmp.shared.domain.usecase.video.CompressVideoUseCase
+import cz.matee.devstack.kmp.shared.domain.usecase.video.CompressVideoUseCaseImpl
 import cz.matee.devstack.kmp.shared.infrastructure.local.AuthDao
 import cz.matee.devstack.kmp.shared.infrastructure.local.AuthDaoImpl
 import cz.matee.devstack.kmp.shared.infrastructure.local.createDatabase
@@ -98,11 +102,13 @@ private val commonModule = module {
     factory<ReplaceUserCacheWithUseCase> { ReplaceUserCacheWithUseCaseImpl(get()) }
     factory<GetBooksUseCase> { GetBooksUseCaseImpl(get()) }
     factory<RefreshBooksUseCase> { RefreshBooksUseCaseImpl(get()) }
+    factory<CompressVideoUseCase> { CompressVideoUseCaseImpl(get()) }
 
     // Repositories
     single<AuthRepository> { AuthRepositoryImpl(get()) }
     single<BookRepository> { BookRepositoryImpl(get()) }
     single<UserRepository> { UserRepositoryImpl(get(), get(), get()) }
+    single<VideoRepository> { VideoRepositoryImpl(get()) }
 
     // Sources
     single<AuthSource> { AuthSourceImpl(get(), get()) }

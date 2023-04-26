@@ -235,7 +235,7 @@
 	<string name="counter_view_counter_increase_button">Increase</string>
 	<string name="counter_view_counter_decrease_button">Decrease</string>
 	<string name="counter_view_counter_hide_button">Hide</string>
-	<string name="counter_view_counter_show_button">Show</string>
+	<string name="counter_view_counter_show_button">Videos</string>
 
 	<!-- SECTION: Recipes view -->
 	<string name="recipes_view_toolbar_title">Recipes</string>
@@ -248,4 +248,5 @@
 
 	<!-- SECTION: Recipe - Clock -->
 	<string name="recipes_clock_view_tutorial">Drag vertically to adjust the time</string>
+    <string name="title_videos">Videos</string>
 </resources>

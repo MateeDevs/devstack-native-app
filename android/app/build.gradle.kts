@@ -15,4 +15,5 @@ dependencies {
     implementation(project(":android:profile"))
     implementation(project(":android:recipes"))
     implementation(project(":android:books"))
+    implementation(project(":android:videos"))
 }

@@ -38,5 +38,6 @@ class ErrorMessageProviderImpl(private val context: Context) : ErrorMessageProvi
             when (this) {
                 is CommonError.NoNetworkConnection -> context.getString(R.string.error_no_internet_connection)
                 CommonError.NoUserLoggedIn -> "No user logged in - TODO" // TODO no user logged in error handling/message
+                CommonError.UnknownError -> "Unknown error"
             }
 }

@@ -77,6 +77,8 @@ class KmmLibraryConventionPlugin : Plugin<Project> {
                         dependencies {
                             implementation(libs.ktor.android)
                             implementation(libs.sqlDelight.androidDriver)
+                            implementation(libs.video.litr)
+                            implementation(libs.video.transcoder)
                         }
                     }
 
