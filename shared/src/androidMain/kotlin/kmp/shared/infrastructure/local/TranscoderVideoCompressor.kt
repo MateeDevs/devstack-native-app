@@ -30,12 +30,16 @@ class TranscoderVideoCompressor(
         val uriDatasource = UriDataSource(application, inputPath.toUri())
         Transcoder.into(outputPath)
             .also { builder ->
-                if (options.trimStart != null) {
-//                    val maxDuration = uriDatasource.durationUs
+                if (options.trim != null) {
+                    uriDatasource.initialize()
+                    val maxDuration = uriDatasource.durationUs
                     builder.addDataSource(
                         TrimDataSource(
                             uriDatasource,
-                            options.trimStart.inWholeMicroseconds,
+                            0,
+                            (maxDuration - options.trim.inWholeMicroseconds).coerceAtLeast(
+                                0,
+                            ),
                         ),
                     )
                 } else {
@@ -52,11 +56,10 @@ class TranscoderVideoCompressor(
                             builder.frameRate(options.frameRate)
                         }
                         if (options.maximumSize != null) {
+                            val major = maxOf(options.maximumSize.first, options.maximumSize.second)
+                            val minor = minOf(options.maximumSize.first, options.maximumSize.second)
                             builder.addResizer(
-                                AtMostResizer(
-                                    options.maximumSize.first,
-                                    options.maximumSize.second,
-                                ),
+                                AtMostResizer(minor, major),
                             )
                         }
                     }
