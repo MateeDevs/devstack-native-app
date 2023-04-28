@@ -10,9 +10,9 @@ import SharedDomain
 extension KMMError: LocalizedError {
     public var errorDescription: String? {
         if let errorResult {
-            errorResultDescription(errorResult)
+            return errorResultDescription(errorResult)
         } else if let throwable {
-            throwableDescription(throwable)
+            return throwableDescription(throwable)
         }
         return L10n.unknown_error
     }
