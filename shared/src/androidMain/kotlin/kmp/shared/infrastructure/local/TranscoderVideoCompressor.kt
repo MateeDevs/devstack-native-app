@@ -29,7 +29,6 @@ class TranscoderVideoCompressor(
         outputPath: String,
         options: VideoCompressOptions,
     ): Flow<VideoCompressResult> = callbackFlow {
-        Log.d("TranscoderVideoCompressor", "Compressing $inputPath to $outputPath using $options")
         val uriDataSource = UriDataSource(application, inputPath.toUri())
         Transcoder.into(outputPath)
             .applyTrim(options, uriDataSource)

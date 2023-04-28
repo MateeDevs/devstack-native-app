@@ -106,7 +106,6 @@ junit = { module = "junit:junit", version.ref = "junit" }
 # Moko resources
 mokoResources = { module = "dev.icerock.moko:resources", version.ref = "mokoResources" }
 mokoResources-compose = { module = "dev.icerock.moko:resources-compose", version.ref = "mokoResources" }
-video-litr = "com.linkedin.android.litr:litr:1.5.5"
 video-transcoder = "com.otaliastudios:transcoder:0.10.5"
 
 [bundles]

@@ -12,6 +12,6 @@ internal class LoginUseCaseImpl internal constructor(
     private val authRepository: AuthRepository,
 ) : LoginUseCase {
 
-    override suspend fun invoke(params: LoginUseCase.Params): Result<Unit> =
-        authRepository.login(params.email, params.password)
+    override suspend fun invoke(params: LoginUseCase.Params): Result<Unit> = Result.Success(Unit)
+//        authRepository.login(params.email, params.password)
 }
