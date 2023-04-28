@@ -12,5 +12,6 @@ import SharedDomain
         // Books
         register { kmp.getProtocol(GetBooksUseCase.self) as GetBooksUseCase }
         register { kmp.getProtocol(RefreshBooksUseCase.self) as RefreshBooksUseCase }
+        register { kmp.getProtocol(DevstackKmpShared.LoginUseCase.self) as DevstackKmpShared.LoginUseCase }
     }
  }

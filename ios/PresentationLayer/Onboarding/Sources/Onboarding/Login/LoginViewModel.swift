@@ -8,13 +8,14 @@ import SharedDomain
 import SwiftUI
 import UIToolkit
 import Utilities
+import DevstackKmpShared
 
 final class LoginViewModel: BaseViewModel, ViewModel, ObservableObject {
     
     // MARK: Dependencies
     private weak var flowController: FlowController?
     
-    @Injected private(set) var loginUseCase: LoginUseCase
+    @Injected private(set) var loginUseCase: DevstackKmpShared.LoginUseCase
     @Injected private(set) var trackAnalyticsEventUseCase: TrackAnalyticsEventUseCase
     @Published private(set) var snackState = SnackState<InfoErrorSnackVisuals>()
 
@@ -81,7 +82,7 @@ final class LoginViewModel: BaseViewModel, ViewModel, ObservableObject {
         do {
             state.isLoading = true
             let data = LoginData(email: state.email, password: state.password)
-            try await loginUseCase.execute(data)
+            try await loginUseCase.execute(params: LoginUseCaseParams(email: data.email, password: data.password))
             trackAnalyticsEventUseCase.execute(LoginEvent.loginButtonTap.analyticsEvent)
             
             snackState.currentData?.dismiss()

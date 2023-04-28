@@ -71,7 +71,7 @@ public extension UseCaseResult {
                             return
                         },
                         onThrow: { kotlinThrowable in
-                            continuation.resume(throwing: kotlinThrowable.asError())
+                            continuation.resume(throwing: kotlinThrowable.asError)
                         })
                     jobWrapper.setJob(coroutineJob)
                 }
@@ -101,7 +101,7 @@ public extension UseCaseResult {
                             return
                         },
                         onThrow: { kotlinThrowable in
-                            continuation.resume(throwing: kotlinThrowable.asError())
+                            continuation.resume(throwing: kotlinThrowable.asError)
                         })
                     jobWrapper.setJob(coroutineJob)
                 }
@@ -133,7 +133,7 @@ public extension UseCaseResultNoParams {
                             return
                         },
                         onThrow: { kotlinThrowable in
-                            continuation.resume(throwing: kotlinThrowable.asError())
+                            continuation.resume(throwing: kotlinThrowable.asError)
                         })
                     jobWrapper.setJob(coroutineJob)
                 }
@@ -163,7 +163,7 @@ public extension UseCaseResultNoParams {
                             return
                         },
                         onThrow: { kotlinThrowable in
-                            continuation.resume(throwing: kotlinThrowable.asError())
+                            continuation.resume(throwing: kotlinThrowable.asError)
                         })
                     jobWrapper.setJob(coroutineJob)
                 }
