@@ -8,6 +8,8 @@ data class VideoCompressOptions(
     val frameRate: Int? = null,
     val trim: Duration? = null,
     val maximumSize: Pair<Int, Int>? = null,
+    val audioBitrate: Long? = null,
+    val audioSampleRate: Int? = null,
 ) {
     override fun toString(): String = buildString {
         bitrate?.let { append("-b:$it") }
@@ -20,8 +22,10 @@ data class VideoCompressOptions(
 }
 
 fun VideoCompressOptions.Companion.default() = VideoCompressOptions(
-    bitrate = 7_000_000, // 7000 kB/s
+    bitrate = 3_500_000, // 3500 kB/s
     frameRate = 30,
-    trim = 30.seconds,
+    trim = 20.seconds,
     maximumSize = Pair(1920, 1080),
+    audioBitrate = 128_000,
+    audioSampleRate = 32_000,
 )
