@@ -9,12 +9,12 @@ import com.otaliastudios.transcoder.resize.AtMostResizer
 import com.otaliastudios.transcoder.source.DataSource
 import com.otaliastudios.transcoder.source.TrimDataSource
 import com.otaliastudios.transcoder.source.UriDataSource
+import com.otaliastudios.transcoder.strategy.DefaultAudioStrategy
 import com.otaliastudios.transcoder.strategy.DefaultVideoStrategy
 import cz.matee.devstack.kmp.shared.base.Result
 import cz.matee.devstack.kmp.shared.base.error.domain.CommonError
 import cz.matee.devstack.kmp.shared.domain.model.VideoCompressOptions
 import cz.matee.devstack.kmp.shared.domain.model.VideoCompressResult
-import cz.matee.devstack.kmp.shared.system.Log
 import kotlinx.coroutines.channels.ProducerScope
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.channels.trySendBlocking
@@ -37,6 +37,12 @@ class TranscoderVideoCompressor(
                     .applyBitrate(options)
                     .applyFrameRate(options)
                     .applyMaximumSize(options)
+                    .build(),
+            )
+            .setAudioTrackStrategy(
+                DefaultAudioStrategy.Builder()
+                    .applyBitrate(options)
+                    .applySampleRate(options)
                     .build(),
             )
             .setListener(flowListener)
@@ -76,6 +82,13 @@ class TranscoderVideoCompressor(
                 addResizer(AtMostResizer(minor, major))
             }
         }
+
+    private fun DefaultAudioStrategy.Builder.applyBitrate(options: VideoCompressOptions) =
+        apply { options.audioBitrate?.let(::bitRate) }
+
+    private fun DefaultAudioStrategy.Builder.applySampleRate(options: VideoCompressOptions) =
+        apply { options.audioSampleRate?.let(::sampleRate) }
+
 
     private val ProducerScope<VideoCompressResult>.flowListener
         get() = object : TranscoderListener {

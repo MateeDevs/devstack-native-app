@@ -18,6 +18,7 @@ import java.io.File
 import java.io.FileNotFoundException
 import java.util.UUID
 import kotlin.time.Duration
+import kotlin.time.Duration.Companion.seconds
 import kotlin.time.ExperimentalTime
 import kotlin.time.measureTime
 
@@ -51,29 +52,21 @@ class VideosViewModel(
         val options = listOf(
             VideoCompressOptions(
                 maximumSize = Pair(1920, 1080),
-            ),
-            VideoCompressOptions(
-                bitrate = 7_000_000,
-            ),
-            VideoCompressOptions(
+                bitrate = 3_500_000,
+                trim = 20.seconds,
                 frameRate = 30,
             ),
             VideoCompressOptions(
-                frameRate = 30,
-                bitrate = 7_000_000,
-            ),
-            VideoCompressOptions(
-                frameRate = 30,
                 maximumSize = Pair(1920, 1080),
-            ),
-            VideoCompressOptions(
-                bitrate = 7_000_000,
-                maximumSize = Pair(1920, 1080),
-            ),
-            VideoCompressOptions(
+                bitrate = 3_000_000,
+                trim = 20.seconds,
                 frameRate = 30,
-                bitrate = 7_000_000,
+            ),
+            VideoCompressOptions(
                 maximumSize = Pair(1920, 1080),
+                bitrate = 2_500_000,
+                trim = 20.seconds,
+                frameRate = 30,
             ),
         )
 
