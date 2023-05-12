@@ -27,6 +27,7 @@ struct ImagesView: View {
             }
             
         }
+        .lifecycle(viewModel)
     }
 }
 
