@@ -71,10 +71,8 @@ extension RecipesFlowController {
     }
     
     private func showImages() {
-        if #available(iOS 15, *) {
-            let vm = ImagesViewModel(flowController: self)
-            let vc = BaseHostingController(rootView: ImagesView(viewModel: vm))
-            navigationController.show(vc, sender: nil)
-        }
+        let vm = ImagesViewModel(flowController: self)
+        let vc = BaseHostingController(rootView: ImagesView(viewModel: vm))
+        navigationController.show(vc, sender: nil)
     }
 }

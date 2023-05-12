@@ -6,7 +6,6 @@
 import SwiftUI
 import UIToolkit
 
-@available(iOS 15, *)
 struct ImagesView: View {
     
     @ObservedObject private var viewModel: ImagesViewModel
@@ -32,7 +31,6 @@ struct ImagesView: View {
 }
 
 #if DEBUG
-@available(iOS 15, *)
 struct ImagesView_Previews: PreviewProvider {
     static var previews: some View {
         ImagesView(viewModel: ImagesViewModel(flowController: nil))
