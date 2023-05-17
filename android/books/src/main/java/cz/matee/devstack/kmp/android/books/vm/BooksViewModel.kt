@@ -24,10 +24,8 @@ class BooksViewModel(
         when (intent) {
             BooksIntent.LoadData -> loadData()
             is BooksIntent.OnDataLoaded -> ReducedState(
-                this.copy(
-                    books = intent.books,
-                    isLoading = false
-                ), BooksMessage.DataLoaded
+                this.copy(books = intent.books),
+                BooksMessage.DataLoaded
             )
 
             is BooksIntent.OnError -> ReducedState(this.copy(error = error), BooksMessage.Error)
@@ -39,32 +37,27 @@ class BooksViewModel(
         return ReducedState(this, BooksMessage.LoadingStarted)
     }
 
-    override fun BooksState.applyMessage(message: BooksMessage?): BooksModel = when (message) {
+    override fun BooksState.applyMessage(message: BooksMessage): BooksModel = when (message) {
         is BooksMessage.DataLoaded -> BooksModel(
             books = books,
-            isLoading = false,
-            error = null
+            error = null,
         )
 
         is BooksMessage.Error -> BooksModel(
             books = books,
-            isLoading = isLoading,
-            error = error
+            error = error,
         )
 
         is BooksMessage.LoadingStarted -> BooksModel(
             books = books,
             isLoading = true,
-            error = error
+            error = error,
         )
-
-        else -> BooksModel()
     }
 }
 
 data class BooksState(
     val books: List<Book> = emptyList(),
-    val isLoading: Boolean = false,
     val error: ErrorResult? = null,
 ) : VmState
 

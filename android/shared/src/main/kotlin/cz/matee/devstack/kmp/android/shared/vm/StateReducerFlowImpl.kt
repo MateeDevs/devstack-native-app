@@ -11,7 +11,7 @@ private class StateReducerFlowImpl<State, Model, Intent, Message>(
     initialState: ReducedState<State, Message?>,
     initialModel: Model,
     reduceState: (ReducedState<State, Message?>, Intent) -> ReducedState<State, Message?>,
-    reduceModel: (State, Message?) -> Model,
+    reduceModel: (State, Message) -> Model,
     scope: CoroutineScope
 ) : StateReducerFlow<Model, Intent, Message> {
 
@@ -20,7 +20,9 @@ private class StateReducerFlowImpl<State, Model, Intent, Message>(
     private val stateFlow = intents
         .receiveAsFlow()
         .runningFold(initialState, reduceState)
-        .map { state -> reduceModel(state.reducedState, state.message) }
+        .mapNotNull { state ->
+            if (state.message != null) reduceModel(state.reducedState, state.message) else null
+        }
         .stateIn(scope, Eagerly, initialModel)
 
     override val replayCache get() = stateFlow.replayCache
@@ -40,7 +42,7 @@ fun <State, Model, Intent, Message> ViewModel.stateReducerFlowOf(
     initialState: ReducedState<State, Message?>,
     initialModel: Model,
     reduceState: (ReducedState<State, Message?>, Intent) -> ReducedState<State, Message?>,
-    reduceModel: (State, Message?) -> Model,
+    reduceModel: (State, Message) -> Model,
 ): StateReducerFlow<Model, Intent, Message> =
     StateReducerFlowImpl(
         initialState = initialState,
