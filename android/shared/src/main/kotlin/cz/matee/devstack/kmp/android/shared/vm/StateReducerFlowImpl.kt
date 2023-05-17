@@ -7,20 +7,20 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.flow.SharingStarted.Companion.Eagerly
 
-private class StateReducerFlowImpl<State, Model, Intent>(
-    initialState: State,
+private class StateReducerFlowImpl<State, Model, Intent, Message>(
+    initialState: ReducedState<State, Message?>,
     initialModel: Model,
-    reduceState: (State, Intent) -> State,
-    mapToModel: (State) -> Model,
+    reduceState: (ReducedState<State, Message?>, Intent) -> ReducedState<State, Message?>,
+    reduceModel: (State, Message?) -> Model,
     scope: CoroutineScope
-) : StateReducerFlow<Model, Intent> {
+) : StateReducerFlow<Model, Intent, Message> {
 
     private val intents = Channel<Intent>()
 
     private val stateFlow = intents
         .receiveAsFlow()
         .runningFold(initialState, reduceState)
-        .map { mapToModel(it) }
+        .map { state -> reduceModel(state.reducedState, state.message) }
         .stateIn(scope, Eagerly, initialModel)
 
     override val replayCache get() = stateFlow.replayCache
@@ -36,16 +36,16 @@ private class StateReducerFlowImpl<State, Model, Intent>(
     }
 }
 
-fun <State, Model, Event> ViewModel.stateReducerFlowOf(
-    initialState: State,
+fun <State, Model, Intent, Message> ViewModel.stateReducerFlowOf(
+    initialState: ReducedState<State, Message?>,
     initialModel: Model,
-    reduceState: (State, Event) -> State,
-    mapToModel: (State) -> Model,
-): StateReducerFlow<Model, Event> =
+    reduceState: (ReducedState<State, Message?>, Intent) -> ReducedState<State, Message?>,
+    reduceModel: (State, Message?) -> Model,
+): StateReducerFlow<Model, Intent, Message> =
     StateReducerFlowImpl(
         initialState = initialState,
         initialModel = initialModel,
         reduceState = reduceState,
-        mapToModel = mapToModel,
+        reduceModel = reduceModel,
         scope = viewModelScope,
     )

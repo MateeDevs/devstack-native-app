@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 class BooksViewModel(
     getBooks: GetBooksUseCase,
     private val refreshBooks: RefreshBooksUseCase
-) : IntentViewModel<BooksState, BooksModel, BooksIntent>(
+) : IntentViewModel<BooksState, BooksModel, BooksIntent, BooksMessage>(
     initialState = BooksState(),
     initialModel = BooksModel(),
 ) {
@@ -20,24 +20,45 @@ class BooksViewModel(
         intentFlow(producer = getBooks, intent = BooksIntent::OnDataLoaded)
     }
 
-    override fun BooksState.applyIntent(intent: BooksIntent) = when (intent) {
-        BooksIntent.LoadData -> loadData()
-        is BooksIntent.OnDataLoaded -> this.copy(books = intent.books, isLoading = false)
-        is BooksIntent.OnError -> this.copy(error = error)
-    }
+    override fun BooksState.applyIntent(intent: BooksIntent?): ReducedState<BooksState, BooksMessage> =
+        when (intent) {
+            BooksIntent.LoadData -> loadData()
+            is BooksIntent.OnDataLoaded -> ReducedState(
+                this.copy(
+                    books = intent.books,
+                    isLoading = false
+                ), BooksMessage.DataLoaded
+            )
 
-    override fun mapToModel(state: BooksState): BooksModel {
-        return BooksModel(books = state.books, isLoading = false, error = null)
-//        when (state) {
-//            is BooksState.Loaded -> BooksModel(books = state.books, isLoading = false, error = null)
-//            is BooksState.Loading -> BooksModel(isLoading = true)
-//            is BooksState.Error -> BooksModel(error = state.error)
-//        }
-    }
+            is BooksIntent.OnError -> ReducedState(this.copy(error = error), BooksMessage.Error)
+            else -> ReducedState(this, BooksMessage.LoadingStarted)
+        }
 
-    private fun BooksState.loadData(): BooksState {
+    private fun BooksState.loadData(): ReducedState<BooksState, BooksMessage> {
         viewModelScope.launch { refreshBooks(0) }
-        return copy(isLoading = true, books = emptyList())
+        return ReducedState(this, BooksMessage.LoadingStarted)
+    }
+
+    override fun BooksState.applyMessage(message: BooksMessage?): BooksModel = when (message) {
+        is BooksMessage.DataLoaded -> BooksModel(
+            books = books,
+            isLoading = false,
+            error = null
+        )
+
+        is BooksMessage.Error -> BooksModel(
+            books = books,
+            isLoading = isLoading,
+            error = error
+        )
+
+        is BooksMessage.LoadingStarted -> BooksModel(
+            books = books,
+            isLoading = true,
+            error = error
+        )
+
+        else -> BooksModel()
     }
 }
 
@@ -52,6 +73,12 @@ data class BooksModel(
     val isLoading: Boolean = false,
     val error: ErrorResult? = null,
 ) : VmModel
+
+sealed interface BooksMessage : ReducerMessage {
+    object DataLoaded : BooksMessage
+    object Error : BooksMessage
+    object LoadingStarted : BooksMessage
+}
 
 sealed interface BooksIntent : VmIntent {
     object LoadData : BooksIntent
