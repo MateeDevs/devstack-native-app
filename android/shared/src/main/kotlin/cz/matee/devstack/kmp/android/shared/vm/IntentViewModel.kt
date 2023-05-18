@@ -9,13 +9,13 @@ import cz.matee.devstack.kmp.shared.base.usecase.UseCaseFlowNoParams
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
-abstract class IntentViewModel<State : VmState, Model : VmModel, Intent : VmIntent, Message : ReducerMessage>(
+abstract class IntentViewModel<State : VmState, Model : VmModel, Intent : VmIntent, Event : ReducerEvent>(
     initialState: State,
     initialModel: Model,
 ) : ViewModel() {
 
     private val modelFlow = stateReducerFlowOf(
-        initialState = ReducedState(reducedState = initialState, message = null),
+        initialState = ReducedState(reducedState = initialState, event = null),
         initialModel = initialModel,
         reduceState = ::reduceState,
         reduceModel = ::reduceModel,
@@ -26,14 +26,14 @@ abstract class IntentViewModel<State : VmState, Model : VmModel, Intent : VmInte
 
     fun onIntent(intent: Intent) = modelFlow.handleIntent(intent)
 
-    private fun reduceState(state: ReducedState<State, Message?>, intent: Intent): ReducedState<State, Message?> =
+    private fun reduceState(state: ReducedState<State, Event?>, intent: Intent): ReducedState<State, Event?> =
         state.reducedState.applyIntent(intent)
 
-    private fun reduceModel(state: State, message: Message): Model = state.applyMessage(message = message)
+    private fun reduceModel(state: State, message: Event): Model = state.applyEvent(event = message)
 
-    protected abstract fun State.applyIntent(intent: Intent): ReducedState<State, Message>
+    protected abstract fun State.applyIntent(intent: Intent): ReducedState<State, Event>
 
-    protected abstract fun State.applyMessage(message: Message): Model
+    protected abstract fun State.applyEvent(event: Event): Model
 }
 
 /**
@@ -49,7 +49,7 @@ interface VmIntent
 /**
  * Base message used by reducer to map state changes to model
  */
-interface ReducerMessage
+interface ReducerEvent
 
 @Immutable
 interface VmModel
@@ -57,7 +57,7 @@ interface VmModel
 /**
  * Calls [IntentViewModel.onIntent] with the specified [intent] on every emission of [producer]
  */
-fun <T : Any, State : VmState, Model : VmModel, Intent : VmIntent, Message : ReducerMessage> IntentViewModel<State, Model, Intent, Message>.intentFlow(
+fun <T : Any, State : VmState, Model : VmModel, Intent : VmIntent, Event : ReducerEvent> IntentViewModel<State, Model, Intent, Event>.intentFlow(
     producer: UseCaseFlowNoParams<T>,
     intent: (T) -> Intent
 ) = intentFlow(
@@ -68,7 +68,7 @@ fun <T : Any, State : VmState, Model : VmModel, Intent : VmIntent, Message : Red
 /**
  * Calls [IntentViewModel.onIntent] with the specified [intent] on every emission of [producer]
  */
-fun <T : Any, State : VmState, Model : VmModel, Intent : VmIntent, Message : ReducerMessage> IntentViewModel<State, Model, Intent, Message>.intentFlow(
+fun <T : Any, State : VmState, Model : VmModel, Intent : VmIntent, Event : ReducerEvent> IntentViewModel<State, Model, Intent, Event>.intentFlow(
     producer: suspend () -> Flow<T>,
     intent: (T) -> Intent
 ) {

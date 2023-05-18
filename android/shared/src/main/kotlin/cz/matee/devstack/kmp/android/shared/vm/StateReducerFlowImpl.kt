@@ -7,13 +7,13 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.flow.SharingStarted.Companion.Eagerly
 
-private class StateReducerFlowImpl<State, Model, Intent, Message>(
-    initialState: ReducedState<State, Message?>,
+private class StateReducerFlowImpl<State, Model, Intent, Event>(
+    initialState: ReducedState<State, Event?>,
     initialModel: Model,
-    reduceState: (ReducedState<State, Message?>, Intent) -> ReducedState<State, Message?>,
-    reduceModel: (State, Message) -> Model,
+    reduceState: (ReducedState<State, Event?>, Intent) -> ReducedState<State, Event?>,
+    reduceModel: (State, Event) -> Model,
     scope: CoroutineScope
-) : StateReducerFlow<Model, Intent, Message> {
+) : StateReducerFlow<Model, Intent, Event> {
 
     private val intents = Channel<Intent>()
 
@@ -21,7 +21,7 @@ private class StateReducerFlowImpl<State, Model, Intent, Message>(
         .receiveAsFlow()
         .runningFold(initialState, reduceState)
         .mapNotNull { state ->
-            if (state.message != null) reduceModel(state.reducedState, state.message) else null
+            if (state.event != null) reduceModel(state.reducedState, state.event) else null
         }
         .stateIn(scope, Eagerly, initialModel)
 
@@ -38,12 +38,12 @@ private class StateReducerFlowImpl<State, Model, Intent, Message>(
     }
 }
 
-fun <State, Model, Intent, Message> ViewModel.stateReducerFlowOf(
-    initialState: ReducedState<State, Message?>,
+fun <State, Model, Intent, Event> ViewModel.stateReducerFlowOf(
+    initialState: ReducedState<State, Event?>,
     initialModel: Model,
-    reduceState: (ReducedState<State, Message?>, Intent) -> ReducedState<State, Message?>,
-    reduceModel: (State, Message) -> Model,
-): StateReducerFlow<Model, Intent, Message> =
+    reduceState: (ReducedState<State, Event?>, Intent) -> ReducedState<State, Event?>,
+    reduceModel: (State, Event) -> Model,
+): StateReducerFlow<Model, Intent, Event> =
     StateReducerFlowImpl(
         initialState = initialState,
         initialModel = initialModel,

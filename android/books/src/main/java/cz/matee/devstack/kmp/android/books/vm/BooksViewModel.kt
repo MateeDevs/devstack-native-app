@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 class BooksViewModel(
     getBooks: GetBooksUseCase,
     private val refreshBooks: RefreshBooksUseCase
-) : IntentViewModel<BooksState, BooksModel, BooksIntent, BooksMessage>(
+) : IntentViewModel<BooksState, BooksModel, BooksIntent, BooksEvent>(
     initialState = BooksState(),
     initialModel = BooksModel(),
 ) {
@@ -20,34 +20,34 @@ class BooksViewModel(
         intentFlow(producer = getBooks, intent = BooksIntent::OnDataLoaded)
     }
 
-    override fun BooksState.applyIntent(intent: BooksIntent): ReducedState<BooksState, BooksMessage> =
+    override fun BooksState.applyIntent(intent: BooksIntent): ReducedState<BooksState, BooksEvent> =
         when (intent) {
             BooksIntent.LoadData -> loadData()
             is BooksIntent.OnDataLoaded -> ReducedState(
                 this.copy(books = intent.books),
-                BooksMessage.DataLoaded
+                BooksEvent.DataLoaded
             )
 
-            is BooksIntent.OnError -> ReducedState(this.copy(error = error), BooksMessage.Error)
+            is BooksIntent.OnError -> ReducedState(this.copy(error = error), BooksEvent.Error)
         }
 
-    private fun BooksState.loadData(): ReducedState<BooksState, BooksMessage> {
+    private fun BooksState.loadData(): ReducedState<BooksState, BooksEvent> {
         viewModelScope.launch { refreshBooks(0) }
-        return ReducedState(this, BooksMessage.LoadingStarted)
+        return ReducedState(this, BooksEvent.LoadingStarted)
     }
 
-    override fun BooksState.applyMessage(message: BooksMessage): BooksModel = when (message) {
-        is BooksMessage.DataLoaded -> BooksModel(
+    override fun BooksState.applyEvent(event: BooksEvent): BooksModel = when (event) {
+        is BooksEvent.DataLoaded -> BooksModel(
             books = books,
             error = null,
         )
 
-        is BooksMessage.Error -> BooksModel(
+        is BooksEvent.Error -> BooksModel(
             books = books,
             error = error,
         )
 
-        is BooksMessage.LoadingStarted -> BooksModel(
+        is BooksEvent.LoadingStarted -> BooksModel(
             books = books,
             isLoading = true,
             error = error,
@@ -66,10 +66,10 @@ data class BooksModel(
     val error: ErrorResult? = null,
 ) : VmModel
 
-sealed interface BooksMessage : ReducerMessage {
-    object DataLoaded : BooksMessage
-    object Error : BooksMessage
-    object LoadingStarted : BooksMessage
+sealed interface BooksEvent : ReducerEvent {
+    object DataLoaded : BooksEvent
+    object Error : BooksEvent
+    object LoadingStarted : BooksEvent
 }
 
 sealed interface BooksIntent : VmIntent {
