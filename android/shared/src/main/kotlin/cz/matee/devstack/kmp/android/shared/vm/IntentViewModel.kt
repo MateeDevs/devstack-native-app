@@ -31,7 +31,7 @@ abstract class IntentViewModel<State : VmState, Model : VmModel, Intent : VmInte
 
     private fun reduceModel(state: State, message: Message): Model = state.applyMessage(message = message)
 
-    protected abstract fun State.applyIntent(intent: Intent?): ReducedState<State, Message>
+    protected abstract fun State.applyIntent(intent: Intent): ReducedState<State, Message>
 
     protected abstract fun State.applyMessage(message: Message): Model
 }

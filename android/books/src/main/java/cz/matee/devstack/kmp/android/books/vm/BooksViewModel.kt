@@ -20,7 +20,7 @@ class BooksViewModel(
         intentFlow(producer = getBooks, intent = BooksIntent::OnDataLoaded)
     }
 
-    override fun BooksState.applyIntent(intent: BooksIntent?): ReducedState<BooksState, BooksMessage> =
+    override fun BooksState.applyIntent(intent: BooksIntent): ReducedState<BooksState, BooksMessage> =
         when (intent) {
             BooksIntent.LoadData -> loadData()
             is BooksIntent.OnDataLoaded -> ReducedState(
@@ -29,7 +29,6 @@ class BooksViewModel(
             )
 
             is BooksIntent.OnError -> ReducedState(this.copy(error = error), BooksMessage.Error)
-            else -> ReducedState(this, BooksMessage.LoadingStarted)
         }
 
     private fun BooksState.loadData(): ReducedState<BooksState, BooksMessage> {
