@@ -45,9 +45,10 @@ interface VmIntent
 fun <T : Any, State : VmState, Intent : VmIntent> IntentViewModel<State, Intent>.intentFlow(
     producer: UseCaseFlowNoParams<T>,
     intent: (T) -> Intent
-) {
-    viewModelScope.launch { producer().collect { onIntent(intent(it)) } }
-}
+) = intentFlow(
+    producer = { producer() },
+    intent = intent,
+)
 
 /**
  * Calls [IntentViewModel.onIntent] with the specified [intent] on every emission of [producer]
