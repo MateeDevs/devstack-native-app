@@ -7,6 +7,8 @@ import cz.matee.devstack.kmp.shared.domain.model.Book
 import cz.matee.devstack.kmp.shared.domain.usecase.book.GetBooksUseCase
 import cz.matee.devstack.kmp.shared.domain.usecase.book.RefreshBooksUseCase
 import kotlinx.coroutines.launch
+import cz.matee.devstack.kmp.android.books.vm.BooksEvent.*
+import cz.matee.devstack.kmp.android.books.vm.BooksIntent.*
 
 class BooksViewModel(
     getBooks: GetBooksUseCase,
@@ -22,36 +24,20 @@ class BooksViewModel(
 
     override fun BooksState.applyIntent(intent: BooksIntent): ReducedState<BooksState, BooksEvent> =
         when (intent) {
-            BooksIntent.LoadData -> loadData()
-            is BooksIntent.OnDataLoaded -> ReducedState(
-                this.copy(books = intent.books),
-                BooksEvent.DataLoaded
-            )
-
-            is BooksIntent.OnError -> ReducedState(this.copy(error = error), BooksEvent.Error)
+            LoadData -> loadData()
+            is OnDataLoaded -> ReducedState(this.copy(books = intent.books), DataLoaded)
+            is OnError -> ReducedState(this.copy(error = error), Error)
         }
 
     private fun BooksState.loadData(): ReducedState<BooksState, BooksEvent> {
         viewModelScope.launch { refreshBooks(0) }
-        return ReducedState(this, BooksEvent.LoadingStarted)
+        return ReducedState(this, LoadingStarted)
     }
 
     override fun BooksState.applyEvent(event: BooksEvent): BooksModel = when (event) {
-        is BooksEvent.DataLoaded -> BooksModel(
-            books = books,
-            error = null,
-        )
-
-        is BooksEvent.Error -> BooksModel(
-            books = books,
-            error = error,
-        )
-
-        is BooksEvent.LoadingStarted -> BooksModel(
-            books = books,
-            isLoading = true,
-            error = error,
-        )
+        is DataLoaded -> BooksModel(books = books, error = null)
+        is Error -> BooksModel(books = books, error = error)
+        is LoadingStarted -> BooksModel(books = books, isLoading = true, error = error)
     }
 }
 
