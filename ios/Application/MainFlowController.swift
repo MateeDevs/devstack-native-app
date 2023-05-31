@@ -31,7 +31,7 @@ final class MainFlowController: FlowController, ProfileFlowControllerDelegate {
     }
     
     private func setupUsersTab() -> UINavigationController {
-        let usersNC = BaseNavigationController()
+        let usersNC = BaseNavigationController(statusBarStyle: .lightContent)
         usersNC.tabBarItem = UITabBarItem(
             title: L10n.bottom_bar_item_1,
             image: Asset.Images.usersTabBar.uiImage,
@@ -44,7 +44,7 @@ final class MainFlowController: FlowController, ProfileFlowControllerDelegate {
     }
     
     private func setupProfileTab() -> UINavigationController {
-        let profileNC = BaseNavigationController()
+        let profileNC = BaseNavigationController(statusBarStyle: .lightContent)
         profileNC.tabBarItem = UITabBarItem(
             title: L10n.bottom_bar_item_2,
             image: Asset.Images.profileTabBar.uiImage,
@@ -58,7 +58,7 @@ final class MainFlowController: FlowController, ProfileFlowControllerDelegate {
     }
     
     private func setupRecipesTab() -> UINavigationController {
-        let recipesNC = BaseNavigationController()
+        let recipesNC = BaseNavigationController(statusBarStyle: .lightContent)
         recipesNC.tabBarItem = UITabBarItem(
             title: L10n.bottom_bar_item_3,
             image: Asset.Images.recipesTabBar.uiImage,
