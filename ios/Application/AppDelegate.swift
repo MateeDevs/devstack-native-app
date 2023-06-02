@@ -48,7 +48,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         application.registerForRemoteNotifications()
         
         // Init main window with navigation controller
-        let nc = BaseNavigationController(statusBarStyle: .lightContent)
+        let nc = BaseNavigationController()
         nc.navigationBar.isHidden = true
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = nc
