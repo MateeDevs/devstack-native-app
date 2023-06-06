@@ -2,7 +2,7 @@
 sdk-min = "23"
 sdk-target = "33"
 sdk-compile = "33"
-kotlin = "1.8.21"
+kotlin = "1.8.20"
 gradlePlugin = "8.0.0"
 coroutines = "1.6.4"
 dateTime = "0.4.0"

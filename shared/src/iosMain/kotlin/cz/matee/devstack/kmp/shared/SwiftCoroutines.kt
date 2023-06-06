@@ -1,6 +1,9 @@
 package cz.matee.devstack.kmp.shared
 
+import cz.matee.devstack.kmp.shared.base.MyBaseViewModel
 import cz.matee.devstack.kmp.shared.base.Result
+import cz.matee.devstack.kmp.shared.base.VmIntent
+import cz.matee.devstack.kmp.shared.base.VmState
 import cz.matee.devstack.kmp.shared.base.usecase.UseCaseFlow
 import cz.matee.devstack.kmp.shared.base.usecase.UseCaseFlowNoParams
 import cz.matee.devstack.kmp.shared.base.usecase.UseCaseFlowResult
@@ -13,6 +16,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onCompletion
@@ -117,6 +121,44 @@ fun <Params : Any, Out : Any> UseCaseFlowResult<Params, Out>.subscribe(
         onComplete,
         onThrow,
     )
+
+fun <S : VmState> MyBaseViewModel<S, *>.subscribeToState(
+    onEach: (item: S) -> Unit,
+    onComplete: () -> Unit,
+    onThrow: (error: Throwable) -> Unit,
+): Job =
+    iosDefaultScope.launch {
+        this@subscribeToState.state
+            .onEach {
+                onEach(it)
+            }
+            .catch {
+                onThrow(it)
+            } // catch{} before onCompletion{} or else completion hits rx first and ends stream
+            .onCompletion {
+                onComplete()
+            }
+            .collect()
+    }
+
+fun <S : VmState> StateFlow<S>.myCoolSubscribe(
+    onEach: (item: S) -> Unit,
+    onComplete: () -> Unit,
+    onThrow: (error: Throwable) -> Unit,
+): Job =
+    iosDefaultScope.launch {
+        this@myCoolSubscribe
+            .onEach {
+                onEach(it)
+            }
+            .catch {
+                onThrow(it)
+            } // catch{} before onCompletion{} or else completion hits rx first and ends stream
+            .onCompletion {
+                onComplete()
+            }
+            .collect()
+    }
 
 fun <Params : Any, Out : Any> UseCaseFlowResultNoParams<Out>.subscribe(
     onEach: (item: Result<Out>) -> Unit,

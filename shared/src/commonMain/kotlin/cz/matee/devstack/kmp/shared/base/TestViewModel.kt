@@ -19,9 +19,6 @@ class TestViewModel(
     private val _errorFlow = MutableSharedFlow<ErrorResult>(extraBufferCapacity = 1)
     val errorFlow: Flow<ErrorResult> get() = _errorFlow
 
-    @NativeCoroutinesState
-    val stateX: StateFlow<ViewState> = MutableStateFlow(ViewState())
-
     override suspend fun applyIntent(intent: ViewIntent) {
         when (intent) {
             ViewIntent.LogInTapped -> login(state.value.email, state.value.password)

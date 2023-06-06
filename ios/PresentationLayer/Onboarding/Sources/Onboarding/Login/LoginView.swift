@@ -7,7 +7,7 @@ import SharedDomain
 import SwiftUI
 import UIToolkit
 import DevstackKmpShared
-import KMPNativeCoroutinesCombine
+import Combine
 
 struct LoginView: View {
     
@@ -15,21 +15,33 @@ struct LoginView: View {
     
     @Injected private var testViewModel: TestViewModel
     
+    @State var state: TestViewModel.ViewState
+    private var cancellables = [AnyCancellable]()
+    
     init(viewModel: LoginViewModel) {
         self.viewModel = viewModel
 
-        let publisher = createPublisher(for: testViewModel.stateXFlow)
-        let cancellable = publisher.sink { completion in
-            print("Received completion: \(completion)")
-        } receiveValue: { value in
-            print("Received value: \(value)")
-        }
+//        let publisher = createPublisher(for: testViewModel.stateXFlow)
+//        let cancellable = publisher.sink { completion in
+//            print("Received completion: \(completion)")
+//        } receiveValue: { value in
+//            print("Received value: \(value)")
+//            state = value
+//        }
+        
+        
+        
     }
+    
+//    private func observeState() async {
+//        try await testViewModel.state.async() { newState in
+//            self.state = newState
+//        }
+//    }
     
     var body: some View {
         VStack {
-            Text("\((testViewModel.state as! TestViewModel.ViewState).testNumber)")
-            Text("\(testViewModel.stateX.testNumber)")
+            Text("\(state.testNumber)")
         
             
             EmailAndPasswordFields(
@@ -60,6 +72,8 @@ struct LoginView: View {
         }
         .onDisappear {
             testViewModel.onCleared()
+            cancellables.forEach { $0.cancel() }
+            cancellables.removeAll()
         }
     }
 }
