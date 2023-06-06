@@ -20,7 +20,7 @@ struct LoginView: View {
     
     init(viewModel: LoginViewModel) {
         self.viewModel = viewModel
-
+        self.state = .init(loading: false, email: "", password: "", testNumber: 0)
 //        let publisher = createPublisher(for: testViewModel.stateXFlow)
 //        let cancellable = publisher.sink { completion in
 //            print("Received completion: \(completion)")
@@ -73,7 +73,7 @@ struct LoginView: View {
         .onDisappear {
             testViewModel.onCleared()
             cancellables.forEach { $0.cancel() }
-            cancellables.removeAll()
+            //cancellables.removeAll()
         }
     }
 }

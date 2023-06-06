@@ -1,9 +1,6 @@
 package cz.matee.devstack.kmp.shared
 
-import cz.matee.devstack.kmp.shared.base.MyBaseViewModel
-import cz.matee.devstack.kmp.shared.base.Result
-import cz.matee.devstack.kmp.shared.base.VmIntent
-import cz.matee.devstack.kmp.shared.base.VmState
+import cz.matee.devstack.kmp.shared.base.*
 import cz.matee.devstack.kmp.shared.base.usecase.UseCaseFlow
 import cz.matee.devstack.kmp.shared.base.usecase.UseCaseFlowNoParams
 import cz.matee.devstack.kmp.shared.base.usecase.UseCaseFlowResult
@@ -122,13 +119,13 @@ fun <Params : Any, Out : Any> UseCaseFlowResult<Params, Out>.subscribe(
         onThrow,
     )
 
-fun <S : VmState> MyBaseViewModel<S, *>.subscribeToState(
+fun <S : VmState> MyBaseViewModelInt<S, *>.subscribeToState(
     onEach: (item: S) -> Unit,
     onComplete: () -> Unit,
     onThrow: (error: Throwable) -> Unit,
 ): Job =
     iosDefaultScope.launch {
-        this@subscribeToState.state
+        state
             .onEach {
                 onEach(it)
             }

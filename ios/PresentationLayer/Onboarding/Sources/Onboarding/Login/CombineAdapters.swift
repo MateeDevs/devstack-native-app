@@ -15,24 +15,24 @@ private class JobWrapper {
     }
 }
 
-//public extension MyBaseViewModel {
-//    func asyncStreamFromState<S: VmState>() -> AsyncStream<S> {
-//        let _: JobWrapper = JobWrapper()
-//        return AsyncStream<S> { continuation in
-//            let coroutineJob = self.subscribeToState { data in
-//                let value = data as! S
-//                continuation.yield(value)
-//            } onComplete: {
-//                continuation.finish()
-//            } onThrow: { _ in
-//                continuation.finish()
-//            }
-//            continuation.onTermination = { _ in
-//                coroutineJob.cancel(cause: nil)
-//            }
-//        }
-//    }
-//}
+public extension MyBaseViewModelInt {
+    func asyncStreamFromState<S: VmState>() -> AsyncStream<S> {
+        let _: JobWrapper = JobWrapper()
+        return AsyncStream<S> { continuation in
+            let coroutineJob = SwiftCoroutinesKt.subscribeToState(self) { data in
+                let value = data as! S
+                continuation.yield(value)
+            } onComplete: {
+                continuation.finish()
+            } onThrow: { _ in
+                continuation.finish()
+            }
+            continuation.onTermination = { _ in
+                coroutineJob.cancel(cause: nil)
+            }
+        }
+    }
+}
 
 public extension Kotlinx_coroutines_coreStateFlow {
     func async<S: VmState>() -> AsyncStream<S> {
