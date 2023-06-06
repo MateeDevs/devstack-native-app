@@ -8,6 +8,7 @@ import cz.matee.devstack.config.configureKotlinAndroid
 import cz.matee.devstack.config.kmm
 import cz.matee.devstack.constants.ProjectConstants
 import cz.matee.devstack.extensions.apply
+import cz.matee.devstack.extensions.implementation
 import cz.matee.devstack.extensions.libs
 import cz.matee.devstack.extensions.pluginManager
 import org.gradle.api.Plugin
@@ -78,6 +79,8 @@ class KmmLibraryConventionPlugin : Plugin<Project> {
                         dependencies {
                             implementation(libs.ktor.android)
                             implementation(libs.sqlDelight.androidDriver)
+                            implementation(libs.lifecycle.runtime)
+                            implementation(libs.lifecycle.viewModel)
                         }
                     }
 

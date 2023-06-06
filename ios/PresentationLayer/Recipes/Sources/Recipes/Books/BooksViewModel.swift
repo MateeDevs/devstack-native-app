@@ -9,7 +9,7 @@ import SharedDomain
 import SwiftUI
 import UIToolkit
 
-final class BooksViewModel: BaseViewModel, ViewModel, ObservableObject {
+final class BooksViewModel: BaseViewModel, ObservableObject {
 
     // MARK: Dependencies
     private weak var flowController: FlowController?

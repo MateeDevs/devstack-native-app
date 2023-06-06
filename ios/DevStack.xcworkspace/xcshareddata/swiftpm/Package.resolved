@@ -32,8 +32,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ProxymanApp/atlantis",
       "state" : {
-        "revision" : "2b26bf7fe2c5751335dca015b9e77514210d28d4",
-        "version" : "1.18.2"
+        "revision" : "f6f7be1330bd4f847b6d52278acd88516eaac471",
+        "version" : "1.21.1"
       }
     },
     {
@@ -145,6 +145,15 @@
       }
     },
     {
+      "identity" : "kmp-nativecoroutines",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/rickclephas/KMP-NativeCoroutines.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "35dec4ec47fbc25765530d2f82135f4cb662a3c2"
+      }
+    },
+    {
       "identity" : "komondor",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/shibapm/Komondor.git",
@@ -223,6 +232,15 @@
       "state" : {
         "revision" : "97de0b0320036607564af4a60025b48f8d041221",
         "version" : "1.5.0"
+      }
+    },
+    {
+      "identity" : "rxswift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ReactiveX/RxSwift.git",
+      "state" : {
+        "revision" : "9dcaa4b333db437b0fbfaf453fad29069044a8b4",
+        "version" : "6.6.0"
       }
     },
     {
@@ -372,8 +390,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/drmohundro/SWXMLHash.git",
       "state" : {
-        "revision" : "4d0f62f561458cbe1f732171e625f03195151b60",
-        "version" : "7.0.1"
+        "revision" : "a853604c9e9a83ad9954c7e3d2a565273982471f",
+        "version" : "7.0.2"
       }
     },
     {

@@ -19,7 +19,8 @@ let package = Package(
         .package(name: "UIToolkit", path: "../UIToolkit"),
         .package(name: "Utilities", path: "../../DomainLayer/Utilities"),
         .package(name: "SharedDomain", path: "../../DomainLayer/SharedDomain"),
-        .package(url: "https://github.com/hmlongco/Resolver.git", .upToNextMajor(from: "1.0.0"))
+        .package(url: "https://github.com/hmlongco/Resolver.git", .upToNextMajor(from: "1.0.0")),
+        .package(url: "https://github.com/rickclephas/KMP-NativeCoroutines.git", from: "1.0.0-ALPHA-9")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.

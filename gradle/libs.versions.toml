@@ -2,7 +2,7 @@
 sdk-min = "23"
 sdk-target = "33"
 sdk-compile = "33"
-kotlin = "1.8.20"
+kotlin = "1.8.21"
 gradlePlugin = "8.0.0"
 coroutines = "1.6.4"
 dateTime = "0.4.0"
@@ -53,6 +53,7 @@ material = { module = "com.google.android.material:material", version.ref = "mat
 # Lifecycle
 lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
 lifecycle-common = { module = "androidx.lifecycle:lifecycle-common-java8", version.ref = "lifecycle" }
+lifecycle-viewModel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
 # Paging
 paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "paging" }
 paging-compose = { module = "androidx.paging:paging-compose", version.ref = "pagingCompose" }

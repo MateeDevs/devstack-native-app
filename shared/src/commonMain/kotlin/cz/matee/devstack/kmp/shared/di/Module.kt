@@ -2,6 +2,7 @@ package cz.matee.devstack.kmp.shared.di
 
 import com.russhwolf.settings.Settings
 import cz.matee.devstack.kmp.Database
+import cz.matee.devstack.kmp.shared.base.TestViewModel
 import cz.matee.devstack.kmp.shared.data.repository.AuthRepositoryImpl
 import cz.matee.devstack.kmp.shared.data.repository.BookRepositoryImpl
 import cz.matee.devstack.kmp.shared.data.repository.UserRepositoryImpl
@@ -57,6 +58,7 @@ import cz.matee.devstack.kmp.shared.infrastructure.source.UserRemoteSourceImpl
 import org.koin.core.KoinApplication
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
+import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.module
 
@@ -76,6 +78,9 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}): KoinApplication {
 }
 
 private val commonModule = module {
+
+    // TEST
+    singleOf(::TestViewModel)
 
     // General
     single { HttpClient.init(get(), get()) }

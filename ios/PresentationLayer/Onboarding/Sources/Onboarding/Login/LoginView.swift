@@ -6,17 +6,32 @@
 import SharedDomain
 import SwiftUI
 import UIToolkit
+import DevstackKmpShared
+import KMPNativeCoroutinesCombine
 
 struct LoginView: View {
     
     @ObservedObject private var viewModel: LoginViewModel
     
+    @Injected private var testViewModel: TestViewModel
+    
     init(viewModel: LoginViewModel) {
         self.viewModel = viewModel
+
+        let publisher = createPublisher(for: testViewModel.stateXFlow)
+        let cancellable = publisher.sink { completion in
+            print("Received completion: \(completion)")
+        } receiveValue: { value in
+            print("Received value: \(value)")
+        }
     }
     
     var body: some View {
         VStack {
+            Text("\((testViewModel.state as! TestViewModel.ViewState).testNumber)")
+            Text("\(testViewModel.stateX.testNumber)")
+        
+            
             EmailAndPasswordFields(
                 title: L10n.login_view_headline_title,
                 email: viewModel.state.email,
@@ -40,6 +55,12 @@ struct LoginView: View {
             set: { _ in viewModel.onIntent(.dismissAlert) }
         )) { alert in .init(alert) }
         .lifecycle(viewModel)
+        .onAppear {
+            testViewModel.onIntent(intent: TestViewModelViewIntentOnViewAppeared())
+        }
+        .onDisappear {
+            testViewModel.onCleared()
+        }
     }
 }
 
