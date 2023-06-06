@@ -9,40 +9,43 @@ import UIToolkit
 import DevstackKmpShared
 import Combine
 
+@MainActor
+public extension View {
+    @inlinable func bindViewModel<S: VmState, I: VmIntent>(_ viewModel: MyBaseViewModel<S, I>, stateBinding: Binding<S>) -> some View {
+        var task: Task<(), Error>? = nil
+        @Binding var state: S
+        _state = stateBinding
+        return self
+            .onAppear {
+                task = Task {
+                    for try await newState: S in viewModel.asyncStreamFromState() {
+                        state = newState
+                    }
+                }
+            }
+            .onDisappear {
+                task?.cancel()
+                viewModel.onCleared()
+            }
+    }
+}
+
 struct LoginView: View {
     
     @ObservedObject private var viewModel: LoginViewModel
     
     @Injected private var testViewModel: TestViewModel
     
-    @State var state: TestViewModel.ViewState
-    private var cancellables = [AnyCancellable]()
+    @State private var state: TestViewModel.ViewState
     
     init(viewModel: LoginViewModel) {
         self.viewModel = viewModel
         self.state = .init(loading: false, email: "", password: "", testNumber: 0)
-//        let publisher = createPublisher(for: testViewModel.stateXFlow)
-//        let cancellable = publisher.sink { completion in
-//            print("Received completion: \(completion)")
-//        } receiveValue: { value in
-//            print("Received value: \(value)")
-//            state = value
-//        }
-        
-        
-        
     }
-    
-//    private func observeState() async {
-//        try await testViewModel.state.async() { newState in
-//            self.state = newState
-//        }
-//    }
     
     var body: some View {
         VStack {
-            Text("\(state.testNumber)")
-        
+            Text("Test number: \(state.testNumber)")
             
             EmailAndPasswordFields(
                 title: L10n.login_view_headline_title,
@@ -70,11 +73,7 @@ struct LoginView: View {
         .onAppear {
             testViewModel.onIntent(intent: TestViewModelViewIntentOnViewAppeared())
         }
-        .onDisappear {
-            testViewModel.onCleared()
-            cancellables.forEach { $0.cancel() }
-            //cancellables.removeAll()
-        }
+        .bindViewModel(testViewModel, stateBinding: self.$state)
     }
 }
 
