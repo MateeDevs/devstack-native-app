@@ -1,8 +1,7 @@
 package cz.matee.devstack.kmp.shared.base
 
 import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.cancel
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.cancelChildren
 
 /**
  * Base class that provides a Kotlin/Native equivalent to the AndroidX `ViewModel`. In particular, this provides
@@ -11,7 +10,9 @@ import kotlinx.coroutines.flow.Flow
  */
 actual abstract class ViewModel {
 
-    actual val viewModelScope = MainScope()
+    private var _viewModelScope = MainScope()
+    actual val viewModelScope
+        get() = _viewModelScope
 
     /**
      * Override this to do any cleanup immediately before the internal [CoroutineScope][kotlinx.coroutines.CoroutineScope]
@@ -26,19 +27,6 @@ actual abstract class ViewModel {
      */
     fun clear() {
         onCleared()
-        viewModelScope.cancel()
+        viewModelScope.coroutineContext.cancelChildren()
     }
-}
-
-abstract class CallbackViewModel {
-    protected abstract val viewModel: ViewModel
-
-    /**
-     * Create a [FlowAdapter] from this [Flow] to make it easier to interact with from Swift.
-     */
-    fun <T : Any> Flow<T>.asCallbacks() =
-        FlowAdapter(viewModel.viewModelScope, this)
-
-    @Suppress("Unused") // Called from Swift
-    fun clear() = viewModel.clear()
 }

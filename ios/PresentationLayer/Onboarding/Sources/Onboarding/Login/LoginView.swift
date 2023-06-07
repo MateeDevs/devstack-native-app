@@ -25,7 +25,7 @@ public extension View {
             }
             .onDisappear {
                 task?.cancel()
-                viewModel.onCleared()
+                viewModel.clear()
             }
     }
 }
