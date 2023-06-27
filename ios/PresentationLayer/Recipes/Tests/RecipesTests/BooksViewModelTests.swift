@@ -13,6 +13,8 @@ import XCTest
 
 @MainActor
 final class BooksViewModelTests: XCTestCase {
+    
+    // MARK: Dependencies
 
     private let fc = FlowControllerMock<RecipesFlow>(navigationController: UINavigationController())
     
@@ -31,6 +33,8 @@ final class BooksViewModelTests: XCTestCase {
         Resolver.register { self.getBooksUseCaseMock as GetBooksUseCase }
         Resolver.register { self.refreshBooksUseCaseMock as RefreshBooksUseCase }
     }
+    
+    // MARK: Tests
     
     func testEmptyRefreshBooks() async {
         // given
