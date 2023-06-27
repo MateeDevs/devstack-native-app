@@ -12,18 +12,15 @@ public struct RemoteImage: View {
     private let stringURL: String?
     private let placeholder: Image
     private let contentMode: ContentMode
-    private let failureMessage: String?
     
     public init(
         stringURL: String?,
         placeholder: Image,
-        contentMode: ContentMode = .fit,
-        failureMessage: String? = nil
+        contentMode: ContentMode = .fit
     ) {
         self.stringURL = stringURL
         self.placeholder = placeholder
         self.contentMode = contentMode
-        self.failureMessage = failureMessage
     }
     
     public var body: some View {
@@ -36,7 +33,7 @@ public struct RemoteImage: View {
                 .skeleton(true)
                 .onAppear(perform: { downloadRemoteImage(from: url) })
         } else {
-            placeholderContent()
+            failureContent()
         }
     }
 }
@@ -51,15 +48,8 @@ private extension RemoteImage {
             .aspectRatio(contentMode: contentMode)
     }
 
-    @ViewBuilder
     func failureContent() -> some View {
-        if let failureMessage = failureMessage {
-            Text(failureMessage)
-                .font(.caption)
-                .fontWeight(.medium)
-        } else {
-            placeholderContent()
-        }
+        placeholderContent()
     }
     
     // MARK: - Remote image downloading

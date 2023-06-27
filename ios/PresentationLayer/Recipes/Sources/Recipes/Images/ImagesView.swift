@@ -19,7 +19,7 @@ struct ImagesView: View {
             ScrollView {
                 LazyVStack {
                     ForEach(viewModel.state.urls, id: \.self) { url in
-                        RemoteImage(stringURL: url, defaultImage: Asset.Images.brandLogo.image)
+                        RemoteImage(stringURL: url, placeholder: Asset.Images.brandLogo.image)
                             .frame(width: geo.size.width, height: geo.size.width)
                     }
                 }
