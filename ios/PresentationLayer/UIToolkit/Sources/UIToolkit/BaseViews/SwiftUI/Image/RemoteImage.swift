@@ -10,18 +10,18 @@ public struct RemoteImage: View {
     
     @State private var image: Image?
     private let stringURL: String?
-    private let defaultImage: Image
+    private let placeholder: Image
     private let contentMode: ContentMode
     private let failureMessage: String?
     
     public init(
         stringURL: String?,
-        defaultImage: Image,
+        placeholder: Image,
         contentMode: ContentMode = .fit,
         failureMessage: String? = nil
     ) {
         self.stringURL = stringURL
-        self.defaultImage = defaultImage
+        self.placeholder = placeholder
         self.contentMode = contentMode
         self.failureMessage = failureMessage
     }
@@ -45,9 +45,8 @@ private extension RemoteImage {
     
     // MARK: - Subviews
 
-    @ViewBuilder
     func placeholderContent() -> some View {
-        defaultImage
+        placeholder
             .resizable()
             .aspectRatio(contentMode: contentMode)
     }
@@ -67,7 +66,7 @@ private extension RemoteImage {
     
     func downloadRemoteImage(from url: URL) {
         Task {
-            self.image = await downloadImage(from: url)
+            image = await downloadImage(from: url)
         }
     }
     

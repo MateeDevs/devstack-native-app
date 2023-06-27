@@ -13,12 +13,6 @@ final class ImagesViewModel: BaseViewModel, ViewModel, ObservableObject {
     init(flowController: FlowController?) {
         self.flowController = flowController
         super.init()
-        setupCacheCapacity()
-    }
-    
-    private func setupCacheCapacity() {
-        URLCache.shared.memoryCapacity = 10_000_000 // ~10 MB memory space
-        URLCache.shared.diskCapacity = 1_000_000_000 // ~1GB disk cache space
     }
     
     // MARK: Lifecycle
