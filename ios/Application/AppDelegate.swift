@@ -44,6 +44,9 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         // Setup firebase for debug
         firebaseDebugSetup()
         
+        // Setup Cache capacity
+        setupCacheCapacity()
+        
         // Register for remote notifications
         application.registerForRemoteNotifications()
         
@@ -131,6 +134,12 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             args.append("-FIRAnalyticsDebugEnabled")
             ProcessInfo.processInfo.setValue(args, forKey: "arguments")
         }
+    }
+    
+    // MARK: Cache setup
+    private func setupCacheCapacity() {
+        URLCache.shared.memoryCapacity = 10_000_000 // ~10 MB memory space
+        URLCache.shared.diskCapacity = 1_000_000_000 // ~1GB disk cache space
     }
 }
 
