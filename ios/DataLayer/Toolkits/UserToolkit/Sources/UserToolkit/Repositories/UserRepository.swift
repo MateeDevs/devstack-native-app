@@ -6,6 +6,7 @@
 import DatabaseProvider
 import NetworkProvider
 import SharedDomain
+import Utilities
 
 public struct UserRepositoryImpl: UserRepository {
     
@@ -31,14 +32,23 @@ public struct UserRepositoryImpl: UserRepository {
         }
     }
     
-    public func read(_ sourceType: SourceType, page: Int, sortBy: String?) async throws -> [User] {
+    public func read(_ sourceType: SourceType, page: Int, limit: Int, sortBy: String?) async throws -> Pages<User> {
         switch sourceType {
         case .local:
-            return try database.read(DBUser.self, sortBy: sortBy).map { $0.domainModel }
+            let data = try database.read(DBUser.self, sortBy: sortBy)
+            return Pages(
+                data: data.map { $0.domainModel },
+                pagination: Pagination(
+                    page: page,
+                    limit: data.count,
+                    totalCount: data.count,
+                    lastPage: page
+                )
+            )
         case .remote:
-            let endpoint = UserAPI.list(page)
-            let users = try await network.request(endpoint).map([NETUser].self, atKeyPath: "data").map { $0.domainModel }
-            try database.update(users.map { $0.databaseModel })
+            let endpoint = UserAPI.list(page: page, limit: limit)
+            let users = try await network.request(endpoint).map(NETPages<NETUser>.self).domainModel
+            try database.update(users.data.map { $0.databaseModel })
             return users
         }
     }

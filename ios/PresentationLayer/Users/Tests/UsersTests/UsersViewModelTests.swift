@@ -31,16 +31,16 @@ final class UsersViewModelTests: XCTestCase {
     
     func testAppear() async {
         let vm = createViewModel()
-        getUsersUseCase.executePageReturnValue = [User].stub
+        getUsersUseCase.executePageLimitReturnValue = Pages<User>.stub
         
         vm.onAppear()
         await vm.awaitAllTasks()
         
-        XCTAssertEqual(vm.state.users, [User].stub)
+        XCTAssertEqual(vm.state.users, Pages<User>.stub.data)
         XCTAssertEqual(vm.state.isLoading, false)
-        XCTAssert(getUsersUseCase.executePageReceivedInvocations == [
-            (.local, 0),
-            (.remote, 0)
+        XCTAssert(getUsersUseCase.executePageLimitReceivedInvocations == [
+            (.local, 0, 100),
+            (.remote, 0, 100)
         ])
     }
     
