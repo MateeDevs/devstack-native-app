@@ -53,7 +53,7 @@ public class AnyPagingHandlerDelegate<T>: PagingHandlerDelegate {
 @MainActor
 public class PagingHandler<T> {
 
-    private var currentPage = 1
+    private var currentPage = 0
     private var totalCount = 0
     private var hasFetchedAll = false // used only when object count is ignored
     
@@ -75,7 +75,7 @@ public class PagingHandler<T> {
     
     /// Initializes the data (calls the first page)
     public func initData() async throws {
-        currentPage = 1
+        currentPage = 0
         hasFetchedAll = false
         guard let pages: Pages<T> = try await delegate?.fetchData(page: currentPage) else { return }
         delegate?.dataUpdated(pages.data)
