@@ -7,7 +7,7 @@ import SwiftUI
 
 /// A Scroll View with the ability to call a certain functionality at a given percentage of scroll
 /// - note: Taken from https://stackoverflow.com/questions/68681075/how-do-i-detect-when-user-has-reached-the-bottom-of-the-scrollview
-struct PagingScrollView<Content: View>: View {
+public struct PagingScrollView<Content: View>: View {
     
     @State private var wholeSize: CGSize = .zero
     @State private var scrollViewSize: CGSize = .zero
@@ -26,7 +26,7 @@ struct PagingScrollView<Content: View>: View {
     ///  - triggerPoint: At which point the `touchedBottomAction` should be triggered, 0.0 would be at the very top, 1.0 at the very bottom
     ///  - touchedBottomAction: The function that should be called when the trigger point is reached
     ///  - content: The content for the scroll view
-    init(
+    public init(
         _ axes: SwiftUI.Axis.Set = .vertical,
         showsIndicators: Bool = true,
         triggerPoint: Double = 1.0,
@@ -42,7 +42,7 @@ struct PagingScrollView<Content: View>: View {
         self.content = content()
     }
     
-    var body: some View {
+    public var body: some View {
         ChildSizeReader(
             size: $wholeSize,
             content: {

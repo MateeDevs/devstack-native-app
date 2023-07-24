@@ -7,6 +7,7 @@
 import CoreLocation
 import Resolver
 import SharedDomain
+import Utilities
 
 public extension Resolver {
     static func registerUseCaseMocks() {
@@ -48,7 +49,7 @@ public extension Resolver {
         }
         
         // User
-        register { GetUsersUseCaseMock(executePageReturnValue: [User].stub) as GetUsersUseCase }
+        register { GetUsersUseCaseMock(executePageLimitReturnValue: Pages<User>.stub) as GetUsersUseCase }
         register { GetUserUseCaseMock(executeIdReturnValue: User.stub) as GetUserUseCase }
         register { UpdateUserUseCaseMock() as UpdateUserUseCase }
         

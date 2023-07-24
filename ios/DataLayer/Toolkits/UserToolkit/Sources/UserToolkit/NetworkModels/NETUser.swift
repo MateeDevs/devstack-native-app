@@ -4,8 +4,9 @@
 //
 
 import SharedDomain
+import NetworkProvider
 
-struct NETUser: Codable {
+public struct NETUser: Codable {
     let id: String
     let email: String
     let firstName: String
@@ -16,8 +17,10 @@ struct NETUser: Codable {
 }
 
 // Conversion from NetworkModel to DomainModel
-extension NETUser {
-    var domainModel: User {
+extension NETUser: DomainRepresentable {
+    public typealias DomainModel = User
+    
+    public var domainModel: DomainModel {
         User(
             id: id,
             email: email,
@@ -32,8 +35,10 @@ extension NETUser {
 }
 
 // Conversion from DomainModel to NetworkModel
-extension User {
-    var networkModel: NETUser {
+extension User: NetworkRepresentable {
+    public typealias NetworkModel = NETUser
+    
+    public var networkModel: NetworkModel {
         NETUser(
             id: id,
             email: email,
