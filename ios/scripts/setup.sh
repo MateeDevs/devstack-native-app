@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# This ensures that relative paths are correct no matter where the script is executed.
 cd "$(dirname "$0")"
 
 echo "⚙️  Checking file header"
@@ -12,6 +13,11 @@ if [ ! -f ../DevStack.xcworkspace/xcuserdata/`whoami`.xcuserdatad/IDETemplateMac
   sed -i "" -e "s/___FULLNAME___/$fullname/g" ../DevStack.xcworkspace/xcuserdata/`whoami`.xcuserdatad/IDETemplateMacros.plist
 else
   echo "✅ File header is properly set"
+fi
+
+echo "⚙️  Build KMP for the first time"
+if [ ! -d ../DomainLayer/DevstackKmpShared.xcframework ]; then
+  ./build-kmp.sh debug true true false
 fi
 
 echo "⚙️  Downloading GraphQL schemas and generating code from queries"

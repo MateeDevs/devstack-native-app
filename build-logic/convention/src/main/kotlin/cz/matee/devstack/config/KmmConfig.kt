@@ -12,10 +12,16 @@ import java.util.Locale
 
 object KmmConfig {
     private fun getXCodeConfiguration(project: Project): String =
-        getStringProperty(project, "XCODE_CONFIGURATION", "release")
+        getStringProperty(project, "XCODE_CONFIGURATION", "debug")
 
-    private fun isArm64Only(project: Project): Boolean =
-        getBooleanProperty(project, "ARM64_ONLY", false)
+    private fun includeX86(project: Project): Boolean =
+        getBooleanProperty(project, "X86", false)
+
+    private fun includeArm64(project: Project): Boolean =
+        getBooleanProperty(project, "ARM64", true)
+
+    private fun includeArm64Sim(project: Project): Boolean =
+        getBooleanProperty(project, "ARM64SIM", true)
 
     fun getCurrentNativeBuildType(project: Project): NativeBuildType {
         val xCodeConfiguration = getXCodeConfiguration(project).toLowerCase(Locale.getDefault())
@@ -30,41 +36,22 @@ object KmmConfig {
     val KotlinNativeTarget.asMainSourceSetName: String
         get() = "${this.name}Main"
 
-    fun getSupportedPlatforms(extensions: KotlinMultiplatformExtension, project: Project) =
-        with(extensions) {
-            println("isArm64Only ${isArm64Only(project)}")
-            if (isArm64Only(project)) {
-                listOf(iosArm64(), tvosArm64(), tvosX64())
-            } else {
-                listOf(
-                    iosX64(),
-                    iosArm64(),
-                    iosSimulatorArm64(),
-                    tvosX64(),
-                    tvosArm64(),
-                    tvosSimulatorArm64(),
-                )
-            }
-        }
-
     fun getSupportedMobilePlatforms(extensions: KotlinMultiplatformExtension, project: Project) =
         with(extensions) {
-            println("isArm64Only ${isArm64Only(project)}")
-            if (isArm64Only(project)) {
-                listOf(iosArm64())
-            } else {
-                listOf(iosX64(), iosArm64(), iosSimulatorArm64())
-            }
+            val architecture = mutableListOf<KotlinNativeTarget>()
+            if (includeX86(project)) architecture.add(iosX64())
+            if (includeArm64(project)) architecture.add(iosArm64())
+            if (includeArm64Sim(project)) architecture.add(iosSimulatorArm64())
+            architecture
         }
 
     fun getSupportedTvPlatforms(extensions: KotlinMultiplatformExtension, project: Project) =
         with(extensions) {
-            println("isArm64Only ${isArm64Only(project)}")
-            if (isArm64Only(project)) {
-                listOf(tvosArm64())
-            } else {
-                listOf(tvosX64(), tvosArm64(), tvosSimulatorArm64())
-            }
+            val architecture = mutableListOf<KotlinNativeTarget>()
+            if (includeX86(project)) architecture.add(tvosX64())
+            if (includeArm64(project)) architecture.add(tvosArm64())
+            if (includeArm64Sim(project)) architecture.add(tvosSimulatorArm64())
+            architecture
         }
 
     fun Task.copyXCFramework(projectName: String) {

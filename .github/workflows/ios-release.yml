@@ -13,12 +13,12 @@ jobs:
         continue-on-error: true
         with:
           clean: false
+      - name: Build KMP
+        working-directory: ios
+        run: ./scripts/build-kmp.sh release false true false
       - name: Setup tools
         working-directory: ios
         run: ./scripts/setup.sh
-      - name: Build KMP
-        working-directory: ios
-        run: ./scripts/build-kmp.sh release true
       - name: Generate build number
         run: echo "BUILD_NUMBER=$(echo `date +"%y%m%d%H%M"`)" >> $GITHUB_ENV
       - name: Prepare App Store Connect API key file

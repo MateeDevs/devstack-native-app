@@ -16,12 +16,12 @@ jobs:
         continue-on-error: true
         with:
           clean: false
+      - name: Build KMP
+        working-directory: ios
+        run: ./scripts/build-kmp.sh debug true true false
       - name: Setup tools
         working-directory: ios
         run: ./scripts/setup.sh
-      - name: Build KMP
-        working-directory: ios
-        run: ./scripts/build-kmp.sh debug false
       - name: Run tests
         working-directory: ios
         run: swift run --package-path CI/FastlaneRunner fastlaneRunner lane testAlphaLane
