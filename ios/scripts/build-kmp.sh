@@ -1,18 +1,26 @@
 #!/bin/zsh -l
 
-# First argument  - XCODE_CONFIGURATION : DEBUG/RELEASE
-# Second argument - ARM64_ONLY : true/false
-# Script with no arguments use default values - XCODE_CONFIGURATION: RELEASE, ARM64_ONLY: false
-# Sample:
-#       ./scripts/build-kmp.sh                -> optimised release build with arm64, x64, simulator
-#       ./scripts/build-kmp.sh release true   -> optimised release build with only arm64
-#       ./scripts/build-kmp.sh release false  -> optimised release build with arm64, x64, simulator
-#       ./scripts/build-kmp.sh debug true     -> debug build with only arm64
-#       ./scripts/build-kmp.sh debug false    -> debug build with arm64, x64, simulator
+#
+# First argument  - XCODE_CONFIGURATION: debug / release
+# Second argument - X86: true / false
+# Third argument  - ARM64: true / false
+# Fourth argument - ARM64SIM: true / false
+#
+# Example:
+# ./scripts/build-kmp.sh debug false true true      -> debug configuration with arm64 + arm64sim architectures (local builds)
+# ./scripts/build-kmp.sh debug true false false     -> debug configuration with x86 architecture (tests on Intel based CI)
+# ./scripts/build-kmp.sh release false true false   -> release configuration with arm64 architecture (TestFlight/AppStore builds)
+#
 
-cd ..
+# This ensures that relative paths are correct no matter where the script is executed.
+cd "$(dirname "$0")/../.."
 
+# Read input arguments
 configuration=$1
-arm64only=$2
+x86=$2
+arm64=$3
+arm64sim=$4
 
-./gradlew :shared:buildXCFramework -PXCODE_CONFIGURATION=${configuration} -PARM64_ONLY=${arm64only} && ./gradlew :shared:copyXCFramework -PXCODE_CONFIGURATION=${configuration} -PARM64_ONLY=${arm64only}
+# Build and copy XCFramework
+./gradlew :shared:buildXCFramework -PXCODE_CONFIGURATION=${configuration} -PX86=${x86} -PARM64=${arm64} -PARM64SIM=${arm64sim}
+./gradlew :shared:copyXCFramework -PXCODE_CONFIGURATION=${configuration} -PX86=${x86} -PARM64=${arm64} -PARM64SIM=${arm64sim}
