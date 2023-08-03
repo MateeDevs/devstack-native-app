@@ -34,8 +34,13 @@ let package = Package(
                 "swiftgen.yml"
             ],
             plugins: [
+                "TwinePlugin",
                 .plugin(name: "SwiftGenPlugin", package: "SwiftGenPlugin")
             ]
+        ),
+        .plugin(
+            name: "TwinePlugin",
+            capability: .buildTool()
         )
     ]
 )

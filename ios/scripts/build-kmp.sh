@@ -12,8 +12,8 @@
 # ./scripts/build-kmp.sh release false true false   -> release configuration with arm64 architecture (TestFlight/AppStore builds)
 #
 
-# This ensures that relative paths are correct no matter where the script is executed.
-cd "$(dirname "$0")/../.."
+# This ensures that relative paths are correct no matter where the script is executed
+cd "$(dirname "$0")"
 
 # Read input arguments
 configuration=$1
@@ -22,5 +22,6 @@ arm64=$3
 arm64sim=$4
 
 # Build and copy XCFramework
+cd ../..
 ./gradlew :shared:buildXCFramework -PXCODE_CONFIGURATION=${configuration} -PX86=${x86} -PARM64=${arm64} -PARM64SIM=${arm64sim}
 ./gradlew :shared:copyXCFramework -PXCODE_CONFIGURATION=${configuration} -PX86=${x86} -PARM64=${arm64} -PARM64SIM=${arm64sim}
