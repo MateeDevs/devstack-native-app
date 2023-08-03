@@ -17,6 +17,7 @@ let package = Package(
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
         .package(name: "UIToolkit", path: "../UIToolkit"),
+        .package(name: "MapToolkit", path: "../MapToolkit"),
         .package(name: "Utilities", path: "../../DomainLayer/Utilities"),
         .package(name: "SharedDomain", path: "../../DomainLayer/SharedDomain"),
         .package(url: "https://github.com/hmlongco/Resolver.git", .upToNextMajor(from: "1.0.0"))
@@ -28,6 +29,7 @@ let package = Package(
             name: "Recipes",
             dependencies: [
                 .product(name: "UIToolkit", package: "UIToolkit"),
+                .product(name: "MapToolkit", package: "MapToolkit"),
                 .product(name: "Utilities", package: "Utilities"),
                 .product(name: "SharedDomain", package: "SharedDomain"),
                 .product(name: "SharedDomainMocks", package: "SharedDomain"),

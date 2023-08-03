@@ -143,6 +143,7 @@
 		45DEBE3627A401A40075C7E2 /* Prod.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Prod.entitlements; sourceTree = "<group>"; };
 		45DEBE3727A401A40075C7E2 /* Beta.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Beta.entitlements; sourceTree = "<group>"; };
 		45DEBE3827A401A40075C7E2 /* Alpha.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Alpha.entitlements; sourceTree = "<group>"; };
+		45E968362A7C4266004C3F15 /* MapToolkit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MapToolkit; sourceTree = "<group>"; };
 		45FF99D32842A8CB00E32D9A /* RemoteConfigProvider */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RemoteConfigProvider; sourceTree = "<group>"; };
 		45FF99D52842AAFB00E32D9A /* UserDefaultsProvider */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UserDefaultsProvider; sourceTree = "<group>"; };
 		45FF99D72842B0A600E32D9A /* AnalyticsToolkit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = AnalyticsToolkit; sourceTree = "<group>"; };
@@ -211,6 +212,7 @@
 				4508333928437FC600BC9460 /* Users */,
 				4508333A28437FD600BC9460 /* Profile */,
 				4508333B28437FE200BC9460 /* Recipes */,
+				45E968362A7C4266004C3F15 /* MapToolkit */,
 				4508333128436EFB00BC9460 /* UIToolkit */,
 				453580EE284806FE007AEC9E /* strings.txt */,
 			);
