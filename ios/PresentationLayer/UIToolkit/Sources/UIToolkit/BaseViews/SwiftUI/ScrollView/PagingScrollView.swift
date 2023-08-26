@@ -12,6 +12,8 @@ public struct PagingScrollView<Content: View>: View {
     @State private var wholeSize: CGSize = .zero
     @State private var scrollViewSize: CGSize = .zero
     
+    @Namespace private var coordinateSpace
+    
     private let axes: SwiftUI.Axis.Set
     private let showsIndicators: Bool
     private let isFetchingMore: Bool
@@ -49,9 +51,23 @@ public struct PagingScrollView<Content: View>: View {
                 ScrollView(axes, showsIndicators: showsIndicators) {
                     innerChildReader()
                 }
-                .coordinateSpace(name: "scroll")
+                .coordinateSpace(name: coordinateSpace)
             }
         )
+    }
+    
+    private var actualTriggerPoint: CGFloat {
+        switch axes {
+        case .horizontal: return triggerPoint * scrollViewSize.width - wholeSize.width
+        default: return triggerPoint * scrollViewSize.height - wholeSize.height
+        }
+    }
+    
+    private func preferenceValue(geometry: GeometryProxy) -> CGFloat {
+        switch axes {
+        case .horizontal: return -geometry.frame(in: .named(coordinateSpace)).origin.x
+        default: return -geometry.frame(in: .named(coordinateSpace)).origin.y
+        }
     }
     
     private func innerChildReader() -> some View {
@@ -63,14 +79,14 @@ public struct PagingScrollView<Content: View>: View {
                         GeometryReader {
                             Color.clear.preference(
                                 key: ViewOffsetKey.self,
-                                value: -$0.frame(in: .named("scroll")).origin.y
+                                value: preferenceValue(geometry: $0)
                             )
                         }
                     )
                     .onPreferenceChange(ViewOffsetKey.self) { value in
                         guard !isFetchingMore,
                               value != 0,
-                              value >= (triggerPoint * scrollViewSize.height - wholeSize.height)
+                              value >= actualTriggerPoint
                         else { return }
                         touchedBottomAction?()
                     }
