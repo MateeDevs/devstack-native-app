@@ -8,7 +8,7 @@ import NetworkProvider
 import Utilities
 
 enum UserAPI {
-    case list(_ page: Int)
+    case list(page: Int, limit: Int)
     case read(_ id: String)
     case update(_ id: String, data: [String: Any])
 }
@@ -38,10 +38,10 @@ extension UserAPI: NetworkEndpoint {
     }
     var task: NetworkTask {
         switch self {
-        case let .list(page):
+        case let .list(page, limit):
             let params: [String: Any] = [
                 "page": page,
-                "limit": 100
+                "limit": limit
             ]
             return .requestParameters(parameters: params, encoding: URLEncoding.default)
         case let .update(_, data):
