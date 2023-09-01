@@ -100,6 +100,15 @@
       }
     },
     {
+      "identity" : "googlemaps-sp",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/MateeDevs/GoogleMaps-SP.git",
+      "state" : {
+        "revision" : "0c1940aff2ca9da9d28598ae586234f3fff747ab",
+        "version" : "7.4.0"
+      }
+    },
+    {
       "identity" : "googleutilities",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/GoogleUtilities.git",

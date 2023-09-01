@@ -19,4 +19,12 @@ public struct NetworkingConstants {
         case .production: return "https://apollo-fullstack-tutorial.herokuapp.com/graphql"
         }
     }
+    
+    public static var googleMapsAPIKey: String {
+        switch Environment.type {
+        case .alpha: return "AIzaSyDj2cQ3ASrD9GCG7O3UIihcovCNihIXjDs"
+        case .beta: return "AIzaSyDj2cQ3ASrD9GCG7O3UIihcovCNihIXjDs"
+        case .production: return "AIzaSyDj2cQ3ASrD9GCG7O3UIihcovCNihIXjDs"
+        }
+    }
 }
