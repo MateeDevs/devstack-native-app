@@ -16,6 +16,7 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
+        .package(name: "UIToolkit", path: "../UIToolkit"),
         .package(name: "Utilities", path: "../../DomainLayer/Utilities"),
         .package(url: "https://github.com/MateeDevs/GoogleMaps-SP.git", .upToNextMinor(from: "7.4.0"))
     ],
@@ -25,6 +26,7 @@ let package = Package(
         .target(
             name: "MapToolkit",
             dependencies: [
+                .product(name: "UIToolkit", package: "UIToolkit"),
                 .product(name: "Utilities", package: "Utilities"),
                 .product(name: "GoogleMaps", package: "GoogleMaps-SP")
             ]
