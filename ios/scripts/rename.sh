@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# This ensures that relative paths are correct no matter where the script is executed
 cd "$(dirname "$0")"
 
 old_name="DevStack"

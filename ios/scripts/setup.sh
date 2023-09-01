@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# This ensures that relative paths are correct no matter where the script is executed.
+# This ensures that relative paths are correct no matter where the script is executed
 cd "$(dirname "$0")"
 
 echo "⚙️  Checking file header"
@@ -30,6 +30,6 @@ echo "⚙️  Checking whether Twine is installed"
 if command -v twine &> /dev/null; then
   echo "✅ Twine is installed"
 else
-  echo "❌ Twine is not installed - installing now"
-  gem install twine
+  echo "❌ Twine is not installed"
+  echo "Check https://github.com/MateeDevs/wiki/blob/master/tooling/ruby.md for more info"
 fi
