@@ -103,7 +103,6 @@
 		453580E52847E814007AEC9E /* GraphQLProvider */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = GraphQLProvider; sourceTree = "<group>"; };
 		453580EE284806FE007AEC9E /* strings.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = strings.txt; path = ../../twine/strings.txt; sourceTree = "<group>"; };
 		453C8807283FAB4C0027BDFB /* SharedDomain */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SharedDomain; sourceTree = "<group>"; };
-		453C880C283FB33D0027BDFB /* DevstackKmpShared.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = DevstackKmpShared.xcframework; sourceTree = "<group>"; };
 		454F6EC326CE8B3500C386B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		454F6EC526CE8B4100C386B8 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		454F6EC626CE8B4600C386B8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -119,6 +118,7 @@
 		4575E65525F6FA7600CCC003 /* AppIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIcon.xcassets; sourceTree = "<group>"; };
 		45825BC32842961C003926B4 /* AnalyticsProvider */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = AnalyticsProvider; sourceTree = "<group>"; };
 		45825BC628429D48003926B4 /* KeychainProvider */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = KeychainProvider; sourceTree = "<group>"; };
+		458DB40F2A7280BB0000A7D4 /* DevstackKmpShared.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = DevstackKmpShared.xcframework; sourceTree = "<group>"; };
 		4597626E20FDF0810034DE29 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		459896B026129CB300C852E0 /* Info+Proxyman.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info+Proxyman.plist"; sourceTree = "<group>"; };
 		459B777827737AFB00EAA694 /* DevstackKmpShared.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = DevstackKmpShared.xcframework; path = DomainLayer/DevstackKmpShared.xcframework; sourceTree = "<group>"; };
@@ -222,7 +222,7 @@
 			children = (
 				453C8807283FAB4C0027BDFB /* SharedDomain */,
 				45FF99D92842B51800E32D9A /* Utilities */,
-				453C880C283FB33D0027BDFB /* DevstackKmpShared.xcframework */,
+				458DB40F2A7280BB0000A7D4 /* DevstackKmpShared.xcframework */,
 			);
 			path = DomainLayer;
 			sourceTree = "<group>";
