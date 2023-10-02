@@ -17,7 +17,7 @@ fi
 
 echo "⚙️  Build KMP for the first time"
 if [ ! -d ../DomainLayer/DevstackKmpShared.xcframework ]; then
-  ./build-kmp.sh debug true true false
+  ./build-kmp.sh
 fi
 
 echo "⚙️  Downloading GraphQL schemas and generating code from queries"
