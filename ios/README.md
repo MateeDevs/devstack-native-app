@@ -94,4 +94,4 @@ FIXME
 
 ## Tests
 - All newly created ViewModels / UseCases / Repositories should have at least a basic set of tests
-- [Sourcery](https://github.com/krzysztofzablocki/Sourcery) is used for automatic mock generation
+- [Spyable](https://github.com/Matejkob/swift-spyable) is used for automatic mock generation

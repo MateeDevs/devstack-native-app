@@ -4,8 +4,7 @@
 //
 
 import Resolver
-import SharedDomain
-import SharedDomainMocks
+@testable import SharedDomain
 import UIToolkit
 @testable import Users
 import Utilities
@@ -18,7 +17,7 @@ final class UsersViewModelTests: XCTestCase {
     
     private let fc = FlowControllerMock<UsersFlow>(navigationController: UINavigationController())
     
-    private let getUsersUseCase = GetUsersUseCaseMock()
+    private let getUsersUseCase = GetUsersUseCaseSpy()
     
     private func createViewModel() -> UsersViewModel {
         Resolver.register { self.getUsersUseCase as GetUsersUseCase }

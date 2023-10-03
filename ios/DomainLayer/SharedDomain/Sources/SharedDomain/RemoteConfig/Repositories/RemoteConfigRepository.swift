@@ -3,7 +3,9 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-// sourcery: AutoMockable
+import Spyable
+
+@Spyable
 public protocol RemoteConfigRepository {
     func read(_ key: RemoteConfigCoding) async throws -> Bool
 }

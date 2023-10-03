@@ -3,17 +3,16 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-import SharedDomain
-import SharedDomainMocks
+@testable import SharedDomain
 import XCTest
 
 final class RegistrationUseCaseTests: XCTestCase {
     
     // MARK: Dependencies
     
-    private let authRepository = AuthRepositoryMock()
-    private let validateEmailUseCase = ValidateEmailUseCaseMock()
-    private let validatePasswordUseCase = ValidatePasswordUseCaseMock()
+    private let authRepository = AuthRepositorySpy()
+    private let validateEmailUseCase = ValidateEmailUseCaseSpy()
+    private let validatePasswordUseCase = ValidatePasswordUseCaseSpy()
     
     // MARK: Tests
     

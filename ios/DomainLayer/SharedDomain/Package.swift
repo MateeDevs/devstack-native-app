@@ -24,7 +24,7 @@ let package = Package(
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
         .package(url: "https://github.com/hmlongco/Resolver.git", .upToNextMajor(from: "1.0.0")),
-        .package(url: "https://github.com/krzysztofzablocki/Sourcery.git", .revision("eb75bb23ced64ea2e55e3a28adafa4c5a557319e"))
+        .package(url: "https://github.com/Matejkob/swift-spyable", from: "0.1.0")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -32,7 +32,8 @@ let package = Package(
         .target(
             name: "SharedDomain",
             dependencies: [
-                "DevstackKmpShared"
+                "DevstackKmpShared",
+                .product(name: "Spyable", package: "swift-spyable")
             ],
             linkerSettings: [
                 .unsafeFlags(["-Xlinker", "-no_application_extension"])

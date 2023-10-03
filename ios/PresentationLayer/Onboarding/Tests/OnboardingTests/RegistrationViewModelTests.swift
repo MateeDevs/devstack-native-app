@@ -5,8 +5,7 @@
 
 @testable import Onboarding
 import Resolver
-import SharedDomain
-import SharedDomainMocks
+@testable import SharedDomain
 import UIToolkit
 import XCTest
 
@@ -17,7 +16,7 @@ final class RegistrationViewModelTests: XCTestCase {
     
     private let fc = FlowControllerMock<OnboardingFlow>(navigationController: UINavigationController())
     
-    private let registrationUseCase = RegistrationUseCaseMock()
+    private let registrationUseCase = RegistrationUseCaseSpy()
     
     private func createViewModel() -> RegistrationViewModel {
         Resolver.register { self.registrationUseCase as RegistrationUseCase }

@@ -47,3 +47,5 @@ public extension Resolver {
         register { ValidatePasswordUseCaseImpl() as ValidatePasswordUseCase }
     }
 }
+
+// swiftlint:enable line_length

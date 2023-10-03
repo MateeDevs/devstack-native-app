@@ -23,9 +23,6 @@ fi
 echo "⚙️  Downloading GraphQL schemas and generating code from queries"
 ./apollo.sh
 
-echo "⚙️  Generating mocks for UseCases and Repositories"
-./sourcery.sh
-
 echo "⚙️  Checking whether Twine is installed"
 if command -v twine &> /dev/null; then
   echo "✅ Twine is installed"

@@ -5,8 +5,7 @@
 
 @testable import Recipes
 import Resolver
-import SharedDomain
-import SharedDomainMocks
+@testable import SharedDomain
 import UIToolkit
 import XCTest
 
@@ -17,8 +16,8 @@ final class CounterViewModelTests: XCTestCase {
     
     private let fc = FlowControllerMock<RecipesFlow>(navigationController: UINavigationController())
     
-    private let getProfileUseCase = GetProfileUseCaseMock()
-    private let updateProfileCounterUseCase = UpdateProfileCounterUseCaseMock()
+    private let getProfileUseCase = GetProfileUseCaseSpy()
+    private let updateProfileCounterUseCase = UpdateProfileCounterUseCaseSpy()
     
     private func createViewModel() -> CounterViewModel {
         Resolver.register { self.getProfileUseCase as GetProfileUseCase }

@@ -3,16 +3,15 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-import SharedDomain
-import SharedDomainMocks
+@testable import SharedDomain
 import XCTest
 
 final class GetProfileUseCaseTests: XCTestCase {
     
     // MARK: Dependencies
     
-    private let getProfileIdUseCase = GetProfileIdUseCaseMock()
-    private let getUserUseCase = GetUserUseCaseMock()
+    private let getProfileIdUseCase = GetProfileIdUseCaseSpy()
+    private let getUserUseCase = GetUserUseCaseSpy()
     
     // MARK: Tests
 

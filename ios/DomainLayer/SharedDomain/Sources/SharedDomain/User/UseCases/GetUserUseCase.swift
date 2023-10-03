@@ -3,7 +3,9 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-// sourcery: AutoMockable
+import Spyable
+
+@Spyable
 public protocol GetUserUseCase {
     func execute(_ sourceType: SourceType, id: String) async throws -> User
 }

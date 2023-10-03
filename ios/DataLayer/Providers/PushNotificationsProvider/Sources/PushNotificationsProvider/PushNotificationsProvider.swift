@@ -5,7 +5,6 @@
 
 import UserNotifications
 
-// sourcery: AutoMockable
 public protocol PushNotificationsProvider {
     /// Request user's authorization for push notifications
     func requestAuthorization(options: UNAuthorizationOptions, completionHandler: @escaping (Bool, Error?) -> Void)
