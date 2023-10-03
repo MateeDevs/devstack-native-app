@@ -3,6 +3,13 @@
 # This ensures that relative paths are correct no matter where the script is executed
 cd "$(dirname "$0")"
 
+cd ../DataLayer/Providers/GraphQLProvider
+
+echo "⚙️  GraphQLProvider - Installing Codegen CLI"
+swift package --allow-writing-to-package-directory apollo-cli-install
+
 echo "⚙️  RocketToolkit - Downloading GraphQL schema and generating code from queries"
-swift package --disable-sandbox --allow-writing-to-package-directory apollo-fetch-schema --path "../DataLayer/Toolkits/RocketToolkit/apollo-codegen-config.json"
-swift package --disable-sandbox --allow-writing-to-package-directory apollo-generate --path "../DataLayer/Toolkits/RocketToolkit/apollo-codegen-config.json"
+./apollo-ios-cli fetch-schema --path "../../Toolkits/RocketToolkit/apollo-codegen-config.json"
+./apollo-ios-cli generate --path "../../Toolkits/RocketToolkit/apollo-codegen-config.json"
+
+cd ../../..

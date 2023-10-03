@@ -15,8 +15,8 @@ else
   echo "✅ File header is properly set"
 fi
 
-echo "⚙️  Build KMP for the first time"
 if [ ! -d ../DomainLayer/DevstackKmpShared.xcframework ]; then
+  echo "⚙️  Building KMP for the first time"
   ./build-kmp.sh
 fi
 
