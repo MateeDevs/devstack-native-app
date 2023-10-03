@@ -12,13 +12,13 @@ extension AuthError: LocalizedError {
         switch self {
         case .login(let reason):
             switch reason {
-            case .invalidCredentials: return L10n.invalid_credentials
-            case .failed: return L10n.signing_failed
+            case .invalidCredentials: L10n.invalid_credentials
+            case .failed: L10n.signing_failed
             }
         case .registration(let reason):
             switch reason {
-            case .userAlreadyExists: return L10n.register_view_email_already_exists
-            case .failed: return L10n.signing_up_failed
+            case .userAlreadyExists: L10n.register_view_email_already_exists
+            case .failed: L10n.signing_up_failed
             }
         }
     }

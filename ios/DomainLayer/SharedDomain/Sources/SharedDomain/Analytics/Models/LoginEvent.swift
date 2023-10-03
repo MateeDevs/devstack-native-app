@@ -12,9 +12,9 @@ public enum LoginEvent {
 extension LoginEvent: Trackable {
     public var analyticsEvent: AnalyticsEvent {
         switch self {
-        case .screenAppear: return .init(name: "login_screen")
-        case .loginButtonTap: return .init(name: "login_button_tap")
-        case .registerButtonTap: return .init(name: "register_button_tap")
+        case .screenAppear: .init(name: "login_screen")
+        case .loginButtonTap: .init(name: "login_button_tap")
+        case .registerButtonTap: .init(name: "register_button_tap")
         }
     }
 }

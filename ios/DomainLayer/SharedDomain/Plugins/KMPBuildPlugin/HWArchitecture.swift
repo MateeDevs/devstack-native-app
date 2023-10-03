@@ -15,9 +15,9 @@ extension KMPBuildPlugin {
         
         var buildArchitectures: [Arguments.BuildArchitecture] {
             switch self {
-            case .x86_64: return [.x86]
-            case .arm64: return [.arm64, .arm64sim]
-            case .undefined: return [.x86, .arm64, .arm64sim]
+            case .x86_64: [.x86]
+            case .arm64: [.arm64, .arm64sim]
+            case .undefined: [.x86, .arm64, .arm64sim]
             }
         }
     }

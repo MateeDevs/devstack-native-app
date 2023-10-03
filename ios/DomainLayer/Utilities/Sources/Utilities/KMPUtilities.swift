@@ -226,9 +226,9 @@
 //    private func toSwiftError() -> LocalizedError {
 //        switch self {
 //        case is BackendError.NotAuthorized:
-//            return RepositoryError(statusCode: StatusCode.unknown, message: self.message ?? "Unknown")
+//            RepositoryError(statusCode: StatusCode.unknown, message: self.message ?? "Unknown")
 //        default:
-//            return RepositoryError(statusCode: StatusCode.unknown, message: self.message ?? "Unknown")
+//            RepositoryError(statusCode: StatusCode.unknown, message: self.message ?? "Unknown")
 //        }
 //    }
 // }

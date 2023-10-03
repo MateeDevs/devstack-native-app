@@ -16,16 +16,13 @@ extension AuthAPI: NetworkEndpoint {
     var baseURL: URL { URL(string: "\(NetworkingConstants.baseURL)/api")! }
     var path: String {
         switch self {
-        case .login:
-            return "/auth/login"
-        case .registration:
-            return "/auth/registration"
+        case .login: "/auth/login"
+        case .registration: "/auth/registration"
         }
     }
     var method: NetworkMethod {
         switch self {
-        case .login, .registration:
-            return .post
+        case .login, .registration: .post
         }
     }
     var headers: [String: String]? {
@@ -33,10 +30,8 @@ extension AuthAPI: NetworkEndpoint {
     }
     var task: NetworkTask {
         switch self {
-        case let .login(data):
-            return .requestParameters(parameters: data, encoding: JSONEncoding.default)
-        case let .registration(data):
-            return .requestParameters(parameters: data, encoding: JSONEncoding.default)
+        case let .login(data): .requestParameters(parameters: data, encoding: JSONEncoding.default)
+        case let .registration(data): .requestParameters(parameters: data, encoding: JSONEncoding.default)
         }
     }
 }

@@ -10,12 +10,9 @@ public extension BaseViewController {
     /// Handle alert on current top ViewController based on a given AlertAction.
     func handleAlertAction(_ action: AlertAction) {
         switch action {
-        case let .showWhisper(whisper):
-            showWhisper(whisper)
-        case .hideWhisper:
-            hideWhisper()
-        case let .showAlert(alert):
-            showAlert(alert)
+        case let .showWhisper(whisper): showWhisper(whisper)
+        case .hideWhisper: hideWhisper()
+        case let .showAlert(alert): showAlert(alert)
         }
     }
     

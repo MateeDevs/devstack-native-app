@@ -11,8 +11,8 @@ public enum UpdateModel {
     
     func value(for object: Object) -> Any {
         switch self {
-        case .apiModel: return object.apiModel
-        case .fullModel: return object.fullModel
+        case .apiModel: object.apiModel
+        case .fullModel: object.fullModel
         }
     }
 }

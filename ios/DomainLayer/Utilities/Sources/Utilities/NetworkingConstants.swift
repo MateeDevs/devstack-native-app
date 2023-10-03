@@ -6,25 +6,25 @@
 public struct NetworkingConstants {
     public static var baseURL: String {
         switch Environment.type {
-        case .alpha: return "https://devstack-server-production.up.railway.app"
-        case .beta: return "https://devstack-server-production.up.railway.app"
-        case .production: return "https://devstack-server-production.up.railway.app"
+        case .alpha: "https://devstack-server-production.up.railway.app"
+        case .beta: "https://devstack-server-production.up.railway.app"
+        case .production: "https://devstack-server-production.up.railway.app"
         }
     }
     
     public static var rocketsURL: String {
         switch Environment.type {
-        case .alpha: return "https://apollo-fullstack-tutorial.herokuapp.com/graphql"
-        case .beta: return "https://apollo-fullstack-tutorial.herokuapp.com/graphql"
-        case .production: return "https://apollo-fullstack-tutorial.herokuapp.com/graphql"
+        case .alpha: "https://apollo-fullstack-tutorial.herokuapp.com/graphql"
+        case .beta: "https://apollo-fullstack-tutorial.herokuapp.com/graphql"
+        case .production: "https://apollo-fullstack-tutorial.herokuapp.com/graphql"
         }
     }
     
     public static var googleMapsAPIKey: String {
         switch Environment.type {
-        case .alpha: return "AIzaSyDj2cQ3ASrD9GCG7O3UIihcovCNihIXjDs"
-        case .beta: return "AIzaSyDj2cQ3ASrD9GCG7O3UIihcovCNihIXjDs"
-        case .production: return "AIzaSyDj2cQ3ASrD9GCG7O3UIihcovCNihIXjDs"
+        case .alpha: "AIzaSyDj2cQ3ASrD9GCG7O3UIihcovCNihIXjDs"
+        case .beta: "AIzaSyDj2cQ3ASrD9GCG7O3UIihcovCNihIXjDs"
+        case .production: "AIzaSyDj2cQ3ASrD9GCG7O3UIihcovCNihIXjDs"
         }
     }
 }

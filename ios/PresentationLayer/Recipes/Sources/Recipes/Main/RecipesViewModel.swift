@@ -50,18 +50,12 @@ final class RecipesViewModel: BaseViewModel, ViewModel, ObservableObject {
     
     private func openRecipe(_ recipe: Recipe) {
         switch recipe {
-        case .counter:
-            flowController?.handleFlow(RecipesFlow.recipes(.showCounter))
-        case .books:
-            flowController?.handleFlow(RecipesFlow.recipes(.showBooks))
-        case .rocketLaunches:
-            flowController?.handleFlow(RecipesFlow.recipes(.showRocketLaunches))
-        case .skeleton:
-            flowController?.handleFlow(RecipesFlow.recipes(.showSkeleton))
-        case .images:
-            flowController?.handleFlow(RecipesFlow.recipes(.showImages))
-        case .maps:
-            flowController?.handleFlow(RecipesFlow.recipes(.showMaps))
+        case .counter: flowController?.handleFlow(RecipesFlow.recipes(.showCounter))
+        case .books: flowController?.handleFlow(RecipesFlow.recipes(.showBooks))
+        case .rocketLaunches: flowController?.handleFlow(RecipesFlow.recipes(.showRocketLaunches))
+        case .skeleton: flowController?.handleFlow(RecipesFlow.recipes(.showSkeleton))
+        case .images: flowController?.handleFlow(RecipesFlow.recipes(.showImages))
+        case .maps: flowController?.handleFlow(RecipesFlow.recipes(.showMaps))
         }
     }
 }
