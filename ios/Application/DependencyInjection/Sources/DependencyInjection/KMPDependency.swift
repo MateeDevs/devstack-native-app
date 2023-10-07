@@ -1,6 +1,6 @@
 //
-//  Created by Jan Kusy on 17.03.2021.
-//  Copyright © 2021 Matee. All rights reserved.
+//  Created by Petr Chmelar on 06.10.2023
+//  Copyright © 2023 Matee. All rights reserved.
 //
 
 import DevstackKmpShared
@@ -8,16 +8,16 @@ import Foundation
 import OSLog
 import Utilities
 
-public protocol KMPDependency {
+protocol KMPDependency {
     func get<T: AnyObject>(_ type: T.Type) -> T
     func getProtocol<T: AnyObject>(_ proto: Protocol) -> T
 }
 
-public final class KMPKoinDependency: KMPDependency {
+final class KMPKoinDependency: KMPDependency {
     
     private var _koin: Koin_coreKoin?
     
-    public init() {
+    init() {
         startKoin()
     }
     
@@ -30,11 +30,11 @@ public final class KMPKoinDependency: KMPDependency {
         _koin = koinApplication.koin
     }
     
-    public func getProtocol<T: AnyObject>(_ proto: Protocol) -> T {
+    func getProtocol<T: AnyObject>(_ proto: Protocol) -> T {
         _koin?.get(objCProtocol: proto) as! T // swiftlint:disable:this force_cast
     }
     
-    public func get<T: AnyObject>(_ type: T.Type) -> T {
+    func get<T: AnyObject>(_ type: T.Type) -> T {
         _koin?.get(objCClass: type) as! T // swiftlint:disable:this force_cast
     }
 }

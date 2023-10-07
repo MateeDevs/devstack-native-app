@@ -7,10 +7,11 @@
 import Atlantis
 #endif
 
+import DependencyInjection
+import Factory
 import KeychainProvider
 import NetworkProvider
 import OSLog
-import Resolver
 import SharedDomain
 import UIKit
 import UIToolkit
@@ -31,12 +32,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     ) -> Bool {
         
         setupEnvironment()
-        
-        // Register all dependencies
-        Resolver.registerProviders(application: application, appDelegate: self, networkProviderDelegate: self)
-        Resolver.registerRepositories()
-        Resolver.registerUseCases()
-        Resolver.registerKMPUseCases(kmp: KMPKoinDependency())
         
         // Clear keychain on first run
         clearKeychain()
@@ -112,15 +107,12 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: Clear keychain
     private func clearKeychain() {
-        let keychainProvider: KeychainProvider = Resolver.resolve()
-        let userDefaultsProvider: UserDefaultsProvider = Resolver.resolve()
-        
         do {
-            let _: Bool = try userDefaultsProvider.read(.hasRunBefore)
+            let _: Bool = try Container.shared.userDefaultsProvider().read(.hasRunBefore)
         } catch UserDefaultsProviderError.valueForKeyNotFound {
             do {
-                try keychainProvider.deleteAll()
-                try userDefaultsProvider.update(.hasRunBefore, value: true)
+                try Container.shared.keychainProvider().deleteAll()
+                try Container.shared.userDefaultsProvider().update(.hasRunBefore, value: true)
             } catch {}
         } catch {}
     }

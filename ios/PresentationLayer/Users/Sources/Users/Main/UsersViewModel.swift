@@ -3,7 +3,8 @@
 //  Copyright © 2022 Matee. All rights reserved.
 //
 
-import Resolver
+import DependencyInjection
+import Factory
 import SharedDomain
 import SwiftUI
 import UIToolkit
@@ -13,7 +14,7 @@ final class UsersViewModel: BaseViewModel, ViewModel, ObservableObject {
     // MARK: Dependencies
     private weak var flowController: FlowController?
     
-    @Injected private(set) var getUsersUseCase: GetUsersUseCase
+    @Injected(\.getUsersUseCase) private(set) var getUsersUseCase
 
     init(flowController: FlowController?) {
         self.flowController = flowController

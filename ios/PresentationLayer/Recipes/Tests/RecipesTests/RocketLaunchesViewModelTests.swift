@@ -3,8 +3,9 @@
 //  Copyright © 2022 Matee. All rights reserved.
 //
 
+import DependencyInjection
+import Factory
 @testable import Recipes
-import Resolver
 @testable import SharedDomain
 import UIToolkit
 import XCTest
@@ -19,7 +20,8 @@ final class RocketLaunchesViewModelTests: XCTestCase {
     private let getRocketLaunchesUseCase = GetRocketLaunchesUseCaseSpy()
     
     private func createViewModel() -> RocketLaunchesViewModel {
-        Resolver.register { self.getRocketLaunchesUseCase as GetRocketLaunchesUseCase }
+        Container.shared.reset()
+        Container.shared.getRocketLaunchesUseCase.register { self.getRocketLaunchesUseCase }
         
         return RocketLaunchesViewModel(flowController: fc)
     }

@@ -49,7 +49,7 @@
                BlueprintIdentifier = "AuthToolkitTests"
                BuildableName = "AuthToolkitTests"
                BlueprintName = "AuthToolkitTests"
-               ReferencedContainer = "container:DataLayer/Toolkits/AuthToolkit">
+               ReferencedContainer = "container:DataLayer/Toolkits/AnalyticsToolkit/AuthToolkit">
             </BuildableReference>
          </TestableReference>
          <TestableReference

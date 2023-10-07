@@ -39,12 +39,12 @@ struct CounterView: View {
 }
 
 #if DEBUG
-import Resolver
-import SharedDomainMocks
+import DependencyInjectionMocks
+import Factory
 
 struct CounterView_Previews: PreviewProvider {
     static var previews: some View {
-        Resolver.registerUseCaseMocks()
+        Container.shared.registerUseCaseMocks()
         
         let vm = CounterViewModel(flowController: nil)
         return PreviewGroup {

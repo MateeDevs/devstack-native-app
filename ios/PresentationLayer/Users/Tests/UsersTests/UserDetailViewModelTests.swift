@@ -3,7 +3,8 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-import Resolver
+import DependencyInjection
+import Factory
 @testable import SharedDomain
 import UIToolkit
 @testable import Users
@@ -21,8 +22,9 @@ final class UserDetailViewModelTests: XCTestCase {
     private let trackAnalyticsEventUseCase = TrackAnalyticsEventUseCaseSpy()
     
     private func createViewModel() -> UserDetailViewModel {
-        Resolver.register { self.getUserUseCase as GetUserUseCase }
-        Resolver.register { self.trackAnalyticsEventUseCase as TrackAnalyticsEventUseCase }
+        Container.shared.reset()
+        Container.shared.getUserUseCase.register { self.getUserUseCase }
+        Container.shared.trackAnalyticsEventUseCase.register { self.trackAnalyticsEventUseCase }
         
         return UserDetailViewModel(userId: User.stub.id, flowController: fc)
     }

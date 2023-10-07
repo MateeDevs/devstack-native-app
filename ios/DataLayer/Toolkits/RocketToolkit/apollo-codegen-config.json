@@ -28,6 +28,7 @@
       "path": "./Sources/RocketToolkit/NetworkModels/Apollo",
       "moduleType": {
         "embeddedInTarget": {
+          "accessModifier" : "public",
           "name": "RocketToolkit"
         }
       }

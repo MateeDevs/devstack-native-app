@@ -3,7 +3,8 @@
 //  Copyright © 2022 Matee. All rights reserved.
 //
 
-import Resolver
+import DependencyInjection
+import Factory
 import SharedDomain
 import SwiftUI
 import UIToolkit
@@ -14,8 +15,8 @@ final class UserDetailViewModel: BaseViewModel, ViewModel, ObservableObject {
     private var userId: String
     private weak var flowController: FlowController?
     
-    @Injected private(set) var getUserUseCase: GetUserUseCase
-    @Injected private(set) var trackAnalyticsEventUseCase: TrackAnalyticsEventUseCase
+    @Injected(\.getUserUseCase) private(set) var getUserUseCase
+    @Injected(\.trackAnalyticsEventUseCase) private(set) var trackAnalyticsEventUseCase
 
     init(userId: String, flowController: FlowController?) {
         self.userId = userId

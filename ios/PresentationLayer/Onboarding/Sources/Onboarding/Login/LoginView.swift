@@ -44,14 +44,14 @@ struct LoginView: View {
 }
 
 #if DEBUG
-import Resolver
-import SharedDomainMocks
+import DependencyInjectionMocks
+import Factory
 import Utilities
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         Environment.locale = .init(identifier: "cs")
-        Resolver.registerUseCaseMocks()
+        Container.shared.registerUseCaseMocks()
         
         let vm = LoginViewModel(flowController: nil)
         return PreviewGroup {

@@ -3,8 +3,9 @@
 //  Copyright © 2022 Matee. All rights reserved.
 //
 
+import DependencyInjection
 import DevstackKmpShared
-import Resolver
+import Factory
 import SharedDomain
 import SwiftUI
 import UIToolkit
@@ -14,8 +15,8 @@ final class BooksViewModel: BaseViewModel, ViewModel, ObservableObject {
     // MARK: Dependencies
     private weak var flowController: FlowController?
 
-    @Injected private(set) var getBooksUseCase: GetBooksUseCase
-    @Injected private(set) var refreshBooksUseCase: RefreshBooksUseCase
+    @Injected(\.getBooksUseCase) private(set) var getBooksUseCase
+    @Injected(\.refreshBooksUseCase) private(set) var refreshBooksUseCase
 
     init(flowController: FlowController?) {
         self.flowController = flowController

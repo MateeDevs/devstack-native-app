@@ -3,8 +3,9 @@
 //  Copyright © 2023 Matee. All rights reserved.
 //
 
+import DependencyInjection
+import Factory
 @testable import Recipes
-import Resolver
 import SharedDomain
 import SharedDomainMocks
 import DevstackKmpShared
@@ -18,9 +19,9 @@ final class BooksViewModelTests: XCTestCase {
 
     private let fc = FlowControllerMock<RecipesFlow>(navigationController: UINavigationController())
     
-    private let getBooksUseCaseMock = GetBooksUseCaseMock()
-    private let refreshBooksUseCaseMock = RefreshBooksUseCaseMock(
-        executeReturnValue:  ResultSuccess(data: KotlinUnit())
+    private let getBooksUseCase = GetBooksUseCaseMock()
+    private let refreshBooksUseCase = RefreshBooksUseCaseMock(
+        executeReturnValue: ResultSuccess(data: KotlinUnit())
     )
     
     private func createViewModel() -> BooksViewModel {
@@ -30,15 +31,16 @@ final class BooksViewModelTests: XCTestCase {
     }
     
     private func registerKMPMocks() {
-        Resolver.register { self.getBooksUseCaseMock as GetBooksUseCase }
-        Resolver.register { self.refreshBooksUseCaseMock as RefreshBooksUseCase }
+        Container.shared.reset()
+        Container.shared.getBooksUseCase.register { self.getBooksUseCase }
+        Container.shared.refreshBooksUseCase.register { self.refreshBooksUseCase }
     }
     
     // MARK: Tests
     
     func testEmptyRefreshBooks() async {
         // given
-        refreshBooksUseCaseMock.executeReturnValue = ResultSuccess(data: KotlinUnit())
+        refreshBooksUseCase.executeReturnValue = ResultSuccess(data: KotlinUnit())
         
         // when
         let viewModel = createViewModel()
@@ -50,7 +52,7 @@ final class BooksViewModelTests: XCTestCase {
     
     func testErrorRefreshBooks() async {
         // given
-        refreshBooksUseCaseMock.executeReturnValue = ResultError(
+        refreshBooksUseCase.executeReturnValue = ResultError(
             error: TestError(message: nil, throwable: nil), data: nil
         )
         
@@ -64,14 +66,13 @@ final class BooksViewModelTests: XCTestCase {
     
     func testFetchBooks() async {
         // given
-        let books = [Book(id: "1", name: "Kniha", author: "David", pages: 25)]
-        getBooksUseCaseMock.executeReturnValue = books
+        getBooksUseCase.executeReturnValue = .stub
         
         // when
         let viewModel = createViewModel()
         await viewModel.awaitAllTasks()
         
         // then
-        XCTAssertEqual(viewModel.state.books, books)
+        XCTAssertEqual(viewModel.state.books, .stub)
     }
 }

@@ -51,7 +51,7 @@ FIXME
 - DataLayer provides required data via Repositories and Providers from database / network / etc.
 - Network communication is based on URLSession and native Decodable is used for mapping from JSON
 - Database models are represented via [Realm](https://github.com/realm/realm-cocoa) object models
-- Providers/Repositories/UseCases are injected via [Resolver](https://github.com/hmlongco/Resolver)
+- Providers/Repositories/UseCases are registered/resolved via [Factory](https://github.com/hmlongco/Factory)
 
 ## PresentationLayer (SwiftUI + MVI + async/await)
 - PresentationLayer is represented by ViewModels + Views and FlowControllers

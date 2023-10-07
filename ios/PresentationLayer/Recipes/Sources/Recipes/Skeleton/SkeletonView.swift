@@ -25,13 +25,8 @@ struct SkeletonView: View {
 }
 
 #if DEBUG
-import Resolver
-import SharedDomainMocks
-
 struct SkeletonView_Previews: PreviewProvider {
     static var previews: some View {
-        Resolver.registerUseCaseMocks()
-        
         let vm = SkeletonViewModel(flowController: nil)
         return PreviewGroup {
             SkeletonView(viewModel: vm)

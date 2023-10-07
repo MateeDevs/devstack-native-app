@@ -4,7 +4,6 @@
 //
 
 @testable import Recipes
-import Resolver
 import SharedDomain
 import UIToolkit
 import XCTest
