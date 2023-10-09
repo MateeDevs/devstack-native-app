@@ -7,7 +7,7 @@ import cz.matee.devstack.extensions.libs
 import org.gradle.api.Project
 
 internal fun Project.configureKotlinAndroid(
-    commonExtension: CommonExtension<*, *, *, *>,
+    commonExtension: CommonExtension<*, *, *, *, *>,
 ) = with(commonExtension) {
     compileSdk = libs.versions.sdk.compile.get().toInt()
 
@@ -15,18 +15,10 @@ internal fun Project.configureKotlinAndroid(
         minSdk = libs.versions.sdk.min.get().toInt()
     }
 
-    kotlinOptions {
-        freeCompilerArgs = freeCompilerArgs + listOf(
-            // Here add all compose experimental options used in the app
-//            "-opt-in=androidx.compose.animation.ExperimentalAnimationApi",
-//            "-opt-in=androidx.lifecycle.compose.ExperimentalLifecycleComposeApi",
-//            "-opt-in=androidx.compose.ui.ExperimentalComposeUiApi",
-//            "-opt-in=androidx.compose.foundation.ExperimentalFoundationApi",
-//            "-opt-in=androidx.compose.material.ExperimentalMaterialApi",
-        )
-
-        jvmTarget = ProjectConstants.javaVersion.toString()
-    }
+    // TODO: https://youtrack.jetbrains.com/issue/KTIJ-24271
+//    kotlinOptions {
+//        jvmTarget = ProjectConstants.javaVersion.toString()
+//    }
 
     compileOptions {
         sourceCompatibility = ProjectConstants.javaVersion

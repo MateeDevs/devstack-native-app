@@ -77,7 +77,6 @@ fun KotlinMultiplatformExtension.kmm(
         KmmConfig.getSupportedMobilePlatforms(this@kmm, project).forEach {
             it.binaries.framework {
                 if (this.buildType == KmmConfig.getCurrentNativeBuildType(project)) {
-                    linkerOpts += "-ld64"
                     baseName = nativeName
                     isStatic = false
                     xcf.add(this)
@@ -88,7 +87,6 @@ fun KotlinMultiplatformExtension.kmm(
             KmmConfig.getSupportedTvPlatforms(this@kmm, project).forEach {
                 it.binaries.framework {
                     if (this.buildType == KmmConfig.getCurrentNativeBuildType(project)) {
-                        linkerOpts += "-ld64"
                         baseName = nativeName
                         isStatic = false
                         xcf.add(this)

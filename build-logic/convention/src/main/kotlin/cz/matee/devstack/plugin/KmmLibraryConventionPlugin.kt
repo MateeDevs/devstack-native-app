@@ -96,20 +96,6 @@ class KmmLibraryConventionPlugin : Plugin<Project> {
                 }
             }
 
-            // Fix for Gradle 8.0 bug "Consumable configurations must have unique attributes"
-            // See https://youtrack.jetbrains.com/issue/KT-55751
-            val uniqueAttribute = Attribute.of("uniqueAttribute", String::class.java)
-            configurations.named("releaseFrameworkIosFat").configure {
-                attributes {
-                    attribute(uniqueAttribute, "release-all")
-                }
-            }
-            configurations.named("debugFrameworkIosArm64").configure {
-                attributes {
-                    attribute(uniqueAttribute, "debug-all")
-                }
-            }
-
             extensions.configure<LibraryExtension> {
                 configureKotlinAndroid(this)
             }

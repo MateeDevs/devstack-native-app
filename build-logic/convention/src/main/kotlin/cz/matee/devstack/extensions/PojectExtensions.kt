@@ -33,11 +33,8 @@ fun Project.pluginManager(block: PluginManager.() -> Unit) {
     pluginManager.apply(block)
 }
 
-fun CommonExtension<*, *, *, *>.kotlinOptions(block: KotlinJvmOptions.() -> Unit) {
-    (this as ExtensionAware).extensions.configure("kotlinOptions", block)
-}
 
-fun Project.android(block: CommonExtension<*, *, *, *>.() -> Unit) {
+fun Project.android(block: CommonExtension<*, *, *, *, *>.() -> Unit) {
     extension("android", block)
 }
 
