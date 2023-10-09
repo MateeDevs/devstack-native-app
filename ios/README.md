@@ -35,16 +35,14 @@ FIXME
 FIXME
 
 ## Dependencies
-- All code dependencies are managed via [Swift Package Manager](https://swift.org/package-manager/)
-- All tools (SwiftGen, SwiftLint, etc.) are managed via [Mint](https://github.com/yonaskolb/Mint)
+- All code dependencies and tools are managed via [Swift Package Manager](https://swift.org/package-manager/)
 - You can use the `scripts/setup.sh` for quick setup of all required tools
 - There is also `scripts/rename.sh` for quick renaming from DevStack to YourProject
 
 ## Kotlin Multiplatform
 - Part of the application is based on Kotlin Multiplatform
 - You will need [JDK 11](https://www.azul.com/downloads) to build the project
-- There is `scripts/build-kmp.sh` that is producing `DomainLayer/DevstackKmpShared.xcframework`
-- It is executed automatically with every build as a part of the build's Pre-actions
+- There is `scripts/build-kmp.sh` that produces `DomainLayer/DevstackKmpShared.xcframework`
 
 ## Architecture
 - Whole application is separated into three layers according to the Clean Architecture principles
@@ -69,7 +67,7 @@ FIXME
 ## Localization
 - All strings in the application are localized and shared with the Android team via [Twine](https://github.com/scelis/twine)
 - Strings are stored in the `twine/strings.txt` file
-- The build phase script then generates appropriate `Localizable.strings` files from the mentioned `strings.txt` file
+- TwinePlugin then generates appropriate `Localizable.strings` files from the mentioned `strings.txt` file
 - When modifying `strings.txt` it is required to comply with the specified syntax and to pull/push all the changes frequently
 
 ## Push Notifications
@@ -97,6 +95,3 @@ FIXME
 ## Tests
 - All newly created ViewModels / UseCases / Repositories should have at least a basic set of tests
 - [Sourcery](https://github.com/krzysztofzablocki/Sourcery) is used for automatic mock generation
-
-## TODO
-- Replace Mint with SPM Extensible Build Tools when all tools are ready

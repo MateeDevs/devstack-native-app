@@ -7,7 +7,7 @@
 # Fourth argument - ARM64SIM: true / false
 #
 # Example:
-# ./scripts/build-kmp.sh debug false true true      -> debug configuration with arm64 + arm64sim architectures (local builds)
+# ./scripts/build-kmp.sh debug false true true      -> debug configuration with arm64 + arm64sim architectures (local builds) - default
 # ./scripts/build-kmp.sh debug true false false     -> debug configuration with x86 architecture (tests on Intel based CI)
 # ./scripts/build-kmp.sh release false true false   -> release configuration with arm64 architecture (TestFlight/AppStore builds)
 #
@@ -16,10 +16,10 @@
 cd "$(dirname "$0")"
 
 # Read input arguments
-configuration=$1
-x86=$2
-arm64=$3
-arm64sim=$4
+configuration=${1:-debug}
+x86=${2:-false}
+arm64=${3:-true}
+arm64sim=${4:-true}
 
 # Build and copy XCFramework
 cd ../..

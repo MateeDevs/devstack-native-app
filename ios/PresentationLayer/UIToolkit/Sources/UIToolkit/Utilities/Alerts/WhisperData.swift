@@ -35,9 +35,9 @@ public enum WhisperStyle {
     
     var color: Color {
         switch self {
-        case .info: return AppTheme.Colors.whisperBackgroundInfo
-        case .success: return AppTheme.Colors.whisperBackgroundSuccess
-        case .error: return AppTheme.Colors.whisperBackgroundError
+        case .info: AppTheme.Colors.whisperBackgroundInfo
+        case .success: AppTheme.Colors.whisperBackgroundSuccess
+        case .error: AppTheme.Colors.whisperBackgroundError
         }
     }
 }

@@ -20,12 +20,12 @@ struct Arguments {
 }
 
 extension Arguments {
-    var dataModel: [CustomStringConvertible] {
+    var dataModel: [String] {
         [
             configuration.rawValue,
-            architectures.contains(.x86),
-            architectures.contains(.arm64),
-            architectures.contains(.arm64sim)
+            architectures.contains(.x86).description,
+            architectures.contains(.arm64).description,
+            architectures.contains(.arm64sim).description
         ]
     }
 }

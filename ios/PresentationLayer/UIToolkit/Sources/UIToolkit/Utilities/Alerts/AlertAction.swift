@@ -12,14 +12,10 @@ public enum AlertAction: Equatable {
 
     public static func == (lhs: AlertAction, rhs: AlertAction) -> Bool {
         switch (lhs, rhs) {
-        case let (.showWhisper(lhsWhisper), .showWhisper(rhsWhisper)):
-            return lhsWhisper == rhsWhisper
-        case (.hideWhisper, .hideWhisper):
-            return true
-        case let (.showAlert(lhsAlert), .showAlert(rhsAlert)):
-            return lhsAlert == rhsAlert
-        default:
-            return false
+        case let (.showWhisper(lhsWhisper), .showWhisper(rhsWhisper)): lhsWhisper == rhsWhisper
+        case (.hideWhisper, .hideWhisper): true
+        case let (.showAlert(lhsAlert), .showAlert(rhsAlert)): lhsAlert == rhsAlert
+        default: false
         }
     }
 }

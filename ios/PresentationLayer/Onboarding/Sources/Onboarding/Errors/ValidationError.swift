@@ -12,11 +12,11 @@ extension ValidationError: LocalizedError {
         switch self {
         case .email(let reason):
             switch reason {
-            case .isEmpty: return L10n.invalid_email
+            case .isEmpty: L10n.invalid_email
             }
         case .password(let reason):
             switch reason {
-            case .isEmpty: return L10n.invalid_password
+            case .isEmpty: L10n.invalid_password
             }
         }
     }

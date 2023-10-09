@@ -22,6 +22,9 @@ struct TwinePlugin: BuildToolPlugin {
                 displayName: "Run Twine",
                 executable: rootPath.appending(["scripts", "twine.sh"]),
                 arguments: [],
+                environment: [
+                  "DERIVED_SOURCES_DIR": context.pluginWorkDirectory
+                ],
                 outputFilesDirectory: context.pluginWorkDirectory
             )
         ]

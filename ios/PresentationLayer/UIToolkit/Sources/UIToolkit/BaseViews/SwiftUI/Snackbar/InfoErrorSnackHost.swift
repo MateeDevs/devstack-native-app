@@ -14,22 +14,22 @@ public enum InfoErrorSnackVisuals: SnackVisuals {
     
     public var message: String {
         switch self {
-        case .info(message: let message, _): return message
-        case .error(message: let message, _, _): return message
+        case .info(message: let message, _): message
+        case .error(message: let message, _, _): message
         }
     }
     
     public var actionLabel: String? {
         switch self {
-        case .info: return nil
-        case .error(message: _, actionLabel: let actionLabel, duration: _): return actionLabel
+        case .info: nil
+        case .error(message: _, actionLabel: let actionLabel, duration: _): actionLabel
         }
     }
     
     public var duration: Int {
         switch self {
-        case .info(message: _, duration: let duration): return duration
-        case .error(message: _, actionLabel: _, duration: let duration): return duration
+        case .info(message: _, duration: let duration): duration
+        case .error(message: _, actionLabel: _, duration: let duration): duration
         }
     }
     
@@ -72,17 +72,15 @@ extension InfoErrorSnackVisuals {
     
     var backgroundColor: Color {
         switch self {
-            
-        case .info: return AppTheme.Colors.whisperBackgroundInfo
-        case .error: return AppTheme.Colors.toastErrorColor
+        case .info: AppTheme.Colors.whisperBackgroundInfo
+        case .error: AppTheme.Colors.toastErrorColor
         }
     }
     
     var foregroundColor: Color {
         switch self {
-            
-        case .info: return AppTheme.Colors.whisperMessage
-        case .error: return AppTheme.Colors.primaryButtonTitle
+        case .info: AppTheme.Colors.whisperMessage
+        case .error: AppTheme.Colors.primaryButtonTitle
         }
     }
 }

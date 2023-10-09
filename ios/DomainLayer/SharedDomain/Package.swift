@@ -1,4 +1,4 @@
-// swift-tools-version: 5.6
+// swift-tools-version: 5.7
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "SharedDomain",
     platforms: [
-        .iOS(.v14),
+        .iOS(.v15),
         .macOS(.v10_15)
     ],
     products: [
@@ -36,9 +36,6 @@ let package = Package(
             ],
             linkerSettings: [
                 .unsafeFlags(["-Xlinker", "-no_application_extension"])
-            ],
-            plugins: [
-                "KMPBuildPlugin"
             ]
         ),
         .target(
@@ -57,7 +54,15 @@ let package = Package(
         ),
         .plugin(
             name: "KMPBuildPlugin",
-            capability: .buildTool()
+            capability: .command(
+              intent: .custom(
+                verb: "generate-kmp-binary",
+                description: "Generates KMP xcframework"
+              ),
+              permissions: [
+                .writeToPackageDirectory(reason: "This command generates KMP xcframework")
+              ]
+            )
         ),
         .binaryTarget(
             name: "DevstackKmpShared",

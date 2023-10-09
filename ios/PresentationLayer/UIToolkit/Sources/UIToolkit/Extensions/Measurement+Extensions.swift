@@ -10,24 +10,24 @@ public extension Measurement where UnitType == Dimension {
     /// Predefined default unit for selected dimensions
     var defaultUnit: Measurement {
         switch unit {
-        case is UnitLength: return converted(to: UnitLength.kilometers)
-        case is UnitMass: return converted(to: UnitMass.kilograms)
-        case is UnitSpeed: return converted(to: UnitSpeed.kilometersPerHour)
-        case is UnitTemperature: return converted(to: UnitTemperature.celsius)
-        case is UnitVolume: return converted(to: UnitVolume.liters)
-        default: return self
+        case is UnitLength: converted(to: UnitLength.kilometers)
+        case is UnitMass: converted(to: UnitMass.kilograms)
+        case is UnitSpeed: converted(to: UnitSpeed.kilometersPerHour)
+        case is UnitTemperature: converted(to: UnitTemperature.celsius)
+        case is UnitVolume: converted(to: UnitVolume.liters)
+        default: self
         }
     }
     
     /// Predefined default minimum/maximum fraction digits for selected dimensions
     private var defaultFractionDigits: (minimum: Int, maximum: Int) {
         switch unit {
-        case is UnitLength: return (0, 0)
-        case is UnitMass: return (0, 0)
-        case is UnitSpeed: return (0, 0)
-        case is UnitTemperature: return (0, 0)
-        case is UnitVolume: return (0, 0)
-        default: return (0, 0)
+        case is UnitLength: (0, 0)
+        case is UnitMass: (0, 0)
+        case is UnitSpeed: (0, 0)
+        case is UnitTemperature: (0, 0)
+        case is UnitVolume: (0, 0)
+        default: (0, 0)
         }
     }
     

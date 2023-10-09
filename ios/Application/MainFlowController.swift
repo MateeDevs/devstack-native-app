@@ -86,10 +86,8 @@ final class MainFlowController: FlowController, ProfileFlowControllerDelegate {
     
     func handleDeeplink(for notification: PushNotification) {
         switch notification.type {
-        case .userDetail:
-            handleUserDetailDeeplink(userId: notification.entityId)
-        default:
-            return
+        case .userDetail: handleUserDetailDeeplink(userId: notification.entityId)
+        default: return
         }
     }
     

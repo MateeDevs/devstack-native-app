@@ -45,16 +45,11 @@ public extension ApolloClient {
 extension GraphQLResult {
     func isFinalForCachePolicy(_ cachePolicy: CachePolicy) -> Bool {
         switch cachePolicy {
-        case .returnCacheDataElseFetch:
-            return true
-        case .fetchIgnoringCacheData:
-            return source == .server
-        case .fetchIgnoringCacheCompletely:
-            return source == .server
-        case .returnCacheDataDontFetch:
-            return source == .cache
-        case .returnCacheDataAndFetch:
-            return source == .server
+        case .returnCacheDataElseFetch: true
+        case .fetchIgnoringCacheData: source == .server
+        case .fetchIgnoringCacheCompletely: source == .server
+        case .returnCacheDataDontFetch: source == .cache
+        case .returnCacheDataAndFetch: source == .server
         }
     }
 }

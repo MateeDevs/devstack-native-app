@@ -28,12 +28,9 @@ public extension Alert {
 public extension Alert.Button {
     init(_ action: AlertData.Action) {
         switch action.style {
-        case .default:
-            self = .default(Text(action.title), action: action.handler)
-        case .cancel:
-            self = .cancel(Text(action.title), action: action.handler)
-        case .destruction:
-            self = .destructive(Text(action.title), action: action.handler)
+        case .default: self = .default(Text(action.title), action: action.handler)
+        case .cancel: self = .cancel(Text(action.title), action: action.handler)
+        case .destruction: self = .destructive(Text(action.title), action: action.handler)
         }
     }
 }

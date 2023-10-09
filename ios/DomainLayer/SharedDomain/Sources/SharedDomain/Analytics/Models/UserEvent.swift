@@ -10,7 +10,7 @@ public enum UserEvent {
 extension UserEvent: Trackable {
     public var analyticsEvent: AnalyticsEvent {
         switch self {
-        case .userDetail(let id): return .init(name: "user_detail", params: ["id": id])
+        case .userDetail(let id): .init(name: "user_detail", params: ["id": id])
         }
     }
 }
