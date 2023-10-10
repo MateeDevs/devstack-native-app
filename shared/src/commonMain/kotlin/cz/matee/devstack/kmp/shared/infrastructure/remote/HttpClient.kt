@@ -5,6 +5,7 @@ import cz.matee.devstack.kmp.shared.infrastructure.model.LoginDto
 import cz.matee.devstack.kmp.shared.system.Config
 import io.ktor.client.HttpClient
 import io.ktor.client.call.HttpClientCall
+import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.defaultRequest
 import io.ktor.client.plugins.logging.LogLevel
@@ -32,7 +33,7 @@ import kotlinx.serialization.json.Json as JsonConfig
 internal object HttpClient {
     private val unauthorizedEndpoints = listOf("/api/auth/login", "/api/auth/registration")
 
-    fun init(authDao: AuthDao, config: Config) = HttpClient {
+    fun init(authDao: AuthDao, config: Config, engine: HttpClientEngine) = HttpClient(engine) {
         expectSuccess = true
         developmentMode = !config.isRelease
         followRedirects = false

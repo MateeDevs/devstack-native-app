@@ -5,10 +5,12 @@ import cz.matee.devstack.kmp.shared.system.Config
 import cz.matee.devstack.kmp.shared.system.ConfigImpl
 import cz.matee.devstack.kmp.shared.system.Log
 import cz.matee.devstack.kmp.shared.system.Logger
+import io.ktor.client.engine.android.Android
 import org.koin.dsl.module
 
 actual val platformModule = module {
     single<Config> { ConfigImpl() }
     single { DriverFactory(get()) }
     single<Logger> { Log }
+    single { Android.create() }
 }

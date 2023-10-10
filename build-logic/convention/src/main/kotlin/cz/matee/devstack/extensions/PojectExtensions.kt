@@ -6,13 +6,11 @@ import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
 import org.gradle.api.Action
 import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Project
-import org.gradle.api.plugins.ExtensionAware
 import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.plugins.PluginManager
 import org.gradle.api.provider.Provider
 import org.gradle.kotlin.dsl.the
 import org.gradle.plugin.use.PluginDependency
-import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.dsl.kotlinExtension
 
@@ -33,11 +31,7 @@ fun Project.pluginManager(block: PluginManager.() -> Unit) {
     pluginManager.apply(block)
 }
 
-fun CommonExtension<*, *, *, *>.kotlinOptions(block: KotlinJvmOptions.() -> Unit) {
-    (this as ExtensionAware).extensions.configure("kotlinOptions", block)
-}
-
-fun Project.android(block: CommonExtension<*, *, *, *>.() -> Unit) {
+fun Project.android(block: CommonExtension<*, *, *, *, *>.() -> Unit) {
     extension("android", block)
 }
 

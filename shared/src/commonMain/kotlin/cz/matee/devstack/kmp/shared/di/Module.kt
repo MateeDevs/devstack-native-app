@@ -78,7 +78,7 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}): KoinApplication {
 private val commonModule = module {
 
     // General
-    single { HttpClient.init(get(), get()) }
+    single { HttpClient.init(get(), get(), get()) }
     single { Settings() }
 
     // UseCases

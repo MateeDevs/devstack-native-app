@@ -6,7 +6,7 @@ import cz.matee.devstack.constants.ProjectConstants
 import org.gradle.api.plugins.ExtensionAware
 import org.gradle.kotlin.dsl.extra
 
-internal fun <T : BuildType> CommonExtension<*, T, *, *>.configureBuildVariants() {
+internal fun <T : BuildType> CommonExtension<*, T, *, *, *>.configureBuildVariants() {
     buildTypes {
         debug {
             splits.abi.isEnable = false
