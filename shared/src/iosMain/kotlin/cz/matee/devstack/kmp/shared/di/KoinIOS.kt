@@ -5,6 +5,7 @@ import cz.matee.devstack.kmp.shared.system.Config
 import cz.matee.devstack.kmp.shared.system.ConfigImpl
 import cz.matee.devstack.kmp.shared.system.Log
 import cz.matee.devstack.kmp.shared.system.Logger
+import io.ktor.client.engine.darwin.Darwin
 import kotlinx.cinterop.ObjCClass
 import kotlinx.cinterop.ObjCProtocol
 import kotlinx.cinterop.getOriginalKotlinClass
@@ -25,6 +26,7 @@ actual val platformModule = module {
     single<Config> { ConfigImpl() }
     single { DriverFactory() }
     single<Logger> { Log }
+    single { Darwin.create() }
 }
 
 fun Koin.get(objCProtocol: ObjCProtocol): Any {

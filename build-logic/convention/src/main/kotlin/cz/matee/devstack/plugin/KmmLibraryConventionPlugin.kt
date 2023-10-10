@@ -12,7 +12,6 @@ import cz.matee.devstack.extensions.libs
 import cz.matee.devstack.extensions.pluginManager
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.attributes.Attribute
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.creating
 import org.gradle.kotlin.dsl.getValue

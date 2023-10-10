@@ -20,7 +20,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.paging.compose.collectAsLazyPagingItems
-import androidx.paging.compose.items
+import androidx.paging.compose.itemContentType
+import androidx.paging.compose.itemKey
 import cz.matee.devstack.kmp.android.shared.style.Values
 import cz.matee.devstack.kmp.android.shared.ui.ScreenTitle
 import cz.matee.devstack.kmp.android.users.navigation.UsersDestination
@@ -50,7 +51,12 @@ fun UserListScreen(navHostController: NavHostController, modifier: Modifier = Mo
         }
 
         LazyColumn {
-            items(users) { userData ->
+            items(
+                count = users.itemCount,
+                key = users.itemKey(),
+                contentType = users.itemContentType(),
+            ) { index ->
+                val userData = users[index]
                 if (userData != null) {
                     UserItem(userData, onClick = { onUserItemClick(userData) })
                 }

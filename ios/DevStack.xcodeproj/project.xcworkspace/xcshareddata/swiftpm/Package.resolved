@@ -91,6 +91,15 @@
       }
     },
     {
+      "identity" : "googlemaps-sp",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/MateeDevs/GoogleMaps-SP.git",
+      "state" : {
+        "revision" : "0c1940aff2ca9da9d28598ae586234f3fff747ab",
+        "version" : "7.4.0"
+      }
+    },
+    {
       "identity" : "googleutilities",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/GoogleUtilities.git",
@@ -214,15 +223,6 @@
       "state" : {
         "revision" : "97de0b0320036607564af4a60025b48f8d041221",
         "version" : "1.5.0"
-      }
-    },
-    {
-      "identity" : "semaphore",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/groue/Semaphore",
-      "state" : {
-        "revision" : "f1c4a0acabeb591068dea6cffdd39660b86dec28",
-        "version" : "0.0.8"
       }
     },
     {
