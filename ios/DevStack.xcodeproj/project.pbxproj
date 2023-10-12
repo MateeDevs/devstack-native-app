@@ -98,6 +98,7 @@
 		4508333A28437FD600BC9460 /* Profile */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Profile; sourceTree = "<group>"; };
 		4508333B28437FE200BC9460 /* Recipes */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Recipes; sourceTree = "<group>"; };
 		4508334428454DA900BC9460 /* KMPDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMPDependency.swift; sourceTree = "<group>"; };
+		45238BDC2ACD7A5D0084E7E5 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		4524472627A417B1004853C8 /* WidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetView.swift; sourceTree = "<group>"; };
 		4534C1C42603D6AD0022ACF4 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		453580E52847E814007AEC9E /* GraphQLProvider */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = GraphQLProvider; sourceTree = "<group>"; };
@@ -282,6 +283,7 @@
 				456E73DD25F817FA007D9A6D /* Info.plist */,
 				459896B026129CB300C852E0 /* Info+Proxyman.plist */,
 				454F6EC226CE8B3500C386B8 /* InfoPlist.strings */,
+				45238BDC2ACD7A5D0084E7E5 /* PrivacyInfo.xcprivacy */,
 			);
 			path = Info;
 			sourceTree = "<group>";
