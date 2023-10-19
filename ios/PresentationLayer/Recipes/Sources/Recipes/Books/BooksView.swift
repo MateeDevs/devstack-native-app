@@ -8,9 +8,9 @@ import UIToolkit
 
 struct BooksView: View {
 
-    @ObservedObject private var viewModel: BooksViewModel
+    @ObservedObject private var viewModel: BooksMVIViewModel
 
-    init(viewModel: BooksViewModel) {
+    init(viewModel: BooksMVIViewModel) {
         self.viewModel = viewModel
     }
 
@@ -31,7 +31,9 @@ struct BooksView: View {
                 .listStyle(PlainListStyle())
             }
         }
-        .lifecycle(viewModel)
+        .onAppear {
+            viewModel.onAppear()
+        }
         .navigationTitle(L10n.books_view_toolbar_title)
     }
 }

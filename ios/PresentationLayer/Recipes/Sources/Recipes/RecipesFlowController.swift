@@ -55,7 +55,7 @@ extension RecipesFlowController {
     }
     
     private func showBooks() {
-        let vm = BooksViewModel(flowController: self)
+        let vm = BooksMVIViewModel(flowController: self)
         let vc = BaseHostingController(rootView: BooksView(viewModel: vm))
         navigationController.show(vc, sender: nil)
     }
