@@ -19,15 +19,6 @@
       }
     },
     {
-      "identity" : "apollo-ios-codegen",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apollographql/apollo-ios-codegen",
-      "state" : {
-        "revision" : "fce1a2195c7addc146548cffe75e1e7efc661b49",
-        "version" : "1.6.0"
-      }
-    },
-    {
       "identity" : "atlantis",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ProxymanApp/atlantis",
@@ -127,15 +118,6 @@
       }
     },
     {
-      "identity" : "inflectorkit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/mattt/InflectorKit",
-      "state" : {
-        "revision" : "d8cbcc04972690aaa5fc760a2b9ddb3e9f0decd7",
-        "version" : "1.0.0"
-      }
-    },
-    {
       "identity" : "interop-ios-for-google-sdks",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/interop-ios-for-google-sdks.git",
@@ -232,15 +214,6 @@
       "state" : {
         "revision" : "8f4d2753f0e4778c76d5f05ad16c74f707390531",
         "version" : "1.2.3"
-      }
-    },
-    {
-      "identity" : "swift-collections",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-collections",
-      "state" : {
-        "revision" : "f504716c27d2e5d4144fa4794b12129301d17729",
-        "version" : "1.0.3"
       }
     },
     {
