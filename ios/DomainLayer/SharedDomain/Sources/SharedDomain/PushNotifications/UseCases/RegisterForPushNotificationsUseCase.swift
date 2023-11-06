@@ -3,9 +3,10 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
+import Spyable
 import UserNotifications
 
-// sourcery: AutoMockable
+@Spyable
 public protocol RegisterForPushNotificationsUseCase {
     func execute(options: UNAuthorizationOptions, completionHandler: @escaping (Bool, Error?) -> Void)
 }

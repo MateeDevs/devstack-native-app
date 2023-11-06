@@ -3,15 +3,14 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-import SharedDomain
-import SharedDomainMocks
+@testable import SharedDomain
 import XCTest
 
 final class LogoutUseCaseTests: XCTestCase {
     
     // MARK: Dependencies
     
-    private let authRepository = AuthRepositoryMock()
+    private let authRepository = AuthRepositorySpy()
     
     // MARK: Tests
 

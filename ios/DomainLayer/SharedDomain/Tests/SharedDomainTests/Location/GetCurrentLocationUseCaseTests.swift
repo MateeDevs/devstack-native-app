@@ -4,15 +4,14 @@
 //
 
 import CoreLocation
-import SharedDomain
-import SharedDomainMocks
+@testable import SharedDomain
 import XCTest
 
 final class GetCurrentLocationUseCaseTests: XCTestCase {
     
     // MARK: Dependencies
     
-    private let locationRepository = LocationRepositoryMock()
+    private let locationRepository = LocationRepositorySpy()
     
     // MARK: Tests
 

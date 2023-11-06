@@ -5,7 +5,6 @@
 
 import CoreLocation
 
-// sourcery: AutoMockable
 public protocol LocationProvider {
     
     /// Check whether the location services are enabled and authorized

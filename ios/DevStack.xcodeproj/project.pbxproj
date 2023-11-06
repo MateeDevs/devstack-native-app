@@ -1455,8 +1455,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/SwiftLint";
 			requirement = {
-				kind = revision;
-				revision = aba0f63704a666317c2456f7be93aa90d2f14113;
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.53.0;
 			};
 		};
 		459EF41025BF6EEF00C9DAC0 /* XCRemoteSwiftPackageReference "atlantis" */ = {

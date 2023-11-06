@@ -3,7 +3,7 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-import SharedDomain
+@testable import SharedDomain
 import SharedDomainMocks
 import XCTest
 
@@ -11,7 +11,7 @@ final class UpdateUserUseCaseTests: XCTestCase {
     
     // MARK: Dependencies
     
-    private let userRepository = UserRepositoryMock()
+    private let userRepository = UserRepositorySpy()
     
     // MARK: Tests
 

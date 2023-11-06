@@ -3,7 +3,9 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-// sourcery: AutoMockable
+import Spyable
+
+@Spyable
 public protocol AuthRepository {
     func login(_ data: LoginData) async throws
     func registration(_ data: RegistrationData) async throws

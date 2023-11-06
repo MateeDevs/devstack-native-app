@@ -5,8 +5,7 @@
 
 @testable import Recipes
 import Resolver
-import SharedDomain
-import SharedDomainMocks
+@testable import SharedDomain
 import UIToolkit
 import XCTest
 
@@ -17,7 +16,7 @@ final class RocketLaunchesViewModelTests: XCTestCase {
     
     private let fc = FlowControllerMock<RecipesFlow>(navigationController: UINavigationController())
     
-    private let getRocketLaunchesUseCase = GetRocketLaunchesUseCaseMock()
+    private let getRocketLaunchesUseCase = GetRocketLaunchesUseCaseSpy()
     
     private func createViewModel() -> RocketLaunchesViewModel {
         Resolver.register { self.getRocketLaunchesUseCase as GetRocketLaunchesUseCase }

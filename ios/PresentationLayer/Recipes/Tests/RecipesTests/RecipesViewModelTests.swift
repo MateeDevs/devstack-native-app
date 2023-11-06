@@ -6,7 +6,6 @@
 @testable import Recipes
 import Resolver
 import SharedDomain
-import SharedDomainMocks
 import UIToolkit
 import XCTest
 

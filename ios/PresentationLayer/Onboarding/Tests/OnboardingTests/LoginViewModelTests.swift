@@ -5,8 +5,7 @@
 
 @testable import Onboarding
 import Resolver
-import SharedDomain
-import SharedDomainMocks
+@testable import SharedDomain
 import UIToolkit
 import XCTest
 import Combine
@@ -20,8 +19,8 @@ final class LoginViewModelTests: XCTestCase {
     
     private var disposeBag = Set<AnyCancellable>()
     
-    private let loginUseCase = LoginUseCaseMock()
-    private let trackAnalyticsEventUseCase = TrackAnalyticsEventUseCaseMock()
+    private let loginUseCase = LoginUseCaseSpy()
+    private let trackAnalyticsEventUseCase = TrackAnalyticsEventUseCaseSpy()
     
     private func createViewModel() -> LoginViewModel {
         Resolver.register { self.loginUseCase as LoginUseCase }

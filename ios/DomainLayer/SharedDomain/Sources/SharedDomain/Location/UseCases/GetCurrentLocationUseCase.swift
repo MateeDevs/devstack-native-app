@@ -4,8 +4,9 @@
 //
 
 import CoreLocation
+import Spyable
 
-// sourcery: AutoMockable
+@Spyable
 public protocol GetCurrentLocationUseCase {
     func execute() -> AsyncStream<CLLocation>
 }

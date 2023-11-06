@@ -7,7 +7,6 @@ import Apollo
 import ApolloAPI
 import Foundation
 
-// sourcery: AutoMockable
 public protocol GraphQLProvider {
 
     /// Function for fetching a given GraphQL query.

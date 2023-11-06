@@ -8,7 +8,6 @@ public enum KeychainCoding: String, CaseIterable {
     case userId
 }
 
-// sourcery: AutoMockable
 public protocol KeychainProvider {
     
     /// Try to read a value for the given key

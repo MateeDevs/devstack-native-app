@@ -6,8 +6,7 @@
 import CoreLocation
 @testable import Profile
 import Resolver
-import SharedDomain
-import SharedDomainMocks
+@testable import SharedDomain
 import UIToolkit
 import XCTest
 
@@ -18,11 +17,11 @@ final class ProfileViewModelTests: XCTestCase {
     
     private let fc = FlowControllerMock<ProfileFlow>(navigationController: UINavigationController())
     
-    private let getProfileUseCase = GetProfileUseCaseMock()
-    private let getCurrentLocationUseCase = GetCurrentLocationUseCaseMock()
-    private let getRemoteConfigValueUseCase = GetRemoteConfigValueUseCaseMock()
-    private let registerForPushNotificationsUseCase = RegisterForPushNotificationsUseCaseMock()
-    private let logoutUseCase = LogoutUseCaseMock()
+    private let getProfileUseCase = GetProfileUseCaseSpy()
+    private let getCurrentLocationUseCase = GetCurrentLocationUseCaseSpy()
+    private let getRemoteConfigValueUseCase = GetRemoteConfigValueUseCaseSpy()
+    private let registerForPushNotificationsUseCase = RegisterForPushNotificationsUseCaseSpy()
+    private let logoutUseCase = LogoutUseCaseSpy()
     
     private func createViewModel() -> ProfileViewModel {
         Resolver.register { self.getProfileUseCase as GetProfileUseCase }

@@ -3,15 +3,14 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-import SharedDomain
-import SharedDomainMocks
+@testable import SharedDomain
 import XCTest
 
 final class TrackAnalyticsEventUseCaseTests: XCTestCase {
     
     // MARK: Dependencies
     
-    private let analyticsRepository = AnalyticsRepositoryMock()
+    private let analyticsRepository = AnalyticsRepositorySpy()
     
     // MARK: Tests
 

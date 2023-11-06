@@ -3,7 +3,9 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-// sourcery: AutoMockable
+import Spyable
+
+@Spyable
 public protocol UserRepository {
     func read(_ sourceType: SourceType, id: String) async throws -> User
     func read(_ sourceType: SourceType, page: Int, sortBy: String?) async throws -> [User]

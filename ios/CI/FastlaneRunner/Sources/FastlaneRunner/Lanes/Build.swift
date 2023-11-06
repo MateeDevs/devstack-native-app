@@ -53,6 +53,7 @@ extension Fastfile {
             archivePath: .userDefined("\(configuration.outputName).xcarchive"),
             xcargs: .userDefined(
                 "-skipPackagePluginValidation " +
+                "-skipMacroValidation" +
                 "-allowProvisioningUpdates " +
                 "-authenticationKeyID \(apiKey.id) " +
                 "-authenticationKeyIssuerID \(apiKey.issuerId) " +

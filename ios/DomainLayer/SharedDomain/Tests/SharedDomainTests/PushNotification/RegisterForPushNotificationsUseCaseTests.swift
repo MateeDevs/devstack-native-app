@@ -3,15 +3,14 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-import SharedDomain
-import SharedDomainMocks
+@testable import SharedDomain
 import XCTest
 
 final class RegisterForPushNotificationsUseCaseTests: XCTestCase {
     
     // MARK: Dependencies
     
-    private let pushNotificationsRepository = PushNotificationsRepositoryMock()
+    private let pushNotificationsRepository = PushNotificationsRepositorySpy()
     
     // MARK: Tests
 

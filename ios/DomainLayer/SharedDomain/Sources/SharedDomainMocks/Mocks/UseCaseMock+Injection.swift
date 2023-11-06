@@ -6,55 +6,76 @@
 #if DEBUG
 import CoreLocation
 import Resolver
-import SharedDomain
+@testable import SharedDomain
 
 public extension Resolver {
     static func registerUseCaseMocks() {
+        
         // Analytics
-        register { TrackAnalyticsEventUseCaseMock() as TrackAnalyticsEventUseCase }
+        register { TrackAnalyticsEventUseCaseSpy() as TrackAnalyticsEventUseCase }
 
         // Auth
-        register { GetProfileIdUseCaseMock(executeReturnValue: AuthToken.stub.userId) as GetProfileIdUseCase }
-        register { IsUserLoggedUseCaseMock(executeReturnValue: true) as IsUserLoggedUseCase }
-        register { LoginUseCaseMock() as LoginUseCase }
-        register { LogoutUseCaseMock() as LogoutUseCase }
-        register { RegistrationUseCaseMock() as RegistrationUseCase }
+        let getProfileIdUseCaseSpy = GetProfileIdUseCaseSpy()
+        getProfileIdUseCaseSpy.executeReturnValue = AuthToken.stub.userId
+        register { getProfileIdUseCaseSpy as GetProfileIdUseCase }
+        
+        let isUserLoggedUseCaseSpy = IsUserLoggedUseCaseSpy()
+        isUserLoggedUseCaseSpy.executeReturnValue = true
+        register { isUserLoggedUseCaseSpy as IsUserLoggedUseCase }
+        
+        register { LoginUseCaseSpy() as LoginUseCase }
+        register { LogoutUseCaseSpy() as LogoutUseCase }
+        register { RegistrationUseCaseSpy() as RegistrationUseCase }
         
         // Location
-        register {
-            GetCurrentLocationUseCaseMock(executeReturnValue: AsyncStream(CLLocation.self) { continuation in
-                continuation.yield(CLLocation(latitude: 50.0, longitude: 50.0))
-                continuation.finish()
-            }) as GetCurrentLocationUseCase
+        let getCurrentLocationUseCaseSpy = GetCurrentLocationUseCaseSpy()
+        getCurrentLocationUseCaseSpy.executeReturnValue = AsyncStream(CLLocation.self) { continuation in
+            continuation.yield(CLLocation(latitude: 50.0, longitude: 50.0))
+            continuation.finish()
         }
+        register { getCurrentLocationUseCaseSpy as GetCurrentLocationUseCase }
         
         // Profile
-        register { GetProfileUseCaseMock(executeReturnValue: User.stub) as GetProfileUseCase }
-        register { UpdateProfileCounterUseCaseMock() as UpdateProfileCounterUseCase }
+        let getProfileUseCaseSpy = GetProfileUseCaseSpy()
+        getProfileUseCaseSpy.executeReturnValue = User.stub
+        register { getProfileUseCaseSpy as GetProfileUseCase }
+        
+        register { UpdateProfileCounterUseCaseSpy() as UpdateProfileCounterUseCase }
         
         // PushNotification
-        register { HandlePushNotificationUseCaseMock(executeReturnValue: PushNotification.stub) as HandlePushNotificationUseCase }
-        register { RegisterForPushNotificationsUseCaseMock() as RegisterForPushNotificationsUseCase }
+        let handlePushNotificationUseCaseSpy = HandlePushNotificationUseCaseSpy()
+        handlePushNotificationUseCaseSpy.executeReturnValue = PushNotification.stub
+        register { handlePushNotificationUseCaseSpy as HandlePushNotificationUseCase }
+        
+        register { RegisterForPushNotificationsUseCaseSpy() as RegisterForPushNotificationsUseCase }
         
         // RemoteConfig
-        register { GetRemoteConfigValueUseCaseMock(executeReturnValue: true) as GetRemoteConfigValueUseCase }
+        let getRemoteConfigValueUseCaseSpy = GetRemoteConfigValueUseCaseSpy()
+        getRemoteConfigValueUseCaseSpy.executeReturnValue = true
+        register { getRemoteConfigValueUseCaseSpy as GetRemoteConfigValueUseCase }
         
         // Rocket
-        register {
-            GetRocketLaunchesUseCaseMock(executeReturnValue: AsyncThrowingStream<[RocketLaunch], Error> { continuation in
-                continuation.yield([RocketLaunch].stub)
-                continuation.finish()
-            }) as GetRocketLaunchesUseCase
+        let getRocketLaunchesUseCaseSpy = GetRocketLaunchesUseCaseSpy()
+        getRocketLaunchesUseCaseSpy.executeReturnValue = AsyncThrowingStream<[RocketLaunch], Error> { continuation in
+            continuation.yield([RocketLaunch].stub)
+            continuation.finish()
         }
+        register { getRocketLaunchesUseCaseSpy as GetRocketLaunchesUseCase }
         
         // User
-        register { GetUsersUseCaseMock(executePageReturnValue: [User].stub) as GetUsersUseCase }
-        register { GetUserUseCaseMock(executeIdReturnValue: User.stub) as GetUserUseCase }
-        register { UpdateUserUseCaseMock() as UpdateUserUseCase }
+        let getUsersUseCaseSpy = GetUsersUseCaseSpy()
+        getUsersUseCaseSpy.executePageReturnValue = [User].stub
+        register { getUsersUseCaseSpy as GetUsersUseCase }
+        
+        let getUserUseCaseSpy = GetUserUseCaseSpy()
+        getUserUseCaseSpy.executeIdReturnValue = User.stub
+        register { getUserUseCaseSpy as GetUserUseCase }
+        
+        register { UpdateUserUseCaseSpy() as UpdateUserUseCase }
         
         // Validation
-        register { ValidateEmailUseCaseMock() as ValidateEmailUseCase }
-        register { ValidatePasswordUseCaseMock() as ValidatePasswordUseCase }
+        register { ValidateEmailUseCaseSpy() as ValidateEmailUseCase }
+        register { ValidatePasswordUseCaseSpy() as ValidatePasswordUseCase }
     }
 }
 #endif

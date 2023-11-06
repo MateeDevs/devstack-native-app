@@ -3,7 +3,9 @@
 //  Copyright © 2022 Matee. All rights reserved.
 //
 
-// sourcery: AutoMockable
+import Spyable
+
+@Spyable
 public protocol ValidatePasswordUseCase {
     func execute(_ password: String) throws
 }
