@@ -24,7 +24,10 @@ extension Fastfile {
     ) {
         runTests(
             scheme: .userDefined(configuration.scheme),
-            xcargs: "-skipPackagePluginValidation"
+            xcargs: .userDefined(
+                "-skipPackagePluginValidation " +
+                "-skipMacroValidation"
+            )
         )
     }
 }
