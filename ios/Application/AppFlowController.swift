@@ -3,17 +3,17 @@
 //  Copyright © 2018 Matee. All rights reserved.
 //
 
+import Factory
 import Onboarding
-import Resolver
 import SharedDomain
 import UIKit
 import UIToolkit
 
 final class AppFlowController: FlowController, MainFlowControllerDelegate, OnboardingFlowControllerDelegate {
     
-    @Injected private var isUserLoggedUseCase: IsUserLoggedUseCase
-    @Injected private var handlePushNotificationUseCase: HandlePushNotificationUseCase
-    @Injected private var logoutUseCase: LogoutUseCase
+    @Injected(\.isUserLoggedUseCase) private var isUserLoggedUseCase
+    @Injected(\.handlePushNotificationUseCase) private var handlePushNotificationUseCase
+    @Injected(\.logoutUseCase) private var logoutUseCase
     
     func start() {
         setupAppearance()

@@ -3,7 +3,8 @@
 //  Copyright © 2022 Matee. All rights reserved.
 //
 
-import Resolver
+import DependencyInjection
+import Factory
 import SharedDomain
 import SwiftUI
 import UIToolkit
@@ -13,11 +14,11 @@ final class ProfileViewModel: BaseViewModel, ViewModel, ObservableObject {
     // MARK: Dependencies
     private weak var flowController: FlowController?
     
-    @Injected private(set) var getProfileUseCase: GetProfileUseCase
-    @Injected private(set) var getCurrentLocationUseCase: GetCurrentLocationUseCase
-    @Injected private(set) var getRemoteConfigValueUseCase: GetRemoteConfigValueUseCase
-    @Injected private(set) var registerForPushNotificationsUseCase: RegisterForPushNotificationsUseCase
-    @Injected private(set) var logoutUseCase: LogoutUseCase
+    @Injected(\.getProfileUseCase) private(set) var getProfileUseCase
+    @Injected(\.getCurrentLocationUseCase) private(set) var getCurrentLocationUseCase
+    @Injected(\.getRemoteConfigValueUseCase) private(set) var getRemoteConfigValueUseCase
+    @Injected(\.registerForPushNotificationsUseCase) private(set) var registerForPushNotificationsUseCase
+    @Injected(\.logoutUseCase) private(set) var logoutUseCase
 
     init(flowController: FlowController?) {
         self.flowController = flowController

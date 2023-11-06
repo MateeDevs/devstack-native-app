@@ -41,12 +41,12 @@ struct UsersView: View {
 }
 
 #if DEBUG
-import Resolver
-import SharedDomainMocks
+import DependencyInjectionMocks
+import Factory
 
 struct UsersView_Previews: PreviewProvider {
     static var previews: some View {
-        Resolver.registerUseCaseMocks()
+        Container.shared.registerUseCaseMocks()
         
         let vm = UsersViewModel(flowController: nil)
         return PreviewGroup {

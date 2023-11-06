@@ -20,7 +20,8 @@ let package = Package(
         .package(name: "MapToolkit", path: "../MapToolkit"),
         .package(name: "Utilities", path: "../../DomainLayer/Utilities"),
         .package(name: "SharedDomain", path: "../../DomainLayer/SharedDomain"),
-        .package(url: "https://github.com/hmlongco/Resolver.git", .upToNextMajor(from: "1.0.0"))
+        .package(name: "DependencyInjection", path: "../../Application/DependencyInjection"),
+        .package(url: "https://github.com/hmlongco/Factory.git", .upToNextMajor(from: "2.3.0"))
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -31,9 +32,9 @@ let package = Package(
                 .product(name: "UIToolkit", package: "UIToolkit"),
                 .product(name: "MapToolkit", package: "MapToolkit"),
                 .product(name: "Utilities", package: "Utilities"),
-                .product(name: "SharedDomain", package: "SharedDomain"),
-                .product(name: "SharedDomainMocks", package: "SharedDomain"),
-                .product(name: "Resolver", package: "Resolver")
+                .product(name: "DependencyInjection", package: "DependencyInjection"),
+                .product(name: "DependencyInjectionMocks", package: "DependencyInjection"),
+                .product(name: "Factory", package: "Factory")
             ]
         ),
         .testTarget(
@@ -43,7 +44,8 @@ let package = Package(
                 .product(name: "UIToolkit", package: "UIToolkit"),
                 .product(name: "SharedDomain", package: "SharedDomain"),
                 .product(name: "SharedDomainMocks", package: "SharedDomain"),
-                .product(name: "Resolver", package: "Resolver")
+                .product(name: "DependencyInjection", package: "DependencyInjection"),
+                .product(name: "Factory", package: "Factory")
             ]
         )
     ]

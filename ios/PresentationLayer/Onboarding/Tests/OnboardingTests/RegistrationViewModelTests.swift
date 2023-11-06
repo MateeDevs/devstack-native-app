@@ -3,8 +3,9 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
+import DependencyInjection
+import Factory
 @testable import Onboarding
-import Resolver
 @testable import SharedDomain
 import UIToolkit
 import XCTest
@@ -19,7 +20,8 @@ final class RegistrationViewModelTests: XCTestCase {
     private let registrationUseCase = RegistrationUseCaseSpy()
     
     private func createViewModel() -> RegistrationViewModel {
-        Resolver.register { self.registrationUseCase as RegistrationUseCase }
+        Container.shared.reset()
+        Container.shared.registrationUseCase.register { self.registrationUseCase }
         
         return RegistrationViewModel(flowController: fc)
     }

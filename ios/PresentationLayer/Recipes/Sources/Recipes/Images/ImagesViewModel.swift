@@ -7,6 +7,7 @@ import Foundation
 import UIToolkit
 
 final class ImagesViewModel: BaseViewModel, ViewModel, ObservableObject {
+    
     // MARK: Dependencies
     private weak var flowController: FlowController?
 

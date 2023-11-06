@@ -37,13 +37,8 @@ struct RecipesView: View {
 }
 
 #if DEBUG
-import Resolver
-import SharedDomainMocks
-
 struct RecipesView_Previews: PreviewProvider {
     static var previews: some View {
-        Resolver.registerUseCaseMocks()
-        
         let vm = RecipesViewModel(flowController: nil)
         return PreviewGroup {
             RecipesView(viewModel: vm)

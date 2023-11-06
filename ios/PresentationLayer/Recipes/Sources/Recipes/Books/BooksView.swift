@@ -35,3 +35,19 @@ struct BooksView: View {
         .navigationTitle(L10n.books_view_toolbar_title)
     }
 }
+
+#if DEBUG
+import DependencyInjectionMocks
+import Factory
+
+struct BooksView_Previews: PreviewProvider {
+    static var previews: some View {
+        Container.shared.registerUseCaseMocks()
+        
+        let vm = BooksViewModel(flowController: nil)
+        return PreviewGroup {
+            BooksView(viewModel: vm)
+        }
+    }
+}
+#endif

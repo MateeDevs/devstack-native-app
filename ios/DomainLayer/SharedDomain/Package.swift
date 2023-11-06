@@ -23,7 +23,6 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-        .package(url: "https://github.com/hmlongco/Resolver.git", .upToNextMajor(from: "1.0.0")),
         .package(url: "https://github.com/Matejkob/swift-spyable", from: "0.1.0")
     ],
     targets: [
@@ -43,7 +42,7 @@ let package = Package(
             name: "SharedDomainMocks",
             dependencies: [
                 "SharedDomain",
-                .product(name: "Resolver", package: "Resolver")
+                "DevstackKmpShared"
             ]
         ),
         .testTarget(

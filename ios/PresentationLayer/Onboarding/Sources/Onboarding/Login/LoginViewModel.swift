@@ -3,7 +3,8 @@
 //  Copyright © 2022 Matee. All rights reserved.
 //
 
-import Resolver
+import DependencyInjection
+import Factory
 import SharedDomain
 import SwiftUI
 import UIToolkit
@@ -14,8 +15,8 @@ final class LoginViewModel: BaseViewModel, ViewModel, ObservableObject {
     // MARK: Dependencies
     private weak var flowController: FlowController?
     
-    @Injected private(set) var loginUseCase: LoginUseCase
-    @Injected private(set) var trackAnalyticsEventUseCase: TrackAnalyticsEventUseCase
+    @Injected(\.loginUseCase) private(set) var loginUseCase
+    @Injected(\.trackAnalyticsEventUseCase) private (set) var trackAnalyticsEventUseCase
     @Published private(set) var snackState = SnackState<InfoErrorSnackVisuals>()
 
     init(flowController: FlowController?) {

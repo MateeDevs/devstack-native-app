@@ -3,7 +3,8 @@
 //  Copyright © 2022 Matee. All rights reserved.
 //
 
-import Resolver
+import DependencyInjection
+import Factory
 import SharedDomain
 import SwiftUI
 import UIToolkit
@@ -13,8 +14,8 @@ final class CounterViewModel: BaseViewModel, ViewModel, ObservableObject {
     // MARK: Dependencies
     private weak var flowController: FlowController?
     
-    @Injected private(set) var getProfileUseCase: GetProfileUseCase
-    @Injected private(set) var updateProfileCounterUseCase: UpdateProfileCounterUseCase
+    @Injected(\.getProfileUseCase) private(set) var getProfileUseCase
+    @Injected(\.updateProfileCounterUseCase) private(set) var updateProfileCounterUseCase
 
     init(flowController: FlowController?) {
         self.flowController = flowController

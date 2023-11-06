@@ -3,7 +3,8 @@
 //  Copyright © 2022 Matee. All rights reserved.
 //
 
-import Resolver
+import DependencyInjection
+import Factory
 import SharedDomain
 import SwiftUI
 import Utilities
@@ -12,7 +13,7 @@ import WidgetKit
 struct Provider: TimelineProvider {
     
     #warning("TODO: Temporary use case access, should be obtained via ViewModel instead")
-    @Injected private var isUserLoggedUseCase: IsUserLoggedUseCase
+    @Injected(\.isUserLoggedUseCase) private var isUserLoggedUseCase
     
     func placeholder(in context: Context) -> SimpleEntry {
         return SimpleEntry(date: Date(), isLogged: isUserLoggedUseCase.execute())
@@ -49,7 +50,6 @@ struct DevStackWidget: Widget {
     
     init() {
         setupEnvironment()
-        Resolver.registerDependencies()
     }
 
     var body: some WidgetConfiguration {

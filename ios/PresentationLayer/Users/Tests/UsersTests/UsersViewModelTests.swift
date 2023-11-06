@@ -3,7 +3,8 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-import Resolver
+import DependencyInjection
+import Factory
 @testable import SharedDomain
 import UIToolkit
 @testable import Users
@@ -20,7 +21,8 @@ final class UsersViewModelTests: XCTestCase {
     private let getUsersUseCase = GetUsersUseCaseSpy()
     
     private func createViewModel() -> UsersViewModel {
-        Resolver.register { self.getUsersUseCase as GetUsersUseCase }
+        Container.shared.reset()
+        Container.shared.getUsersUseCase.register { self.getUsersUseCase }
         
         return UsersViewModel(flowController: fc)
     }

@@ -3,8 +3,9 @@
 //  Copyright © 2022 Matee. All rights reserved.
 //
 
+import DependencyInjection
+import Factory
 @testable import Recipes
-import Resolver
 @testable import SharedDomain
 import UIToolkit
 import XCTest
@@ -20,8 +21,9 @@ final class CounterViewModelTests: XCTestCase {
     private let updateProfileCounterUseCase = UpdateProfileCounterUseCaseSpy()
     
     private func createViewModel() -> CounterViewModel {
-        Resolver.register { self.getProfileUseCase as GetProfileUseCase }
-        Resolver.register { self.updateProfileCounterUseCase as UpdateProfileCounterUseCase }
+        Container.shared.reset()
+        Container.shared.getProfileUseCase.register { self.getProfileUseCase }
+        Container.shared.updateProfileCounterUseCase.register { self.updateProfileCounterUseCase }
         
         return CounterViewModel(flowController: fc)
     }

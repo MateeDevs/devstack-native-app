@@ -4,8 +4,9 @@
 //
 
 import CoreLocation
+import DependencyInjection
+import Factory
 @testable import Profile
-import Resolver
 @testable import SharedDomain
 import UIToolkit
 import XCTest
@@ -24,11 +25,12 @@ final class ProfileViewModelTests: XCTestCase {
     private let logoutUseCase = LogoutUseCaseSpy()
     
     private func createViewModel() -> ProfileViewModel {
-        Resolver.register { self.getProfileUseCase as GetProfileUseCase }
-        Resolver.register { self.getCurrentLocationUseCase as GetCurrentLocationUseCase }
-        Resolver.register { self.getRemoteConfigValueUseCase as GetRemoteConfigValueUseCase }
-        Resolver.register { self.registerForPushNotificationsUseCase as RegisterForPushNotificationsUseCase }
-        Resolver.register { self.logoutUseCase as LogoutUseCase }
+        Container.shared.reset()
+        Container.shared.getProfileUseCase.register { self.getProfileUseCase }
+        Container.shared.getCurrentLocationUseCase.register { self.getCurrentLocationUseCase }
+        Container.shared.getRemoteConfigValueUseCase.register { self.getRemoteConfigValueUseCase }
+        Container.shared.registerForPushNotificationsUseCase.register { self.registerForPushNotificationsUseCase }
+        Container.shared.logoutUseCase.register { self.logoutUseCase }
         
         return ProfileViewModel(flowController: fc)
     }

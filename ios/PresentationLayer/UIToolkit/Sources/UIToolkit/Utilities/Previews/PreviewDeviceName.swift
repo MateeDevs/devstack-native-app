@@ -4,27 +4,16 @@
 //
 
 public enum PreviewDeviceName: String {
-    case iPhone8 = "iPhone 8"
-    case iPhone8Plus = "iPhone 8 Plus"
-    case iPhone11 = "iPhone 11"
-    case iPhone11Pro = "iPhone 11 Pro"
-    case iPhone11ProMax = "iPhone 11 Pro Max"
-    case iPhone12 = "iPhone 12"
-    case iPhone12Pro = "iPhone 12 Pro"
-    case iPhone12ProMax = "iPhone 12 Pro Max"
-    case iPhone12Mini = "iPhone 12 mini"
-    case iPhone13 = "iPhone 13"
-    case iPhone13Pro = "iPhone 13 Pro"
-    case iPhone13ProMax = "iPhone 13 Pro Max"
-    case iPhone13Mini = "iPhone 13 mini"
-    case iPhoneSE = "iPhone SE (2nd generation)"
-    case iPodTouch = "iPod touch (7th generation)"
+    case iPhone15 = "iPhone 15"
+    case iPhone15Plus = "iPhone 15 Plus"
+    case iPhone15Pro = "iPhone 15 Pro"
+    case iPhone15ProMax = "iPhone 15 Pro Max"
+    case iPhoneSE = "iPhone SE (3rd generation)"
     
-    case iPad = "iPad (9th generation)"
-    case iPadAir = "iPad Air (4th generation)"
-    case iPadPro_9_7inch = "iPad Pro (9.7-inch)"
-    case iPadPro_11inch = "iPad Pro (11-inch) (3rd generation)"
-    case iPadPro_12_9inch = "iPad Pro (12.9-inch) (5th generation)"
+    case iPad = "iPad (10th generation)"
+    case iPadAir = "iPad Air (5th generation)"
+    case iPadPro_11inch = "iPad Pro (11-inch) (4rd generation)"
+    case iPadPro_12_9inch = "iPad Pro (12.9-inch) (6th generation)"
     case iPadMini = "iPad mini (6th generation)"
     
     case appleTV = "Apple TV"
@@ -37,5 +26,5 @@ public enum PreviewDeviceName: String {
     case watch7_41mm = "Apple Watch Series 7 - 41mm"
     case watch7_45mm = "Apple Watch Series 7 - 45mm"
     
-    public static let `default`: [PreviewDeviceName] = [.iPhone13Pro, .iPhoneSE]
+    public static let `default`: [PreviewDeviceName] = [.iPhone15Pro, .iPhoneSE]
 }

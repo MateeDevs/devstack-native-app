@@ -3,8 +3,9 @@
 //  Copyright © 2022 Matee. All rights reserved.
 //
 
+import DependencyInjection
+import Factory
 @testable import Onboarding
-import Resolver
 @testable import SharedDomain
 import UIToolkit
 import XCTest
@@ -23,8 +24,9 @@ final class LoginViewModelTests: XCTestCase {
     private let trackAnalyticsEventUseCase = TrackAnalyticsEventUseCaseSpy()
     
     private func createViewModel() -> LoginViewModel {
-        Resolver.register { self.loginUseCase as LoginUseCase }
-        Resolver.register { self.trackAnalyticsEventUseCase as TrackAnalyticsEventUseCase }
+        Container.shared.reset()
+        Container.shared.loginUseCase.register { self.loginUseCase }
+        Container.shared.trackAnalyticsEventUseCase.register { self.trackAnalyticsEventUseCase }
         
         let vm = LoginViewModel(flowController: fc)
         observeSnackState(vm: vm)

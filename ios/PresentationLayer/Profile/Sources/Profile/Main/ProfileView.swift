@@ -42,12 +42,12 @@ struct ProfileView: View {
 }
 
 #if DEBUG
-import Resolver
-import SharedDomainMocks
+import DependencyInjectionMocks
+import Factory
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        Resolver.registerUseCaseMocks()
+        Container.shared.registerUseCaseMocks()
         
         let vm = ProfileViewModel(flowController: nil)
         return PreviewGroup {
