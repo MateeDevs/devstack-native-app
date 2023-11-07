@@ -33,12 +33,10 @@ struct Whisper: View {
 }
 
 #if DEBUG
-struct Whisper_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            Whisper(WhisperData("Lorem Ipsum"))
-            Whisper(WhisperData(error: "Error Ipsum"))
-        }
+#Preview {
+    Group {
+        Whisper(WhisperData("Lorem Ipsum"))
+        Whisper(WhisperData(error: "Error Ipsum"))
     }
 }
 #endif

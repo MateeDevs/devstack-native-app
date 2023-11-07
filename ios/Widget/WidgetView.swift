@@ -11,14 +11,13 @@ struct WidgetView: View {
     let isLogged: Bool
     
     var body: some View {
-        Text(isLogged ? "✅" : "❌")
-            .font(.largeTitle)
-    }
-}
-
-struct WidgetView_Previews: PreviewProvider {
-    static var previews: some View {
-        WidgetView(isLogged: true)
-            .previewContext(WidgetPreviewContext(family: .systemSmall))
+        if #available(iOS 17.0, *) {
+            Text(isLogged ? "✅" : "❌")
+                .font(.largeTitle)
+                .containerBackground(for: .widget) { Color.white }
+        } else {
+            Text(isLogged ? "✅" : "❌")
+                .font(.largeTitle)
+        }
     }
 }

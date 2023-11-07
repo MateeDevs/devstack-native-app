@@ -17,9 +17,7 @@ public struct PrimaryProgressView: View {
 }
 
 #if DEBUG
-struct PrimaryProgressView_Previews: PreviewProvider {
-    static var previews: some View {
-        PrimaryProgressView()
-    }
+#Preview {
+    PrimaryProgressView()
 }
 #endif

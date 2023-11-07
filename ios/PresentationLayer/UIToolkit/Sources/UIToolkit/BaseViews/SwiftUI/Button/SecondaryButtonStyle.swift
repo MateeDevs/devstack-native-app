@@ -18,10 +18,8 @@ public struct SecondaryButtonStyle: ButtonStyle {
 }
 
 #if DEBUG
-struct SecondaryButtonStyle_Previews: PreviewProvider {
-    static var previews: some View {
-        Button("Lorem Ipsum") {}
-            .buttonStyle(SecondaryButtonStyle())
-    }
+#Preview {
+    Button("Lorem Ipsum") {}
+        .buttonStyle(SecondaryButtonStyle())
 }
 #endif

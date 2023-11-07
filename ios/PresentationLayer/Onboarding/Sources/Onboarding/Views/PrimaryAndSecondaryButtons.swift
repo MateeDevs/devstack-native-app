@@ -46,14 +46,12 @@ struct PrimaryAndSecondaryButtons: View {
 }
 
 #if DEBUG
-struct PrimaryAndSecondaryButtons_Previews: PreviewProvider {
-    static var previews: some View {
-        PrimaryAndSecondaryButtons(
-            primaryButtonTitle: "Login",
-            onPrimaryButtonTap: {},
-            secondaryButtonTitle: "Register",
-            onSecondaryButtonTap: {}
-        )
-    }
+#Preview {
+    PrimaryAndSecondaryButtons(
+        primaryButtonTitle: "Login",
+        onPrimaryButtonTap: {},
+        secondaryButtonTitle: "Register",
+        onSecondaryButtonTap: {}
+    )
 }
 #endif

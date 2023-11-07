@@ -38,12 +38,10 @@ public struct PrimaryTextField: View {
 }
 
 #if DEBUG
-struct PrimaryTextField_Previews: PreviewProvider {
-    static var previews: some View {
-        VStack {
-            PrimaryTextField("Lorem Ipsum", text: .constant("Lorem Ipsum"))
-            PrimaryTextField("Lorem Ipsum", text: .constant("Lorem Ipsum"), secure: true)
-        }
+#Preview {
+    VStack {
+        PrimaryTextField("Lorem Ipsum", text: .constant("Lorem Ipsum"))
+        PrimaryTextField("Lorem Ipsum", text: .constant("Lorem Ipsum"), secure: true)
     }
 }
 #endif

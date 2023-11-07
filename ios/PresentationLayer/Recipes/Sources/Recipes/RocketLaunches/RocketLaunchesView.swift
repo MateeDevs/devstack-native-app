@@ -40,14 +40,10 @@ struct RocketLaunchesView: View {
 import DependencyInjectionMocks
 import Factory
 
-struct RocketLaunchesView_Previews: PreviewProvider {
-    static var previews: some View {
-        Container.shared.registerUseCaseMocks()
-        
-        let vm = RocketLaunchesViewModel(flowController: nil)
-        return PreviewGroup {
-            RocketLaunchesView(viewModel: vm)
-        }
-    }
+#Preview {
+    Container.shared.registerUseCaseMocks()
+    
+    let vm = RocketLaunchesViewModel(flowController: nil)
+    return RocketLaunchesView(viewModel: vm)
 }
 #endif

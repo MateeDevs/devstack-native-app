@@ -40,14 +40,10 @@ struct BooksView: View {
 import DependencyInjectionMocks
 import Factory
 
-struct BooksView_Previews: PreviewProvider {
-    static var previews: some View {
-        Container.shared.registerUseCaseMocks()
-        
-        let vm = BooksViewModel(flowController: nil)
-        return PreviewGroup {
-            BooksView(viewModel: vm)
-        }
-    }
+#Preview {
+    Container.shared.registerUseCaseMocks()
+    
+    let vm = BooksViewModel(flowController: nil)
+    return BooksView(viewModel: vm)
 }
 #endif

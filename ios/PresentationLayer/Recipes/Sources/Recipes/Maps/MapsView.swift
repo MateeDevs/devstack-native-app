@@ -24,12 +24,8 @@ struct MapsView: View {
 }
 
 #if DEBUG
-struct MapsView_Previews: PreviewProvider {
-    static var previews: some View {
-        let vm = MapsViewModel(flowController: nil)
-        return PreviewGroup {
-            MapsView(viewModel: vm)
-        }
-    }
+#Preview {
+    let vm = MapsViewModel(flowController: nil)
+    return MapsView(viewModel: vm)
 }
 #endif

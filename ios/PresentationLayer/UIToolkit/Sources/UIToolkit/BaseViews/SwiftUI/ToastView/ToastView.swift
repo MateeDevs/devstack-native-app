@@ -37,13 +37,11 @@ struct ToastView: View {
 }
 
 #if DEBUG
-struct ToastView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            ToastView(ToastData("Info", style: .info, hideAfter: 1))
-            ToastView(ToastData("Success", style: .success, hideAfter: 1))
-            ToastView(ToastData("Error", style: .error, hideAfter: 1))
-        }
+#Preview {
+    Group {
+        ToastView(ToastData("Info", style: .info, hideAfter: 1))
+        ToastView(ToastData("Success", style: .success, hideAfter: 1))
+        ToastView(ToastData("Error", style: .error, hideAfter: 1))
     }
 }
 #endif

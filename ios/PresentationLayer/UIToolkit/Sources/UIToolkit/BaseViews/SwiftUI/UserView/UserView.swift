@@ -33,9 +33,7 @@ public struct UserView: View {
 }
 
 #if DEBUG
-struct UserView_Previews: PreviewProvider {
-    static var previews: some View {
-        UserView("Petr Chmelar")
-    }
+#Preview {
+    UserView("Petr Chmelar")
 }
 #endif

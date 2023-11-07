@@ -55,15 +55,13 @@ struct EmailAndPasswordFields: View {
 }
 
 #if DEBUG
-struct EmailAndPasswordFields_Previews: PreviewProvider {
-    static var previews: some View {
-        EmailAndPasswordFields(
-            title: "Sign in",
-            email: "abc@abc.cz",
-            password: "1111",
-            onEmailChange: { _ in },
-            onPasswordChange: { _ in }
-        )
-    }
+#Preview {
+    EmailAndPasswordFields(
+        title: "Sign in",
+        email: "abc@abc.cz",
+        password: "1111",
+        onEmailChange: { _ in },
+        onPasswordChange: { _ in }
+    )
 }
 #endif

@@ -48,15 +48,11 @@ import DependencyInjectionMocks
 import Factory
 import Utilities
 
-struct LoginView_Previews: PreviewProvider {
-    static var previews: some View {
-        Environment.locale = .init(identifier: "cs")
-        Container.shared.registerUseCaseMocks()
+#Preview {
+    Environment.locale = .init(identifier: "cs")
+    Container.shared.registerUseCaseMocks()
         
-        let vm = LoginViewModel(flowController: nil)
-        return PreviewGroup {
-            LoginView(viewModel: vm)
-        }
-    }
+    let vm = LoginViewModel(flowController: nil)
+    return LoginView(viewModel: vm)
 }
 #endif
