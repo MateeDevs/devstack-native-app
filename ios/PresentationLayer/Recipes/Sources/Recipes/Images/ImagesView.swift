@@ -32,9 +32,7 @@ struct ImagesView: View {
 }
 
 #if DEBUG
-struct ImagesView_Previews: PreviewProvider {
-    static var previews: some View {
-        ImagesView(viewModel: ImagesViewModel(flowController: nil))
-    }
+#Preview {
+    ImagesView(viewModel: ImagesViewModel(flowController: nil))
 }
 #endif

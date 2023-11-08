@@ -21,9 +21,7 @@ public struct HeadlineText: View {
 }
 
 #if DEBUG
-struct HeadlineText_Previews: PreviewProvider {
-    static var previews: some View {
-        HeadlineText("Lorem Ipsum")
-    }
+#Preview {
+    HeadlineText("Lorem Ipsum")
 }
 #endif

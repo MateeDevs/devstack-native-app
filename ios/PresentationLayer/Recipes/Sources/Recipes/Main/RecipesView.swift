@@ -37,12 +37,8 @@ struct RecipesView: View {
 }
 
 #if DEBUG
-struct RecipesView_Previews: PreviewProvider {
-    static var previews: some View {
-        let vm = RecipesViewModel(flowController: nil)
-        return PreviewGroup {
-            RecipesView(viewModel: vm)
-        }
-    }
+#Preview {
+    let vm = RecipesViewModel(flowController: nil)
+    return RecipesView(viewModel: vm)
 }
 #endif

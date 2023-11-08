@@ -45,14 +45,10 @@ struct ProfileView: View {
 import DependencyInjectionMocks
 import Factory
 
-struct ProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        Container.shared.registerUseCaseMocks()
-        
-        let vm = ProfileViewModel(flowController: nil)
-        return PreviewGroup {
-            ProfileView(viewModel: vm)
-        }
-    }
+#Preview {
+    Container.shared.registerUseCaseMocks()
+    
+    let vm = ProfileViewModel(flowController: nil)
+    return ProfileView(viewModel: vm)
 }
 #endif

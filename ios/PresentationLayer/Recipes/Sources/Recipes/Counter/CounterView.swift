@@ -42,14 +42,10 @@ struct CounterView: View {
 import DependencyInjectionMocks
 import Factory
 
-struct CounterView_Previews: PreviewProvider {
-    static var previews: some View {
-        Container.shared.registerUseCaseMocks()
-        
-        let vm = CounterViewModel(flowController: nil)
-        return PreviewGroup {
-            CounterView(viewModel: vm)
-        }
-    }
+#Preview {
+    Container.shared.registerUseCaseMocks()
+    
+    let vm = CounterViewModel(flowController: nil)
+    return CounterView(viewModel: vm)
 }
 #endif

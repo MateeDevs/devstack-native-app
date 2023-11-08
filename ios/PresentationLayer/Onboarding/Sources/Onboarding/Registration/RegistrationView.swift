@@ -44,14 +44,10 @@ struct RegistrationView: View {
 import DependencyInjectionMocks
 import Factory
 
-struct RegistrationView_Previews: PreviewProvider {
-    static var previews: some View {
-        Container.shared.registerUseCaseMocks()
-        
-        let vm = RegistrationViewModel(flowController: nil)
-        return PreviewGroup {
-            RegistrationView(viewModel: vm)
-        }
-    }
+#Preview {
+    Container.shared.registerUseCaseMocks()
+    
+    let vm = RegistrationViewModel(flowController: nil)
+    return RegistrationView(viewModel: vm)
 }
 #endif

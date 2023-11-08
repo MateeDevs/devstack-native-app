@@ -37,18 +37,16 @@ public struct PrimaryButtonStyle: ButtonStyle {
 }
 
 #if DEBUG
-struct PrimaryButtonStyle_Previews: PreviewProvider {
-    static var previews: some View {
-        VStack {
-            Button("Lorem Ipsum") {}
-                .buttonStyle(PrimaryButtonStyle())
-            Button("Lorem Ipsum") {}
-                .buttonStyle(PrimaryButtonStyle(isLoading: true))
-            Button("Lorem Ipsum") {}
-                .buttonStyle(PrimaryButtonStyle(isLarge: false))
-            Button("Lorem Ipsum") {}
-                .buttonStyle(PrimaryButtonStyle(isLarge: false, isLoading: true))
-        }
+#Preview {
+    VStack {
+        Button("Lorem Ipsum") {}
+            .buttonStyle(PrimaryButtonStyle())
+        Button("Lorem Ipsum") {}
+            .buttonStyle(PrimaryButtonStyle(isLoading: true))
+        Button("Lorem Ipsum") {}
+            .buttonStyle(PrimaryButtonStyle(isLarge: false))
+        Button("Lorem Ipsum") {}
+            .buttonStyle(PrimaryButtonStyle(isLarge: false, isLoading: true))
     }
 }
 #endif

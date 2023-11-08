@@ -20,10 +20,8 @@ struct PrimaryTextFieldStyle: TextFieldStyle {
 }
 
 #if DEBUG
-struct PrimaryTextFieldStyle_Previews: PreviewProvider {
-    static var previews: some View {
-        TextField("Lorem Ipsum", text: .constant("Lorem Ipsum"))
-            .textFieldStyle(PrimaryTextFieldStyle())
-    }
+#Preview {
+    TextField("Lorem Ipsum", text: .constant("Lorem Ipsum"))
+        .textFieldStyle(PrimaryTextFieldStyle())
 }
 #endif

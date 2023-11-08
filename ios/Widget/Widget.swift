@@ -78,9 +78,9 @@ struct DevStackWidget: Widget {
     }
 }
 
-struct DevStackWidgetPreviews: PreviewProvider {
-    static var previews: some View {
-        DevStackWidgetEntryView(entry: SimpleEntry(date: Date(), isLogged: true))
-            .previewContext(WidgetPreviewContext(family: .systemSmall))
-    }
+@available(iOS 17.0, *)
+#Preview(as: .systemSmall) {
+    DevStackWidget()
+} timeline: {
+    SimpleEntry(date: Date(), isLogged: true)
 }

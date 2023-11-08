@@ -28,14 +28,10 @@ struct UserDetailView: View {
 import DependencyInjectionMocks
 import Factory
 
-struct UserDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        Container.shared.registerUseCaseMocks()
-        
-        let vm = UserDetailViewModel(userId: "userId", flowController: nil)
-        return PreviewGroup {
-            UserDetailView(viewModel: vm)
-        }
-    }
+#Preview {
+    Container.shared.registerUseCaseMocks()
+    
+    let vm = UserDetailViewModel(userId: "userId", flowController: nil)
+    return UserDetailView(viewModel: vm)
 }
 #endif

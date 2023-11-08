@@ -25,12 +25,8 @@ struct SkeletonView: View {
 }
 
 #if DEBUG
-struct SkeletonView_Previews: PreviewProvider {
-    static var previews: some View {
-        let vm = SkeletonViewModel(flowController: nil)
-        return PreviewGroup {
-            SkeletonView(viewModel: vm)
-        }
-    }
+#Preview {
+    let vm = SkeletonViewModel(flowController: nil)
+    return SkeletonView(viewModel: vm)
 }
 #endif
