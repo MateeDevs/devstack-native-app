@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "cz.matee.devstack.shared"
+    namespace = "kmp.shared"
 }
 
 sqldelight {
