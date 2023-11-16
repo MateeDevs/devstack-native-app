@@ -1,4 +1,4 @@
-package cz.matee.devstack.extensions
+package extensions
 
 object ExtensionConstants {
     const val IMPLEMENTATION = "implementation"

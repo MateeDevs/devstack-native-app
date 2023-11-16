@@ -1,10 +1,10 @@
-package cz.matee.devstack.config
+package config
 
 import com.android.build.api.dsl.CommonExtension
-import cz.matee.devstack.extensions.androidTestImplementation
-import cz.matee.devstack.extensions.implementation
-import cz.matee.devstack.extensions.ktlintRuleset
-import cz.matee.devstack.extensions.libs
+import extensions.androidTestImplementation
+import extensions.implementation
+import extensions.ktlintRuleset
+import extensions.libs
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 

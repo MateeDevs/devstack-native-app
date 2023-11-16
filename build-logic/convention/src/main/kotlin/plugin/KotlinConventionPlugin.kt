@@ -1,12 +1,12 @@
-package cz.matee.devstack.plugin
+package plugin
 
-import cz.matee.devstack.constants.ProjectConstants
-import cz.matee.devstack.extensions.android
-import cz.matee.devstack.extensions.apply
-import cz.matee.devstack.extensions.implementation
-import cz.matee.devstack.extensions.java
-import cz.matee.devstack.extensions.libs
-import cz.matee.devstack.extensions.pluginManager
+import constants.ProjectConstants
+import extensions.android
+import extensions.apply
+import extensions.implementation
+import extensions.java
+import extensions.libs
+import extensions.pluginManager
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies

@@ -5,7 +5,7 @@ plugins {
     alias(libs.plugins.ktlint)
 }
 
-group = "cz.matee.devstack.buildlogic"
+group = "buildlogic"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
@@ -65,6 +65,6 @@ fun NamedDomainObjectContainer<PluginDeclaration>.plugin(
     val pluginId = dependency.get().pluginId
     register(pluginId) {
         id = pluginId
-        implementationClass = "cz.matee.devstack.plugin.$pluginName"
+        implementationClass = "plugin.$pluginName"
     }
 }

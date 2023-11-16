@@ -1,7 +1,7 @@
-package cz.matee.devstack.config
+package config
 
-import cz.matee.devstack.extensions.getBooleanProperty
-import cz.matee.devstack.extensions.getStringProperty
+import extensions.getBooleanProperty
+import extensions.getStringProperty
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension

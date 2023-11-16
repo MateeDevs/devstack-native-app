@@ -1,7 +1,7 @@
-package cz.matee.devstack.config
+package config
 
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
-import cz.matee.devstack.constants.Application
+import constants.Application
 
 internal fun BaseAppModuleExtension.configureApplicationVariants() {
     applicationVariants.all {

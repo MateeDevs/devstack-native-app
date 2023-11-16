@@ -1,15 +1,15 @@
-package cz.matee.devstack.plugin
+package plugin
 
 import com.android.build.api.dsl.LibraryExtension
-import cz.matee.devstack.config.KmmConfig
-import cz.matee.devstack.config.KmmConfig.copyXCFramework
-import cz.matee.devstack.config.configureBuildVariants
-import cz.matee.devstack.config.configureKotlinAndroid
-import cz.matee.devstack.config.kmm
-import cz.matee.devstack.constants.ProjectConstants
-import cz.matee.devstack.extensions.apply
-import cz.matee.devstack.extensions.libs
-import cz.matee.devstack.extensions.pluginManager
+import config.KmmConfig
+import config.KmmConfig.copyXCFramework
+import config.configureBuildVariants
+import config.configureKotlinAndroid
+import config.kmm
+import constants.ProjectConstants
+import extensions.apply
+import extensions.libs
+import extensions.pluginManager
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure

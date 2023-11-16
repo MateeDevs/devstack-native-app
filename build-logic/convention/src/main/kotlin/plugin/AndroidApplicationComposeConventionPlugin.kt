@@ -1,9 +1,9 @@
-package cz.matee.devstack.plugin
+package plugin
 
-import cz.matee.devstack.config.configureComposeCompiler
-import cz.matee.devstack.config.configureComposeDependencies
-import cz.matee.devstack.config.configureComposeLint
-import cz.matee.devstack.extensions.androidApp
+import config.configureComposeCompiler
+import config.configureComposeDependencies
+import config.configureComposeLint
+import extensions.androidApp
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply

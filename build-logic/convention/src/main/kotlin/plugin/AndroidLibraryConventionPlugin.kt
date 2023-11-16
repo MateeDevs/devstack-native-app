@@ -1,12 +1,12 @@
-package cz.matee.devstack.plugin
+package plugin
 
 import com.android.build.api.dsl.LibraryExtension
-import cz.matee.devstack.config.configureBuildVariants
-import cz.matee.devstack.config.configureKotlinAndroid
-import cz.matee.devstack.extensions.apply
-import cz.matee.devstack.extensions.implementation
-import cz.matee.devstack.extensions.libs
-import cz.matee.devstack.extensions.pluginManager
+import config.configureBuildVariants
+import config.configureKotlinAndroid
+import extensions.apply
+import extensions.implementation
+import extensions.libs
+import extensions.pluginManager
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply

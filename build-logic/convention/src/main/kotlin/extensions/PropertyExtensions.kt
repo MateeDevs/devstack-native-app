@@ -1,4 +1,4 @@
-package cz.matee.devstack.extensions
+package extensions
 
 import org.gradle.api.Project
 import java.util.Properties

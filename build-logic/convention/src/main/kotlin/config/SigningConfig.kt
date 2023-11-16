@@ -1,7 +1,7 @@
-package cz.matee.devstack.config
+package config
 
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
-import cz.matee.devstack.constants.ProjectConstants
+import constants.ProjectConstants
 import org.gradle.api.Project
 
 internal fun Project.configureSingingConfigs(

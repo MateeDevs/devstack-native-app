@@ -1,4 +1,4 @@
-package cz.matee.devstack.constants
+package constants
 
 object Application {
     const val id = "cz.matee.devstack.kmp.android"

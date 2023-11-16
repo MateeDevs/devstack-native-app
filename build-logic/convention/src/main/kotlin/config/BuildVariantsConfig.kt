@@ -1,8 +1,8 @@
-package cz.matee.devstack.config
+package config
 
 import com.android.build.api.dsl.BuildType
 import com.android.build.api.dsl.CommonExtension
-import cz.matee.devstack.constants.ProjectConstants
+import constants.ProjectConstants
 import org.gradle.api.plugins.ExtensionAware
 import org.gradle.kotlin.dsl.extra
 

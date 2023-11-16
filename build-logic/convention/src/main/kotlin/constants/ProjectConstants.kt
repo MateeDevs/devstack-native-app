@@ -1,4 +1,4 @@
-package cz.matee.devstack.constants
+package constants
 
 import org.gradle.api.JavaVersion
 

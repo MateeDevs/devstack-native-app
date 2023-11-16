@@ -1,8 +1,8 @@
-package cz.matee.devstack.config
+package config
 
-import cz.matee.devstack.constants.TWINE_HOME_FOLDER_ARG
-import cz.matee.devstack.constants.WINDOWS_PROJECT_HOME_FOLDER_ARG
-import cz.matee.devstack.extensions.getStringProperty
+import constants.TWINE_HOME_FOLDER_ARG
+import constants.WINDOWS_PROJECT_HOME_FOLDER_ARG
+import extensions.getStringProperty
 import org.gradle.api.Project
 import org.gradle.internal.os.OperatingSystem
 

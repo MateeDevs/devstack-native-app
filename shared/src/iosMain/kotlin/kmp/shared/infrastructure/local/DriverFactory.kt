@@ -2,7 +2,7 @@ package kmp.shared.infrastructure.local
 
 import com.squareup.sqldelight.db.SqlDriver
 import com.squareup.sqldelight.drivers.native.NativeSqliteDriver
-import cz.matee.devstack.kmp.Database
+import kmp.Database
 
 internal actual class DriverFactory {
     actual fun createDriver(dbName: String): SqlDriver =

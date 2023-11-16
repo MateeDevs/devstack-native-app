@@ -1,4 +1,4 @@
-package cz.matee.devstack.extensions
+package extensions
 
 import com.android.build.gradle.BaseExtension
 import org.gradle.api.Action

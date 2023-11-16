@@ -1,8 +1,8 @@
-package cz.matee.devstack.config
+package config
 
 import com.android.build.api.dsl.CommonExtension
-import cz.matee.devstack.constants.ProjectConstants
-import cz.matee.devstack.extensions.libs
+import constants.ProjectConstants
+import extensions.libs
 import org.gradle.api.Project
 
 internal fun Project.configureKotlinAndroid(
