@@ -4,10 +4,10 @@ import com.squareup.sqldelight.runtime.coroutines.asFlow
 import com.squareup.sqldelight.runtime.coroutines.mapToList
 import kmp.shared.data.source.UserLocalSource
 import kmp.shared.data.source.UserPagingRequest
-import cz.matee.devstack.kmp.shared.infrastructure.local.UserCache
-import cz.matee.devstack.kmp.shared.infrastructure.local.UserCacheQueries
-import cz.matee.devstack.kmp.shared.infrastructure.local.UserEntity
-import cz.matee.devstack.kmp.shared.infrastructure.local.UserQueries
+import kmp.shared.infrastructure.local.UserCache
+import kmp.shared.infrastructure.local.UserCacheQueries
+import kmp.shared.infrastructure.local.UserEntity
+import kmp.shared.infrastructure.local.UserQueries
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged

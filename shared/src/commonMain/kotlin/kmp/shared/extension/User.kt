@@ -1,7 +1,7 @@
 package kmp.shared.extension
 
 import kmp.shared.domain.model.User
-import cz.matee.devstack.kmp.shared.infrastructure.local.UserEntity
+import kmp.shared.infrastructure.local.UserEntity
 import kmp.shared.infrastructure.model.UserDto
 
 // Infrastructure -> Domain

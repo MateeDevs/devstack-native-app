@@ -1,6 +1,6 @@
 package kmp.shared.data.source
 
-import cz.matee.devstack.kmp.shared.infrastructure.local.BookEntity
+import kmp.shared.infrastructure.local.BookEntity
 import kotlinx.coroutines.flow.Flow
 
 internal interface BookLocalSource {

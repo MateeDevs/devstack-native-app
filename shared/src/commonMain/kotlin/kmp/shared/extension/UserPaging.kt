@@ -2,7 +2,7 @@ package kmp.shared.extension
 
 import kmp.shared.domain.model.UserPagingData
 import kmp.shared.domain.model.UserPagingResult
-import cz.matee.devstack.kmp.shared.infrastructure.local.UserCache
+import kmp.shared.infrastructure.local.UserCache
 import kmp.shared.infrastructure.model.UserPagingDataDto
 import kmp.shared.infrastructure.model.UserPagingDto
 

@@ -9,7 +9,7 @@ android {
 
 sqldelight {
     database("Database") {
-        packageName = "cz.matee.devstack.kmp"
+        packageName = "kmp"
     }
 }
 

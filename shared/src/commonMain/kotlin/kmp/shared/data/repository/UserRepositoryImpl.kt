@@ -13,7 +13,7 @@ import kmp.shared.domain.repository.UserPagingParameters
 import kmp.shared.domain.repository.UserRepository
 import kmp.shared.domain.repository.UserUpdateParameters
 import kmp.shared.infrastructure.local.AuthDao
-import cz.matee.devstack.kmp.shared.infrastructure.local.UserEntity
+import kmp.shared.infrastructure.local.UserEntity
 import kmp.shared.infrastructure.local.isLoggedIn
 import kmp.shared.infrastructure.model.UserDto
 import kmp.shared.infrastructure.model.UserPagingDto

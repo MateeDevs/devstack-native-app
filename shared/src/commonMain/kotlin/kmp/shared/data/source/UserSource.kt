@@ -1,8 +1,8 @@
 package kmp.shared.data.source
 
 import kmp.shared.base.Result
-import cz.matee.devstack.kmp.shared.infrastructure.local.UserCache
-import cz.matee.devstack.kmp.shared.infrastructure.local.UserEntity
+import kmp.shared.infrastructure.local.UserCache
+import kmp.shared.infrastructure.local.UserEntity
 import kmp.shared.infrastructure.model.UserDto
 import kmp.shared.infrastructure.model.UserPagingDto
 import kotlinx.coroutines.flow.Flow

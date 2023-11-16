@@ -1,7 +1,7 @@
 package kmp.shared.di
 
 import com.russhwolf.settings.Settings
-import cz.matee.devstack.kmp.Database
+import kmp.Database
 import kmp.shared.data.repository.AuthRepositoryImpl
 import kmp.shared.data.repository.BookRepositoryImpl
 import kmp.shared.data.repository.UserRepositoryImpl
