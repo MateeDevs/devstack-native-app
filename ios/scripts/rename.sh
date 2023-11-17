@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# This ensures that relative paths are correct no matter where the script is executed
 cd "$(dirname "$0")"
 
 old_name="DevStack"
 old_name_lowercase=`echo "${old_name}" | tr '[:upper:]' '[:lower:]'`
+old_name_shared="Devstack"
 
 echo -n "Enter new name: "
 read new_name
@@ -34,6 +34,13 @@ sed -i '' -e "s/${old_name}/${new_name}/g" ../fastlane/Fastfile
 sed -i '' -e "s/${old_name_lowercase}/${new_name_lowercase}/g" ../fastlane/Fastfile
 sed -i '' -e "s/${old_name}/${new_name}/g" ../.github/workflows/develop.yml
 sed -i '' -e "s/${old_name}/${new_name}/g" ../scripts/setup.sh
+
+echo "Renaming KMP dependency"
+find ../Application/ -type f -name "*.swift" -exec sed -i '' -e "s/${old_name_shared}/${new_name}/g" {} +
+find ../PresentationLayer/ -type f -name "*.swift" -exec sed -i '' -e "s/${old_name_shared}/${new_name}/g" {} +
+find ../DomainLayer/ -type f -name "*.swift" -exec sed -i '' -e "s/${old_name_shared}/${new_name}/g" {} +
+find ../DataLayer/ -type f -name "*.swift" -exec sed -i '' -e "s/${old_name_shared}/${new_name}/g" {} +
+find ../Widget/ -type f -name "*.swift" -exec sed -i '' -e "s/${old_name_shared}/${new_name}/g" {} +
 
 echo "✅ Renaming successful"
 echo "!!! Replace GoogleService-Info plists and ensure that twine directory exists !!!"
