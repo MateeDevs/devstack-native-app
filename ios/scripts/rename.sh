@@ -39,6 +39,7 @@ echo "Renaming KMP dependency"
 find ../Application/ -type f -name "*.swift" -exec sed -i '' -e "s/${old_name_shared}/${new_name}/g" {} +
 find ../PresentationLayer/ -type f -name "*.swift" -exec sed -i '' -e "s/${old_name_shared}/${new_name}/g" {} +
 find ../DomainLayer/ -type f -name "*.swift" -exec sed -i '' -e "s/${old_name_shared}/${new_name}/g" {} +
+find ../DomainLayer/ -type d -name "*.xcframework" -print0 | xargs -0 -I {} mv {} ../DomainLayer/${new_name}.xcframework
 find ../DataLayer/ -type f -name "*.swift" -exec sed -i '' -e "s/${old_name_shared}/${new_name}/g" {} +
 find ../Widget/ -type f -name "*.swift" -exec sed -i '' -e "s/${old_name_shared}/${new_name}/g" {} +
 
