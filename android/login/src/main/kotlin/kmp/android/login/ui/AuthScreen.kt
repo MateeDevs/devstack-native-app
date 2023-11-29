@@ -48,6 +48,7 @@ import kmp.android.shared.Feature
 import kmp.android.shared.style.Values
 import kmp.android.shared.extension.pushedByIme
 import kmp.android.shared.extension.showIn
+import kmp.android.shared.R
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.getViewModel
 import kmp.android.login.vm.AuthViewModel.ViewState as LoginViewModelState
@@ -130,37 +131,37 @@ private fun AuthForm(
 ) {
     val titleText = stringResource(
         if (screen == AuthScreen.Login) {
-            kmp.android.shared.R.string.login_view_headline_title
+            R.string.login_view_headline_title
         } else {
-            kmp.android.shared.R.string.registration_view_headline_title
+            R.string.registration_view_headline_title
         },
     )
     val emailLabel = stringResource(
         if (screen == AuthScreen.Login) {
-            kmp.android.shared.R.string.login_view_email_field_hint
+            R.string.login_view_email_field_hint
         } else {
-            kmp.android.shared.R.string.registration_view_email_field_hint
+            R.string.registration_view_email_field_hint
         },
     )
     val passwordLabel = stringResource(
         if (screen == AuthScreen.Login) {
-            kmp.android.shared.R.string.login_view_password_field_hint
+            R.string.login_view_password_field_hint
         } else {
-            kmp.android.shared.R.string.registration_view_password_field_hint
+            R.string.registration_view_password_field_hint
         },
     )
     val actionBtnText = stringResource(
         if (screen == AuthScreen.Login) {
-            kmp.android.shared.R.string.login_view_login_button_title
+            R.string.login_view_login_button_title
         } else {
-            kmp.android.shared.R.string.registration_view_register_button_title
+            R.string.registration_view_register_button_title
         },
     )
     val navigateBtn = stringResource(
         if (screen == AuthScreen.Login) {
-            kmp.android.shared.R.string.login_view_register_button_title
+            R.string.login_view_register_button_title
         } else {
-            kmp.android.shared.R.string.registration_view_login_button_title
+            R.string.registration_view_login_button_title
         },
     )
 

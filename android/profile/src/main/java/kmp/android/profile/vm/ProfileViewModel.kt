@@ -2,11 +2,11 @@ package kmp.android.profile.vm
 
 import android.location.Location
 import androidx.navigation.NavHostController
+import kmp.android.shared.Feature
 import kmp.android.shared.core.system.BaseStateViewModel
 import kmp.android.shared.core.system.State
 import kmp.android.shared.core.util.launchOnMain
 import kmp.android.shared.domain.usecase.GetLocationFlowUseCase
-import kmp.android.shared.Feature
 import kmp.shared.base.ErrorResult
 import kmp.shared.base.Result
 import kmp.shared.base.util.extension.getOrNull

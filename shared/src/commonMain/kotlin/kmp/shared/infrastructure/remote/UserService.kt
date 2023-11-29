@@ -1,15 +1,15 @@
 package kmp.shared.infrastructure.remote
 
-import kmp.shared.base.Result
-import kmp.shared.base.error.util.runCatchingCommonNetworkExceptions
-import kmp.shared.data.source.UserUpdateRequest
-import kmp.shared.infrastructure.model.UserDto
-import kmp.shared.infrastructure.model.UserPagingDto
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.client.request.put
 import io.ktor.client.request.setBody
+import kmp.shared.base.Result
+import kmp.shared.base.error.util.runCatchingCommonNetworkExceptions
+import kmp.shared.data.source.UserUpdateRequest
+import kmp.shared.infrastructure.model.UserDto
+import kmp.shared.infrastructure.model.UserPagingDto
 
 internal object UserPaths {
     private const val root = "/api/user"

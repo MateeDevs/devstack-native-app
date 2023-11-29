@@ -22,6 +22,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
+import kmp.android.shared.R
 import kmp.android.shared.style.Values
 import kmp.android.shared.ui.UserProfileImage
 import kmp.shared.domain.model.Book
@@ -86,7 +87,7 @@ fun ProfileContent(
         )
 
         TextWithLabel(
-            kmp.android.shared.R.string.profile_view_label_email,
+            R.string.profile_view_label_email,
             user.email,
             Modifier.constrainAs(email) {
                 start.linkTo(parent.start, Values.Space.medium)
@@ -95,7 +96,7 @@ fun ProfileContent(
         )
 
         TextWithLabel(
-            kmp.android.shared.R.string.profile_view_label_phone,
+            R.string.profile_view_label_phone,
             user.phone ?: "",
             Modifier.constrainAs(phone) {
                 start.linkTo(parent.start, Values.Space.medium)
@@ -149,7 +150,7 @@ fun ProfileContent(
                 },
         ) {
             Text(
-                stringResource(kmp.android.shared.R.string.profile_view_logout_button),
+                stringResource(R.string.profile_view_logout_button),
                 Modifier.padding(vertical = Values.Space.xsmall),
             )
         }

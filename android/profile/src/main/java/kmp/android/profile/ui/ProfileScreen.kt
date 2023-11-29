@@ -35,13 +35,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.navigation.NavHostController
 import kmp.android.profile.vm.ProfileViewModel
+import kmp.android.shared.R
 import kmp.android.shared.core.ui.util.rememberLocationPermissionRequest
 import kmp.android.shared.core.util.get
+import kmp.android.shared.extension.showIn
 import kmp.android.shared.style.Values
 import kmp.android.shared.ui.ScreenTitle
-import kmp.android.shared.extension.showIn
 import kmp.shared.domain.model.User
-import kmp.android.shared.R
 import kotlinx.collections.immutable.toImmutableList
 import org.koin.androidx.compose.getViewModel
 import kmp.android.profile.vm.ProfileViewModel.ViewState as State

@@ -1,12 +1,11 @@
 package kmp.shared.di
 
+import io.ktor.client.engine.darwin.Darwin
 import kmp.shared.infrastructure.local.DriverFactory
 import kmp.shared.system.Config
 import kmp.shared.system.ConfigImpl
 import kmp.shared.system.Log
 import kmp.shared.system.Logger
-import io.ktor.client.engine.darwin.Darwin
-import kmp.shared.di.initKoin
 import kotlinx.cinterop.ObjCClass
 import kotlinx.cinterop.ObjCProtocol
 import kotlinx.cinterop.getOriginalKotlinClass

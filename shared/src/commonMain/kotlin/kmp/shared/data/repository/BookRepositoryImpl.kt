@@ -4,8 +4,8 @@ import kmp.shared.base.Result
 import kmp.shared.data.source.BookLocalSource
 import kmp.shared.domain.model.Book
 import kmp.shared.domain.repository.BookRepository
-import kmp.shared.infrastructure.local.BookEntity
 import kmp.shared.extension.asDomain
+import kmp.shared.infrastructure.local.BookEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlin.random.Random

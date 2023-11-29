@@ -26,14 +26,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.NavHostController
+import kmp.android.shared.R
+import kmp.android.shared.extension.showIn
 import kmp.android.shared.style.Values
 import kmp.android.shared.ui.ScreenTitle
 import kmp.android.shared.ui.UserProfileImage
-import kmp.android.shared.extension.showIn
 import kmp.android.users.navigation.UsersDestination
 import kmp.android.users.vm.UsersViewModel
 import kmp.shared.domain.model.User
-import kmp.android.shared.R
 import org.koin.androidx.compose.getViewModel
 
 @Composable

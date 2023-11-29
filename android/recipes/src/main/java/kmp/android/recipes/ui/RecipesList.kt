@@ -36,8 +36,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import kmp.android.recipes.navigation.RecipesDestination
-import kmp.android.shared.style.Values
 import kmp.android.shared.R
+import kmp.android.shared.style.Values
 import kmp.android.shared.ui.ScreenTitle
 
 @Composable
@@ -112,7 +112,7 @@ private fun RecipeItem(
         ) {
             Row(Modifier.fillMaxWidth(), Arrangement.SpaceBetween, Alignment.CenterVertically) {
                 Text(
-                    stringResource(destination.name),
+                    stringResource(destination.name ?: 0),
                     Modifier.weight(0.1f),
                     style = MaterialTheme.typography.h6,
                     color = tintColor,
@@ -127,7 +127,7 @@ private fun RecipeItem(
             }
 
             Text(
-                stringResource(destination.description),
+                stringResource(destination.description ?: 0),
                 Modifier
                     .fillMaxWidth()
                     .alpha(descriptionAlpha)

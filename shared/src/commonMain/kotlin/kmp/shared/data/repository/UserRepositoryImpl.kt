@@ -12,14 +12,14 @@ import kmp.shared.domain.model.UserPagingResult
 import kmp.shared.domain.repository.UserPagingParameters
 import kmp.shared.domain.repository.UserRepository
 import kmp.shared.domain.repository.UserUpdateParameters
+import kmp.shared.extension.asDomain
+import kmp.shared.extension.asEntity
+import kmp.shared.extension.asUserCache
 import kmp.shared.infrastructure.local.AuthDao
 import kmp.shared.infrastructure.local.UserEntity
 import kmp.shared.infrastructure.local.isLoggedIn
 import kmp.shared.infrastructure.model.UserDto
 import kmp.shared.infrastructure.model.UserPagingDto
-import kmp.shared.extension.asDomain
-import kmp.shared.extension.asEntity
-import kmp.shared.extension.asUserCache
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map

@@ -40,6 +40,7 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import kmp.android.shared.R
 import kmp.android.shared.style.Values
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
@@ -76,7 +77,7 @@ fun CanvasRecipe(modifier: Modifier = Modifier) {
             .draggable(dragState, Orientation.Vertical),
     ) {
         Text(
-            stringResource(kmp.android.shared.R.string.recipes_clock_view_tutorial),
+            stringResource(R.string.recipes_clock_view_tutorial),
             Modifier
                 .align(Alignment.TopCenter)
                 .statusBarsPadding()
@@ -107,7 +108,7 @@ private fun ClockCenter(
 ) {
     Column(modifier, horizontalAlignment = Alignment.CenterHorizontally) {
         Text(
-            stringResource(kmp.android.shared.R.string.many_seconds, seconds),
+            stringResource(R.string.many_seconds, seconds),
             style = MaterialTheme.typography.h6,
         )
 

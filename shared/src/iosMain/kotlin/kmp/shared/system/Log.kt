@@ -1,6 +1,5 @@
 package kmp.shared.system
 
-import kmp.shared.system.Logger
 import platform.Foundation.NSLog
 
 actual object Log : Logger {

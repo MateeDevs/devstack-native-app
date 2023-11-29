@@ -1,13 +1,13 @@
 package kmp.shared.base.error.util
 
+import io.ktor.client.plugins.ClientRequestException
+import io.ktor.client.statement.request
+import io.ktor.http.HttpStatusCode
 import kmp.shared.base.Result
 import kmp.shared.base.error.domain.AuthError
 import kmp.shared.base.error.domain.BackendError
 import kmp.shared.base.error.domain.CommonError
 import kmp.shared.infrastructure.remote.AuthPaths
-import io.ktor.client.plugins.ClientRequestException
-import io.ktor.client.statement.request
-import io.ktor.http.HttpStatusCode
 
 internal inline fun <R : Any> runCatchingAuthNetworkExceptions(block: () -> R): Result<R> =
     try {

@@ -1,8 +1,5 @@
 package kmp.shared.infrastructure.remote
 
-import kmp.shared.infrastructure.local.AuthDao
-import kmp.shared.infrastructure.model.LoginDto
-import kmp.shared.system.Config
 import io.ktor.client.HttpClient
 import io.ktor.client.call.HttpClientCall
 import io.ktor.client.engine.HttpClientEngine
@@ -26,6 +23,9 @@ import io.ktor.http.encodedPath
 import io.ktor.http.fullPath
 import io.ktor.serialization.kotlinx.json.json
 import io.ktor.util.pipeline.PipelineContext
+import kmp.shared.infrastructure.local.AuthDao
+import kmp.shared.infrastructure.model.LoginDto
+import kmp.shared.system.Config
 import kotlin.native.concurrent.ThreadLocal
 import co.touchlab.kermit.Logger as KermitLogger
 import kotlinx.serialization.json.Json as JsonConfig
