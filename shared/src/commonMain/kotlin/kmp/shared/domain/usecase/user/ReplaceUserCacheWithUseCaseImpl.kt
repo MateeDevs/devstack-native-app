@@ -6,7 +6,7 @@ import kmp.shared.domain.model.UserPagingData
 import kmp.shared.domain.repository.UserRepository
 
 interface ReplaceUserCacheWithUseCase : UseCaseResult<List<UserPagingData>, Unit>
-class ReplaceUserCacheWithUseCaseImpl internal constructor(
+internal class ReplaceUserCacheWithUseCaseImpl internal constructor(
     private val userRepository: UserRepository,
 ) : ReplaceUserCacheWithUseCase {
     override suspend fun invoke(params: List<UserPagingData>): Result<Unit> =

@@ -8,7 +8,7 @@ import kmp.shared.domain.repository.UserRepository
 
 interface GetRemoteUsersUseCase : UseCaseResult<UserPagingParameters, UserPagingResult>
 
-class GetRemoteUsersUseCaseImpl internal constructor(
+internal class GetRemoteUsersUseCaseImpl internal constructor(
     private val userRepository: UserRepository,
 ) : GetRemoteUsersUseCase {
 

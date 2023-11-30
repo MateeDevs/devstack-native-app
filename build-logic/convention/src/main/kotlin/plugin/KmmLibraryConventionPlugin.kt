@@ -6,6 +6,7 @@ import config.KmmConfig.copyXCFramework
 import config.configureBuildVariants
 import config.configureKotlinAndroid
 import config.kmm
+import config.configureTests
 import constants.ProjectConstants
 import extensions.apply
 import extensions.libs
@@ -97,6 +98,7 @@ class KmmLibraryConventionPlugin : Plugin<Project> {
 
             extensions.configure<LibraryExtension> {
                 configureKotlinAndroid(this)
+                configureTests()
             }
 
             tasks.register("buildXCFramework") {

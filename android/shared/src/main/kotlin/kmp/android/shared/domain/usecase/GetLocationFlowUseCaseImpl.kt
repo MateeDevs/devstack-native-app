@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface GetLocationFlowUseCase : UseCaseResultNoParams<Flow<Location>>
 
-class GetLocationFlowUseCaseImpl(
+internal class GetLocationFlowUseCaseImpl(
     private val locationController: LocationController,
 ) : GetLocationFlowUseCase {
     override suspend fun invoke(): Result<Flow<Location>> =
