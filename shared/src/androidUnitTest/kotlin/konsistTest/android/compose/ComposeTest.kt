@@ -46,7 +46,7 @@ internal class ComposeTest {
             "BottomSheet",
             "Provider",
             "Override",
-            "Theme"
+            "Theme",
         )
     }
 }
