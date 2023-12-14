@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "cz.matee.devstack.kmp.android.books"
+    namespace = "kmp.android.books"
 }
 
 dependencies {

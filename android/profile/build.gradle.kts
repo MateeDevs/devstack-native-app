@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.profile"
+    namespace = "kmp.android.profile"
 }
 
 dependencies {

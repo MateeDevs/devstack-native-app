@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "cz.matee.devstack.kmp.android.login"
+    namespace = "kmp.android.login"
 }
 
 dependencies {

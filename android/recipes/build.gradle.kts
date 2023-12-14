@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "cz.matee.devstack.kmp.android.recipes"
+    namespace = "kmp.android.recipes"
 }
 
 dependencies {
