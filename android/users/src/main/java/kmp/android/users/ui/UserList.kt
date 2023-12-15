@@ -18,10 +18,13 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavHostController
+import androidx.navigation.NavGraphBuilder
+import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemContentType
 import androidx.paging.compose.itemKey
+import kmp.android.shared.R
+import kmp.android.shared.navigation.composableDestination
 import kmp.android.shared.style.Values
 import kmp.android.shared.ui.ScreenTitle
 import kmp.android.users.navigation.UsersDestination
@@ -29,17 +32,39 @@ import kmp.android.users.vm.UsersViewModel
 import kmp.shared.domain.model.UserPagingData
 import org.koin.androidx.compose.getViewModel
 
-@Composable
-fun UserListScreen(navHostController: NavHostController, modifier: Modifier = Modifier) {
-    val userVm = getViewModel<UsersViewModel>()
-    val users = userVm.users.collectAsLazyPagingItems()
-
-    fun onUserItemClick(user: UserPagingData) {
-        navHostController.navigate(UsersDestination.Detail.withUser(user.id))
+internal fun NavGraphBuilder.userListRoute(
+    navigateToUserDetail: (String) -> Unit,
+) {
+    composableDestination(
+        destination = UsersDestination.List,
+    ) {
+        UserListRoute(
+            navigateToUserDetail = navigateToUserDetail,
+        )
     }
+}
 
+@Composable
+internal fun UserListRoute(
+    navigateToUserDetail: (String) -> Unit,
+    viewModel: UsersViewModel = getViewModel(),
+) {
+    val users = viewModel.users.collectAsLazyPagingItems()
+
+    UserListScreen(
+        users = users,
+        onUserTapped = { navigateToUserDetail(it.id) },
+    )
+}
+
+@Composable
+private fun UserListScreen(
+    users: LazyPagingItems<UserPagingData>,
+    onUserTapped: (UserPagingData) -> Unit,
+    modifier: Modifier = Modifier,
+) {
     Column(modifier = modifier) {
-        ScreenTitle(UsersDestination.List.titleRes) {
+        ScreenTitle(R.string.users_view_toolbar_title) {
             Row(Modifier.fillMaxWidth(), Arrangement.End) {
                 IconButton(
                     onClick = { users.refresh() },
@@ -58,7 +83,7 @@ fun UserListScreen(navHostController: NavHostController, modifier: Modifier = Mo
             ) { index ->
                 val userData = users[index]
                 if (userData != null) {
-                    UserItem(userData, onClick = { onUserItemClick(userData) })
+                    UserItem(userData, onClick = { onUserTapped(userData) })
                 }
             }
 

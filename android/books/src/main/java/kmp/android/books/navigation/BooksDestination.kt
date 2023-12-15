@@ -1,4 +1,4 @@
-package kmp.android.users.navigation
+package kmp.android.books.navigation
 
 import android.os.Bundle
 import androidx.navigation.NamedNavArgument
@@ -7,9 +7,9 @@ import androidx.navigation.navArgument
 import kmp.android.shared.navigation.Destination
 import kmp.android.shared.navigation.RootDestination
 
-object UsersDestination : RootDestination {
+object BooksDestination : RootDestination {
 
-    override val route: String = "users"
+    override val route = "books"
 
     data object List : Destination(this) {
         override val destinationId: String = "list"

@@ -1,6 +1,5 @@
 package kmp.android.recipes.ui
 
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.animateColor
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.animateDp
@@ -34,24 +33,41 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
+import androidx.navigation.NavGraphBuilder
+import kmp.android.recipes.domain.model.RecipesTarget
 import kmp.android.recipes.navigation.RecipesDestination
 import kmp.android.shared.R
+import kmp.android.shared.navigation.composableDestination
 import kmp.android.shared.style.Values
 import kmp.android.shared.ui.ScreenTitle
 
+internal fun NavGraphBuilder.recipesRoute(
+    navigateToTarget: (RecipesTarget) -> Unit,
+) {
+    composableDestination(
+        destination = RecipesDestination.List,
+    ) {
+        RecipesRoute(
+            navigateToTarget = navigateToTarget,
+        )
+    }
+}
+
 @Composable
-fun RecipesScreen(navHostController: NavHostController, modifier: Modifier = Modifier) {
+internal fun RecipesRoute(
+    navigateToTarget: (RecipesTarget) -> Unit,
+) {
+    RecipesScreen(
+        openTarget = navigateToTarget,
+    )
+}
+
+@Composable
+private fun RecipesScreen(openTarget: (RecipesTarget) -> Unit, modifier: Modifier = Modifier) {
     Column(modifier = modifier) {
         ScreenTitle(R.string.recipes_view_toolbar_title)
 
-        val items = remember {
-            listOf(
-                RecipesDestination.Rope,
-                RecipesDestination.CanvasClock,
-                RecipesDestination.ListTransition,
-            )
-        }
+        val items = RecipesTarget.values()
 
         var expandedItem by remember { mutableStateOf<Int?>(null) }
 
@@ -65,7 +81,7 @@ fun RecipesScreen(navHostController: NavHostController, modifier: Modifier = Mod
                 RecipeItem(
                     item,
                     selected = expandedItem == index,
-                    onNavigate = { navHostController.navigate(item.route) },
+                    onNavigate = { openTarget(item) },
                     onSelect = { expandedItem = index },
                     onDeselect = { expandedItem = null },
                 )
@@ -74,10 +90,9 @@ fun RecipesScreen(navHostController: NavHostController, modifier: Modifier = Mod
     }
 }
 
-@OptIn(ExperimentalAnimationApi::class)
 @Composable
 private fun RecipeItem(
-    destination: RecipesDestination,
+    destination: RecipesTarget,
     selected: Boolean,
     onNavigate: () -> Unit,
     onSelect: () -> Unit,
@@ -112,7 +127,7 @@ private fun RecipeItem(
         ) {
             Row(Modifier.fillMaxWidth(), Arrangement.SpaceBetween, Alignment.CenterVertically) {
                 Text(
-                    stringResource(destination.name ?: 0),
+                    stringResource(destination.titleRes),
                     Modifier.weight(0.1f),
                     style = MaterialTheme.typography.h6,
                     color = tintColor,
@@ -127,7 +142,7 @@ private fun RecipeItem(
             }
 
             Text(
-                stringResource(destination.description ?: 0),
+                stringResource(destination.descriptionRes),
                 Modifier
                     .fillMaxWidth()
                     .alpha(descriptionAlpha)

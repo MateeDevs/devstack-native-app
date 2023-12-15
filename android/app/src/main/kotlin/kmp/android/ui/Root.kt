@@ -33,23 +33,18 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import kmp.android.books.BooksRoot
-import kmp.android.login.LoginRoot
-import kmp.android.profile.ProfileRoot
-import kmp.android.recipes.RecipesRoot
-import kmp.android.shared.Feature
+import kmp.android.books.navigation.booksNavGraph
+import kmp.android.login.navigation.LoginDestination
+import kmp.android.login.navigation.loginNavGraph
+import kmp.android.navigation.NavBarFeature
+import kmp.android.profile.navigation.profileNavGraph
+import kmp.android.recipes.navigation.recipesNavGraph
 import kmp.android.shared.style.Values
-import kmp.android.users.UsersRoot
+import kmp.android.users.navigation.UsersDestination
+import kmp.android.users.navigation.usersNavGraph
 import kmp.shared.base.util.extension.getOrNull
 import kmp.shared.domain.usecase.user.IsUserLoggedInUseCase
 import org.koin.androidx.compose.get
-
-val navBarFeatures = listOf(
-    Feature.Users,
-    Feature.Profile,
-    Feature.Recipes,
-    Feature.Books,
-)
 
 @Composable
 fun Root(modifier: Modifier = Modifier) {
@@ -71,13 +66,19 @@ fun Root(modifier: Modifier = Modifier) {
             if (showLogin != null) {
                 NavHost(
                     navController,
-                    startDestination = if (showLogin) Feature.Login.route else Feature.Users.route,
+                    startDestination = if (showLogin) LoginDestination.route else UsersDestination.route,
                 ) {
-                    LoginRoot(navController)
-                    UsersRoot(navController)
-                    ProfileRoot(navController)
-                    RecipesRoot(navController)
-                    BooksRoot(navController)
+                    loginNavGraph(
+                        navHostController = navController,
+                        navigateToUsers = { navController.navigate(UsersDestination.route) },
+                    )
+                    usersNavGraph(navController)
+                    profileNavGraph(
+                        navHostController = navController,
+                        navigateToLogin = { navController.navigate(LoginDestination.route) },
+                    )
+                    recipesNavGraph(navController)
+                    booksNavGraph(navController)
                 }
             }
         }
@@ -90,7 +91,7 @@ private fun BottomBar(navController: NavHostController) {
     val currentRoute = navBackStackEntry?.destination?.route
 
     // Don't show NavBar on start
-    val isInAuthRoute = currentRoute?.startsWith(Feature.Login.route) ?: true
+    val isInAuthRoute = currentRoute?.startsWith(LoginDestination.route) ?: true
 
     AnimatedVisibility(
         visible = !isInAuthRoute,
@@ -105,15 +106,14 @@ private fun BottomBar(navController: NavHostController) {
                 Modifier.navigationBarsPadding(),
                 elevation = 0.dp,
             ) {
-                navBarFeatures.forEach { screen ->
+                NavBarFeature.values().forEach { screen ->
                     BottomNavigationItem(
                         icon = {
                             when (screen) {
-                                Feature.Users -> Icon(Icons.Filled.List, "")
-                                Feature.Profile -> Icon(Icons.Filled.Person, "")
-                                Feature.Recipes -> Icon(Icons.Filled.Build, "")
-                                Feature.Books -> Icon(Icons.Filled.Build, "")
-                                else -> error("Icon not handled for ${screen.route}")
+                                NavBarFeature.Users -> Icon(Icons.Filled.List, "")
+                                NavBarFeature.Profile -> Icon(Icons.Filled.Person, "")
+                                NavBarFeature.Recipes -> Icon(Icons.Filled.Build, "")
+                                NavBarFeature.Books -> Icon(Icons.Filled.Build, "")
                             }
                         },
                         label = { Text(stringResource(screen.titleRes)) },

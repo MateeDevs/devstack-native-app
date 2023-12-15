@@ -35,7 +35,7 @@ fun ProfileContent(
     user: User,
     books: ImmutableList<Book>,
     locationValue: Location?,
-    refreshBooks: suspend () -> Unit,
+    refreshBooks: () -> Unit,
     onLogOut: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
