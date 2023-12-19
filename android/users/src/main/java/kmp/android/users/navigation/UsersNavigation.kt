@@ -12,7 +12,7 @@ fun NavGraphBuilder.usersNavGraph(
 ) {
     navigation(
         startDestination = UsersDestination.List.route,
-        route = UsersDestination.route,
+        route = UsersDestination.rootPath,
     ) {
         userListRoute(
             navigateToUserDetail = { navHostController.navigateToUserDetail(it) },

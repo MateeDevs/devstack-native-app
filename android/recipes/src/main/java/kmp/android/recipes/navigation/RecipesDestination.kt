@@ -3,22 +3,23 @@ package kmp.android.recipes.navigation
 import kmp.android.shared.navigation.Destination
 import kmp.android.shared.navigation.RootDestination
 
-object RecipesDestination : RootDestination {
-    override val route: String = "recipes"
+object RecipesDestination : RootDestination(parent = null) {
+
+    override val path: String = "recipes"
 
     object List : Destination(this) {
-        override val destinationId: String = "list"
+        override val routeDefinition: String = "list"
     }
 
     object Rope : Destination(this) {
-        override val destinationId: String = "rope"
+        override val routeDefinition: String = "rope"
     }
 
     object CanvasClock : Destination(this) {
-        override val destinationId: String = "clock"
+        override val routeDefinition: String = "clock"
     }
 
     object ListTransition : Destination(this) {
-        override val destinationId: String = "transition-list"
+        override val routeDefinition: String = "transition-list"
     }
 }

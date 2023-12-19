@@ -3,15 +3,15 @@ package kmp.android.profile.navigation
 import kmp.android.shared.navigation.Destination
 import kmp.android.shared.navigation.RootDestination
 
-object ProfileDestination : RootDestination {
+object ProfileDestination : RootDestination(parent = null) {
 
-    override val route: String = "profile"
+    override val path: String = "profile"
 
     object Home : Destination(parent = this) {
-        override val destinationId: String = "home"
+        override val routeDefinition: String = "home"
     }
 
     object Edit : Destination(parent = this) {
-        override val destinationId: String = "edit"
+        override val routeDefinition: String = "edit"
     }
 }

@@ -7,16 +7,16 @@ import androidx.navigation.navArgument
 import kmp.android.shared.navigation.Destination
 import kmp.android.shared.navigation.RootDestination
 
-object UsersDestination : RootDestination {
+object UsersDestination : RootDestination(parent = null) {
 
-    override val route: String = "users"
+    override val path: String = "users"
 
     data object List : Destination(this) {
-        override val destinationId: String = "list"
+        override val routeDefinition: String = "list"
     }
 
     data object Detail : Destination(this) {
-        override val destinationId: String = "detail"
+        override val routeDefinition: String = "detail"
         internal const val UserIdArg = "userId"
         override val arguments: kotlin.collections.List<NamedNavArgument> = listOf(
             navArgument(UserIdArg) {

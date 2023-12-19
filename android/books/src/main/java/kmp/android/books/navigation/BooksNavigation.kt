@@ -10,7 +10,7 @@ fun NavGraphBuilder.booksNavGraph(
 ) {
     navigation(
         startDestination = BooksDestination.List.route,
-        route = BooksDestination.route,
+        route = BooksDestination.rootPath,
     ) {
         bookListRoute()
     }

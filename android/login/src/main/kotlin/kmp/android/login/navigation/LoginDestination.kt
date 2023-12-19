@@ -4,5 +4,5 @@ import kmp.android.shared.navigation.Destination
 
 data object LoginDestination : Destination(parent = null) {
 
-    override val destinationId: String = "login"
+    override val routeDefinition: String = "login"
 }

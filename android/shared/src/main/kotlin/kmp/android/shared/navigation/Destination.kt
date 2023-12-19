@@ -15,8 +15,18 @@ import com.google.accompanist.navigation.material.bottomSheet
 /**
  * Base class for navigation graph root class.
  */
-interface RootDestination {
-    val route: String
+abstract class RootDestination(private val parent: RootDestination?) {
+
+    abstract val path: String
+
+    val rootPath: String
+        get() = parent?.rootPath?.let { parentPath ->
+            if (parentPath.endsWith('/')) {
+                "$parentPath$path"
+            } else {
+                "$parentPath/$path"
+            }
+        } ?: path
 }
 
 /**
@@ -27,12 +37,18 @@ abstract class Destination(parent: RootDestination?) {
      * The root id of the destination graph used in the route <root>/<destinationId>/<argument>...
      * In case the parent is null, we do not need any prefix and use the destinationId by itself <destinationId>/<argument>...
      */
-    private val root: String = parent?.route?.let { "$it/" } ?: ""
+    private val parentPath: String = parent?.rootPath?.let { parentRootPath ->
+        if (parentRootPath.endsWith('/')) {
+            parentRootPath
+        } else {
+            "$parentRootPath/"
+        }
+    } ?: ""
 
     /**
-     * The id of the destination, without root id and nav arguments.
+     * The route of the destination, without the root path and nav arguments.
      */
-    protected abstract val destinationId: String
+    protected abstract val routeDefinition: String
 
     open val arguments: List<NamedNavArgument> = emptyList()
 
@@ -57,7 +73,7 @@ abstract class Destination(parent: RootDestination?) {
      *      "home"
      */
     private fun constructRoute() = createUri(
-        path = "$root$destinationId",
+        path = "$parentPath$routeDefinition",
         argList = arguments,
         key = { it.name },
         value = { "{${it.name}}" },
@@ -88,7 +104,7 @@ abstract class Destination(parent: RootDestination?) {
         }
 
         return createUri(
-            path = "$root$destinationId",
+            path = "$parentPath$routeDefinition",
             argList = args,
             key = { (name, _) -> name },
             value = { (_, value) -> value },

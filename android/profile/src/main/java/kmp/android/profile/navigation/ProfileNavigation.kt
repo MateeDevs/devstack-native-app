@@ -13,7 +13,7 @@ fun NavGraphBuilder.profileNavGraph(
 ) {
     navigation(
         startDestination = ProfileDestination.Home.route,
-        route = ProfileDestination.route,
+        route = ProfileDestination.rootPath,
     ) {
         profileRoute(
             navigateToEditProfile = { navHostController.navigateToEditProfile() },

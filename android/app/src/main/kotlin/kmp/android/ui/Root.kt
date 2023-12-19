@@ -66,11 +66,11 @@ fun Root(modifier: Modifier = Modifier) {
             if (showLogin != null) {
                 NavHost(
                     navController,
-                    startDestination = if (showLogin) LoginDestination.route else UsersDestination.route,
+                    startDestination = if (showLogin) LoginDestination.route else UsersDestination.rootPath,
                 ) {
                     loginNavGraph(
                         navHostController = navController,
-                        navigateToUsers = { navController.navigate(UsersDestination.route) },
+                        navigateToUsers = { navController.navigate(UsersDestination.rootPath) },
                     )
                     usersNavGraph(navController)
                     profileNavGraph(
