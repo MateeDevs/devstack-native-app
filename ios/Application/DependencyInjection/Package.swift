@@ -32,6 +32,7 @@ let package = Package(
         .package(name: "PushNotificationsToolkit", path: "../../DataLayer/Toolkits/PushNotificationsToolkit"),
         .package(name: "RemoteConfigToolkit", path: "../../DataLayer/Toolkits/RemoteConfigToolkit"),
         .package(name: "RocketToolkit", path: "../../DataLayer/Toolkits/RocketToolkit"),
+        .package(name: "StoreKitToolkit", path: "../../DataLayer/Toolkits/StoreKitToolkit"),
         .package(name: "UserToolkit", path: "../../DataLayer/Toolkits/UserToolkit"),
         
         // Providers
@@ -43,6 +44,7 @@ let package = Package(
         .package(name: "NetworkProvider", path: "../../DataLayer/Providers/NetworkProvider"),
         .package(name: "PushNotificationsProvider", path: "../../DataLayer/Providers/PushNotificationsProvider"),
         .package(name: "RemoteConfigProvider", path: "../../DataLayer/Providers/RemoteConfigProvider"),
+        .package(name: "StoreKitProvider", path: "../../DataLayer/Providers/StoreKitProvider"),
         .package(name: "UserDefaultsProvider", path: "../../DataLayer/Providers/UserDefaultsProvider")
     ],
     targets: [
@@ -62,6 +64,7 @@ let package = Package(
                 .product(name: "PushNotificationsToolkit", package: "PushNotificationsToolkit"),
                 .product(name: "RemoteConfigToolkit", package: "RemoteConfigToolkit"),
                 .product(name: "RocketToolkit", package: "RocketToolkit"),
+                .product(name: "StoreKitToolkit", package: "StoreKitToolkit"),
                 .product(name: "UserToolkit", package: "UserToolkit"),
                 
                 // Providers
@@ -73,6 +76,7 @@ let package = Package(
                 .product(name: "NetworkProvider", package: "NetworkProvider"),
                 .product(name: "PushNotificationsProvider", package: "PushNotificationsProvider"),
                 .product(name: "RemoteConfigProvider", package: "RemoteConfigProvider"),
+                .product(name: "StoreKitProvider", package: "StoreKitProvider"),
                 .product(name: "UserDefaultsProvider", package: "UserDefaultsProvider")
             ]
         ),
