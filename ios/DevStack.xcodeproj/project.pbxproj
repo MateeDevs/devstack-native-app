@@ -63,6 +63,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		31ADBF8C2B50314300A32F5E /* StoreKitProvider */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = StoreKitProvider; sourceTree = "<group>"; };
+		31ADBF8D2B5031D700A32F5E /* StoreKitToolkit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = StoreKitToolkit; sourceTree = "<group>"; };
 		450392842256B29D0037BF42 /* GoogleService-Info-Alpha.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Alpha.plist"; sourceTree = "<group>"; };
 		450392862256B35E0037BF42 /* GoogleService-Info-Beta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Beta.plist"; sourceTree = "<group>"; };
 		450392882256B3C60037BF42 /* GoogleService-Info-Prod.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Prod.plist"; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 		45702E5928421D7F008D5487 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
+				31ADBF8C2B50314300A32F5E /* StoreKitProvider */,
 				45825BC32842961C003926B4 /* AnalyticsProvider */,
 				45C120A1284292690065E6BA /* DatabaseProvider */,
 				453580E52847E814007AEC9E /* GraphQLProvider */,
@@ -313,6 +316,7 @@
 		45FF99D62842B05700E32D9A /* Toolkits */ = {
 			isa = PBXGroup;
 			children = (
+				31ADBF8D2B5031D700A32F5E /* StoreKitToolkit */,
 				45FF99D72842B0A600E32D9A /* AnalyticsToolkit */,
 				45E1445B2AD0B9FE00F223B0 /* AuthToolkit */,
 				456F8B042842CB2800F74A61 /* LocationToolkit */,

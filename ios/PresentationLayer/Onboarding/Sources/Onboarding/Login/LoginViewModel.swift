@@ -17,6 +17,7 @@ final class LoginViewModel: BaseViewModel, ViewModel, ObservableObject {
     
     @Injected(\.loginUseCase) private(set) var loginUseCase
     @Injected(\.trackAnalyticsEventUseCase) private (set) var trackAnalyticsEventUseCase
+    @Injected(\.requestFeedbackUseCase) private var requestFeedbackUseCase
     @Published private(set) var snackState = SnackState<InfoErrorSnackVisuals>()
 
     init(flowController: FlowController?) {
@@ -88,6 +89,9 @@ final class LoginViewModel: BaseViewModel, ViewModel, ObservableObject {
             snackState.currentData?.dismiss()
             await snackState.showSnack(.info(message: "Success", duration: 1))
             flowController?.handleFlow(OnboardingFlow.login(.dismiss))
+            
+            // We don't need to handle the error
+            try? requestFeedbackUseCase.execute()
         } catch {
             state.isLoading = false
             snackState.currentData?.dismiss()
