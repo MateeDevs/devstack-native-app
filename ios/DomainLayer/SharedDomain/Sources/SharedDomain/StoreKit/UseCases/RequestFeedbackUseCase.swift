@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import Utilities
 
 public protocol RequestFeedbackUseCase {
     func execute() throws
@@ -18,6 +19,12 @@ public struct RequestFeedbackUseCaseImpl: RequestFeedbackUseCase {
     }
     
     public func execute() throws {
-        try storeKitRepository.requestFeedback()
+        if Environment.flavor == .debug {
+            guard CommandLine.arguments.contains("-ShouldShowFeedback") else { return }
+            
+            try storeKitRepository.requestFeedback()
+        } else {
+            try storeKitRepository.requestFeedback()
+        }
     }
 }
