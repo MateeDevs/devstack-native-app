@@ -18,9 +18,13 @@ struct ImagesView: View {
         GeometryReader { geo in
             ScrollView {
                 LazyVStack {
-                    ForEach(viewModel.state.urls, id: \.self) { url in
-                        RemoteImage(stringURL: url, placeholder: Asset.Images.brandLogo.image)
+                    ForEach(viewModel.state.posts, id: \.self) { post in
+                        RemoteImage(stringURL: post.url, placeholder: Asset.Images.brandLogo.image)
+                            .equatable()
                             .frame(width: geo.size.width, height: geo.size.width)
+                            .onTapGesture {
+                                viewModel.onIntent(.likePost(post))
+                            }
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .center)

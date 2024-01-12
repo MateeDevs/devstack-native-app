@@ -6,7 +6,7 @@
 import Foundation
 import SwiftUI
 
-public struct RemoteImage: View {
+public struct RemoteImage: View, Equatable {
     
     @State private var image: Image?
     private let stringURL: String?
@@ -35,6 +35,11 @@ public struct RemoteImage: View {
         } else {
             failureContent()
         }
+    }
+    
+    public static func == (lhs: RemoteImage, rhs: RemoteImage) -> Bool {
+        print("EQUAL TEST")
+        return lhs.stringURL == rhs.stringURL
     }
 }
     
