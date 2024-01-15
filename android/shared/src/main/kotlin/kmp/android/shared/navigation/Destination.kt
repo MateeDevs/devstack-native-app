@@ -13,9 +13,9 @@ import com.google.accompanist.navigation.material.ExperimentalMaterialNavigation
 import com.google.accompanist.navigation.material.bottomSheet
 
 /**
- * Base class for navigation graph root class.
+ * Base class for navigation graph class.
  */
-abstract class RootDestination(private val parent: RootDestination?) {
+abstract class NavigationGraph(private val parent: NavigationGraph?) {
 
     abstract val path: String
 
@@ -32,7 +32,7 @@ abstract class RootDestination(private val parent: RootDestination?) {
 /**
  * Base class for any destination the app uses.
  */
-abstract class Destination(parent: RootDestination?) {
+abstract class Destination(parent: NavigationGraph?) {
     /**
      * The root id of the destination graph used in the route <root>/<destinationId>/<argument>...
      * In case the parent is null, we do not need any prefix and use the destinationId by itself <destinationId>/<argument>...
@@ -62,6 +62,7 @@ abstract class Destination(parent: RootDestination?) {
      * Creates a navigate-able route with the [arguments] provided.
      * @param arguments Arguments that should be used for this destination. The number and order of arguments
      * must exactly match the number and order of arguments this destination requires. For a default value, use null.
+     * TODO: It would be nice to ensure correct arguments in correct order are user when constructing the Destination.
      */
     operator fun invoke(vararg arguments: Any?) = constructRouteForNavigation(*arguments)
 

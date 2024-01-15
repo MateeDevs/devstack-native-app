@@ -5,9 +5,9 @@ import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
 import kmp.android.shared.navigation.Destination
-import kmp.android.shared.navigation.RootDestination
+import kmp.android.shared.navigation.NavigationGraph
 
-object UsersDestination : RootDestination(parent = null) {
+object UsersDestination : NavigationGraph(parent = null) {
 
     override val path: String = "users"
 
