@@ -18,22 +18,18 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import kmp.android.shared.style.Values
 import kmp.shared.domain.model.Book
 import kotlinx.collections.immutable.ImmutableList
-import kotlinx.coroutines.launch
 
 @Composable
 fun BookList(
     books: ImmutableList<Book>,
-    refreshBooks: suspend () -> Unit,
+    refreshBooks: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val scope = rememberCoroutineScope()
-
     Column(modifier) {
         Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
             Text(
@@ -45,7 +41,7 @@ fun BookList(
                     .padding(start = Values.Space.mediumLarge),
             )
             IconButton(
-                onClick = { scope.launch { refreshBooks() } },
+                onClick = { refreshBooks() },
                 modifier = Modifier
                     .padding(horizontal = Values.Space.medium, vertical = Values.Space.small),
             ) {

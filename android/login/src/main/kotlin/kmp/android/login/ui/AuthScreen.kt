@@ -40,22 +40,43 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
+import kmp.android.login.navigation.LoginDestination
 import kmp.android.login.vm.AuthViewModel
+import kmp.android.shared.R
 import kmp.android.shared.core.ui.util.BackPressOverride
 import kmp.android.shared.core.util.get
-import kmp.android.shared.Feature
-import kmp.android.shared.style.Values
 import kmp.android.shared.extension.pushedByIme
 import kmp.android.shared.extension.showIn
-import kmp.android.shared.R
+import kmp.android.shared.navigation.composableDestination
+import kmp.android.shared.style.Values
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.getViewModel
 import kmp.android.login.vm.AuthViewModel.ViewState as LoginViewModelState
 
+internal fun NavGraphBuilder.authRoute(
+    navHostController: NavHostController,
+    navigateToUsers: () -> Unit,
+) {
+    composableDestination(
+        destination = LoginDestination,
+    ) {
+        AuthRoute(
+            navHostController = navHostController,
+            navigateToUsers = navigateToUsers,
+        )
+    }
+}
+
 @Composable
-fun AuthScreen(navHostController: NavHostController) {
-    val authVm = getViewModel<AuthViewModel>()
+internal fun AuthRoute(
+    navHostController: NavHostController,
+    navigateToUsers: () -> Unit,
+    viewModel: AuthViewModel = getViewModel(),
+) {
+    val isLoading by viewModel[LoginViewModelState::loading].collectAsState(initial = false)
     val scope = rememberCoroutineScope()
     val snackBarState = remember { SnackbarHostState() }
     val loginState =
@@ -67,9 +88,8 @@ fun AuthScreen(navHostController: NavHostController) {
         }
     val registerState = remember { AuthState() }
     var authScreen by remember { mutableStateOf(AuthScreen.Login) }
-    val isLoading by authVm[LoginViewModelState::loading].collectAsState(initial = false)
 
-    authVm.errorFlow showIn snackBarState
+    viewModel.errorFlow showIn snackBarState
 
     if (authScreen == AuthScreen.Registration) {
         BackPressOverride(navHostController) {
@@ -89,12 +109,12 @@ fun AuthScreen(navHostController: NavHostController) {
         scope.launch {
             when (authScreen) {
                 AuthScreen.Login ->
-                    if (authVm.login(state.emailValue.text, state.passwordValue.text)) {
-                        navHostController.navigate(Feature.Users.route)
+                    if (viewModel.login(state.emailValue.text, state.passwordValue.text)) {
+                        navigateToUsers()
                     }
 
                 AuthScreen.Registration ->
-                    if (authVm.register(state.emailValue.text, state.passwordValue.text)) {
+                    if (viewModel.register(state.emailValue.text, state.passwordValue.text)) {
                         authScreen = AuthScreen.Login
                     }
             }
@@ -108,10 +128,30 @@ fun AuthScreen(navHostController: NavHostController) {
         }
     }
 
-    Crossfade(authScreen) {
+    AuthScreen(
+        isLoading = isLoading,
+        authScreen = authScreen,
+        authState = { if (it == AuthScreen.Login) loginState else registerState },
+        snackBarState = snackBarState,
+        onAction = ::onAction,
+        onScreenSwitch = ::onScreenSwitch,
+    )
+}
+
+@Composable
+private fun AuthScreen(
+    isLoading: Boolean,
+    authScreen: AuthScreen,
+    authState: (AuthScreen) -> AuthState,
+    snackBarState: SnackbarHostState,
+    onAction: () -> Unit,
+    onScreenSwitch: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Crossfade(authScreen, modifier = modifier, label = "AuthFormCrossfade") { screen ->
         AuthForm(
-            screen = it,
-            state = if (it == AuthScreen.Login) loginState else registerState,
+            screen = screen,
+            state = authState(screen),
             snackBarState = snackBarState,
             isLoading = isLoading,
             onAction = { onAction() },

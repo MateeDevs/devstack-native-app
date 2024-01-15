@@ -3,6 +3,7 @@ package kmp.android.recipes.ui
 import androidx.compose.animation.Crossfade
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.DraggableState
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.draggable
@@ -40,13 +41,34 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.navigation.NavController
+import androidx.navigation.NavGraphBuilder
+import kmp.android.recipes.navigation.RecipesGraph
 import kmp.android.shared.R
+import kmp.android.shared.navigation.dialogDestination
 import kmp.android.shared.style.Values
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 
+fun NavController.navigateToCanvasRecipe() {
+    navigate(RecipesGraph.CanvasClock())
+}
+
+internal fun NavGraphBuilder.canvasRecipeRoute() {
+    dialogDestination(
+        destination = RecipesGraph.CanvasClock,
+    ) {
+        CanvasRecipesRoute()
+    }
+}
+
 @Composable
-fun CanvasRecipe(modifier: Modifier = Modifier) {
+internal fun CanvasRecipesRoute() {
+    CanvasRecipe()
+}
+
+@Composable
+private fun CanvasRecipe(modifier: Modifier = Modifier) {
     var usedTimer by remember { mutableStateOf(false) }
     var progress by remember { mutableStateOf(120f) }
     val helpAlpha by animateFloatAsState(if (usedTimer) 0f else 0.6f)
@@ -74,7 +96,8 @@ fun CanvasRecipe(modifier: Modifier = Modifier) {
     Box(
         modifier
             .fillMaxSize()
-            .draggable(dragState, Orientation.Vertical),
+            .draggable(dragState, Orientation.Vertical)
+            .background(MaterialTheme.colors.background),
     ) {
         Text(
             stringResource(R.string.recipes_clock_view_tutorial),

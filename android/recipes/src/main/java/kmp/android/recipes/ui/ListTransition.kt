@@ -40,14 +40,38 @@ import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.round
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.NavGraphBuilder
+import kmp.android.recipes.navigation.RecipesGraph
+import kmp.android.shared.navigation.dialogDestination
 import kmp.android.shared.style.Values
+
+fun NavController.navigateToListTransitionRecipe() {
+    navigate(RecipesGraph.ListTransition())
+}
+
+internal fun NavGraphBuilder.listTransitionRecipeRoute() {
+    dialogDestination(
+        destination = RecipesGraph.ListTransition,
+    ) {
+        ListTransitionRecipeRoute()
+    }
+}
+
+@Composable
+internal fun ListTransitionRecipeRoute() {
+    ListTransitionRecipe()
+}
 
 private val headerMaxHeight by lazy { 128.dp }
 private val headerMinHeight by lazy { 64.dp }
 
 @Composable
-fun ListTransitionRecipe(modifier: Modifier = Modifier) {
-    LazyColumnWithCollapsingToolbar(title = "Title", modifier = modifier) {
+private fun ListTransitionRecipe(modifier: Modifier = Modifier) {
+    LazyColumnWithCollapsingToolbar(
+        title = "Title",
+        modifier = modifier.background(MaterialTheme.colors.background),
+    ) {
         repeat(51) {
             item {
                 Text(
