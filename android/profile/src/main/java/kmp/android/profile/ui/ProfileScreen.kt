@@ -25,7 +25,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
-import kmp.android.profile.navigation.ProfileDestination
+import kmp.android.profile.navigation.ProfileGraph
 import kmp.android.profile.vm.ProfileViewModel
 import kmp.android.shared.R
 import kmp.android.shared.core.ui.util.rememberLocationPermissionRequest
@@ -45,7 +45,7 @@ internal fun NavGraphBuilder.profileRoute(
     navigateToLogin: () -> Unit,
 ) {
     composableDestination(
-        destination = ProfileDestination.Home,
+        destination = ProfileGraph.Home,
     ) {
         ProfileRoute(
             navigateToEditProfile = navigateToEditProfile,

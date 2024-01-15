@@ -33,20 +33,20 @@ import kmp.android.shared.navigation.composableDestination
 import kmp.android.shared.style.Values
 import kmp.android.shared.ui.ScreenTitle
 import kmp.android.shared.ui.UserProfileImage
-import kmp.android.users.navigation.UsersDestination
+import kmp.android.users.navigation.UsersGraph
 import kmp.android.users.vm.UsersViewModel
 import kmp.shared.domain.model.User
 import org.koin.androidx.compose.getViewModel
 
 fun NavController.navigateToUserDetail(userId: String) {
-    navigate(UsersDestination.Detail(userId))
+    navigate(UsersGraph.Detail(userId))
 }
 
 internal fun NavGraphBuilder.userDetailRoute() {
     composableDestination(
-        destination = UsersDestination.Detail,
+        destination = UsersGraph.Detail,
     ) { navBackStackEntry ->
-        val args = UsersDestination.Detail.Args(navBackStackEntry.arguments)
+        val args = UsersGraph.Detail.Args(navBackStackEntry.arguments)
         UserDetailRoute(
             userId = args.userId,
         )

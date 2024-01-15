@@ -40,7 +40,7 @@ import kmp.android.navigation.NavBarFeature
 import kmp.android.profile.navigation.profileNavGraph
 import kmp.android.recipes.navigation.recipesNavGraph
 import kmp.android.shared.style.Values
-import kmp.android.users.navigation.UsersDestination
+import kmp.android.users.navigation.UsersGraph
 import kmp.android.users.navigation.usersNavGraph
 import kmp.shared.base.util.extension.getOrNull
 import kmp.shared.domain.usecase.user.IsUserLoggedInUseCase
@@ -66,11 +66,11 @@ fun Root(modifier: Modifier = Modifier) {
             if (showLogin != null) {
                 NavHost(
                     navController,
-                    startDestination = if (showLogin) LoginDestination.route else UsersDestination.rootPath,
+                    startDestination = if (showLogin) LoginDestination.route else UsersGraph.rootPath,
                 ) {
                     loginNavGraph(
                         navHostController = navController,
-                        navigateToUsers = { navController.navigate(UsersDestination.rootPath) },
+                        navigateToUsers = { navController.navigate(UsersGraph.rootPath) },
                     )
                     usersNavGraph(navController)
                     profileNavGraph(

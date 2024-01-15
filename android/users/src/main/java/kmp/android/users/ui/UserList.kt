@@ -27,7 +27,7 @@ import kmp.android.shared.R
 import kmp.android.shared.navigation.composableDestination
 import kmp.android.shared.style.Values
 import kmp.android.shared.ui.ScreenTitle
-import kmp.android.users.navigation.UsersDestination
+import kmp.android.users.navigation.UsersGraph
 import kmp.android.users.vm.UsersViewModel
 import kmp.shared.domain.model.UserPagingData
 import org.koin.androidx.compose.getViewModel
@@ -36,7 +36,7 @@ internal fun NavGraphBuilder.userListRoute(
     navigateToUserDetail: (String) -> Unit,
 ) {
     composableDestination(
-        destination = UsersDestination.List,
+        destination = UsersGraph.List,
     ) {
         UserListRoute(
             navigateToUserDetail = navigateToUserDetail,

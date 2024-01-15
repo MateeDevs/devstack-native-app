@@ -9,8 +9,8 @@ fun NavGraphBuilder.booksNavGraph(
     navHostController: NavHostController,
 ) {
     navigation(
-        startDestination = BooksDestination.List.route,
-        route = BooksDestination.rootPath,
+        startDestination = BooksGraph.List.route,
+        route = BooksGraph.rootPath,
     ) {
         bookListRoute()
     }

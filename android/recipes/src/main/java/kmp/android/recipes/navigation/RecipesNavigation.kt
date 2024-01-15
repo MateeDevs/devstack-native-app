@@ -14,8 +14,8 @@ import kmp.android.recipes.ui.ropeRecipeRoute
 
 fun NavGraphBuilder.recipesNavGraph(navHostController: NavHostController) {
     navigation(
-        startDestination = RecipesDestination.List.route,
-        route = RecipesDestination.rootPath,
+        startDestination = RecipesGraph.List.route,
+        route = RecipesGraph.rootPath,
     ) {
         recipesRoute(
             navigateToTarget = { target ->

@@ -5,9 +5,9 @@ import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
 import kmp.android.shared.navigation.Destination
-import kmp.android.shared.navigation.NavigationGraph
+import kmp.android.shared.navigation.FeatureGraph
 
-object BooksDestination : NavigationGraph(parent = null) {
+object BooksGraph : FeatureGraph(parent = null) {
 
     override val path = "books"
 

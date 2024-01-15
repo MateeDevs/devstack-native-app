@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavGraphBuilder
-import kmp.android.books.navigation.BooksDestination
+import kmp.android.books.navigation.BooksGraph
 import kmp.android.books.vm.BooksIntent
 import kmp.android.books.vm.BooksViewModel
 import kmp.android.shared.navigation.composableDestination
@@ -15,7 +15,7 @@ import org.koin.androidx.compose.getViewModel
 
 internal fun NavGraphBuilder.bookListRoute() {
     composableDestination(
-        destination = BooksDestination.List,
+        destination = BooksGraph.List,
     ) {
         BookListRoute()
     }

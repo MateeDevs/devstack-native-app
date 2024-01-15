@@ -35,7 +35,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavGraphBuilder
 import kmp.android.recipes.domain.model.RecipesTarget
-import kmp.android.recipes.navigation.RecipesDestination
+import kmp.android.recipes.navigation.RecipesGraph
 import kmp.android.shared.R
 import kmp.android.shared.navigation.composableDestination
 import kmp.android.shared.style.Values
@@ -45,7 +45,7 @@ internal fun NavGraphBuilder.recipesRoute(
     navigateToTarget: (RecipesTarget) -> Unit,
 ) {
     composableDestination(
-        destination = RecipesDestination.List,
+        destination = RecipesGraph.List,
     ) {
         RecipesRoute(
             navigateToTarget = navigateToTarget,

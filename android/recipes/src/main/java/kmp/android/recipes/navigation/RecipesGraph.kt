@@ -1,9 +1,9 @@
 package kmp.android.recipes.navigation
 
 import kmp.android.shared.navigation.Destination
-import kmp.android.shared.navigation.NavigationGraph
+import kmp.android.shared.navigation.FeatureGraph
 
-object RecipesDestination : NavigationGraph(parent = null) {
+object RecipesGraph : FeatureGraph(parent = null) {
 
     override val path: String = "recipes"
 

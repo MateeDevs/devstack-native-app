@@ -15,7 +15,7 @@ import com.google.accompanist.navigation.material.bottomSheet
 /**
  * Base class for navigation graph class.
  */
-abstract class NavigationGraph(private val parent: NavigationGraph?) {
+abstract class FeatureGraph(private val parent: FeatureGraph?) {
 
     abstract val path: String
 
@@ -32,7 +32,7 @@ abstract class NavigationGraph(private val parent: NavigationGraph?) {
 /**
  * Base class for any destination the app uses.
  */
-abstract class Destination(parent: NavigationGraph?) {
+abstract class Destination(parent: FeatureGraph?) {
     /**
      * The root id of the destination graph used in the route <root>/<destinationId>/<argument>...
      * In case the parent is null, we do not need any prefix and use the destinationId by itself <destinationId>/<argument>...

@@ -28,7 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
-import kmp.android.profile.navigation.ProfileDestination
+import kmp.android.profile.navigation.ProfileGraph
 import kmp.android.profile.vm.ProfileViewModel
 import kmp.android.shared.R
 import kmp.android.shared.core.ui.util.rememberLocationPermissionRequest
@@ -41,12 +41,12 @@ import kmp.shared.domain.model.User
 import org.koin.androidx.compose.getViewModel
 
 fun NavController.navigateToEditProfile() {
-    navigate(ProfileDestination.Edit())
+    navigate(ProfileGraph.Edit())
 }
 
 internal fun NavGraphBuilder.editProfileRoute() {
     dialogDestination(
-        destination = ProfileDestination.Edit,
+        destination = ProfileGraph.Edit,
     ) {
         EditProfileRoute()
     }

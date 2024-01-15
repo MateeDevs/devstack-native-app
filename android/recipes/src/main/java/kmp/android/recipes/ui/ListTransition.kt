@@ -42,17 +42,17 @@ import androidx.compose.ui.unit.round
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
-import kmp.android.recipes.navigation.RecipesDestination
+import kmp.android.recipes.navigation.RecipesGraph
 import kmp.android.shared.navigation.dialogDestination
 import kmp.android.shared.style.Values
 
 fun NavController.navigateToListTransitionRecipe() {
-    navigate(RecipesDestination.ListTransition())
+    navigate(RecipesGraph.ListTransition())
 }
 
 internal fun NavGraphBuilder.listTransitionRecipeRoute() {
     dialogDestination(
-        destination = RecipesDestination.ListTransition,
+        destination = RecipesGraph.ListTransition,
     ) {
         ListTransitionRecipeRoute()
     }

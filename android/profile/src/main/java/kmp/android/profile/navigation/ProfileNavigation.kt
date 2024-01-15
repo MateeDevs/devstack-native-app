@@ -12,8 +12,8 @@ fun NavGraphBuilder.profileNavGraph(
     navigateToLogin: () -> Unit,
 ) {
     navigation(
-        startDestination = ProfileDestination.Home.route,
-        route = ProfileDestination.rootPath,
+        startDestination = ProfileGraph.Home.route,
+        route = ProfileGraph.rootPath,
     ) {
         profileRoute(
             navigateToEditProfile = { navHostController.navigateToEditProfile() },

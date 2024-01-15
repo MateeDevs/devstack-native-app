@@ -43,7 +43,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
-import kmp.android.recipes.navigation.RecipesDestination
+import kmp.android.recipes.navigation.RecipesGraph
 import kmp.android.shared.R
 import kmp.android.shared.navigation.dialogDestination
 import kmp.android.shared.style.Values
@@ -51,12 +51,12 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 
 fun NavController.navigateToCanvasRecipe() {
-    navigate(RecipesDestination.CanvasClock())
+    navigate(RecipesGraph.CanvasClock())
 }
 
 internal fun NavGraphBuilder.canvasRecipeRoute() {
     dialogDestination(
-        destination = RecipesDestination.CanvasClock,
+        destination = RecipesGraph.CanvasClock,
     ) {
         CanvasRecipesRoute()
     }

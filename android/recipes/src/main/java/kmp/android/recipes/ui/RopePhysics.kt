@@ -30,18 +30,18 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.round
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
-import kmp.android.recipes.navigation.RecipesDestination
+import kmp.android.recipes.navigation.RecipesGraph
 import kmp.android.shared.navigation.dialogDestination
 import kmp.android.shared.style.Values
 import kotlin.math.roundToInt
 
 fun NavController.navigateToRopeRecipe() {
-    navigate(RecipesDestination.Rope())
+    navigate(RecipesGraph.Rope())
 }
 
 internal fun NavGraphBuilder.ropeRecipeRoute() {
     dialogDestination(
-        destination = RecipesDestination.Rope,
+        destination = RecipesGraph.Rope,
     ) {
         RopeRecipeRoute()
     }

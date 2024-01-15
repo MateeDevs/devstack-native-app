@@ -11,8 +11,8 @@ fun NavGraphBuilder.usersNavGraph(
     navHostController: NavHostController,
 ) {
     navigation(
-        startDestination = UsersDestination.List.route,
-        route = UsersDestination.rootPath,
+        startDestination = UsersGraph.List.route,
+        route = UsersGraph.rootPath,
     ) {
         userListRoute(
             navigateToUserDetail = { navHostController.navigateToUserDetail(it) },
