@@ -9,17 +9,17 @@ struct DraggingComponent: View {
     
     private let buttonIcon: Image
     private let color: Color
-    private let isLoading: Bool
+    @Binding private var isLoading: Bool
     private let maxWidth: CGFloat
     private let minWidth: CGFloat
     @State private var width: CGFloat
-    
     private let action: () -> Void
+    private let threshold: CGFloat
     
     init(
         buttonIcon: Image,
         color: Color,
-        isLoading: Bool,
+        isLoading: Binding<Bool>,
         maxWidth: CGFloat,
         minWidth: CGFloat = 50,
         width: CGFloat = 50,
@@ -27,11 +27,12 @@ struct DraggingComponent: View {
     ) {
         self.buttonIcon = buttonIcon
         self.color = color
-        self.isLoading = isLoading
+        self._isLoading = isLoading
         self.maxWidth = maxWidth
         self.minWidth = minWidth
         self.width = width
         self.action = action
+        self.threshold = 0.6 * maxWidth
     }
     
     var body: some View {
@@ -49,10 +50,14 @@ struct DraggingComponent: View {
                             }
                         }
                         .onEnded { _ in
-                            if width < maxWidth * 0.6 {
+                            if width < threshold || isLoading {
                                 width = minWidth
                             } else {
                                 width = maxWidth
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                                    isLoading = true
+                                    UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                                }
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                                     action()
                                     width = minWidth
@@ -93,7 +98,7 @@ struct DraggingComponent: View {
         DraggingComponent(
             buttonIcon: Image(systemName: "xmark"),
             color: AppTheme.Colors.primaryButtonBackground,
-            isLoading: false,
+            isLoading: .constant(false),
             maxWidth: geo.size.width
         )
     }

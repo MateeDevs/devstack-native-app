@@ -5,32 +5,32 @@
 
 import SwiftUI
 
-struct SlidingButton: View {
+public struct SlidingButton: View {
     
     private let title: String
     private let buttonIcon: Image
     private let color: Color
-    private let isLoading: Bool
+    @Binding private var isLoading: Bool
     private let maxWidth: CGFloat
     private let action: () -> Void
     
-    init(
+    public init(
         title: String,
         buttonIcon: Image,
         color: Color,
-        isLoading: Bool,
+        isLoading: Binding<Bool>,
         maxWidth: CGFloat,
         action: @escaping () -> Void = {}
     ) {
         self.title = title
         self.buttonIcon = buttonIcon
         self.color = color
-        self.isLoading = isLoading
+        self._isLoading = isLoading
         self.maxWidth = maxWidth
         self.action = action
     }
     
-    var body: some View {
+    public var body: some View {
         ZStack(alignment: .leading) {
             RoundedRectangle(cornerRadius: 25)
                 .fill(color)
@@ -44,7 +44,7 @@ struct SlidingButton: View {
             DraggingComponent(
                 buttonIcon: buttonIcon,
                 color: color,
-                isLoading: isLoading,
+                isLoading: $isLoading,
                 maxWidth: maxWidth,
                 action: action
             )
@@ -59,7 +59,7 @@ struct SlidingButton: View {
             title: "Zablokovat",
             buttonIcon: Image(systemName: "xmark"),
             color: AppTheme.Colors.primaryButtonBackground,
-            isLoading: false,
+            isLoading: .constant(false),
             maxWidth: geo.size.width
         )
     }

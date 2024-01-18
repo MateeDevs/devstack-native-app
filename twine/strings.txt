@@ -814,3 +814,11 @@
 		cs = Tažením svisle upravte čas 
 		en = Drag vertically to adjust the time
 		sk = Čas upravíte presunutím zvisle
+	[recipes_sliding_button_title_block]
+		cs = Zablokovat
+		en = Block
+		sk = Blokovať
+	[recipes_sliding_button_title_unblock]
+		cs = Odblokovat
+		en = Unblock
+		sk = Odblokovať
