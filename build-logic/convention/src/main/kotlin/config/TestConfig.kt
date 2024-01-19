@@ -1,7 +1,7 @@
-package cz.matee.devstack.config
+package config
 
-import cz.matee.devstack.extensions.libs
-import cz.matee.devstack.extensions.testImplementation
+import extensions.libs
+import extensions.testImplementation
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 

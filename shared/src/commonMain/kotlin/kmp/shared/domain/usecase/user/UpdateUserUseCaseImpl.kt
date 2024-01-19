@@ -7,7 +7,7 @@ import kmp.shared.domain.repository.UserRepository
 import kmp.shared.domain.repository.UserUpdateParameters
 
 interface UpdateUserUseCase : UseCaseResult<UserUpdateParameters, User>
-class UpdateUserUseCaseImpl internal constructor(
+internal class UpdateUserUseCaseImpl(
     private val userRepository: UserRepository,
 ) : UpdateUserUseCase {
 
