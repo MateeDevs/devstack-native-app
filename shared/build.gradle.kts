@@ -9,6 +9,7 @@ android {
 
 multiplatformResources {
     multiplatformResourcesPackage = "kmp.shared"
+    disableStaticFrameworkWarning = true
 }
 
 sqldelight {
