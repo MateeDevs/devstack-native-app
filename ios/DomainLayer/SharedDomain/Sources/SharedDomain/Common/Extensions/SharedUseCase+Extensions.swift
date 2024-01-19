@@ -62,8 +62,8 @@ public extension UseCaseResult {
                         params: params,
                         onSuccess: { result in
                             guard result is ResultSuccess else {
-                                let error = (result as! ResultError).error.asError
-                                continuation.resume(throwing: error)
+                                let errorResult = (result as! ResultError).error
+                                continuation.resume(throwing: KmmLocalizedError(errorResult: errorResult, localizedMessage: errorResult.localizedMessage(nil)))
                                 return
                             }
                             let value: Out = (result as! ResultSuccess).data as! Out
@@ -71,7 +71,7 @@ public extension UseCaseResult {
                             return
                         },
                         onThrow: { kotlinThrowable in
-                            continuation.resume(throwing: kotlinThrowable.asError())
+                            continuation.resume(throwing: KmmLocalizedError(errorResult: nil, localizedMessage: kotlinThrowable.message ?? kotlinThrowable.description()))
                         })
                     jobWrapper.setJob(coroutineJob)
                 }
@@ -93,15 +93,15 @@ public extension UseCaseResult {
                         params: params,
                         onSuccess: { result in
                             guard result is ResultSuccess else {
-                                let error = (result as! ResultError).error.asError
-                                continuation.resume(throwing: error)
+                                let errorResult = (result as! ResultError).error
+                                continuation.resume(throwing: KmmLocalizedError(errorResult: errorResult, localizedMessage: errorResult.localizedMessage(nil)))
                                 return
                             }
                             continuation.resume()
                             return
                         },
                         onThrow: { kotlinThrowable in
-                            continuation.resume(throwing: kotlinThrowable.asError())
+                            continuation.resume(throwing: KmmLocalizedError(errorResult: nil, localizedMessage: kotlinThrowable.message ?? kotlinThrowable.description()))
                         })
                     jobWrapper.setJob(coroutineJob)
                 }
@@ -124,8 +124,8 @@ public extension UseCaseResultNoParams {
                         self,
                         onSuccess: { result in
                             guard result is ResultSuccess else {
-                                let error = (result as! ResultError).error.asError
-                                continuation.resume(throwing: error)
+                                let errorResult = (result as! ResultError).error
+                                continuation.resume(throwing: KmmLocalizedError(errorResult: errorResult, localizedMessage: errorResult.localizedMessage(nil)))
                                 return
                             }
                             let value: Out = (result as! ResultSuccess).data as! Out
@@ -133,7 +133,7 @@ public extension UseCaseResultNoParams {
                             return
                         },
                         onThrow: { kotlinThrowable in
-                            continuation.resume(throwing: kotlinThrowable.asError())
+                            continuation.resume(throwing: KmmLocalizedError(errorResult: nil, localizedMessage: kotlinThrowable.message ?? kotlinThrowable.description()))
                         })
                     jobWrapper.setJob(coroutineJob)
                 }
@@ -155,15 +155,15 @@ public extension UseCaseResultNoParams {
                         self,
                         onSuccess: { result in
                             guard result is ResultSuccess else {
-                                let error = (result as! ResultError).error.asError
-                                continuation.resume(throwing: error)
+                                let errorResult = (result as! ResultError).error
+                                continuation.resume(throwing: KmmLocalizedError(errorResult: errorResult, localizedMessage: errorResult.localizedMessage(nil)))
                                 return
                             }
                             continuation.resume()
                             return
                         },
                         onThrow: { kotlinThrowable in
-                            continuation.resume(throwing: kotlinThrowable.asError())
+                            continuation.resume(throwing: KmmLocalizedError(errorResult: nil, localizedMessage: kotlinThrowable.message ?? kotlinThrowable.description()))
                         })
                     jobWrapper.setJob(coroutineJob)
                 }

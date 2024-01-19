@@ -2,6 +2,7 @@ package config
 
 import extensions.getBooleanProperty
 import extensions.getStringProperty
+import extensions.libs
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
@@ -80,6 +81,7 @@ fun KotlinMultiplatformExtension.kmm(
                     baseName = nativeName
                     isStatic = false
                     xcf.add(this)
+                    export(libs.mokoResources)
                 }
             }
         }
@@ -90,6 +92,7 @@ fun KotlinMultiplatformExtension.kmm(
                         baseName = nativeName
                         isStatic = false
                         xcf.add(this)
+                        export(libs.mokoResources)
                     }
                 }
             }

@@ -7,6 +7,10 @@ android {
     namespace = "kmp.shared"
 }
 
+multiplatformResources {
+    multiplatformResourcesPackage = "kmp.shared"
+}
+
 sqldelight {
     database("Database") {
         packageName = "kmp"

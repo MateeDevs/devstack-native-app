@@ -393,6 +393,7 @@
 				4558D30520FCC8FF005BC325 /* Resources */,
 				453D3FCD25ED976A0094ADD7 /* Copy GoogleService-Info.plist */,
 				45DEBE2627A153A20075C7E2 /* Embed Foundation Extensions */,
+				A36C52FD2B594E550055080A /* Copy Moko resources */,
 				4564A9F7289CFF3D00A0FEF0 /* Upload dSYMs to Crashlytics */,
 			);
 			buildRules = (
@@ -580,6 +581,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
+		};
+		A36C52FD2B594E550055080A /* Copy Moko resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Moko resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"${PROJECT_DIR}\"\nexec > prebuild-moko.log 2>&1 # For debugging\nscripts/copy-moko-resources.sh\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

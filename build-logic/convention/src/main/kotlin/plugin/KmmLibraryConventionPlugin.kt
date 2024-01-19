@@ -32,6 +32,7 @@ class KmmLibraryConventionPlugin : Plugin<Project> {
                 apply(libs.plugins.serialization)
                 apply(libs.plugins.sqlDelight)
                 apply(libs.plugins.ktlint)
+                apply(libs.plugins.mokoResources)
             }
 
             extensions.configure<LibraryExtension> {
@@ -62,6 +63,7 @@ class KmmLibraryConventionPlugin : Plugin<Project> {
                 sourceSets {
                     val commonMain by getting {
                         dependencies {
+                            api(libs.mokoResources)
                             implementation(libs.coroutines.core)
                             implementation(libs.atomicFu)
                             implementation(libs.dateTime)

@@ -2,9 +2,6 @@ package constants
 
 import org.gradle.api.JavaVersion
 
-const val TWINE_HOME_FOLDER_ARG = "twineLocalizationFolder"
-const val WINDOWS_PROJECT_HOME_FOLDER_ARG = "projectHomeFolder"
-
 object ProjectConstants {
     const val shared = ":shared"
     const val iosShared = "DevstackKmpShared"
