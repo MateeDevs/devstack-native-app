@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import DevstackKmpShared
 import SharedDomain
 import UIToolkit
 
@@ -12,11 +13,11 @@ extension ValidationError: LocalizedError {
         switch self {
         case .email(let reason):
             switch reason {
-            case .isEmpty: L10n.invalid_email
+            case .isEmpty: MR.strings().invalid_email.desc().localized()
             }
         case .password(let reason):
             switch reason {
-            case .isEmpty: L10n.invalid_password
+            case .isEmpty: MR.strings().invalid_password.desc().localized()
             }
         }
     }

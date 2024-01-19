@@ -7,6 +7,7 @@ import DatabaseProvider
 import KeychainProvider
 import NetworkProvider
 import SharedDomain
+import DevstackKmpShared
 
 public struct AuthRepositoryImpl: AuthRepository {
     
@@ -31,9 +32,17 @@ public struct AuthRepositoryImpl: AuthRepository {
             try keychain.update(.authToken, value: authToken.token)
             try keychain.update(.userId, value: authToken.userId)
         } catch let NetworkProviderError.requestFailed(statusCode, _) where statusCode == .unathorized {
-            throw AuthError.login(.invalidCredentials)
+            let errorResult = AuthError.InvalidLoginCredentials(throwable: nil)
+            throw KmmLocalizedError(
+                errorResult: errorResult,
+                localizedMessage: errorResult.localizedMessage(nil)
+            )
         } catch {
-            throw AuthError.login(.failed)
+            let errorResult = AuthError.LoginFailed(throwable: nil)
+            throw KmmLocalizedError(
+                errorResult: errorResult,
+                localizedMessage: errorResult.localizedMessage(nil)
+            )
         }
     }
     
@@ -42,9 +51,17 @@ public struct AuthRepositoryImpl: AuthRepository {
             let data = try data.networkModel.encode()
             try await network.request(AuthAPI.registration(data))
         } catch let NetworkProviderError.requestFailed(statusCode, _) where statusCode == .conflict {
-            throw AuthError.registration(.userAlreadyExists)
+            let errorResult = AuthError.EmailAlreadyExist(throwable: nil)
+            throw KmmLocalizedError(
+                errorResult: errorResult,
+                localizedMessage: errorResult.localizedMessage(nil)
+            )
         } catch {
-            throw AuthError.registration(.failed)
+            let errorResult = AuthError.RegistrationFailed(throwable: nil)
+            throw KmmLocalizedError(
+                errorResult: errorResult,
+                localizedMessage: errorResult.localizedMessage(nil)
+            )
         }
     }
     

@@ -15,6 +15,12 @@ else
   echo "✅ File header is properly set"
 fi
 
+if [ ! -d ../../shared/src/commonMain/resources/base/strings.xml ]; then
+  echo "⚙️  Building Moko error strings for the first time"
+  cd ..
+  ./scripts/generate-error-messages.sh
+fi
+
 if [ ! -d ../DomainLayer/DevstackKmpShared.xcframework ]; then
   echo "⚙️  Building KMP for the first time"
   ./build-kmp.sh

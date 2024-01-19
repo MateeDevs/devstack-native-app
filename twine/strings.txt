@@ -3,18 +3,6 @@
 		cs = Povinné pole
 		en = Required field
 		sk = Povinné pole
-	[invalid_email]
-		cs = Neplatný formát e-mailu
-		en = Invalid email format
-		sk = Neplatný formát e-mailu
-	[invalid_password]
-		cs = Neplatné heslo
-		en = Invalid password
-		sk = Neplatné heslo
-	[invalid_password_match]
-		cs = Hesla se neshodují
-		en = Passwords do not match
-		sk = Heslá sa nezhodujú
 	[loading]
 		cs = Načítání…
 		en = Loading…
@@ -111,34 +99,14 @@
 		cs = Odesílám…
 		en = Sending…
 		sk = Odosieľam...
-	[sending_failed]
-		cs = Odesílání selhalo
-		en = Sending failed
-		sk = Odosielanie zlyhalo..
-	[unknown_error]
-		cs = Neznámá chyba
-		en = Unknown error
-		sk = Neznáma chyba
 	[signing_in]
 		cs = Přihlašuji…
 		en = Signing in…
 		sk = Prihlasujem...
-	[signing_failed]
-		cs = Přihlášení selhalo
-		en = Sign in failed
-		sk = Prihlasovanie zlyhalo
-	[invalid_credentials]
-		cs = Neplatné přihlašovací údaje
-		en = Invalid credentials
-		sk = Neplatné prihlasovacie údaje
 	[signing_up]
 		cs = Registruji…
 		en = Signing up…
 		sk = Registrujem...
-	[signing_up_failed]
-		cs = Registrace se nezdařila
-		en = Sign up failed
-		sk = Registrácia sa nepodarila
 	[signing_out]
 		cs = Odhlašuji…
 		en = Signing out…
@@ -155,14 +123,6 @@
 		cs = Ověřuji…
 		en = Verifying…
 		sk = Overujem...
-	[verifying_failed]
-		cs = Ověření selhalo
-		en = Verification failed
-		sk = Overenie zlyhalo
-	[open_file_screen_failed]
-		cs = Zobrazení souboru selhalo
-		en = File cannot be opened
-		sk = Zobrazenie zlyhalo
 	[hour_unit]
 		cs = %1$s h
 		en = %1$s h
@@ -247,10 +207,6 @@
 		cs = Fotografie byla nahrána
 		en = Photo has been uploaded.
 		sk = Fotografia bola nahraná
-	[uploading_photo_failed]
-		cs = Fotografii se nepodařilo nahrát.
-		en = Photo uploading failed.
-		sk = Fotografiu sa nepodarilo nahrať.
 	[current_location]
 		cs = Aktuální pozice
 		en = Current position
@@ -357,28 +313,6 @@
 		cs = Heslo musí obsahovat minimálně jeden speciální znak
 		en = Password must contain at least one special character
 		sk = Heslo musí obsahovať minimálne jeden špeciálny znak
-
-[[Errors]]
-	[error_access_denied_title]
-		cs = Přístup zamítnut
-		en = Access denied
-		sk = Přístup zamítnut
-	[error_no_internet_connection]
-		cs = Nejsi připojen k internetu.
-		en = You are not connected to the internet.
-		sk = Nie ste pripojení k internetu.
-	[error_cannot_compress_image]
-		cs = Nelze zkomprimovat obrázek
-		en = Unable to compress the image
-		sk = Nejde skomprimovať obrázok
-	[error_camera_permissions_denied]
-		cs = Nemůžeš změnit fotografii, když jsi zakázal oprávnění.
-		en = You cannot change the photo, because you denied the permission.
-		sk = Nemôžete zmeniť fotografiu, pokiaľ ste zakázali oprávnenie.
-	[error_loading_failed]
-		cs = Při načítání se vyskytla chyba. Zkuste to prosím později.
-		en = Error occurred. Try again later.
-		sk = Pri načítaní sa vyskytla chyba. Skúste to prosím neskôr.
 
 [[General navigation]]
 	[done]
@@ -697,10 +631,6 @@
 		cs = Uživatelský účet nemá ověřený email.
 		en = User email hasn't been verified yet.
 		sk = Užívateľský účet nemá overený email.
-	[login_view_error_invalid_credentials]
-		cs = Neplatné přihlašovací údaje 
-		en = Invalid login credentials
-		sk = Neplatné prihlasovacie údaje 
 
 [[Registration View]]
 	[registration_view_headline_title]
@@ -723,10 +653,6 @@
 		cs = Přihlásit se
 		en = Sign in
 		sk = Prihlásiť sa
-	[register_view_email_already_exists]
-		cs = Uživatel s daným emailem již existuje.
-		en = User with specified email already exists.
-		sk = Užívateľ s daným emailom už existuje.
 
 [[Users View]]
 	[users_view_toolbar_title]

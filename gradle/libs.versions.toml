@@ -29,6 +29,7 @@ ktLintRules = "0.3.0"
 kotlinxImmutableCollections = "0.3.6"
 konsist = "0.13.0"
 junit = "4.13.2"
+mokoResources = "0.23.0"
 
 [libraries]
 # Kotlin
@@ -102,6 +103,9 @@ ktlint-composeRules = { module = "io.nlopez.compose.rules:ktlint", version.ref =
 # Konsist architecture linter
 konsist = { module = "com.lemonappdev:konsist", version.ref = "konsist" }
 junit = { module = "junit:junit", version.ref = "junit" }
+# Moko resources
+mokoResources = { module = "dev.icerock.moko:resources", version.ref = "mokoResources" }
+mokoResources-compose = { module = "dev.icerock.moko:resources-compose", version.ref = "mokoResources" }
 
 [bundles]
 settings = [
@@ -138,6 +142,7 @@ sqlDelight = { id = "com.squareup.sqldelight", version.ref = "sqlDelight" }
 versionCatalogUpdate = "nl.littlerobots.version-catalog-update:0.8.1"
 versions = "com.github.ben-manes.versions:0.49.0"
 ktlint = "org.jlleitschuh.gradle.ktlint:11.6.0"
+mokoResources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "mokoResources" }
 # Convention plugins
 devstack-android-application-compose = "android-application-compose:none"
 devstack-android-application-core = "android-application:none"
