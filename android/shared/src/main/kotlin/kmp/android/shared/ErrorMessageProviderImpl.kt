@@ -7,7 +7,7 @@ import kmp.shared.base.error.domain.AuthError
 import kmp.shared.base.error.domain.BackendError
 import kmp.shared.base.error.domain.CommonError
 
-class ErrorMessageProviderImpl(private val context: Context) : ErrorMessageProvider {
+internal class ErrorMessageProviderImpl(private val context: Context) : ErrorMessageProvider {
     override val defaultMessage: String
         get() = context.getString(R.string.unknown_error)
 

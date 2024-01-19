@@ -18,11 +18,6 @@ internal interface AuthDao {
 internal val AuthDao.isLoggedIn get() = retrieveToken() != null && retrieveUserId() != null
 
 internal class AuthDaoImpl(private val settings: Settings) : AuthDao {
-    companion object {
-        private const val TOKEN_KEY = "auth_token"
-        private const val USER_KEY = "user_id"
-    }
-
     override fun saveToken(token: String) {
         settings[TOKEN_KEY] = token
     }
@@ -38,5 +33,10 @@ internal class AuthDaoImpl(private val settings: Settings) : AuthDao {
     override fun wipeData() {
         settings.remove(USER_KEY)
         settings.remove(TOKEN_KEY)
+    }
+
+    companion object {
+        private const val TOKEN_KEY = "auth_token"
+        private const val USER_KEY = "user_id"
     }
 }

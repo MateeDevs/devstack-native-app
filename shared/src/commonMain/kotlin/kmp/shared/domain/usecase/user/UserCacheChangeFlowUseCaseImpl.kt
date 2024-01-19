@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface UserCacheChangeFlowUseCase : UseCaseResultNoParams<Flow<Unit>>
 
-class UserCacheChangeFlowUseCaseImpl internal constructor(
+internal class UserCacheChangeFlowUseCaseImpl internal constructor(
     private val userRepository: UserRepository,
 ) : UserCacheChangeFlowUseCase {
     override suspend fun invoke(): Result<Flow<Unit>> =

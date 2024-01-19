@@ -27,6 +27,8 @@ sqlDelight = "1.5.5"
 googlePlayServices = "21.0.1"
 ktLintRules = "0.3.0"
 kotlinxImmutableCollections = "0.3.6"
+konsist = "0.13.0"
+junit = "4.13.2"
 
 [libraries]
 # Kotlin
@@ -97,6 +99,9 @@ sqlDelight-iosDriver = { module = "com.squareup.sqldelight:native-driver", versi
 googlePlayServices-location = { module = "com.google.android.gms:play-services-location", version.ref = "googlePlayServices" }
 # KtLint rules
 ktlint-composeRules = { module = "io.nlopez.compose.rules:ktlint", version.ref = "ktLintRules" }
+# Konsist architecture linter
+konsist = { module = "com.lemonappdev:konsist", version.ref = "konsist" }
+junit = { module = "junit:junit", version.ref = "junit" }
 
 [bundles]
 settings = [

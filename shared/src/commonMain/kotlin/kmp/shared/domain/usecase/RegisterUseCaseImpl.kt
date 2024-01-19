@@ -13,7 +13,7 @@ interface RegisterUseCase : UseCaseResult<RegisterUseCase.Params, Unit> {
     )
 }
 
-class RegisterUseCaseImpl internal constructor(
+internal class RegisterUseCaseImpl internal constructor(
     private val authRepository: AuthRepository,
 ) : RegisterUseCase {
 

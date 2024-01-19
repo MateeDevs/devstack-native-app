@@ -8,7 +8,7 @@ interface LoginUseCase : UseCaseResult<LoginUseCase.Params, Unit> {
     data class Params(val email: String, val password: String)
 }
 
-class LoginUseCaseImpl internal constructor(
+internal class LoginUseCaseImpl internal constructor(
     private val authRepository: AuthRepository,
 ) : LoginUseCase {
 
