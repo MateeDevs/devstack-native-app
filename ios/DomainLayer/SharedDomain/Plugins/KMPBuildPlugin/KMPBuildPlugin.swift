@@ -20,6 +20,7 @@ struct KMPBuildPlugin: CommandPlugin {
         let task = Process()
         task.executableURL = URL(filePath: rootPath.appending(["scripts", "build-kmp.sh"]).string)
         task.arguments = Arguments(configuration: .debug, architectures: hwArchitecture.buildArchitectures).dataModel
+        task.environment = ["GRADLE_USER_HOME": context.pluginWorkDirectory.string]
 
         try task.run()
         task.waitUntilExit()
@@ -45,6 +46,9 @@ struct KMPBuildPlugin: CommandPlugin {
 //                    displayName: "Build KMP",
 //                    executable: rootPath.appending(["scripts", "build-kmp.sh"]),
 //                    arguments: Arguments(configuration: .debug, architectures: hwArchitecture.buildArchitectures).dataModel,
+//                    environment: [
+//                      "GRADLE_USER_HOME": context.pluginWorkDirectory
+//                    ],
 //                    outputFilesDirectory: context.pluginWorkDirectory
 //                )
 //            ]
