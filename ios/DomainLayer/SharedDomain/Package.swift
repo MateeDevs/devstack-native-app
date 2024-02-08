@@ -37,9 +37,6 @@ let package = Package(
             linkerSettings: [
                 .unsafeFlags(["-Xlinker", "-no_application_extension"])
             ]
-//            plugins: [
-//                "KMPBuildPlugin"
-//            ]
         ),
         .target(
             name: "SharedDomainMocks",
@@ -54,23 +51,6 @@ let package = Package(
                 "SharedDomain",
                 "SharedDomainMocks"
             ]
-        ),
-//        .plugin(
-//            name: "KMPBuildPlugin",
-//            capability: .buildTool()
-//        ),
-        .plugin(
-            name: "KMPBuildPlugin",
-            capability: .command(
-              intent: .custom(
-                verb: "generate-kmp-binary",
-                description: "Generates KMP xcframework"
-              ),
-              permissions: [
-                .allowNetworkConnections(scope: .all(ports: []), reason: "This command needs to download gradle binaries"),
-                //.writeToPackageDirectory(reason: "This command generates KMP xcframework")
-              ]
-            )
         ),
         .binaryTarget(
             name: "DevstackKmpShared",
