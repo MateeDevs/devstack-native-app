@@ -20,16 +20,7 @@ abstract class ErrorMessageProvider {
      * @param defMessage Used if no message is found for given [ErrorResult]
      * @return [String] Error message for given [ErrorResult]
      */
-    internal fun ErrorResult.getMessage(): String {
-        return when (this) {
-            is AuthError -> errorMessage
-            is BackendError -> errorMessage
-            is CommonError -> errorMessage
-            else -> defaultMessage
-        }.toMessageString()
-    }
-
-    internal fun ErrorResult.getMessage(defMessage: String): String {
+    internal fun ErrorResult.getMessage(defMessage: String = defaultMessage.toMessageString()): String {
         return when (this) {
             is AuthError -> errorMessage
             is BackendError -> errorMessage
