@@ -11,7 +11,6 @@ import kmp.shared.base.Result
 import kmp.shared.base.util.extension.getOrNull
 import kmp.shared.domain.model.Book
 import kmp.shared.domain.model.User
-import kmp.shared.domain.repository.UserUpdateParameters
 import kmp.shared.domain.usecase.DeleteAuthDataUseCase
 import kmp.shared.domain.usecase.book.GetBooksUseCase
 import kmp.shared.domain.usecase.book.RefreshBooksUseCase
@@ -44,11 +43,13 @@ class ProfileViewModel(
             loading = true
             getLoggedInUser().collect { res ->
                 when (res) {
-                    is Result.Success -> update { copy(user = res.data) }
+                    is Result.Success -> {
+                        update { copy(user = res.data) }
+                        loading = false // stop loading after first emit, flow never terminates
+                    }
                     is Result.Error -> _errorFlow.emit(res.error)
                 }
             }
-            loading = false
         }
     }
 
@@ -74,20 +75,8 @@ class ProfileViewModel(
     fun updateUser(user: User) {
         launch {
             loading = true
-            val params = UserUpdateParameters(
-                user.id,
-                firstName = user.firstName
-                    .takeIf { user.firstName != lastState().user?.firstName },
-                lastName = user.lastName
-                    .takeIf { user.lastName != lastState().user?.lastName },
-                bio = user.bio
-                    .takeIf { user.bio != lastState().user?.bio },
-                phone = user.phone
-                    .takeIf { user.phone != lastState().user?.phone },
-            )
-
-            when (val res = updateUserUc(params)) {
-                is Result.Success -> update { copy(user = res.data) }
+            when (val res = updateUserUc(user)) {
+                is Result.Success -> {} // no-op, user automatically updated
                 is Result.Error -> _errorFlow.emit(res.error)
             }
             loading = false
