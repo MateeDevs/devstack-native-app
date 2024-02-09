@@ -13,6 +13,14 @@ sqldelight {
     }
 }
 
+kotlin {
+    sourceSets {
+        all {
+            languageSettings.optIn("org.mobilenativefoundation.store.core5.ExperimentalStoreApi")
+        }
+    }
+}
+
 ktlint {
     filter {
         exclude { entry ->

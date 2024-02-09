@@ -9,6 +9,7 @@ import kmp.shared.data.source.AuthSource
 import kmp.shared.data.source.BookLocalSource
 import kmp.shared.data.source.UserLocalSource
 import kmp.shared.data.source.UserRemoteSource
+import kmp.shared.data.store.createUserStore
 import kmp.shared.domain.repository.AuthRepository
 import kmp.shared.domain.repository.BookRepository
 import kmp.shared.domain.repository.UserRepository
@@ -30,8 +31,6 @@ import kmp.shared.domain.usecase.user.GetRemoteUsersUseCase
 import kmp.shared.domain.usecase.user.GetRemoteUsersUseCaseImpl
 import kmp.shared.domain.usecase.user.GetUserUseCase
 import kmp.shared.domain.usecase.user.GetUserUseCaseImpl
-import kmp.shared.domain.usecase.user.GetUsersUseCase
-import kmp.shared.domain.usecase.user.GetUsersUseCaseImpl
 import kmp.shared.domain.usecase.user.IsUserLoggedInUseCase
 import kmp.shared.domain.usecase.user.IsUserLoggedInUseCaseImpl
 import kmp.shared.domain.usecase.user.RefreshUsersUseCase
@@ -57,6 +56,7 @@ import kmp.shared.infrastructure.source.UserRemoteSourceImpl
 import org.koin.core.KoinApplication
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
+import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.module
 
@@ -88,7 +88,6 @@ private val commonModule = module {
     factory<GetLoggedInUserUseCase> { GetLoggedInUserUseCaseImpl(get()) }
     factory<GetRemoteUsersUseCase> { GetRemoteUsersUseCaseImpl(get()) }
     factory<GetLocalUsersUseCase> { GetLocalUsersUseCaseImpl(get()) }
-    factory<GetUsersUseCase> { GetUsersUseCaseImpl(get()) }
     factory<RefreshUsersUseCase> { RefreshUsersUseCaseImpl(get()) }
     factory<GetUserUseCase> { GetUserUseCaseImpl(get()) }
     factory<IsUserLoggedInUseCase> { IsUserLoggedInUseCaseImpl(get()) }
@@ -102,7 +101,10 @@ private val commonModule = module {
     // Repositories
     single<AuthRepository> { AuthRepositoryImpl(get()) }
     single<BookRepository> { BookRepositoryImpl(get()) }
-    single<UserRepository> { UserRepositoryImpl(get(), get(), get()) }
+    single<UserRepository> { UserRepositoryImpl(get(), get(), get(), get()) }
+
+    // Stores
+    singleOf(::createUserStore)
 
     // Sources
     single<AuthSource> { AuthSourceImpl(get(), get()) }
