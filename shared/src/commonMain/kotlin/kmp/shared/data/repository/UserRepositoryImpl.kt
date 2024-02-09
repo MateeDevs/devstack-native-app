@@ -71,7 +71,6 @@ internal class UserRepositoryImpl(
         }
     }
 
-
     override suspend fun getUserPagingRemote(parameters: UserPagingParameters): Result<UserPagingResult> =
         remoteSource
             .getUsers(parameters.asRequest)
@@ -102,5 +101,4 @@ internal class UserRepositoryImpl(
     }
 
     override suspend fun localCacheChanges(): Flow<Unit> = localSource.onPagingCacheChanged()
-
 }
