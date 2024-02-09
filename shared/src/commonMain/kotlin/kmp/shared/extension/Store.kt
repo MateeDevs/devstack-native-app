@@ -49,8 +49,11 @@ inline fun <reified T : Any> StoreWriteResponse.toResult(): Result<T> = when (th
                 is StoreWriteResponse.Success.Untyped -> value
             }
 
-            if (resValue is T) Result.Success(resValue)
-            else throw ClassCastException("Could not cast ${resValue::class} to type ${T::class}")
+            if (resValue is T) {
+                Result.Success(resValue)
+            } else {
+                throw ClassCastException("Could not cast ${resValue::class} to type ${T::class}")
+            }
         }
     }
 

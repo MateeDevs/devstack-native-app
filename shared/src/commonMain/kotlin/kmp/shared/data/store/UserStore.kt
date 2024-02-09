@@ -67,5 +67,4 @@ internal object UserConverter : Converter<UserDto, UserEntity, User> {
     override fun fromOutputToLocal(output: User): UserEntity = with(output) {
         UserEntity(id, email, firstName, lastName, phone, bio)
     }
-
 }
