@@ -18,12 +18,12 @@ import org.mobilenativefoundation.store.store5.SourceOfTruth
 import org.mobilenativefoundation.store.store5.Updater
 import org.mobilenativefoundation.store.store5.UpdaterResult
 
-typealias UserStore = MutableStore<String, User>
+internal typealias UserStore = MutableStore<String, User>
 
 internal fun createUserStore(
     remote: UserRemoteSource,
     local: UserLocalSource,
-): MutableStore<String, User> {
+): UserStore {
     val fetcher = Fetcher.ofResult<String, UserDto> { id ->
         when (val res = remote.getUser(id)) {
             is Result.Success -> FetcherResult.Data(res.data)
@@ -46,7 +46,13 @@ internal fun createUserStore(
             updater = Updater.by(
                 post = { id, value ->
                     val request = with(value) {
-                        UserUpdateRequest(bio, firstName, lastName, null, phone)
+                        UserUpdateRequest(
+                            bio = bio,
+                            firstName = firstName,
+                            lastName = lastName,
+                            pass = null,
+                            phone = phone,
+                        )
                     }
                     when (val res = remote.updateUser(id, request)) {
                         is Result.Success -> UpdaterResult.Success.Typed(res.data.asDomain)

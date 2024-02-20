@@ -4,7 +4,6 @@ import kmp.shared.base.ErrorResult
 import kmp.shared.base.ErrorResultException
 import kmp.shared.base.Result
 import kmp.shared.base.error.domain.CommonError
-import kmp.shared.infrastructure.model.UserDto
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.filterNot
 import kotlinx.coroutines.flow.first
@@ -15,7 +14,7 @@ import org.mobilenativefoundation.store.store5.StoreReadResponse
 import org.mobilenativefoundation.store.store5.StoreWriteResponse
 
 fun <Key : Any, Output : Any> MutableStore<Key, Output>.getResultFlow(key: Key): Flow<Result<Output>> =
-    stream<UserDto>(StoreReadRequest.cached(key, refresh = true))
+    stream<Output>(StoreReadRequest.cached(key, refresh = true))
         .filterNot { it is StoreReadResponse.Loading || it is StoreReadResponse.NoNewData }
         .map(StoreReadResponse<Output>::toResult)
 
