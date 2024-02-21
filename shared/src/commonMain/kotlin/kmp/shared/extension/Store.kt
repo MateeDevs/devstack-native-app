@@ -21,7 +21,12 @@ fun <Key : Any, Output : Any> MutableStore<Key, Output>.getResultFlow(key: Key):
 suspend fun <Key : Any, Output : Any> MutableStore<Key, Output>.getResult(key: Key): Result<Output> =
     getResultFlow(key).first()
 
-inline fun <T : Any> StoreReadResponse<T>.toResult(): Result<T> = when (this) {
+/**
+ * @throws  Throws an [IllegalStateException] when [StoreReadResponse.Loading]
+ * or [StoreReadResponse.NoNewData] are emitted by the source flow. Make sure these values are
+ * filtered out because they can't be translated to Result
+ */
+private inline fun <T : Any> StoreReadResponse<T>.toResult(): Result<T> = when (this) {
     is StoreReadResponse.Data -> Result.Success(value)
 
     is StoreReadResponse.Error.Exception -> Result.Error(CommonError.UnhandledExceptionError(error))
@@ -30,7 +35,10 @@ inline fun <T : Any> StoreReadResponse<T>.toResult(): Result<T> = when (this) {
     )
 
     is StoreReadResponse.Error.Custom<*> -> {
-        val errorResult: ErrorResult = error as? ErrorResult ?: error("Unknown custom error $error")
+        // TODO when using on real projects, make sure to handle exceptions thrown in data layer
+        //  or switch to using some specific domain logic here
+        val errorResult: ErrorResult = error as? ErrorResult
+            ?: error("Unknown custom error $error")
         Result.Error(errorResult)
     }
 
