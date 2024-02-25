@@ -32,16 +32,34 @@ public extension UseCaseFlowNoParams {
     }
 }
 
+// returns unwrapped result, for try await should be wrapped in do-catch block
 public extension UseCaseFlowResult {
-    func execute<In: Any, Out>(params: In) -> AsyncStream<Out> {
+    func execute<In: Any, Out>(params: In) -> AsyncThrowingStream<Out, Error> {
         let _: JobWrapper = JobWrapper()
-        return AsyncStream<Out> { continuation in
+        return AsyncThrowingStream<Out, Error> { continuation in
             let coroutineJob = SwiftCoroutinesKt.subscribe(self, params: params) { result in
-                continuation.yield(result as! Out)
+                switch result {
+                case let resultSuccess as ResultSuccess<AnyObject>:
+                    // if new possible type is needed, it can be added to this switch
+                    switch resultSuccess.data {
+                    case let resultSuccess as NSArray:
+                        let arrayValue = (resultSuccess as? [Any]) as! Out
+                        continuation.yield(arrayValue)
+                    case let resultSuccess as KotlinBoolean:
+                        let boolValue = resultSuccess.boolValue as! Out
+                        continuation.yield(boolValue)
+                    default:
+                        continuation.yield(resultSuccess as! Out)
+                    }
+                case let resultError as ResultError<AnyObject>:
+                    continuation.finish(throwing: resultError.error.asError)
+                default:
+                    continuation.finish(throwing: CommonError.unknownError)
+                }
             } onComplete: {
                 continuation.finish()
-            } onThrow_: { _ in
-                continuation.finish()
+            } onThrow_: { error in
+                continuation.finish(throwing: error.asError())
             }
             continuation.onTermination = { _ in
                 coroutineJob.cancel(cause: nil)
