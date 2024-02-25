@@ -43,12 +43,11 @@ class ProfileViewModel(
             loading = true
             getLoggedInUser().collect { res ->
                 when (res) {
-                    is Result.Success -> {
-                        update { copy(user = res.data) }
-                        loading = false // stop loading after first emit, flow never terminates
-                    }
+                    is Result.Success -> update { copy(user = res.data) }
                     is Result.Error -> _errorFlow.emit(res.error)
                 }
+
+                loading = false // stop loading after first emit, flow never terminates
             }
         }
     }
