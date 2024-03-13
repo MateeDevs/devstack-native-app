@@ -81,4 +81,9 @@ public extension Container {
     // Validation
     var validateEmailUseCase: Factory<ValidateEmailUseCase> { self { ValidateEmailUseCaseImpl() } }
     var validatePasswordUseCase: Factory<ValidatePasswordUseCase> { self { ValidatePasswordUseCaseImpl() } }
+    
+    // StoreKit
+    var requestFeedbackUseCase: Factory<RequestFeedbackUseCase> { self { RequestFeedbackUseCaseImpl(
+        storeKitRepository: self.storeKitRepository()
+    )}}
 }

@@ -33,6 +33,7 @@ let package = Package(
         .package(name: "RemoteConfigToolkit", path: "../../DataLayer/Toolkits/RemoteConfigToolkit"),
         .package(name: "RocketToolkit", path: "../../DataLayer/Toolkits/RocketToolkit"),
         .package(name: "UserToolkit", path: "../../DataLayer/Toolkits/UserToolkit"),
+        .package(name: "StoreKitToolkit", path: "../../DataLayer/Toolkits/StoreKitToolkit"),
         
         // Providers
         .package(name: "AnalyticsProvider", path: "../../DataLayer/Providers/AnalyticsProvider"),
@@ -43,7 +44,8 @@ let package = Package(
         .package(name: "NetworkProvider", path: "../../DataLayer/Providers/NetworkProvider"),
         .package(name: "PushNotificationsProvider", path: "../../DataLayer/Providers/PushNotificationsProvider"),
         .package(name: "RemoteConfigProvider", path: "../../DataLayer/Providers/RemoteConfigProvider"),
-        .package(name: "UserDefaultsProvider", path: "../../DataLayer/Providers/UserDefaultsProvider")
+        .package(name: "UserDefaultsProvider", path: "../../DataLayer/Providers/UserDefaultsProvider"),
+        .package(name: "StoreKitProvider", path: "../../DataLayer/Providers/StoreKitProvider")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -63,6 +65,7 @@ let package = Package(
                 .product(name: "RemoteConfigToolkit", package: "RemoteConfigToolkit"),
                 .product(name: "RocketToolkit", package: "RocketToolkit"),
                 .product(name: "UserToolkit", package: "UserToolkit"),
+                .product(name: "StoreKitToolkit", package: "StoreKitToolkit"),
                 
                 // Providers
                 .product(name: "AnalyticsProvider", package: "AnalyticsProvider"),
@@ -73,7 +76,8 @@ let package = Package(
                 .product(name: "NetworkProvider", package: "NetworkProvider"),
                 .product(name: "PushNotificationsProvider", package: "PushNotificationsProvider"),
                 .product(name: "RemoteConfigProvider", package: "RemoteConfigProvider"),
-                .product(name: "UserDefaultsProvider", package: "UserDefaultsProvider")
+                .product(name: "UserDefaultsProvider", package: "UserDefaultsProvider"),
+                .product(name: "StoreKitProvider", package: "StoreKitProvider")
             ]
         ),
         .target(

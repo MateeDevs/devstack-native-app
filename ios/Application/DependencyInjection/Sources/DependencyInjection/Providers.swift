@@ -12,6 +12,7 @@ import LocationProvider
 import NetworkProvider
 import PushNotificationsProvider
 import RemoteConfigProvider
+import StoreKitProvider
 import UIKit
 import UserDefaultsProvider
 import Utilities
@@ -36,4 +37,5 @@ public extension Container {
         debugMode: Environment.type != .production
     )}}
     var userDefaultsProvider: Factory<UserDefaultsProvider> { self { SystemUserDefaultsProvider() } }
+    var storeKitProvider: Factory<StoreKitProvider> { self { AppleStoreKitProvider() } }
 }

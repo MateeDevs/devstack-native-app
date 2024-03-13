@@ -11,6 +11,7 @@ import PushNotificationsToolkit
 import RemoteConfigToolkit
 import RocketToolkit
 import SharedDomain
+import StoreKitToolkit
 import UserToolkit
 
 public extension Container {
@@ -37,5 +38,8 @@ public extension Container {
     var userRepository: Factory<UserRepository> { self { UserRepositoryImpl(
         databaseProvider: self.databaseProvider(),
         networkProvider: self.networkProvider()
+    )}}
+    var storeKitRepository: Factory<StoreKitRepository> { self { StoreKitRepositoryImpl(
+        storeKitProvider: self.storeKitProvider()
     )}}
 }
