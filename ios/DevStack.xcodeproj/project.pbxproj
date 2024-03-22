@@ -369,6 +369,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4514CA082B74244F00833A0D /* Build configuration list for PBXNativeTarget "BuildKMP" */;
 			buildPhases = (
+				A327766E2BAD960400CC8CF4 /* Generate error messages */,
 				4514CA092B74248C00833A0D /* Build KMP */,
 				4514C9F92B74244F00833A0D /* Headers */,
 				4514C9FA2B74244F00833A0D /* Sources */,
@@ -581,6 +582,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
+		};
+		A327766E2BAD960400CC8CF4 /* Generate error messages */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Generate error messages";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"${PROJECT_DIR}\"\nexec > prebuild-error-messages.log 2>&1 # For debugging\nsh scripts/generate-error-messages.sh\n";
 		};
 		A36C52FD2B594E550055080A /* Copy Moko resources */ = {
 			isa = PBXShellScriptBuildPhase;
