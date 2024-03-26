@@ -107,6 +107,10 @@
 		cs = Registruji…
 		en = Signing up…
 		sk = Registrujem...
+	[signing_up_failed]
+		cs = Registrace se nezdařila
+		en = Sign up failed
+		sk = Registrácia sa nepodarila
 	[signing_out]
 		cs = Odhlašuji…
 		en = Signing out…
@@ -653,6 +657,10 @@
 		cs = Přihlásit se
 		en = Sign in
 		sk = Prihlásiť sa
+	[register_view_email_already_exists]
+		cs = Uživatel s daným emailem již existuje.
+		en = User with specified email already exists.
+		sk = Užívateľ s daným emailom už existuje.
 
 [[Users View]]
 	[users_view_toolbar_title]

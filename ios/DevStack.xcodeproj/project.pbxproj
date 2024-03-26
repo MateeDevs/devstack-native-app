@@ -375,6 +375,7 @@
 				4514C9FA2B74244F00833A0D /* Sources */,
 				4514C9FB2B74244F00833A0D /* Frameworks */,
 				4514C9FC2B74244F00833A0D /* Resources */,
+				A3F626F42BB2B08200657853 /* Copy Moko resources */,
 			);
 			buildRules = (
 			);
@@ -394,7 +395,6 @@
 				4558D30520FCC8FF005BC325 /* Resources */,
 				453D3FCD25ED976A0094ADD7 /* Copy GoogleService-Info.plist */,
 				45DEBE2627A153A20075C7E2 /* Embed Foundation Extensions */,
-				A36C52FD2B594E550055080A /* Copy Moko resources */,
 				4564A9F7289CFF3D00A0FEF0 /* Upload dSYMs to Crashlytics */,
 			);
 			buildRules = (
@@ -601,7 +601,7 @@
 			shellPath = /bin/sh;
 			shellScript = "cd \"${PROJECT_DIR}\"\nexec > prebuild-error-messages.log 2>&1 # For debugging\nsh scripts/generate-error-messages.sh\n";
 		};
-		A36C52FD2B594E550055080A /* Copy Moko resources */ = {
+		A3F626F42BB2B08200657853 /* Copy Moko resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (

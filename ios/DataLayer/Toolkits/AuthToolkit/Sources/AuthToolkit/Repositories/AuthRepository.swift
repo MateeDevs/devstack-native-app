@@ -51,17 +51,9 @@ public struct AuthRepositoryImpl: AuthRepository {
             let data = try data.networkModel.encode()
             try await network.request(AuthAPI.registration(data))
         } catch let NetworkProviderError.requestFailed(statusCode, _) where statusCode == .conflict {
-            let errorResult = AuthError.EmailAlreadyExist(throwable: nil)
-            throw KmmLocalizedError(
-                errorResult: errorResult,
-                localizedMessage: errorResult.localizedMessage(nil)
-            )
+            throw AuthError.registration(.userAlreadyExists)
         } catch {
-            let errorResult = AuthError.RegistrationFailed(throwable: nil)
-            throw KmmLocalizedError(
-                errorResult: errorResult,
-                localizedMessage: errorResult.localizedMessage(nil)
-            )
+            throw AuthError.registration(.failed)
         }
     }
     
