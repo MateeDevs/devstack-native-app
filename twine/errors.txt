@@ -19,26 +19,26 @@
         cs = Neznámá chyba
         en = Unknown error
         sk = Neznáma chyba
-	[signing_failed]
-		cs = Přihlášení selhalo
-		en = Sign in failed
-		sk = Prihlasovanie zlyhalo
-	[invalid_credentials]
-		cs = Neplatné přihlašovací údaje
-		en = Invalid credentials
-		sk = Neplatné prihlasovacie údaje
-	[signing_up_failed]
-		cs = Registrace se nezdařila
-		en = Sign up failed
-		sk = Registrácia sa nepodarila
-	[verifying_failed]
-		cs = Ověření selhalo
-		en = Verification failed
-		sk = Overenie zlyhalo
-	[open_file_screen_failed]
-		cs = Zobrazení souboru selhalo
-		en = File cannot be opened
-		sk = Zobrazenie zlyhalo
+    [signing_failed]
+        cs = Přihlášení selhalo
+        en = Sign in failed
+        sk = Prihlasovanie zlyhalo
+    [invalid_credentials]
+        cs = Neplatné přihlašovací údaje
+        en = Invalid credentials
+        sk = Neplatné prihlasovacie údaje
+    [signing_up_failed]
+        cs = Registrace se nezdařila
+        en = Sign up failed
+        sk = Registrácia sa nepodarila
+    [verifying_failed]
+        cs = Ověření selhalo
+        en = Verification failed
+        sk = Overenie zlyhalo
+    [open_file_screen_failed]
+        cs = Zobrazení souboru selhalo
+        en = File cannot be opened
+        sk = Zobrazenie zlyhalo
     [uploading_photo_failed]
         cs = Fotografii se nepodařilo nahrát.
         en = Photo uploading failed.
@@ -53,26 +53,26 @@
         sk = Užívateľ nie je prihlásený
 
 [[Errors]]
-	[error_access_denied_title]
-		cs = Přístup zamítnut
-		en = Access denied
-		sk = Přístup zamítnut
-	[error_no_internet_connection]
-		cs = Nejsi připojen k internetu.
-		en = You are not connected to the internet.
-		sk = Nie ste pripojení k internetu.
-	[error_cannot_compress_image]
-		cs = Nelze zkomprimovat obrázek
-		en = Unable to compress the image
-		sk = Nejde skomprimovať obrázok
-	[error_camera_permissions_denied]
-		cs = Nemůžeš změnit fotografii, když jsi zakázal oprávnění.
-		en = You cannot change the photo, because you denied the permission.
-		sk = Nemôžete zmeniť fotografiu, pokiaľ ste zakázali oprávnenie.
-	[error_loading_failed]
-		cs = Při načítání se vyskytla chyba. Zkuste to prosím později.
-		en = Error occurred. Try again later.
-		sk = Pri načítaní sa vyskytla chyba. Skúste to prosím neskôr.
+    [error_access_denied_title]
+        cs = Přístup zamítnut
+        en = Access denied
+        sk = Přístup zamítnut
+    [error_no_internet_connection]
+        cs = Nejsi připojen k internetu.
+        en = You are not connected to the internet.
+        sk = Nie ste pripojení k internetu.
+    [error_cannot_compress_image]
+        cs = Nelze zkomprimovat obrázek
+        en = Unable to compress the image
+        sk = Nejde skomprimovať obrázok
+    [error_camera_permissions_denied]
+        cs = Nemůžeš změnit fotografii, když jsi zakázal oprávnění.
+        en = You cannot change the photo, because you denied the permission.
+        sk = Nemôžete zmeniť fotografiu, pokiaľ ste zakázali oprávnenie.
+    [error_loading_failed]
+        cs = Při načítání se vyskytla chyba. Zkuste to prosím později.
+        en = Error occurred. Try again later.
+        sk = Pri načítaní sa vyskytla chyba. Skúste to prosím neskôr.
 
 [[Login]]
     [login_view_error_invalid_credentials]
@@ -85,10 +85,10 @@
         sk = Nepodarilo sa prihlásiť
 
 [[Registration]]
-	[register_view_email_already_exists]
-		cs = Uživatel s daným emailem již existuje.
-		en = User with specified email already exists.
-		sk = Užívateľ s daným emailom už existuje.
+    [register_view_email_already_exists]
+        cs = Uživatel s daným emailem již existuje.
+        en = User with specified email already exists.
+        sk = Užívateľ s daným emailom už existuje.
     [registration_failed]
         cs = Registrace se nezdařila
         en = Registration failed
