@@ -599,7 +599,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd \"${PROJECT_DIR}\"\nexec > prebuild-error-messages.log 2>&1 # For debugging\nsh scripts/generate-error-messages.sh\n";
+			shellScript = "cd \"${PROJECT_DIR}\"\nsh scripts/generate-error-messages.sh\n";
 		};
 		A3F626F42BB2B08200657853 /* Copy Moko resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -617,7 +617,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd \"${PROJECT_DIR}\"\nexec > prebuild-moko.log 2>&1 # For debugging\nscripts/copy-moko-resources.sh\n";
+			shellScript = "cd \"${PROJECT_DIR}\"\nscripts/copy-moko-resources.sh\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
