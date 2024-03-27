@@ -73,7 +73,12 @@ private object Twine {
             File(path).mkdirs()
             File(file).createNewFile()
 
-            "twine generate-localization-file $twineFile $file -f android --lang $language"
+            "twine generate-localization-file $twineFile $file -f android --lang $language \n" +
+                // Replace occurrences of \" with just a quote
+                // https://github.com/icerockdev/moko-resources/issues/462
+                "sed -i '.bak' -e 's@\\\\\"@\"@g' \"$file\" \n" +
+                // Macos requires inplace backup file... remove it
+                "rm \"$file\".bak"
         }
         scripts.forEach { script ->
             project.exec {
