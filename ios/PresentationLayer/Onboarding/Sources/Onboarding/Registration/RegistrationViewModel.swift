@@ -71,7 +71,7 @@ final class RegistrationViewModel: BaseViewModel, ViewModel, ObservableObject {
             flowController?.handleFlow(OnboardingFlow.registration(.dismiss))
         } catch {
             state.isLoading = false
-            state.alert = .init(title: error.localizedDescription)
+            state.alert = .init(title: error.localizedMessage)
         }
     }
 

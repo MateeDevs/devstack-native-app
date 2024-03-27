@@ -1,6 +1,8 @@
 package kmp.shared.di
 
 import io.ktor.client.engine.android.Android
+import kmp.shared.base.error.ErrorMessageProvider
+import kmp.shared.base.error.ErrorMessageProviderImpl
 import kmp.shared.infrastructure.local.DriverFactory
 import kmp.shared.system.Config
 import kmp.shared.system.ConfigImpl
@@ -13,4 +15,5 @@ actual val platformModule = module {
     single { DriverFactory(get()) }
     single<Logger> { Log }
     single { Android.create() }
+    single<ErrorMessageProvider> { ErrorMessageProviderImpl(get()) }
 }
