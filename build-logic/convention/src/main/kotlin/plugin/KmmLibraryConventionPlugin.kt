@@ -27,7 +27,6 @@ class KmmLibraryConventionPlugin : Plugin<Project> {
         with(target) {
             pluginManager {
                 apply(libs.plugins.android.library)
-                apply(libs.plugins.android.library)
                 apply(libs.plugins.kotlin.multiplatform)
                 apply(libs.plugins.serialization)
                 apply(libs.plugins.sqlDelight)
