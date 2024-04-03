@@ -22,7 +22,7 @@ jobs:
 
       - name: Run architecture lint
         run: |
-          ./gradlew :shared:cleanTestDebugUnitTest :shared:testDebugUnitTest --tests "konsistTest.*"
+          ./gradlew :shared:cleanTestDebugUnitTest :shared:testDebugUnitTest --tests "konsistTest.*" --no-build-cache --no-configuration-cache
 
       - name: Publish Test Report
         uses: mikepenz/action-junit-report@v4
