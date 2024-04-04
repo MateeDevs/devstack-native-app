@@ -34,6 +34,8 @@ jobs:
         env:
           TWINE_FOLDER: twine
         run: |
+          git config --global --add safe.directory $GITHUB_WORKSPACE
+          
           TWINE_FOLDER="$(pwd)/$TWINE_FOLDER/"
 
           rm -rf "$TWINE_FOLDER"
