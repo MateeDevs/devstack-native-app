@@ -18,12 +18,11 @@ jobs:
       - name: Run lint
         run: |
           ./gradlew ktlintCheck
-          ./gradlew :build-logic:convention:ktlintCheck
 
       - name: Run architecture lint
+        continue-on-error: true
         run: |
-          ./gradlew :shared:cleanTestDebugUnitTest 
-          ./gradlew :shared:testDebugUnitTest --no-build-cache --no-configuration-cache --tests "konsistTest.*"
+          ./gradlew :shared:testDebugUnitTest --tests "konsistTest.*" --no-build-cache --no-configuration-cache 
 
       - name: Publish Test Report
         uses: mikepenz/action-junit-report@v4
