@@ -31,14 +31,8 @@ jobs:
           report_paths: '**/build/test-results/testDebugUnitTest/TEST-*.xml'
 
       - name: Build
-        env:
-          TWINE_FOLDER: twine
         run: |
           git config --global --add safe.directory $GITHUB_WORKSPACE
           
-          TWINE_FOLDER="$(pwd)/$TWINE_FOLDER/"
-
-          rm -rf "$TWINE_FOLDER"
-          git clone "git@github.com:MateeDevs/twine-localization.git" "$TWINE_FOLDER"
-          ./gradlew generateTwine -PtwineLocalizationFolder="$TWINE_FOLDER"
+          ./gradlew generateTwine
           ./gradlew :android:app:bundleDebug
