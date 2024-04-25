@@ -8,7 +8,7 @@ jobs:
   lint:
     name: Lint & Build
     runs-on: [self-hosted, pikachu]
-    container: mateedevs/charmander
+    container: mateedevs/test
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
@@ -22,7 +22,6 @@ jobs:
       - name: Run architecture lint
         continue-on-error: true
         run: |
-          export JAVA_HOME=$(/usr/libexec/java_home -v17.0.6)
           ./gradlew :shared:testDebugUnitTest --tests "konsistTest.*" --no-build-cache --no-configuration-cache 
 
       - name: Publish Test Report
