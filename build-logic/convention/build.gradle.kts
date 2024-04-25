@@ -22,7 +22,6 @@ dependencies {
     implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
     compileOnly(libs.androidTools.gradle)
     compileOnly(libs.kotlin.gradlePlugin)
-    compileOnly(libs.kotlin.gradlePlugin)
 }
 
 gradlePlugin {

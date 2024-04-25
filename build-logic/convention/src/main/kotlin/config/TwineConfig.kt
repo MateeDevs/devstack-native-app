@@ -11,7 +11,7 @@ fun Project.configureTwine() {
         Twine(
             project = project,
             twineFolderArg = TWINE_HOME_FOLDER_ARG,
-            twineFileName = "devstack/strings.txt",
+            twineFileName = "${rootProject.file("twine").absolutePath}/strings.txt",
             moduleName = "android/shared",
             windowsProjectFolderArg = WINDOWS_PROJECT_HOME_FOLDER_ARG,
         ).generate()
@@ -27,14 +27,12 @@ private class Twine(
 ) {
 
     fun generate() {
-        val twineFolder = getStringProperty(project, twineFolderArg, "unknown")
-
         val script =
             when {
                 OperatingSystem.current().isLinux || OperatingSystem.current().isMacOsX ->
-                    "twine generate-all-localization-files ${twineFolder}$twineFileName ${project.rootDir.absolutePath}/$moduleName/src/main/res/ -f android -n generated_strings.xml -d en -r"
+                    "twine generate-all-localization-files $twineFileName ${project.rootDir.absolutePath}/$moduleName/src/main/res/ -f android -n generated_strings.xml -d en -r"
 
-                OperatingSystem.current().isWindows -> "twine generate-all-localization-files ${twineFolder}$twineFileName $windowsProjectFolderArg/$moduleName/src/main/res/ -f android -n generated_strings.xml -d en -r"
+                OperatingSystem.current().isWindows -> "twine generate-all-localization-files $twineFileName $windowsProjectFolderArg/$moduleName/src/main/res/ -f android -n generated_strings.xml -d en -r"
                 else -> "unsupported"
             }
 
