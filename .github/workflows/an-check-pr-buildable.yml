@@ -8,7 +8,7 @@ jobs:
   lint:
     name: Lint & Build
     runs-on: [self-hosted, pikachu]
-    container: mateedevs/test
+    container: mateedevs/charmander
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
@@ -20,7 +20,6 @@ jobs:
           ./gradlew ktlintCheck
 
       - name: Run architecture lint
-        continue-on-error: true
         run: |
           ./gradlew :shared:testDebugUnitTest --tests "konsistTest.*" --no-build-cache --no-configuration-cache 
 
