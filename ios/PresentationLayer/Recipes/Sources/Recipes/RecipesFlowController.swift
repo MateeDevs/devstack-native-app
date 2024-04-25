@@ -11,6 +11,19 @@ enum RecipesFlow: Flow, Equatable {
     case recipes(Recipes)
     
     enum Recipes: Equatable {
+        static func == (lhs: RecipesFlow.Recipes, rhs: RecipesFlow.Recipes) -> Bool {
+            switch (lhs, rhs) {
+            case (.showCounter, .showCounter): true
+            case (.showBooks, .showBooks): true
+            case (.showSkeleton, .showSkeleton): true
+            case (.showImages, .showImages): true
+            case (.showMaps, .showMaps): true
+            case (.showMediaPicker, .showMediaPicker): true
+            case (.presentPickerModal, .presentPickerModal): true
+            default: false
+            }
+        }
+        
         case showCounter
         case showBooks
         case showRocketLaunches
@@ -19,7 +32,13 @@ enum RecipesFlow: Flow, Equatable {
         case showMaps
         case showSlidingButton
         case showTipKitExample
+        case showMediaPicker
+        case presentPickerModal(delegate: MediaPickerSource)
     }
+}
+
+public protocol MediaPickerSource: AnyObject {
+    var media: Binding<[MediaType]> { get }
 }
 
 public final class RecipesFlowController: FlowController {
@@ -49,6 +68,8 @@ extension RecipesFlowController {
         case .showMaps: showMaps()
         case .showSlidingButton: showSlidingButton()
         case .showTipKitExample: showTipKitExample()
+        case .showMediaPicker: showMediaPicker()
+        case .presentPickerModal(let source): presentPickerModal(source: source)
         }
     }
     
@@ -100,5 +121,20 @@ extension RecipesFlowController {
         let vm = ExampleTipKitViewModel(flowController: self)
         let vc = BaseHostingController(rootView: ExampleTipKitView(viewModel: vm))
         navigationController.show(vc, sender: nil)
+        
+    private func showMediaPicker() {
+        let vm = MediaPickerViewModel(flowController: self)
+        let vc = BaseHostingController(rootView: MediaPickerView(viewModel: vm))
+        navigationController.show(vc, sender: nil)
+    }
+    
+    private func presentPickerModal(source: MediaPickerSource) {
+        let vc = BaseHostingController(
+            rootView: MediaPickerViewController(
+                media: source.media,
+                selectionLimit: 5
+            )
+        )
+        navigationController.present(vc, animated: true)
     }
 }
