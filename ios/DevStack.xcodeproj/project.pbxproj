@@ -369,11 +369,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4514CA082B74244F00833A0D /* Build configuration list for PBXNativeTarget "BuildKMP" */;
 			buildPhases = (
+				A327766E2BAD960400CC8CF4 /* Generate error messages */,
 				4514CA092B74248C00833A0D /* Build KMP */,
 				4514C9F92B74244F00833A0D /* Headers */,
 				4514C9FA2B74244F00833A0D /* Sources */,
 				4514C9FB2B74244F00833A0D /* Frameworks */,
 				4514C9FC2B74244F00833A0D /* Resources */,
+				A3F626F42BB2B08200657853 /* Copy Moko resources */,
 			);
 			buildRules = (
 			);
@@ -580,6 +582,42 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
+		};
+		A327766E2BAD960400CC8CF4 /* Generate error messages */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Generate error messages";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"${PROJECT_DIR}\"\nsh scripts/generate-error-messages.sh\n";
+		};
+		A3F626F42BB2B08200657853 /* Copy Moko resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Moko resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"${PROJECT_DIR}\"\nscripts/copy-moko-resources.sh\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
