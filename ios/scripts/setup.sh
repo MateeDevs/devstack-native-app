@@ -15,7 +15,7 @@ else
   echo "✅ File header is properly set"
 fi
 
-if [ ! -d ../../shared/src/commonMain/resources/base/strings.xml ]; then
+if [ ! -f ../../shared/src/commonMain/resources/MR/base/strings.xml ]; then
   echo "⚙️  Building Moko error strings for the first time"
   ./generate-error-messages.sh
 fi
