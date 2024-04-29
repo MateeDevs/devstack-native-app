@@ -4,6 +4,7 @@
 //
 
 import DependencyInjection
+import DevstackKmpShared
 import Factory
 @testable import Onboarding
 @testable import SharedDomain
@@ -100,7 +101,11 @@ final class LoginViewModelTests: XCTestCase {
     
     func testLoginInvalidPassword() async {
         let vm = createViewModel()
-        loginUseCase.executeThrowableError = AuthError.login(.invalidCredentials)
+        let errorResult = AuthError.InvalidLoginCredentials(throwable: nil)
+        loginUseCase.executeThrowableError = KmmLocalizedError(
+            errorResult: errorResult,
+            localizedMessage: errorResult.localizedMessage(nil)
+        )
         
         vm.onIntent(.changeEmail(LoginData.stubValid.email))
         vm.onIntent(.changePassword(LoginData.stubValid.password))

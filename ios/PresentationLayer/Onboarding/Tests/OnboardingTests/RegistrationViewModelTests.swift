@@ -4,6 +4,7 @@
 //
 
 import DependencyInjection
+import DevstackKmpShared
 import Factory
 @testable import Onboarding
 @testable import SharedDomain
@@ -38,7 +39,7 @@ final class RegistrationViewModelTests: XCTestCase {
         await vm.awaitAllTasks()
         
         XCTAssert(!vm.state.isLoading)
-        XCTAssertEqual(vm.state.alert, AlertData(title: L10n.invalid_email))
+        XCTAssertEqual(vm.state.alert, AlertData(title: MR.strings().invalid_email.desc().localized()))
         XCTAssertEqual(fc.handleFlowValue, nil)
         XCTAssert(registrationUseCase.executeReceivedInvocations == [.stubEmptyEmail])
     }
@@ -53,7 +54,7 @@ final class RegistrationViewModelTests: XCTestCase {
         await vm.awaitAllTasks()
         
         XCTAssert(!vm.state.isLoading)
-        XCTAssertEqual(vm.state.alert, AlertData(title: L10n.invalid_password))
+        XCTAssertEqual(vm.state.alert, AlertData(title: MR.strings().invalid_password.desc().localized()))
         XCTAssertEqual(fc.handleFlowValue, nil)
         XCTAssert(registrationUseCase.executeReceivedInvocations == [.stubEmptyPassword])
     }
