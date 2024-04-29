@@ -25,6 +25,13 @@ extension Fastfile {
         apiKey: AppStoreConnectAPIKey,
         keychain: KeychainConfiguration
     ) {
+        // Temporary until 15.3 or higher is default on CI
+        xcodes(
+            version: "15.3",
+            selectForCurrentBuildOnly: true,
+            binaryPath: "/usr/local/bin/xcodes"
+        )
+        
         if FileManager.default.fileExists(atPath: (keychain.path as NSString).expandingTildeInPath) {
             deleteKeychain(name: .userDefined(keychain.name))
         }
