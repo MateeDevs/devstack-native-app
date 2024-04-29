@@ -6,8 +6,9 @@ on:
 
 jobs:
   lint:
-    name: Lint
-    runs-on: android-global-build
+    name: Lint & Build
+    runs-on: [self-hosted, pikachu]
+    container: mateedevs/charmander
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
@@ -16,28 +17,21 @@ jobs:
 
       - name: Run lint
         run: |
-          export JAVA_HOME=$(/usr/libexec/java_home -v17.0.6)
           ./gradlew ktlintCheck
-          ./gradlew :build-logic:convention:ktlintCheck
 
-  build:
-    name: Build
-    runs-on: android-global-build
-    needs: lint
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
+      - name: Run architecture lint
+        run: |
+          ./gradlew :shared:testDebugUnitTest --tests "konsistTest.*" --no-build-cache --no-configuration-cache 
+
+      - name: Publish Test Report
+        uses: mikepenz/action-junit-report@v4
+        if: success() || failure()
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          report_paths: '**/build/test-results/testDebugUnitTest/TEST-*.xml'
 
       - name: Build
-        env:
-          TWINE_FOLDER: twine
         run: |
-          TWINE_FOLDER="$(pwd)/$TWINE_FOLDER/"
+          git config --global --add safe.directory $GITHUB_WORKSPACE
           
-          rm -rf "$TWINE_FOLDER"
-          git clone "git@github.com:MateeDevs/twine-localization.git" "$TWINE_FOLDER"
-          export JAVA_HOME=$(/usr/libexec/java_home -v17.0.6)
-          ./gradlew generateTwine -PtwineLocalizationFolder="$TWINE_FOLDER"
+          ./gradlew generateTwine
           ./gradlew :android:app:bundleDebug

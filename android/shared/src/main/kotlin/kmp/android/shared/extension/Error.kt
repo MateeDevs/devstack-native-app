@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.Flow
 import org.koin.androidx.compose.get
 
 @SuppressLint("ComposableNaming")
+@Suppress("konsist.every internal or public compose function has a modifier")
 @Composable
 infix fun Flow<ErrorResult>.showIn(snackHost: SnackbarHostState) {
     val errorMessageProvider: ErrorMessageProvider = get()

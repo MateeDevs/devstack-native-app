@@ -10,7 +10,7 @@ interface GetUserUseCase : UseCaseFlowResult<GetUserUseCase.Params, User> {
     class Params(val userId: String)
 }
 
-class GetUserUseCaseImpl internal constructor(
+internal class GetUserUseCaseImpl internal constructor(
     private val userRepository: UserRepository,
 ) : GetUserUseCase {
     override suspend fun invoke(params: GetUserUseCase.Params): Flow<Result<User>> =

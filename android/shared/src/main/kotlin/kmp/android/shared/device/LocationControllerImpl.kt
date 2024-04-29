@@ -21,7 +21,7 @@ import kotlinx.coroutines.flow.filterNotNull
 
 private const val UPDATE_INTERVAL = 1000L
 
-class LocationControllerImpl(
+internal class LocationControllerImpl(
     private val context: Context,
     private val locationProvider: FusedLocationProviderClient,
 ) : LocationController {

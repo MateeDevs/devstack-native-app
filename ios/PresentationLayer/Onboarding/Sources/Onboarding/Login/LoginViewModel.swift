@@ -97,7 +97,7 @@ final class LoginViewModel: BaseViewModel, ViewModel, ObservableObject {
             snackState.currentData?.dismiss()
             await snackState.showSnack(
                 .error(
-                    message: error.localizedDescription,
+                    message: error.localizedMessage,
                     actionLabel: nil
                 )
             )

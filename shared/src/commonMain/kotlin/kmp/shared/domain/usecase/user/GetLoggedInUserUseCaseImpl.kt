@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface GetLoggedInUserUseCase : UseCaseFlowResultNoParams<User>
 
-class GetLoggedInUserUseCaseImpl internal constructor(
+internal class GetLoggedInUserUseCaseImpl internal constructor(
     private val userRepository: UserRepository,
 ) : GetLoggedInUserUseCase {
     override suspend fun invoke(): Flow<Result<User>> = userRepository.getUser()

@@ -25,36 +25,58 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.navigation.NavHostController
+import androidx.navigation.NavController
+import androidx.navigation.NavGraphBuilder
 import kmp.android.shared.R
 import kmp.android.shared.extension.showIn
+import kmp.android.shared.navigation.composableDestination
 import kmp.android.shared.style.Values
 import kmp.android.shared.ui.ScreenTitle
 import kmp.android.shared.ui.UserProfileImage
-import kmp.android.users.navigation.UsersDestination
+import kmp.android.users.navigation.UsersGraph
 import kmp.android.users.vm.UsersViewModel
 import kmp.shared.domain.model.User
 import org.koin.androidx.compose.getViewModel
 
+fun NavController.navigateToUserDetail(userId: String) {
+    navigate(UsersGraph.Detail(userId))
+}
+
+internal fun NavGraphBuilder.userDetailRoute() {
+    composableDestination(
+        destination = UsersGraph.Detail,
+    ) { navBackStackEntry ->
+        val args = UsersGraph.Detail.Args(navBackStackEntry.arguments)
+        UserDetailRoute(
+            userId = args.userId,
+        )
+    }
+}
+
 @Composable
-fun UserDetailScreen(userId: String, navHostController: NavHostController, modifier: Modifier = Modifier) {
-    val userVm = getViewModel<UsersViewModel>()
+internal fun UserDetailRoute(
+    userId: String,
+    viewModel: UsersViewModel = getViewModel(),
+) {
     val snackHost = remember { SnackbarHostState() }
     var user by remember { mutableStateOf<User?>(null) }
 
-    userVm.errorFlow showIn snackHost
+    viewModel.errorFlow showIn snackHost
 
     LaunchedEffect(userId) {
-        userVm.getUser(userId).collect { user = it }
+        viewModel.getUser(userId).collect { user = it }
     }
 
-    val userData = user
+    UserDetailScreen(userData = user, snackHost = snackHost)
+}
 
+@Composable
+private fun UserDetailScreen(userData: User?, snackHost: SnackbarHostState, modifier: Modifier = Modifier) {
     Box(
         modifier.fillMaxSize(),
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            ScreenTitle(UsersDestination.Detail.titleRes)
+            ScreenTitle(R.string.user_detail_view_toolbar_title)
 
             Spacer(Modifier.height(Values.Space.xxlarge))
 

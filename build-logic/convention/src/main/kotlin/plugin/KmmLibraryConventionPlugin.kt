@@ -5,6 +5,7 @@ import config.KmmConfig
 import config.KmmConfig.copyXCFramework
 import config.configureBuildVariants
 import config.configureKotlinAndroid
+import config.configureTests
 import config.kmm
 import constants.ProjectConstants
 import extensions.apply
@@ -26,11 +27,11 @@ class KmmLibraryConventionPlugin : Plugin<Project> {
         with(target) {
             pluginManager {
                 apply(libs.plugins.android.library)
-                apply(libs.plugins.android.library)
                 apply(libs.plugins.kotlin.multiplatform)
                 apply(libs.plugins.serialization)
                 apply(libs.plugins.sqlDelight)
                 apply(libs.plugins.ktlint)
+                apply(libs.plugins.mokoResources)
             }
 
             extensions.configure<LibraryExtension> {
@@ -61,6 +62,7 @@ class KmmLibraryConventionPlugin : Plugin<Project> {
                 sourceSets {
                     val commonMain by getting {
                         dependencies {
+                            api(libs.mokoResources)
                             implementation(libs.coroutines.core)
                             implementation(libs.atomicFu)
                             implementation(libs.dateTime)
@@ -97,6 +99,7 @@ class KmmLibraryConventionPlugin : Plugin<Project> {
 
             extensions.configure<LibraryExtension> {
                 configureKotlinAndroid(this)
+                configureTests()
             }
 
             tasks.register("buildXCFramework") {

@@ -39,6 +39,7 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
                 implementation(libs.bundles.sqlDelight.common)
                 implementation(libs.koin.core)
                 implementation(libs.koin.android)
+                implementation(libs.mokoResources.compose)
             }
 
 //            apply<LoggingConvention>()

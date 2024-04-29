@@ -28,13 +28,34 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.round
+import androidx.navigation.NavController
+import androidx.navigation.NavGraphBuilder
+import kmp.android.recipes.navigation.RecipesGraph
+import kmp.android.shared.navigation.dialogDestination
 import kmp.android.shared.style.Values
 import kotlin.math.roundToInt
+
+fun NavController.navigateToRopeRecipe() {
+    navigate(RecipesGraph.Rope())
+}
+
+internal fun NavGraphBuilder.ropeRecipeRoute() {
+    dialogDestination(
+        destination = RecipesGraph.Rope,
+    ) {
+        RopeRecipeRoute()
+    }
+}
+
+@Composable
+internal fun RopeRecipeRoute() {
+    RopeRecipe()
+}
 
 private val ballSizeDp = 96.dp
 
 @Composable
-fun RopeRecipe(modifier: Modifier = Modifier) {
+private fun RopeRecipe(modifier: Modifier = Modifier) {
     val density = LocalDensity.current.density
     val ballSizePx = remember(density) { ballSizeDp.value * density }
 
@@ -45,7 +66,7 @@ fun RopeRecipe(modifier: Modifier = Modifier) {
 
     val lineColor = MaterialTheme.colors.onBackground
     val ballCenterOffset = remember { Offset(ballSizePx / 2, ballSizePx) }
-    Box(modifier.fillMaxSize()) {
+    Box(modifier.fillMaxSize().background(MaterialTheme.colors.background)) {
         Canvas(Modifier.fillMaxSize()) {
             drawLine(
                 lineColor,

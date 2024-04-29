@@ -9,4 +9,6 @@ sealed class AuthError(
 
     class InvalidLoginCredentials(throwable: Throwable?) : AuthError(null, throwable)
     class EmailAlreadyExist(throwable: Throwable?) : AuthError(null, throwable)
+    class LoginFailed(throwable: Throwable?) : AuthError(null, throwable)
+    class RegistrationFailed(throwable: Throwable?) : AuthError(null, throwable)
 }

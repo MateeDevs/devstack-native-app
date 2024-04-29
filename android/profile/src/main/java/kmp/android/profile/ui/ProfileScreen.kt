@@ -5,22 +5,15 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.requiredHeight
 import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.SnackbarHost
 import androidx.compose.material.SnackbarHostState
-import androidx.compose.material.Surface
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -31,66 +24,102 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.Dialog
-import androidx.navigation.NavHostController
+import androidx.navigation.NavGraphBuilder
+import kmp.android.profile.navigation.ProfileGraph
 import kmp.android.profile.vm.ProfileViewModel
 import kmp.android.shared.R
 import kmp.android.shared.core.ui.util.rememberLocationPermissionRequest
 import kmp.android.shared.core.util.get
 import kmp.android.shared.extension.showIn
+import kmp.android.shared.navigation.composableDestination
 import kmp.android.shared.style.Values
 import kmp.android.shared.ui.ScreenTitle
+import kmp.shared.domain.model.Book
 import kmp.shared.domain.model.User
 import kotlinx.collections.immutable.toImmutableList
 import org.koin.androidx.compose.getViewModel
 import kmp.android.profile.vm.ProfileViewModel.ViewState as State
 
-@OptIn(ExperimentalMaterialApi::class)
+internal fun NavGraphBuilder.profileRoute(
+    navigateToEditProfile: () -> Unit,
+    navigateToLogin: () -> Unit,
+) {
+    composableDestination(
+        destination = ProfileGraph.Home,
+    ) {
+        ProfileRoute(
+            navigateToEditProfile = navigateToEditProfile,
+            navigateToLogin = navigateToLogin,
+        )
+    }
+}
+
 @Composable
-fun ProfileScreen(
-    navHostController: NavHostController,
-    modifier: Modifier = Modifier,
-    profileVm: ProfileViewModel = getViewModel(),
+internal fun ProfileRoute(
+    navigateToEditProfile: () -> Unit,
+    navigateToLogin: () -> Unit,
+    viewModel: ProfileViewModel = getViewModel(),
 ) {
     val snackHost = remember { SnackbarHostState() }
-    var editDialogVisible by remember { mutableStateOf(false) }
-    val user by profileVm[State::user].collectAsState(null)
-    val books by profileVm[State::books].collectAsState(listOf())
+    val user by viewModel[State::user].collectAsState(null)
+    val books by viewModel[State::books].collectAsState(listOf())
+    val loading by viewModel[State::loading].collectAsState(false)
+    var location by remember { mutableStateOf<Location?>(null) }
 
-    profileVm.errorFlow showIn snackHost
+    val permissionHandler = rememberLocationPermissionRequest()
+    val locationPermissionGranted by permissionHandler.granted
 
+    LaunchedEffect(locationPermissionGranted) {
+        if (locationPermissionGranted) {
+            viewModel.getLocationFlow().collect {
+                location = it
+            }
+        } else {
+            permissionHandler.requestPermission()
+        }
+    }
+
+    viewModel.errorFlow showIn snackHost
+
+    ProfileScreen(
+        loading = loading,
+        user = user,
+        location = location,
+        books = books,
+        snackHost = snackHost,
+        reloadBooks = { viewModel.reloadBooks() },
+        logOut = { viewModel.logOut(navigateToLogin) },
+        openEdit = navigateToEditProfile,
+    )
+}
+
+@Composable
+private fun ProfileScreen(
+    loading: Boolean,
+    user: User?,
+    location: Location?,
+    books: List<Book>,
+    snackHost: SnackbarHostState,
+    reloadBooks: () -> Unit,
+    logOut: () -> Unit,
+    openEdit: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
     Box(
         modifier.fillMaxSize(),
     ) {
-        val loading by profileVm[State::loading].collectAsState(false)
-
         ProfileLayout(
-            onEditClick = { editDialogVisible = true },
+            onEditClick = openEdit,
         ) {
-            val permissionHandler = rememberLocationPermissionRequest()
-            var locationValue by remember { mutableStateOf<Location?>(null) }
-            val locationPermissionGranted by permissionHandler.granted
-
-            LaunchedEffect(locationPermissionGranted) {
-                if (locationPermissionGranted) {
-                    profileVm.getLocationFlow().collect {
-                        locationValue = it
-                    }
-                } else {
-                    permissionHandler.requestPermission()
-                }
-            }
-
             @Suppress("UnnecessaryVariable")
             val userData = user
             if (userData != null) {
                 ProfileContent(
                     userData,
                     books.toImmutableList(),
-                    locationValue,
-                    refreshBooks = { profileVm.reloadBooks() },
-                    onLogOut = { profileVm.logOut(navHostController) },
+                    location,
+                    refreshBooks = reloadBooks,
+                    onLogOut = logOut,
                 )
             }
         }
@@ -100,12 +129,6 @@ fun ProfileScreen(
         }
 
         SnackbarHost(snackHost, Modifier.align(Alignment.BottomCenter))
-    }
-
-    if (editDialogVisible) {
-        Dialog(onDismissRequest = { editDialogVisible = false }) {
-            EditUserScreen(user, profileVm = profileVm)
-        }
     }
 }
 
@@ -127,62 +150,5 @@ private fun ProfileLayout(
             }
         }
         content()
-    }
-}
-
-@Composable
-private fun EditUserScreen(
-    user: User?,
-    modifier: Modifier = Modifier,
-    profileVm: ProfileViewModel = getViewModel(),
-) {
-    val loading by profileVm[State::loading].collectAsState(false)
-    var editedUser by remember(user) { mutableStateOf(user) }
-
-    val pendingChanges = profileVm.lastState().user != editedUser
-    val saving = loading && pendingChanges
-
-    fun saveChanges() {
-        editedUser?.let(profileVm::updateUser)
-    }
-
-    Surface(modifier.padding(Values.Space.medium), shape = MaterialTheme.shapes.medium) {
-        Column {
-            ScreenTitle(
-                R.string.profile_edit_view_title,
-                background = MaterialTheme.colors.surface,
-                statusBarPadding = false,
-                showFade = false,
-                modifier = Modifier.padding(top = Values.Space.medium),
-            ) {
-                Box(
-                    Modifier
-                        .fillMaxWidth()
-                        .height(24.dp)
-                        .padding(end = Values.Space.medium),
-                ) {
-                    if (saving) {
-                        CircularProgressIndicator(modifier = Modifier.align(Alignment.CenterEnd))
-                    } else if (pendingChanges) {
-                        IconButton(
-                            onClick = ::saveChanges,
-                            enabled = pendingChanges,
-                            modifier = Modifier.align(Alignment.CenterEnd),
-                        ) {
-                            Icon(Icons.Filled.Check, "")
-                        }
-                    }
-                }
-            }
-
-            Spacer(Modifier.requiredHeight(Values.Space.small))
-
-            UserEdit(
-                user = editedUser,
-                onUserChange = {
-                    editedUser = it
-                },
-            )
-        }
     }
 }

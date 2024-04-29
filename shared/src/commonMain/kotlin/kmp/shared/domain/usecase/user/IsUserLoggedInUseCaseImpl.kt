@@ -5,7 +5,7 @@ import kmp.shared.base.usecase.UseCaseResultNoParams
 import kmp.shared.domain.repository.UserRepository
 
 interface IsUserLoggedInUseCase : UseCaseResultNoParams<Boolean>
-class IsUserLoggedInUseCaseImpl internal constructor(
+internal class IsUserLoggedInUseCaseImpl internal constructor(
     private val userRepository: UserRepository,
 ) : IsUserLoggedInUseCase {
     override suspend fun invoke(): Result<Boolean> =

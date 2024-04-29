@@ -1,8 +1,7 @@
 package kmp.android.profile.vm
 
 import android.location.Location
-import androidx.navigation.NavHostController
-import kmp.android.shared.Feature
+import androidx.lifecycle.viewModelScope
 import kmp.android.shared.core.system.BaseStateViewModel
 import kmp.android.shared.core.system.State
 import kmp.android.shared.core.util.launchOnMain
@@ -21,6 +20,7 @@ import kmp.shared.domain.usecase.user.UpdateUserUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.launch
 
 class ProfileViewModel(
     private val getLoggedInUser: GetLoggedInUserUseCase,
@@ -60,11 +60,13 @@ class ProfileViewModel(
         }
     }
 
-    suspend fun reloadBooks() {
-        when (val res = refreshBooks(10)) {
-            is Result.Error -> _errorFlow.emit(res.error)
-            is Result.Success -> {
-                // Do nothing
+    fun reloadBooks() {
+        viewModelScope.launch {
+            when (val res = refreshBooks(10)) {
+                is Result.Error -> _errorFlow.emit(res.error)
+                is Result.Success -> {
+                    // Do nothing
+                }
             }
         }
     }
@@ -92,10 +94,10 @@ class ProfileViewModel(
         }
     }
 
-    fun logOut(navHostController: NavHostController) {
+    fun logOut(openLogin: () -> Unit) {
         launchOnMain {
             deleteAuthData()
-            navHostController.navigate(Feature.Login.route)
+            openLogin()
         }
     }
 

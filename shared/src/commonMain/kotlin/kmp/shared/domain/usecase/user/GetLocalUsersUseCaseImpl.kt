@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface GetLocalUsersUseCase : UseCaseFlow<UserPagingParameters, UserPagingResult>
 
-class GetLocalUsersUseCaseImpl internal constructor(
+internal class GetLocalUsersUseCaseImpl internal constructor(
     private val userRepository: UserRepository,
 ) : GetLocalUsersUseCase {
 

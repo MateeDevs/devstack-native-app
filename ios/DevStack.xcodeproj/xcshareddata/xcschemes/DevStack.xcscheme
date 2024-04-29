@@ -5,6 +5,40 @@
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Generate error messages"
+               scriptText = "if [ -z &quot;$CI&quot; ]; then&#10;    cd &quot;${PROJECT_DIR}&quot;&#10;    scripts/generate-error-messages.sh&#10;fi&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "4558D30620FCC8FF005BC325"
+                     BuildableName = "DevStack.app"
+                     BlueprintName = "DevStack"
+                     ReferencedContainer = "container:DevStack.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Build KMP"
+               scriptText = "if [ -z &quot;$CI&quot; ]; then&#10;    cd &quot;${PROJECT_DIR}&quot;&#10;    scripts/build-kmp.sh &quot;${CONFIGURATION}&quot; false true true&#10;fi&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "4558D30620FCC8FF005BC325"
+                     BuildableName = "DevStack.app"
+                     BlueprintName = "DevStack"
+                     ReferencedContainer = "container:DevStack.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
       <BuildActionEntries>
          <BuildActionEntry
             buildForDevStacking = "YES"

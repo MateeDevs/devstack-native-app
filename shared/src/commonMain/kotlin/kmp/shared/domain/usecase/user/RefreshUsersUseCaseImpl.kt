@@ -9,7 +9,7 @@ interface RefreshUsersUseCase : UseCaseResult<RefreshUsersUseCase.Params, Unit> 
     data class Params(val offset: Int, val limit: Int)
 }
 
-class RefreshUsersUseCaseImpl internal constructor(
+internal class RefreshUsersUseCaseImpl internal constructor(
     private val repository: UserRepository,
 ) : RefreshUsersUseCase {
 
