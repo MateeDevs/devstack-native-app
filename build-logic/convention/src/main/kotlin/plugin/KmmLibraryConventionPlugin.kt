@@ -18,7 +18,9 @@ import org.gradle.kotlin.dsl.creating
 import org.gradle.kotlin.dsl.getValue
 import org.gradle.kotlin.dsl.getting
 import org.gradle.kotlin.dsl.invoke
+import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import org.jetbrains.kotlin.gradle.tasks.KotlinNativeLink
 
 @Suppress("unused")
 class KmmLibraryConventionPlugin : Plugin<Project> {
@@ -100,6 +102,13 @@ class KmmLibraryConventionPlugin : Plugin<Project> {
             extensions.configure<LibraryExtension> {
                 configureKotlinAndroid(this)
                 configureTests()
+            }
+
+            // There is a bug in Xcode 15.3 - archive validation fails if SDKs support a lower minimum OS version than the app 
+            // Konan plugin sets minVersion.ios to 12.0 by default, but we have 15.0 in our app
+            // This line changes Konan property to 15.0
+            tasks.withType<KotlinNativeLink> {
+                kotlinOptions.freeCompilerArgs += "-Xoverride-konan-properties=minVersion.ios=15.0"
             }
 
             tasks.register("buildXCFramework") {
