@@ -9,6 +9,7 @@ import cz.matee.devstack.kmp.android.shared.vm.BaseIntentViewModel
 import cz.matee.devstack.kmp.android.shared.vm.VmIntent
 import cz.matee.devstack.kmp.android.shared.vm.VmState
 import cz.matee.devstack.kmp.shared.base.Result
+import cz.matee.devstack.kmp.shared.domain.model.VideoCompressLibrary
 import cz.matee.devstack.kmp.shared.domain.model.VideoCompressOptions
 import cz.matee.devstack.kmp.shared.domain.model.VideoCompressResult
 import cz.matee.devstack.kmp.shared.domain.usecase.video.CompressVideoUseCase
@@ -24,9 +25,11 @@ import kotlin.time.measureTime
 
 data class CompressionResult(
     val options: VideoCompressOptions,
+    val library: VideoCompressLibrary,
     val durationToCompress: Duration,
     val inputLength: Long,
     val outputLength: Long,
+    val resultUri: String,
 ) {
     val compressionRation = inputLength.toDouble() / outputLength.toDouble()
     val spaceSaving = 1 - (outputLength.toDouble() / inputLength.toDouble())
@@ -52,32 +55,30 @@ class VideosViewModel(
         val options = listOf(
             VideoCompressOptions(
                 maximumSize = Pair(1920, 1080),
-                bitrate = 3_500_000,
-                trim = 20.seconds,
-                frameRate = 30,
-            ),
-            VideoCompressOptions(
-                maximumSize = Pair(1920, 1080),
-                bitrate = 3_000_000,
-                trim = 20.seconds,
-                frameRate = 30,
-            ),
+                bitrate = 2_500_000,
+//                trim = 20.seconds,
+//                frameRate = 30,
+            ) to VideoCompressLibrary.Transcoder,
             VideoCompressOptions(
                 maximumSize = Pair(1920, 1080),
                 bitrate = 2_500_000,
-                trim = 20.seconds,
-                frameRate = 30,
-            ),
+//                trim = 20.seconds,
+//                frameRate = 30,
+            ) to VideoCompressLibrary.LiTr,
+            VideoCompressOptions(
+                maximumSize = Pair(1920, 1080),
+                bitrate = 2_500_000,
+//                trim = 20.seconds,
+//                frameRate = 30,
+            ) to VideoCompressLibrary.LightCompressor,
         )
 
         state = state.copy(results = emptyList())
 
         viewModelScope.launch(Dispatchers.IO) {
-            options.onEach { option ->
-                compressVideo(uri, option)
+            options.onEach { (option, library) ->
+                compressVideo(uri, option, library)
             }
-
-
         }
     }
 
@@ -85,10 +86,11 @@ class VideosViewModel(
     private suspend fun compressVideo(
         uri: Uri,
         options: VideoCompressOptions,
+        library: VideoCompressLibrary,
     ) {
         state = state.copy(progress = 0)
         val directory = context.externalCacheDir ?: return
-        val output = "${directory.absolutePath}/${UUID.randomUUID()}$options.mp4"
+        var output = "${directory.absolutePath}/${UUID.randomUUID()}$options-${library.name}.mp4"
         val inputLength = uri.length(context.contentResolver)
         val duration = measureTime {
             compressVideoUseCase(
@@ -96,17 +98,21 @@ class VideosViewModel(
                     uri.toString(),
                     output,
                     options,
+                    library,
                 ),
-            ).collect { result ->
-                state = when (result) {
+            ).collect { videoCompressResult ->
+                state = when (videoCompressResult) {
                     is VideoCompressResult.Completion -> {
-                        when (result.result) {
-                            is Result.Error -> state
-                            is Result.Success -> state
+                        when (val result = videoCompressResult.result) {
+                            is Result.Error -> state.copy(progress = 100)
+                            is Result.Success -> {
+                                output = result.data
+                                state.copy(progress = 100)
+                            }
                         }
                     }
 
-                    is VideoCompressResult.Progress -> state.copy(progress = result.progress)
+                    is VideoCompressResult.Progress -> state.copy(progress = videoCompressResult.progress)
                 }
             }
         }
@@ -116,6 +122,8 @@ class VideosViewModel(
                 options = options,
                 inputLength = inputLength,
                 outputLength = File(output).length(),
+                library = library,
+                resultUri = output,
             ),
         )
     }

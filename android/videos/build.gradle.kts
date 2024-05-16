@@ -10,4 +10,7 @@ android {
 dependencies {
     implementation(project(":shared"))
     implementation(project(":android:shared"))
+    implementation(libs.exoPlayer)
+    implementation(libs.exoPlayer.ui)
+    implementation(libs.exoPlayer.session)
 }

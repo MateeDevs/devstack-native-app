@@ -45,7 +45,7 @@ class TranscoderVideoCompressor(
                     .applySampleRate(options)
                     .build(),
             )
-            .setListener(flowListener)
+            .setListener(flowListener(outputPath))
             .transcode()
         awaitClose()
     }
@@ -90,14 +90,13 @@ class TranscoderVideoCompressor(
         apply { options.audioSampleRate?.let(::sampleRate) }
 
 
-    private val ProducerScope<VideoCompressResult>.flowListener
-        get() = object : TranscoderListener {
+    private fun ProducerScope<VideoCompressResult>.flowListener(outputPath: String) = object : TranscoderListener {
             override fun onTranscodeProgress(progress: Double) {
                 trySendBlocking(VideoCompressResult.Progress((progress * 100).toInt()))
             }
 
             override fun onTranscodeCompleted(successCode: Int) {
-                trySendBlocking(VideoCompressResult.Completion(Result.Success(Unit)))
+                trySendBlocking(VideoCompressResult.Completion(Result.Success(outputPath)))
                 close()
             }
 

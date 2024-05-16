@@ -1,5 +1,6 @@
 package cz.matee.devstack.kmp.shared.domain.repository
 
+import cz.matee.devstack.kmp.shared.domain.model.VideoCompressLibrary
 import cz.matee.devstack.kmp.shared.domain.model.VideoCompressOptions
 import cz.matee.devstack.kmp.shared.domain.model.VideoCompressResult
 import kotlinx.coroutines.flow.Flow
@@ -9,5 +10,6 @@ interface VideoRepository {
         inputPath: String,
         outputPath: String,
         options: VideoCompressOptions,
+        library: VideoCompressLibrary,
     ): Flow<VideoCompressResult>
 }

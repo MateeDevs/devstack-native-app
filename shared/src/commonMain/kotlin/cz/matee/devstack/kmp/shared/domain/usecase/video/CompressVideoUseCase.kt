@@ -1,6 +1,7 @@
 package cz.matee.devstack.kmp.shared.domain.usecase.video
 
 import cz.matee.devstack.kmp.shared.base.usecase.UseCaseFlow
+import cz.matee.devstack.kmp.shared.domain.model.VideoCompressLibrary
 import cz.matee.devstack.kmp.shared.domain.model.VideoCompressOptions
 import cz.matee.devstack.kmp.shared.domain.model.VideoCompressResult
 import cz.matee.devstack.kmp.shared.domain.repository.VideoRepository
@@ -12,6 +13,7 @@ interface CompressVideoUseCase :
         val inputPath: String,
         val outputPath: String,
         val options: VideoCompressOptions,
+        val library: VideoCompressLibrary,
     )
 }
 
@@ -23,5 +25,6 @@ internal class CompressVideoUseCaseImpl(
             params.inputPath,
             params.outputPath,
             params.options,
+            params.library,
         )
 }

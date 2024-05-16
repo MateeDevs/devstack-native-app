@@ -1,6 +1,7 @@
 package cz.matee.devstack.kmp.shared.data.repository
 
 import cz.matee.devstack.kmp.shared.data.source.VideoSource
+import cz.matee.devstack.kmp.shared.domain.model.VideoCompressLibrary
 import cz.matee.devstack.kmp.shared.domain.model.VideoCompressOptions
 import cz.matee.devstack.kmp.shared.domain.model.VideoCompressResult
 import cz.matee.devstack.kmp.shared.domain.repository.VideoRepository
@@ -13,9 +14,11 @@ class VideoRepositoryImpl(
         inputPath: String,
         outputPath: String,
         options: VideoCompressOptions,
+        library: VideoCompressLibrary,
     ): Flow<VideoCompressResult> = videoSource.compress(
         inputPath,
         outputPath,
         options,
+        library,
     )
 }

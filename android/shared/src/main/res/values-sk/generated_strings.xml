@@ -78,7 +78,7 @@
 	<string name="bottom_bar_item_2">Profil</string>
 	<string name="bottom_bar_item_3">Recepty</string>
 	<string name="bottom_bar_item_4">Kniznice</string>
-	<string name="bottom_bar_item_5">Tab5</string>
+	<string name="bottom_bar_item_5">Video</string>
 
 	<!-- SECTION: Permissions -->
 	<string name="permission_external_storage_msg">Pre nahrávanie fotiek potrebuješ oprávnenie</string>

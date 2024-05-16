@@ -83,6 +83,8 @@ class KmmLibraryConventionPlugin : Plugin<Project> {
                             implementation(libs.koin.android)
                             implementation(libs.sqlDelight.androidDriver)
                             implementation(libs.video.transcoder)
+                            implementation(libs.lightCompressor)
+                            implementation(libs.linkedIn.litr)
                         }
                     }
 
