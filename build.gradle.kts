@@ -1,5 +1,9 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 
+configurations {
+    register("justForSize")
+}
+
 @Suppress("DSL_SCOPE_VIOLATION") // Remove after upgrading to gradle 8.1
 plugins {
     alias(libs.plugins.android.application) apply false
@@ -38,4 +42,21 @@ versionCatalogUpdate {
 
 tasks.create<Delete>("clean") {
     delete(rootProject.buildDir)
+}
+
+dependencies {
+    add("justForSize",libs.video.transcoder)
+    add("justForSize",libs.lightCompressor)
+    add("justForSize",libs.linkedIn.litr)
+}
+
+tasks.register("dependencySize") {
+    doLast {
+        var depLength = 0L
+        configurations.get("justForSize").forEach {
+            println("${it} is ${it.length()} bytes")
+            depLength += it.length()
+        }
+        println("Total size of justForSize configuration is $depLength")
+    }
 }
