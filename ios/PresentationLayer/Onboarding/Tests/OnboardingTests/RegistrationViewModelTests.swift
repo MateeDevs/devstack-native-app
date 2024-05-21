@@ -39,7 +39,9 @@ final class RegistrationViewModelTests: XCTestCase {
         await vm.awaitAllTasks()
         
         XCTAssert(!vm.state.isLoading)
-        XCTAssertEqual(vm.state.alert, AlertData(title: MR.strings().invalid_email.desc().localized()))
+        // TODO: Use MR strings when issue [https://github.com/icerockdev/moko-resources/issues/714] is resolved
+        // XCTAssertEqual(vm.state.alert, AlertData(title: MR.strings().invalid_email.desc().localized()))
+        XCTAssertEqual(vm.state.alert, AlertData(title: "Invalid email format"))
         XCTAssertEqual(fc.handleFlowValue, nil)
         XCTAssert(registrationUseCase.executeReceivedInvocations == [.stubEmptyEmail])
     }
@@ -54,7 +56,9 @@ final class RegistrationViewModelTests: XCTestCase {
         await vm.awaitAllTasks()
         
         XCTAssert(!vm.state.isLoading)
-        XCTAssertEqual(vm.state.alert, AlertData(title: MR.strings().invalid_password.desc().localized()))
+        // TODO: Use MR strings when issue [https://github.com/icerockdev/moko-resources/issues/714] is resolved
+        // XCTAssertEqual(vm.state.alert, AlertData(title: MR.strings().invalid_password.desc().localized()))
+        XCTAssertEqual(vm.state.alert, AlertData(title: "Invalid password"))
         XCTAssertEqual(fc.handleFlowValue, nil)
         XCTAssert(registrationUseCase.executeReceivedInvocations == [.stubEmptyPassword])
     }
