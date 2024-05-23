@@ -1,25 +1,24 @@
-package cz.matee.devstack.kmp.android.videos.vm
+package kmp.android.videos.vm
 
 import android.app.Application
 import android.content.ContentResolver
 import android.net.Uri
 import android.provider.OpenableColumns
 import androidx.lifecycle.viewModelScope
-import cz.matee.devstack.kmp.android.shared.vm.BaseIntentViewModel
-import cz.matee.devstack.kmp.android.shared.vm.VmIntent
-import cz.matee.devstack.kmp.android.shared.vm.VmState
-import cz.matee.devstack.kmp.shared.base.Result
-import cz.matee.devstack.kmp.shared.domain.model.VideoCompressLibrary
-import cz.matee.devstack.kmp.shared.domain.model.VideoCompressOptions
-import cz.matee.devstack.kmp.shared.domain.model.VideoCompressResult
-import cz.matee.devstack.kmp.shared.domain.usecase.video.CompressVideoUseCase
+import kmp.shared.domain.model.VideoCompressLibrary
+import kmp.shared.domain.model.VideoCompressOptions
+import kmp.shared.domain.usecase.video.CompressVideoUseCase
+import kmp.android.shared.vm.BaseIntentViewModel
+import kmp.android.shared.vm.VmIntent
+import kmp.android.shared.vm.VmState
+import kmp.shared.base.Result
+import kmp.shared.domain.model.VideoCompressResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileNotFoundException
 import java.util.UUID
 import kotlin.time.Duration
-import kotlin.time.Duration.Companion.seconds
 import kotlin.time.ExperimentalTime
 import kotlin.time.measureTime
 
@@ -105,6 +104,7 @@ class VideosViewModel(
                     is VideoCompressResult.Completion -> {
                         when (val result = videoCompressResult.result) {
                             is Result.Error -> state.copy(progress = 100)
+
                             is Result.Success -> {
                                 output = result.data
                                 state.copy(progress = 100)

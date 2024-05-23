@@ -31,6 +31,7 @@
 	<string name="sending">Odesílám…</string>
 	<string name="signing_in">Přihlašuji…</string>
 	<string name="signing_up">Registruji…</string>
+	<string name="signing_up_failed">Registrace se nezdařila</string>
 	<string name="signing_out">Odhlašuji…</string>
 	<string name="invite">Pozvat</string>
 	<string name="email_client">E-mailový klient</string>
@@ -78,7 +79,7 @@
 	<string name="bottom_bar_item_2">Profil</string>
 	<string name="bottom_bar_item_3">Recepty</string>
 	<string name="bottom_bar_item_4">Knihy</string>
-	<string name="bottom_bar_item_5">Videa</string>
+	<string name="bottom_bar_item_5">Videos</string>
 
 	<!-- SECTION: Permissions -->
 	<string name="permission_external_storage_msg">Pro nahrávání fotek potřebuješ oprávnění</string>
@@ -184,6 +185,7 @@
 	<string name="registration_view_password_field_hint">Heslo</string>
 	<string name="registration_view_register_button_title">Registrovat se</string>
 	<string name="registration_view_login_button_title">Přihlásit se</string>
+	<string name="register_view_email_already_exists">Uživatel s daným emailem již existuje.</string>
 
 	<!-- SECTION: Users View -->
 	<string name="users_view_toolbar_title">Uživatelé</string>

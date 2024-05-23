@@ -47,6 +47,7 @@ abstract class ErrorMessageProvider {
             when (this) {
                 is CommonError.NoNetworkConnection -> MR.strings.error_no_internet_connection.desc()
                 CommonError.NoUserLoggedIn -> MR.strings.no_user_logged_in.desc()
+                CommonError.UnknownError -> MR.strings.unknown_error.desc()
             }
 }
 

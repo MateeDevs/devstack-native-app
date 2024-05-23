@@ -1,10 +1,10 @@
-package cz.matee.devstack.kmp.shared.domain.usecase.video
+package kmp.shared.domain.usecase.video
 
-import cz.matee.devstack.kmp.shared.base.usecase.UseCaseFlow
-import cz.matee.devstack.kmp.shared.domain.model.VideoCompressLibrary
-import cz.matee.devstack.kmp.shared.domain.model.VideoCompressOptions
-import cz.matee.devstack.kmp.shared.domain.model.VideoCompressResult
-import cz.matee.devstack.kmp.shared.domain.repository.VideoRepository
+import kmp.shared.domain.model.VideoCompressLibrary
+import kmp.shared.domain.model.VideoCompressOptions
+import kmp.shared.domain.repository.VideoRepository
+import kmp.shared.base.usecase.UseCaseFlow
+import kmp.shared.domain.model.VideoCompressResult
 
 interface CompressVideoUseCase :
     UseCaseFlow<CompressVideoUseCase.Params, VideoCompressResult> {

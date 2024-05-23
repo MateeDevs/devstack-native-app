@@ -1,4 +1,4 @@
-package cz.matee.devstack.kmp.shared.infrastructure.local
+package kmp.shared.infrastructure.local
 
 import android.app.Application
 import androidx.core.net.toUri
@@ -6,12 +6,10 @@ import com.abedelazizshe.lightcompressorlibrary.CompressionListener
 import com.abedelazizshe.lightcompressorlibrary.VideoQuality
 import com.abedelazizshe.lightcompressorlibrary.config.AppSpecificStorageConfiguration
 import com.abedelazizshe.lightcompressorlibrary.config.Configuration
-import com.abedelazizshe.lightcompressorlibrary.config.SaveLocation
-import com.abedelazizshe.lightcompressorlibrary.config.SharedStorageConfiguration
-import cz.matee.devstack.kmp.shared.base.Result
-import cz.matee.devstack.kmp.shared.base.error.domain.CommonError
-import cz.matee.devstack.kmp.shared.domain.model.VideoCompressOptions
-import cz.matee.devstack.kmp.shared.domain.model.VideoCompressResult
+import kmp.shared.domain.model.VideoCompressOptions
+import kmp.shared.base.Result
+import kmp.shared.base.error.domain.CommonError
+import kmp.shared.domain.model.VideoCompressResult
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.channels.trySendBlocking
 import kotlinx.coroutines.flow.Flow

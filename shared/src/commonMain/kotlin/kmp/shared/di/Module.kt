@@ -5,6 +5,7 @@ import kmp.Database
 import kmp.shared.data.repository.AuthRepositoryImpl
 import kmp.shared.data.repository.BookRepositoryImpl
 import kmp.shared.data.repository.UserRepositoryImpl
+import kmp.shared.data.repository.VideoRepositoryImpl
 import kmp.shared.data.source.AuthSource
 import kmp.shared.data.source.BookLocalSource
 import kmp.shared.data.source.UserLocalSource
@@ -12,6 +13,7 @@ import kmp.shared.data.source.UserRemoteSource
 import kmp.shared.domain.repository.AuthRepository
 import kmp.shared.domain.repository.BookRepository
 import kmp.shared.domain.repository.UserRepository
+import kmp.shared.domain.repository.VideoRepository
 import kmp.shared.domain.usecase.DeleteAuthDataUseCase
 import kmp.shared.domain.usecase.DeleteAuthDataUseCaseImpl
 import kmp.shared.domain.usecase.LoginUseCase
@@ -44,6 +46,8 @@ import kmp.shared.domain.usecase.user.UpdateUserUseCase
 import kmp.shared.domain.usecase.user.UpdateUserUseCaseImpl
 import kmp.shared.domain.usecase.user.UserCacheChangeFlowUseCase
 import kmp.shared.domain.usecase.user.UserCacheChangeFlowUseCaseImpl
+import kmp.shared.domain.usecase.video.CompressVideoUseCase
+import kmp.shared.domain.usecase.video.CompressVideoUseCaseImpl
 import kmp.shared.infrastructure.local.AuthDao
 import kmp.shared.infrastructure.local.AuthDaoImpl
 import kmp.shared.infrastructure.local.createDatabase
@@ -98,11 +102,13 @@ private val commonModule = module {
     factory<ReplaceUserCacheWithUseCase> { ReplaceUserCacheWithUseCaseImpl(get()) }
     factory<GetBooksUseCase> { GetBooksUseCaseImpl(get()) }
     factory<RefreshBooksUseCase> { RefreshBooksUseCaseImpl(get()) }
+    factory<CompressVideoUseCase> { CompressVideoUseCaseImpl(get()) }
 
     // Repositories
     single<AuthRepository> { AuthRepositoryImpl(get()) }
     single<BookRepository> { BookRepositoryImpl(get()) }
     single<UserRepository> { UserRepositoryImpl(get(), get(), get()) }
+    single<VideoRepository> { VideoRepositoryImpl(get()) }
 
     // Sources
     single<AuthSource> { AuthSourceImpl(get(), get()) }

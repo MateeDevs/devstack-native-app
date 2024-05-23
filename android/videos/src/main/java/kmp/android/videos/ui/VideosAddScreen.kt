@@ -1,16 +1,14 @@
-package cz.matee.devstack.kmp.android.videos.ui
+package kmp.android.videos.ui
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -28,21 +26,43 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import cz.matee.devstack.kmp.android.shared.style.Values
-import cz.matee.devstack.kmp.android.videos.vm.CompressionResult
-import cz.matee.devstack.kmp.android.videos.vm.VideosIntent
-import cz.matee.devstack.kmp.android.videos.vm.VideosViewModel
-import org.koin.androidx.compose.koinViewModel
+import androidx.navigation.NavGraphBuilder
+import kmp.android.shared.navigation.composableDestination
+import kmp.android.shared.style.Values
+import kmp.android.videos.navigation.VideosGraph
+import kmp.android.videos.vm.CompressionResult
+import kmp.android.videos.vm.VideosIntent
+import kmp.android.videos.vm.VideosState
+import kmp.android.videos.vm.VideosViewModel
+import org.koin.androidx.compose.getViewModel
+
+internal fun NavGraphBuilder.addVideosRoute() {
+    composableDestination(
+        destination = VideosGraph.Add,
+    ) {
+        AddVideosRoute()
+    }
+}
+
+@Composable
+internal fun AddVideosRoute(
+    viewModel: VideosViewModel = getViewModel(),
+) {
+    VideosAddScreen(
+        state = viewModel.state,
+        onIntent = { viewModel.onIntent(it) },
+    )
+}
 
 @Composable
 fun VideosAddScreen(
+    state: VideosState,
+    onIntent: (VideosIntent) -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: VideosViewModel = koinViewModel(),
 ) {
-    val state = viewModel.state
     val imagePicker = rememberVideoPickerState {
         if (it != null) {
-            viewModel.onIntent(VideosIntent.VideoPicked(it))
+            onIntent(VideosIntent.VideoPicked(it))
         }
     }
 
@@ -85,7 +105,7 @@ fun VideosAddScreen(
                         .clickable { selected = result }
                         .border(
                             2.dp,
-                            if (selected == result) MaterialTheme.colors.primary else Color.Transparent
+                            if (selected == result) MaterialTheme.colors.primary else Color.Transparent,
                         ),
                 ) {
                     Spacer(modifier = Modifier.height(Values.Space.small))

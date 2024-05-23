@@ -1,4 +1,4 @@
-package cz.matee.devstack.kmp.shared.infrastructure.local
+package kmp.shared.infrastructure.local
 
 import android.app.Application
 import android.media.MediaFormat
@@ -7,15 +7,15 @@ import com.linkedin.android.litr.MediaTransformer
 import com.linkedin.android.litr.TransformationListener
 import com.linkedin.android.litr.TransformationOptions
 import com.linkedin.android.litr.analytics.TrackTransformationInfo
-import cz.matee.devstack.kmp.shared.base.Result
-import cz.matee.devstack.kmp.shared.base.error.domain.CommonError
-import cz.matee.devstack.kmp.shared.domain.model.VideoCompressOptions
-import cz.matee.devstack.kmp.shared.domain.model.VideoCompressResult
+import kmp.shared.domain.model.VideoCompressOptions
+import kmp.shared.domain.model.VideoCompressResult
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.channels.trySendBlocking
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import java.util.UUID
+import kmp.shared.base.Result
+import kmp.shared.base.error.domain.CommonError
 
 class LiTrVideoCompressor(
     private val application: Application,

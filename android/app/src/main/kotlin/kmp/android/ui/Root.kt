@@ -43,6 +43,7 @@ import kmp.android.recipes.navigation.recipesNavGraph
 import kmp.android.shared.style.Values
 import kmp.android.users.navigation.UsersGraph
 import kmp.android.users.navigation.usersNavGraph
+import kmp.android.videos.navigation.videosNavGraph
 import kmp.shared.base.util.extension.getOrNull
 import kmp.shared.domain.usecase.user.IsUserLoggedInUseCase
 import org.koin.androidx.compose.get
@@ -80,7 +81,7 @@ fun Root(modifier: Modifier = Modifier) {
                     )
                     recipesNavGraph(navController)
                     booksNavGraph(navController)
-                    // TODO: Videos
+                    videosNavGraph(navController)
                 }
             }
         }

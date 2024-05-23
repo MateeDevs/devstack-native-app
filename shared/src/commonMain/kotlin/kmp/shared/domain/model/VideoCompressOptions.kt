@@ -1,4 +1,4 @@
-package cz.matee.devstack.kmp.shared.domain.model
+package kmp.shared.domain.model
 
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds

@@ -1,4 +1,4 @@
-package cz.matee.devstack.kmp.android.videos.ui
+package kmp.android.videos.ui
 
 import android.net.Uri
 import androidx.activity.compose.ManagedActivityResultLauncher
