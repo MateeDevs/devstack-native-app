@@ -34,6 +34,7 @@ let package = Package(
         .package(name: "RocketToolkit", path: "../../DataLayer/Toolkits/RocketToolkit"),
         .package(name: "UserToolkit", path: "../../DataLayer/Toolkits/UserToolkit"),
         .package(name: "StoreKitToolkit", path: "../../DataLayer/Toolkits/StoreKitToolkit"),
+        .package(name: "VideoToolkit", path: "../../DataLayer/Toolkits/VideoToolkit"),
         
         // Providers
         .package(name: "AnalyticsProvider", path: "../../DataLayer/Providers/AnalyticsProvider"),
@@ -66,6 +67,7 @@ let package = Package(
                 .product(name: "RocketToolkit", package: "RocketToolkit"),
                 .product(name: "UserToolkit", package: "UserToolkit"),
                 .product(name: "StoreKitToolkit", package: "StoreKitToolkit"),
+                .product(name: "VideoToolkit", package: "VideoToolkit"),
                 
                 // Providers
                 .product(name: "AnalyticsProvider", package: "AnalyticsProvider"),

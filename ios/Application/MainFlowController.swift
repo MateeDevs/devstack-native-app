@@ -9,11 +9,13 @@ import SharedDomain
 import UIKit
 import UIToolkit
 import Users
+import Videos
 
 enum MainTab: Int {
     case users = 0
     case profile = 1
     case recipes = 2
+    case videos = 3
 }
 
 protocol MainFlowControllerDelegate: AnyObject {
@@ -26,7 +28,7 @@ final class MainFlowController: FlowController, ProfileFlowControllerDelegate {
     
     override func setup() -> UIViewController {
         let main = UITabBarController()
-        main.viewControllers = [setupUsersTab(), setupProfileTab(), setupRecipesTab()]
+        main.viewControllers = [setupUsersTab(), setupProfileTab(), setupRecipesTab(), setupVideosTab()]
         return main
     }
     
@@ -68,6 +70,19 @@ final class MainFlowController: FlowController, ProfileFlowControllerDelegate {
         let recipesRootVC = startChildFlow(recipesFC)
         recipesNC.viewControllers = [recipesRootVC]
         return recipesNC
+    }
+    
+    private func setupVideosTab() -> UINavigationController {
+        let videosNC = BaseNavigationController(statusBarStyle: .lightContent)
+        videosNC.tabBarItem = UITabBarItem(
+            title: L10n.bottom_bar_item_5,
+            image: Asset.Images.videosTabBar.uiImage,
+            tag: MainTab.videos.rawValue
+        )
+        let videosFC = VideosFlowController(navigationController: videosNC)
+        let videosRootVC = startChildFlow(videosFC)
+        videosNC.viewControllers = [videosRootVC]
+        return videosNC
     }
     
     func presentOnboarding() {

@@ -5,21 +5,20 @@ import android.content.ContentResolver
 import android.net.Uri
 import android.provider.OpenableColumns
 import androidx.lifecycle.viewModelScope
-import kmp.shared.domain.model.VideoCompressLibrary
-import kmp.shared.domain.model.VideoCompressOptions
-import kmp.shared.domain.usecase.video.CompressVideoUseCase
 import kmp.android.shared.vm.BaseIntentViewModel
 import kmp.android.shared.vm.VmIntent
 import kmp.android.shared.vm.VmState
 import kmp.shared.base.Result
+import kmp.shared.domain.model.VideoCompressLibrary
+import kmp.shared.domain.model.VideoCompressOptions
 import kmp.shared.domain.model.VideoCompressResult
+import kmp.shared.domain.usecase.video.CompressVideoUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileNotFoundException
 import java.util.UUID
 import kotlin.time.Duration
-import kotlin.time.ExperimentalTime
 import kotlin.time.measureTime
 
 data class CompressionResult(
@@ -81,7 +80,6 @@ class VideosViewModel(
         }
     }
 
-    @OptIn(ExperimentalTime::class)
     private suspend fun compressVideo(
         uri: Uri,
         options: VideoCompressOptions,

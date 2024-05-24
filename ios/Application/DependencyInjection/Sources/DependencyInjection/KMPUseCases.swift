@@ -14,4 +14,7 @@ public extension Container {
     // Books
     var getBooksUseCase: Factory<GetBooksUseCase> { self { self.kmp().get(GetBooksUseCase.self) } }
     var refreshBooksUseCase: Factory<RefreshBooksUseCase> { self { self.kmp().get(RefreshBooksUseCase.self) } }
+    
+    // Videos
+    var compressVideoUseCase: Factory<CompressVideoUseCase> { self { self.kmp().get(CompressVideoUseCase.self) } }
 }

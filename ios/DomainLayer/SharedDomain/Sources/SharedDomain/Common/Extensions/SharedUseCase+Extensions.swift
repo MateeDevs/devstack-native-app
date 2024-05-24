@@ -32,6 +32,25 @@ public extension UseCaseFlowNoParams {
     }
 }
 
+public extension UseCaseFlow {
+    func execute<In: Any, Out>(params: In) -> AsyncStream<Out> {
+        let _: JobWrapper = JobWrapper()
+        return AsyncStream<Out> { continuation in
+            let coroutineJob = SwiftCoroutinesKt.subscribe(self, params: params) { data in
+                let value: Out = data as! Out
+                continuation.yield(value)
+            } onComplete: {
+                continuation.finish()
+            } onThrow: { _ in
+                continuation.finish()
+            }
+            continuation.onTermination = { _ in
+                coroutineJob.cancel(cause: nil)
+            }
+        }
+    }
+}
+
 public extension UseCaseFlowResult {
     func execute<In: Any, Out>(params: In) -> AsyncStream<Out> {
         let _: JobWrapper = JobWrapper()

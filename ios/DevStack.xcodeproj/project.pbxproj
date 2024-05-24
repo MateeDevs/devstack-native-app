@@ -36,6 +36,8 @@
 		45DEBE1F27A153A10075C7E2 /* Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DEBE1E27A153A10075C7E2 /* Widget.swift */; };
 		45DEBE2127A153A20075C7E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45DEBE2027A153A20075C7E2 /* Assets.xcassets */; };
 		45DEBE2527A153A20075C7E2 /* DevStack Widget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 45DEBE1827A153A10075C7E2 /* DevStack Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A30D4BD52BFF2D6A00DBA6C5 /* Videos in Frameworks */ = {isa = PBXBuildFile; productRef = A30D4BD42BFF2D6A00DBA6C5 /* Videos */; };
+		A39DA9C72C00AF45006874F1 /* Videos in Resources */ = {isa = PBXBuildFile; fileRef = A39DA9C62C00AF45006874F1 /* Videos */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +125,8 @@
 		45FF99D52842AAFB00E32D9A /* UserDefaultsProvider */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UserDefaultsProvider; sourceTree = "<group>"; };
 		45FF99D72842B0A600E32D9A /* AnalyticsToolkit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = AnalyticsToolkit; sourceTree = "<group>"; };
 		45FF99D92842B51800E32D9A /* Utilities */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Utilities; sourceTree = "<group>"; };
+		A39DA9C62C00AF45006874F1 /* Videos */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Videos; sourceTree = "<group>"; };
+		A3AF565C2C00B17200F8489A /* VideoToolkit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = VideoToolkit; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +134,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A30D4BD52BFF2D6A00DBA6C5 /* Videos in Frameworks */,
 				450833432843834700BC9460 /* Profile in Frameworks */,
 				4508333728437BB700BC9460 /* UIToolkit in Frameworks */,
 				459C3707274B001B00536110 /* Atlantis in Frameworks */,
@@ -164,6 +169,7 @@
 		453C8801283FA9CA0027BDFB /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
+				A39DA9C62C00AF45006874F1 /* Videos */,
 				4508333828437BED00BC9460 /* Onboarding */,
 				4508333928437FC600BC9460 /* Users */,
 				4508333A28437FD600BC9460 /* Profile */,
@@ -316,6 +322,7 @@
 		45FF99D62842B05700E32D9A /* Toolkits */ = {
 			isa = PBXGroup;
 			children = (
+				A3AF565C2C00B17200F8489A /* VideoToolkit */,
 				31ADBF8D2B5031D700A32F5E /* StoreKitToolkit */,
 				45FF99D72842B0A600E32D9A /* AnalyticsToolkit */,
 				45E1445B2AD0B9FE00F223B0 /* AuthToolkit */,
@@ -363,6 +370,7 @@
 				450833402843834300BC9460 /* Recipes */,
 				450833422843834700BC9460 /* Profile */,
 				45BCC87F2AD057F000672401 /* Factory */,
+				A30D4BD42BFF2D6A00DBA6C5 /* Videos */,
 			);
 			productName = DevStack;
 			productReference = 4558D30720FCC8FF005BC325 /* DevStack.app */;
@@ -441,6 +449,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A39DA9C72C00AF45006874F1 /* Videos in Resources */,
 				4575E65625F6FA7600CCC003 /* AppIcon.xcassets in Resources */,
 				453580EF284806FE007AEC9E /* strings.txt in Resources */,
 				454F6EC426CE8B3900C386B8 /* InfoPlist.strings in Resources */,
@@ -1480,6 +1489,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 45BCC87E2AD057F000672401 /* XCRemoteSwiftPackageReference "Factory" */;
 			productName = Factory;
+		};
+		A30D4BD42BFF2D6A00DBA6C5 /* Videos */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Videos;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

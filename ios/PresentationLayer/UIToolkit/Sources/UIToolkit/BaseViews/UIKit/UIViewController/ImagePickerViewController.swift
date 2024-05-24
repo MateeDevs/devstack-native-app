@@ -7,6 +7,7 @@ import UIKit
 
 @objc public protocol ImagePickerViewControllerDelegate: AnyObject {
     @objc optional func photoSelected(image: UIImage?)
+    @objc optional func mediaSelected(mediaURL: NSURL?)
 }
 
 public final class ImagePickerViewController: BaseViewController {
@@ -31,12 +32,12 @@ public final class ImagePickerViewController: BaseViewController {
         let actionSheetController = UIAlertController(title: imagePickerTitle, message: imagePickerSubtitle, preferredStyle: .actionSheet)
 
         let photoLibrary = UIAlertAction(title: L10n.image_picker_library, style: .default, handler: { _ in
-            self.selectPhoto(sourceType: .photoLibrary)
+            self.selectMedia(sourceType: .photoLibrary)
         })
         actionSheetController.addAction(photoLibrary)
 
         let takePhotoByCamera = UIAlertAction(title: L10n.image_picker_camera, style: .default, handler: { _ in
-            self.selectPhoto(sourceType: .camera)
+            self.selectMedia(sourceType: .camera)
         })
         actionSheetController.addAction(takePhotoByCamera)
 
@@ -52,12 +53,13 @@ public final class ImagePickerViewController: BaseViewController {
         present(actionSheetController, animated: true, completion: nil)
     }
 
-    private func selectPhoto(sourceType: UIImagePickerController.SourceType) {
+    private func selectMedia(sourceType: UIImagePickerController.SourceType, mediaTypes: [String] = ["public.image", "public.movie"]) {
         guard UIImagePickerController.isSourceTypeAvailable(sourceType) else { return }
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.allowsEditing = false
         imagePicker.sourceType = sourceType
+//        imagePicker.mediaTypes = mediaTypes
         present(imagePicker, animated: true)
     }
 }
@@ -67,6 +69,12 @@ extension ImagePickerViewController: UIImagePickerControllerDelegate, UINavigati
         _ picker: UIImagePickerController,
         didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
     ) {
+        if let selectedVideoURL = info[UIImagePickerController.InfoKey.mediaURL] as? NSURL {
+            delegate?.mediaSelected?(mediaURL: selectedVideoURL)
+            dismiss(animated: true, completion: nil)
+            return
+        }
+        
         guard let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
 
         // Save image to photo library if taken by camera
