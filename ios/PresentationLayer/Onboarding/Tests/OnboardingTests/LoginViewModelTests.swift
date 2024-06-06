@@ -102,9 +102,9 @@ final class LoginViewModelTests: XCTestCase {
     func testLoginInvalidPassword() async {
         let vm = createViewModel()
         let errorResult = AuthError.InvalidLoginCredentials(throwable: nil)
+        #warning("TODO: Use localizedMessage when issue [https://github.com/icerockdev/moko-resources/issues/714] is resolved")
         loginUseCase.executeThrowableError = KmmLocalizedError(
             errorResult: errorResult,
-            // TODO: Use localizedMessage when issue [https://github.com/icerockdev/moko-resources/issues/714] is resolved
             localizedMessage: "" // errorResult.localizedMessage(nil)
         )
         
