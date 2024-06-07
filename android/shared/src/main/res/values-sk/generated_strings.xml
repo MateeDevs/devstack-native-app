@@ -31,6 +31,7 @@
 	<string name="sending">Odosieľam...</string>
 	<string name="signing_in">Prihlasujem...</string>
 	<string name="signing_up">Registrujem...</string>
+	<string name="signing_up_failed">Registrácia sa nepodarila</string>
 	<string name="signing_out">Odhlasujem...</string>
 	<string name="invite">Pozvať</string>
 	<string name="email_client">E-mailový klient</string>
@@ -184,6 +185,7 @@
 	<string name="registration_view_password_field_hint">Heslo</string>
 	<string name="registration_view_register_button_title">Registrovať sa</string>
 	<string name="registration_view_login_button_title">Prihlásiť sa</string>
+	<string name="register_view_email_already_exists">Užívateľ s daným emailom už existuje.</string>
 
 	<!-- SECTION: Users View -->
 	<string name="users_view_toolbar_title">Užívatelia</string>

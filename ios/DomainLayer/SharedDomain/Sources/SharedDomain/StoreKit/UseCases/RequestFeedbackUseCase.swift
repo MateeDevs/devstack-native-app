@@ -4,8 +4,10 @@
 //
 
 import Foundation
+import Spyable
 import Utilities
 
+@Spyable
 public protocol RequestFeedbackUseCase {
     func execute() throws
 }
@@ -19,7 +21,7 @@ public struct RequestFeedbackUseCaseImpl: RequestFeedbackUseCase {
     }
     
     public func execute() throws {
-        if Environment.flavor == .debug {
+        if Environment.flavor == Utilities.EnvironmentFlavor.debug {
             guard CommandLine.arguments.contains("-ShouldShowFeedback") else { return }
             
             try storeKitRepository.requestFeedback()

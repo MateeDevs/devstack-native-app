@@ -31,6 +31,7 @@
 	<string name="sending">Sending…</string>
 	<string name="signing_in">Signing in…</string>
 	<string name="signing_up">Signing up…</string>
+	<string name="signing_up_failed">Sign up failed</string>
 	<string name="signing_out">Signing out…</string>
 	<string name="invite">Invite</string>
 	<string name="email_client">Email client</string>
@@ -184,6 +185,7 @@
 	<string name="registration_view_password_field_hint">Password</string>
 	<string name="registration_view_register_button_title">Register</string>
 	<string name="registration_view_login_button_title">Sign in</string>
+	<string name="register_view_email_already_exists">User with specified email already exists.</string>
 
 	<!-- SECTION: Users View -->
 	<string name="users_view_toolbar_title">Users</string>
