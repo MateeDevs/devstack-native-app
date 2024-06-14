@@ -11,16 +11,32 @@ public enum MediaType: Hashable {
     case video(URL)
 }
 
-struct MediaPickerViewController: UIViewControllerRepresentable {
+public protocol MediaPickerSource: AnyObject {
+    var media: Binding<[MediaType]> { get }
+}
+
+public struct MediaPickerView: UIViewControllerRepresentable {
     
-    typealias UIViewControllerType = PHPickerViewController
+    public typealias UIViewControllerType = PHPickerViewController
     
-    @Binding var media: [MediaType]
-    var selectionLimit: Int
-    var filter: PHPickerFilter? = PHPickerFilter.any(of: [.images, .videos])
-    var itemProviders: [NSItemProvider] = []
+    @Binding private var media: [MediaType]
+    private var selectionLimit: Int
+    private var filter: PHPickerFilter?
+    private var itemProviders: [NSItemProvider]
     
-    func makeUIViewController(context: Context) -> PHPickerViewController {
+    public init(
+        media: Binding<[MediaType]>,
+        selectionLimit: Int = 5,
+        filter: PHPickerFilter? = PHPickerFilter.any(of: [.images, .videos]),
+        itemProviders: [NSItemProvider] = []
+    ) {
+        self._media = media
+        self.selectionLimit = selectionLimit
+        self.filter = filter
+        self.itemProviders = itemProviders
+    }
+    
+    public func makeUIViewController(context: Context) -> PHPickerViewController {
         var configuration = PHPickerConfiguration()
         configuration.filter = self.filter
         configuration.selectionLimit = self.selectionLimit
@@ -31,23 +47,23 @@ struct MediaPickerViewController: UIViewControllerRepresentable {
         return picker
     }
     
-    func updateUIViewController(_ uiViewController: PHPickerViewController, context: Context) {
+    public func updateUIViewController(_ uiViewController: PHPickerViewController, context: Context) {
         
     }
     
-    func makeCoordinator() -> Coordinator {
-        return MediaPickerViewController.Coordinator(parent: self)
+    public func makeCoordinator() -> Coordinator {
+        return MediaPickerView.Coordinator(parent: self)
     }
     
-    class Coordinator: NSObject, PHPickerViewControllerDelegate, UINavigationControllerDelegate {
+    public class Coordinator: NSObject, PHPickerViewControllerDelegate, UINavigationControllerDelegate {
         
-        var parent: MediaPickerViewController
+        var parent: MediaPickerView
         
-        init(parent: MediaPickerViewController) {
+        init(parent: MediaPickerView) {
             self.parent = parent
         }
         
-        func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        public func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
             picker.dismiss(animated: true)
 
             if !results.isEmpty {

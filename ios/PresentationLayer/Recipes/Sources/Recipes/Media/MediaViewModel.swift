@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SwiftUI
 
-final class MediaPickerViewModel: BaseViewModel, ViewModel, ObservableObject {
+final class MediaViewModel: BaseViewModel, ViewModel, ObservableObject {
     
         // MARK: Dependencies
         weak var flowController: FlowController?
@@ -60,7 +60,7 @@ final class MediaPickerViewModel: BaseViewModel, ViewModel, ObservableObject {
         }
 }
 
-extension MediaPickerViewModel: MediaPickerSource {
+extension MediaViewModel: MediaPickerSource {
     var media: Binding<[MediaType]> {
         Binding<[MediaType]>(
             get: { [weak self] in self?.state.media ?? [] },

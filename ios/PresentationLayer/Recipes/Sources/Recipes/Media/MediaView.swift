@@ -6,26 +6,26 @@
 import SwiftUI
 import UIToolkit
 
-struct MediaPickerView: View {
+struct MediaView: View {
     
-    @ObservedObject private var viewModel: MediaPickerViewModel
+    @ObservedObject private var viewModel: MediaViewModel
     
     init(
-        viewModel: MediaPickerViewModel
+        viewModel: MediaViewModel
     ) {
         self.viewModel = viewModel
     }
     
     var body: some View {
         if viewModel.state.media.isEmpty {
-            Button("Add Media") {
+            Button(L10n.recipes_media_add_media) {
                 viewModel.onIntent(.addMedia)
             }
             .buttonStyle(SecondaryButtonStyle())
         } else {
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading) {
-                    Text("Media")
+                    Text(L10n.recipes_media_title)
                         .font(AppTheme.Fonts.headlineText)
                         .foregroundStyle(AppTheme.Colors.headlineText)
                         .padding([.leading, .top])
@@ -59,6 +59,6 @@ struct MediaPickerView: View {
 
 #if DEBUG
 #Preview {
-    MediaPickerView(viewModel: .init(flowController: nil))
+    MediaView(viewModel: .init(flowController: nil))
 }
 #endif

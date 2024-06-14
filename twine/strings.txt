@@ -778,7 +778,6 @@
         en = Decreased
         sk = Sníženo
 
-
 [[Recipes view]]
 	[recipes_view_toolbar_title]
 		cs = Recepty
@@ -876,3 +875,13 @@
 		cs = Zbytek do zobrazení - %d
 		en = Remaining to show tip - %d
 		sk = Zvyšok na zobrazenie - %d
+
+[[Recipe - Media]]
+	[recipes_media_title]
+		cs = Média
+		en = Media
+		sk = Médiá
+	[recipes_media_add_media]
+		cs = Přidat média
+		en = Add media
+		sk = Pridať médiá

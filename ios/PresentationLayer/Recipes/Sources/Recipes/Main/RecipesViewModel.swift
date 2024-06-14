@@ -16,6 +16,7 @@ enum Recipe: String, CaseIterable {
     case slidingButton = "SlidingButton"
     case tipKit = "TipKit"
     case mediaPicker = "MediaPicker"
+    case media = "Media"
 }
 
 final class RecipesViewModel: BaseViewModel, ViewModel, ObservableObject {
@@ -62,6 +63,7 @@ final class RecipesViewModel: BaseViewModel, ViewModel, ObservableObject {
         case .slidingButton: flowController?.handleFlow(RecipesFlow.recipes(.showSlidingButton))
         case .tipKit: flowController?.handleFlow(RecipesFlow.recipes(.showTipKitExample))
         case .mediaPicker: flowController?.handleFlow(RecipesFlow.recipes(.showMediaPicker))
+        case .media: flowController?.handleFlow(RecipesFlow.recipes(.showMedia))
         }
     }
 }
