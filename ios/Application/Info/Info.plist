@@ -36,6 +36,8 @@
 	<string>You need to grant access to add photos to your photo library.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>You need to grant access to your photo library so you can pick a photo.</string>
+    <key>NSHealthShareUsageDescription</key>
+    <string>You need to grant access to your health data so we can show you cool things.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
