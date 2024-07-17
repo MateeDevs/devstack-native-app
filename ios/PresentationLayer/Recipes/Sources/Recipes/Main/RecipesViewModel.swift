@@ -13,6 +13,7 @@ enum Recipe: String, CaseIterable {
     case skeleton = "Skeleton"
     case images = "Images"
     case maps = "Maps"
+    case slidingButton = "SlidingButton"
 }
 
 final class RecipesViewModel: BaseViewModel, ViewModel, ObservableObject {
@@ -56,6 +57,7 @@ final class RecipesViewModel: BaseViewModel, ViewModel, ObservableObject {
         case .skeleton: flowController?.handleFlow(RecipesFlow.recipes(.showSkeleton))
         case .images: flowController?.handleFlow(RecipesFlow.recipes(.showImages))
         case .maps: flowController?.handleFlow(RecipesFlow.recipes(.showMaps))
+        case .slidingButton: flowController?.handleFlow(RecipesFlow.recipes(.showSlidingButton))
         }
     }
 }
