@@ -9,4 +9,5 @@ import kmp.shared.base.ErrorResult
 sealed class CommonError(throwable: Throwable? = null) : ErrorResult(throwable = throwable) {
     class NoNetworkConnection(t: Throwable?) : CommonError(t)
     object NoUserLoggedIn : CommonError()
+    object Unknown: CommonError()
 }
