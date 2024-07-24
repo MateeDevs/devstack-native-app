@@ -69,4 +69,8 @@ public enum AppTheme {
         public static let whisperMessage = Font.system(size: 13.0, weight: .medium)
         public static let whisperMessageUIKit = UIFont.systemFont(ofSize: 13.0, weight: .medium)
     }
+    
+    public enum Images {
+        public static let arrowShapeBackward = Image(systemName: "arrowshape.backward")
+    }
 }
