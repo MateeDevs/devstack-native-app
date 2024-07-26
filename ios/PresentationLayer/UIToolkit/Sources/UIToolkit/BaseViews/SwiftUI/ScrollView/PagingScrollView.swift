@@ -18,14 +18,14 @@ public struct PagingScrollView<Content: View>: View {
     private let showsIndicators: Bool
     private let isFetchingMore: Bool
     private let triggerPoint: Double
-    private let touchedBottomAction: (() -> Void)?
+    private let triggerAction: () -> Void
     private let content: Content
     
     /// - parameters:
     ///  - axes: The scroll view axes
     ///  - showIndicators: Whether the scroll indicators are shown
     ///  - isFetchingMore: Whether data is currently being fetched – this prevents from calling `touchedBottomAction` again
-    ///  - triggerPoint: At which point the `touchedBottomAction` should be triggered, 0.0 would be at the very top, 1.0 at the very bottom
+    ///  - triggerPoint: At which point the `triggerAction` should be triggered, 0.0 would be at the very top, 1.0 at the very bottom
     ///  - touchedBottomAction: The function that should be called when the trigger point is reached
     ///  - content: The content for the scroll view
     public init(
@@ -33,14 +33,14 @@ public struct PagingScrollView<Content: View>: View {
         showsIndicators: Bool = true,
         triggerPoint: Double = 1.0,
         isFetchingMore: Bool,
-        touchedBottomAction: (() -> Void)?,
+        triggerAction: @escaping () -> Void,
         @ViewBuilder content: () -> Content
     ) {
         self.axes = axes
         self.showsIndicators = showsIndicators
         self.triggerPoint = triggerPoint
         self.isFetchingMore = isFetchingMore
-        self.touchedBottomAction = touchedBottomAction
+        self.triggerAction = triggerAction
         self.content = content()
     }
     
@@ -88,7 +88,7 @@ public struct PagingScrollView<Content: View>: View {
                               value != 0,
                               value >= actualTriggerPoint
                         else { return }
-                        touchedBottomAction?()
+                        triggerAction()
                     }
             }
         )
@@ -101,7 +101,7 @@ struct PagingScrollView_Previews: PreviewProvider {
     static var previews: some View {
         PagingScrollView(
             isFetchingMore: false,
-            touchedBottomAction: nil,
+            triggerAction: {},
             content: {
                 Text("Hello world!")
             }

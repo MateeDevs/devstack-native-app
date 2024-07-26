@@ -21,7 +21,7 @@ struct UsersView: View {
             } else {
                 PagingScrollView(
                     isFetchingMore: viewModel.state.isFetchingMore,
-                    touchedBottomAction: { viewModel.onIntent(.fetchMore) },
+                    triggerAction: { viewModel.onIntent(.fetchMore) },
                     content: {
                         LazyVStack(spacing: 16) {
                             ForEach(viewModel.state.users, id: \.self) { user in
