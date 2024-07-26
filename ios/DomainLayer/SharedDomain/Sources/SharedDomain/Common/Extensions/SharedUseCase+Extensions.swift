@@ -52,9 +52,21 @@ public extension UseCaseFlowResult {
                         continuation.yield(resultSuccess as! Out)
                     }
                 case let resultError as ResultError<AnyObject>:
-                    continuation.finish(throwing: resultError.error.asError)
+                    let resultError = resultError.error
+                    continuation.finish(
+                        throwing: KmmLocalizedError(
+                            errorResult: resultError,
+                            localizedMessage: resultError.localizedMessage(nil)
+                        )
+                    )
                 default:
-                    continuation.finish(throwing: CommonError.unknownError)
+                    let resultError = CommonError.Unknown()
+                    continuation.finish(
+                        throwing: KmmLocalizedError(
+                            errorResult: resultError,
+                            localizedMessage: resultError.localizedMessage(nil)
+                        )
+                    )
                 }
             } onComplete: {
                 continuation.finish()
