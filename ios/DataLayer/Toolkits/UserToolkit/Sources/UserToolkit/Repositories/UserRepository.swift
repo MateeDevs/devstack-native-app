@@ -21,7 +21,10 @@ public struct UserRepositoryImpl: UserRepository {
         network = networkProvider
     }
     
-    public func read(_ sourceType: SourceType, id: String) async throws -> User {
+    public func read(
+        _ sourceType: SourceType,
+        id: String
+    ) async throws -> User {
         switch sourceType {
         case .local:
             return try database.read(DBUser.self, id: id).domainModel
@@ -32,7 +35,12 @@ public struct UserRepositoryImpl: UserRepository {
         }
     }
     
-    public func read(_ sourceType: SourceType, page: Int, limit: Int, sortBy: String?) async throws -> Pages<User> {
+    public func read(
+        _ sourceType: SourceType,
+        page: Int,
+        limit: Int,
+        sortBy: String?
+    ) async throws -> Pages<User> {
         switch sourceType {
         case .local:
             let data = try database.read(DBUser.self, sortBy: sortBy)
@@ -53,7 +61,10 @@ public struct UserRepositoryImpl: UserRepository {
         }
     }
     
-    public func update(_ sourceType: SourceType, user: User) async throws -> User {
+    public func update(
+        _ sourceType: SourceType,
+        user: User
+    ) async throws -> User {
         switch sourceType {
         case .local:
             return try database.update(user.databaseModel, model: .fullModel).domainModel
