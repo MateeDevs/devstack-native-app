@@ -39,8 +39,8 @@ final class UsersViewModelTests: XCTestCase {
         XCTAssertEqual(vm.state.users, Pages<User>.stub.data)
         XCTAssertEqual(vm.state.isLoading, false)
         XCTAssert(getUsersUseCase.executePageLimitReceivedInvocations == [
-            (.local, 0, 100),
-            (.remote, 0, 100)
+            (.local, 0, 10),
+            (.remote, 0, 10)
         ])
     }
     

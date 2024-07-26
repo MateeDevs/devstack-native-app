@@ -63,6 +63,7 @@ final class UsersViewModel: BaseViewModel, ViewModel, ObservableObject {
     
     private func initData() async {
         do {
+            state.users = try await getUsersUseCase.execute(.local, page: 0, limit: pageLimit).data
             try await pagingHandler.initData()
         } catch {}
     }

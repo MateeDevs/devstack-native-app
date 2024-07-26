@@ -55,9 +55,9 @@ final class UserRepositoryTests: XCTestCase {
         let repository = createRepository()
         databaseProvider.readCollectionReturnValue = [User].stub.map { $0.databaseModel }
         
-        let users = try await repository.read(.local, page: 0, limit: 100, sortBy: nil)
+        let users = try await repository.read(.local, page: 0, limit: 10, sortBy: nil)
         
-        XCTAssertEqual(users, .stub)
+        XCTAssertEqual(users.data, .stub)
         XCTAssertEqual(networkProvider.requestCallsCount, 0)
         XCTAssertEqual(databaseProvider.readCollectionCallsCount, 1)
     }
@@ -67,9 +67,9 @@ final class UserRepositoryTests: XCTestCase {
         networkProvider.requestReturnData = NETUser.stubList(in: .module)
         databaseProvider.updateCollectionReturnValue = [User].stub.map { $0.databaseModel }
         
-        let users = try await repository.read(.remote, page: 0, limit: 100, sortBy: nil)
+        let users = try await repository.read(.remote, page: 0, limit: 10, sortBy: nil)
         
-        XCTAssertEqual(users, .stub)
+        XCTAssertEqual(users.data, .stub)
         XCTAssertEqual(networkProvider.requestCallsCount, 1)
         XCTAssertEqual(databaseProvider.updateCollectionCallsCount, 1)
     }

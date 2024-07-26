@@ -24,7 +24,7 @@ public extension Pages<User> {
         data: (0..<10).map { _ in User.stub },
         pagination: Pagination(
             page: 0,
-            limit: 100,
+            limit: 10,
             totalCount: 10,
             lastPage: 0
         )
