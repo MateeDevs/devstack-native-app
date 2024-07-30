@@ -8,7 +8,7 @@ import Factory
 @testable import Recipes
 import SharedDomain
 import SharedDomainMocks
-import DevstackKmpShared
+import KMPShared
 import UIToolkit
 import XCTest
 

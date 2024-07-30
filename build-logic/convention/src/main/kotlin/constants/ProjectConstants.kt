@@ -3,8 +3,7 @@ package constants
 import org.gradle.api.JavaVersion
 
 object ProjectConstants {
-    const val shared = ":shared"
-    const val iosShared = "DevstackKmpShared"
+    const val iosShared = "KMPShared"
     val javaVersion = JavaVersion.VERSION_17
 
     object Android {

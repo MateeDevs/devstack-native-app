@@ -3,9 +3,9 @@ package kmp.android.books.vm
 import kmp.android.shared.vm.BaseIntentViewModel
 import kmp.android.shared.vm.VmIntent
 import kmp.android.shared.vm.VmState
-import kmp.shared.base.ErrorResult
-import kmp.shared.domain.usecase.book.GetBooksUseCase
-import kmp.shared.domain.usecase.book.RefreshBooksUseCase
+import kmp.shared.core.base.ErrorResult
+import kmp.shared.core.domain.usecase.book.GetBooksUseCase
+import kmp.shared.core.domain.usecase.book.RefreshBooksUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 

@@ -12,7 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import kmp.android.shared.style.Values
-import kmp.shared.domain.model.User
+import kmp.shared.core.domain.model.User
 
 @Composable
 fun UserEdit(user: User?, onUserChange: (User) -> Unit, modifier: Modifier = Modifier) {

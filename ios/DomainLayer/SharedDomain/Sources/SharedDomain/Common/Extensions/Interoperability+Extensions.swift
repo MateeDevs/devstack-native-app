@@ -1,4 +1,4 @@
-import DevstackKmpShared
+import KMPShared
 
  public extension Optional where Wrapped == KotlinLong {
     var int: Int {

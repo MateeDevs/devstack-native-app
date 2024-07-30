@@ -4,7 +4,7 @@
 //
 
 import DependencyInjection
-import DevstackKmpShared
+import KMPShared
 import Factory
 @testable import Onboarding
 @testable import SharedDomain

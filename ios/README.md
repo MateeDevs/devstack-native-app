@@ -42,7 +42,7 @@ FIXME
 ## Kotlin Multiplatform
 - Part of the application is based on Kotlin Multiplatform
 - You will need [JDK 11](https://www.azul.com/downloads) to build the project
-- There is `scripts/build-kmp.sh` that produces `DomainLayer/DevstackKmpShared.xcframework`
+- There is `scripts/build-kmp.sh` that produces `DomainLayer/KMPShared.xcframework`
 
 ## Architecture
 - Whole application is separated into three layers according to the Clean Architecture principles

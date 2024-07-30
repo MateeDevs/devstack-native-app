@@ -4,7 +4,7 @@
 //
 
 import Foundation
-import DevstackKmpShared
+import KMPShared
 import SharedDomain
 
 public final class GetBooksUseCaseMock: UseCaseFlowNoParamsMock<[Book]>, GetBooksUseCase {}

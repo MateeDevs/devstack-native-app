@@ -4,7 +4,7 @@
 //
 
 import DependencyInjection
-import DevstackKmpShared
+import KMPShared
 import Factory
 import SharedDomain
 import SwiftUI

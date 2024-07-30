@@ -7,7 +7,7 @@ import kmp.android.login.di.loginModule
 import kmp.android.profile.di.profileModule
 import kmp.android.shared.di.androidSharedModule
 import kmp.android.users.di.usersModule
-import kmp.shared.di.initKoin
+import kmp.shared.core.di.initKoin
 import org.koin.dsl.module
 
 fun ComponentActivity.initDependencyInjection() {

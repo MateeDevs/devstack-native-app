@@ -12,7 +12,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import kmp.android.shared.style.Values
-import kmp.shared.domain.model.User
+import kmp.shared.core.domain.model.User
 
 @Composable
 fun UserProfileImage(

@@ -239,4 +239,6 @@
 
 	<!-- SECTION: Recipe - Clock -->
 	<string name="recipes_clock_view_tutorial">Drag vertically to adjust the time</string>
+	<string name="recipes_sliding_button_title_block">Block</string>
+	<string name="recipes_sliding_button_title_unblock">Unblock</string>
 </resources>

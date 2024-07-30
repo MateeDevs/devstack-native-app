@@ -239,4 +239,6 @@
 
 	<!-- SECTION: Recipe - Clock -->
 	<string name="recipes_clock_view_tutorial">Čas upravíte presunutím zvisle</string>
+	<string name="recipes_sliding_button_title_block">Blokovať</string>
+	<string name="recipes_sliding_button_title_unblock">Odblokovať</string>
 </resources>

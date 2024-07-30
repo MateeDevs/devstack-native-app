@@ -8,7 +8,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":shared"))
+    implementation(project(":shared:core"))
     implementation(project(":android:shared"))
     implementation(project(":android:login"))
     implementation(project(":android:users"))

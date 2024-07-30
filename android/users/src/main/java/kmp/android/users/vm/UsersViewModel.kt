@@ -10,11 +10,11 @@ import kmp.android.shared.core.system.BaseStateViewModel
 import kmp.android.shared.core.system.State
 import kmp.android.users.data.UserPagingMediator
 import kmp.android.users.data.UsersPagingSource
-import kmp.shared.base.ErrorResult
-import kmp.shared.base.Result
-import kmp.shared.domain.model.User
-import kmp.shared.domain.model.UserPagingData
-import kmp.shared.domain.usecase.user.GetUserUseCase
+import kmp.shared.core.base.ErrorResult
+import kmp.shared.core.base.Result
+import kmp.shared.core.domain.model.User
+import kmp.shared.core.domain.model.UserPagingData
+import kmp.shared.core.domain.usecase.user.GetUserUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.map

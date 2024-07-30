@@ -58,7 +58,7 @@ object KmmConfig {
     fun Task.copyXCFramework(projectName: String) {
         val buildPathRelease =
             "build/XCFrameworks/${getCurrentNativeBuildType(project).name.toLowerCase(Locale.getDefault())}/$projectName.xcframework"
-        val iosXCBinaryPath = "../ios/DomainLayer/$projectName.xcframework"
+        val iosXCBinaryPath = "../../ios/DomainLayer/$projectName.xcframework"
 
         project.delete(iosXCBinaryPath)
         project.copy {

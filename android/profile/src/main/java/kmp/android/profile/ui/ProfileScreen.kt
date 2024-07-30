@@ -34,8 +34,8 @@ import kmp.android.shared.extension.showIn
 import kmp.android.shared.navigation.composableDestination
 import kmp.android.shared.style.Values
 import kmp.android.shared.ui.ScreenTitle
-import kmp.shared.domain.model.Book
-import kmp.shared.domain.model.User
+import kmp.shared.core.domain.model.Book
+import kmp.shared.core.domain.model.User
 import kotlinx.collections.immutable.toImmutableList
 import org.koin.androidx.compose.getViewModel
 import kmp.android.profile.vm.ProfileViewModel.ViewState as State

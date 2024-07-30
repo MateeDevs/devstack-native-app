@@ -29,7 +29,7 @@ import kmp.android.shared.style.Values
 import kmp.android.shared.ui.ScreenTitle
 import kmp.android.users.navigation.UsersGraph
 import kmp.android.users.vm.UsersViewModel
-import kmp.shared.domain.model.UserPagingData
+import kmp.shared.core.domain.model.UserPagingData
 import org.koin.androidx.compose.getViewModel
 
 internal fun NavGraphBuilder.userListRoute(

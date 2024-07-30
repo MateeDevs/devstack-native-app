@@ -47,5 +47,5 @@ fi
 
 # Build and copy XCFramework
 cd ../..
-./gradlew :shared:buildXCFramework -PXCODE_CONFIGURATION=${configuration} -PX86=${x86} -PARM64=${arm64} -PARM64SIM=${arm64sim}
-./gradlew :shared:copyXCFramework -PXCODE_CONFIGURATION=${configuration} -PX86=${x86} -PARM64=${arm64} -PARM64SIM=${arm64sim}
+./gradlew :shared:core:buildXCFramework -PXCODE_CONFIGURATION=${configuration} -PX86=${x86} -PARM64=${arm64} -PARM64SIM=${arm64sim}
+./gradlew :shared:core:copyXCFramework -PXCODE_CONFIGURATION=${configuration} -PX86=${x86} -PARM64=${arm64} -PARM64SIM=${arm64sim}

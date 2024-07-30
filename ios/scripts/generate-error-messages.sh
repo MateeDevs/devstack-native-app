@@ -9,4 +9,4 @@ echo "Generating Localizable files for error messages in specified languages"
 ./gradlew generateErrorsTwine
 
 echo "Generating MR resources from .xml files"
-./gradlew :shared:generateMRcommonMain
+./gradlew :shared:core:generateMRcommonMain

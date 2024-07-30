@@ -1,4 +1,4 @@
-import DevstackKmpShared
+import KMPShared
 
 public struct KmmLocalizedError: Swift.Error {
     public let errorResult: ErrorResult?

@@ -21,7 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import kmp.android.shared.style.Values
-import kmp.shared.domain.model.Book
+import kmp.shared.core.domain.model.Book
 import kotlinx.collections.immutable.ImmutableList
 
 @Composable

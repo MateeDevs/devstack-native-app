@@ -3,7 +3,7 @@
 //  Copyright © 2023 Matee. All rights reserved.
 //
 
-import DevstackKmpShared
+import KMPShared
 
 public extension Book {
     static let stub = Book(

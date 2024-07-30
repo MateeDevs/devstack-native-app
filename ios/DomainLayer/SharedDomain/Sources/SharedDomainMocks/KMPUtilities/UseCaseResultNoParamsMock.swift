@@ -4,7 +4,7 @@
 //
 
 import Foundation
-import DevstackKmpShared
+import KMPShared
 
 open class UseCaseResultNoParamsMock: UseCaseResultNoParams {
     

@@ -4,6 +4,6 @@
 //
 
 import Foundation
-import DevstackKmpShared
+import KMPShared
 
 public final class TestError: ErrorResult {}

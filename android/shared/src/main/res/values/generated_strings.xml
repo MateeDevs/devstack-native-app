@@ -239,4 +239,6 @@
 
 	<!-- SECTION: Recipe - Clock -->
 	<string name="recipes_clock_view_tutorial">Tažením svisle upravte čas</string>
+	<string name="recipes_sliding_button_title_block">Zablokovat</string>
+	<string name="recipes_sliding_button_title_unblock">Odblokovat</string>
 </resources>

@@ -2,7 +2,7 @@
 // swiftlint:disable line_length
 // swiftlint:disable multiline_arguments
 
-import DevstackKmpShared
+import KMPShared
 import Foundation
 
 private class JobWrapper {

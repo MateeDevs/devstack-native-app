@@ -7,7 +7,7 @@ import DatabaseProvider
 import KeychainProvider
 import NetworkProvider
 import SharedDomain
-import DevstackKmpShared
+import KMPShared
 
 public struct AuthRepositoryImpl: AuthRepository {
     

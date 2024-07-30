@@ -2,8 +2,8 @@ package kmp.android.shared.domain.usecase
 
 import android.location.Location
 import kmp.android.shared.domain.controller.LocationController
-import kmp.shared.base.Result
-import kmp.shared.base.usecase.UseCaseResultNoParams
+import kmp.shared.core.base.Result
+import kmp.shared.core.base.usecase.UseCaseResultNoParams
 import kotlinx.coroutines.flow.Flow
 
 interface GetLocationFlowUseCase : UseCaseResultNoParams<Flow<Location>>

@@ -7,7 +7,7 @@
 
 #warning("TODO: Proper implementation for async/await")
 
-// import DevstackKmpShared
+// import KMPShared
 // import Foundation
 //
 //// swiftlint:disable file_length

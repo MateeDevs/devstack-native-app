@@ -42,8 +42,8 @@ import kmp.android.recipes.navigation.recipesNavGraph
 import kmp.android.shared.style.Values
 import kmp.android.users.navigation.UsersGraph
 import kmp.android.users.navigation.usersNavGraph
-import kmp.shared.base.util.extension.getOrNull
-import kmp.shared.domain.usecase.user.IsUserLoggedInUseCase
+import kmp.shared.core.base.util.extension.getOrNull
+import kmp.shared.core.domain.usecase.user.IsUserLoggedInUseCase
 import org.koin.androidx.compose.get
 
 @Composable

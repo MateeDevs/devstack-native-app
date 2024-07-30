@@ -6,7 +6,7 @@
 #if DEBUG
 import CoreLocation
 import DependencyInjection
-import DevstackKmpShared
+import KMPShared
 import Factory
 @testable import SharedDomain
 import SharedDomainMocks

@@ -25,9 +25,9 @@ import androidx.constraintlayout.compose.Dimension
 import kmp.android.shared.R
 import kmp.android.shared.style.Values
 import kmp.android.shared.ui.UserProfileImage
-import kmp.shared.domain.model.Book
-import kmp.shared.domain.model.User
-import kmp.shared.extension.fullName
+import kmp.shared.core.domain.model.Book
+import kmp.shared.core.domain.model.User
+import kmp.shared.core.extension.fullName
 import kotlinx.collections.immutable.ImmutableList
 
 @Composable

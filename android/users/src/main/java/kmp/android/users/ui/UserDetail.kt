@@ -35,7 +35,7 @@ import kmp.android.shared.ui.ScreenTitle
 import kmp.android.shared.ui.UserProfileImage
 import kmp.android.users.navigation.UsersGraph
 import kmp.android.users.vm.UsersViewModel
-import kmp.shared.domain.model.User
+import kmp.shared.core.domain.model.User
 import org.koin.androidx.compose.getViewModel
 
 fun NavController.navigateToUserDetail(userId: String) {
