@@ -12,20 +12,17 @@ import WidgetKit
 
 struct Provider: TimelineProvider {
     
-    #warning("TODO: Temporary use case access, should be obtained via ViewModel instead")
-    @Injected(\.isUserLoggedUseCase) private var isUserLoggedUseCase
-    
     func placeholder(in context: Context) -> SimpleEntry {
-        return SimpleEntry(date: Date(), isLogged: isUserLoggedUseCase.execute())
+        return SimpleEntry(date: Date())
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> Void) {
-        let entry = SimpleEntry(date: Date(), isLogged: isUserLoggedUseCase.execute())
+        let entry = SimpleEntry(date: Date())
         completion(entry)
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> Void) {
-        let entry = SimpleEntry(date: Date(), isLogged: isUserLoggedUseCase.execute())
+        let entry = SimpleEntry(date: Date())
         let timeline = Timeline(entries: [entry], policy: .atEnd)
         completion(timeline)
     }
@@ -33,14 +30,13 @@ struct Provider: TimelineProvider {
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
-    let isLogged: Bool
 }
 
 struct DevStackWidgetEntryView: View {
     var entry: Provider.Entry
 
     var body: some View {
-        WidgetView(isLogged: entry.isLogged)
+        WidgetView(date: entry.date)
     }
 }
 
@@ -82,5 +78,5 @@ struct DevStackWidget: Widget {
 #Preview(as: .systemSmall) {
     DevStackWidget()
 } timeline: {
-    SimpleEntry(date: Date(), isLogged: true)
+    SimpleEntry(date: Date())
 }

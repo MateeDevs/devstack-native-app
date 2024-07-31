@@ -82,6 +82,8 @@ fun KotlinMultiplatformExtension.kmm(
                     isStatic = false
                     xcf.add(this)
                     export(libs.mokoResources)
+                    export(project(":shared:base"))
+                    export(project(":shared:sample"))
                 }
             }
         }
@@ -93,6 +95,8 @@ fun KotlinMultiplatformExtension.kmm(
                         isStatic = false
                         xcf.add(this)
                         export(libs.mokoResources)
+                        export(project(":shared:base"))
+                        export(project(":shared:sample"))
                     }
                 }
             }

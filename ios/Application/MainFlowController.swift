@@ -3,78 +3,35 @@
 //  Copyright © 2019 Matee. All rights reserved.
 //
 
-import Profile
-import Recipes
+import Sample
 import SharedDomain
+import SwiftUI
 import UIKit
 import UIToolkit
-import Users
 
 enum MainTab: Int {
-    case users = 0
-    case profile = 1
-    case recipes = 2
+    case sample = 0
 }
 
-protocol MainFlowControllerDelegate: AnyObject {
-    func presentOnboarding(animated: Bool, completion: (() -> Void)?)
-}
-
-final class MainFlowController: FlowController, ProfileFlowControllerDelegate {
-    
-    weak var delegate: MainFlowControllerDelegate?
+final class MainFlowController: FlowController {
     
     override func setup() -> UIViewController {
         let main = UITabBarController()
-        main.viewControllers = [setupUsersTab(), setupProfileTab(), setupRecipesTab()]
+        main.viewControllers = [setupSampleTab()]
         return main
     }
     
-    private func setupUsersTab() -> UINavigationController {
-        let usersNC = BaseNavigationController(statusBarStyle: .lightContent)
-        usersNC.tabBarItem = UITabBarItem(
+    private func setupSampleTab() -> UINavigationController {
+        let sampleNC = BaseNavigationController(statusBarStyle: .lightContent)
+        sampleNC.tabBarItem = UITabBarItem(
             title: L10n.bottom_bar_item_1,
-            image: Asset.Images.usersTabBar.uiImage,
-            tag: MainTab.users.rawValue
+            image: UIImage(systemName: "person.fill"),
+            tag: MainTab.sample.rawValue
         )
-        let usersFC = UsersFlowController(navigationController: usersNC)
-        let usersRootVC = startChildFlow(usersFC)
-        usersNC.viewControllers = [usersRootVC]
-        return usersNC
-    }
-    
-    private func setupProfileTab() -> UINavigationController {
-        let profileNC = BaseNavigationController(statusBarStyle: .lightContent)
-        profileNC.tabBarItem = UITabBarItem(
-            title: L10n.bottom_bar_item_2,
-            image: Asset.Images.profileTabBar.uiImage,
-            tag: MainTab.profile.rawValue
-        )
-        let profileFC = ProfileFlowController(navigationController: profileNC)
-        profileFC.delegate = self
-        let profileRootVC = startChildFlow(profileFC)
-        profileNC.viewControllers = [profileRootVC]
-        return profileNC
-    }
-    
-    private func setupRecipesTab() -> UINavigationController {
-        let recipesNC = BaseNavigationController(statusBarStyle: .lightContent)
-        recipesNC.tabBarItem = UITabBarItem(
-            title: L10n.bottom_bar_item_3,
-            image: Asset.Images.recipesTabBar.uiImage,
-            tag: MainTab.recipes.rawValue
-        )
-        let recipesFC = RecipesFlowController(navigationController: recipesNC)
-        let recipesRootVC = startChildFlow(recipesFC)
-        recipesNC.viewControllers = [recipesRootVC]
-        return recipesNC
-    }
-    
-    func presentOnboarding() {
-        delegate?.presentOnboarding(animated: true, completion: { [weak self] in
-            self?.navigationController.viewControllers = []
-            self?.stopFlow()
-        })
+        let sampleFC = SampleFlowController(navigationController: sampleNC)
+        let sampleRootVC = startChildFlow(sampleFC)
+        sampleNC.viewControllers = [sampleRootVC]
+        return sampleNC
     }
     
     @discardableResult private func switchTab(_ index: MainTab) -> FlowController? {
@@ -82,17 +39,5 @@ final class MainFlowController: FlowController, ProfileFlowControllerDelegate {
             let tabs = tabController.viewControllers, index.rawValue < tabs.count else { return nil }
         tabController.selectedIndex = index.rawValue
         return childControllers[index.rawValue]
-    }
-    
-    func handleDeeplink(for notification: PushNotification) {
-        switch notification.type {
-        case .userDetail: handleUserDetailDeeplink(userId: notification.entityId)
-        default: return
-        }
-    }
-    
-    private func handleUserDetailDeeplink(userId: String) {
-        guard let usersFlowController = switchTab(.users) as? UsersFlowController else { return }
-        usersFlowController.handleUserDetailDeeplink(userId: userId)
     }
 }

@@ -3,15 +3,14 @@
 //  Copyright © 2023 Matee. All rights reserved.
 //
 
-import KMPShared
 import Factory
+import KMPShared
 import SharedDomain
 
 public extension Container {
     // Koin
     private var kmp: Factory<KMPDependency> { self { KMPKoinDependency() }.singleton }
     
-    // Books
-    var getBooksUseCase: Factory<GetBooksUseCase> { self { self.kmp().get(GetBooksUseCase.self) } }
-    var refreshBooksUseCase: Factory<RefreshBooksUseCase> { self { self.kmp().get(RefreshBooksUseCase.self) } }
+    // Sample
+    var getSampleTextUseCase: Factory<GetSampleTextUseCase> { self { self.kmp().get(GetSampleTextUseCase.self) } }
 }

@@ -4,66 +4,22 @@
 //
 
 import Factory
-import Onboarding
 import SharedDomain
 import UIKit
 import UIToolkit
 
-final class AppFlowController: FlowController, MainFlowControllerDelegate, OnboardingFlowControllerDelegate {
-    
-    @Injected(\.isUserLoggedUseCase) private var isUserLoggedUseCase
-    @Injected(\.handlePushNotificationUseCase) private var handlePushNotificationUseCase
-    @Injected(\.logoutUseCase) private var logoutUseCase
+final class AppFlowController: FlowController {
     
     func start() {
         setupAppearance()
         
-        if isUserLoggedUseCase.execute() {
-            setupMain()
-        } else {
-            presentOnboarding(animated: false, completion: nil)
-        }
+        setupMain()
     }
     
     func setupMain() {
         let fc = MainFlowController(navigationController: navigationController)
-        fc.delegate = self
         let rootVC = startChildFlow(fc)
         navigationController.viewControllers = [rootVC]
-    }
-    
-    func presentOnboarding(animated: Bool, completion: (() -> Void)?) {
-        let nc = BaseNavigationController()
-        let fc = OnboardingFlowController(navigationController: nc)
-        fc.delegate = self
-        let rootVC = startChildFlow(fc)
-        nc.viewControllers = [rootVC]
-        nc.modalPresentationStyle = .fullScreen
-        nc.navigationBar.isHidden = true
-        navigationController.present(nc, animated: animated, completion: completion)
-    }
-    
-    public func handlePushNotification(_ notification: [AnyHashable: Any]) {
-        guard let main = childControllers.first(where: { $0 is MainFlowController }) as? MainFlowController else { return }
-        do {
-            let notification = try handlePushNotificationUseCase.execute(notification)
-            main.handleDeeplink(for: notification)
-        } catch {}
-    }
-    
-    public func handleLogout() {
-        guard let vc = navigationController.topViewController as? BaseViewController else { return }
-
-        let action = AlertData.Action(title: L10n.dialog_interceptor_button_title, style: .default, handler: {
-            do {
-                // Perform logout and present login screen
-                try self.logoutUseCase.execute()
-                self.presentOnboarding(animated: true, completion: nil)
-            } catch {}
-        })
-
-        let alert = AlertData(title: L10n.dialog_interceptor_title, message: L10n.dialog_interceptor_text, primaryAction: action)
-        vc.handleAlertAction(.showAlert(alert))
     }
     
     private func setupAppearance() {

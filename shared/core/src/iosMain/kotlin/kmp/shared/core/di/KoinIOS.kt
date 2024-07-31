@@ -1,13 +1,5 @@
 package kmp.shared.core.di
 
-import io.ktor.client.engine.darwin.Darwin
-import kmp.shared.core.base.error.ErrorMessageProvider
-import kmp.shared.core.base.error.ErrorMessageProviderImpl
-import kmp.shared.core.infrastructure.local.DriverFactory
-import kmp.shared.core.system.Config
-import kmp.shared.core.system.ConfigImpl
-import kmp.shared.core.system.Log
-import kmp.shared.core.system.Logger
 import kotlinx.cinterop.ObjCClass
 import kotlinx.cinterop.ObjCProtocol
 import kotlinx.cinterop.getOriginalKotlinClass
@@ -22,14 +14,6 @@ fun initKoinIos(doOnStartup: () -> Unit) = initKoin {
             single { doOnStartup }
         },
     )
-}
-
-actual val platformModule = module {
-    single<Config> { ConfigImpl() }
-    single { DriverFactory() }
-    single<Logger> { Log }
-    single { Darwin.create() }
-    single<ErrorMessageProvider> { ErrorMessageProviderImpl() }
 }
 
 fun Koin.get(objCProtocol: ObjCProtocol): Any {

@@ -55,6 +55,12 @@ gradlePlugin {
             pluginName = "KmmLibraryConventionPlugin",
         )
     }
+    plugins {
+        plugin(
+            dependency = libs.plugins.devstack.kmm.xcframework.library,
+            pluginName = "KmmXCFrameworkLibraryConventionPlugin",
+        )
+    }
 }
 
 fun NamedDomainObjectContainer<PluginDeclaration>.plugin(

@@ -9,7 +9,7 @@ fun Project.configureTwine() {
         Twine.generateAllRegularFiles(
             project = project,
             twineFile = "${rootProject.file("twine").absolutePath}/strings.txt",
-            moduleName = "android/shared",
+            moduleName = "android/shared/base",
         )
     }
 
@@ -17,7 +17,7 @@ fun Project.configureTwine() {
         Twine.generateAllErrorFiles(
             project = project,
             twineFile = "${rootProject.file("twine").absolutePath}/errors.txt",
-            targetPath = "${project.rootDir.absolutePath}/shared/core/src/commonMain/resources/MR",
+            targetPath = "${project.rootDir.absolutePath}/shared/base/src/commonMain/resources/MR",
             targetFileName = "strings.xml",
             languages = listOf("sk", "en", "cs"),
             baseLanguage = "en",

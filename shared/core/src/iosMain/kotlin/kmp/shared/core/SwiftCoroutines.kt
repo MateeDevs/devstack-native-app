@@ -1,13 +1,12 @@
 package kmp.shared.core
 
-import kmp.shared.core.base.Result
-import kmp.shared.core.base.usecase.UseCaseFlow
-import kmp.shared.core.base.usecase.UseCaseFlowNoParams
-import kmp.shared.core.base.usecase.UseCaseFlowResult
-import kmp.shared.core.base.usecase.UseCaseFlowResultNoParams
-import kmp.shared.core.base.usecase.UseCaseResult
-import kmp.shared.core.base.usecase.UseCaseResultNoParams
-import kmp.shared.core.domain.usecase.book.RefreshBooksUseCase
+import kmp.shared.base.Result
+import kmp.shared.base.usecase.UseCaseFlow
+import kmp.shared.base.usecase.UseCaseFlowNoParams
+import kmp.shared.base.usecase.UseCaseFlowResult
+import kmp.shared.base.usecase.UseCaseFlowResultNoParams
+import kmp.shared.base.usecase.UseCaseResult
+import kmp.shared.base.usecase.UseCaseResultNoParams
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -26,12 +25,6 @@ val iosDefaultScope: CoroutineScope = object : CoroutineScope {
 }
 
 interface KMMViewModel {
-
-    fun l(uc: RefreshBooksUseCase) {
-        val a = execute(1, uc, onSuccess = {
-        }, {
-        },)
-    }
 
     fun <Params : Any, Out : Any> execute(
         params: Params,

@@ -11,13 +11,13 @@ public struct WhisperData {
     let style: WhisperStyle
     let hideAfter: TimeInterval
     
-    init(_ message: String, style: WhisperStyle = .info, hideAfter: TimeInterval = 0.0) {
+    public init(_ message: String, style: WhisperStyle = .info, hideAfter: TimeInterval = 0.0) {
         self.message = message
         self.style = style
         self.hideAfter = hideAfter
     }
     
-    init(error: String, style: WhisperStyle = .error, hideAfter: TimeInterval = 2.5) {
+    public init(error: String, style: WhisperStyle = .error, hideAfter: TimeInterval = 2.5) {
         self.message = error
         self.style = style
         self.hideAfter = hideAfter

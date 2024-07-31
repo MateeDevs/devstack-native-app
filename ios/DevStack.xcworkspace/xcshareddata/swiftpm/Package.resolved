@@ -10,15 +10,6 @@
       }
     },
     {
-      "identity" : "apollo-ios",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apollographql/apollo-ios",
-      "state" : {
-        "revision" : "fdb97fe7016edc10dd217e530864dd3eee0f114b",
-        "version" : "1.7.0"
-      }
-    },
-    {
       "identity" : "app-check",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/app-check.git",
@@ -100,15 +91,6 @@
       }
     },
     {
-      "identity" : "googlemaps-sp",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/MateeDevs/GoogleMaps-SP.git",
-      "state" : {
-        "revision" : "0c1940aff2ca9da9d28598ae586234f3fff747ab",
-        "version" : "7.4.0"
-      }
-    },
-    {
       "identity" : "googleutilities",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/GoogleUtilities.git",
@@ -181,39 +163,12 @@
       }
     },
     {
-      "identity" : "realm-cocoa",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/realm/realm-cocoa.git",
-      "state" : {
-        "revision" : "fd199ce07edb4db69e862f74151b95602aad3b43",
-        "version" : "10.44.0"
-      }
-    },
-    {
-      "identity" : "realm-core",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/realm/realm-core.git",
-      "state" : {
-        "revision" : "c569bec4d04da84030d94f376437bc4efda3686b",
-        "version" : "13.23.1"
-      }
-    },
-    {
       "identity" : "sourcekitten",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/jpsim/SourceKitten.git",
       "state" : {
         "revision" : "b6dc09ee51dfb0c66e042d2328c017483a1a5d56",
         "version" : "0.34.1"
-      }
-    },
-    {
-      "identity" : "sqlite.swift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/stephencelis/SQLite.swift.git",
-      "state" : {
-        "revision" : "7a2e3cd27de56f6d396e84f63beefd0267b55ccb",
-        "version" : "0.14.1"
       }
     },
     {

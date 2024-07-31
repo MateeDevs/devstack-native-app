@@ -8,15 +8,15 @@ import WidgetKit
 
 struct WidgetView: View {
     
-    let isLogged: Bool
+    let date: Date
     
     var body: some View {
         if #available(iOS 17.0, *) {
-            Text(isLogged ? "✅" : "❌")
+            Text("✅ \(date.ISO8601Format())")
                 .font(.largeTitle)
                 .containerBackground(for: .widget) { Color.white }
         } else {
-            Text(isLogged ? "✅" : "❌")
+            Text("✅ \(date.ISO8601Format())")
                 .font(.largeTitle)
         }
     }

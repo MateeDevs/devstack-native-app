@@ -16,7 +16,6 @@ import SharedDomain
 import UIKit
 import UIToolkit
 import UserDefaultsProvider
-import UserNotifications
 import Utilities
 import WidgetKit
 
@@ -132,33 +131,5 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     private func setupCacheCapacity() {
         URLCache.shared.memoryCapacity = 10_000_000 // ~10 MB memory space
         URLCache.shared.diskCapacity = 1_000_000_000 // ~1GB disk cache space
-    }
-}
-
-extension AppDelegate: UNUserNotificationCenterDelegate {
-    func userNotificationCenter(
-        _ center: UNUserNotificationCenter,
-        willPresent notification: UNNotification,
-        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
-    ) {
-        // Show system notification
-        completionHandler([.list, .banner, .badge, .sound])
-    }
-    
-    func userNotificationCenter(
-        _ center: UNUserNotificationCenter,
-        didReceive response: UNNotificationResponse,
-        withCompletionHandler completionHandler: @escaping () -> Void
-    ) {
-        let notification = response.notification.request.content.userInfo
-        DispatchQueue.main.async {
-            self.flowController?.handlePushNotification(notification)
-        }
-    }
-}
-
-extension AppDelegate: NetworkProviderDelegate {
-    func didReceiveHttpUnauthorized() {
-        self.flowController?.handleLogout()
     }
 }

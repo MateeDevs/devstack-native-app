@@ -69,4 +69,78 @@ public enum AppTheme {
         public static let whisperMessage = Font.system(size: 13.0, weight: .medium)
         public static let whisperMessageUIKit = UIFont.systemFont(ofSize: 13.0, weight: .medium)
     }
+    
+    /// Defines dimens
+    public enum Dimens {
+        /**
+         * Space 0
+         */
+        public static let spaceNone: CGFloat = 0
+        /**
+         * Space 4
+         */
+        public static let spaceXSmall: CGFloat = 4
+        /**
+         * Space 8
+         */
+        public static let spaceSmall: CGFloat = 8
+        /**
+         * Space 10
+         */
+        public static let spaceSemiMedium: CGFloat = 10
+        /**
+         * Space 12
+         */
+        public static let spaceMedium: CGFloat = 12
+        /**
+         * Space 16
+         */
+        public static let spaceLarge: CGFloat = 16
+        /**
+         * Space 18
+         */
+        public static let textFieldButtonSpace: CGFloat = 18
+        /**
+         * Spacing of 24
+         */
+        public static let spaceXLarge: CGFloat = 24
+        /**
+         * Spacing of 40
+         */
+        public static let spaceXXLarge: CGFloat = 32
+        /**
+         * Spacing of 64
+         */
+        public static let spaceXXXLarge: CGFloat = 64
+        
+        /**
+         * Radius of 6
+         */
+        public static let radiusXXSmall: CGFloat = 6
+        /**
+         * Radius of 8
+         */
+        public static let radiusXSmall: CGFloat = 8
+        /**
+         * Radius of 10
+         */
+        public static let radiusTextFields: CGFloat = 10
+        /**
+         * Radius of 12
+         */
+        public static let radiusSmall : CGFloat = 12
+        /**
+         * Radius of 16
+         */
+        public static let radiusMedium: CGFloat = 16
+        /**
+         * Radius of 18
+         */
+        public static let radiusLarge: CGFloat = 18
+        /**
+         * Radius of 24
+         */
+        public static let radiusXLarge: CGFloat = 24
+        
+    }
 }

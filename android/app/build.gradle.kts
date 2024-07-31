@@ -10,9 +10,5 @@ android {
 dependencies {
     implementation(project(":shared:core"))
     implementation(project(":android:shared"))
-    implementation(project(":android:login"))
-    implementation(project(":android:users"))
-    implementation(project(":android:profile"))
-    implementation(project(":android:recipes"))
-    implementation(project(":android:books"))
+    implementation(project(":android:sample"))
 }

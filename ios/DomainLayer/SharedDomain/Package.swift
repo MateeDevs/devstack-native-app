@@ -32,7 +32,7 @@ let package = Package(
         .target(
             name: "SharedDomain",
             dependencies: [
-                "DevstackKmpShared",
+                "KMPShared",
                 "Utilities",
                 .product(name: "Spyable", package: "swift-spyable")
             ],
@@ -44,7 +44,7 @@ let package = Package(
             name: "SharedDomainMocks",
             dependencies: [
                 "SharedDomain",
-                "DevstackKmpShared",
+                "KMPShared",
                 "Utilities"
             ]
         ),
@@ -57,8 +57,8 @@ let package = Package(
             ]
         ),
         .binaryTarget(
-            name: "DevstackKmpShared",
-            path: "../DevstackKmpShared.xcframework"
+            name: "KMPShared",
+            path: "../KMPShared.xcframework"
         )
     ]
 )

@@ -56,6 +56,7 @@ material = { module = "com.google.android.material:material", version.ref = "mat
 # Lifecycle
 lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
 lifecycle-common = "androidx.lifecycle:lifecycle-common-java8:2.6.2"
+lifecycle-runtimeCompose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycle" }
 # Paging
 paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "paging" }
 paging-compose = { module = "androidx.paging:paging-compose", version.ref = "pagingCompose" }
@@ -149,3 +150,4 @@ devstack-android-application-core = "android-application:none"
 devstack-android-library-compose = "android-library-compose:none"
 devstack-android-library-core = "android-library:none"
 devstack-kmm-library = "kmm-library:none"
+devstack-kmm-xcframework-library = "kmm-xcframework-library:none"
