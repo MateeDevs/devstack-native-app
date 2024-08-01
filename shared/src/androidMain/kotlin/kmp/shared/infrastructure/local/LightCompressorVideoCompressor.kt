@@ -9,6 +9,7 @@ import com.abedelazizshe.lightcompressorlibrary.config.Configuration
 import kmp.shared.domain.model.VideoCompressOptions
 import kmp.shared.base.Result
 import kmp.shared.base.error.domain.CommonError
+import kmp.shared.domain.model.VideoCompressLibrary
 import kmp.shared.domain.model.VideoCompressResult
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.channels.trySendBlocking
@@ -44,7 +45,12 @@ class LightCompressorVideoCompressor(
             listener = object : CompressionListener {
                 override fun onProgress(index: Int, percent: Float) {
                     // Update UI with progress value
-                    trySendBlocking(VideoCompressResult.Progress(percent.toInt()))
+                    trySendBlocking(
+                        VideoCompressResult.Progress(
+                            VideoCompressLibrary.LightCompressor,
+                            percent.toInt(),
+                        ),
+                    )
                 }
 
                 override fun onStart(index: Int) {
@@ -53,7 +59,13 @@ class LightCompressorVideoCompressor(
 
                 override fun onSuccess(index: Int, size: Long, path: String?) {
                     // On Compression success
-                    trySendBlocking(VideoCompressResult.Completion(Result.Success(path ?: outputPath)))
+                    trySendBlocking(
+                        VideoCompressResult.Completion(
+                            Result.Success(
+                                path ?: outputPath,
+                            ),
+                        ),
+                    )
                     close()
                 }
 

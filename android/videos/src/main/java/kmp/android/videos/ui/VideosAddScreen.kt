@@ -13,8 +13,8 @@ import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Button
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Divider
+import androidx.compose.material.LinearProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -25,8 +25,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavGraphBuilder
+import kmp.android.shared.R
 import kmp.android.shared.navigation.composableDestination
 import kmp.android.shared.style.Values
 import kmp.android.videos.navigation.VideosGraph
@@ -80,14 +83,35 @@ fun VideosAddScreen(
             Text(text = "Pick video")
         }
 
-        AnimatedVisibility(visible = state.progress < 100) {
-            CircularProgressIndicator(
-                progress = state.progress / 100f,
+        AnimatedVisibility(
+            visible = state.progress < 100
+                    && state.didStartProcessing,
+        ) {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .wrapContentWidth(Alignment.CenterHorizontally)
-                    .padding(bottom = Values.Space.medium),
-            )
+                    .fillMaxWidth(),
+            ) {
+                LinearProgressIndicator(
+                    progress = state.progress / 100f,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(
+                            bottom = Values.Space.medium,
+                            start = Values.Space.medium,
+                            end = Values.Space.medium,
+                        ),
+                )
+
+                Text(
+                    textAlign = TextAlign.Center,
+                    text = stringResource(
+                        R.string.label_video_started_processing,
+                        state.currentLibrary?.name ?: "Unknown",
+                        state.progress,
+                    ),
+                )
+            }
         }
 
         var selected by remember { mutableStateOf<CompressionResult?>(null) }

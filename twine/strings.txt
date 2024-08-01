@@ -820,3 +820,7 @@
         cs = Videa
         en = Videos
         sk = Videa
+    [label_video_started_processing]
+        cs = Probíhá zpracování videa pomocí %@, %d%% hotovo.
+        en = Video processing using %@ is in progress, %d%% done.
+        sk = Probíhá zpracování videa pomocí %@, %d%% hotovo.

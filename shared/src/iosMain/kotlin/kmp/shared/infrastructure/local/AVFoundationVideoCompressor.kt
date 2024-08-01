@@ -3,6 +3,7 @@ package kmp.shared.infrastructure.local
 import kmp.shared.base.Result
 import kmp.shared.base.error.domain.CommonError
 import kmp.shared.domain.model.MediaUrlPath
+import kmp.shared.domain.model.VideoCompressLibrary
 import kmp.shared.domain.model.VideoCompressOptions
 import kmp.shared.domain.model.VideoCompressResult
 import kotlinx.coroutines.CoroutineScope
@@ -49,7 +50,12 @@ internal class AVFoundationVideoCompressor : VideoCompressor {
                 }
             } ?: AVAssetExportPresetMediumQuality,
             progress = {
-                trySendBlocking(VideoCompressResult.Progress((it * 100).toInt()))
+                trySendBlocking(
+                    VideoCompressResult.Progress(
+                        VideoCompressLibrary.AVFoundation,
+                        (it * 100).toInt(),
+                    ),
+                )
             },
         ) { session ->
             when (session.status) {

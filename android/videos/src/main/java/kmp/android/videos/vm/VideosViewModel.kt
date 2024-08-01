@@ -35,7 +35,9 @@ data class CompressionResult(
 
 data class VideosState(
     val results: List<CompressionResult> = emptyList(),
+    val didStartProcessing: Boolean = false,
     val progress: Int = 0,
+    val currentLibrary: VideoCompressLibrary? = null,
 ) : VmState
 
 class VideosViewModel(
@@ -71,7 +73,7 @@ class VideosViewModel(
             ) to VideoCompressLibrary.LightCompressor,
         )
 
-        state = state.copy(results = emptyList())
+        state = state.copy(results = emptyList(), didStartProcessing = true)
 
         viewModelScope.launch(Dispatchers.IO) {
             options.onEach { (option, library) ->
@@ -110,7 +112,10 @@ class VideosViewModel(
                         }
                     }
 
-                    is VideoCompressResult.Progress -> state.copy(progress = videoCompressResult.progress)
+                    is VideoCompressResult.Progress -> state.copy(
+                        progress = videoCompressResult.progress,
+                        currentLibrary = library,
+                    )
                 }
             }
         }

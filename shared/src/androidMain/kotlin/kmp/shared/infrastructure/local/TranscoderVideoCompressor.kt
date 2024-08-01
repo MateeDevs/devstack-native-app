@@ -14,6 +14,7 @@ import com.otaliastudios.transcoder.strategy.DefaultVideoStrategy
 import kmp.shared.domain.model.VideoCompressOptions
 import kmp.shared.base.Result
 import kmp.shared.base.error.domain.CommonError
+import kmp.shared.domain.model.VideoCompressLibrary
 import kmp.shared.domain.model.VideoCompressResult
 import kotlinx.coroutines.channels.ProducerScope
 import kotlinx.coroutines.channels.awaitClose
@@ -93,7 +94,12 @@ class TranscoderVideoCompressor(
     private fun ProducerScope<VideoCompressResult>.flowListener(outputPath: String) =
         object : TranscoderListener {
             override fun onTranscodeProgress(progress: Double) {
-                trySendBlocking(VideoCompressResult.Progress((progress * 100).toInt()))
+                trySendBlocking(
+                    VideoCompressResult.Progress(
+                        VideoCompressLibrary.Transcoder,
+                        (progress * 100).toInt(),
+                    ),
+                )
             }
 
             override fun onTranscodeCompleted(successCode: Int) {

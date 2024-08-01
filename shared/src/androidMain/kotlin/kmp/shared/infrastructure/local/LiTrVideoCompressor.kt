@@ -16,6 +16,7 @@ import kotlinx.coroutines.flow.callbackFlow
 import java.util.UUID
 import kmp.shared.base.Result
 import kmp.shared.base.error.domain.CommonError
+import kmp.shared.domain.model.VideoCompressLibrary
 
 class LiTrVideoCompressor(
     private val application: Application,
@@ -54,7 +55,12 @@ class LiTrVideoCompressor(
                 }
 
                 override fun onProgress(id: String, progress: Float) {
-                    trySendBlocking(VideoCompressResult.Progress((progress * 100).toInt()))
+                    trySendBlocking(
+                        VideoCompressResult.Progress(
+                            VideoCompressLibrary.LiTr,
+                            (progress * 100).toInt(),
+                        ),
+                    )
                 }
 
                 override fun onCompleted(
