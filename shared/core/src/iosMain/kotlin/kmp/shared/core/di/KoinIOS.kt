@@ -1,5 +1,8 @@
+@file:OptIn(BetaInteropApi::class)
+
 package kmp.shared.core.di
 
+import kotlinx.cinterop.BetaInteropApi
 import kotlinx.cinterop.ObjCClass
 import kotlinx.cinterop.ObjCProtocol
 import kotlinx.cinterop.getOriginalKotlinClass

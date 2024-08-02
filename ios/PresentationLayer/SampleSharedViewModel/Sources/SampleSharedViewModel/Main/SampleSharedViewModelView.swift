@@ -36,7 +36,7 @@ struct SampleSharedViewModelView: View {
                 }
             }
         }
-        .navigationTitle(L10n.users_view_toolbar_title)
+        .navigationTitle(L10n.bottom_bar_item_2)
         .onAppear {
             viewModel.onIntent(intent: SampleSharedIntentOnAppeared())
         }

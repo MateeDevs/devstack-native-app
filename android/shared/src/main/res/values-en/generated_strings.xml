@@ -75,11 +75,9 @@
 	<string name="language_ar_fullname">Arabic</string>
 
 	<!-- SECTION: Bottom bar view -->
-	<string name="bottom_bar_item_1">Users</string>
-	<string name="bottom_bar_item_2">Profile</string>
-	<string name="bottom_bar_item_3">Recipes</string>
-	<string name="bottom_bar_item_4">Books</string>
-	<string name="bottom_bar_item_5">Tab5</string>
+	<string name="bottom_bar_item_1">Classic</string>
+	<string name="bottom_bar_item_2">Shared VMs</string>
+	<string name="bottom_bar_item_3">Compose Multiplatform</string>
 
 	<!-- SECTION: Permissions -->
 	<string name="permission_external_storage_msg">You need permission to upload photos</string>

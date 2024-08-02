@@ -4,6 +4,7 @@
 //
 
 import Sample
+import SampleComposeMultiplatform
 import SampleSharedViewModel
 import SharedDomain
 import SwiftUI
@@ -13,13 +14,14 @@ import UIToolkit
 enum MainTab: Int {
     case sample = 0
     case sampleSharedViewModel = 1
+    case sampleComposeMultiplatform = 2
 }
 
 final class MainFlowController: FlowController {
     
     override func setup() -> UIViewController {
         let main = UITabBarController()
-        main.viewControllers = [setupSampleTab(), setupSampleSharedViewModelTab()]
+        main.viewControllers = [setupSampleTab(), setupSampleSharedViewModelTab(), setupSampleComposeMultiplatformTab()]
         return main
     }
     
@@ -47,6 +49,19 @@ final class MainFlowController: FlowController {
         let sampleSharedViewModelRootVC = startChildFlow(sampleSharedViewModelFC)
         sampleSharedViewModelNC.viewControllers = [sampleSharedViewModelRootVC]
         return sampleSharedViewModelNC
+    }
+    
+    private func setupSampleComposeMultiplatformTab() -> UINavigationController {
+        let sampleComposeMultiplatformNC = BaseNavigationController(statusBarStyle: .lightContent)
+        sampleComposeMultiplatformNC.tabBarItem = UITabBarItem(
+            title: L10n.bottom_bar_item_3,
+            image: UIImage(systemName: "person.crop.square.fill"),
+            tag: MainTab.sampleComposeMultiplatform.rawValue
+        )
+        let sampleComposeMultiplatformFC = SampleComposeMultiplatformFlowController(navigationController: sampleComposeMultiplatformNC)
+        let sampleComposeMultiplatformRootVC = startChildFlow(sampleComposeMultiplatformFC)
+        sampleComposeMultiplatformNC.viewControllers = [sampleComposeMultiplatformRootVC]
+        return sampleComposeMultiplatformNC
     }
     
     @discardableResult private func switchTab(_ index: MainTab) -> FlowController? {

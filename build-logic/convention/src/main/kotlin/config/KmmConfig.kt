@@ -25,7 +25,7 @@ object KmmConfig {
         getBooleanProperty(project, "ARM64SIM", true)
 
     fun getCurrentNativeBuildType(project: Project): NativeBuildType {
-        val xCodeConfiguration = getXCodeConfiguration(project).toLowerCase(Locale.getDefault())
+        val xCodeConfiguration = getXCodeConfiguration(project).lowercase(Locale.getDefault())
         println("XCODE_CONFIGURATION: $xCodeConfiguration")
         return if (xCodeConfiguration.contains("debug")) {
             NativeBuildType.DEBUG
@@ -57,7 +57,7 @@ object KmmConfig {
 
     fun Task.copyXCFramework(projectName: String) {
         val buildPathRelease =
-            "build/XCFrameworks/${getCurrentNativeBuildType(project).name.toLowerCase(Locale.getDefault())}/$projectName.xcframework"
+            "build/XCFrameworks/${getCurrentNativeBuildType(project).name.lowercase(Locale.getDefault())}/$projectName.xcframework"
         val iosXCBinaryPath = "../../ios/DomainLayer/$projectName.xcframework"
 
         project.delete(iosXCBinaryPath)
@@ -85,6 +85,7 @@ fun KotlinMultiplatformExtension.kmm(
                     export(project(":shared:base"))
                     export(project(":shared:sample"))
                     export(project(":shared:samplesharedviewmodel"))
+                    export(project(":shared:sampleComposeMultiplatform"))
                 }
             }
         }
@@ -99,6 +100,7 @@ fun KotlinMultiplatformExtension.kmm(
                         export(project(":shared:base"))
                         export(project(":shared:sample"))
                         export(project(":shared:samplesharedviewmodel"))
+                        export(project(":shared:sampleComposeMultiplatform"))
                     }
                 }
             }

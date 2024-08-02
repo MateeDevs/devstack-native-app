@@ -12,4 +12,5 @@ dependencies {
     implementation(project(":android:shared"))
     implementation(project(":android:sample"))
     implementation(project(":android:samplesharedviewmodel"))
+    implementation(project(":android:samplecomposemultiplatform"))
 }

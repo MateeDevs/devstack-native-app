@@ -9,7 +9,7 @@ fun Project.configureTwine() {
         Twine.generateAllRegularFiles(
             project = project,
             twineFile = "${rootProject.file("twine").absolutePath}/strings.txt",
-            moduleName = "android/shared/base",
+            moduleName = "android/shared",
         )
     }
 

@@ -22,6 +22,7 @@ kotlin {
                 api(project(":shared:base"))
                 api(project(":shared:sample"))
                 api(project(":shared:samplesharedviewmodel"))
+                api(project(":shared:sampleComposeMultiplatform"))
             }
         }
     }

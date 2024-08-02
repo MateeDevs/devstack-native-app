@@ -32,7 +32,7 @@ struct SampleView: View {
             }
         }
         .lifecycle(viewModel)
-        .navigationTitle(L10n.users_view_toolbar_title)
+        .navigationTitle(L10n.bottom_bar_item_1)
     }
 }
 

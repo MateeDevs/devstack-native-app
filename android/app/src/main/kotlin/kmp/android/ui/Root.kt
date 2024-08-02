@@ -11,6 +11,7 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.primarySurface
@@ -26,6 +27,7 @@ import androidx.navigation.compose.rememberNavController
 import kmp.android.sample.navigation.SampleGraph
 import kmp.android.sample.navigation.sampleNavGraph
 import kmp.android.navigation.NavBarFeature
+import kmp.android.samplecomposemultiplatform.navigation.sampleComposeMultiplatformNavGraph
 import kmp.android.samplesharedviewmodel.navigation.sampleSharedViewModelNavGraph
 import kmp.android.shared.style.Values
 
@@ -45,6 +47,8 @@ fun Root(modifier: Modifier = Modifier) {
                 sampleNavGraph(navController)
 
                 sampleSharedViewModelNavGraph(navController)
+
+                sampleComposeMultiplatformNavGraph(navController)
             }
         }
     }
@@ -69,6 +73,7 @@ private fun BottomBar(navController: NavHostController) {
                         when (screen) {
                             NavBarFeature.Sample -> Icon(Icons.Filled.Person, "")
                             NavBarFeature.SampleSharedViewModel -> Icon(Icons.Filled.AccountCircle, "")
+                            NavBarFeature.SampleComposeMultiplatform -> Icon(Icons.Filled.AccountBox, "")
                         }
                     },
                     label = { Text(stringResource(screen.titleRes)) },
