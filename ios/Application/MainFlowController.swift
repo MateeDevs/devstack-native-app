@@ -4,6 +4,7 @@
 //
 
 import Sample
+import SampleSharedViewModel
 import SharedDomain
 import SwiftUI
 import UIKit
@@ -11,13 +12,14 @@ import UIToolkit
 
 enum MainTab: Int {
     case sample = 0
+    case sampleSharedViewModel = 1
 }
 
 final class MainFlowController: FlowController {
     
     override func setup() -> UIViewController {
         let main = UITabBarController()
-        main.viewControllers = [setupSampleTab()]
+        main.viewControllers = [setupSampleTab(), setupSampleSharedViewModelTab()]
         return main
     }
     
@@ -32,6 +34,19 @@ final class MainFlowController: FlowController {
         let sampleRootVC = startChildFlow(sampleFC)
         sampleNC.viewControllers = [sampleRootVC]
         return sampleNC
+    }
+    
+    private func setupSampleSharedViewModelTab() -> UINavigationController {
+        let sampleSharedViewModelNC = BaseNavigationController(statusBarStyle: .lightContent)
+        sampleSharedViewModelNC.tabBarItem = UITabBarItem(
+            title: L10n.bottom_bar_item_2,
+            image: UIImage(systemName: "person.circle.fill"),
+            tag: MainTab.sampleSharedViewModel.rawValue
+        )
+        let sampleSharedViewModelFC = SampleSharedViewModelFlowController(navigationController: sampleSharedViewModelNC)
+        let sampleSharedViewModelRootVC = startChildFlow(sampleSharedViewModelFC)
+        sampleSharedViewModelNC.viewControllers = [sampleSharedViewModelRootVC]
+        return sampleSharedViewModelNC
     }
     
     @discardableResult private func switchTab(_ index: MainTab) -> FlowController? {

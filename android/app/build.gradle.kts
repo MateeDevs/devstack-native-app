@@ -11,4 +11,5 @@ dependencies {
     implementation(project(":shared:core"))
     implementation(project(":android:shared"))
     implementation(project(":android:sample"))
+    implementation(project(":android:samplesharedviewmodel"))
 }

@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
@@ -15,6 +16,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.style.TextAlign
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
 import kmp.android.sample.navigation.SampleGraph
@@ -77,7 +79,12 @@ private fun SampleMainScreen(
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.spacedBy(Values.Space.medium),
+                    modifier = Modifier.padding(Values.Space.medium),
                 ) {
+                    Text(
+                        text = "This is a sample with android compose UI and android VM",
+                        textAlign = TextAlign.Center,
+                    )
                     Text(text = state.sampleText?.value ?: "")
                     Button(onClick = { onIntent(SampleIntent.OnButtonTapped) }) {
                         Text(text = "Click me!")

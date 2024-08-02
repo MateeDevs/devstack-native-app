@@ -21,6 +21,7 @@ kotlin {
             dependencies {
                 api(project(":shared:base"))
                 api(project(":shared:sample"))
+                api(project(":shared:samplesharedviewmodel"))
             }
         }
     }

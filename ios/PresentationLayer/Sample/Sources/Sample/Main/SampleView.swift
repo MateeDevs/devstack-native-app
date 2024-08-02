@@ -20,6 +20,7 @@ struct SampleView: View {
                 PrimaryProgressView()
             } else {
                 VStack(spacing: AppTheme.Dimens.spaceMedium) {
+                    Text("This is a sample with SwiftUI and iOS VM")
                     Text(viewModel.state.sampleText?.value ?? "")
                     Button(
                         action: { viewModel.onIntent(.onButtonTapped) },

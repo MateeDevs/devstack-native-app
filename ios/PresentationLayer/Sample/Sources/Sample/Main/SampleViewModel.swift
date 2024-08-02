@@ -10,7 +10,7 @@ import SharedDomain
 import SwiftUI
 import UIToolkit
 
-final class SampleViewModel: BaseViewModel, ViewModel, ObservableObject {
+final class SampleViewModel: UIToolkit.BaseViewModel, ViewModel, ObservableObject {
     
     // MARK: Dependencies
     private weak var flowController: FlowController?

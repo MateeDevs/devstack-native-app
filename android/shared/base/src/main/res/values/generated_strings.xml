@@ -75,11 +75,9 @@
 	<string name="language_ar_fullname">Arabština</string>
 
 	<!-- SECTION: Bottom bar view -->
-	<string name="bottom_bar_item_1">Uživatelé</string>
-	<string name="bottom_bar_item_2">Profil</string>
-	<string name="bottom_bar_item_3">Recepty</string>
-	<string name="bottom_bar_item_4">Knihy</string>
-	<string name="bottom_bar_item_5">Tab5</string>
+	<string name="bottom_bar_item_1">Classic</string>
+	<string name="bottom_bar_item_2">Shared VMs</string>
+	<string name="bottom_bar_item_3">Compose Multiplatform</string>
 
 	<!-- SECTION: Permissions -->
 	<string name="permission_external_storage_msg">Pro nahrávání fotek potřebuješ oprávnění</string>

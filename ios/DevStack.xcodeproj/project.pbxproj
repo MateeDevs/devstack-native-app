@@ -31,6 +31,7 @@
 		45DEBE2527A153A20075C7E2 /* DevStack Widget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 45DEBE1827A153A10075C7E2 /* DevStack Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A3009B982C5A6BA600806BA3 /* AnalyticsProvider in Frameworks */ = {isa = PBXBuildFile; productRef = A3009B972C5A6BA600806BA3 /* AnalyticsProvider */; };
 		A353123F2C5A71C6009E1A3D /* Sample in Frameworks */ = {isa = PBXBuildFile; productRef = A353123E2C5A71C6009E1A3D /* Sample */; };
+		A37BB4DE2C5CF770006C491D /* SampleSharedViewModel in Frameworks */ = {isa = PBXBuildFile; productRef = A37BB4DD2C5CF770006C491D /* SampleSharedViewModel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +99,7 @@
 		45FF99D92842B51800E32D9A /* Utilities */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Utilities; sourceTree = "<group>"; };
 		A3009BAA2C5A6E5800806BA3 /* UserDefaultsProvider */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UserDefaultsProvider; sourceTree = "<group>"; };
 		A350DE7C2C5A3103009B6F77 /* KMPShared.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = KMPShared.xcframework; sourceTree = "<group>"; };
+		A37BB4DC2C5CD658006C491D /* SampleSharedViewModel */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SampleSharedViewModel; sourceTree = "<group>"; };
 		A3F048832C5A43E100B9A3F3 /* Sample */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Sample; sourceTree = "<group>"; };
 		A3F048842C5A587700B9A3F3 /* KeychainProvider */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = KeychainProvider; sourceTree = "<group>"; };
 		A3F048852C5A587700B9A3F3 /* NetworkProvider */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = NetworkProvider; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 			files = (
 				A3009B982C5A6BA600806BA3 /* AnalyticsProvider in Frameworks */,
 				4508333728437BB700BC9460 /* UIToolkit in Frameworks */,
+				A37BB4DE2C5CF770006C491D /* SampleSharedViewModel in Frameworks */,
 				459C3707274B001B00536110 /* Atlantis in Frameworks */,
 				4508333028435E7900BC9460 /* Utilities in Frameworks */,
 				4508332A28435E7800BC9460 /* SharedDomain in Frameworks */,
@@ -137,6 +140,7 @@
 		453C8801283FA9CA0027BDFB /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
+				A37BB4DC2C5CD658006C491D /* SampleSharedViewModel */,
 				A3F048832C5A43E100B9A3F3 /* Sample */,
 				4508333128436EFB00BC9460 /* UIToolkit */,
 				453580EE284806FE007AEC9E /* strings.txt */,
@@ -314,6 +318,7 @@
 				45BCC87F2AD057F000672401 /* Factory */,
 				A3009B972C5A6BA600806BA3 /* AnalyticsProvider */,
 				A353123E2C5A71C6009E1A3D /* Sample */,
+				A37BB4DD2C5CF770006C491D /* SampleSharedViewModel */,
 			);
 			productName = DevStack;
 			productReference = 4558D30720FCC8FF005BC325 /* DevStack.app */;
@@ -1411,6 +1416,10 @@
 		A353123E2C5A71C6009E1A3D /* Sample */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Sample;
+		};
+		A37BB4DD2C5CF770006C491D /* SampleSharedViewModel */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SampleSharedViewModel;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -12,5 +12,5 @@ public extension Container {
     private var kmp: Factory<KMPDependency> { self { KMPKoinDependency() }.singleton }
     
     // Sample
-    var getSampleTextUseCase: Factory<GetSampleTextUseCase> { self { self.kmp().get(GetSampleTextUseCase.self) } }
+    var getSampleTextUseCase: Factory<GetSampleTextUseCase> { self { self.kmp().getProtocol(GetSampleTextUseCase.self) } }
 }

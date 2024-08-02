@@ -11,6 +11,7 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.primarySurface
 import androidx.compose.runtime.Composable
@@ -25,6 +26,7 @@ import androidx.navigation.compose.rememberNavController
 import kmp.android.sample.navigation.SampleGraph
 import kmp.android.sample.navigation.sampleNavGraph
 import kmp.android.navigation.NavBarFeature
+import kmp.android.samplesharedviewmodel.navigation.sampleSharedViewModelNavGraph
 import kmp.android.shared.style.Values
 
 @Composable
@@ -41,6 +43,8 @@ fun Root(modifier: Modifier = Modifier) {
                 startDestination = SampleGraph.rootPath,
             ) {
                 sampleNavGraph(navController)
+
+                sampleSharedViewModelNavGraph(navController)
             }
         }
     }
@@ -64,10 +68,11 @@ private fun BottomBar(navController: NavHostController) {
                     icon = {
                         when (screen) {
                             NavBarFeature.Sample -> Icon(Icons.Filled.Person, "")
+                            NavBarFeature.SampleSharedViewModel -> Icon(Icons.Filled.AccountCircle, "")
                         }
                     },
                     label = { Text(stringResource(screen.titleRes)) },
-                    selected = currentRoute?.startsWith(screen.route) ?: false,
+                    selected = currentRoute?.startsWith(screen.route + "/") ?: false,
                     onClick = {
                         navController.navigate(screen.route) {
                             popUpTo(navController.graph.startDestinationId)

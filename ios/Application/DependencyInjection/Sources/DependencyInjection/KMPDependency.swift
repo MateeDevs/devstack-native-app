@@ -9,7 +9,9 @@ import OSLog
 import Utilities
 
 protocol KMPDependency {
-    func get<T: AnyObject>(_ proto: Protocol) -> T
+    func getProtocol<T: AnyObject>(_ proto: Protocol) -> T
+    func get<T: AnyObject>(_ type: T.Type) -> T
+    func get<T: AnyObject>(_ type: T.Type, parameter: Any) -> T
 }
 
 final class KMPKoinDependency: KMPDependency {
@@ -29,7 +31,15 @@ final class KMPKoinDependency: KMPDependency {
         _koin = koinApplication.koin
     }
     
-    func get<T: AnyObject>(_ proto: Protocol) -> T {
+    func getProtocol<T: AnyObject>(_ proto: Protocol) -> T {
         _koin?.get(objCProtocol: proto) as! T // swiftlint:disable:this force_cast
+    }
+    
+    func get<T: AnyObject>(_ type: T.Type) -> T {
+        _koin?.get(objCClass: type) as! T // swiftlint:disable:this force_cast
+    }
+    
+    func get<T: AnyObject>(_ type: T.Type, parameter: Any) -> T {
+        _koin?.get(objCClass: type, parameter: parameter) as! T // swiftlint:disable:this force_cast
     }
 }

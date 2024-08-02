@@ -84,6 +84,7 @@ fun KotlinMultiplatformExtension.kmm(
                     export(libs.mokoResources)
                     export(project(":shared:base"))
                     export(project(":shared:sample"))
+                    export(project(":shared:samplesharedviewmodel"))
                 }
             }
         }
@@ -97,6 +98,7 @@ fun KotlinMultiplatformExtension.kmm(
                         export(libs.mokoResources)
                         export(project(":shared:base"))
                         export(project(":shared:sample"))
+                        export(project(":shared:samplesharedviewmodel"))
                     }
                 }
             }

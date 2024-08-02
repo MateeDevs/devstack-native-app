@@ -18,9 +18,13 @@ dependencyResolutionManagement {
 
 rootProject.buildFileName = "build.gradle.kts"
 rootProject.name = "devstack-native-app"
+
 include(":android:app")
 include(":android:shared")
 include(":android:sample")
+include(":android:samplesharedviewmodel")
+
 include(":shared:core")
 include(":shared:base")
 include(":shared:sample")
+include(":shared:samplesharedviewmodel")

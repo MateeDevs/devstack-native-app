@@ -30,6 +30,9 @@ kotlinxImmutableCollections = "0.3.6"
 konsist = "0.13.0"
 junit = "4.13.2"
 mokoResources = "0.23.0"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
+appcompat = "1.7.0"
 
 [libraries]
 # Kotlin
@@ -51,12 +54,14 @@ koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koinCompose" }
 # AndroidX
 androidX-core = { module = "androidx.core:core-ktx", version.ref = "androidXCore" }
+androidX-lifecycle = { module = "androidx.core:core-ktx", version.ref = "androidXCore" }
 # Material
 material = { module = "com.google.android.material:material", version.ref = "material" }
 # Lifecycle
 lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
 lifecycle-common = "androidx.lifecycle:lifecycle-common-java8:2.6.2"
 lifecycle-runtimeCompose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycle" }
+lifecycle-viewModel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
 # Paging
 paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "paging" }
 paging-compose = { module = "androidx.paging:paging-compose", version.ref = "pagingCompose" }
@@ -107,6 +112,9 @@ junit = { module = "junit:junit", version.ref = "junit" }
 # Moko resources
 mokoResources = { module = "dev.icerock.moko:resources", version.ref = "mokoResources" }
 mokoResources-compose = { module = "dev.icerock.moko:resources-compose", version.ref = "mokoResources" }
+ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 
 [bundles]
 settings = [
