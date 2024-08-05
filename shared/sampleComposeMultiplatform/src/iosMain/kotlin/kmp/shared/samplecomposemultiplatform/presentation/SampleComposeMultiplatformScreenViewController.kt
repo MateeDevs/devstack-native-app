@@ -5,6 +5,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.uikit.ComposeUIViewControllerDelegate
 import androidx.compose.ui.window.ComposeUIViewController
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import kmp.shared.samplecomposemultiplatform.presentation.common.AppTheme
 import kmp.shared.samplecomposemultiplatform.presentation.ui.SampleComposeMultiplatformScreen
 import kmp.shared.samplesharedviewmodel.base.vm.BaseScopedViewModel
 import kmp.shared.samplesharedviewmodel.vm.SampleSharedEvent
@@ -39,6 +40,8 @@ fun SampleComposeMultiplatformScreenViewController(
                 onEvent(event)
             }
         }
-        SampleComposeMultiplatformScreen(state = state, onIntent = viewModel::onIntent)
+        AppTheme {
+            SampleComposeMultiplatformScreen(state = state, onIntent = viewModel::onIntent)
+        }
     }
 }
