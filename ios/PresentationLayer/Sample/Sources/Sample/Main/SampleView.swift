@@ -33,6 +33,10 @@ struct SampleView: View {
         }
         .lifecycle(viewModel)
         .navigationTitle(L10n.bottom_bar_item_1)
+        .toastView(Binding<ToastData?>(
+            get: { viewModel.state.toast },
+            set: { toast in viewModel.onIntent(.onToastFinished) }
+        ))
     }
 }
 

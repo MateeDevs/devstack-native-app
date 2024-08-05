@@ -37,18 +37,20 @@ final class SampleViewModel: UIToolkit.BaseViewModel, ViewModel, ObservableObjec
         var isLoading: Bool = false
         var sampleText: SampleText? = nil
         var error: String? = nil
-        var whisper: WhisperData?
+        var toast: ToastData?
     }
     
     // MARK: Intent
     enum Intent {
         case onButtonTapped
+        case onToastFinished
     }
 
     func onIntent(_ intent: Intent) {
         executeTask(Task {
             switch intent {
             case .onButtonTapped: showToast(message: "Button was tapped")
+            case .onToastFinished: state.toast = nil
             }
         })
     }
@@ -66,6 +68,6 @@ final class SampleViewModel: UIToolkit.BaseViewModel, ViewModel, ObservableObjec
     }
     
     private func showToast(message: String) {
-        state.whisper = WhisperData(message)
+        state.toast = ToastData(message, hideAfter: 2)
     }
 }

@@ -12,6 +12,8 @@ struct SampleSharedViewModelView: View {
     private var viewModel: KMPShared.SampleSharedViewModel
     @State private var state: SampleSharedState = .init(loading: false, sampleText: nil, error: nil)
     
+    @State private var toastData: ToastData?
+    
     private weak var flowController: FlowController?
     
     init(flowController: FlowController?) {
@@ -45,11 +47,14 @@ struct SampleSharedViewModelView: View {
             stateBinding: $state,
             onEvent: { event in
                 switch event {
-                case is SampleSharedEventShowMessage: print((event as! SampleSharedEventShowMessage).message)
+                case is SampleSharedEventShowMessage: do {
+                    toastData = ToastData((event as! SampleSharedEventShowMessage).message, hideAfter: 2)
+                }
                 default: print("Event \(event) not recognized")
                 }
             }
         )
+        .toastView($toastData)
     }
 }
 

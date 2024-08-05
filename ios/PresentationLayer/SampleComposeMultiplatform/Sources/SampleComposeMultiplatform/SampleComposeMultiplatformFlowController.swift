@@ -16,10 +16,7 @@ enum SampleComposeMultiplatformFlow: Flow, Equatable {
 public final class SampleComposeMultiplatformFlowController: FlowController {
     
     override public func setup() -> UIViewController {
-        return BaseHostingController(
-            rootView: SampleComposeMultiplatformViewController(flowController: self)
-                .navigationTitle(L10n.bottom_bar_item_3)
-        )
+        return BaseHostingController(rootView: SampleComposeMultiplatformView(flowController: self))
     }
     
     override public func handleFlow(_ flow: Flow) {
