@@ -65,7 +65,6 @@ class KmmLibraryConventionPlugin : Plugin<Project> {
                             implementation(libs.dateTime)
                             implementation(libs.koin.core)
                             implementation(libs.bundles.settings)
-                            implementation(libs.bundles.sqlDelight.common)
                             implementation(libs.bundles.ktor.common)
                             implementation(libs.kermit)
                         }
@@ -75,7 +74,6 @@ class KmmLibraryConventionPlugin : Plugin<Project> {
                         dependsOn(commonMain)
                         dependencies {
                             implementation(libs.ktor.android)
-                            implementation(libs.sqlDelight.androidDriver)
                             implementation(libs.lifecycle.viewModel)
                         }
                     }
@@ -83,7 +81,6 @@ class KmmLibraryConventionPlugin : Plugin<Project> {
                     val iosMain by creating {
                         dependsOn(commonMain)
                         dependencies {
-                            implementation(libs.sqlDelight.iosDriver)
                             implementation(libs.ktor.ios)
                         }
                     }

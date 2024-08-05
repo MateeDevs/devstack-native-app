@@ -63,7 +63,6 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                 implementation(libs.material)
                 implementation(libs.androidX.core)
                 implementation(libs.lifecycle.runtime)
-                implementation(libs.bundles.sqlDelight.common)
                 implementation(libs.koin.core)
                 implementation(libs.koin.android)
                 implementation(libs.mokoResources.compose)

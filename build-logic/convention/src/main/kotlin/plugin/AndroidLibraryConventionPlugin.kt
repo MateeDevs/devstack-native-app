@@ -37,17 +37,10 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
             dependencies {
                 implementation(libs.lifecycle.runtime)
                 implementation(libs.lifecycle.runtimeCompose)
-                implementation(libs.bundles.sqlDelight.common)
                 implementation(libs.koin.core)
                 implementation(libs.koin.android)
                 implementation(libs.mokoResources.compose)
             }
-
-//            apply<LoggingConvention>()
-//            apply<NetworkConvention>()
-//            apply<FirebaseConvention>()
-//            apply<AndroidBaseConvention>()
-//            apply<NetworkConvention>()
         }
     }
 }

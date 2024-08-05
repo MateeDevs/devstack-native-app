@@ -10,6 +10,7 @@ plugins {
     alias(libs.plugins.ktlint) apply false
     alias(libs.plugins.mokoResources) apply false
     alias(libs.plugins.jetbrains.compose) apply false
+    alias(libs.plugins.jetbrains.compose.compiler) apply false
     alias(libs.plugins.versions)
     alias(libs.plugins.versionCatalogUpdate)
 }

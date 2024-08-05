@@ -6,7 +6,7 @@ import extensions.libs
 import org.gradle.api.Project
 
 internal fun Project.configureKotlinAndroid(
-    commonExtension: CommonExtension<*, *, *, *, *>,
+    commonExtension: CommonExtension<*, *, *, *, *, *>,
 ) = with(commonExtension) {
     compileSdk = libs.versions.sdk.compile.get().toInt()
 

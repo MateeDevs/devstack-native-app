@@ -2,30 +2,26 @@
 sdk-min = "23"
 sdk-target = "34"
 sdk-compile = "34"
-kotlin = "1.9.20"
-gradlePlugin = "8.1.2"
-coroutines = "1.7.3"
-dateTime = "0.4.0"
-atomicFu = "0.22.0"
-koin = "3.5.0"
-koinCompose = "3.5.0"
-androidXCore = "1.12.0"
-material = "1.10.0"
-lifecycle = "2.6.2"
-paging = "3.2.1"
-pagingCompose = "3.2.1"
-compose = "1.5.5"
-composeCompilerExtensionVersion = "1.5.5"
-activity = "1.8.0"
-navigation = "2.7.4"
-constraintLayout = "1.0.1"
-accompanist = "0.30.0"
-ktor = "2.3.5"
-kermit = "2.0.1"
-settings = "1.1.0"
-sqlDelight = "1.5.5"
-googlePlayServices = "21.0.1"
-ktLintRules = "0.3.0"
+kotlin = "2.0.0"
+gradlePlugin = "8.5.1"
+coroutines = "1.8.1"
+dateTime = "0.6.0"
+atomicFu = "0.23.2"
+koin = "3.5.3"
+androidXCore = "1.13.1"
+material = "1.12.0"
+lifecycle = "2.8.4"
+paging = "3.3.1"
+compose = "1.6.8"
+composePlugin = "1.6.11"
+activity = "1.9.1"
+navigation = "2.7.7"
+accompanist = "0.34.0"
+ktor = "2.3.9"
+kermit = "2.0.3"
+settings = "1.1.1"
+googlePlayServices = "21.3.0"
+ktLint = "11.6.0"
 kotlinxImmutableCollections = "0.3.6"
 konsist = "0.13.0"
 junit = "4.13.2"
@@ -33,6 +29,8 @@ mokoResources = "0.23.0"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 appcompat = "1.7.0"
+versionCatalogueUpdate = "0.8.1"
+versions = "0.49.0"
 
 [libraries]
 # Kotlin
@@ -43,7 +41,6 @@ kotlinx-immutableCollections = { module = "org.jetbrains.kotlinx:kotlinx-collect
 androidTools-gradle = { module = "com.android.tools.build:gradle", version.ref = "gradlePlugin" }
 # Coroutines
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
-coroutines-android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3"
 # Date time
 dateTime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "dateTime" }
 # AtomicFu
@@ -51,37 +48,32 @@ atomicFu = { module = "org.jetbrains.kotlinx:atomicfu", version.ref = "atomicFu"
 # Koin
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
-koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koinCompose" }
+koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
 # AndroidX
 androidX-core = { module = "androidx.core:core-ktx", version.ref = "androidXCore" }
-androidX-lifecycle = { module = "androidx.core:core-ktx", version.ref = "androidXCore" }
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 # Material
 material = { module = "com.google.android.material:material", version.ref = "material" }
 # Lifecycle
 lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
-lifecycle-common = "androidx.lifecycle:lifecycle-common-java8:2.6.2"
+lifecycle-common = { module = "androidx.lifecycle:lifecycle-common-java8", version.ref = "lifecycle" }
 lifecycle-runtimeCompose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycle" }
 lifecycle-viewModel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
 # Paging
 paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "paging" }
-paging-compose = { module = "androidx.paging:paging-compose", version.ref = "pagingCompose" }
+paging-compose = { module = "androidx.paging:paging-compose", version.ref = "paging" }
 # Compose
 compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
 compose-uiTooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
 compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
 compose-material = { module = "androidx.compose.material:material", version.ref = "compose" }
 compose-materialIconsCore = { module = "androidx.compose.material:material-icons-core", version.ref = "compose" }
-compose-materialIconsExtended = { module = "androidx.compose.material:material-icons-extended", version.ref = "compose" }
 compose-uiTest = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "compose" }
 # Activity
 activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity" }
 # Navigation
 navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
-# Constraint layout
-constraintLayout-compose = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "constraintLayout" }
 # Accompanist
-accompanist-pager = { module = "com.google.accompanist:accompanist-pager", version.ref = "accompanist" }
-accompanist-pagerIndiactors = { module = "com.google.accompanist:accompanist-pager-indicators", version.ref = "accompanist" }
 accompanist-coil = { module = "com.google.accompanist:accompanist-coil", version.ref = "accompanist" }
 accompanist-navigationMaterial = { module = "com.google.accompanist:accompanist-navigation-material", version.ref = "accompanist" }
 # Ktor
@@ -97,24 +89,19 @@ kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
 settings = { module = "com.russhwolf:multiplatform-settings", version.ref = "settings" }
 settings-noArg = { module = "com.russhwolf:multiplatform-settings-no-arg", version.ref = "settings" }
 settings-coroutines = { module = "com.russhwolf:multiplatform-settings-coroutines", version.ref = "settings" }
-# SqlDelight
-sqlDelight-runtime = { module = "com.squareup.sqldelight:runtime", version.ref = "sqlDelight" }
-sqlDelight-coroutinesExtension = { module = "com.squareup.sqldelight:coroutines-extensions", version.ref = "sqlDelight" }
-sqlDelight-androidDriver = { module = "com.squareup.sqldelight:android-driver", version.ref = "sqlDelight" }
-sqlDelight-iosDriver = { module = "com.squareup.sqldelight:native-driver", version.ref = "sqlDelight" }
 # Google Play Services
 googlePlayServices-location = { module = "com.google.android.gms:play-services-location", version.ref = "googlePlayServices" }
 # KtLint rules
-ktlint-composeRules = { module = "io.nlopez.compose.rules:ktlint", version.ref = "ktLintRules" }
-# Konsist architecture linter
-konsist = { module = "com.lemonappdev:konsist", version.ref = "konsist" }
-junit = { module = "junit:junit", version.ref = "junit" }
+ktlint-composeRules = { module = "io.nlopez.compose.rules:ktlint", version.ref = "ktLint" }
 # Moko resources
 mokoResources = { module = "dev.icerock.moko:resources", version.ref = "mokoResources" }
 mokoResources-compose = { module = "dev.icerock.moko:resources-compose", version.ref = "mokoResources" }
+# Konsist architecture linter
+konsist = { module = "com.lemonappdev:konsist", version.ref = "konsist" }
+# Tests
+junit = { module = "junit:junit", version.ref = "junit" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 
 [bundles]
 settings = [
@@ -128,17 +115,9 @@ ktor-common = [
     "ktor-logging",
     "ktor-serialization",
 ]
-sqlDelight-common = [
-    "sqlDelight-coroutinesExtension",
-    "sqlDelight-runtime",
-]
 paging = [
     "paging-compose",
     "paging-runtime",
-]
-lifecycle = [
-    "lifecycle-common",
-    "lifecycle-runtime",
 ]
 
 [plugins]
@@ -147,12 +126,12 @@ android-library = { id = "com.android.library", version.ref = "gradlePlugin" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-sqlDelight = { id = "com.squareup.sqldelight", version.ref = "sqlDelight" }
-versionCatalogUpdate = "nl.littlerobots.version-catalog-update:0.8.1"
-versions = "com.github.ben-manes.versions:0.49.0"
-ktlint = "org.jlleitschuh.gradle.ktlint:11.6.0"
+versionCatalogUpdate = { id = "nl.littlerobots.version-catalog-update", version.ref = "versionCatalogueUpdate" }
+versions = { id = "com.github.ben-manes.versions", version.ref = "versions" }
+ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktLint"}
 mokoResources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "mokoResources" }
-jetbrains-compose = "org.jetbrains.compose:1.6.11"
+jetbrains-compose = { id = "org.jetbrains.compose", version.ref = "composePlugin" }
+jetbrains-compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 # Convention plugins
 devstack-android-application-compose = "android-application-compose:none"
 devstack-android-application-core = "android-application:none"

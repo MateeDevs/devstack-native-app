@@ -11,6 +11,7 @@
 .externalNativeBuild
 **/build/*
 .kotlintest
+.kotlin
 
 # linux specific files
 .directory

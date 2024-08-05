@@ -2,6 +2,7 @@
 plugins {
     alias(libs.plugins.devstack.kmm.library)
     alias(libs.plugins.jetbrains.compose)
+    alias(libs.plugins.jetbrains.compose.compiler)
 }
 
 android {
