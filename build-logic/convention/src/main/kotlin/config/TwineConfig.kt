@@ -17,7 +17,7 @@ fun Project.configureTwine() {
         Twine.generateAllErrorFiles(
             project = project,
             twineFile = "${rootProject.file("twine").absolutePath}/errors.txt",
-            targetPath = "${project.rootDir.absolutePath}/shared/base/src/commonMain/resources/MR",
+            targetPath = "${project.rootDir.absolutePath}/shared/base/src/commonMain/moko-resources",
             targetFileName = "strings.xml",
             languages = listOf("sk", "en", "cs"),
             baseLanguage = "en",

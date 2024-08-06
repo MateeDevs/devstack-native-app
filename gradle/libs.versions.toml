@@ -25,7 +25,7 @@ ktLint = "11.6.0"
 kotlinxImmutableCollections = "0.3.6"
 konsist = "0.13.0"
 junit = "4.13.2"
-mokoResources = "0.23.0"
+mokoResources = "0.24.1"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 appcompat = "1.7.0"
@@ -128,7 +128,7 @@ kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref 
 serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 versionCatalogUpdate = { id = "nl.littlerobots.version-catalog-update", version.ref = "versionCatalogueUpdate" }
 versions = { id = "com.github.ben-manes.versions", version.ref = "versions" }
-ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktLint"}
+ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktLint" }
 mokoResources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "mokoResources" }
 jetbrains-compose = { id = "org.jetbrains.compose", version.ref = "composePlugin" }
 jetbrains-compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }

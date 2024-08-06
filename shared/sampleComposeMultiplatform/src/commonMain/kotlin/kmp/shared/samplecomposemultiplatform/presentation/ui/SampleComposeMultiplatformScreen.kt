@@ -14,8 +14,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import kmp.shared.samplecomposemultiplatform.presentation.common.AppTheme
 import kmp.shared.samplesharedviewmodel.vm.SampleSharedIntent
 import kmp.shared.samplesharedviewmodel.vm.SampleSharedState
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun SampleComposeMultiplatformScreen(
@@ -43,5 +45,17 @@ fun SampleComposeMultiplatformScreen(
                 }
             }
         }
+    }
+}
+
+// Previews do not work for Fleet version 1.38.89 https://slack-chats.kotlinlang.org/t/22778734/are-there-specific-kotlin-ksp-version-requirements-for-getti
+@Preview
+@Composable
+private fun SampleComposeMultiplatformScreen_Preview() {
+    AppTheme {
+        SampleComposeMultiplatformScreen(
+            state = SampleSharedState(),
+            onIntent = {},
+        )
     }
 }

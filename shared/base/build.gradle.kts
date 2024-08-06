@@ -8,8 +8,7 @@ android {
 }
 
 multiplatformResources {
-    multiplatformResourcesPackage = "kmp.shared.base"
-    disableStaticFrameworkWarning = true
+    resourcesPackage.set("kmp.shared.base") // required
 }
 
 ktlint {
