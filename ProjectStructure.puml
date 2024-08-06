@@ -1,0 +1,58 @@
+@startuml
+'https://plantuml.com/component-diagram
+skinparam componentStyle rectangle
+
+skinparam component {
+  BackgroundColor<<Android>> #3DDC84
+  BorderColor<<Android>> #0B4E29
+  FontColor<<KMP>> #white
+  BackgroundColor<<KMP>> #7F52FF
+  BorderColor<<KMP>> #312161
+}
+
+package "android" #B2F1CE {
+    [:android:app] <<Android>>
+    [:android:sample] <<Android>>
+    [:android:samplesharedviewmodel] <<Android>>
+    [:android:samplecomposemultiplatform] <<Android>>
+    [:android:shared] <<Android>>
+}
+
+package "shared" #C9B6FF {
+    [:shared:base] <<KMP>>
+    [:shared:core] <<KMP>>
+    [:shared:sample] <<KMP>>
+    [:shared:samplesharedviewmodel] <<KMP>>
+    [:shared:samplecomposemultiplatform] <<KMP>>
+}
+
+interface "Android Application" #3DDC84
+
+"Android Application" <.. [:android:app]
+[:android:app] --> [:android:sample]
+[:android:app] --> [:android:samplesharedviewmodel]
+[:android:app] --> [:android:samplecomposemultiplatform]
+
+[:android:sample] -left-> [:android:shared]
+[:android:samplesharedviewmodel] -left-> [:android:shared]
+[:android:samplecomposemultiplatform] -left-> [:android:shared]
+
+[:android:app] -down-> [:shared:core]
+interface "iOS XCFramework (KMPShared)" #007AFF
+"iOS XCFramework (KMPShared)" <.left. [:shared:core]
+
+[:android:sample] --> [:shared:core]
+[:android:samplesharedviewmodel] --> [:shared:core]
+[:android:samplecomposemultiplatform] --> [:shared:core]
+
+[:shared:core] --> [:shared:sample]
+[:shared:core] --> [:shared:samplesharedviewmodel]
+[:shared:core] --> [:shared:samplecomposemultiplatform]
+
+[:shared:sample] --> [:shared:base]
+[:shared:samplesharedviewmodel] --> [:shared:base]
+[:shared:samplecomposemultiplatform] --> [:shared:base]
+
+[:shared:samplesharedviewmodel] -left-> [:shared:sample]
+[:shared:samplecomposemultiplatform] -left-> [:shared:samplesharedviewmodel]
+@enduml

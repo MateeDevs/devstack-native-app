@@ -1,75 +1,157 @@
 # Matee KMP DevStack
 
 ## Use Devstack as a base for a new project
-- Clone this repository
-- Rename the project (don't forget to change `rootProject.name` in `settings.gradle`, `id` and `AppName` in `Application.kt` and `namespace` in `build.gradle.kts` for each module)
-- Rename iOS project - you can use prepared script, for more info see the [iOS readme](/ios) and name of the generated XCFramework as `iosShared` in `ProjectConstants.kt`
 
-## Login credentials
- - email = petr.chmelar@matee.cz
- - password = 11111111
+- Use this repository as a template when creating a new repository for your project
+- Rename the project (don't forget to change `rootProject.name` in `settings.gradle` and `id`
+  and `AppName` in `Application.kt`)
+- Rename iOS project - you can use prepared script, for more info see
+  the [iOS readme](./ios/README.md)
 
 ## About
-This repo contains our template for multiplatform mobile project. Both Android and iOS implementations
-are present with shared module containing all common business logic organized in Clean architecture.  
-The project is simple app built just for demonstration.  
-  
-User flows: 
- - Auth: login and registration screen
- - Users: paginated list of users with user detail 
- - Profile: detailed info about user with demonstration of geolocation API
- - Recipes/Counter: Platform specific playground
+
+This repo contains our template for multiplatform mobile project. Both Android and iOS
+implementations
+are present with shared modules containing all common business logic organized in Clean
+architecture.  
+The project contains three sample screens:
+
+- one with **native UI** and **native view model** (for Android Compose UI and view model in Kotlin,
+  for iOS
+  SwiftUI and view model in Swift)
+- second one with **native** (Compose and SwiftUI) **UI** and **shared view model**
+- and the third one with **shared Compose Multiplatform UI** and **shared view model**
 
 ## Architecture
-Clean (common modules) + MVVM (platform-specific modules) architecture is used for its testability and ease of *modularization*.
+
+Clean (common modules) + MVVM (platform-specific modules) architecture is used for its testability
+and ease of *modularization*.
 Code is divided into several layers:
- - infrastructure (`Source`)
- - data (`Repository`)
- - domain (`UseCase`)
 
-### Shared
-Shared module handles networking, persistence and contains UseCases which bridge platform specific code
-with common code. 
-Module structure is organized with Clean architecture in mind to several layers of abstraction where everything
-is marked as `internal` to prevent confusion between domain and data layer.
-  
-> The whole project relies heavily on dependency injection 
+- infrastructure (`Source`)
+- data (`Repository`)
+- domain (`UseCase`)
 
-### Android 
-Android code is separated into several feature-modules with `android:app` module providing navigation 
-root and `android:shared` module containing shared android code like common components or values. 
-Following standards the Android-specific modules use MVVM architecture where ViewModels use UseCases as 
-gateway to shared *model* layer. 
-
-### iOS
-- More info in the [iOS readme](/ios)
-
-## Technologies
+![Diagram](ProjectStructure.png)
 
 ### Shared
 
-#### DI - Koin
-Koin supports Kotlin Multiplatform and it's pure Kotlin project. Each module
-(including all andorid feature modules) has it's own Koin module. All modules (including common module)
-are put together inside platform specific code where Koin is initialized. 
+Shared modules in general handle networking, persistence and contain UseCases which bridge platform
+specific code with common code.
 
-#### Persistance - SqlDelight, Multiplatform Settings
-In a same way that native UI is more capable than cross-platform frameworks, SQL is the most capable tool
-for relation database. SqlDelight provides tools for generating Kotlin facade for SQL code.
+There is `:shared:core` that combines feature modules and core and generates `XCFramework` for iOS
+and is the main module imported in android modules.
 
-Using relation database for simple key-value pairs is an overkill so [Multiplatform Settings](https://github.com/russhwolf/multiplatform-settings) 
-library was used to handle that. It provides common API to access default native tools for storing simple data. 
+`:shared:base` is a module containing all the base and common classes needed in feature modules.
 
-#### Networking - Ktor
-Accessing network is usually the most used IO operation for mobile apps so Ktor was used for it's simple
-and extensible API and because it's multiplatform capable with different engines for each platform. 
+Structure inside each module is organized with Clean architecture in mind to several layers of
+abstraction where everything in domain or data layer is marked as `internal` to prevent confusion.
+
+> The whole project relies heavily on dependency injection
 
 ### Android
 
-#### UI - Jetpack Compose
-Jetpack Compose is still in Beta but it's the future of Android UI and new projects should consider using it.  
-While it is possible to create hybrid app with both the *old* View system and Compose, we've 
-chosen to go all in on Compose.
+Android code is separated into several feature-modules with `android:app` module providing
+navigation root and `android:shared` module containing shared android code like common components or
+values. Following standards the Android-specific modules use MVVM architecture where ViewModels use
+UseCases as gateway to shared *model* layer (in case you use native view models).
 
 ### iOS
-- More info in the [iOS readme](/ios)
+
+- More info in the [iOS readme](./ios/README.md)
+
+## Sharing options
+
+As mentioned above, there are three options for how much code you want to share between platforms.
+
+### Native UI and view models
+
+If you choose not to share view models neither UI, you can go ahead and
+delete `samplesharedviewmodels` and `samplecomposemultiplatform` modules in both `shared`
+and `android` and create own repositories, use cases, sources, ... according to what you find in
+the `:shared:sample` module and UI and view models according to `:android:sample`. You can also
+remove compose multiplatform plugin from `libs.versions.toml`.
+
+### Native UI and shared view models
+
+If you choose to share view models, but use native UI, you can delete
+the `samplecomposemultiplatform` module in both `shared`and `android`. You can also remove compose
+multiplatform plugin from `libs.versions.toml`.Refactor base classes that you will need:
+move `samplesharedviewmodel/base` files in `:shared:samplesharedviewmodel` to the `:shared:base`
+module (from `commonMain` as well as `iosMain` and `androidMain`) to have base classes you can
+extend. Also in iOS project move `SampleSharedViewModel/Toolkit` to `UIToolkit`. Then you can write
+your shared view models in the same way as the `SampleSharedViewModel` is written and used (
+especially check the usage on iOS with helpful extension methods).
+
+### Shared UI and view models
+
+If you go all out and decide to share both UI and view models, take inspiration
+from `SampleComposeMultiplatformScreenViewController` when calling you view from the swift code. For
+Android there are no changes needed, see in `:android:samplecomposemultiplatform` for yourself.
+
+## Creating new feature module in shared
+
+- Create a new module and copy `build.gradle.kts` content from one of the existing modules, change
+  `namespace` and dependencies on other modules as needed
+- Add dependency to `settings.gradle.kts`, `build.gradle.kts` of `:shared:core` and `.kmm()`
+  in `KmmConfig` in `build-logic`
+- Add DI module to `Module` in `:shared:core`
+
+## Technologies
+
+### DI
+
+#### Android - Koin
+
+Koin supports Kotlin Multiplatform and it's pure Kotlin project. Each module
+(including all Android feature modules) has it's own Koin module. All modules (including common
+module) are put together inside platform specific code where Koin is initialized.
+
+#### iOS - Factory
+
+We are using DI library Factory.
+
+### Networking - Ktor
+
+Accessing network is usually the most used IO operation for mobile apps so Ktor was used for it's
+simple and extensible API and because it's multiplatform capable with different engines for each
+platform.
+
+### Resources
+
+#### Twine
+
+All strings in the application are localized and shared with the iOS team
+via [Twine](https://github.com/scelis/twine). Strings are stored in the `twine/strings.txt` file.
+TwinePlugin then generates appropriate `strings.xml` files from the mentioned `strings.txt` file.
+When modifying `strings.txt` it is required to comply with the specified syntax and to pull/push all
+the changes frequently
+
+#### Moko
+
+Error messages are shared via [Moko Resources](https://github.com/icerockdev/moko-resources), so
+that we can use the strings in the shared code and avoid duplicities when converting errors to
+string messages. Error strings are stored in the `twine/errors.txt` file. Gradle task
+`generateErrorsTwine` first generates `strings.xml` files from `errors.txt` and then gradle task
+`generateMRCommonMain` generates `MR` class that can be used in the common code.
+
+### UI - Jetpack Compose
+
+#### Android
+
+**Jetpack Compose** is the go to for Android UI nowadays.
+
+#### iOS
+
+We recommend going with **SwiftUI**, unless you want to for some views or screens use Compose
+Multiplatform (below)
+
+#### Shared
+
+**Compose Multiplatform** (from Jetbrains) is still young, but you can try it out and for some
+simple screens (or maybe whole simple projects) it might be the right choice. It can save a lot of
+time since each view will be written only once and used on both platforms.
+
+### iOS
+
+- More info in the [iOS readme](./ios/README.md)
