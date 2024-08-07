@@ -17,21 +17,15 @@ ktlint {
     }
 }
 
-kotlin {
-    sourceSets {
-        commonMain {
-            dependencies {
-                implementation(project(":shared:base"))
-                implementation(project(":shared:sample"))
-                implementation(project(":shared:samplesharedviewmodel"))
+dependencies {
+    commonMainImplementation(project(":shared:base"))
+    commonMainImplementation(project(":shared:sample"))
+    commonMainImplementation(project(":shared:samplesharedviewmodel"))
 
-                implementation(compose.runtime)
-                implementation(compose.foundation)
-                implementation(compose.material)
-                @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
-                implementation(compose.components.resources)
-                implementation(compose.components.uiToolingPreview)
-            }
-        }
-    }
+    commonMainImplementation(compose.runtime)
+    commonMainImplementation(compose.foundation)
+    commonMainImplementation(compose.material)
+    @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
+    commonMainImplementation(compose.components.resources)
+    commonMainImplementation(compose.components.uiToolingPreview)
 }

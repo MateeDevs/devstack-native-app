@@ -1,3 +1,6 @@
+import constants.Application
+import constants.ProjectConstants
+
 @Suppress("DSL_SCOPE_VIOLATION") // Remove after upgrading to gradle 8.1
 plugins {
     alias(libs.plugins.devstack.kmm.xcframework.library)
@@ -5,6 +8,11 @@ plugins {
 
 android {
     namespace = "kmp.shared.core"
+}
+
+multiplatformResources {
+    resourcesPackage.set("kmp.shared.base")
+    configureCopyXCFrameworkResources(ProjectConstants.iosShared)
 }
 
 ktlint {
@@ -15,15 +23,9 @@ ktlint {
     }
 }
 
-kotlin {
-    sourceSets {
-        commonMain {
-            dependencies {
-                api(project(":shared:base"))
-                api(project(":shared:sample"))
-                api(project(":shared:samplesharedviewmodel"))
-                api(project(":shared:sampleComposeMultiplatform"))
-            }
-        }
-    }
+dependencies {
+    commonMainApi(project(":shared:base"))
+    commonMainApi(project(":shared:sample"))
+    commonMainApi(project(":shared:samplesharedviewmodel"))
+    commonMainApi(project(":shared:sampleComposeMultiplatform"))
 }

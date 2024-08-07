@@ -8,7 +8,7 @@ android {
 }
 
 multiplatformResources {
-    resourcesPackage.set("kmp.shared.base") // required
+    resourcesPackage.set("kmp.shared.base")
 }
 
 ktlint {

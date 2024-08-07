@@ -4,32 +4,7 @@
 <!-- Language: sk -->
 <resources>
 	<!-- SECTION: General -->
-	<string name="invalid_email">Neplatný formát e-mailu</string>
-	<string name="invalid_password">Neplatné heslo</string>
-	<string name="invalid_password_match">Heslá sa nezhodujú</string>
-	<string name="sending_failed">Odosielanie zlyhalo..</string>
 	<string name="unknown_error">Neznáma chyba</string>
-	<string name="signing_failed">Prihlasovanie zlyhalo</string>
-	<string name="invalid_credentials">Neplatné prihlasovacie údaje</string>
-	<string name="signing_up_failed">Registrácia sa nepodarila</string>
-	<string name="verifying_failed">Overenie zlyhalo</string>
-	<string name="open_file_screen_failed">Zobrazenie zlyhalo</string>
-	<string name="uploading_photo_failed">Fotografiu sa nepodarilo nahrať.</string>
 	<string name="not_authorized">Užívateľ nie je autorizovaný</string>
-	<string name="no_user_logged_in">Užívateľ nie je prihlásený</string>
-
-	<!-- SECTION: Errors -->
-	<string name="error_access_denied_title">Přístup zamítnut</string>
 	<string name="error_no_internet_connection">Nie ste pripojení k internetu.</string>
-	<string name="error_cannot_compress_image">Nejde skomprimovať obrázok</string>
-	<string name="error_camera_permissions_denied">Nemôžete zmeniť fotografiu, pokiaľ ste zakázali oprávnenie.</string>
-	<string name="error_loading_failed">Pri načítaní sa vyskytla chyba. Skúste to prosím neskôr.</string>
-
-	<!-- SECTION: Login -->
-	<string name="login_view_error_invalid_credentials">Neplatné prihlasovacie údaje</string>
-	<string name="login_failed">Nepodarilo sa prihlásiť</string>
-
-	<!-- SECTION: Registration -->
-	<string name="register_view_email_already_exists">Užívateľ s daným emailom už existuje.</string>
-	<string name="registration_failed">Nepodarilo sa registrovať</string>
 </resources>

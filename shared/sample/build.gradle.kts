@@ -15,12 +15,6 @@ ktlint {
     }
 }
 
-kotlin {
-    sourceSets {
-        commonMain {
-            dependencies {
-                implementation(project(":shared:base"))
-            }
-        }
-    }
+dependencies {
+    commonMainImplementation(project(":shared:base"))
 }

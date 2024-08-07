@@ -4,32 +4,7 @@
 <!-- Language: en -->
 <resources>
 	<!-- SECTION: General -->
-	<string name="invalid_email">Invalid email format</string>
-	<string name="invalid_password">Invalid password</string>
-	<string name="invalid_password_match">Passwords do not match</string>
-	<string name="sending_failed">Sending failed</string>
 	<string name="unknown_error">Unknown error</string>
-	<string name="signing_failed">Sign in failed</string>
-	<string name="invalid_credentials">Invalid credentials</string>
-	<string name="signing_up_failed">Sign up failed</string>
-	<string name="verifying_failed">Verification failed</string>
-	<string name="open_file_screen_failed">File cannot be opened</string>
-	<string name="uploading_photo_failed">Photo uploading failed.</string>
 	<string name="not_authorized">User is not authorized</string>
-	<string name="no_user_logged_in">User is not logged in</string>
-
-	<!-- SECTION: Errors -->
-	<string name="error_access_denied_title">Access denied</string>
 	<string name="error_no_internet_connection">You are not connected to the internet.</string>
-	<string name="error_cannot_compress_image">Unable to compress the image</string>
-	<string name="error_camera_permissions_denied">You cannot change the photo, because you denied the permission.</string>
-	<string name="error_loading_failed">Error occurred. Try again later.</string>
-
-	<!-- SECTION: Login -->
-	<string name="login_view_error_invalid_credentials">Invalid login credentials</string>
-	<string name="login_failed">Login failed</string>
-
-	<!-- SECTION: Registration -->
-	<string name="register_view_email_already_exists">User with specified email already exists.</string>
-	<string name="registration_failed">Registration failed</string>
 </resources>
