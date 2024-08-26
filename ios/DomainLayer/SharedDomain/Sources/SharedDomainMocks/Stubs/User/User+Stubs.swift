@@ -4,6 +4,7 @@
 //
 
 import SharedDomain
+import Utilities
 
 public extension User {
     static let stub = User(
@@ -15,6 +16,18 @@ public extension User {
         bio: "iOS dev",
         pictureUrl: "",
         counter: 0
+    )
+}
+
+public extension Pages<User> {
+    static let stub = Pages<User>(
+        data: (0..<10).map { _ in User.stub },
+        pagination: Pagination(
+            page: 0,
+            limit: 10,
+            totalCount: 10,
+            lastPage: 0
+        )
     )
 }
 

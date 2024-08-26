@@ -71,7 +71,7 @@ public extension Container {
         
         // User
         let getUsersUseCaseSpy = GetUsersUseCaseSpy()
-        getUsersUseCaseSpy.executePageReturnValue = .stub
+        getUsersUseCaseSpy.executePageLimitReturnValue = .stub
         getUsersUseCase.register { getUsersUseCaseSpy }
         
         let getUserUseCaseSpy = GetUserUseCaseSpy()

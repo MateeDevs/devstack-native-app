@@ -5,6 +5,7 @@
 
 @testable import SharedDomain
 import XCTest
+import Utilities
 
 final class GetUsersUseCaseTests: XCTestCase {
     
@@ -16,11 +17,11 @@ final class GetUsersUseCaseTests: XCTestCase {
 
     func testExecute() async throws {
         let useCase = GetUsersUseCaseImpl(userRepository: userRepository)
-        userRepository.readPageSortByReturnValue = [User].stub
+        userRepository.readPageLimitSortByReturnValue = Pages<User>.stub
         
-        let users = try await useCase.execute(.local, page: 0)
+        let users = try await useCase.execute(.local, page: 0, limit: 100)
         
-        XCTAssertEqual(users, [User].stub)
-        XCTAssert(userRepository.readPageSortByReceivedInvocations == [(.local, 0, "id")])
+        XCTAssertEqual(users, Pages<User>.stub)
+        XCTAssert(userRepository.readPageLimitSortByReceivedInvocations == [(.local, 0, 100, "id")])
     }
 }

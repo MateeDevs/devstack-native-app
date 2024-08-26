@@ -19,20 +19,40 @@ struct UsersView: View {
             if viewModel.state.users.isEmpty && viewModel.state.isLoading {
                 PrimaryProgressView()
             } else {
-                List {
-                    ForEach(viewModel.state.users, id: \.self) { user in
-                        HStack {
-                            Text(user.fullName)
-                            Spacer()
-                            NavigationLink.empty
+                PagingScrollView(
+                    isFetchingMore: viewModel.state.isFetchingMore,
+                    triggerAction: { viewModel.onIntent(.fetchMore) },
+                    content: {
+                        LazyVStack(spacing: 16) {
+                            ForEach(viewModel.state.users, id: \.self) { user in
+                                Button(
+                                    action: { viewModel.onIntent(.openUserDetail(id: user.id)) },
+                                    label: {
+                                        HStack {
+                                            Text(user.fullName)
+                                            
+                                            Spacer()
+                                            
+                                            Image(systemName: "chevron.right")
+                                        }
+                                        .contentShape(Rectangle())
+                                        .padding()
+                                        .background(Color.gray.opacity(0.3))
+                                        .cornerRadius(10)
+                                        .padding(.horizontal)
+                                    }
+                                )
+                                .shadow(radius: 10, y: 10)
+                                .foregroundColor(Color.primary)
+                            }
+                            
+                            if viewModel.state.isFetchingMore {
+                                ProgressView()
+                            }
                         }
-                        .contentShape(Rectangle())
-                        .onTapGesture {
-                            viewModel.onIntent(.openUserDetail(id: user.id))
-                        }
+                        .padding(.vertical)
                     }
-                }
-                .listStyle(PlainListStyle())
+                )
             }
         }
         .lifecycle(viewModel)

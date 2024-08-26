@@ -4,10 +4,15 @@
 //
 
 import Spyable
+import Utilities
 
 @Spyable
 public protocol GetUsersUseCase {
-    func execute(_ sourceType: SourceType, page: Int) async throws -> [User]
+    func execute(
+        _ sourceType: SourceType,
+        page: Int,
+        limit: Int
+    ) async throws -> Pages<User>
 }
 
 public struct GetUsersUseCaseImpl: GetUsersUseCase {
@@ -18,7 +23,11 @@ public struct GetUsersUseCaseImpl: GetUsersUseCase {
         self.userRepository = userRepository
     }
     
-    public func execute(_ sourceType: SourceType, page: Int) async throws -> [User] {
-        try await userRepository.read(sourceType, page: page, sortBy: "id")
+    public func execute(
+        _ sourceType: SourceType,
+        page: Int,
+        limit: Int
+    ) async throws -> Pages<User> {
+        try await userRepository.read(sourceType, page: page, limit: limit, sortBy: "id")
     }
 }
