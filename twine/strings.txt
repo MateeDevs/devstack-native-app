@@ -822,3 +822,57 @@
 		cs = Odblokovat
 		en = Unblock
 		sk = Odblokovať
+
+[[Recipe - TipKit]]
+	[recipe_tipkit_action_tip_title]
+		cs = Vyberte požadovanou akci
+		en = Select action you want
+		sk = Vyberte požadovanú akciu
+	[recipe_tipkit_inline_tip_title]
+		cs = Tenhle tip je fixní
+		en = This tip is fixed
+		sk = Tento tip je pevný
+	[recipe_tipkit_inline_tip_message]
+		cs = Tahle zpráva je nepovinná
+		en = This message is optional
+		sk = Táto správa je nepovinná
+	[recipe_tipkit_popover_tip_title]
+		cs = Tento tip je plovoucí, můžete definovat kotvy šipek
+		en = This tip is floating, you can define arrow anchors
+		sk = Tento tip je plávajúci, môžete definovať kotvy šípok
+	[recipe_tipkit_popover_tip_message]
+		cs = Tahle zpráva je nepovinná
+		en = This message is optional
+		sk = Táto správa je nepovinná
+	[recipe_tipkit_rule_tip_title]
+		cs = Tento tip má pravidlo, že se tip objeví po 3 klepnutích na tlačítko
+		en = This tip has rule that appears the tip after 3 taps on button
+		sk = Tento tip má pravidlo, že sa tip zobrazí po 3 ťuknutiach na tlačidlo
+	[recipe_tipkit_rule_tip_message]
+		cs = Pokud tip zavřete, budete muset aplikaci restartovat, aby se tip znovu objevil.
+		en = If you close the tip you will have to restart the app for appear tip again
+		sk = Ak tip zatvoríte, budete musieť reštartovať aplikáciu, aby sa tip opäť zobrazil
+	[recipe_tipkit_title]
+		cs = Příklady TipKitu
+		en = Example of TipKit
+		sk = Príklady TipKita
+	[recipe_tipkit_inline_tip]
+		cs = Inline tip
+		en = Inline tip
+		sk = Inline tip
+	[recipe_tipkit_rule_tip]
+		cs = Rule tip
+		en = Rule tip
+		sk = Rule tip
+	[recipe_tipkit_action_tip]
+		cs = Action tip
+		en = Action tip
+		sk = Action tip
+	[recipe_tipkit_decrease_button_title]
+		cs = Zmenšit
+		en = Decrease
+		sk = Zmenšiť
+	[recipe_tipkit_remaining_title]
+		cs = Zbytek do zobrazení - %d
+		en = Remaining to show tip - %d
+		sk = Zvyšok na zobrazenie - %d

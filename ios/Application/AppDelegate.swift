@@ -13,6 +13,7 @@ import KeychainProvider
 import NetworkProvider
 import OSLog
 import SharedDomain
+import TipKit
 import UIKit
 import UIToolkit
 import UserDefaultsProvider
@@ -41,6 +42,9 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Setup Cache capacity
         setupCacheCapacity()
+        
+        // Setup Tips
+        setupTips()
         
         // Register for remote notifications
         application.registerForRemoteNotifications()
@@ -132,6 +136,16 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     private func setupCacheCapacity() {
         URLCache.shared.memoryCapacity = 10_000_000 // ~10 MB memory space
         URLCache.shared.diskCapacity = 1_000_000_000 // ~1GB disk cache space
+    }
+    
+    // MARK: Setup Tips
+    private func setupTips() {
+        guard #available(iOS 17, *) else { return }
+        
+        // Reset DataStore has to be called before configure
+        // You don't usually need to reset DataStore because you wanna show the tip only once
+        try? Tips.resetDatastore()
+        try? Tips.configure()
     }
 }
 

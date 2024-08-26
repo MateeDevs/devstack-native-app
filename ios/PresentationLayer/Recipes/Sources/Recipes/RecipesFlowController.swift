@@ -18,6 +18,7 @@ enum RecipesFlow: Flow, Equatable {
         case showImages
         case showMaps
         case showSlidingButton
+        case showTipKitExample
     }
 }
 
@@ -47,6 +48,7 @@ extension RecipesFlowController {
         case .showImages: showImages()
         case .showMaps: showMaps()
         case .showSlidingButton: showSlidingButton()
+        case .showTipKitExample: showTipKitExample()
         }
     }
     
@@ -89,6 +91,14 @@ extension RecipesFlowController {
     private func showSlidingButton() {
         let vm = SlidingButtonViewModel(flowController: self)
         let vc = BaseHostingController(rootView: SlidingButtonView(viewModel: vm))
+        navigationController.show(vc, sender: nil)
+    }
+    
+    private func showTipKitExample() {
+        guard #available(iOS 17, *) else { return }
+        
+        let vm = ExampleTipKitViewModel(flowController: self)
+        let vc = BaseHostingController(rootView: ExampleTipKitView(viewModel: vm))
         navigationController.show(vc, sender: nil)
     }
 }
