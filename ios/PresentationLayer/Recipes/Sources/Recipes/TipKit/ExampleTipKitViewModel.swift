@@ -26,7 +26,7 @@ class ExampleTipKitViewModel: BaseViewModel, ObservableObject, ViewModel {
     @Published private(set) var state: State = State()
 
     struct State {
-        var remainigTapsToShowTip: Int = 3
+        var remainingTapsToShowTip: Int = 3
     }
     
     // MARK: Intent
@@ -47,7 +47,7 @@ class ExampleTipKitViewModel: BaseViewModel, ObservableObject, ViewModel {
     private func handleTapToShowTip() async {
         guard #available(iOS 17, *) else { return }
         
-        state.remainigTapsToShowTip -= 1
+        state.remainingTapsToShowTip -= 1
         await RuleTip.remainToShow.donate()
     }
 }

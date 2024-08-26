@@ -35,9 +35,9 @@ struct ExampleTipKitView: View {
             
             VStack {
                 HStack {
-                    Text(L10n.recipe_tipkit_remaining_title(viewModel.state.remainigTapsToShowTip))
+                    Text(L10n.recipe_tipkit_remaining_title(viewModel.state.remainingTapsToShowTip))
                     
-                    if viewModel.state.remainigTapsToShowTip > 0 {
+                    if viewModel.state.remainingTapsToShowTip > 0 {
                         Button(
                             action: {
                                 viewModel.onIntent(.tapToShowTip)
