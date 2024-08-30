@@ -22,7 +22,7 @@ suspend fun <Key : Any, Output : Any> MutableStore<Key, Output>.getResult(key: K
     getResultFlow(key).first()
 
 /**
- * @throws  Throws an [IllegalStateException] when [StoreReadResponse.Loading]
+ * @throws Throws an [IllegalStateException] when [StoreReadResponse.Loading]
  * or [StoreReadResponse.NoNewData] are emitted by the source flow. Make sure these values are
  * filtered out because they can't be translated to Result
  */
