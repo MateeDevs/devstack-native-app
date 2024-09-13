@@ -30,6 +30,7 @@ kotlinxImmutableCollections = "0.3.6"
 konsist = "0.13.0"
 junit = "4.13.2"
 mokoResources = "0.23.0"
+store = "5.1.0-alpha02" # alpha for the "custom error" feature introduced in 5.1.0-alpha01
 
 [libraries]
 # Kotlin
@@ -106,6 +107,8 @@ junit = { module = "junit:junit", version.ref = "junit" }
 # Moko resources
 mokoResources = { module = "dev.icerock.moko:resources", version.ref = "mokoResources" }
 mokoResources-compose = { module = "dev.icerock.moko:resources-compose", version.ref = "mokoResources" }
+# Store
+store = { module = "org.mobilenativefoundation.store:store5", version.ref = "store" }
 
 [bundles]
 settings = [

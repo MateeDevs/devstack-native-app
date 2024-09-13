@@ -8,3 +8,5 @@ sealed class Result<out T : Any> {
 }
 
 open class ErrorResult(open var message: String? = null, open var throwable: Throwable? = null)
+
+class ErrorResultException(val error: ErrorResult) : Exception(error.message, error.throwable)

@@ -73,6 +73,7 @@ class KmmLibraryConventionPlugin : Plugin<Project> {
                             implementation(libs.bundles.sqlDelight.common)
                             implementation(libs.bundles.ktor.common)
                             implementation(libs.kermit)
+                            implementation(libs.store)
                         }
                     }
 

@@ -10,4 +10,5 @@ sealed class CommonError(throwable: Throwable? = null) : ErrorResult(throwable =
     class NoNetworkConnection(t: Throwable?) : CommonError(t)
     object NoUserLoggedIn : CommonError()
     object Unknown : CommonError()
+    class UnhandledExceptionError(origin: Throwable) : CommonError(origin)
 }
