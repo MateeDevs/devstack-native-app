@@ -7,8 +7,7 @@ import SwiftUI
 import PhotosUI
 
 public enum MediaType: Hashable {
-    case photo(UIImage)
-    case video(URL)
+    case photo(src: UIImage, id: String?)
 }
 
 public protocol MediaPickerSource: AnyObject {
@@ -16,30 +15,32 @@ public protocol MediaPickerSource: AnyObject {
 }
 
 public struct MediaPickerView: UIViewControllerRepresentable {
-    
     public typealias UIViewControllerType = PHPickerViewController
     
     @Binding private var media: [MediaType]
     private var selectionLimit: Int
     private var filter: PHPickerFilter?
-    private var itemProviders: [NSItemProvider]
     
     public init(
         media: Binding<[MediaType]>,
         selectionLimit: Int = 5,
-        filter: PHPickerFilter? = PHPickerFilter.any(of: [.images, .videos]),
-        itemProviders: [NSItemProvider] = []
+        filter: PHPickerFilter? = PHPickerFilter.any(of: [.images])
     ) {
         self._media = media
         self.selectionLimit = selectionLimit
         self.filter = filter
-        self.itemProviders = itemProviders
     }
     
     public func makeUIViewController(context: Context) -> PHPickerViewController {
-        var configuration = PHPickerConfiguration()
+        var configuration = PHPickerConfiguration(photoLibrary: .shared())
         configuration.filter = self.filter
         configuration.selectionLimit = self.selectionLimit
+        configuration.preselectedAssetIdentifiers = self.media.compactMap { media in
+            switch media {
+            case let .photo(src: _, id: id): return id
+            }
+        }
+        configuration.selection = .ordered
         
         let picker = PHPickerViewController(configuration: configuration)
         picker.delegate = context.coordinator
@@ -47,16 +48,13 @@ public struct MediaPickerView: UIViewControllerRepresentable {
         return picker
     }
     
-    public func updateUIViewController(_ uiViewController: PHPickerViewController, context: Context) {
-        
-    }
+    public func updateUIViewController(_ uiViewController: PHPickerViewController, context: Context) { }
     
     public func makeCoordinator() -> Coordinator {
         return MediaPickerView.Coordinator(parent: self)
     }
     
     public class Coordinator: NSObject, PHPickerViewControllerDelegate, UINavigationControllerDelegate {
-        
         var parent: MediaPickerView
         
         init(parent: MediaPickerView) {
@@ -66,35 +64,21 @@ public struct MediaPickerView: UIViewControllerRepresentable {
         public func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
             picker.dismiss(animated: true)
 
-            if !results.isEmpty {
-                parent.itemProviders = []
-                parent.media = []
-            }
-            
-            parent.itemProviders = results.map(\.itemProvider)
-            loadMedia()
+            loadMedia(from: results)
         }
         
-        private func loadMedia() {
-            for itemProvider in parent.itemProviders {
-                if itemProvider.canLoadObject(ofClass: UIImage.self) {
-                    itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
-                        guard let self = self else { return }
+        private func loadMedia(from results: [PHPickerResult]) {
+            for result in results {
+                if result.itemProvider.canLoadObject(ofClass: UIImage.self) {
+                    result.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
+                        guard let self else { return }
                         
                         if let image = image as? UIImage {
-                            self.parent.media.append(MediaType.photo(image))
+                            DispatchQueue.main.schedule {
+                                self.parent.media.append(MediaType.photo(src: image, id: result.assetIdentifier))
+                            }
                         } else {
                             print("Could not load image", error?.localizedDescription ?? "")
-                        }
-                    }
-                } else if itemProvider.hasItemConformingToTypeIdentifier(UTType.movie.identifier) {
-                    itemProvider.loadFileRepresentation(forTypeIdentifier: UTType.movie.identifier) { [weak self] url, error in
-                        guard let self = self else { return }
-                        
-                        if let url = url {
-                            self.parent.media.append(MediaType.video(url))
-                        } else {
-                            print("Could not load video", error?.localizedDescription ?? "")
                         }
                     }
                 }
