@@ -30,19 +30,33 @@ struct MediaView: View {
                             ForEach(viewModel.state.media, id: \.self) { media in
                                 switch media {
                                 case .photo(let photo, _):
-                                    Image(uiImage: photo)
-                                        .resizable()
-                                        .scaledToFit()
-                                        .clipShape(.rect(cornerRadius: 10))
-                                        .padding(.horizontal)
+                                    ZStack(alignment: .topTrailing) {
+                                        Image(uiImage: photo)
+                                            .resizable()
+                                            .scaledToFit()
+                                            .clipShape(.rect(cornerRadius: 10))
+                                        
+                                        Button(action: { viewModel.onIntent(.removeMedia(by: media.hashValue)) }, label: {
+                                            Image(systemName: "plus")
+                                                .rotationEffect(.degrees(45))
+                                                .foregroundColor(.white)
+                                                .padding()
+                                                .background(
+                                                    Capsule()
+                                                        .fill(.red)
+                                                        .clipped()
+                                                        .shadow(color: Color.black.opacity(0.25), radius: 4, x: 0, y: 1)
+                                                )
+                                                .padding([.top, .trailing])
+                                        })
+                                    }
+                                    .padding(.horizontal)
                                 }
                             }
-                            
-                            Spacer()
-                                .frame(height: 16)
                         }
                     }
                 }
+                .animation(.easeInOut, value: viewModel.state.media)
             }
             
             VStack {
