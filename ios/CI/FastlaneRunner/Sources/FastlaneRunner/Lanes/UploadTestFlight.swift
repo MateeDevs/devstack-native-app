@@ -30,7 +30,7 @@ extension Fastfile {
         
         appStoreConnectApiKey(
             keyId: apiKey.id,
-            issuerId: apiKey.issuerId,
+            issuerId: .userDefined(apiKey.issuerId),
             keyContent: .userDefined(ProcessInfo.processInfo.environment["APP_STORE_CONNECT_API_KEY_CONTENT"]),
             inHouse: false
         )
