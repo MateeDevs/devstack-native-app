@@ -67,6 +67,8 @@ final class LoginViewModelTests: XCTestCase {
         XCTAssertEqual(fc.handleFlowValue, nil)
         XCTAssert(loginUseCase.executeReceivedInvocations == [.stubEmptyEmail])
         XCTAssertEqual(trackAnalyticsEventUseCase.executeCallsCount, 0)
+        
+        XCTAssert(false)
     }
     
     func testLoginEmptyPassword() async {

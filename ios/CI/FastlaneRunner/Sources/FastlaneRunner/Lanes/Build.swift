@@ -65,7 +65,8 @@ extension Fastfile {
                 "-authenticationKeyID \(apiKey.id) " +
                 "-authenticationKeyIssuerID \(apiKey.issuerId) " +
                 "-authenticationKeyPath \(apiKey.path)"
-            )
+            ),
+            xcodebuildFormatter: "xcbeautify --renderer github-actions"
         )
     }
 }
