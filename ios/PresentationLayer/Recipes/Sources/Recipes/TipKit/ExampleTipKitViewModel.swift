@@ -17,7 +17,7 @@ class ExampleTipKitViewModel: BaseViewModel, ObservableObject, ViewModel {
         super.init()
         
         if #available(iOS 17, *) {
-            state.remainigTapsToShowTip = 3 - RuleTip.remainToShow.donations.count
+            state.remainingTapsToShowTip = 3 - RuleTip.remainToShow.donations.count
         }
     }
     

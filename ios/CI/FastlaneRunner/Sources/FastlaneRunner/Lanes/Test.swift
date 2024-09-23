@@ -24,6 +24,7 @@ extension Fastfile {
     ) {
         runTests(
             scheme: .userDefined(configuration.scheme),
+            xcodebuildFormatter: "xcbeautify --renderer github-actions",
             xcargs: .userDefined(
                 "-skipPackagePluginValidation " +
                 "-skipMacroValidation"
