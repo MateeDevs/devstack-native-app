@@ -38,10 +38,6 @@ enum RecipesFlow: Flow, Equatable {
     }
 }
 
-public protocol MediaPickerSource: AnyObject {
-    var media: Binding<[MediaType]> { get }
-}
-
 public final class RecipesFlowController: FlowController {
 
     override public func setup() -> UIViewController {

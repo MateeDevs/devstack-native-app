@@ -36,7 +36,9 @@ struct MediaView: View {
                                             .scaledToFit()
                                             .clipShape(.rect(cornerRadius: 10))
                                         
-                                        Button(action: { viewModel.onIntent(.removeMedia(by: media.hashValue)) }, label: {
+                                        Button {
+                                            viewModel.onIntent(.removeMedia(by: media.hashValue))
+                                        } label: {
                                             Image(systemName: "plus")
                                                 .rotationEffect(.degrees(45))
                                                 .foregroundColor(.white)
@@ -48,7 +50,7 @@ struct MediaView: View {
                                                         .shadow(color: Color.black.opacity(0.25), radius: 4, x: 0, y: 1)
                                                 )
                                                 .padding([.top, .trailing])
-                                        })
+                                        }
                                     }
                                     .padding(.horizontal)
                                 }
