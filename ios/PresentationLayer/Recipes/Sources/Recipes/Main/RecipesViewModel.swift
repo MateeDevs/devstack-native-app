@@ -62,7 +62,6 @@ final class RecipesViewModel: BaseViewModel, ViewModel, ObservableObject {
         case .maps: flowController?.handleFlow(RecipesFlow.recipes(.showMaps))
         case .slidingButton: flowController?.handleFlow(RecipesFlow.recipes(.showSlidingButton))
         case .tipKit: flowController?.handleFlow(RecipesFlow.recipes(.showTipKitExample))
-        case .mediaPicker: flowController?.handleFlow(RecipesFlow.recipes(.showMediaPicker))
         case .media: flowController?.handleFlow(RecipesFlow.recipes(.showMedia))
         }
     }

@@ -32,7 +32,6 @@ enum RecipesFlow: Flow, Equatable {
         case showMaps
         case showSlidingButton
         case showTipKitExample
-        case showMediaPicker
         case showMedia
         case presentPickerModal(delegate: MediaPickerSource)
     }
@@ -65,7 +64,6 @@ extension RecipesFlowController {
         case .showMaps: showMaps()
         case .showSlidingButton: showSlidingButton()
         case .showTipKitExample: showTipKitExample()
-        case .showMediaPicker: showMediaPicker()
         case .showMedia: showMedia()
         case .presentPickerModal(let source): presentPickerModal(source: source)
         }
@@ -119,11 +117,8 @@ extension RecipesFlowController {
         let vm = ExampleTipKitViewModel(flowController: self)
         let vc = BaseHostingController(rootView: ExampleTipKitView(viewModel: vm))
         navigationController.show(vc, sender: nil)
-        
-    private func showMediaPicker() {
-        let vm = MediaPickerViewModel(flowController: self)
-        let vc = BaseHostingController(rootView: MediaPickerView(viewModel: vm))
-
+    }
+    
     private func showMedia() {
         let vm = MediaViewModel(flowController: self)
         let vc = BaseHostingController(rootView: MediaView(viewModel: vm))
