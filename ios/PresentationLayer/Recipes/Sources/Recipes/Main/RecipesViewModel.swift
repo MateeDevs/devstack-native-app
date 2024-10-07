@@ -15,7 +15,6 @@ enum Recipe: String, CaseIterable {
     case maps = "Maps"
     case slidingButton = "SlidingButton"
     case tipKit = "TipKit"
-    case mediaPicker = "MediaPicker"
     case media = "Media"
 }
 
