@@ -11,6 +11,19 @@ enum RecipesFlow: Flow, Equatable {
     case recipes(Recipes)
     
     enum Recipes: Equatable {
+        static func == (lhs: RecipesFlow.Recipes, rhs: RecipesFlow.Recipes) -> Bool {
+            switch (lhs, rhs) {
+            case (.showCounter, .showCounter): true
+            case (.showBooks, .showBooks): true
+            case (.showSkeleton, .showSkeleton): true
+            case (.showImages, .showImages): true
+            case (.showMaps, .showMaps): true
+            case (.showMedia, .showMedia): true
+            case (.presentPickerModal, .presentPickerModal): true
+            default: false
+            }
+        }
+        
         case showCounter
         case showBooks
         case showRocketLaunches
@@ -19,6 +32,8 @@ enum RecipesFlow: Flow, Equatable {
         case showMaps
         case showSlidingButton
         case showTipKitExample
+        case showMedia
+        case presentPickerModal(delegate: MediaPickerSource)
     }
 }
 
@@ -49,6 +64,8 @@ extension RecipesFlowController {
         case .showMaps: showMaps()
         case .showSlidingButton: showSlidingButton()
         case .showTipKitExample: showTipKitExample()
+        case .showMedia: showMedia()
+        case .presentPickerModal(let source): presentPickerModal(source: source)
         }
     }
     
@@ -100,5 +117,21 @@ extension RecipesFlowController {
         let vm = ExampleTipKitViewModel(flowController: self)
         let vc = BaseHostingController(rootView: ExampleTipKitView(viewModel: vm))
         navigationController.show(vc, sender: nil)
+    }
+    
+    private func showMedia() {
+        let vm = MediaViewModel(flowController: self)
+        let vc = BaseHostingController(rootView: MediaView(viewModel: vm))
+        navigationController.show(vc, sender: nil)
+    }
+    
+    private func presentPickerModal(source: MediaPickerSource) {
+        let vc = BaseHostingController(
+            rootView: MediaPickerView(
+                media: source.media,
+                selectionLimit: 5
+            )
+        )
+        navigationController.present(vc, animated: true)
     }
 }
