@@ -22,15 +22,15 @@ public enum Plurals: String {
     
     func stringForCount(_ count: Int) -> String {
         if count == 0 { // swiftlint:disable:this empty_count
-            return String(format: NSLocalizedString("zero_\(rawValue)", bundle: .myModule, comment: ""), count)
+            return String(format: NSLocalizedString("zero_\(rawValue)", bundle: .module, comment: ""), count)
         } else if abs(count) == 1 {
-            return String(format: NSLocalizedString("one_\(rawValue)", bundle: .myModule, comment: ""), count)
+            return String(format: NSLocalizedString("one_\(rawValue)", bundle: .module, comment: ""), count)
         } else if abs(count) > 1 && abs(count) < 5 {
-            return String(format: NSLocalizedString("few_\(rawValue)", bundle: .myModule, comment: ""), count)
+            return String(format: NSLocalizedString("few_\(rawValue)", bundle: .module, comment: ""), count)
         } else if abs(count) >= 5 {
-            return String(format: NSLocalizedString("many_\(rawValue)", bundle: .myModule, comment: ""), count)
+            return String(format: NSLocalizedString("many_\(rawValue)", bundle: .module, comment: ""), count)
         } else {
-            return String(format: NSLocalizedString("other_\(rawValue)", bundle: .myModule, comment: ""), count)
+            return String(format: NSLocalizedString("other_\(rawValue)", bundle: .module, comment: ""), count)
         }
     }
 }
