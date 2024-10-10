@@ -13,13 +13,11 @@ extension ValidationError: LocalizedError {
         switch self {
         case .email(let reason):
             switch reason {
-            #warning("TODO: Use MR strings when issue [https://github.com/icerockdev/moko-resources/issues/714] is resolved")
-            case .isEmpty: "Invalid email format" // MR.strings().invalid_email.desc().localized()
+            case .isEmpty: return MR.strings().invalid_email.desc().localized()
             }
         case .password(let reason):
             switch reason {
-            #warning("TODO: Use MR strings when issue [https://github.com/icerockdev/moko-resources/issues/714] is resolved")
-            case .isEmpty: "Invalid password" // MR.strings().invalid_password.desc().localized()
+            case .isEmpty: return MR.strings().invalid_password.desc().localized()
             }
         }
     }

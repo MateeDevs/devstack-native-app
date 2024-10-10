@@ -3,7 +3,6 @@
 // Revision: 937d05fa32ff389c63f93f0f9e2919d2c461b3c9
 
 // Modifications:
-// - Use `.myModule` [workaround](https://developer.apple.com/forums/thread/664295) to address SwiftUI Previews crashes
 // - Ensure SwiftUI-first behavior for colors by renaming `.color` to `.uiColor` and `.swiftUIColor` to `.color`
 // - Ensure SwiftUI-first behavior for images by renaming `.image` to `.uiImage` and `.swiftUIImage` to `.image`
 
@@ -433,7 +432,7 @@
 private final class BundleToken {
   static let bundle: Bundle = {
     #if SWIFT_PACKAGE
-    return Bundle.myModule
+    return Bundle.module
     #else
     return Bundle(for: BundleToken.self)
     #endif
