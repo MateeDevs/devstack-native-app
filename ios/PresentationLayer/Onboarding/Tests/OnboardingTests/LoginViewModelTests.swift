@@ -102,10 +102,10 @@ final class LoginViewModelTests: XCTestCase {
     func testLoginInvalidPassword() async {
         let vm = createViewModel()
         let errorResult = AuthError.InvalidLoginCredentials(throwable: nil)
-        #warning("TODO: Use localizedMessage when issue [https://github.com/icerockdev/moko-resources/issues/714] is resolved")
+        fixMokoResourcesForTests() 
         loginUseCase.executeThrowableError = KmmLocalizedError(
             errorResult: errorResult,
-            localizedMessage: "" // errorResult.localizedMessage(nil)
+            localizedMessage: errorResult.localizedMessage(nil)
         )
         
         vm.onIntent(.changeEmail(LoginData.stubValid.email))

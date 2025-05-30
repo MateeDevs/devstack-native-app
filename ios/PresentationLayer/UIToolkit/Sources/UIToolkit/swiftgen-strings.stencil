@@ -3,7 +3,6 @@
 // Revision: 7e13d641745b56775d9a7f983a5468d2d9952ada
 
 // Modifications:
-// - Use `.myModule` [workaround](https://developer.apple.com/forums/thread/664295) to address SwiftUI Previews crashes
 // - Use snake_case instead of camelCase, this is done by changing `swiftIdentifier:"pretty"` to `swiftIdentifier`
 // - Ability to change localization via Environment.localization
 
@@ -102,7 +101,7 @@ extension {{enumName}} {
 private final class BundleToken {
   static let bundle: Bundle = {
     #if SWIFT_PACKAGE
-    return Bundle.myModule
+    return Bundle.module
     #else
     return Bundle(for: BundleToken.self)
     #endif
