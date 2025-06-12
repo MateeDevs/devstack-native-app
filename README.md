@@ -1,3 +1,5 @@
+# ⚠️ Deprecated - use [MateeStarter](https://github.com/MateeDevs/MateeStarter) ⚠️
+
 # Matee KMP DevStack
 
 ## Use Devstack as a base for a new project
